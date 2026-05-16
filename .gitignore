@@ -1,3 +1,7 @@
 .DS_Store
 dashboard/node_modules/
 dashboard/dist/
+data/visuals/latest/*.png
+data/visuals/latest/*.gif
+data/visuals/latest/*.zip
+!data/visuals/latest/.gitkeep

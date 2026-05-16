@@ -1,0 +1,238 @@
+{
+  "generated_at": "2026-05-16T17:31Z",
+  "vision": {
+    "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
+    "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
+    "package_ci": "Official mirrors need ci.yml on main before Dependabot merges",
+    "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
+  },
+  "metrics": {
+    "open_prs": 16,
+    "failed_prs": 4,
+    "ready_prs": 8,
+    "repos_missing_ci_main": 1,
+    "repos_without_live_pages": 10
+  },
+  "failed_prs": [
+    {
+      "repo": "lic",
+      "number": 2,
+      "title": "fix(env): restore Ctx initializer and add Cloud Agent instructions",
+      "url": "https://github.com/li-langverse/lic/pull/2",
+      "base": "main",
+      "ci": "fail",
+      "draft": true,
+      "ready": false
+    },
+    {
+      "repo": "lic",
+      "number": 1,
+      "title": "fix(ci): sync dev CI fixes (lip/lit checkout, Windows LLVM, valgrind)",
+      "url": "https://github.com/li-langverse/lic/pull/1",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    },
+    {
+      "repo": "li-language",
+      "number": 5,
+      "title": "fix(ci): sync dev CI fixes (lip/lit checkout, Windows LLVM, valgrind)",
+      "url": "https://github.com/li-langverse/li-language/pull/5",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    },
+    {
+      "repo": "li-language",
+      "number": 3,
+      "title": "Enhance li-httpd implementation plan and expand physics benchmarks",
+      "url": "https://github.com/li-langverse/li-language/pull/3",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    }
+  ],
+  "ready_prs": [
+    {
+      "repo": "lit",
+      "number": 1,
+      "title": "build(deps): bump actions/checkout from 4 to 6",
+      "url": "https://github.com/li-langverse/lit/pull/1",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "benchmarks",
+      "number": 1,
+      "title": "feat(catalog): tier-3 lic ecosystem + security dashboard",
+      "url": "https://github.com/li-langverse/benchmarks/pull/1",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "roadmap",
+      "number": 2,
+      "title": "feat(docs): publish development overview with live PR merge queue",
+      "url": "https://github.com/li-langverse/roadmap/pull/2",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "li-net",
+      "number": 2,
+      "title": "ci: add lic check workflow on push and PR",
+      "url": "https://github.com/li-langverse/li-net/pull/2",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "li-httpd",
+      "number": 2,
+      "title": "ci: add lic check workflow on push and PR",
+      "url": "https://github.com/li-langverse/li-httpd/pull/2",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "li-std-core",
+      "number": 2,
+      "title": "ci: add lic check workflow on push and PR",
+      "url": "https://github.com/li-langverse/li-std-core/pull/2",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "li-std-math",
+      "number": 2,
+      "title": "ci: add lic check workflow on push and PR",
+      "url": "https://github.com/li-langverse/li-std-math/pull/2",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "li-demo",
+      "number": 1,
+      "title": "ci: add lic check workflow on push and PR",
+      "url": "https://github.com/li-langverse/li-demo/pull/1",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    }
+  ],
+  "missing_ci_on_main": [
+    "li-demo"
+  ],
+  "repos_without_live_docs": [
+    "lic",
+    "lip",
+    "lit",
+    "lis",
+    "roadmap",
+    "li-net",
+    "li-httpd",
+    "li-std-core",
+    "li-std-math",
+    "li-demo"
+  ],
+  "live_docs_down": [],
+  "benchmarks": {
+    "generated_at": "2026-05-16T15:10:14.562929+00:00",
+    "red": [
+      {
+        "id": "horner_pure_li",
+        "ratio_vs_cpp": 88.8208,
+        "ph_ids": [
+          "PH-5b",
+          "PH-7e"
+        ]
+      }
+    ],
+    "yellow": [],
+    "green_count": 11,
+    "near_threshold": [
+      {
+        "id": "matmul_blocked",
+        "ratio_vs_cpp": 1.0349
+      },
+      {
+        "id": "nbody_gravity",
+        "ratio_vs_cpp": 1.0346
+      },
+      {
+        "id": "double_pendulum",
+        "ratio_vs_cpp": 1.0319
+      },
+      {
+        "id": "wave_equation_1d",
+        "ratio_vs_cpp": 1.0236
+      },
+      {
+        "id": "harmonic_oscillator_chain",
+        "ratio_vs_cpp": 1.0183
+      }
+    ],
+    "unknown": [
+      "tier0_stability",
+      "lip_smoke",
+      "lit_smoke",
+      "keepalive_pipelining",
+      "static_small"
+    ]
+  },
+  "recommended_actions": [
+    {
+      "priority": "P0",
+      "action": "Fix failing PR CI before new feature work",
+      "prs": [
+        "lic#2",
+        "lic#1",
+        "li-language#5",
+        "li-language#3"
+      ]
+    },
+    {
+      "priority": "P0",
+      "action": "Merge package CI setup PRs or add ci.yml on main",
+      "repos": [
+        "li-demo"
+      ]
+    },
+    {
+      "priority": "P1",
+      "action": "Compiler/benchmark work in lic (not dashboards-only)",
+      "benchmarks": [
+        {
+          "id": "horner_pure_li",
+          "ratio_vs_cpp": 88.8208,
+          "ph_ids": [
+            "PH-5b",
+            "PH-7e"
+          ]
+        }
+      ]
+    },
+    {
+      "priority": "P2",
+      "action": "Human review merge queue (do not self-merge)",
+      "count": 8
+    }
+  ]
+}
