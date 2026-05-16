@@ -6,3 +6,7 @@ data/visuals/latest/*.gif
 data/visuals/latest/*.zip
 !data/visuals/latest/.gitkeep
 lic
+lip/
+lit/
+lis/
+roadmap/
