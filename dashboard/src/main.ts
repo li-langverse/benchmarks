@@ -1,9 +1,11 @@
 import "./style.css";
+import { renderCategorySection, type ChartSpec } from "./charts";
 
 type Summary = {
   generated_at: string;
-  source_csv: string;
+  sources: Record<string, string>;
   tier_counts: Record<string, { green: number; yellow: number; red: number; unknown: number }>;
+  categories: Record<string, { label: string; charts: ChartSpec[] }>;
   rows: Row[];
 };
 
@@ -11,6 +13,7 @@ type Row = {
   benchmark: string;
   repo: string;
   tier: number;
+  category?: string;
   metric: string;
   li_value: number | null;
   cpp_value: number | null;
@@ -23,6 +26,8 @@ type Row = {
   threshold_ratio_cpp: number;
 };
 
+const CATEGORY_NAV = ["micro", "physics", "http", "tooling", "correctness"];
+
 async function loadSummary(): Promise<Summary> {
   const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
   const res = await fetch(`${base}latest/summary.json`);
@@ -31,11 +36,12 @@ async function loadSummary(): Promise<Summary> {
 }
 
 function tierStrip(counts: Summary["tier_counts"]): string {
-  const tiers = ["0", "1", "2", "5"];
+  const tiers = ["0", "1", "2", "3", "5"];
   return tiers
     .map((t) => {
       const c = counts[t] ?? { green: 0, yellow: 0, red: 0, unknown: 0 };
       return `
+        
         <div class="tier-card">
           <h3>Tier ${t}</h3>
           <div class="counts">
@@ -62,8 +68,9 @@ function renderTable(rows: Row[]): string {
   return rows
     .map(
       (r) => `
-    <tr data-tier="${r.tier}" data-repo="${r.repo}" data-status="${r.status}" data-variant="${r.variant ?? ""}">
+    <tr data-tier="${r.tier}" data-repo="${r.repo}" data-status="${r.status}" data-category="${r.category ?? ""}">
       <td><strong>${r.benchmark}</strong></td>
+      <td>${r.category ?? "—"}</td>
       <td>${r.repo}</td>
       <td class="mono">${r.tier}</td>
       <td>${r.metric}</td>
@@ -81,15 +88,39 @@ function renderTable(rows: Row[]): string {
 function applyFilters(root: HTMLElement) {
   const tier = (root.querySelector("#f-tier") as HTMLSelectElement).value;
   const repo = (root.querySelector("#f-repo") as HTMLSelectElement).value;
+  const cat = (root.querySelector("#f-category") as HTMLSelectElement).value;
   const failing = (root.querySelector("#f-fail") as HTMLInputElement).checked;
   root.querySelectorAll("tbody tr").forEach((tr) => {
     const el = tr as HTMLTableRowElement;
     let show = true;
     if (tier && el.dataset.tier !== tier) show = false;
     if (repo && el.dataset.repo !== repo) show = false;
+    if (cat && el.dataset.category !== cat) show = false;
     if (failing && el.dataset.status === "green") show = false;
     el.style.display = show ? "" : "none";
   });
+}
+
+function categoryNav(categories: Summary["categories"]): string {
+  return CATEGORY_NAV.filter((k) => categories[k])
+    .map(
+      (k) =>
+        `<a class="cat-pill" href="#cat-${k}">${categories[k].label}</a>`
+    )
+    .join("");
+}
+
+function legend(): string {
+  const langs = ["li", "cpp", "rust", "julia", "nginx", "harness"];
+  return `
+    <div class="lang-legend">
+      ${langs
+        .map(
+          (l) =>
+            `<span class="legend-item"><span class="legend-swatch" data-lang="${l}"></span>${l}</span>`
+        )
+        .join("")}
+    </div>`;
 }
 
 async function main() {
@@ -102,6 +133,12 @@ async function main() {
         ? `<div class="alert"><strong>${reds.length} regression(s):</strong> ${reds.map((r) => r.benchmark).join(", ")}</div>`
         : "";
 
+    const chartSections = CATEGORY_NAV.map((k) => {
+      const block = data.categories[k];
+      if (!block) return "";
+      return renderCategorySection(k, block.label, block.charts);
+    }).join("");
+
     app.innerHTML = `
       <header>
         <h1>Li benchmarks</h1>
@@ -110,23 +147,30 @@ async function main() {
       <main>
         ${alert}
         <section class="tier-strip">${tierStrip(data.tier_counts)}</section>
-        <section class="filters">
-          <label>Tier <select id="f-tier"><option value="">all</option><option>0</option><option>1</option><option>2</option><option>5</option></select></label>
-          <label>Repo <select id="f-repo"><option value="">all</option><option>lic</option><option>lis</option></select></label>
-          <label><input type="checkbox" id="f-fail" /> Failing / warn only</label>
+        <nav class="category-nav">${categoryNav(data.categories)}</nav>
+        ${legend()}
+        ${chartSections}
+        <section class="table-section">
+          <h2>All benchmarks</h2>
+          <div class="filters">
+            <label>Category <select id="f-category"><option value="">all</option><option>micro</option><option>physics</option><option>http</option><option>tooling</option><option>correctness</option></select></label>
+            <label>Tier <select id="f-tier"><option value="">all</option><option>0</option><option>1</option><option>2</option><option>3</option><option>5</option></select></label>
+            <label>Repo <select id="f-repo"><option value="">all</option><option>lic</option><option>lis</option><option>lip</option><option>lit</option></select></label>
+            <label><input type="checkbox" id="f-fail" /> Failing / warn only</label>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Benchmark</th><th>Category</th><th>Repo</th><th>Tier</th><th>Metric</th>
+                <th>Li</th><th>Ref</th><th>Ratio</th><th>Status</th><th>PH</th><th>Path</th>
+              </tr>
+            </thead>
+            <tbody>${renderTable(data.rows)}</tbody>
+          </table>
         </section>
-        <table>
-          <thead>
-            <tr>
-              <th>Benchmark</th><th>Repo</th><th>Tier</th><th>Metric</th>
-              <th>Li</th><th>Ref (cpp)</th><th>Ratio</th><th>Status</th><th>PH</th><th>Path</th>
-            </tr>
-          </thead>
-          <tbody>${renderTable(data.rows)}</tbody>
-        </table>
       </main>`;
 
-    ["#f-tier", "#f-repo", "#f-fail"].forEach((sel) => {
+    ["#f-tier", "#f-repo", "#f-category", "#f-fail"].forEach((sel) => {
       app.querySelector(sel)?.addEventListener("change", () => applyFilters(app));
     });
   } catch (e) {

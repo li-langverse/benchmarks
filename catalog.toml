@@ -1,7 +1,9 @@
-# Master benchmark catalog — sources stay in each repo; this file indexes them.
+# Master benchmark catalog — sources stay in each repo.
+# category: micro | physics | http | tooling | correctness
 
 [[benchmark]]
 id = "simd_dot"
+category = "micro"
 tier = 1
 repo = "lic"
 path = "benchmarks/tier1_micro/simd_dot"
@@ -12,6 +14,7 @@ variant = "shared_c_kernel"
 
 [[benchmark]]
 id = "matmul_naive"
+category = "micro"
 tier = 1
 repo = "lic"
 path = "benchmarks/tier1_micro/matmul_naive"
@@ -21,6 +24,7 @@ ph_ids = ["PH-5b", "PH-7e"]
 
 [[benchmark]]
 id = "matmul_blocked"
+category = "micro"
 tier = 1
 repo = "lic"
 path = "benchmarks/tier1_micro/matmul_blocked"
@@ -30,6 +34,7 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "reduce_sum"
+category = "micro"
 tier = 1
 repo = "lic"
 path = "benchmarks/tier1_micro/reduce_sum"
@@ -39,6 +44,7 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "horner_pure_li"
+category = "micro"
 tier = 1
 repo = "lic"
 path = "benchmarks/tier1_micro/horner_pure_li"
@@ -49,6 +55,7 @@ variant = "pure_li"
 
 [[benchmark]]
 id = "md_lennard_jones"
+category = "physics"
 tier = 2
 repo = "lic"
 path = "benchmarks/tier2_physics/md_lennard_jones"
@@ -58,6 +65,7 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "three_body"
+category = "physics"
 tier = 2
 repo = "lic"
 path = "benchmarks/tier2_physics/three_body"
@@ -66,19 +74,103 @@ threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
+id = "nbody_gravity"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/nbody_gravity"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "harmonic_oscillator_chain"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/harmonic_oscillator_chain"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "wave_equation_1d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wave_equation_1d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "heat_equation_2d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/heat_equation_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "double_pendulum"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/double_pendulum"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
 id = "tier0_stability"
+category = "correctness"
 tier = 0
 repo = "lic"
 path = "benchmarks/tier0_correctness"
-metric = "invariant"
+metric = "stability"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
-id = "tier5_http"
+id = "static_small"
+category = "http"
 tier = 5
 repo = "lis"
-path = "benchmarks/tier5_http"
+path = "benchmarks/tier5_http/scenarios/static_small"
 metric = "rps"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "keepalive_pipelining"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/keepalive_pipelining"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lip_smoke"
+category = "tooling"
+tier = 3
+repo = "lip"
+path = "scripts/ci.sh"
+metric = "wall_time"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-8b"]
+
+[[benchmark]]
+id = "lit_smoke"
+category = "tooling"
+tier = 3
+repo = "lit"
+path = "scripts/ci.sh"
+metric = "wall_time"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-8e"]
