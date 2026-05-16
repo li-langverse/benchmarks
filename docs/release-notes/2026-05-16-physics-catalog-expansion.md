@@ -15,3 +15,7 @@ Extended `catalog.toml` with Tier-2 physics benches implemented in `lic` (fluids
 ## Verification
 
 - `./scripts/ingest/ingest-lic.sh` with sibling `lic` checkout (when CSV available)
+
+## Paired `lic` branch
+
+Publish compiler changes from local branch `feat/physics-module-packages` (see `lic/docs/physics/PUSH_PR.md` on that branch).
