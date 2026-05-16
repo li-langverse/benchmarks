@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-05-16T21:44Z",
+  "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
+  "summary": {
+    "open_prs": 4,
+    "merge_approved": 1,
+    "gate_ready": 0,
+    "auto_merge_candidates": 0,
+    "redundant_pairs": 0,
+    "stacks": 0
+  },
+  "merge_first": null,
+  "merge_order": [
+    {
+      "rank": 1,
+      "repo": "lic",
+      "number": 4,
+      "url": "https://github.com/li-langverse/lic/pull/4",
+      "title": "fix(types): correct Ctx aggregate initializer field order",
+      "merge_approved": false,
+      "gate_ready": false,
+      "priority_score": 235,
+      "auto_merge_ok": false
+    },
+    {
+      "rank": 2,
+      "repo": "lic",
+      "number": 1,
+      "url": "https://github.com/li-langverse/lic/pull/1",
+      "title": "fix(ci): sync dev CI fixes (lip/lit checkout, Windows LLVM, valgrind)",
+      "merge_approved": false,
+      "gate_ready": false,
+      "priority_score": 240,
+      "auto_merge_ok": false
+    },
+    {
+      "rank": 3,
+      "repo": "li-demo",
+      "number": 2,
+      "url": "https://github.com/li-langverse/li-demo/pull/2",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "merge_approved": false,
+      "gate_ready": false,
+      "priority_score": 262,
+      "auto_merge_ok": false
+    },
+    {
+      "rank": 4,
+      "repo": "roadmap",
+      "number": 4,
+      "url": "https://github.com/li-langverse/roadmap/pull/4",
+      "title": "chore(automations): Cursor prompts for development overview maintainer",
+      "merge_approved": true,
+      "gate_ready": false,
+      "priority_score": 340,
+      "auto_merge_ok": false
+    }
+  ],
+  "stacks": [],
+  "redundant": [],
+  "warnings": []
+}

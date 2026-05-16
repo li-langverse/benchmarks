@@ -2,6 +2,8 @@
 
 **Policy:** Recurring monitoring uses **[Cursor Automations](https://cursor.com/automations)** — not GitHub Actions `cron:` — see [actions-budget.md](./actions-budget.md).
 
+**Philosophy:** [ecosystem-first.md](./ecosystem-first.md) — agents use [tooling-catalog.md](./tooling-catalog.md); gaps → **`ecosystem-gap`** issues → this planner.
+
 Prompt files live in **`.cursor/automations/`**. Shared skills in **`.cursor/skills/`**.
 
 After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` and run `./scripts/sync-agent-kit.sh` in each code repo.
@@ -17,7 +19,9 @@ After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` an
 | Ecosystem health | Daily / 12h | [ecosystem-health.md](../../.cursor/automations/ecosystem-health.md) | CI, docs, benchmark reds |
 | Failed benchmarks | Weekly | [failed-benchmarks-maintainer.md](../../.cursor/automations/failed-benchmarks-maintainer.md) | Dashboard regression fixes in lic |
 | Benchmark visuals | Weekly | [benchmark-visual-validation.md](../../.cursor/automations/benchmark-visual-validation.md) | PNG/GIF validation |
+| **Numerics research** | Weekly / on issue | [numerics-research-cycle.md](../../.cursor/automations/numerics-research-cycle.md) | SOTA survey + autoresearch evidence packs |
 | Merge queue digest | Daily | [merge-queue-digest.md](../../.cursor/automations/merge-queue-digest.md) | Ready PRs for humans |
+| **PR auto-merge** | After review / 12h | [pr-auto-merge.md](../../.cursor/automations/pr-auto-merge.md) | Merge PRs labeled `merge-approved` when gates pass |
 
 ### Per-repo planner scope
 
@@ -36,11 +40,16 @@ When creating **one automation per repo**, paste the parent prompt plus:
 
 | Skill | Use when |
 |-------|----------|
+| [ecosystem-first](../../.cursor/skills/ecosystem-first/SKILL.md) | Start of task — catalog tool vs gap issue |
 | [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
 | [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
+| [merge-approved-pr](../../.cursor/skills/merge-approved-pr/SKILL.md) | Final review before `merge-approved` label |
+| [resolve-merge-conflicts](../../.cursor/skills/resolve-merge-conflicts/SKILL.md) | PR conflicts — union main + branch, no reverts |
+| [plan-merge-queue](../../.cursor/skills/plan-merge-queue/SKILL.md) | Merge order + redundant PRs before auto-merge |
 | [li-ecosystem-discipline](../../.cursor/skills/li-ecosystem-discipline/SKILL.md) | Any cross-repo PR |
 | [write-li-release-notes](../../.cursor/skills/write-li-release-notes/SKILL.md) | Before merge |
-| [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | Physics/numerics kernels |
+| [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | SOTA survey, recipes, evidence packs |
+| [numerics-autoresearch](../../.cursor/skills/numerics-autoresearch/SKILL.md) | Novel algorithms — documented + verified |
 
 ---
 
@@ -59,6 +68,15 @@ python3 scripts/plan-completion-audit.py
 # Org health + benchmarks
 python3 scripts/ecosystem-audit.py
 # → data/latest/ecosystem-audit.json
+
+# Merge queue plan + safe auto-merge
+python3 scripts/pr-merge-queue-plan.py
+python3 scripts/pr-auto-merge-sweep.py --use-plan
+# → one merge per plan: add --execute, then re-plan
+
+# File ecosystem gap (planner picks up)
+python3 scripts/file-ecosystem-gap-issue.py --repo lic --title "..." \
+  --what-tried "..." --expected "..." --blocked "..."
 ```
 
 ---
@@ -69,6 +87,9 @@ python3 scripts/ecosystem-audit.py
 |-------|---------|
 | `plan-needed` | Feature accepted; planner automation should draft plan |
 | `plan-approved` | Plan linked; implementation agents may code |
+| `merge-approved` | Standards review passed; **pr-auto-merge** workflow may merge |
+| `do-not-merge` | Blocks automated merge |
+| `ecosystem-gap` | Catalog miss / broken shared tooling — planner extends toolkit |
 | `feature` / `enhancement` | Eligible for feature planner |
 
 ---
@@ -80,7 +101,8 @@ python3 scripts/ecosystem-audit.py
 | **GitHub Actions** `issue-feature-planning.yml` | On new/labeled feature issues → posts planning checklist comment |
 | **GitHub Actions** `plan-completion-audit.yml` | `workflow_dispatch` → runs audit scripts, uploads JSON artifacts |
 | **Org labels** | `plan-needed`, `plan-approved`, `feature` (via `scripts/setup-org-labels.sh`) |
-| **Slash commands** | `/plan-feature`, `/audit-plans` in `.cursor/commands/` |
+| **Slash commands** | `/plan-feature`, `/audit-plans`, `/merge-pr` in `.cursor/commands/` |
+| **PR auto-merge workflow** | `.github/workflows/pr-auto-merge.yml` on label `merge-approved` |
 | **agent-kit 1.3.0** | Skills + automation prompts synced via `roadmap` → `install-agent-kit.sh` |
 
 ## Cursor UI setup (optional — for full agent runs on a schedule)
@@ -99,9 +121,16 @@ If you skip Cursor UI, use **Actions → Run workflow → Plan completion audit*
 
 Add to `roadmap/agent-kit/overlays/benchmarks/` (and other repos):
 
-- `skills/plan-feature-from-issue/`
-- `skills/audit-plan-completion/`
-- `automations/issue-feature-planner.md`
-- `automations/plan-completion-audit.md`
+- `docs/ecosystem/ecosystem-first.md`, `tooling-catalog.md`, `git-workflow.md`
+- `rules/li-git-hygiene.mdc`
+- `skills/ecosystem-first/`, `skills/plan-feature-from-issue/`, `skills/audit-plan-completion/`
+- `rules/li-ecosystem-first.mdc`
+- `automations/issue-feature-planner.md`, `automations/plan-completion-audit.md`, `automations/pr-auto-merge.md`
+- `scripts/file-ecosystem-gap-issue.py`, `scripts/pr-merge-queue-plan.py`
+- `skills/plan-merge-queue/`
+- `docs/numerics/research-methodology.md`, `skills/research-li-numerics/`, `skills/numerics-autoresearch/`
+- `scripts/numerics-evidence-checklist.py`
+- `automations/numerics-research-cycle.md`
+- `.github/ISSUE_TEMPLATE/ecosystem_gap.yml`
 
 Bump `agent-kit/manifest.toml` version; notify repos via sync script.

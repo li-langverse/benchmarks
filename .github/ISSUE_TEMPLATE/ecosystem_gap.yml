@@ -1,0 +1,52 @@
+name: Ecosystem gap
+description: Missing or broken shared tooling — planner automation will draft a fix plan
+title: "[Ecosystem gap]: "
+labels:
+  - ecosystem-gap
+  - plan-needed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use when [tooling-catalog](https://github.com/li-langverse/benchmarks/blob/main/docs/ecosystem/tooling-catalog.md)
+        has no fit or existing tooling fails. See [ecosystem-first](https://github.com/li-langverse/benchmarks/blob/main/docs/ecosystem/ecosystem-first.md).
+
+        **Do not** implement ad-hoc scripts in a feature PR without this issue (or `file-ecosystem-gap-issue.py`).
+  - type: textarea
+    id: what_tried
+    attributes:
+      label: What you tried (catalog path / command)
+      placeholder: e.g. python3 scripts/pr-merge-gate.py --repo lic --pr 4
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected ecosystem behavior
+    validations:
+      required: true
+  - type: textarea
+    id: blocked
+    attributes:
+      label: Actual error / gap
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Related issue # (optional)
+      placeholder: "42"
+  - type: dropdown
+    id: area
+    attributes:
+      label: Catalog area
+      options:
+        - scripts (benchmarks)
+        - scripts (lic / lip / lit)
+        - GitHub Actions workflow
+        - Cursor skill / automation
+        - agent-kit / hooks
+        - labels / governance
+        - other
+    validations:
+      required: true

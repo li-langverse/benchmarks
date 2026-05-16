@@ -20,13 +20,16 @@ Optional offline: `./scripts/refresh-development-overview.sh` (agents only).
 
 Digest for human review:
 
-- Ready to merge (CI green, not draft) in vision order: package CI PRs → benchmarks#1 → lic dev→main
+- **`python3 scripts/pr-merge-queue-plan.py`** — ranked `merge_order`, `merge_first`, `redundant`, `stacks` (skill **`plan-merge-queue`**)
+- Ready to merge (CI green, not draft) in vision order: package CI PRs → benchmarks → lic → lip/lit
+- PRs with **`merge-approved`** — gate: `pr-merge-gate.py`; merge via `pr-auto-merge-sweep.py --use-plan` ([pr-auto-merge.md](./pr-auto-merge.md))
 - Failed PRs — which check failed (Windows, memory-linux, etc.)
 - Repos still missing `ci.yml` on `main` or live docs
 
 ## Do not
 
-- Self-merge PRs
+- Add `merge-approved` without standards checklist (use skill `merge-approved-pr`)
+- Self-merge without label + gate (use automation or `pr-auto-merge.py --execute`)
 - Add GitHub Actions `schedule:` cron (use this Cursor automation instead)
 - Push directly to protected branches
 

@@ -7,8 +7,11 @@ alwaysApply: true
 
 Agents **must** follow these before and during work. Style and structure are flexible; **gates are not**.
 
+**Ecosystem-first:** use [tooling-catalog.md](../../docs/ecosystem/tooling-catalog.md) before new scripts; file **`ecosystem-gap`** issues when blocked (rule **li-ecosystem-first.mdc**, skill **ecosystem-first**).
+
 ## Read order (start of session)
 
+0. [ecosystem-first.md](../../docs/ecosystem/ecosystem-first.md) + [tooling-catalog.md](../../docs/ecosystem/tooling-catalog.md)
 1. `../roadmap/docs/ecosystem/engineering-standards.md` (or sibling `roadmap/` checkout)
 2. `../roadmap/docs/ecosystem/vision-and-roadmap.md`
 3. `../roadmap/docs/ecosystem/agent-coordination.md` — `.li-agent-coord.json`, claims
@@ -40,6 +43,7 @@ Agents **must** follow these before and during work. Style and structure are fle
 
 ## Escalate (do not do alone)
 
+- Force push to shared or protected branches (use rebase + normal push; see **git-workflow.md**)
 - Lower coverage tiers, skip CVE tests, weaken bench thresholds
 - New `trusted.lean` axioms
 - Changing pillar priority or master plan phase order
