@@ -43,12 +43,12 @@ jobs:
           cd lic
           ./scripts/build.sh
 
-      - name: Ensure summary.json
+      - name: Ingest summary
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
         run: |
           chmod +x scripts/ingest/*.sh scripts/dashboard/*.sh scripts/regression-check.sh
-          if [[ ! -f data/latest/summary.json ]]; then
-            python3 scripts/ingest/build_summary.py lic
-          fi
+          ./scripts/ingest/ingest-lic.sh
 
       - name: Render static dashboard (PH-IO-5)
         env:

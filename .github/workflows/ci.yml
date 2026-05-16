@@ -14,9 +14,30 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-      - run: |
+
+      - name: Install LLVM 18
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev python3
+
+      - name: Build lic
+        env:
+          LLVM_DIR: /usr/lib/llvm-18/lib/cmake/llvm
+          CC: clang-18
+        run: cd lic && ./scripts/build.sh
+
+      - name: Ingest (Li summary + Python fallback)
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
-          ./scripts/ingest/ingest-lic.sh || python3 scripts/ingest/build_summary.py lic
+          ./scripts/ingest/ingest-lic.sh
+
+      - name: Summary compare gate (fixture)
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: ./scripts/ingest/summary-compare-gate.sh
+
       - run: test -f data/latest/summary.json
 
   dashboard-static:
@@ -35,7 +56,10 @@ jobs:
           export LLVM_DIR=/usr/lib/llvm-18/lib/cmake/llvm CC=clang-18
           cd lic && ./scripts/build.sh
           chmod +x scripts/ingest/*.sh scripts/dashboard/*.sh
-          test -f data/latest/summary.json || python3 scripts/ingest/build_summary.py lic
+      - name: Ingest
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: ./scripts/ingest/ingest-lic.sh
       - name: Render static dashboard
         env:
           LIC_ROOT: ${{ github.workspace }}/lic

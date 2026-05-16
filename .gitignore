@@ -1,5 +1,7 @@
 .DS_Store
 dashboard/node_modules/
+__pycache__/
+*.pyc
 dashboard/dist/
 data/visuals/latest/*.png
 data/visuals/latest/*.gif
@@ -8,6 +10,9 @@ data/visuals/latest/*.zip
 static-dashboard/index.html
 static-dashboard/assets/
 static-dashboard/latest/
+build/compare/
+build/ingest_summary_li_*
+build/summary_*
 lic
 lip/
 lit/

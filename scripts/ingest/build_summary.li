@@ -1,0 +1,13 @@
+# PH-IO-7 — build data/latest/summary.json via std/summary
+import std.summary
+
+proc main() raises IO, Alloc -> int
+  requires true
+  ensures result == 0
+  decreases 0
+=
+  var lic_csv: str = "lic/benchmarks/results/latest.csv"
+  var lis_csv: str = "lis/results/latest.csv"
+  var stab: str = "lic/benchmarks/results/stability.csv"
+  var rc: int = summary_build("catalog.toml", lic_csv, lis_csv, stab, "data/latest/summary.json")
+  return rc
