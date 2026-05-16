@@ -43,6 +43,7 @@ When creating **one automation per repo**, paste the parent prompt plus:
 | [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
 | [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
 | [merge-approved-pr](../../.cursor/skills/merge-approved-pr/SKILL.md) | Final review before `merge-approved` label |
+| [plan-merge-queue](../../.cursor/skills/plan-merge-queue/SKILL.md) | Merge order + redundant PRs before auto-merge |
 | [li-ecosystem-discipline](../../.cursor/skills/li-ecosystem-discipline/SKILL.md) | Any cross-repo PR |
 | [write-li-release-notes](../../.cursor/skills/write-li-release-notes/SKILL.md) | Before merge |
 | [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | Physics/numerics kernels |
@@ -65,10 +66,10 @@ python3 scripts/plan-completion-audit.py
 python3 scripts/ecosystem-audit.py
 # → data/latest/ecosystem-audit.json
 
-# Merge gate + auto-merge (dry-run)
-python3 scripts/pr-merge-gate.py --sweep
-python3 scripts/pr-auto-merge-sweep.py
-# → executes merge when ready: add --execute
+# Merge queue plan + safe auto-merge
+python3 scripts/pr-merge-queue-plan.py
+python3 scripts/pr-auto-merge-sweep.py --use-plan
+# → one merge per plan: add --execute, then re-plan
 
 # File ecosystem gap (planner picks up)
 python3 scripts/file-ecosystem-gap-issue.py --repo lic --title "..." \
@@ -122,7 +123,8 @@ Add to `roadmap/agent-kit/overlays/benchmarks/` (and other repos):
 - `skills/ecosystem-first/`, `skills/plan-feature-from-issue/`, `skills/audit-plan-completion/`
 - `rules/li-ecosystem-first.mdc`
 - `automations/issue-feature-planner.md`, `automations/plan-completion-audit.md`, `automations/pr-auto-merge.md`
-- `scripts/file-ecosystem-gap-issue.py`
+- `scripts/file-ecosystem-gap-issue.py`, `scripts/pr-merge-queue-plan.py`
+- `skills/plan-merge-queue/`
 - `.github/ISSUE_TEMPLATE/ecosystem_gap.yml`
 
 Bump `agent-kit/manifest.toml` version; notify repos via sync script.

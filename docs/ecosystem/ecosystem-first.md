@@ -23,7 +23,7 @@ Canonical inventory: **[tooling-catalog.md](./tooling-catalog.md)**.
 | Org health / failing PRs | `scripts/ecosystem-audit.py` |
 | Feature issue → plan | `scripts/issue-feature-triage.py` + skill `plan-feature-from-issue` |
 | Stale plans / PH debt | `scripts/plan-completion-audit.py` |
-| Merge after review | `scripts/pr-merge-gate.py`, label `merge-approved`, workflow `pr-auto-merge.yml` |
+| Merge after review | `pr-merge-queue-plan.py` then `pr-merge-gate.py` + `merge-approved` + `pr-auto-merge-sweep --use-plan` |
 | Agent templates | `roadmap/agent-kit` + `./scripts/sync-agent-kit.sh` |
 | Benchmark ingest | `./scripts/ingest/ingest-lic.sh`, `catalog.toml` |
 | Release notes | skill `write-li-release-notes` |

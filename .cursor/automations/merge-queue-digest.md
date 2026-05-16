@@ -20,8 +20,9 @@ Optional offline: `./scripts/refresh-development-overview.sh` (agents only).
 
 Digest for human review:
 
-- Ready to merge (CI green, not draft) in vision order: package CI PRs → benchmarks#1 → lic dev→main
-- PRs with **`merge-approved`** — run merge gate: `python3 scripts/pr-merge-gate.py --sweep` (see [pr-auto-merge.md](./pr-auto-merge.md))
+- **`python3 scripts/pr-merge-queue-plan.py`** — ranked `merge_order`, `merge_first`, `redundant`, `stacks` (skill **`plan-merge-queue`**)
+- Ready to merge (CI green, not draft) in vision order: package CI PRs → benchmarks → lic → lip/lit
+- PRs with **`merge-approved`** — gate: `pr-merge-gate.py`; merge via `pr-auto-merge-sweep.py --use-plan` ([pr-auto-merge.md](./pr-auto-merge.md))
 - Failed PRs — which check failed (Windows, memory-linux, etc.)
 - Repos still missing `ci.yml` on `main` or live docs
 

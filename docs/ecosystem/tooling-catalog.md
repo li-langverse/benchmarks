@@ -29,7 +29,8 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
 | `pr-merge-gate.py` | Merge readiness (CI, review, labels) |
 | `pr-auto-merge.py` | Merge one PR when gate passes |
-| `pr-auto-merge-sweep.py` | Sweep `merge-approved` PRs |
+| `pr-auto-merge-sweep.py` | Sweep `merge-approved` PRs (`--use-plan` for safe order) |
+| `pr-merge-queue-plan.py` | Merge order, stacks, redundant PR detection |
 | `file-ecosystem-gap-issue.py` | File standardized gap issues |
 | `post-issue-planning-comment.py` | Issue planning checklist (Actions) |
 | `setup-org-labels.sh` | Create org labels (`plan-needed`, `merge-approved`, …) |
@@ -74,6 +75,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `plan-feature-from-issue` | Issue → vision-aligned plan |
 | `audit-plan-completion` | Plan audit JSON interpretation |
 | `merge-approved-pr` | Pre-merge review checklist |
+| `plan-merge-queue` | What to merge first; redundant PRs after merge |
 | `write-li-release-notes` | Before merge-worthy PR |
 | `research-li-numerics` | Physics / numerics |
 

@@ -11,7 +11,7 @@ Heavy recurring ops run as **[Cursor Automations](https://cursor.com/automations
 | Ecosystem health | Schedule: daily or every 12h | [ecosystem-health.md](./ecosystem-health.md) | `benchmarks` (+ `roadmap` read) |
 | Benchmark improvement | Same as failed benchmarks (alias) | [benchmark-improvement.md](./benchmark-improvement.md) | `lic` |
 | Merge queue digest | Schedule: daily | [merge-queue-digest.md](./merge-queue-digest.md) | `roadmap` |
-| **PR auto-merge** | 12h or after review | [pr-auto-merge.md](./pr-auto-merge.md) | org sweep · skill: `merge-approved-pr` |
+| **PR auto-merge** | 12h or after review | [pr-auto-merge.md](./pr-auto-merge.md) | plan: **`plan-merge-queue`** · review: `merge-approved-pr` |
 
 **Philosophy:** [ecosystem-first.md](../docs/ecosystem/ecosystem-first.md) · catalog: [tooling-catalog.md](../docs/ecosystem/tooling-catalog.md) · gaps → `file-ecosystem-gap-issue.py`
 

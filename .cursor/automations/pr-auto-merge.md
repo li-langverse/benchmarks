@@ -28,17 +28,23 @@ Then: `gh pr edit <n> --repo li-langverse/<repo> --add-label merge-approved`
 
 ## Run (this automation)
 
+**Always plan first** (skill **`plan-merge-queue`**):
+
 ```bash
 cd benchmarks   # or repo root with scripts/
 export GH_TOKEN=...   # needs merge rights on target repos
 
-# Dry-run org sweep
-python3 scripts/pr-merge-gate.py --sweep
-python3 scripts/pr-auto-merge-sweep.py
+python3 scripts/pr-merge-queue-plan.py
+cat data/latest/pr-merge-queue-plan.json
 
-# Execute merges for all ready PRs
-python3 scripts/pr-auto-merge-sweep.py --execute
+# Dry-run: only the planned merge_first; skip redundant pairs
+python3 scripts/pr-auto-merge-sweep.py --use-plan
+
+# Execute one safe merge, then re-plan (main moved)
+python3 scripts/pr-auto-merge-sweep.py --use-plan --execute
 ```
+
+After each merge: **re-run** `pr-merge-queue-plan.py` — close PRs listed in `redundant` before merging siblings.
 
 Single PR:
 

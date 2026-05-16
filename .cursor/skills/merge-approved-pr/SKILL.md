@@ -48,14 +48,23 @@ GitHub Action or Cursor **pr-auto-merge** automation performs the merge when gat
 - Push updates with **regular `git push`** after rebase — not force push ([git-workflow.md](../../../docs/ecosystem/git-workflow.md))
 - Do not run `pr-auto-merge.py --execute` on your own PR
 
+## Before merge (queue)
+
+```bash
+python3 scripts/pr-merge-queue-plan.py
+# Confirm this PR is merge_first and not in redundant[]
+```
+
+Skill **`plan-merge-queue`** — merge order and superseded PRs.
+
 ## Merge execution
 
 ```bash
 # Dry-run
 python3 scripts/pr-auto-merge.py --repo lic --pr 3
 
-# Merge (maintainer / automation token)
-python3 scripts/pr-auto-merge.py --repo lic --pr 3 --execute
+# Safe sweep (one PR per plan)
+python3 scripts/pr-auto-merge-sweep.py --use-plan --execute
 ```
 
 ## Related
