@@ -3,7 +3,10 @@
 set -euo pipefail
 
 ORG=li-langverse
-REPOS=(benchmarks lic lip lit lis roadmap)
+REPOS=(
+  benchmarks lic lip lit lis roadmap
+  li-net li-httpd li-std-core li-std-math li-demo li-language
+)
 
 create_label() {
   local repo="$1" name="$2" color="$3" description="$4"
