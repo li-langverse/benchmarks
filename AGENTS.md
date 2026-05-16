@@ -14,6 +14,12 @@
 3. Align fixes to vision: P0 package CI → merge queue → lic compiler perf (pure-Li tier-1), not dashboard-only threshold tweaks.
 4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 
-**Cursor Automations** (not Actions cron): see `.cursor/automations/` — **visual validation** (`benchmark-visual-validation.md`), failed benchmarks, ecosystem health. Scripts: `./scripts/benchmark-failures-report.sh`, `./scripts/render-benchmark-visuals.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
+**Cursor Automations** (not Actions cron): see `.cursor/automations/` and [docs/ecosystem/agent-automations.md](docs/ecosystem/agent-automations.md):
 
-Skills: `write-li-release-notes`, `li-ecosystem-discipline`.
+- **Issue feature planner** — vision-aligned plans from new issues (`plan-feature-from-issue` skill)
+- **Plan completion audit** — stale PH phases, plan checkboxes, G-* gaps (`audit-plan-completion` skill)
+- Visual validation, failed benchmarks, ecosystem health, merge digest
+
+Scripts: `./scripts/issue-feature-triage.py`, `./scripts/plan-completion-audit.py`, `./scripts/ecosystem-audit.py`, `./scripts/benchmark-failures-report.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
+
+Skills: `plan-feature-from-issue`, `audit-plan-completion`, `write-li-release-notes`, `li-ecosystem-discipline`, `research-li-numerics`.
