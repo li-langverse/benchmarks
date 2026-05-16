@@ -1,0 +1,422 @@
+{
+  "generated_at": "2026-05-16T22:23Z",
+  "lic_root": "lic",
+  "lic_present": true,
+  "std_modules_on_disk": [
+    "std.bytes.bytes",
+    "std.execution.decorators"
+  ],
+  "missing_std_modules": [
+    {
+      "module": "std.io",
+      "ph_id": "PH-IO-4",
+      "why": "CSV/file ingest without Python",
+      "refs": [
+        "scripts/ingest/csv_ingest_smoke.li"
+      ],
+      "status": "missing"
+    },
+    {
+      "module": "std.csv",
+      "ph_id": "PH-IO-4",
+      "why": "Benchmark CSV parsing in Li",
+      "refs": [
+        "scripts/ingest/csv_ingest_smoke.li"
+      ],
+      "status": "missing"
+    },
+    {
+      "module": "std.summary",
+      "ph_id": "PH-IO-7",
+      "why": "Build data/latest/summary.json in Li",
+      "refs": [
+        "scripts/ingest/build_summary.li"
+      ],
+      "status": "missing"
+    },
+    {
+      "module": "std.plot",
+      "ph_id": "PH-IO-5",
+      "why": "Static dashboard without Node/Vite",
+      "refs": [
+        "scripts/dashboard/render_dashboard.li"
+      ],
+      "status": "missing"
+    }
+  ],
+  "std_imports_in_benchmarks": {
+    "std.csv": [
+      "scripts/ingest/csv_ingest_smoke.li"
+    ],
+    "std.io": [
+      "scripts/ingest/csv_ingest_smoke.li"
+    ],
+    "std.plot": [
+      "scripts/dashboard/render_dashboard.li"
+    ],
+    "std.summary": [
+      "scripts/ingest/build_summary.li",
+      "scripts/ingest/build_summary_fixture.li"
+    ]
+  },
+  "lic_packages": [
+    "li-demo",
+    "li-httpd",
+    "li-net",
+    "li-std-core",
+    "li-std-math",
+    "li-std-numerics",
+    "li-std-physics-aero",
+    "li-std-physics-chem",
+    "li-std-physics-core",
+    "li-std-physics-em",
+    "li-std-physics-fluids",
+    "li-std-physics-hep",
+    "li-std-physics-particles",
+    "li-std-physics-quantum",
+    "li-std-physics-relativity",
+    "li-std-physics-rigid",
+    "li-std-physics-runtime",
+    "li-std-physics-weather"
+  ],
+  "physics_packages": [
+    "li-std-physics-aero",
+    "li-std-physics-chem",
+    "li-std-physics-core",
+    "li-std-physics-em",
+    "li-std-physics-fluids",
+    "li-std-physics-hep",
+    "li-std-physics-particles",
+    "li-std-physics-quantum",
+    "li-std-physics-relativity",
+    "li-std-physics-rigid",
+    "li-std-physics-runtime",
+    "li-std-physics-weather"
+  ],
+  "org_mirror_repos": [
+    "li-net",
+    "li-httpd",
+    "li-std-core",
+    "li-std-math",
+    "li-demo"
+  ],
+  "packages_without_org_mirror": [
+    "li-std-physics-aero",
+    "li-std-physics-chem",
+    "li-std-physics-core",
+    "li-std-physics-em",
+    "li-std-physics-fluids",
+    "li-std-physics-hep",
+    "li-std-physics-particles",
+    "li-std-physics-quantum",
+    "li-std-physics-relativity",
+    "li-std-physics-rigid",
+    "li-std-physics-runtime",
+    "li-std-physics-weather"
+  ],
+  "catalog": {
+    "total": 41,
+    "by_category": {
+      "micro": 5,
+      "physics": 20,
+      "correctness": 1,
+      "http": 2,
+      "tooling": 9,
+      "security": 4
+    },
+    "by_tier": {
+      "1": 5,
+      "2": 20,
+      "0": 1,
+      "5": 2,
+      "3": 13
+    },
+    "variants": {
+      "shared_c_kernel": 1,
+      "default": 37,
+      "pure_li": 2,
+      "async_stub": 1
+    },
+    "suggested_catalog_gaps": [
+      "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",
+      "Increase pure_li variant rows for PH-7e codegen proof"
+    ]
+  },
+  "hpc_libraries": [
+    {
+      "id": "eigen",
+      "name": "Eigen",
+      "domain": "dense/sparse LA",
+      "capabilities": [
+        "GEMM",
+        "decompositions",
+        "expression templates"
+      ],
+      "li_status": "partial",
+      "li_analog": "li-std-math, lic tier-1 matmul benches",
+      "gap_hint": "Pure-Li SIMD matmul vs Eigen/MKL; sparse support"
+    },
+    {
+      "id": "kokkos",
+      "name": "Kokkos",
+      "domain": "performance portability",
+      "capabilities": [
+        "parallel_for",
+        "views",
+        "GPU backends"
+      ],
+      "li_status": "missing",
+      "li_analog": "std/execution decorators (minimal)",
+      "gap_hint": "Execution model + memory spaces for tier-2 physics"
+    },
+    {
+      "id": "petsc",
+      "name": "PETSc",
+      "domain": "PDE / scalable solvers",
+      "capabilities": [
+        "KSP",
+        "SNES",
+        "DM",
+        "time integrators"
+      ],
+      "li_status": "missing",
+      "li_analog": "physics packages (stubs); shared C cores in benches",
+      "gap_hint": "Implicit solvers, AMG, distributed meshes"
+    },
+    {
+      "id": "fftw",
+      "name": "FFTW",
+      "domain": "FFT",
+      "capabilities": [
+        "1D/2D/3D FFT",
+        "plans"
+      ],
+      "li_status": "missing",
+      "li_analog": "none in catalog",
+      "gap_hint": "Add micro FFT bench + std/signal or vendor hook"
+    },
+    {
+      "id": "openmp",
+      "name": "OpenMP",
+      "domain": "shared-memory parallelism",
+      "capabilities": [
+        "parallel loops",
+        "tasks",
+        "offload"
+      ],
+      "li_status": "partial",
+      "li_analog": "LLVM codegen; no first-class Li pragma surface",
+      "gap_hint": "Document parallel loop lowering vs OpenMP runtime"
+    },
+    {
+      "id": "hpx",
+      "name": "HPX",
+      "domain": "async tasking",
+      "capabilities": [
+        "futures",
+        "distributed"
+      ],
+      "li_status": "missing",
+      "li_analog": "none",
+      "gap_hint": "Async/game physics scheduling"
+    },
+    {
+      "id": "raja",
+      "name": "RAJA",
+      "domain": "loop abstractions",
+      "capabilities": [
+        "policy-based loops",
+        "GPU"
+      ],
+      "li_status": "missing",
+      "li_analog": "bench harness only",
+      "gap_hint": "Portable kernel policies in Li"
+    },
+    {
+      "id": "sundials",
+      "name": "SUNDIALS",
+      "domain": "ODE/DAE",
+      "capabilities": [
+        "BDF",
+        "Adams",
+        "sensitivity"
+      ],
+      "li_status": "partial",
+      "li_analog": "tier-2 integrators (Euler, symplectic stubs)",
+      "gap_hint": "Stiff ODE suites for physics tiers"
+    },
+    {
+      "id": "hypre",
+      "name": "hypre",
+      "domain": "preconditioners / AMG",
+      "capabilities": [
+        "BoomerAMG",
+        "parallel CSR"
+      ],
+      "li_status": "missing",
+      "li_analog": "none",
+      "gap_hint": "Large-scale PDE path"
+    },
+    {
+      "id": "stdpar",
+      "name": "C++ std::execution",
+      "domain": "parallel algorithms",
+      "capabilities": [
+        "par_unseq",
+        "sender/receiver"
+      ],
+      "li_status": "partial",
+      "li_analog": "std/execution/decorators.li",
+      "gap_hint": "Map decorators to real codegen policies"
+    }
+  ],
+  "language_improvement_heuristics": [
+    {
+      "id": "stdlib-surface",
+      "signal": "std/* module count << ingest/dashboard imports",
+      "action": "Prioritize PH-IO std.io, std.csv, std.summary, std.plot in lic"
+    },
+    {
+      "id": "pure-li-benches",
+      "signal": "horner_pure_li or tier-1 still red/yellow",
+      "action": "Compiler/codegen (PH-7e), not catalog threshold tweaks"
+    },
+    {
+      "id": "python-fallback",
+      "signal": "ingest-lic.sh still falls back to build_summary.py",
+      "action": "Ship std/summary; keep Python as parity gate only"
+    },
+    {
+      "id": "shared-c-kernels",
+      "signal": "physics tier-2 variant shared_c_kernel",
+      "action": "Plan pure-Li physics kernels per GAME_DEV.md"
+    },
+    {
+      "id": "agent-kit-drift",
+      "signal": "expected-agent-kit-version mismatch across repos",
+      "action": "Bump roadmap agent-kit; sync-agent-kit.sh"
+    }
+  ],
+  "open_ecosystem_gap_issues": [],
+  "agent_kit": {
+    "entries": [
+      {
+        "path": "scripts/expected-agent-kit-version",
+        "version": "1.1.0+5f476d66cf8d1b57"
+      },
+      {
+        "path": "roadmap/scripts/expected-agent-kit-version",
+        "version": "1.2.0+dffd617dec8ede78"
+      },
+      {
+        "path": "lic/scripts/expected-agent-kit-version",
+        "version": "1.1.0+5f476d66cf8d1b57"
+      },
+      {
+        "path": "lip/scripts/expected-agent-kit-version",
+        "version": "1.3.0"
+      },
+      {
+        "path": "lit/scripts/expected-agent-kit-version",
+        "version": "1.3.0"
+      }
+    ],
+    "drift": true
+  },
+  "web_search_queries": [
+    {
+      "channel": "reddit",
+      "query": "site:reddit.com (r/ProgrammingLanguages OR r/Compilers OR r/HPC OR r/cpp) systems programming language HPC SIMD ownership",
+      "why": "Community pain points, language comparisons, library wishes"
+    },
+    {
+      "channel": "reddit",
+      "query": "site:reddit.com r/HPC Kokkos vs OpenMP performance portability 2024..2026",
+      "why": "HPC portability expectations for Li execution model"
+    },
+    {
+      "channel": "web",
+      "query": "PETSc Kokkos integration best practices PDE solver stack",
+      "why": "Stack gaps for physics/PDE packages"
+    },
+    {
+      "channel": "web",
+      "query": "Eigen BLAS GEMM optimization techniques constexpr compile time",
+      "why": "Numerics / matmul roadmap vs li-std-math"
+    },
+    {
+      "channel": "web",
+      "query": "new programming languages memory safety performance C++ alternative 2025",
+      "why": "Language design trends (ownership, verifiers, JIT/AOT)"
+    },
+    {
+      "channel": "web",
+      "query": "FFTW vs vendor FFT library benchmark roofline",
+      "why": "Missing FFT catalog row"
+    },
+    {
+      "channel": "github",
+      "query": "org:llvm llvm-project parallel loop IR OpenMP",
+      "why": "Codegen parity for std/execution"
+    }
+  ],
+  "reddit_subreddits": [
+    "ProgrammingLanguages",
+    "Compilers",
+    "HPC",
+    "cpp",
+    "rust",
+    "scientificcomputing"
+  ],
+  "recommended_actions": [
+    {
+      "priority": "P1",
+      "action": "Implement missing std modules in lic (PH-IO track)",
+      "modules": [
+        "std.io",
+        "std.csv",
+        "std.summary",
+        "std.plot"
+      ]
+    },
+    {
+      "priority": "P2",
+      "action": "Extend benchmarks catalog from HPC rubric",
+      "gaps": [
+        "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",
+        "Increase pure_li variant rows for PH-7e codegen proof"
+      ]
+    },
+    {
+      "priority": "P2",
+      "action": "Sync agent-kit versions across repos",
+      "versions": [
+        {
+          "path": "scripts/expected-agent-kit-version",
+          "version": "1.1.0+5f476d66cf8d1b57"
+        },
+        {
+          "path": "roadmap/scripts/expected-agent-kit-version",
+          "version": "1.2.0+dffd617dec8ede78"
+        },
+        {
+          "path": "lic/scripts/expected-agent-kit-version",
+          "version": "1.1.0+5f476d66cf8d1b57"
+        },
+        {
+          "path": "lip/scripts/expected-agent-kit-version",
+          "version": "1.3.0"
+        },
+        {
+          "path": "lit/scripts/expected-agent-kit-version",
+          "version": "1.3.0"
+        }
+      ]
+    },
+    {
+      "priority": "P2",
+      "action": "Run web/Reddit searches (see web_search_queries); file issues with label explorer-finding",
+      "note": "Use Cursor web search or manual review \u2014 script does not scrape Reddit"
+    }
+  ]
+}

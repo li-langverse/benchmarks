@@ -25,6 +25,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | Script | Use for |
 |--------|---------|
 | `ecosystem-audit.py` | Org PR CI, missing `ci.yml`, benchmark posture JSON |
+| `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` |
 | `issue-feature-triage.py` | Open issues needing plans |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
 | `pr-merge-gate.py` | Merge readiness (CI, review, labels) |
@@ -63,6 +64,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `issue-feature-planning.yml` | issue labeled | Planning comment |
 | `plan-completion-audit.yml` | `workflow_dispatch` | Plan audit artifact |
 | `ecosystem-audit.yml` | `workflow_dispatch` | Audit snapshot commit |
+| `ecosystem-explorer.yml` | `workflow_dispatch` | Explorer JSON artifact (no cron) |
 | `pr-auto-merge.yml` | label `merge-approved` | Auto-merge when gate passes |
 
 **No `schedule:` cron** for audits — use Cursor automations.
@@ -73,6 +75,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 
 | Skill | Use when |
 |-------|----------|
+| `explore-li-ecosystem` | Discovery — HPC/Reddit signals, missing std, catalog gaps |
 | `ecosystem-first` | Any task — pick catalog tool; file gap if blocked |
 | `li-ecosystem-discipline` | Cross-repo / multi-pillar work |
 | `plan-feature-from-issue` | Issue → vision-aligned plan |
@@ -94,6 +97,7 @@ Synced to other repos via **`roadmap/agent-kit`**.
 | `issue-feature-planner.md` | 2×/week |
 | `plan-completion-audit.md` | Weekly |
 | `pr-auto-merge.md` | After review / 12h |
+| `ecosystem-explorer.md` | Weekly / biweekly |
 | `ecosystem-health.md` | Daily |
 | `merge-queue-digest.md` | Daily |
 | `failed-benchmarks-maintainer.md` | Weekly |

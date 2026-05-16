@@ -17,6 +17,8 @@
 4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 5. On catalog miss or script failure → **file ecosystem-gap issue** (do not only patch locally).
 
+**Ecosystem explorer** (weekly discovery): `python3 scripts/ecosystem-explorer.py` → missing std/libs, HPC rubric, Reddit/web query hints — [ecosystem-explorer.md](docs/ecosystem/ecosystem-explorer.md). Cursor prompt: `.cursor/automations/ecosystem-explorer.md`, skill `explore-li-ecosystem`, `/explore-ecosystem`.
+
 **Cursor Automations** (not Actions cron): see `.cursor/automations/` and [docs/ecosystem/agent-automations.md](docs/ecosystem/agent-automations.md):
 
 - **Issue feature planner** — vision-aligned plans from new issues (`plan-feature-from-issue` skill); includes **`ecosystem-gap`**
@@ -24,6 +26,6 @@
 - **PR auto-merge** — after `merge-approved` + `pr-merge-gate.py`
 - Visual validation, failed benchmarks, ecosystem health, merge digest
 
-Scripts: `./scripts/issue-feature-triage.py`, `./scripts/plan-completion-audit.py`, `./scripts/ecosystem-audit.py`, `./scripts/pr-merge-gate.py`, `./scripts/file-ecosystem-gap-issue.py`, `./scripts/benchmark-failures-report.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
+Scripts: `./scripts/issue-feature-triage.py`, `./scripts/plan-completion-audit.py`, `./scripts/ecosystem-audit.py`, `./scripts/ecosystem-explorer.py`, `./scripts/pr-merge-gate.py`, `./scripts/file-ecosystem-gap-issue.py`, `./scripts/benchmark-failures-report.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
 
 Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, **`resolve-merge-conflicts`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).

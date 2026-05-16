@@ -24,6 +24,7 @@ for repo in "${REPOS[@]}"; do
   create_label "$repo" "merge-approved" "5319E7" "Standards review passed; auto-merge workflow may merge"
   create_label "$repo" "do-not-merge" "B60205" "Block automated and routine merges"
   create_label "$repo" "ecosystem-gap" "F9D0C4" "Missing/broken shared tooling — planner extends catalog"
+  create_label "$repo" "explorer-finding" "C5DEF5" "Ecosystem explorer discovery — triage to plan-needed"
 done
 
 echo "Done."
