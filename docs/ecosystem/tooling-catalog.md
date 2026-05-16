@@ -26,7 +26,8 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 |--------|---------|
 | `ecosystem-audit.py` | Org PR CI, missing `ci.yml`, benchmark posture JSON |
 | `ensure-org-repo-ci.py` | Fail if any org repo lacks `ci.yml` → `org-repo-ci-audit.json` |
-| `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` |
+| `agent-briefing.py` / `agent-preflight.sh` | Aggregate preflight JSON → `agent-briefing.json` for **Cursor agents** |
+| `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` (agent interprets) |
 | `issue-feature-triage.py` | Open issues needing plans |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
 | `pr-merge-gate.py` | Merge readiness (CI, review, labels) |
@@ -78,6 +79,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | Skill | Use when |
 |-------|----------|
 | `explore-li-ecosystem` | Discovery — HPC/Reddit signals, missing std, catalog gaps |
+| `review-pr-alignment` | PR vs plan / merge order / redundant stacks |
 | `ecosystem-first` | Any task — pick catalog tool; file gap if blocked |
 | `li-ecosystem-discipline` | Cross-repo / multi-pillar work |
 | `plan-feature-from-issue` | Issue → vision-aligned plan |
@@ -99,6 +101,10 @@ Synced to other repos via **`roadmap/agent-kit`**.
 | `issue-feature-planner.md` | 2×/week |
 | `plan-completion-audit.md` | Weekly |
 | `pr-auto-merge.md` | After review / 12h |
+| `agent-orchestrator.md` | Weekly routing |
+| `implementation-gaps-agent.md` | Weekly plan vs code + web |
+| `pr-alignment-agent.md` | Daily |
+| `pr-review-agent.md` | Daily / per PR |
 | `ecosystem-explorer.md` | Weekly / biweekly |
 | `ecosystem-health.md` | Daily |
 | `merge-queue-digest.md` | Daily |

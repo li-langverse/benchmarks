@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-16T22:27Z",
+  "generated_at": "2026-05-16T22:35Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
   "repos_ok": [
@@ -21,8 +21,10 @@
     "benchmarks": [
       "ci.yml",
       "ecosystem-audit.yml",
+      "ecosystem-explorer.yml",
       "ingest.yml",
       "issue-feature-planning.yml",
+      "org-repo-ci-audit.yml",
       "pages.yml",
       "plan-completion-audit.yml",
       "pr-auto-merge.yml"

@@ -1,10 +1,13 @@
-# Automation prompt: Numerics research cycle
+# Automation prompt: Numerics research cycle (Cursor agent)
+
+**This is a Cursor Agent run** — not a GitHub Action. You must use **web search** for SOTA (papers, Eigen/Kokkos/PETSc docs, recent HPC posts). Local scripts only produce bench JSON.
 
 Run a **structured numerics research pass** on red/near-limit **physics** or **micro** rows, or on an open issue labeled `numerics-research` / `novel-algorithm`.
 
 **Skills:** `research-li-numerics`, `numerics-autoresearch` (if proposing new methods)  
 **Methodology:** `docs/numerics/research-methodology.md`  
-**Dashboard:** https://li-langverse.github.io/benchmarks/
+**Dashboard:** https://li-langverse.github.io/benchmarks/  
+**Preflight:** `./scripts/agent-preflight.sh` or `ecosystem-audit.py` + `benchmark-failures-report.sh`
 
 **Do not** add Actions `cron:`. **Do not** weaken catalog thresholds. **Do not** self-merge.
 
