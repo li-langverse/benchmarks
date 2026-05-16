@@ -14,6 +14,6 @@
 3. Align fixes to vision: P0 package CI → merge queue → lic compiler perf (pure-Li tier-1), not dashboard-only threshold tweaks.
 4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 
-Scheduled: `.github/workflows/ecosystem-audit.yml` (6h on `main`) commits audit + history.
+**Cursor Automations** (not Actions cron): see `.cursor/automations/` — ecosystem health, bench improvement, merge-queue digest. Actions budget: `docs/ecosystem/actions-budget.md`.
 
 Skills: `write-li-release-notes`, `li-ecosystem-discipline`.

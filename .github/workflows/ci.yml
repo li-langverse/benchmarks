@@ -19,11 +19,6 @@ jobs:
           ./scripts/ingest/ingest-lic.sh || python3 scripts/ingest/build_summary.py lic
       - run: test -f data/latest/summary.json
 
-      - name: Ecosystem audit (dry-run)
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 scripts/ecosystem-audit.py
-
   dashboard-build:
     runs-on: ubuntu-24.04
     steps:

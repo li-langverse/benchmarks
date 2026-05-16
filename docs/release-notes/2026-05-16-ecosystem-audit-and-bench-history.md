@@ -10,7 +10,7 @@
 
 ## Summary (one sentence)
 
-Adds scheduled ecosystem audits (failed PRs, missing CI/docs) and timestamped benchmark history with ratio deltas for time-resolved improvement tracking.
+Adds ecosystem audit scripts and benchmark history; recurring runs via **Cursor Automations** (not Actions cron) to stay within Actions budget.
 
 ## Agent continuation (required)
 
@@ -25,7 +25,9 @@ Adds scheduled ecosystem audits (failed PRs, missing CI/docs) and timestamped be
 |------|------|----------|
 | Audit | `scripts/ecosystem-audit.py` → `data/latest/ecosystem-audit.json` | `gh` PR + workflow presence + summary reds |
 | History | `scripts/record-benchmark-history.py`, `data/history/` | Snapshots + `latest_deltas` in `index.json` |
-| CI | `.github/workflows/ecosystem-audit.yml` (6h), `ci.yml` dry-run | Commits on `main` when audit changes |
+| CI | `ecosystem-audit.yml` manual dispatch only; `ci.yml` ingest + dashboard | No `schedule:` cron |
+| Cursor | `.cursor/automations/*.md` | Prompts for cursor.com/automations |
+| Docs | `docs/ecosystem/actions-budget.md` | Minute estimates; avoid roadmap 15m cron |
 
 ## Not changed (scope fence)
 
@@ -57,4 +59,4 @@ N/A — audit scripts; no benchmark execution in this PR.
 
 ### Added
 
-- Ecosystem audit (`scripts/ecosystem-audit.py`, 6-hour workflow) and benchmark history snapshots (`data/history/`).
+- Ecosystem audit scripts + benchmark history; Cursor Automation prompts; Actions audit workflow manual-only.

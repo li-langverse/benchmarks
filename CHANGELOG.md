@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Ecosystem audit (`scripts/ecosystem-audit.py`, workflow every 6h) — failed PRs, missing CI on `main`, benchmark reds vs PH-5b/PH-7e.
+- Ecosystem audit (`scripts/ecosystem-audit.py`) + Cursor Automation prompts (`.cursor/automations/`); Actions workflow is **manual dispatch only** (no cron).
+- Actions budget doc (`docs/ecosystem/actions-budget.md`).
 - Benchmark history snapshots (`data/history/`, `scripts/record-benchmark-history.py`) with ratio deltas between ingests.
 - Agent-kit sync and release-notes policy (roadmap v1.1.0).
