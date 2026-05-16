@@ -73,13 +73,25 @@ python3 scripts/ecosystem-audit.py
 
 ---
 
-## Cursor UI setup (human once per automation)
+## What is already automated (no Cursor UI required)
+
+| Mechanism | What it does |
+|-----------|----------------|
+| **GitHub Actions** `issue-feature-planning.yml` | On new/labeled feature issues → posts planning checklist comment |
+| **GitHub Actions** `plan-completion-audit.yml` | `workflow_dispatch` → runs audit scripts, uploads JSON artifacts |
+| **Org labels** | `plan-needed`, `plan-approved`, `feature` (via `scripts/setup-org-labels.sh`) |
+| **Slash commands** | `/plan-feature`, `/audit-plans` in `.cursor/commands/` |
+| **agent-kit 1.3.0** | Skills + automation prompts synced via `roadmap` → `install-agent-kit.sh` |
+
+## Cursor UI setup (optional — for full agent runs on a schedule)
 
 1. [cursor.com/automations](https://cursor.com/automations) → **New automation**
 2. **Trigger:** Schedule (or "Issues opened" when available for your org)
 3. **Repository:** `li-langverse/<repo>` or multi-repo cloud workspace
 4. **Instructions:** paste full markdown from the prompt file
 5. **Model:** default; enable PR creation only for `plan-approved` implementation runs
+
+If you skip Cursor UI, use **Actions → Run workflow → Plan completion audit** weekly and rely on issue comments for new features.
 
 ---
 

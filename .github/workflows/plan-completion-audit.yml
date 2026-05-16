@@ -1,6 +1,5 @@
-# Manual only — no schedule (saves Actions budget). Prefer Cursor Automations:
-# .cursor/automations/ecosystem-health.md
-name: Ecosystem audit (manual)
+# Manual / dispatch — plan debt audit. No schedule (Actions budget).
+name: Plan completion audit
 
 on:
   workflow_dispatch:
@@ -19,23 +18,29 @@ jobs:
           repository: li-langverse/lic
           path: lic
 
-      - name: Ingest + audit
+      - name: Run audits
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LIC_ROOT: lic
         run: |
-          chmod +x scripts/ingest/*.sh
-          ./scripts/ingest/ingest-lic.sh || python3 scripts/ingest/build_summary.py lic
-          python3 scripts/record-benchmark-history.py
           python3 scripts/plan-completion-audit.py
           python3 scripts/issue-feature-triage.py || true
           python3 scripts/ecosystem-audit.py
 
-      - name: Commit (main only)
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: plan-audit-${{ github.run_id }}
+          path: |
+            data/latest/plan-completion-audit.json
+            data/latest/issue-feature-triage.json
+            data/latest/ecosystem-audit.json
+
+      - name: Commit snapshots (main only)
         if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "benchmarks-audit-bot"
           git config user.email "benchmarks-audit-bot@users.noreply.github.com"
-          git add data/latest/ecosystem-audit.json data/latest/plan-completion-audit.json data/latest/issue-feature-triage.json data/history/ 2>/dev/null || git add data/latest/ecosystem-audit.json data/history/
-          git diff --staged --quiet || git commit -m "chore(audit): manual ecosystem snapshot"
+          git add data/latest/plan-completion-audit.json data/latest/issue-feature-triage.json data/latest/ecosystem-audit.json
+          git diff --staged --quiet || git commit -m "chore(audit): plan completion + issue triage snapshot"
           git push
