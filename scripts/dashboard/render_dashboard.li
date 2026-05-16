@@ -1,0 +1,10 @@
+# PH-IO-5 — render static GitHub Pages dashboard from summary.json
+import std.plot
+
+proc main() raises IO, Alloc -> int
+  requires true
+  ensures result == 0
+  decreases 0
+=
+  var rc: int = plot_render_dashboard("data/latest/summary.json", "static-dashboard/index.html")
+  return rc

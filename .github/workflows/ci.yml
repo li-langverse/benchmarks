@@ -19,14 +19,24 @@ jobs:
           ./scripts/ingest/ingest-lic.sh || python3 scripts/ingest/build_summary.py lic
       - run: test -f data/latest/summary.json
 
-  dashboard-build:
+  dashboard-static:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: "22"
-      - working-directory: dashboard
+          repository: li-langverse/lic
+          path: lic
+      - name: Install LLVM 18
         run: |
-          npm install
-          npm run build
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev python3
+      - run: |
+          export LLVM_DIR=/usr/lib/llvm-18/lib/cmake/llvm CC=clang-18
+          cd lic && ./scripts/build.sh
+          chmod +x scripts/ingest/*.sh scripts/dashboard/*.sh
+          test -f data/latest/summary.json || python3 scripts/ingest/build_summary.py lic
+      - name: Render static dashboard
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: ./scripts/dashboard/render-static.sh
