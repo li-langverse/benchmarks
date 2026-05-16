@@ -17,7 +17,7 @@
 4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 5. On catalog miss or script failure → **file ecosystem-gap issue** (do not only patch locally).
 
-**Ecosystem explorer** (weekly discovery): `python3 scripts/ecosystem-explorer.py` → missing std/libs, HPC rubric, Reddit/web query hints — [ecosystem-explorer.md](docs/ecosystem/ecosystem-explorer.md). Cursor prompt: `.cursor/automations/ecosystem-explorer.md`, skill `explore-li-ecosystem`, `/explore-ecosystem`.
+**Agent-first:** Intelligence (explorer, PR review/alignment, numerics SOTA, plan gaps) = **[Cursor Automations](https://cursor.com/automations)** + web search. Scripts only **preflight** JSON: `./scripts/agent-preflight.sh` → [cursor-agent-architecture.md](docs/ecosystem/cursor-agent-architecture.md).
 
 **Cursor Automations** (not Actions cron): see `.cursor/automations/` and [docs/ecosystem/agent-automations.md](docs/ecosystem/agent-automations.md):
 
@@ -26,6 +26,6 @@
 - **PR auto-merge** — after `merge-approved` + `pr-merge-gate.py`
 - Visual validation, failed benchmarks, ecosystem health, merge digest
 
-Scripts: `./scripts/issue-feature-triage.py`, `./scripts/plan-completion-audit.py`, `./scripts/ecosystem-audit.py`, `./scripts/ecosystem-explorer.py`, `./scripts/pr-merge-gate.py`, `./scripts/file-ecosystem-gap-issue.py`, `./scripts/benchmark-failures-report.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
+Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/ecosystem-explorer.py`, `./scripts/plan-completion-audit.py`, `./scripts/run-pr-program.py`, `./scripts/pr-merge-gate.py`, … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
 
 Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, **`resolve-merge-conflicts`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).

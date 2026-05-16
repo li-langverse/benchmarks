@@ -1,0 +1,33 @@
+---
+description: Intelligent work uses Cursor Agents + preflight JSON; GitHub Actions are CI/Pages only.
+alwaysApply: true
+---
+
+# Agent-first automations
+
+## Use Cursor Agents for
+
+- Ecosystem exploration (web, Reddit, HPC libs)
+- Implementation / plan gaps
+- PR alignment and standards **review**
+- Numerics SOTA and autoresearch
+- Issue → plan drafting
+
+Prompts: `.cursor/automations/*.md` · Architecture: [cursor-agent-architecture.md](../../docs/ecosystem/cursor-agent-architecture.md)
+
+## Use scripts for (preflight only)
+
+```bash
+./scripts/agent-preflight.sh   # → data/latest/agent-briefing.json
+```
+
+Scripts **do not** replace agents for web search, review, or gap interpretation.
+
+## Do not add
+
+- `schedule:` cron workflows for audits, exploration, or PR review
+- “Smart” logic only in Actions — push reasoning to Cursor Automations
+
+## CI-only Actions
+
+`ci.yml`, `pages.yml`, `pr-auto-merge.yml` (label gate), optional `workflow_dispatch` to refresh JSON artifacts.

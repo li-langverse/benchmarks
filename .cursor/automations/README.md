@@ -1,28 +1,47 @@
-# Cursor Automations (not GitHub Actions cron)
+# Cursor Automations (agents — not GitHub Actions cron)
 
-Heavy recurring ops run as **[Cursor Automations](https://cursor.com/automations)** (cloud agents) so we stay inside the GitHub Actions free budget. Create each automation in the Cursor UI and paste the prompt from the matching file below.
+**Architecture:** [cursor-agent-architecture.md](../docs/ecosystem/cursor-agent-architecture.md)  
+**Preflight:** `./scripts/agent-preflight.sh` → `data/latest/agent-briefing.json`
 
-| Automation | Trigger (suggested) | Prompt file | Primary repo |
-|------------|---------------------|-------------|--------------|
-| **Issue feature planner** | 2×/week per repo (or org sweep) | [issue-feature-planner.md](./issue-feature-planner.md) + [repos/](./repos/) | all · skills: `plan-feature-from-issue` |
-| **Plan completion audit** | Weekly | [plan-completion-audit.md](./plan-completion-audit.md) | `benchmarks` + `lic` · skill: `audit-plan-completion` |
-| **Benchmark visuals** | Weekly or after lic bench / manual | [benchmark-visual-validation.md](./benchmark-visual-validation.md) | `lic` + `benchmarks` |
-| **Failed benchmarks** | Schedule: weekly, or webhook after lic bench | [failed-benchmarks-maintainer.md](./failed-benchmarks-maintainer.md) | `lic` (+ `benchmarks` ingest) |
-| **Numerics research** | Weekly or `numerics-research` issues | [numerics-research-cycle.md](./numerics-research-cycle.md) | `lic` · skills: `research-li-numerics`, `numerics-autoresearch` |
-| **Ecosystem explorer** | Weekly / biweekly | [ecosystem-explorer.md](./ecosystem-explorer.md) | `benchmarks` + `lic` · skill: `explore-li-ecosystem` · Reddit/HPC web search |
-| Ecosystem health | Schedule: daily or every 12h | [ecosystem-health.md](./ecosystem-health.md) | `benchmarks` (+ `roadmap` read) |
-| Benchmark improvement | Same as failed benchmarks (alias) | [benchmark-improvement.md](./benchmark-improvement.md) | `lic` |
-| Merge queue digest | Schedule: daily | [merge-queue-digest.md](./merge-queue-digest.md) | `roadmap` |
-| **PR auto-merge** | 12h or after review | [pr-auto-merge.md](./pr-auto-merge.md) | plan: **`plan-merge-queue`** · review: `merge-approved-pr` |
+Heavy **reasoning** work runs here. **GitHub Actions** = CI + Pages only ([actions-budget.md](../docs/ecosystem/actions-budget.md)).
 
-**Philosophy:** [ecosystem-first.md](../docs/ecosystem/ecosystem-first.md) · catalog: [tooling-catalog.md](../docs/ecosystem/tooling-catalog.md) · gaps → `file-ecosystem-gap-issue.py`
+## Agent roster (create at cursor.com/automations)
 
-**Setup guide:** [docs/ecosystem/agent-automations.md](../docs/ecosystem/agent-automations.md)
+| Agent | Prompt | Web? |
+|-------|--------|------|
+| **Orchestrator** | [agent-orchestrator.md](./agent-orchestrator.md) | Optional |
+| **Ecosystem explorer** | [ecosystem-explorer.md](./ecosystem-explorer.md) | **Yes** |
+| **Implementation gaps** | [implementation-gaps-agent.md](./implementation-gaps-agent.md) | **Yes** |
+| **Plan completion** | [plan-completion-audit.md](./plan-completion-audit.md) | No |
+| **Issue planner** | [issue-feature-planner.md](./issue-feature-planner.md) | Optional |
+| **PR alignment** | [pr-alignment-agent.md](./pr-alignment-agent.md) | No |
+| **PR review** | [pr-review-agent.md](./pr-review-agent.md) | Optional |
+| **Numerics research** | [numerics-research-cycle.md](./numerics-research-cycle.md) | **Yes** |
+| Ecosystem health | [ecosystem-health.md](./ecosystem-health.md) | No |
+| Merge queue / auto-merge | [merge-queue-digest.md](./merge-queue-digest.md), [pr-auto-merge.md](./pr-auto-merge.md) | No |
+| Failed benchmarks | [failed-benchmarks-maintainer.md](./failed-benchmarks-maintainer.md) | Optional |
 
-**Dashboard:** https://li-langverse.github.io/benchmarks/ — local report: `./scripts/benchmark-failures-report.sh`
+Per-repo scope: [repos/](./repos/) — append to planner/health automations.
 
-**Do not** add `schedule:` cron to `.github/workflows/` for audits or queue refresh — use Cursor instead.
+## Slash commands (local Agent)
 
-## GitHub Actions we keep (critical path)
+| Command | Agent |
+|---------|--------|
+| `/agent-briefing` | Preflight + route |
+| `/explore-ecosystem` | Explorer |
+| `/audit-plans` | Plan completion |
+| `/review-pr` | PR review |
+| `/pr-alignment` | PR alignment |
+| `/numerics-research` | Numerics |
+| `/merge-queue` | Merge plan |
 
-See [docs/ecosystem/actions-budget.md](../docs/ecosystem/actions-budget.md) for minute estimates.
+## Scripts = preflight only
+
+| Script | Feeds agent |
+|--------|-------------|
+| `agent-briefing.py` | All agents |
+| `ecosystem-explorer.py` | Explorer, implementation-gaps |
+| `plan-completion-audit.py` | Plan, implementation-gaps |
+| `run-pr-program.py` | PR alignment, PR review, merge |
+
+**Do not** add `schedule:` cron to `.github/workflows/` for these concerns.

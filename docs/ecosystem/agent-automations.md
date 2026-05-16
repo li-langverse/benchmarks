@@ -1,143 +1,101 @@
 # Agent automations & skills (li-langverse)
 
-**Policy:** Recurring monitoring uses **[Cursor Automations](https://cursor.com/automations)** — not GitHub Actions `cron:` — see [actions-budget.md](./actions-budget.md).
+**Architecture:** [cursor-agent-architecture.md](./cursor-agent-architecture.md) — **agents first**, scripts preflight, Actions CI-only.
 
-**Philosophy:** [ecosystem-first.md](./ecosystem-first.md) — agents use [tooling-catalog.md](./tooling-catalog.md); gaps → **`ecosystem-gap`** issues → this planner.
+**Policy:** Recurring **intelligence** uses **[Cursor Automations](https://cursor.com/automations)** — not GitHub Actions `cron:` — see [actions-budget.md](./actions-budget.md).
 
-Prompt files live in **`.cursor/automations/`**. Shared skills in **`.cursor/skills/`**.
-
-After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` and run `./scripts/sync-agent-kit.sh` in each code repo.
+Prompt files: **`.cursor/automations/`** · Skills: **`.cursor/skills/`** · Local entry: **`./scripts/agent-preflight.sh`**
 
 ---
 
-## Automations catalog
+## Three layers
 
-| Automation | Schedule | Prompt | Purpose |
-|------------|----------|--------|---------|
-| **Issue feature planner** | 2×/week | [issue-feature-planner.md](../../.cursor/automations/issue-feature-planner.md) | New feature issues → vision-aligned plan (no code until `plan-approved`) |
-| **Plan completion audit** | Weekly | [plan-completion-audit.md](../../.cursor/automations/plan-completion-audit.md) | Unchecked PH phases, plan boxes, G-* gaps, catalog drift |
-| **Ecosystem explorer** | Weekly / biweekly | [ecosystem-explorer.md](../../.cursor/automations/ecosystem-explorer.md) | Missing std/libs, HPC rubric, Reddit/web signals → issues |
-| Ecosystem health | Daily / 12h | [ecosystem-health.md](../../.cursor/automations/ecosystem-health.md) | CI, docs, benchmark reds |
-| Failed benchmarks | Weekly | [failed-benchmarks-maintainer.md](../../.cursor/automations/failed-benchmarks-maintainer.md) | Dashboard regression fixes in lic |
-| Benchmark visuals | Weekly | [benchmark-visual-validation.md](../../.cursor/automations/benchmark-visual-validation.md) | PNG/GIF validation |
-| **Numerics research** | Weekly / on issue | [numerics-research-cycle.md](../../.cursor/automations/numerics-research-cycle.md) | SOTA survey + autoresearch evidence packs |
-| Merge queue digest | Daily | [merge-queue-digest.md](../../.cursor/automations/merge-queue-digest.md) | Ready PRs for humans |
-| **PR auto-merge** | After review / 12h | [pr-auto-merge.md](../../.cursor/automations/pr-auto-merge.md) | Merge PRs labeled `merge-approved` when gates pass |
+| Layer | Examples | Role |
+|-------|----------|------|
+| **Cursor Agents** | explorer, PR review, numerics SOTA, plan gaps | Web search, judgment, issues/PRs |
+| **Preflight scripts** | `agent-briefing.py`, `ecosystem-explorer.py`, `pr-merge-queue-plan.py` | JSON for agents |
+| **GitHub Actions** | `ci.yml`, `pages.yml`, `pr-auto-merge.yml` | Build, test, publish, gated merge |
 
-### Per-repo planner scope
-
-When creating **one automation per repo**, paste the parent prompt plus:
-
-- [repos/lic.md](../../.cursor/automations/repos/lic.md)
-- [repos/benchmarks.md](../../.cursor/automations/repos/benchmarks.md)
-- [repos/lip.md](../../.cursor/automations/repos/lip.md)
-- [repos/lit.md](../../.cursor/automations/repos/lit.md)
-- [repos/lis.md](../../.cursor/automations/repos/lis.md)
-- [repos/roadmap.md](../../.cursor/automations/repos/roadmap.md)
+There is no separate org “Cursor SDK” — use **Automations UI** + **local Agent** with the same prompts.
 
 ---
 
-## Skills
-
-| Skill | Use when |
-|-------|----------|
-| [explore-li-ecosystem](../../.cursor/skills/explore-li-ecosystem/SKILL.md) | Weekly discovery — gaps, HPC parity, community signals |
-| [ecosystem-first](../../.cursor/skills/ecosystem-first/SKILL.md) | Start of task — catalog tool vs gap issue |
-| [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
-| [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
-| [merge-approved-pr](../../.cursor/skills/merge-approved-pr/SKILL.md) | Final review before `merge-approved` label |
-| [resolve-merge-conflicts](../../.cursor/skills/resolve-merge-conflicts/SKILL.md) | PR conflicts — union main + branch, no reverts |
-| [plan-merge-queue](../../.cursor/skills/plan-merge-queue/SKILL.md) | Merge order + redundant PRs before auto-merge |
-| [li-ecosystem-discipline](../../.cursor/skills/li-ecosystem-discipline/SKILL.md) | Any cross-repo PR |
-| [write-li-release-notes](../../.cursor/skills/write-li-release-notes/SKILL.md) | Before merge |
-| [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | SOTA survey, recipes, evidence packs |
-| [numerics-autoresearch](../../.cursor/skills/numerics-autoresearch/SKILL.md) | Novel algorithms — documented + verified |
-
----
-
-## Scripts (run locally or in automations)
+## Quick start
 
 ```bash
-# Feature issues needing plans
-python3 scripts/issue-feature-triage.py
-# → data/latest/issue-feature-triage.json
+cd benchmarks
+./scripts/agent-preflight.sh
+cat data/latest/agent-briefing.json   # → recommended_agents
+```
 
-# Incomplete plans / implementation drift
-export LIC_ROOT=../lic
+1. Open [cursor.com/automations](https://cursor.com/automations) → **New automation**
+2. Paste prompt from `recommended_agents` (e.g. `ecosystem-explorer.md`)
+3. Enable **web search** for explorer, numerics, implementation-gaps
+4. Multi-repo workspace: **benchmarks**, **lic**, **roadmap**
+
+---
+
+## Agent catalog
+
+| Agent | Schedule | Prompt | Skills |
+|-------|----------|--------|--------|
+| Orchestrator | Weekly | [agent-orchestrator.md](../../.cursor/automations/agent-orchestrator.md) | — |
+| **Ecosystem explorer** | Biweekly | [ecosystem-explorer.md](../../.cursor/automations/ecosystem-explorer.md) | `explore-li-ecosystem` |
+| **Implementation gaps** | Weekly | [implementation-gaps-agent.md](../../.cursor/automations/implementation-gaps-agent.md) | `explore-li-ecosystem`, `audit-plan-completion` |
+| Plan completion | Weekly | [plan-completion-audit.md](../../.cursor/automations/plan-completion-audit.md) | `audit-plan-completion` |
+| Issue planner | 2×/week | [issue-feature-planner.md](../../.cursor/automations/issue-feature-planner.md) | `plan-feature-from-issue` |
+| **PR alignment** | Daily | [pr-alignment-agent.md](../../.cursor/automations/pr-alignment-agent.md) | `review-pr-alignment` |
+| **PR review** | Daily / on PR | [pr-review-agent.md](../../.cursor/automations/pr-review-agent.md) | `merge-approved-pr`, `review-pr-alignment` |
+| **Numerics research** | Weekly | [numerics-research-cycle.md](../../.cursor/automations/numerics-research-cycle.md) | `research-li-numerics`, `numerics-autoresearch` |
+| Ecosystem health | Daily | [ecosystem-health.md](../../.cursor/automations/ecosystem-health.md) | `ecosystem-first` |
+| Merge / auto-merge | 12h | [merge-queue-digest.md](../../.cursor/automations/merge-queue-digest.md), [pr-auto-merge.md](../../.cursor/automations/pr-auto-merge.md) | `plan-merge-queue`, `merge-approved-pr` |
+
+### Per-repo overlays
+
+[repos/lic.md](../../.cursor/automations/repos/lic.md) · [benchmarks](../../.cursor/automations/repos/benchmarks.md) · [lip](../../.cursor/automations/repos/lip.md) · [lit](../../.cursor/automations/repos/lit.md) · [lis](../../.cursor/automations/repos/lis.md) · [roadmap](../../.cursor/automations/repos/roadmap.md)
+
+---
+
+## Preflight scripts (not agents)
+
+```bash
+./scripts/agent-preflight.sh          # all-in-one briefing
+python3 scripts/ecosystem-explorer.py # explorer input
 python3 scripts/plan-completion-audit.py
-# → data/latest/plan-completion-audit.json
-
-# Org health + benchmarks
-python3 scripts/ecosystem-audit.py
-# → data/latest/ecosystem-audit.json
-
-# Explorer: missing std, HPC rubric, web-search queries
-LIC_ROOT=../lic python3 scripts/ecosystem-explorer.py
-# → data/latest/ecosystem-explorer.json
-
-# Merge queue plan + safe auto-merge
-python3 scripts/pr-merge-queue-plan.py
-python3 scripts/pr-auto-merge-sweep.py --use-plan
-# → one merge per plan: add --execute, then re-plan
-
-# File ecosystem gap (planner picks up)
-python3 scripts/file-ecosystem-gap-issue.py --repo lic --title "..." \
-  --what-tried "..." --expected "..." --blocked "..."
+python3 scripts/run-pr-program.py     # PR alignment / review
+python3 scripts/pr-merge-gate.py --repo lic --pr N --json
 ```
 
 ---
 
-## GitHub issue labels (recommended org-wide)
+## GitHub Actions (limited)
 
-| Label | Meaning |
-|-------|---------|
-| `plan-needed` | Feature accepted; planner automation should draft plan |
-| `plan-approved` | Plan linked; implementation agents may code |
-| `merge-approved` | Standards review passed; **pr-auto-merge** workflow may merge |
-| `do-not-merge` | Blocks automated merge |
-| `ecosystem-gap` | Catalog miss / broken shared tooling — planner extends toolkit |
-| `explorer-finding` | Filed by ecosystem explorer — triage into plan-needed |
-| `feature` / `enhancement` | Eligible for feature planner |
+| Keep | Purpose |
+|------|---------|
+| `ci.yml` | PR CI |
+| `pages.yml` | Dashboard |
+| `pr-auto-merge.yml` | Merge when `merge-approved` + gate |
+| `workflow_dispatch` audits | Optional JSON artifacts only |
 
----
-
-## What is already automated (no Cursor UI required)
-
-| Mechanism | What it does |
-|-----------|----------------|
-| **GitHub Actions** `issue-feature-planning.yml` | On new/labeled feature issues → posts planning checklist comment |
-| **GitHub Actions** `plan-completion-audit.yml` | `workflow_dispatch` → runs audit scripts, uploads JSON artifacts |
-| **Org labels** | `plan-needed`, `plan-approved`, `feature` (via `scripts/setup-org-labels.sh`) |
-| **Slash commands** | `/plan-feature`, `/audit-plans`, `/merge-pr` in `.cursor/commands/` |
-| **PR auto-merge workflow** | `.github/workflows/pr-auto-merge.yml` on label `merge-approved` |
-| **agent-kit 1.3.0** | Skills + automation prompts synced via `roadmap` → `install-agent-kit.sh` |
-
-## Cursor UI setup (optional — for full agent runs on a schedule)
-
-1. [cursor.com/automations](https://cursor.com/automations) → **New automation**
-2. **Trigger:** Schedule (or "Issues opened" when available for your org)
-3. **Repository:** `li-langverse/<repo>` or multi-repo cloud workspace
-4. **Instructions:** paste full markdown from the prompt file
-5. **Model:** default; enable PR creation only for `plan-approved` implementation runs
-
-If you skip Cursor UI, use **Actions → Run workflow → Plan completion audit** weekly and rely on issue comments for new features.
+**Do not** cron: explorer, plan audit, PR review, numerics research.
 
 ---
 
-## Propagate to agent-kit (roadmap)
+## Labels
 
-Add to `roadmap/agent-kit/overlays/benchmarks/` (and other repos):
+| Label | Agent |
+|-------|--------|
+| `plan-needed` | Issue planner |
+| `plan-approved` | Implementation agents |
+| `merge-approved` | PR review → auto-merge |
+| `explorer-finding` | Explorer / implementation-gaps |
+| `ecosystem-gap` | Planner + catalog |
+| `numerics-research` | Numerics agent |
 
-- `docs/ecosystem/ecosystem-first.md`, `tooling-catalog.md`, `git-workflow.md`
-- `rules/li-git-hygiene.mdc`
-- `skills/ecosystem-first/`, `skills/plan-feature-from-issue/`, `skills/audit-plan-completion/`
-- `rules/li-ecosystem-first.mdc`
-- `automations/issue-feature-planner.md`, `automations/plan-completion-audit.md`, `automations/pr-auto-merge.md`
-- `scripts/file-ecosystem-gap-issue.py`, `scripts/pr-merge-queue-plan.py`
-- `skills/plan-merge-queue/`
-- `docs/numerics/research-methodology.md`, `skills/research-li-numerics/`, `skills/numerics-autoresearch/`
-- `scripts/numerics-evidence-checklist.py`
-- `automations/numerics-research-cycle.md`
-- `.github/ISSUE_TEMPLATE/ecosystem_gap.yml`
+`scripts/setup-org-labels.sh`
 
-Bump `agent-kit/manifest.toml` version; notify repos via sync script.
+---
+
+## Propagate (roadmap agent-kit)
+
+Bump `agent-kit/manifest.toml`; sync `cursor-agent-architecture.md`, `li-agent-automations.mdc`, new automations + skills.
