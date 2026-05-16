@@ -225,6 +225,36 @@ threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b", "PH-PHY-7"]
 
 [[benchmark]]
+id = "euler_fluid_2d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/euler_fluid_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-3"]
+
+[[benchmark]]
+id = "cloth_swing"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/cloth_swing"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-3"]
+
+[[benchmark]]
+id = "ragdoll_chain"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/ragdoll_chain"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-2"]
+
+[[benchmark]]
 id = "tier0_stability"
 category = "correctness"
 tier = 0
