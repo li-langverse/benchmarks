@@ -12,12 +12,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 LANG_ORDER = ["li", "cpp", "rust", "julia", "nginx", "harness", "go", "python"]
-CATEGORY_ORDER = ["micro", "physics", "http", "tooling", "correctness"]
+CATEGORY_ORDER = ["micro", "physics", "http", "tooling", "security", "correctness"]
 CATEGORY_LABELS = {
     "micro": "Micro / SIMD & linear algebra",
     "physics": "Physics & simulations",
     "http": "HTTP / webserver (li-httpd · lis)",
-    "tooling": "Ecosystem tooling (lip · lit)",
+    "tooling": "Ecosystem tooling (lip · lit · lic compile)",
+    "security": "Security gates (CVE · webserver registry)",
     "correctness": "Correctness & stability",
 }
 
@@ -84,6 +85,41 @@ def lang_series(
             }
         )
     return out
+
+
+def build_security_chart(security_path: Path) -> dict | None:
+    rows = parse_csv(security_path)
+    if not rows:
+        return None
+    series = []
+    for r in rows:
+        try:
+            val = float(r["value"])
+        except (TypeError, ValueError):
+            continue
+        series.append(
+            {
+                "lang": r.get("lang") or "harness",
+                "value": val,
+                "unit": r.get("metric") or "s",
+                "label": r.get("test") or "",
+            }
+        )
+    if not series:
+        return None
+    return {
+        "id": "security_gates",
+        "title": "Security gate wall time",
+        "metric": "wall_time",
+        "unit": "s",
+        "lower_is_better": True,
+        "reference_lang": "harness",
+        "series": series,
+        "grouped": True,
+        "repo": "lic",
+        "path": "scripts/ci-security.sh",
+        "status": "unknown",
+    }
 
 
 def build_stability_chart(stability_path: Path) -> dict | None:
@@ -171,6 +207,7 @@ def main() -> int:
     lic_csv = lic_root / "benchmarks/results/latest.csv"
     lis_csv = lis_root / "results/latest.csv"
     stability_csv = lic_root / "benchmarks/results/stability.csv"
+    security_csv = lic_root / "benchmarks/results/security.csv"
 
     catalog = load_catalog()
     raw = merge_csv_rows([lic_csv, lis_csv])
@@ -184,6 +221,10 @@ def main() -> int:
         lambda: {"green": 0, "yellow": 0, "red": 0, "unknown": 0}
     )
     charts_by_cat: dict[str, list[dict]] = defaultdict(list)
+
+    sec_chart = build_security_chart(security_csv)
+    if sec_chart:
+        charts_by_cat["security"].append(sec_chart)
 
     for bench_id, cfg in catalog.items():
         category = cfg.get("category", "micro")
@@ -300,8 +341,9 @@ def main() -> int:
         "sources": {
             "lic_csv": str(lic_csv),
             "lis_csv": str(lis_csv),
-            "stability_csv": str(stability_csv),
-        },
+         "stability_csv": str(stability_csv),
+         "security_csv": str(security_csv),
+         },
         "tier_counts": dict(tier_counts),
         "categories": categories,
         "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),
