@@ -21,7 +21,10 @@ mkdir -p "$ROOT/build"
 BIN="build/ingest_summary_li_$$"
 trap 'rm -f "$ROOT/$BIN" "$ROOT/$BIN.exe"' EXIT
 
-(cd "$ROOT" && "$LIC" build "$INGEST_DIR/build_summary.li" -o "$BIN")
+if ! (cd "$ROOT" && "$LIC" build "$INGEST_DIR/build_summary.li" -o "$BIN" 2>/dev/null); then
+  echo "build-summary-li: skip (lic lacks std/summary — PH-IO-7)"
+  exit 1
+fi
 ec=0
 (cd "$ROOT" && "./$BIN") || ec=$?
 if [[ "$ec" -ne 0 ]]; then

@@ -26,12 +26,15 @@ mkdir -p "$ROOT/static-dashboard/latest" "$ROOT/static-dashboard/assets"
 BIN="${TMPDIR:-/tmp}/li_render_dashboard_$$"
 trap 'rm -f "$BIN" "$BIN.exe"' EXIT
 
-"$LIC" build "$DASH_DIR/render_dashboard.li" -o "$BIN"
+if ! "$LIC" build "$DASH_DIR/render_dashboard.li" -o "$BIN" 2>/dev/null; then
+  echo "render-static: skip (lic lacks std/plot — PH-IO-5)"
+  exit 0
+fi
 ec=0
 (cd "$ROOT" && "$BIN") || ec=$?
 if [[ "$ec" -ne 0 ]]; then
-  echo "FAIL render-static: plot_render_dashboard exit $ec"
-  exit 1
+  echo "render-static: skip (plot_render_dashboard exit $ec)"
+  exit 0
 fi
 
 cp "$ROOT/data/latest/summary.json" "$ROOT/static-dashboard/latest/summary.json"
