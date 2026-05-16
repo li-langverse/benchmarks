@@ -4,13 +4,17 @@ Repo: **roadmap** (or multi-repo with roadmap + benchmarks read-only).
 
 ## Run
 
+Live queue is **browser JavaScript** on the Pages site (GitHub API) — no cron needed.
+
+Update snapshot when branch CI / ecosystem tables change:
+
 ```bash
 cd roadmap
-./scripts/refresh-development-overview.sh
-# optional: ./scripts/gen-development-overview.sh  # only if publishing snapshot
+# edit docs/development-overview.md
+./scripts/gen-development-overview.sh
 ```
 
-Read `data/development-overview/status.json` after refresh.
+Optional offline: `./scripts/refresh-development-overview.sh` (agents only).
 
 ## Output
 

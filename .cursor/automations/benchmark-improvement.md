@@ -1,10 +1,15 @@
 # Automation prompt: Benchmark improvement
 
+**Prefer the full prompt:** [failed-benchmarks-maintainer.md](./failed-benchmarks-maintainer.md) (dashboard reds, triage table, ingest path).
+
 Goal: Li ≤1.2× cpp on tier-1/2 catalog rows; beat HPC SOTAs where shared kernels allow. Pure-Li gaps need **lic** codegen (PH-7e).
+
+**Dashboard:** https://li-langverse.github.io/benchmarks/
 
 ## Read
 
 - `benchmarks/data/latest/summary.json` and `data/history/index.json` (`latest_deltas`)
+- `./scripts/benchmark-failures-report.sh`
 - `benchmarks/catalog.toml`
 - `lic/docs/benchmarks.md`, `lic/benchmarks/harness/`
 
