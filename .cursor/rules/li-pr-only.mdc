@@ -13,7 +13,18 @@ Agents **never** push directly to protected branches (`main`, `dev`, `master`).
 2. Commit changes on that branch.
 3. Open a PR (`gh pr create` is allowed).
 4. Ensure **CI is green** on the PR.
-5. **Stop** — do not `gh pr merge` or merge your own PR. A human or designated reviewer merges after review.
+5. **Stop** — do not `gh pr merge` or merge your own PR unless using the **merge-approved** automation below.
+
+### Automated merge (after review)
+
+When a **reviewer** (not the PR author) confirms [engineering standards](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md):
+
+1. Approve the PR on GitHub (`APPROVED`).
+2. Add label **`merge-approved`**.
+3. **`pr-merge-gate.py`** must pass (CI, plan labels, release notes).
+4. **GitHub Action** `pr-auto-merge.yml` or Cursor automation [pr-auto-merge.md](../automations/pr-auto-merge.md) runs `pr-auto-merge.py --execute`.
+
+Agents **must not** add `merge-approved` on their own PRs. **`roadmap`** governance PRs stay human-merge unless explicitly allowed.
 
 ## After verified work (`lic`)
 

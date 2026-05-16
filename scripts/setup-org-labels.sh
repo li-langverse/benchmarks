@@ -17,6 +17,8 @@ for repo in "${REPOS[@]}"; do
   create_label "$repo" "plan-needed" "FBCA04" "Feature accepted; automation will draft vision-aligned plan"
   create_label "$repo" "plan-approved" "0E8A16" "Plan linked; implementation may proceed"
   create_label "$repo" "feature" "A2EEEF" "New capability (use feature request template)"
+  create_label "$repo" "merge-approved" "5319E7" "Standards review passed; auto-merge workflow may merge"
+  create_label "$repo" "do-not-merge" "B60205" "Block automated and routine merges"
 done
 
 echo "Done."

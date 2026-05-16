@@ -1,0 +1,64 @@
+---
+name: merge-approved-pr
+description: >-
+  Review a PR against li-langverse engineering gates, add merge-approved label,
+  or run merge gate scripts. Use after implementation CI is green and before merge.
+---
+
+# Merge-approved PR review
+
+Use when a PR is ready for **final review** and possible **automated merge**.
+
+## Gate script (source of truth)
+
+```bash
+python3 scripts/pr-merge-gate.py --repo <owner/repo or name> --pr <N> --json
+```
+
+Ready when `"ready": true` and `"blockers": []`.
+
+## Standards alignment (all must pass)
+
+| Gate | Evidence |
+|------|----------|
+| **CI** | GitHub checks green (`ci_green`) |
+| **Review** | `reviewDecision: APPROVED` |
+| **Plan** | No `plan-needed` without `plan-approved` on feature work |
+| **Release notes** | `CHANGELOG.md` or `docs/release-notes/*` in diff (skip chore/deps) |
+| **Label** | Reviewer adds `merge-approved` after checklist |
+
+## Reviewer actions
+
+```bash
+# 1. Verify gates
+python3 scripts/pr-merge-gate.py --repo lic --pr 3
+
+# 2. Approve on GitHub (if you have review rights)
+gh pr review 3 --repo li-langverse/lic --approve
+
+# 3. Signal automation
+gh pr edit 3 --repo li-langverse/lic --add-label merge-approved
+```
+
+GitHub Action or Cursor **pr-auto-merge** automation performs the merge when gates pass.
+
+## Agent implementing a PR
+
+- Open PR, get CI green, request review — **do not** add `merge-approved` yourself
+- Do not run `pr-auto-merge.py --execute` on your own PR
+
+## Merge execution
+
+```bash
+# Dry-run
+python3 scripts/pr-auto-merge.py --repo lic --pr 3
+
+# Merge (maintainer / automation token)
+python3 scripts/pr-auto-merge.py --repo lic --pr 3 --execute
+```
+
+## Related
+
+- `li-ecosystem-discipline` — pre-PR gates
+- `write-li-release-notes` — before requesting merge-approved
+- `.cursor/automations/pr-auto-merge.md` — scheduled org sweep

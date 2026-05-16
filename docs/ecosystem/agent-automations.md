@@ -18,6 +18,7 @@ After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` an
 | Failed benchmarks | Weekly | [failed-benchmarks-maintainer.md](../../.cursor/automations/failed-benchmarks-maintainer.md) | Dashboard regression fixes in lic |
 | Benchmark visuals | Weekly | [benchmark-visual-validation.md](../../.cursor/automations/benchmark-visual-validation.md) | PNG/GIF validation |
 | Merge queue digest | Daily | [merge-queue-digest.md](../../.cursor/automations/merge-queue-digest.md) | Ready PRs for humans |
+| **PR auto-merge** | After review / 12h | [pr-auto-merge.md](../../.cursor/automations/pr-auto-merge.md) | Merge PRs labeled `merge-approved` when gates pass |
 
 ### Per-repo planner scope
 
@@ -38,6 +39,7 @@ When creating **one automation per repo**, paste the parent prompt plus:
 |-------|----------|
 | [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
 | [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
+| [merge-approved-pr](../../.cursor/skills/merge-approved-pr/SKILL.md) | Final review before `merge-approved` label |
 | [li-ecosystem-discipline](../../.cursor/skills/li-ecosystem-discipline/SKILL.md) | Any cross-repo PR |
 | [write-li-release-notes](../../.cursor/skills/write-li-release-notes/SKILL.md) | Before merge |
 | [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | Physics/numerics kernels |
@@ -59,6 +61,11 @@ python3 scripts/plan-completion-audit.py
 # Org health + benchmarks
 python3 scripts/ecosystem-audit.py
 # → data/latest/ecosystem-audit.json
+
+# Merge gate + auto-merge (dry-run)
+python3 scripts/pr-merge-gate.py --sweep
+python3 scripts/pr-auto-merge-sweep.py
+# → executes merge when ready: add --execute
 ```
 
 ---
@@ -69,6 +76,8 @@ python3 scripts/ecosystem-audit.py
 |-------|---------|
 | `plan-needed` | Feature accepted; planner automation should draft plan |
 | `plan-approved` | Plan linked; implementation agents may code |
+| `merge-approved` | Standards review passed; **pr-auto-merge** workflow may merge |
+| `do-not-merge` | Blocks automated merge |
 | `feature` / `enhancement` | Eligible for feature planner |
 
 ---
@@ -80,7 +89,8 @@ python3 scripts/ecosystem-audit.py
 | **GitHub Actions** `issue-feature-planning.yml` | On new/labeled feature issues → posts planning checklist comment |
 | **GitHub Actions** `plan-completion-audit.yml` | `workflow_dispatch` → runs audit scripts, uploads JSON artifacts |
 | **Org labels** | `plan-needed`, `plan-approved`, `feature` (via `scripts/setup-org-labels.sh`) |
-| **Slash commands** | `/plan-feature`, `/audit-plans` in `.cursor/commands/` |
+| **Slash commands** | `/plan-feature`, `/audit-plans`, `/merge-pr` in `.cursor/commands/` |
+| **PR auto-merge workflow** | `.github/workflows/pr-auto-merge.yml` on label `merge-approved` |
 | **agent-kit 1.3.0** | Skills + automation prompts synced via `roadmap` → `install-agent-kit.sh` |
 
 ## Cursor UI setup (optional — for full agent runs on a schedule)

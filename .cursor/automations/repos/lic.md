@@ -22,3 +22,7 @@ Parent prompt: [issue-feature-planner.md](../issue-feature-planner.md)
 ```bash
 gh issue list --repo li-langverse/lic --label "feature,enhancement,plan-needed" --state open
 ```
+
+## Merge after review
+
+Copy `.github/workflows/pr-auto-merge.yml` from **benchmarks** (via agent-kit sync). Reviewer adds **`merge-approved`** when CI + standards pass; see skill **`merge-approved-pr`**.
