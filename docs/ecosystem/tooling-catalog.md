@@ -32,6 +32,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `pr-auto-merge-sweep.py` | Sweep `merge-approved` PRs (`--use-plan` for safe order) |
 | `pr-merge-queue-plan.py` | Merge order, stacks, redundant PR detection |
 | `numerics-evidence-checklist.py` | Validate study + algorithm note before numerics PR |
+| `run-pr-program.py` | Full org PR sweep: plan + gate triage + merge order JSON |
 | `file-ecosystem-gap-issue.py` | File standardized gap issues |
 | `post-issue-planning-comment.py` | Issue planning checklist (Actions) |
 | `setup-org-labels.sh` | Create org labels (`plan-needed`, `merge-approved`, …) |
