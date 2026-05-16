@@ -1,3 +1,6 @@
 .DS_Store
 dashboard/node_modules/
 dashboard/dist/
+static-dashboard/index.html
+static-dashboard/assets/
+static-dashboard/latest/
