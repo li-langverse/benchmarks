@@ -24,7 +24,8 @@ type Row = {
 };
 
 async function loadSummary(): Promise<Summary> {
-  const res = await fetch("/latest/summary.json");
+  const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
+  const res = await fetch(`${base}latest/summary.json`);
   if (!res.ok) throw new Error(`Failed to load summary: ${res.status}`);
   return res.json();
 }
