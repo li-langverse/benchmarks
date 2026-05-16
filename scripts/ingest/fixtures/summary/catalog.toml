@@ -1,0 +1,9 @@
+[[benchmark]]
+id = "simd_dot"
+category = "micro"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_micro/simd_dot"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]

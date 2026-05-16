@@ -4,8 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "dashboard/**"
+      - "scripts/dashboard/**"
       - "data/latest/**"
+      - "static-dashboard/**"
   workflow_dispatch:
 
 permissions:
@@ -23,24 +24,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Checkout lic (std/plot)
+        uses: actions/checkout@v4
         with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: dashboard/package-lock.json
+          repository: li-langverse/lic
+          path: lic
 
-      - name: Install and build
-        working-directory: dashboard
+      - name: Install LLVM 18
         run: |
-          npm install
-          npm run build
-          mkdir -p dist/latest
-          cp ../data/latest/summary.json dist/latest/
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev
+
+      - name: Build lic
+        env:
+          LLVM_DIR: /usr/lib/llvm-18/lib/cmake/llvm
+          CC: clang-18
+        run: |
+          cd lic
+          ./scripts/build.sh
+
+      - name: Ingest summary
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: |
+          chmod +x scripts/ingest/*.sh scripts/dashboard/*.sh scripts/regression-check.sh
+          ./scripts/ingest/ingest-lic.sh
+
+      - name: Render static dashboard (PH-IO-5)
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: ./scripts/dashboard/render-static.sh
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dashboard/dist
+          path: static-dashboard
 
   deploy:
     needs: build
