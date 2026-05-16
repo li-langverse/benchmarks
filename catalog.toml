@@ -124,6 +124,107 @@ threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
+id = "advection_diffusion_2d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/advection_diffusion_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-4"]
+
+[[benchmark]]
+id = "wave_equation_2d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wave_equation_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-3"]
+
+[[benchmark]]
+id = "sph_dam_break_2d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/sph_dam_break_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-3"]
+
+[[benchmark]]
+id = "rigid_body_stack"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/rigid_body_stack"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-2"]
+
+[[benchmark]]
+id = "three_body_pure"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/three_body_pure"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-1"]
+variant = "pure_li"
+
+[[benchmark]]
+id = "wind_field_bc"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wind_field_bc"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-4"]
+
+[[benchmark]]
+id = "combustion_passive"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/combustion_passive"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-5"]
+
+[[benchmark]]
+id = "orbit_two_body"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/orbit_two_body"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-4"]
+
+[[benchmark]]
+id = "fdtd_waveguide_2d"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/fdtd_waveguide_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-6"]
+
+[[benchmark]]
+id = "schrodinger_1d_barrier"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/schrodinger_1d_barrier"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-PHY-7"]
+
+[[benchmark]]
 id = "tier0_stability"
 category = "correctness"
 tier = 0
