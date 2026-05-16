@@ -1,188 +1,38 @@
 {
-  "generated_at": "2026-05-16T21:13Z",
+  "generated_at": "2026-05-16T21:44Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 22,
-    "ci_green": 8,
-    "merge_approved": 0,
+    "open_prs": 12,
+    "ci_green": 2,
+    "merge_approved": 1,
     "gate_ready_labeled": 0
   },
   "recommended_merge_order": [
     {
       "rank": 1,
-      "repo": "li-httpd",
+      "repo": "li-demo",
       "number": 2,
-      "url": "https://github.com/li-langverse/li-httpd/pull/2",
-      "title": "ci: add lic check workflow on push and PR",
+      "url": "https://github.com/li-langverse/li-demo/pull/2",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
       "ci": "pass",
       "action": "add merge-approved after review"
     },
     {
       "rank": 2,
-      "repo": "li-net",
-      "number": 2,
-      "url": "https://github.com/li-langverse/li-net/pull/2",
-      "title": "ci: add lic check workflow on push and PR",
-      "ci": "pass",
-      "action": "add merge-approved after review"
-    },
-    {
-      "rank": 3,
-      "repo": "li-demo",
-      "number": 1,
-      "url": "https://github.com/li-langverse/li-demo/pull/1",
-      "title": "ci: add lic check workflow on push and PR",
-      "ci": "pass",
-      "action": "add merge-approved after review"
-    },
-    {
-      "rank": 4,
-      "repo": "li-std-core",
-      "number": 2,
-      "url": "https://github.com/li-langverse/li-std-core/pull/2",
-      "title": "ci: add lic check workflow on push and PR",
-      "ci": "pass",
-      "action": "add merge-approved after review"
-    },
-    {
-      "rank": 5,
-      "repo": "li-std-math",
-      "number": 2,
-      "url": "https://github.com/li-langverse/li-std-math/pull/2",
-      "title": "ci: add lic check workflow on push and PR",
-      "ci": "pass",
-      "action": "add merge-approved after review"
-    },
-    {
-      "rank": 6,
-      "repo": "benchmarks",
-      "number": 1,
-      "url": "https://github.com/li-langverse/benchmarks/pull/1",
-      "title": "feat(catalog): tier-3 lic ecosystem + security dashboard",
-      "ci": "pass",
-      "action": "add merge-approved after review"
-    },
-    {
-      "rank": 7,
-      "repo": "lit",
-      "number": 1,
-      "url": "https://github.com/li-langverse/lit/pull/1",
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "ci": "pass",
-      "action": "add merge-approved after review"
-    },
-    {
-      "rank": 8,
       "repo": "roadmap",
       "number": 4,
       "url": "https://github.com/li-langverse/roadmap/pull/4",
       "title": "chore(automations): Cursor prompts for development overview maintainer",
       "ci": "pass",
-      "action": "add merge-approved after review"
+      "action": "fix CI or review"
     }
   ],
   "all_open": [
     {
-      "repo": "li-httpd",
-      "number": 2,
-      "title": "ci: add lic check workflow on push and PR",
-      "url": "https://github.com/li-langverse/li-httpd/pull/2",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 10
-    },
-    {
-      "repo": "li-net",
-      "number": 2,
-      "title": "ci: add lic check workflow on push and PR",
-      "url": "https://github.com/li-langverse/li-net/pull/2",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 10
-    },
-    {
       "repo": "li-demo",
-      "number": 1,
-      "title": "ci: add lic check workflow on push and PR",
-      "url": "https://github.com/li-langverse/li-demo/pull/1",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 12
-    },
-    {
-      "repo": "li-std-core",
       "number": 2,
-      "title": "ci: add lic check workflow on push and PR",
-      "url": "https://github.com/li-langverse/li-std-core/pull/2",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 12
-    },
-    {
-      "repo": "li-std-math",
-      "number": 2,
-      "title": "ci: add lic check workflow on push and PR",
-      "url": "https://github.com/li-langverse/li-std-math/pull/2",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 12
-    },
-    {
-      "repo": "benchmarks",
-      "number": 1,
-      "title": "feat(catalog): tier-3 lic ecosystem + security dashboard",
-      "url": "https://github.com/li-langverse/benchmarks/pull/1",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 20
-    },
-    {
-      "repo": "lit",
-      "number": 1,
       "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "url": "https://github.com/li-langverse/lit/pull/1",
+      "url": "https://github.com/li-langverse/li-demo/pull/2",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -195,7 +45,7 @@
       "gate_blockers_if_approved": [
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
       ],
-      "priority_score": 40
+      "priority_score": 12
     },
     {
       "repo": "roadmap",
@@ -205,94 +55,15 @@
       "base": "main",
       "ci": "pass",
       "draft": false,
-      "labels": [],
-      "merge_approved": false,
+      "labels": [
+        "merge-approved"
+      ],
+      "merge_approved": true,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
         "governance_repo: `roadmap` requires human merge unless ALLOW_GOVERNANCE_MERGE=1"
       ],
       "priority_score": 90
-    },
-    {
-      "repo": "li-httpd",
-      "number": 1,
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "url": "https://github.com/li-langverse/li-httpd/pull/1",
-      "base": "main",
-      "ci": "none",
-      "draft": false,
-      "labels": [
-        "dependencies",
-        "github_actions"
-      ],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 110
-    },
-    {
-      "repo": "li-net",
-      "number": 1,
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "url": "https://github.com/li-langverse/li-net/pull/1",
-      "base": "main",
-      "ci": "none",
-      "draft": false,
-      "labels": [
-        "dependencies",
-        "github_actions"
-      ],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 110
-    },
-    {
-      "repo": "li-std-core",
-      "number": 1,
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "url": "https://github.com/li-langverse/li-std-core/pull/1",
-      "base": "main",
-      "ci": "none",
-      "draft": false,
-      "labels": [
-        "dependencies",
-        "github_actions"
-      ],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 112
-    },
-    {
-      "repo": "li-std-math",
-      "number": 1,
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "url": "https://github.com/li-langverse/li-std-math/pull/1",
-      "base": "main",
-      "ci": "none",
-      "draft": false,
-      "labels": [
-        "dependencies",
-        "github_actions"
-      ],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 112
     },
     {
       "repo": "lic",
