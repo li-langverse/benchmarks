@@ -57,6 +57,10 @@ python3 scripts/pr-merge-queue-plan.py
 
 Skill **`plan-merge-queue`** — merge order and superseded PRs.
 
+## Merge conflicts
+
+If `mergeable: CONFLICTING` — **do not** `--admin` merge. Use skill **`resolve-merge-conflicts`** ([policy](../../../docs/ecosystem/merge-conflict-resolution.md)): integrate **main + branch** without dropping either side’s progress.
+
 ## Merge execution
 
 ```bash

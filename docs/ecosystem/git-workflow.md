@@ -22,9 +22,11 @@ Agents and humans follow **PR-only** + **no force push by default**. Hooks enfor
 ```bash
 git fetch origin
 git rebase origin/main    # or origin/dev per repo default
-# resolve conflicts, then:
+# resolve conflicts (skill **resolve-merge-conflicts** — keep both sides), then:
 git push origin HEAD
 ```
+
+See [merge-conflict-resolution.md](./merge-conflict-resolution.md).
 
 If you already have open commits and need to incorporate review feedback, prefer **new commits** (`git commit`) over rewriting history on a branch that already has a PR.
 

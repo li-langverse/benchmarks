@@ -33,6 +33,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `pr-merge-queue-plan.py` | Merge order, stacks, redundant PR detection |
 | `numerics-evidence-checklist.py` | Validate study + algorithm note before numerics PR |
 | `run-pr-program.py` | Full org PR sweep: plan + gate triage + merge order JSON |
+| Skill `resolve-merge-conflicts` | Merge conflicts without reverting main or branch ([merge-conflict-resolution.md](./merge-conflict-resolution.md)) |
 | `file-ecosystem-gap-issue.py` | File standardized gap issues |
 | `post-issue-planning-comment.py` | Issue planning checklist (Actions) |
 | `setup-org-labels.sh` | Create org labels (`plan-needed`, `merge-approved`, …) |

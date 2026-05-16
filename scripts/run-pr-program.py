@@ -213,6 +213,20 @@ def main() -> int:
             extra = list(gate_extra)
             if repo == "roadmap":
                 extra.append("--allow-governance")
+            view = gh_json(
+                [
+                    "pr",
+                    "view",
+                    str(num),
+                    "--repo",
+                    f"li-langverse/{repo}",
+                    "--json",
+                    "mergeable,mergeStateStatus",
+                ]
+            )
+            if isinstance(view, dict) and view.get("mergeable") == "CONFLICTING":
+                failed_list.append(f"{repo}#{num}(conflicts)")
+                continue
             gproc = subprocess.run(
                 [sys.executable, str(GATE_SCRIPT), "--repo", repo, "--pr", str(num), "--json", *extra],
                 capture_output=True,
@@ -237,6 +251,8 @@ def main() -> int:
         if not args.json:
             print(f"merged: {merged_list}")
             print(f"failed: {failed_list}")
+            if any("conflicts" in f for f in failed_list):
+                print("  → use skill resolve-merge-conflicts (docs/ecosystem/merge-conflict-resolution.md)")
 
     if args.json:
         print(json.dumps(report, indent=2))

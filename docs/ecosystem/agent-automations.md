@@ -44,6 +44,7 @@ When creating **one automation per repo**, paste the parent prompt plus:
 | [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
 | [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
 | [merge-approved-pr](../../.cursor/skills/merge-approved-pr/SKILL.md) | Final review before `merge-approved` label |
+| [resolve-merge-conflicts](../../.cursor/skills/resolve-merge-conflicts/SKILL.md) | PR conflicts — union main + branch, no reverts |
 | [plan-merge-queue](../../.cursor/skills/plan-merge-queue/SKILL.md) | Merge order + redundant PRs before auto-merge |
 | [li-ecosystem-discipline](../../.cursor/skills/li-ecosystem-discipline/SKILL.md) | Any cross-repo PR |
 | [write-li-release-notes](../../.cursor/skills/write-li-release-notes/SKILL.md) | Before merge |
