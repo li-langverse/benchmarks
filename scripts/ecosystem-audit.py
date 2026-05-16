@@ -10,20 +10,34 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-ORG_REPOS = [
-    "lic",
-    "li-language",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-    "li-net",
-    "li-httpd",
-    "li-std-core",
-    "li-std-math",
-    "li-demo",
-]
+def list_org_repos() -> list[str]:
+    """All non-archived li-langverse repos (dynamic)."""
+    proc = subprocess.run(
+        ["gh", "repo", "list", "li-langverse", "--limit", "100", "--json", "name,isArchived"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0 or not proc.stdout.strip():
+        return [
+            "lic",
+            "li-language",
+            "lip",
+            "lit",
+            "lis",
+            "benchmarks",
+            "roadmap",
+            "li-net",
+            "li-httpd",
+            "li-std-core",
+            "li-std-math",
+            "li-demo",
+        ]
+    rows = json.loads(proc.stdout)
+    return sorted(r["name"] for r in rows if not r.get("isArchived"))
+
+
+ORG_REPOS: list[str] = []  # filled in main()
 LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
@@ -159,6 +173,9 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
+    global ORG_REPOS
+    ORG_REPOS = list_org_repos()
+
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     prs = collect_prs()
     failed = [p for p in prs if p["ci"] == "fail"]
@@ -196,7 +213,7 @@ def main() -> int:
         actions.append(
             {
                 "priority": "P0",
-                "action": "Merge package CI setup PRs or add ci.yml on main",
+                "action": "Add ci.yml on main (lic/scripts/templates/github-repo/ci.yml); run ensure-org-repo-ci.py",
                 "repos": missing_ci,
             }
         )

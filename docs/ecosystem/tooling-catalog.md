@@ -25,6 +25,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | Script | Use for |
 |--------|---------|
 | `ecosystem-audit.py` | Org PR CI, missing `ci.yml`, benchmark posture JSON |
+| `ensure-org-repo-ci.py` | Fail if any org repo lacks `ci.yml` → `org-repo-ci-audit.json` |
 | `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` |
 | `issue-feature-triage.py` | Open issues needing plans |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
@@ -64,6 +65,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `issue-feature-planning.yml` | issue labeled | Planning comment |
 | `plan-completion-audit.yml` | `workflow_dispatch` | Plan audit artifact |
 | `ecosystem-audit.yml` | `workflow_dispatch` | Audit snapshot commit |
+| `org-repo-ci-audit.yml` | PR / `workflow_dispatch` | Org-wide `ci.yml` gate |
 | `ecosystem-explorer.yml` | `workflow_dispatch` | Explorer JSON artifact (no cron) |
 | `pr-auto-merge.yml` | label `merge-approved` | Auto-merge when gate passes |
 
