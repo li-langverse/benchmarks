@@ -38,6 +38,7 @@ Canonical inventory: **[tooling-catalog.md](./tooling-catalog.md)**.
 - Copy **agent-kit** files by hand instead of `install-agent-kit.sh` / `sync-agent-kit.sh`
 - Duplicate **lic** `benchmarks/harness` into **benchmarks** repo
 - Bypass **PR-only** / **merge-approved** gates
+- **`git push --force`** — use [git-workflow.md](./git-workflow.md) (rebase + regular push)
 
 ---
 

@@ -43,6 +43,7 @@ Agents **must** follow these before and during work. Style and structure are fle
 
 ## Escalate (do not do alone)
 
+- Force push to shared or protected branches (use rebase + normal push; see **git-workflow.md**)
 - Lower coverage tiers, skip CVE tests, weaken bench thresholds
 - New `trusted.lean` axioms
 - Changing pillar priority or master plan phase order

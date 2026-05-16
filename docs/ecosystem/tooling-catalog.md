@@ -10,11 +10,13 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 
 | Doc / rule | Purpose |
 |------------|---------|
+| [git-workflow.md](./git-workflow.md) | Feature-branch push; **avoid force push** |
 | [ecosystem-first.md](./ecosystem-first.md) | Prefer catalog tooling; file gap issues |
 | [engineering-standards](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md) | Mandatory gates |
 | [vision-and-roadmap](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md) | Pillars, PH order |
 | `.cursor/rules/li-ecosystem-first.mdc` | Agent rule (always on) |
 | `.cursor/rules/li-ecosystem-gates.mdc` | Functionality / security / perf |
+| `.cursor/rules/li-git-hygiene.mdc` | No force push; rebase + normal push |
 
 ---
 
@@ -116,6 +118,6 @@ Created via `scripts/setup-org-labels.sh`.
 |------|---------|
 | `agent-kit/manifest.toml` | Version + overlays |
 | `scripts/install-agent-kit.sh` | Install into target repo |
-| `agent-kit/hooks/guard-*.sh` | PR-only, secrets, destructive git |
+| `agent-kit/hooks/guard-*.sh` | PR-only, secrets, **no force push** (`guard-destructive-git.sh`) |
 
 Benchmarks: `./scripts/sync-agent-kit.sh` after roadmap bumps.

@@ -7,6 +7,7 @@ REPOS=(benchmarks lic lip lit lis roadmap)
 
 create_label() {
   local repo="$1" name="$2" color="$3" description="$4"
+  # gh --force updates label metadata only (not git force push)
   gh label create "$name" --repo "$ORG/$repo" --color "$color" --description "$description" --force 2>/dev/null \
     || gh label edit "$name" --repo "$ORG/$repo" --color "$color" --description "$description" 2>/dev/null \
     || true

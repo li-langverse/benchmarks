@@ -1,0 +1,34 @@
+---
+description: No force push by default — rebase and regular push to feature branches; hooks enforce
+alwaysApply: true
+---
+
+# Git hygiene (mandatory)
+
+See [git-workflow.md](../../docs/ecosystem/git-workflow.md).
+
+## Agents must not
+
+- `git push --force`, `git push -f`, or `git push --force-with-lease` **unless** a human explicitly requested history rewrite on **your feature branch only**
+- Force-push to update a PR after CI feedback — add commits instead
+- Use force push because a prior agent used a bad commit message (amend locally only **before** first push)
+
+## Prefer instead
+
+```bash
+git fetch origin
+git rebase origin/main
+git push origin HEAD
+```
+
+## Hooks
+
+`guard-destructive-git.sh` blocks force push (and `reset --hard`, `commit --no-verify`) unless `LI_HOOK_ALLOW=1`.
+
+## If push fails
+
+1. Rebase or merge the base branch — do not force.
+2. If you believe force is required, ask the human reviewer; document in PR.
+3. Only then: `LI_HOOK_ALLOW=1` + `git push --force-with-lease origin <your-branch>`.
+
+Works with **li-pr-only.mdc** (feature branch + PR only).

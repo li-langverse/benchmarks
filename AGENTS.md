@@ -3,7 +3,7 @@
 **Philosophy:** [ecosystem-first](docs/ecosystem/ecosystem-first.md) — use [tooling-catalog](docs/ecosystem/tooling-catalog.md) before inventing tooling. If blocked, `python3 scripts/file-ecosystem-gap-issue.py` → labels `ecosystem-gap` + `plan-needed` for planner automations.
 
 1. Read [roadmap: release-notes](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) — **write before PR**.
-2. **PR-only** — branch + PR; CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
+2. **PR-only** — branch + PR; **normal push only** ([git-workflow](docs/ecosystem/git-workflow.md)); CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
 3. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
 4. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
 5. Dashboard: https://li-langverse.github.io/benchmarks/

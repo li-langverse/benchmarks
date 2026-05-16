@@ -32,7 +32,7 @@ Use when work spans **`lic`**, **`lip`**, **`lit`**, **`lis`**, or official **`l
 - [ ] **Performance** — bench or N/A; check benchmarks dashboard
 - [ ] **Coverage tier** — std 100% / publish 80%
 - [ ] Downstream `li-toolchain.toml` if `lic` API changed
-- [ ] **PR opened** — do not self-merge
+- [ ] **PR opened** — normal `git push` to feature branch (no force); do not self-merge
 - [ ] **Release notes** — `docs/release-notes/YYYY-MM-DD-*.md` + CHANGELOG (`write-li-release-notes`)
 
 ## Related skills (in `lic` after sync)
@@ -46,5 +46,5 @@ Use when work spans **`lic`**, **`lip`**, **`lit`**, **`lis`**, or official **`l
 - Add one-off scripts/workflows without an **ecosystem-gap** issue when catalog has no fit
 - Hide ecosystem vision only in a package README
 - Skip CVE tests to merge faster
-- Push to `main`/`dev` or merge your own PR
+- Push to `main`/`dev`, **force-push**, or merge your own PR
 - Edit `docs/**` / `proposals/**` without expecting human review

@@ -31,14 +31,15 @@ Agents **must not** add `merge-approved` on their own PRs. **`roadmap`** governa
 ## After verified work (`lic`)
 
 1. Commit on your feature branch with a clear message (`feat(phase-N): …` or `chore: …`).
-2. Push the branch and open/update the PR:
+2. Push the branch and open/update the PR (**normal push only — no `--force`**):
    ```bash
    git push -u origin HEAD
    gh pr create --fill || gh pr view --web
    ```
+   If push is rejected: `git fetch origin && git rebase origin/main && git push origin HEAD` — see [git-workflow.md](../../docs/ecosystem/git-workflow.md).
 3. Uses [`scripts/with-github-env.sh`](../../scripts/with-github-env.sh) when available. Never commit tokens.
 
-**Opt out (rare):** `LI_HOOK_ALLOW=1` for intentional direct-push (emergency only).
+**Opt out (rare):** `LI_HOOK_ALLOW=1` for intentional direct-push to protected branches or **one** `--force-with-lease` on your feature branch after human approval (emergency only).
 
 ## Cross-repo
 

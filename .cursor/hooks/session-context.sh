@@ -7,7 +7,8 @@ If blocked: python3 scripts/file-ecosystem-gap-issue.py (labels ecosystem-gap, p
 Read ../roadmap/docs/ecosystem/engineering-standards.md and vision-and-roadmap.md.
 Strict gates: functionality, security, performance. std/** = 100% coverage; lip publish >= 80%.
 Perf status: https://li-langverse.github.io/benchmarks/
-PR-only: feature branch + PR; merge via merge-approved + pr-merge-gate when reviewed.
+PR-only: feature branch + PR; normal git push only (no --force); rebase then push if rejected.
+Merge via merge-approved + pr-merge-gate when reviewed. git-workflow.md
 Release notes: CHANGELOG + docs/release-notes/ (skill write-li-release-notes) before every merge-worthy PR.
 EOF
 exit 0

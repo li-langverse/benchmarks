@@ -94,6 +94,7 @@ Use sibling file when automation is repo-scoped: `.cursor/automations/repos/<rep
 
 ## Blocked
 
+- Do not **force-push** branches — add commits or rebase + normal push ([git-workflow.md](../../docs/ecosystem/git-workflow.md))
 - Do not self-merge governance or roadmap PRs
 - Do not add Actions `schedule:` cron
 - Do not store secrets in plan files

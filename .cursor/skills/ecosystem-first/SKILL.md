@@ -50,8 +50,15 @@ Optional: `--assignee @me` `--parent 123` (links to feature issue)
 - Typo fixes in catalog docs
 - P0 hotfix **with** gap issue filed in the same hour (link issue in PR body)
 
+## Git (no force push)
+
+- Push feature branches with `git push origin HEAD` only
+- If rejected: `git fetch && git rebase origin/<base> && git push` — not `--force`
+- See [git-workflow.md](../../../docs/ecosystem/git-workflow.md)
+
 ## Do not
 
+- `git push --force` / `-f` without human approval + `LI_HOOK_ALLOW=1`
 - Add `scripts/tmp-*.sh` only used from one PR
 - Skip catalog update when you **do** add shared tooling
 - Fix gap only in a private fork without org issue

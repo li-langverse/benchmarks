@@ -27,6 +27,11 @@ Labels: **`ecosystem-gap`**, **`plan-needed`**. The **issue-feature-planner** au
 - Skills: `ecosystem-first`, `li-ecosystem-discipline`, `plan-feature-from-issue`
 - Cursor automations over Actions `schedule:`
 
+## Git
+
+- **No force push** by default — [git-workflow.md](../../docs/ecosystem/git-workflow.md), rule **li-git-hygiene.mdc**
+- Rejected push → `git fetch` + `git rebase` + normal `git push`
+
 ## Escalate via issue (not silent workaround)
 
 - New org script that duplicates catalog entries

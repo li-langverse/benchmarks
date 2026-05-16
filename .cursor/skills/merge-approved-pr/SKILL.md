@@ -45,6 +45,7 @@ GitHub Action or Cursor **pr-auto-merge** automation performs the merge when gat
 ## Agent implementing a PR
 
 - Open PR, get CI green, request review — **do not** add `merge-approved` yourself
+- Push updates with **regular `git push`** after rebase — not force push ([git-workflow.md](../../../docs/ecosystem/git-workflow.md))
 - Do not run `pr-auto-merge.py --execute` on your own PR
 
 ## Merge execution

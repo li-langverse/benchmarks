@@ -117,7 +117,8 @@ If you skip Cursor UI, use **Actions → Run workflow → Plan completion audit*
 
 Add to `roadmap/agent-kit/overlays/benchmarks/` (and other repos):
 
-- `docs/ecosystem/ecosystem-first.md`, `tooling-catalog.md`
+- `docs/ecosystem/ecosystem-first.md`, `tooling-catalog.md`, `git-workflow.md`
+- `rules/li-git-hygiene.mdc`
 - `skills/ecosystem-first/`, `skills/plan-feature-from-issue/`, `skills/audit-plan-completion/`
 - `rules/li-ecosystem-first.mdc`
 - `automations/issue-feature-planner.md`, `automations/plan-completion-audit.md`, `automations/pr-auto-merge.md`
