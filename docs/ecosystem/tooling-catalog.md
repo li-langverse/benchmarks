@@ -31,6 +31,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `pr-auto-merge.py` | Merge one PR when gate passes |
 | `pr-auto-merge-sweep.py` | Sweep `merge-approved` PRs (`--use-plan` for safe order) |
 | `pr-merge-queue-plan.py` | Merge order, stacks, redundant PR detection |
+| `numerics-evidence-checklist.py` | Validate study + algorithm note before numerics PR |
 | `file-ecosystem-gap-issue.py` | File standardized gap issues |
 | `post-issue-planning-comment.py` | Issue planning checklist (Actions) |
 | `setup-org-labels.sh` | Create org labels (`plan-needed`, `merge-approved`, …) |
@@ -77,7 +78,8 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `merge-approved-pr` | Pre-merge review checklist |
 | `plan-merge-queue` | What to merge first; redundant PRs after merge |
 | `write-li-release-notes` | Before merge-worthy PR |
-| `research-li-numerics` | Physics / numerics |
+| `research-li-numerics` | SOTA numerics survey + evidence packs |
+| `numerics-autoresearch` | Novel methods — algorithm notes + strict gates |
 
 Synced to other repos via **`roadmap/agent-kit`**.
 

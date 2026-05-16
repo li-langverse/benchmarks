@@ -19,6 +19,7 @@ After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` an
 | Ecosystem health | Daily / 12h | [ecosystem-health.md](../../.cursor/automations/ecosystem-health.md) | CI, docs, benchmark reds |
 | Failed benchmarks | Weekly | [failed-benchmarks-maintainer.md](../../.cursor/automations/failed-benchmarks-maintainer.md) | Dashboard regression fixes in lic |
 | Benchmark visuals | Weekly | [benchmark-visual-validation.md](../../.cursor/automations/benchmark-visual-validation.md) | PNG/GIF validation |
+| **Numerics research** | Weekly / on issue | [numerics-research-cycle.md](../../.cursor/automations/numerics-research-cycle.md) | SOTA survey + autoresearch evidence packs |
 | Merge queue digest | Daily | [merge-queue-digest.md](../../.cursor/automations/merge-queue-digest.md) | Ready PRs for humans |
 | **PR auto-merge** | After review / 12h | [pr-auto-merge.md](../../.cursor/automations/pr-auto-merge.md) | Merge PRs labeled `merge-approved` when gates pass |
 
@@ -46,7 +47,8 @@ When creating **one automation per repo**, paste the parent prompt plus:
 | [plan-merge-queue](../../.cursor/skills/plan-merge-queue/SKILL.md) | Merge order + redundant PRs before auto-merge |
 | [li-ecosystem-discipline](../../.cursor/skills/li-ecosystem-discipline/SKILL.md) | Any cross-repo PR |
 | [write-li-release-notes](../../.cursor/skills/write-li-release-notes/SKILL.md) | Before merge |
-| [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | Physics/numerics kernels |
+| [research-li-numerics](../../.cursor/skills/research-li-numerics/SKILL.md) | SOTA survey, recipes, evidence packs |
+| [numerics-autoresearch](../../.cursor/skills/numerics-autoresearch/SKILL.md) | Novel algorithms — documented + verified |
 
 ---
 
@@ -125,6 +127,9 @@ Add to `roadmap/agent-kit/overlays/benchmarks/` (and other repos):
 - `automations/issue-feature-planner.md`, `automations/plan-completion-audit.md`, `automations/pr-auto-merge.md`
 - `scripts/file-ecosystem-gap-issue.py`, `scripts/pr-merge-queue-plan.py`
 - `skills/plan-merge-queue/`
+- `docs/numerics/research-methodology.md`, `skills/research-li-numerics/`, `skills/numerics-autoresearch/`
+- `scripts/numerics-evidence-checklist.py`
+- `automations/numerics-research-cycle.md`
 - `.github/ISSUE_TEMPLATE/ecosystem_gap.yml`
 
 Bump `agent-kit/manifest.toml` version; notify repos via sync script.

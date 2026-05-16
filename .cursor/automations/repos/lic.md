@@ -14,7 +14,7 @@ Parent prompt: [issue-feature-planner.md](../issue-feature-planner.md)
 |------------|-------------------|
 | New syntax | Phase 2* / 3*, `li-tests/`, handbook stub |
 | New std package | `li-new-package`, traceability, 80% coverage path |
-| Physics / numerics | `research-li-numerics` skill, tier2 bench in lic |
+| Physics / numerics | `research-li-numerics` + study in `docs/numerics/studies/`; novel → `numerics-autoresearch` + algorithm note |
 | Perf | `benchmarks/harness/` change + benchmarks catalog row |
 
 ## gh filter

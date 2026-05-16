@@ -26,4 +26,4 @@
 
 Scripts: `./scripts/issue-feature-triage.py`, `./scripts/plan-completion-audit.py`, `./scripts/ecosystem-audit.py`, `./scripts/pr-merge-gate.py`, `./scripts/file-ecosystem-gap-issue.py`, `./scripts/benchmark-failures-report.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
 
-Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, `research-li-numerics`.
+Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).
