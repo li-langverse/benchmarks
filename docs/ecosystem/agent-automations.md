@@ -16,6 +16,7 @@ After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` an
 |------------|----------|--------|---------|
 | **Issue feature planner** | 2×/week | [issue-feature-planner.md](../../.cursor/automations/issue-feature-planner.md) | New feature issues → vision-aligned plan (no code until `plan-approved`) |
 | **Plan completion audit** | Weekly | [plan-completion-audit.md](../../.cursor/automations/plan-completion-audit.md) | Unchecked PH phases, plan boxes, G-* gaps, catalog drift |
+| **Ecosystem explorer** | Weekly / biweekly | [ecosystem-explorer.md](../../.cursor/automations/ecosystem-explorer.md) | Missing std/libs, HPC rubric, Reddit/web signals → issues |
 | Ecosystem health | Daily / 12h | [ecosystem-health.md](../../.cursor/automations/ecosystem-health.md) | CI, docs, benchmark reds |
 | Failed benchmarks | Weekly | [failed-benchmarks-maintainer.md](../../.cursor/automations/failed-benchmarks-maintainer.md) | Dashboard regression fixes in lic |
 | Benchmark visuals | Weekly | [benchmark-visual-validation.md](../../.cursor/automations/benchmark-visual-validation.md) | PNG/GIF validation |
@@ -40,6 +41,7 @@ When creating **one automation per repo**, paste the parent prompt plus:
 
 | Skill | Use when |
 |-------|----------|
+| [explore-li-ecosystem](../../.cursor/skills/explore-li-ecosystem/SKILL.md) | Weekly discovery — gaps, HPC parity, community signals |
 | [ecosystem-first](../../.cursor/skills/ecosystem-first/SKILL.md) | Start of task — catalog tool vs gap issue |
 | [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
 | [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
@@ -69,6 +71,10 @@ python3 scripts/plan-completion-audit.py
 python3 scripts/ecosystem-audit.py
 # → data/latest/ecosystem-audit.json
 
+# Explorer: missing std, HPC rubric, web-search queries
+LIC_ROOT=../lic python3 scripts/ecosystem-explorer.py
+# → data/latest/ecosystem-explorer.json
+
 # Merge queue plan + safe auto-merge
 python3 scripts/pr-merge-queue-plan.py
 python3 scripts/pr-auto-merge-sweep.py --use-plan
@@ -90,6 +96,7 @@ python3 scripts/file-ecosystem-gap-issue.py --repo lic --title "..." \
 | `merge-approved` | Standards review passed; **pr-auto-merge** workflow may merge |
 | `do-not-merge` | Blocks automated merge |
 | `ecosystem-gap` | Catalog miss / broken shared tooling — planner extends toolkit |
+| `explorer-finding` | Filed by ecosystem explorer — triage into plan-needed |
 | `feature` / `enhancement` | Eligible for feature planner |
 
 ---

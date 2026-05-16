@@ -1,0 +1,44 @@
+# Manual dispatch — ecosystem gap discovery. No schedule (Actions budget).
+name: Ecosystem explorer
+
+on:
+  workflow_dispatch:
+    inputs:
+      focus:
+        description: Optional focus string for web-search query generation
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  explore:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lic
+          path: lic
+
+      - name: Run ecosystem explorer
+        env:
+          LIC_ROOT: lic
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS=()
+          if [[ -n "${{ inputs.focus }}" ]]; then
+            ARGS+=(--focus "${{ inputs.focus }}")
+          fi
+          python3 scripts/ecosystem-explorer.py "${ARGS[@]}"
+          python3 scripts/ecosystem-audit.py || true
+
+      - name: Upload explorer artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecosystem-explorer-${{ github.run_id }}
+          path: |
+            data/latest/ecosystem-explorer.json
+            data/latest/ecosystem-audit.json

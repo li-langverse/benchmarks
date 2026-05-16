@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-05-16T22:27Z",
+  "org": "li-langverse",
+  "required_workflow": "ci.yml",
+  "repos_ok": [
+    "benchmarks",
+    "li-demo",
+    "li-httpd",
+    "li-language",
+    "li-net",
+    "li-std-core",
+    "li-std-math",
+    "lic",
+    "lip",
+    "lis",
+    "lit",
+    "roadmap"
+  ],
+  "repos_missing_ci": [],
+  "workflows": {
+    "benchmarks": [
+      "ci.yml",
+      "ecosystem-audit.yml",
+      "ingest.yml",
+      "issue-feature-planning.yml",
+      "pages.yml",
+      "plan-completion-audit.yml",
+      "pr-auto-merge.yml"
+    ],
+    "li-demo": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-httpd": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-language": [
+      "benchmarks.yml",
+      "ci.yml",
+      "docs.yml",
+      "release.yml"
+    ],
+    "li-net": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-std-core": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-std-math": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "lic": [
+      "benchmarks.yml",
+      "ci.yml",
+      "cve-catalog.yml",
+      "docs.yml",
+      "fuzz.yml",
+      "hpc-competitive.yml",
+      "lean.yml",
+      "memory.yml",
+      "notify-downstream.yml",
+      "release.yml",
+      "ubsan-lic.yml"
+    ],
+    "lip": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml"
+    ],
+    "lis": [
+      "branch-sync.yml",
+      "ci.yml",
+      "issue-feature-planning.yml"
+    ],
+    "lit": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml",
+      "notify-downstream.yml"
+    ],
+    "roadmap": [
+      "ci.yml",
+      "issue-feature-planning.yml",
+      "pages.yml"
+    ]
+  },
+  "policy": "docs/ecosystem/repo-ci-required.md",
+  "lic_monorepo_hint": "Run lic/scripts/ensure-package-ci.sh before push-official-package-repo.sh"
+}

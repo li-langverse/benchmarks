@@ -9,6 +9,7 @@ Heavy recurring ops run as **[Cursor Automations](https://cursor.com/automations
 | **Benchmark visuals** | Weekly or after lic bench / manual | [benchmark-visual-validation.md](./benchmark-visual-validation.md) | `lic` + `benchmarks` |
 | **Failed benchmarks** | Schedule: weekly, or webhook after lic bench | [failed-benchmarks-maintainer.md](./failed-benchmarks-maintainer.md) | `lic` (+ `benchmarks` ingest) |
 | **Numerics research** | Weekly or `numerics-research` issues | [numerics-research-cycle.md](./numerics-research-cycle.md) | `lic` · skills: `research-li-numerics`, `numerics-autoresearch` |
+| **Ecosystem explorer** | Weekly / biweekly | [ecosystem-explorer.md](./ecosystem-explorer.md) | `benchmarks` + `lic` · skill: `explore-li-ecosystem` · Reddit/HPC web search |
 | Ecosystem health | Schedule: daily or every 12h | [ecosystem-health.md](./ecosystem-health.md) | `benchmarks` (+ `roadmap` read) |
 | Benchmark improvement | Same as failed benchmarks (alias) | [benchmark-improvement.md](./benchmark-improvement.md) | `lic` |
 | Merge queue digest | Schedule: daily | [merge-queue-digest.md](./merge-queue-digest.md) | `roadmap` |

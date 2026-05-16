@@ -1,0 +1,20 @@
+---
+description: Block new li-langverse repos and official packages without GitHub Actions ci.yml
+globs:
+  - docs/ecosystem/**
+  - scripts/ensure-org-repo-ci.py
+  - .github/workflows/**
+alwaysApply: true
+---
+
+# Org repos must ship CI
+
+Before `gh repo create li-langverse/...` or promoting a package:
+
+1. Run `python3 scripts/ensure-org-repo-ci.py` (benchmarks) — must exit 0
+2. Official packages: `lic/scripts/ensure-package-ci.sh` + `check-traceability.sh`
+3. Apply branch protection with required check `check` (packages) or repo-specific job
+
+Do not merge PRs that remove `.github/workflows/ci.yml`.
+
+See [repo-ci-required.md](../../docs/ecosystem/repo-ci-required.md).
