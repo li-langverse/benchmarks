@@ -8,9 +8,13 @@ After a **successful standards review**, merge the PR automatically when all gat
 Humans/agents **review first**; they add GitHub label **`merge-approved`** when aligned with
 [engineering standards](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md).
 
+## Ecosystem-first
+
+Use only **`pr-merge-gate.py`** / **`pr-auto-merge.py`** for merges — not custom `gh` one-liners. If gate is wrong, file **`ecosystem-gap`** issue.
+
 ## Reviewer checklist (before adding `merge-approved`)
 
-Use skill **`merge-approved-pr`** and verify:
+Use skills **`ecosystem-first`** + **`merge-approved-pr`** and verify:
 
 - [ ] **Vision / plan** — linked issue or master-plan PH; `plan-approved` if feature work
 - [ ] **Functionality** — CI green on the PR (all required checks)

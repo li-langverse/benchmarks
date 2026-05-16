@@ -31,6 +31,7 @@ FEATURE_LABELS = {
     "type:feature",
     "plan-needed",
     "needs-plan",
+    "ecosystem-gap",
 }
 
 PLANNED_LABELS = {

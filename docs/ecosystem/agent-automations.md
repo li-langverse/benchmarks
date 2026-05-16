@@ -2,6 +2,8 @@
 
 **Policy:** Recurring monitoring uses **[Cursor Automations](https://cursor.com/automations)** — not GitHub Actions `cron:` — see [actions-budget.md](./actions-budget.md).
 
+**Philosophy:** [ecosystem-first.md](./ecosystem-first.md) — agents use [tooling-catalog.md](./tooling-catalog.md); gaps → **`ecosystem-gap`** issues → this planner.
+
 Prompt files live in **`.cursor/automations/`**. Shared skills in **`.cursor/skills/`**.
 
 After changing shared templates, bump **`roadmap`** `agent-kit/manifest.toml` and run `./scripts/sync-agent-kit.sh` in each code repo.
@@ -37,6 +39,7 @@ When creating **one automation per repo**, paste the parent prompt plus:
 
 | Skill | Use when |
 |-------|----------|
+| [ecosystem-first](../../.cursor/skills/ecosystem-first/SKILL.md) | Start of task — catalog tool vs gap issue |
 | [plan-feature-from-issue](../../.cursor/skills/plan-feature-from-issue/SKILL.md) | Drafting a plan from a GitHub issue |
 | [audit-plan-completion](../../.cursor/skills/audit-plan-completion/SKILL.md) | Interpreting plan audit JSON |
 | [merge-approved-pr](../../.cursor/skills/merge-approved-pr/SKILL.md) | Final review before `merge-approved` label |
@@ -66,6 +69,10 @@ python3 scripts/ecosystem-audit.py
 python3 scripts/pr-merge-gate.py --sweep
 python3 scripts/pr-auto-merge-sweep.py
 # → executes merge when ready: add --execute
+
+# File ecosystem gap (planner picks up)
+python3 scripts/file-ecosystem-gap-issue.py --repo lic --title "..." \
+  --what-tried "..." --expected "..." --blocked "..."
 ```
 
 ---
@@ -78,6 +85,7 @@ python3 scripts/pr-auto-merge-sweep.py
 | `plan-approved` | Plan linked; implementation agents may code |
 | `merge-approved` | Standards review passed; **pr-auto-merge** workflow may merge |
 | `do-not-merge` | Blocks automated merge |
+| `ecosystem-gap` | Catalog miss / broken shared tooling — planner extends toolkit |
 | `feature` / `enhancement` | Eligible for feature planner |
 
 ---
@@ -109,9 +117,11 @@ If you skip Cursor UI, use **Actions → Run workflow → Plan completion audit*
 
 Add to `roadmap/agent-kit/overlays/benchmarks/` (and other repos):
 
-- `skills/plan-feature-from-issue/`
-- `skills/audit-plan-completion/`
-- `automations/issue-feature-planner.md`
-- `automations/plan-completion-audit.md`
+- `docs/ecosystem/ecosystem-first.md`, `tooling-catalog.md`
+- `skills/ecosystem-first/`, `skills/plan-feature-from-issue/`, `skills/audit-plan-completion/`
+- `rules/li-ecosystem-first.mdc`
+- `automations/issue-feature-planner.md`, `automations/plan-completion-audit.md`, `automations/pr-auto-merge.md`
+- `scripts/file-ecosystem-gap-issue.py`
+- `.github/ISSUE_TEMPLATE/ecosystem_gap.yml`
 
 Bump `agent-kit/manifest.toml` version; notify repos via sync script.

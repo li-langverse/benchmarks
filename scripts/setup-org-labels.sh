@@ -19,6 +19,7 @@ for repo in "${REPOS[@]}"; do
   create_label "$repo" "feature" "A2EEEF" "New capability (use feature request template)"
   create_label "$repo" "merge-approved" "5319E7" "Standards review passed; auto-merge workflow may merge"
   create_label "$repo" "do-not-merge" "B60205" "Block automated and routine merges"
+  create_label "$repo" "ecosystem-gap" "F9D0C4" "Missing/broken shared tooling — planner extends catalog"
 done
 
 echo "Done."

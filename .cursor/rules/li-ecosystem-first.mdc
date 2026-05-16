@@ -1,0 +1,37 @@
+---
+description: Prefer li-langverse ecosystem tooling; file ecosystem-gap issues when blocked
+alwaysApply: true
+---
+
+# Ecosystem-first (mandatory)
+
+Before adding scripts, cron workflows, or one-off agent procedures:
+
+1. Read [ecosystem-first.md](../../docs/ecosystem/ecosystem-first.md) and [tooling-catalog.md](../../docs/ecosystem/tooling-catalog.md).
+2. **Use** an existing script, skill, Cursor automation, or agent-kit hook if it fits.
+3. If **nothing fits** or existing tooling **errors** → file a gap issue (do not only document in PR comments):
+
+```bash
+python3 scripts/file-ecosystem-gap-issue.py --repo <repo> --title "..." \
+  --what-tried "..." --expected "..." --blocked "..."
+```
+
+Labels: **`ecosystem-gap`**, **`plan-needed`**. The **issue-feature-planner** automation will plan the fix.
+
+4. **Do not** merge product features that depend on undeclared one-off tooling without a linked gap issue (except P0 production unblock — still file the issue in the same session).
+
+## Prefer
+
+- `ecosystem-audit.py`, `issue-feature-triage.py`, `plan-completion-audit.py`
+- `pr-merge-gate.py` / `merge-approved` for merges
+- Skills: `ecosystem-first`, `li-ecosystem-discipline`, `plan-feature-from-issue`
+- Cursor automations over Actions `schedule:`
+
+## Escalate via issue (not silent workaround)
+
+- New org script that duplicates catalog entries
+- Custom GitHub cron for audits
+- Hand-editing agent-kit instead of `sync-agent-kit.sh` / `install-agent-kit.sh`
+- Harness logic in **benchmarks** that belongs in **lic**
+
+Works with **li-ecosystem-gates.mdc** and **li-pr-only.mdc**.

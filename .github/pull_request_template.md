@@ -1,5 +1,9 @@
 ## Summary
 
+## Ecosystem-first
+
+- [ ] Used [tooling-catalog](docs/ecosystem/tooling-catalog.md) / org scripts — **or** linked **`ecosystem-gap`** issue: #___
+
 ## Release notes (required)
 
 Policy: https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md

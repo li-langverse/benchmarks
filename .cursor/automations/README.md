@@ -13,6 +13,8 @@ Heavy recurring ops run as **[Cursor Automations](https://cursor.com/automations
 | Merge queue digest | Schedule: daily | [merge-queue-digest.md](./merge-queue-digest.md) | `roadmap` |
 | **PR auto-merge** | 12h or after review | [pr-auto-merge.md](./pr-auto-merge.md) | org sweep · skill: `merge-approved-pr` |
 
+**Philosophy:** [ecosystem-first.md](../docs/ecosystem/ecosystem-first.md) · catalog: [tooling-catalog.md](../docs/ecosystem/tooling-catalog.md) · gaps → `file-ecosystem-gap-issue.py`
+
 **Setup guide:** [docs/ecosystem/agent-automations.md](../docs/ecosystem/agent-automations.md)
 
 **Dashboard:** https://li-langverse.github.io/benchmarks/ — local report: `./scripts/benchmark-failures-report.sh`

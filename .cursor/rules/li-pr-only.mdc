@@ -7,6 +7,8 @@ alwaysApply: true
 
 Agents **never** push directly to protected branches (`main`, `dev`, `master`).
 
+**Ecosystem-first:** [tooling-catalog.md](../../docs/ecosystem/tooling-catalog.md) before new scripts; gap → `file-ecosystem-gap-issue.py` (rule **li-ecosystem-first.mdc**).
+
 ## Required flow
 
 1. Create a feature branch from the default branch.

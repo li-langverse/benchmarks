@@ -30,6 +30,8 @@ Use `gh` to confirm failed PRs and missing `ci.yml` on `main` for org repos in `
 
 Post a short digest: failed PRs, missing CI/docs, benchmark reds, `latest_deltas` from history, recommended next PR to merge. Open PRs only when you have a concrete fix; otherwise stop after the digest.
 
+If agents hit **missing catalog tooling** during the run → `python3 scripts/file-ecosystem-gap-issue.py` (do not add undocumented one-offs).
+
 ## Blocked
 
 Do not self-merge governance PRs. Do not add `schedule:` cron workflows.
