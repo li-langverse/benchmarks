@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BenchResultRow",
+  "type": "object",
+  "required": ["benchmark", "lang", "metric", "value", "status"],
+  "properties": {
+    "benchmark": { "type": "string" },
+    "lang": { "type": "string" },
+    "variant": { "type": "string" },
+    "threads": { "type": "integer" },
+    "metric": { "type": "string" },
+    "value": { "type": "number" },
+    "unit": { "type": "string" },
+    "git_sha": { "type": "string" },
+    "cpu_model": { "type": "string" },
+    "flags": { "type": "string" },
+    "status": { "enum": ["green", "yellow", "red", "unknown"] },
+    "ratio_vs_cpp": { "type": ["number", "null"] },
+    "repo": { "type": "string" },
+    "tier": { "type": "integer" },
+    "ph_ids": { "type": "array", "items": { "type": "string" } },
+    "ci_url": { "type": "string" }
+  }
+}

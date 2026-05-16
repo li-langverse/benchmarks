@@ -1,0 +1,203 @@
+{
+  "generated_at": "2026-05-16T14:19:58.833653+00:00",
+  "source_csv": "/Users/julian/Documents/coding-projects/li/benchmarks/results/latest.csv",
+  "tier_counts": {
+    "1": {
+      "green": 4,
+      "yellow": 0,
+      "red": 1,
+      "unknown": 0
+    },
+    "2": {
+      "green": 2,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 0
+    },
+    "0": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 1
+    },
+    "5": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 1
+    },
+    "?": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 5
+    }
+  },
+  "rows": [
+    {
+      "benchmark": "tier0_stability",
+      "repo": "lic",
+      "tier": 0,
+      "metric": "invariant",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": null,
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier0_correctness",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "horner_pure_li",
+      "repo": "lic",
+      "tier": 1,
+      "metric": "wall_time",
+      "li_value": 0.9415,
+      "cpp_value": 0.0106,
+      "ratio_vs_cpp": 88.8208,
+      "unit": "s",
+      "variant": "pure_li",
+      "status": "red",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/horner_pure_li",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "matmul_blocked",
+      "repo": "lic",
+      "tier": 1,
+      "metric": "wall_time",
+      "li_value": 0.0237,
+      "cpp_value": 0.0229,
+      "ratio_vs_cpp": 1.0349,
+      "unit": "s",
+      "variant": "release",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_blocked",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "matmul_naive",
+      "repo": "lic",
+      "tier": 1,
+      "metric": "wall_time",
+      "li_value": 0.0067,
+      "cpp_value": 0.0069,
+      "ratio_vs_cpp": 0.971,
+      "unit": "s",
+      "variant": "release",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_naive",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "reduce_sum",
+      "repo": "lic",
+      "tier": 1,
+      "metric": "wall_time",
+      "li_value": 0.1844,
+      "cpp_value": 0.1838,
+      "ratio_vs_cpp": 1.0033,
+      "unit": "s",
+      "variant": "release",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier1_micro/reduce_sum",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "simd_dot",
+      "repo": "lic",
+      "tier": 1,
+      "metric": "wall_time",
+      "li_value": 0.0286,
+      "cpp_value": 0.0317,
+      "ratio_vs_cpp": 0.9022,
+      "unit": "s",
+      "variant": "shared_c_kernel",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/simd_dot",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "md_lennard_jones",
+      "repo": "lic",
+      "tier": 2,
+      "metric": "wall_time",
+      "li_value": 1.4209,
+      "cpp_value": 1.5386,
+      "ratio_vs_cpp": 0.9235,
+      "unit": "s",
+      "variant": "release",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/md_lennard_jones",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "three_body",
+      "repo": "lic",
+      "tier": 2,
+      "metric": "wall_time",
+      "li_value": 0.3242,
+      "cpp_value": 0.3282,
+      "ratio_vs_cpp": 0.9878,
+      "unit": "s",
+      "variant": "release",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/three_body",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "tier5_http",
+      "repo": "lis",
+      "tier": 5,
+      "metric": "rps",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": null,
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+name: Benchmarks CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  ingest-smoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lic
+          path: lic
+      - run: |
+          chmod +x scripts/ingest/*.sh scripts/regression-check.sh
+          ./scripts/ingest/ingest-lic.sh || python3 scripts/ingest/build_summary.py lic
+      - run: test -f data/latest/summary.json
+
+  dashboard-build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - working-directory: dashboard
+        run: |
+          npm install
+          npm run build
