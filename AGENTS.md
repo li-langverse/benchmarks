@@ -14,6 +14,6 @@
 3. Align fixes to vision: P0 package CI → merge queue → lic compiler perf (pure-Li tier-1), not dashboard-only threshold tweaks.
 4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 
-**Cursor Automations** (not Actions cron): see `.cursor/automations/` — **failed benchmarks** (`failed-benchmarks-maintainer.md`), ecosystem health, merge-queue digest. Report: `./scripts/benchmark-failures-report.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
+**Cursor Automations** (not Actions cron): see `.cursor/automations/` — **visual validation** (`benchmark-visual-validation.md`), failed benchmarks, ecosystem health. Scripts: `./scripts/benchmark-failures-report.sh`, `./scripts/render-benchmark-visuals.sh`. Actions budget: `docs/ecosystem/actions-budget.md`.
 
 Skills: `write-li-release-notes`, `li-ecosystem-discipline`.

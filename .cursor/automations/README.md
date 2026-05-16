@@ -4,6 +4,7 @@ Heavy recurring ops run as **[Cursor Automations](https://cursor.com/automations
 
 | Automation | Trigger (suggested) | Prompt file | Primary repo |
 |------------|---------------------|-------------|--------------|
+| **Benchmark visuals** | Weekly or after lic bench / manual | [benchmark-visual-validation.md](./benchmark-visual-validation.md) | `lic` + `benchmarks` |
 | **Failed benchmarks** | Schedule: weekly, or webhook after lic bench | [failed-benchmarks-maintainer.md](./failed-benchmarks-maintainer.md) | `lic` (+ `benchmarks` ingest) |
 | Ecosystem health | Schedule: daily or every 12h | [ecosystem-health.md](./ecosystem-health.md) | `benchmarks` (+ `roadmap` read) |
 | Benchmark improvement | Same as failed benchmarks (alias) | [benchmark-improvement.md](./benchmark-improvement.md) | `lic` |

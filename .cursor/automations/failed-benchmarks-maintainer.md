@@ -79,7 +79,12 @@ If you only update **catalog** or ingest wiring, open a separate small **benchma
 
 ---
 
-## 5. Stop
+## 5. Visual validation (physics / math)
+
+After numeric fixes or when reviewing tier-2 sims, run the sibling automation prompt  
+[benchmark-visual-validation.md](./benchmark-visual-validation.md) — renders PNG/GIF, vision-check vs cpp oracle, posts **download links**.
+
+## 6. Stop
 
 - Failing P0 org CI (see roadmap overview) — fix queue first or report blocked  
 - No lic build — digest only  
