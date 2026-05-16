@@ -14,7 +14,7 @@ elif LIC_BIN="$(command -v lic 2>/dev/null)"; then
   LIC="$LIC_BIN"
 else
   echo "build-summary-li: skip (no lic)"
-  exit 0
+  exit 1
 fi
 
 mkdir -p "$ROOT/build"

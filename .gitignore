@@ -4,3 +4,6 @@ dashboard/dist/
 static-dashboard/index.html
 static-dashboard/assets/
 static-dashboard/latest/
+build/compare/
+build/ingest_summary_li_*
+build/summary_*

@@ -1,0 +1,3 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags
+simd_dot,li,release,1,wall_time,0.02,s,abc,cpu,flags
+simd_dot,cpp,release,1,wall_time,0.03,s,abc,cpu,flags

@@ -17,6 +17,8 @@
 |------|------|----------|
 | Ingest | `scripts/ingest/build_summary.li`, `build-summary-li.sh` | `PASS build-summary-li` |
 | Flow | `scripts/ingest/ingest-lic.sh` | Li first, Python fallback |
+| CI | `.github/workflows/ci.yml` | build `lic`, `ingest-lic.sh`, `summary-compare-gate.sh` |
+| Gate | `compare_summary_outputs.py`, fixture `scripts/ingest/fixtures/summary/` | Li/Python status match |
 
 ## Not changed
 
