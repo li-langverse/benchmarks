@@ -1,7 +1,10 @@
-# Agent instructions (benchmarks)
+# Agent instructions (`benchmarks`)
 
-1. **PR-only** — branch + PR; CI green; reviewer merges; do not self-merge.
-2. **Do not** copy `lic/benchmarks/harness` into this repo.
-3. Update `catalog.toml` via PR when adding index entries.
-4. `data/latest/summary.json` is produced by **ingest CI** — do not hand-edit unless fixing ingest.
-5. After perf work in `lic`, check the [dashboard](https://li-langverse.github.io/benchmarks/).
+1. Read [roadmap: release-notes](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) — **write before PR**.
+2. **PR-only** — branch + PR; CI green; reviewer merges; do not self-merge.
+3. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
+4. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
+5. Dashboard: https://li-langverse.github.io/benchmarks/
+6. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
+
+Skills: `write-li-release-notes`, `li-ecosystem-discipline`.
