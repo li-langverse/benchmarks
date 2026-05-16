@@ -26,6 +26,6 @@
 - **PR auto-merge** — after `merge-approved` + `pr-merge-gate.py`
 - Visual validation, failed benchmarks, ecosystem health, merge digest
 
-Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/ecosystem-explorer.py`, `./scripts/plan-completion-audit.py`, `./scripts/run-pr-program.py`, `./scripts/pr-merge-gate.py`, … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
+Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/cursor-agent-run.sh` (→ **li-cursor-agents** + `@cursor/sdk`, `--mock` in CI), … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
 
 Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, **`resolve-merge-conflicts`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).

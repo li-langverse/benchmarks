@@ -2,14 +2,27 @@
 
 **Rule:** Work that needs **judgment, web research, or cross-repo reasoning** runs as **Cursor Agents** (cloud automations or local Agent chat). **GitHub Actions** run **CI and Pages only**.
 
-There is no separate “agent SDK” in this org — the stack is:
+The stack is:
 
 | Layer | What | When |
 |-------|------|------|
-| **1. Cursor Automations** | Scheduled/triggered cloud agents at [cursor.com/automations](https://cursor.com/automations) | Explorer, numerics SOTA, PR review, plan gaps, merge queue |
-| **2. Local Agent (IDE / CLI)** | Same prompts + skills; you or `cursor agent` with repo context | Ad-hoc, debugging, single PR |
-| **3. Preflight scripts** | Deterministic JSON under `data/latest/` | **Input** to agents — not a substitute for agents |
-| **4. GitHub Actions** | `ci.yml`, `pages.yml`, label-triggered merge gate | Compile/test/publish only |
+| **1. Cursor Automations** | Scheduled cloud agents at [cursor.com/automations](https://cursor.com/automations) | Production schedules |
+| **2. [li-cursor-agents](https://github.com/li-langverse/li-cursor-agents)** | Local `@cursor/sdk` + **mock backend for CI** | Dev + automated agent tests |
+| **3. Local Agent (IDE)** | Same prompts + `/agent-briefing` | Ad-hoc |
+| **4. Preflight scripts** (benchmarks) | `agent-briefing.py` → JSON | **Input only** — no LLM |
+| **5. GitHub Actions** | `ci.yml`, `pages.yml` | Compile/test/publish only — **never** call real SDK in CI |
+
+### Local SDK runner (li-cursor-agents)
+
+```bash
+git clone https://github.com/li-langverse/li-cursor-agents ../li-cursor-agents
+cd benchmarks
+./scripts/cursor-agent-run.sh --agent ecosystem_explorer --mock   # CI-safe
+export CURSOR_API_KEY=... 
+./scripts/cursor-agent-run.sh --agent pr_review                   # real SDK
+```
+
+`CURSOR_MOCK=1` or `CI=true` without API key → **mock backend** (deterministic markdown, no LLM).
 
 Preflight does **not** replace explorer/review/research agents — it **feeds** them.
 
