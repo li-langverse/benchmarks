@@ -175,6 +175,14 @@ def main() -> int:
     summary = load_benchmark_summary()
     bench = benchmark_posture(summary) if summary else {"error": "no summary.json — run ingest"}
 
+    plan_audit_path = ROOT / "data/latest/plan-completion-audit.json"
+    plan_audit: dict | None = None
+    if plan_audit_path.is_file():
+        try:
+            plan_audit = json.loads(plan_audit_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            plan_audit = {"error": "invalid plan-completion-audit.json"}
+
     actions = []
     if failed:
         actions.append(
@@ -198,6 +206,15 @@ def main() -> int:
                 "priority": "P1",
                 "action": "Compiler/benchmark work in lic (not dashboards-only)",
                 "benchmarks": bench["red"],
+            }
+        )
+    if plan_audit and plan_audit.get("summary", {}).get("total_findings", 0) > 0:
+        actions.append(
+            {
+                "priority": "P1",
+                "action": "Plan completion debt — run plan-completion-audit automation",
+                "total_findings": plan_audit["summary"]["total_findings"],
+                "master_open": plan_audit["summary"].get("open_tracker_items"),
             }
         )
     if ready:
@@ -225,6 +242,7 @@ def main() -> int:
         "repos_without_live_docs": missing_docs,
         "live_docs_down": live_docs_missing,
         "benchmarks": bench,
+        "plan_completion": plan_audit,
         "recommended_actions": actions,
     }
 

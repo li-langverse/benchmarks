@@ -1,0 +1,50 @@
+name: Feature request
+description: Propose a new capability (planner automation will draft a vision-aligned plan)
+title: "[Feature]: "
+labels:
+  - feature
+  - plan-needed
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Plans must align with [vision & roadmap](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md).
+        Do not expect implementation until label **`plan-approved`** is added.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      placeholder: What user or agent pain does this solve?
+    validations:
+      required: true
+  - type: dropdown
+    id: pillar
+    attributes:
+      label: Primary Li pillar
+      options:
+        - Easy (ergonomics)
+        - AI-first (agents, diagnostics)
+        - Secure (proofs, CVE surface)
+        - Provable (Lean / static gates)
+        - Fast (LLVM, benchmarks)
+    validations:
+      required: true
+  - type: input
+    id: ph_id
+    attributes:
+      label: Master plan phase (if known)
+      placeholder: e.g. PH-7e, PH-PHY-2
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Which repo(s)? What is explicitly out of scope?
+    validations:
+      required: true
+  - type: textarea
+    id: exit_gate
+    attributes:
+      label: Exit gate / how we know it is done
+      placeholder: Tests, benchmarks, docs, G-* gap ids
+    validations:
+      required: true
