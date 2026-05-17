@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-16T20:12Z",
+  "generated_at": "2026-05-17T12:57Z",
   "roots": {
-    "lic": "/workspace/lic",
-    "benchmarks": "/workspace",
-    "roadmap": "/roadmap"
+    "lic": "/Users/julian/Documents/coding-projects/li",
+    "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
+    "roadmap": "/Users/julian/Documents/coding-projects/roadmap"
   },
   "summary": {
     "open_tracker_items": 8,
@@ -11,7 +11,7 @@
     "provability_partial": 12,
     "provability_missing": 4,
     "catalog_gaps": 1,
-    "total_findings": 127
+    "total_findings": 121
   },
   "master_plan_open": [
     {
@@ -237,32 +237,7 @@
       "item": "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
     }
   ],
-  "implementation_signals": [
-    {
-      "source": "lic:li-std-physics-hep",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-particles",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-fluids",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-aero",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-quantum",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:physics",
-      "item": "feat/physics-module-packages branch may be unpublished \u2014 see docs/physics/PUSH_PR.md"
-    }
-  ],
+  "implementation_signals": [],
   "recommended_actions": [
     {
       "priority": "P1",
