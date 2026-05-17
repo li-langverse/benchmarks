@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-17T12:57Z",
+  "generated_at": "2026-05-17T13:00Z",
   "roots": {
-    "lic": "/Users/julian/Documents/coding-projects/li",
+    "lic": "../li",
     "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
     "roadmap": "/Users/julian/Documents/coding-projects/roadmap"
   },

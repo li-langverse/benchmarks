@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-16T22:23Z",
-  "lic_root": "lic",
+  "generated_at": "2026-05-17T13:00Z",
+  "lic_root": "../li",
   "lic_present": true,
   "std_modules_on_disk": [
     "std.bytes.bytes",
@@ -64,35 +64,9 @@
     "li-httpd",
     "li-net",
     "li-std-core",
-    "li-std-math",
-    "li-std-numerics",
-    "li-std-physics-aero",
-    "li-std-physics-chem",
-    "li-std-physics-core",
-    "li-std-physics-em",
-    "li-std-physics-fluids",
-    "li-std-physics-hep",
-    "li-std-physics-particles",
-    "li-std-physics-quantum",
-    "li-std-physics-relativity",
-    "li-std-physics-rigid",
-    "li-std-physics-runtime",
-    "li-std-physics-weather"
+    "li-std-math"
   ],
-  "physics_packages": [
-    "li-std-physics-aero",
-    "li-std-physics-chem",
-    "li-std-physics-core",
-    "li-std-physics-em",
-    "li-std-physics-fluids",
-    "li-std-physics-hep",
-    "li-std-physics-particles",
-    "li-std-physics-quantum",
-    "li-std-physics-relativity",
-    "li-std-physics-rigid",
-    "li-std-physics-runtime",
-    "li-std-physics-weather"
-  ],
+  "physics_packages": [],
   "org_mirror_repos": [
     "li-net",
     "li-httpd",
@@ -100,42 +74,27 @@
     "li-std-math",
     "li-demo"
   ],
-  "packages_without_org_mirror": [
-    "li-std-physics-aero",
-    "li-std-physics-chem",
-    "li-std-physics-core",
-    "li-std-physics-em",
-    "li-std-physics-fluids",
-    "li-std-physics-hep",
-    "li-std-physics-particles",
-    "li-std-physics-quantum",
-    "li-std-physics-relativity",
-    "li-std-physics-rigid",
-    "li-std-physics-runtime",
-    "li-std-physics-weather"
-  ],
+  "packages_without_org_mirror": [],
   "catalog": {
-    "total": 41,
+    "total": 25,
     "by_category": {
       "micro": 5,
-      "physics": 20,
+      "physics": 15,
       "correctness": 1,
       "http": 2,
-      "tooling": 9,
-      "security": 4
+      "tooling": 2
     },
     "by_tier": {
       "1": 5,
-      "2": 20,
+      "2": 15,
       "0": 1,
       "5": 2,
-      "3": 13
+      "3": 2
     },
     "variants": {
-      "shared_c_kernel": 1,
-      "default": 37,
-      "pure_li": 2,
-      "async_stub": 1
+      "shared_c_kernel": 9,
+      "default": 15,
+      "pure_li": 1
     },
     "suggested_catalog_gaps": [
       "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",
@@ -302,26 +261,41 @@
     "entries": [
       {
         "path": "scripts/expected-agent-kit-version",
-        "version": "1.1.0+5f476d66cf8d1b57"
+        "version": "1.1.0+5f476d66cf8d1b57",
+        "repo_hint": "benchmarks"
       },
       {
-        "path": "roadmap/scripts/expected-agent-kit-version",
-        "version": "1.2.0+dffd617dec8ede78"
+        "path": "/Users/julian/Documents/coding-projects/li/scripts/expected-agent-kit-version",
+        "version": "1.2.0+dffd617dec8ede78",
+        "repo_hint": "li"
       },
       {
-        "path": "lic/scripts/expected-agent-kit-version",
-        "version": "1.1.0+5f476d66cf8d1b57"
-      },
-      {
-        "path": "lip/scripts/expected-agent-kit-version",
-        "version": "1.3.0"
-      },
-      {
-        "path": "lit/scripts/expected-agent-kit-version",
-        "version": "1.3.0"
+        "path": "/Users/julian/Documents/coding-projects/roadmap/scripts/expected-agent-kit-version",
+        "version": "1.3.0+manual",
+        "repo_hint": "roadmap"
       }
     ],
-    "drift": true
+    "drift": true,
+    "canonical_stamp": "1.2.2+2974b723666de8eb",
+    "repos_behind_canonical": [
+      {
+        "path": "scripts/expected-agent-kit-version",
+        "version": "1.1.0+5f476d66cf8d1b57",
+        "repo_hint": "benchmarks"
+      },
+      {
+        "path": "/Users/julian/Documents/coding-projects/li/scripts/expected-agent-kit-version",
+        "version": "1.2.0+dffd617dec8ede78",
+        "repo_hint": "li"
+      },
+      {
+        "path": "/Users/julian/Documents/coding-projects/roadmap/scripts/expected-agent-kit-version",
+        "version": "1.3.0+manual",
+        "repo_hint": "roadmap"
+      }
+    ],
+    "canonical_hint": "run ensure-org-agent-kit.py",
+    "downstream_agent": "agent_kit_maintainer"
   },
   "web_search_queries": [
     {
@@ -393,23 +367,18 @@
       "versions": [
         {
           "path": "scripts/expected-agent-kit-version",
-          "version": "1.1.0+5f476d66cf8d1b57"
+          "version": "1.1.0+5f476d66cf8d1b57",
+          "repo_hint": "benchmarks"
         },
         {
-          "path": "roadmap/scripts/expected-agent-kit-version",
-          "version": "1.2.0+dffd617dec8ede78"
+          "path": "/Users/julian/Documents/coding-projects/li/scripts/expected-agent-kit-version",
+          "version": "1.2.0+dffd617dec8ede78",
+          "repo_hint": "li"
         },
         {
-          "path": "lic/scripts/expected-agent-kit-version",
-          "version": "1.1.0+5f476d66cf8d1b57"
-        },
-        {
-          "path": "lip/scripts/expected-agent-kit-version",
-          "version": "1.3.0"
-        },
-        {
-          "path": "lit/scripts/expected-agent-kit-version",
-          "version": "1.3.0"
+          "path": "/Users/julian/Documents/coding-projects/roadmap/scripts/expected-agent-kit-version",
+          "version": "1.3.0+manual",
+          "repo_hint": "roadmap"
         }
       ]
     },
