@@ -1,0 +1,66 @@
+# repository_dispatch from li-cursor-agents swarm-audit-cron (optional).
+name: Swarm audit refresh
+
+on:
+  repository_dispatch:
+    types: [swarm-audit-refresh]
+  workflow_dispatch:
+
+concurrency:
+  group: swarm-audit-refresh
+  cancel-in-progress: true
+
+jobs:
+  refresh-briefing:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout benchmarks
+        uses: actions/checkout@v4
+
+      - name: Checkout li-cursor-agents
+        uses: actions/checkout@v4
+        with:
+          repository: li-langverse/li-cursor-agents
+          path: li-cursor-agents
+          ref: ${{ github.event.client_payload.ref || 'main' }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: li-cursor-agents/package-lock.json
+
+      - name: Build li-cursor-agents enrich CLI
+        working-directory: li-cursor-agents
+        run: |
+          npm ci
+          npm run build
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run agent-briefing + swarm enrich
+        env:
+          LI_CURSOR_AGENTS_ROOT: ${{ github.workspace }}/li-cursor-agents
+          LI_CONTROL_PLANE_STORE: disk
+          LIC_ROOT: ${{ github.workspace }}/../lic
+        run: |
+          python3 scripts/agent-briefing.py --skip-slow
+
+      - name: Verify swarm briefing keys
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d = json.loads(Path("data/latest/agent-briefing.json").read_text())
+          for key in (
+              "swarm_scorecard",
+              "research_goals_status",
+              "handoff_audit",
+              "heap_plan",
+          ):
+              assert key in d, f"missing {key}"
+          assert d.get("swarm_enriched_at"), "missing swarm_enriched_at"
+          print("ok:", d.get("swarm_enriched_at"))
+          PY

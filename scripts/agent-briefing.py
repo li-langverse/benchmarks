@@ -372,7 +372,7 @@ def recommend_agents(data: dict) -> list[dict]:
     pr_prog = data.get("pr_program") or {}
     if isinstance(pr_prog, dict) and pr_prog.get("open", 0) > 0:
         if not _has_agent(rec, "pr_alignment"):
-            rec.append({"agent": "pr_alignment", "reason": "open PRs need alignment triage"})
+        rec.append({"agent": "pr_alignment", "reason": "open PRs need alignment triage"})
         if pr_prog.get("ci_green", 0) > 0:
             rec.append({"agent": "pr_reviewer", "reason": "CI-green PRs ready for standards review"})
         if pr_prog.get("gate_ready_labeled", 0) > 0:
@@ -428,7 +428,6 @@ def recommend_agents(data: dict) -> list[dict]:
                         "reason": "autoresearch PR(s) missing li-tests/benchmarks evidence",
                     }
                 )
-
 
     dirty = data.get("workspace_dirty_sweep") or {}
     if isinstance(dirty, dict):
@@ -488,6 +487,64 @@ def load_org_roadmap(plan_audit: dict | None) -> dict:
         "roadmap_repo": str(ROADMAP) if ROADMAP.is_dir() else None,
         "vision_local": str(vision_path) if vision_path.is_file() else None,
     }
+
+
+def _fallback_swarm_scorecards(data: dict) -> None:
+    """Minimal scorecard keys when li-cursor-agents enrich CLI is unavailable."""
+    data.setdefault(
+        "swarm_scorecard",
+        {
+            "pending_handoffs": 0,
+            "pending_placement": 0,
+            "ready_to_implement": 0,
+            "by_domain": {},
+            "active_research_session": None,
+            "research_lane_enabled": False,
+            "implement_lane_enabled": False,
+            "source": "benchmarks_fallback",
+        },
+    )
+    data.setdefault("research_goals_status", [])
+    data.setdefault(
+        "provability_scorecard",
+        {
+            "open_plan_findings": len(
+                (data.get("plan_completion_audit") or {}).get("findings") or []
+            )
+            if isinstance(data.get("plan_completion_audit"), dict)
+            else 0,
+            "trigger_goal_id": "provability_holes",
+        },
+    )
+    data.setdefault(
+        "handoff_audit",
+        {"open_handoffs": 0, "missing_north_star_fit": [], "invalid_north_star_fit": []},
+    )
+
+
+def enrich_swarm_scorecards(root: Path) -> bool:
+    """Merge swarm scorecards via li-cursor-agents (live handoff/session state)."""
+    agents = Path(os.environ.get("LI_CURSOR_AGENTS_ROOT", root.parent / "li-cursor-agents"))
+    cli = agents / "dist/cli/enrich-briefing.js"
+    if not cli.is_file():
+        return False
+    env = {
+        **os.environ,
+        "LI_CONTROL_PLANE_STORE": os.environ.get("LI_CONTROL_PLANE_STORE", "disk"),
+    }
+    proc = subprocess.run(
+        ["node", str(cli), "--benchmarks-root", str(root), "--no-mirror"],
+        cwd=str(agents),
+        env=env,
+        capture_output=True,
+        text=True,
+    )
+    if proc.returncode != 0:
+        print(proc.stderr or proc.stdout or "enrich-briefing failed", file=sys.stderr)
+        return False
+    if proc.stdout.strip():
+        print(proc.stdout.strip())
+    return True
 
 
 def main() -> int:
@@ -571,6 +628,13 @@ def main() -> int:
     data["heap_plan"] = build_heap_plan(data["recommended_agents"])
 
     OUT.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    if not enrich_swarm_scorecards(ROOT):
+        data = json.loads(OUT.read_text(encoding="utf-8"))
+        _fallback_swarm_scorecards(data)
+        OUT.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+        print("swarm scorecards: fallback keys (build li-cursor-agents for live handoff state)")
+    else:
+        print("swarm scorecards: enriched via li-cursor-agents")
     print(f"wrote {OUT}")
     print("Recommended Cursor agents this run:")
     for r in data["recommended_agents"]:
