@@ -2,12 +2,13 @@
 
 **Philosophy:** [ecosystem-first](docs/ecosystem/ecosystem-first.md) — use [tooling-catalog](docs/ecosystem/tooling-catalog.md) before inventing tooling. If blocked, `python3 scripts/file-ecosystem-gap-issue.py` → labels `ecosystem-gap` + `plan-needed` for planner automations.
 
-1. Read [roadmap: release-notes](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) — **write before PR**.
-2. **PR-only** — branch + PR; **normal push only** ([git-workflow](docs/ecosystem/git-workflow.md)); CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
-3. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
-4. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
-5. Dashboard: https://li-langverse.github.io/benchmarks/
-6. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
+1. Read [handbook](docs/handbook/README.md) and [plan cross-links](docs/ecosystem/plan-cross-links.md); [provability gaps](https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md) before proof/perf claims.
+2. Read [roadmap: release-notes](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) — **write before PR**.
+3. **PR-only** — branch + PR; **normal push only** ([git-workflow](docs/ecosystem/git-workflow.md)); CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
+4. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
+5. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
+6. Dashboard: https://li-langverse.github.io/benchmarks/ — perf labels: [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md)
+7. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
 
 ## Standing ops (every session)
 
@@ -26,6 +27,6 @@
 - **PR auto-merge** — after `merge-approved` + `pr-merge-gate.py`
 - Visual validation, failed benchmarks, ecosystem health, merge digest
 
-Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/ecosystem-explorer.py`, `./scripts/plan-completion-audit.py`, `./scripts/run-pr-program.py`, `./scripts/pr-merge-gate.py`, … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
+Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/cursor-agent-run.sh` (→ **li-cursor-agents** + `@cursor/sdk`, `--mock` in CI), `./scripts/ecosystem-explorer.py`, `./scripts/plan-completion-audit.py`, `./scripts/run-pr-program.py`, `./scripts/pr-merge-gate.py`, … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
 
 Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, **`resolve-merge-conflicts`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).
