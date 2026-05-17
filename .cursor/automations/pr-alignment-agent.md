@@ -14,7 +14,9 @@ You check that **open PRs align** with plans, labels, vision, and merge order. Y
 ```bash
 cd benchmarks
 python3 scripts/pr-merge-queue-plan.py
+python3 scripts/pr-branch-hygiene.py
 python3 scripts/run-pr-program.py
+cat data/latest/pr-branch-hygiene.json
 python3 scripts/issue-feature-triage.py
 cat data/latest/pr-merge-queue-plan.json
 cat data/latest/pr-program-run.json
@@ -29,7 +31,8 @@ For each PR in plan / program output:
 | Check | Action if fail |
 |-------|----------------|
 | Feature work without `plan-approved` | Comment; keep `plan-needed` |
-| Listed in `redundant` / superseded | Comment + recommend close |
+| Listed in `redundant` / superseded | Comment; close when `pr-branch-hygiene` marks `safe_now` |
+| `prs_recommended_close` in hygiene JSON | `gh pr comment` + `gh pr close` when safe |
 | Wrong merge order (package before lic) | Comment with `plan-merge-queue` order |
 | Title/body mismatch (CI-only vs feature) | Request title/body fix |
 | Missing linked issue / PH id | Ask for traceability |
