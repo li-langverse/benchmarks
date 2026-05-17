@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-05-16T20:12Z",
+  "generated_at": "2026-05-17T08:42Z",
   "roots": {
-    "lic": "/workspace/lic",
-    "benchmarks": "/workspace",
-    "roadmap": "/roadmap"
+    "lic": "/Users/julian/Documents/coding-projects/li",
+    "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
+    "roadmap": "/Users/julian/Documents/coding-projects/roadmap"
   },
   "summary": {
     "open_tracker_items": 8,
     "open_plan_checkboxes": 96,
     "provability_partial": 12,
     "provability_missing": 4,
-    "catalog_gaps": 1,
-    "total_findings": 127
+    "catalog_gaps": 15,
+    "total_findings": 135
   },
   "master_plan_open": [
     {
@@ -234,35 +234,66 @@
   "catalog_gaps": [
     {
       "source": "benchmarks:catalog.toml",
+      "item": "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=three_body_pure path missing under LIC_ROOT: benchmarks/tier2_physics/three_body_pure"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=orbit_two_body path missing under LIC_ROOT: benchmarks/tier2_physics/orbit_two_body"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=fdtd_waveguide_2d path missing under LIC_ROOT: benchmarks/tier2_physics/fdtd_waveguide_2d"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=schrodinger_1d_barrier path missing under LIC_ROOT: benchmarks/tier2_physics/schrodinger_1d_barrier"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=euler_fluid_2d path missing under LIC_ROOT: benchmarks/tier2_physics/euler_fluid_2d"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=cloth_swing path missing under LIC_ROOT: benchmarks/tier2_physics/cloth_swing"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=ragdoll_chain path missing under LIC_ROOT: benchmarks/tier2_physics/ragdoll_chain"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
       "item": "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=security_gate_full path missing under LIC_ROOT: scripts/ci-security.sh"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=security_corpus path missing under LIC_ROOT: li-tests/run_security.sh"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=security_cve_patterns path missing under LIC_ROOT: scripts/check-cve-coverage.sh"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=security_webserver_registry path missing under LIC_ROOT: scripts/check-webserver-bugs.sh"
     }
   ],
-  "implementation_signals": [
-    {
-      "source": "lic:li-std-physics-hep",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-particles",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-fluids",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-aero",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:li-std-physics-quantum",
-      "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
-    },
-    {
-      "source": "lic:physics",
-      "item": "feat/physics-module-packages branch may be unpublished \u2014 see docs/physics/PUSH_PR.md"
-    }
-  ],
+  "implementation_signals": [],
   "recommended_actions": [
     {
       "priority": "P1",
@@ -279,7 +310,21 @@
       "priority": "P2",
       "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
       "benchmarks": [
-        "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
+        "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack",
+        "catalog id=three_body_pure path missing under LIC_ROOT: benchmarks/tier2_physics/three_body_pure",
+        "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc",
+        "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive",
+        "catalog id=orbit_two_body path missing under LIC_ROOT: benchmarks/tier2_physics/orbit_two_body",
+        "catalog id=fdtd_waveguide_2d path missing under LIC_ROOT: benchmarks/tier2_physics/fdtd_waveguide_2d",
+        "catalog id=schrodinger_1d_barrier path missing under LIC_ROOT: benchmarks/tier2_physics/schrodinger_1d_barrier",
+        "catalog id=euler_fluid_2d path missing under LIC_ROOT: benchmarks/tier2_physics/euler_fluid_2d",
+        "catalog id=cloth_swing path missing under LIC_ROOT: benchmarks/tier2_physics/cloth_swing",
+        "catalog id=ragdoll_chain path missing under LIC_ROOT: benchmarks/tier2_physics/ragdoll_chain",
+        "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness",
+        "catalog id=security_gate_full path missing under LIC_ROOT: scripts/ci-security.sh",
+        "catalog id=security_corpus path missing under LIC_ROOT: li-tests/run_security.sh",
+        "catalog id=security_cve_patterns path missing under LIC_ROOT: scripts/check-cve-coverage.sh",
+        "catalog id=security_webserver_registry path missing under LIC_ROOT: scripts/check-webserver-bugs.sh"
       ]
     }
   ]

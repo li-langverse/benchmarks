@@ -2,7 +2,9 @@
 
 Aggregated **benchmark status** for the Li org. Harnesses and sources stay in each code repo (`lic/benchmarks/`, `lis/benchmarks/tier5_http/`, …).
 
-**Dashboard:** https://li-langverse.github.io/benchmarks/
+**Dashboard:** https://li-langverse.github.io/benchmarks/ (if 404, see [SETUP_GITHUB.md](SETUP_GITHUB.md#fix-dashboard-404-live_docs_down))
+
+**Handbook:** [docs/handbook/README.md](docs/handbook/README.md) · [plan cross-links](docs/ecosystem/plan-cross-links.md) · [benchmark honesty](docs/honesty/benchmark-dashboard.md)
 
 ## Quick start
 

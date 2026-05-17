@@ -377,15 +377,36 @@ def web_search_queries(focus: str | None) -> list[dict]:
     return queries
 
 
-def agent_kit_versions() -> list[dict]:
+def agent_kit_versions() -> dict:
     versions = []
-    for repo_dir in [ROOT, ROOT / "roadmap", ROOT / "lic", ROOT / "lip", ROOT / "lit"]:
+    roots = [
+        ROOT,
+        ROOT / "roadmap",
+        ROOT / "lic",
+        ROOT / "lip",
+        ROOT / "lit",
+        ROOT / "li-cursor-agents",
+        ROOT.parent / "li",
+    ]
+    seen: set[Path] = set()
+    for repo_dir in roots:
+        if not repo_dir.is_dir():
+            continue
+        resolved = repo_dir.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
         p = repo_dir / "scripts/expected-agent-kit-version"
         if p.is_file():
-            versions.append({"path": str(p.relative_to(ROOT)), "version": p.read_text(encoding="utf-8").strip()})
+            versions.append(
+                {
+                    "path": str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else str(p),
+                    "version": p.read_text(encoding="utf-8").strip(),
+                }
+            )
     uniq = {v["version"] for v in versions}
     drift = len(uniq) > 1
-    return {"entries": versions, "drift": drift}
+    return {"entries": versions, "drift": drift, "canonical_hint": "run ensure-org-agent-kit.py"}
 
 
 def build_digest_md(report: dict) -> str:

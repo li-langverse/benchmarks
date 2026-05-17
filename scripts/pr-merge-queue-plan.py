@@ -280,19 +280,71 @@ def detect_redundant_pairs(prs: list[dict]) -> list[dict]:
     return redundant
 
 
-def build_merge_order(prs: list[dict], stacks: list[dict]) -> list[dict]:
-    """Sort by priority; respect stack constraints via score adjustment."""
-    stack_first: set[str] = set()
+def pr_key(p: dict) -> str:
+    return f"{p['repo']}#{p['number']}"
+
+
+def stack_blocked_ids(prs: list[dict], stacks: list[dict]) -> dict[str, str]:
+    """Child PRs blocked until stack parent is merge-approved + gate-ready."""
+    by_id = {pr_key(p): p for p in prs}
+    blocked: dict[str, str] = {}
     for s in stacks:
-        stack_first.add(s["merge_first"])
+        parent_id = s["merge_first"]
+        child_id = s["then"]
+        parent = by_id.get(parent_id)
+        child = by_id.get(child_id)
+        if not parent or not child:
+            continue
+        if not (parent["merge_approved"] and parent["gate_ready"]):
+            blocked[child_id] = (
+                f"stacked on #{parent['number']}; merge parent {parent_id} first "
+                f"({parent['url']})"
+            )
+    return blocked
+
+
+def enforce_stack_order(ordered: list[dict], stacks: list[dict]) -> list[dict]:
+    """Ensure stacked children never rank above their parent branch PR."""
+    ids = [pr_key(p) for p in ordered]
+    by_id = {pr_key(p): p for p in ordered}
+    for s in stacks:
+        parent_id = s["merge_first"]
+        child_id = s["then"]
+        if parent_id not in ids or child_id not in ids:
+            continue
+        pi, ci = ids.index(parent_id), ids.index(child_id)
+        if ci < pi:
+            ids.pop(ci)
+            ids.insert(pi + 1, child_id)
+    return [by_id[i] for i in ids]
+
+
+def order_reason(p: dict, rank: int, blocked: dict[str, str]) -> str:
+    if pr_key(p) in blocked:
+        return blocked[pr_key(p)]
+    parts = [f"rank {rank}", f"priority_score={p['priority_score']}"]
+    if p["merge_approved"] and p["gate_ready"]:
+        parts.append("merge-approved + gate ready")
+    elif not p["merge_approved"]:
+        parts.append("awaiting merge-approved label")
+    elif not p["gate_ready"]:
+        parts.append(f"gate blocked: {', '.join(p.get('gate_blockers') or [])}")
+    return "; ".join(parts)
+
+
+def build_merge_order(prs: list[dict], stacks: list[dict]) -> list[dict]:
+    """Sort by repo/title priority; topological stack order; annotate blockers."""
+    blocked = stack_blocked_ids(prs, stacks)
 
     def sort_key(p: dict) -> tuple:
-        stack_boost = 0 if f"{p['repo']}#{p['number']}" in stack_first else 1
-        return (stack_boost, p["priority_score"], p["created_at"] or "")
+        blocked_boost = 1 if pr_key(p) in blocked else 0
+        return (blocked_boost, p["priority_score"], p["created_at"] or "")
 
-    ordered = sorted(prs, key=sort_key)
+    ordered = enforce_stack_order(sorted(prs, key=sort_key), stacks)
     plan: list[dict] = []
     for rank, p in enumerate(ordered, start=1):
+        key = pr_key(p)
+        auto = p["merge_approved"] and p["gate_ready"] and key not in blocked
         plan.append(
             {
                 "rank": rank,
@@ -303,10 +355,17 @@ def build_merge_order(prs: list[dict], stacks: list[dict]) -> list[dict]:
                 "merge_approved": p["merge_approved"],
                 "gate_ready": p["gate_ready"],
                 "priority_score": p["priority_score"],
-                "auto_merge_ok": p["merge_approved"] and p["gate_ready"],
+                "auto_merge_ok": auto,
+                "blocked_reason": blocked.get(key),
+                "order_reason": order_reason(p, rank, blocked),
             }
         )
     return plan
+
+
+def build_merge_sequence(merge_order: list[dict]) -> list[dict]:
+    """PRs safe to merge now, in rank order (one per supervisor tick)."""
+    return [p for p in merge_order if p["auto_merge_ok"]]
 
 
 def main() -> int:
@@ -325,22 +384,31 @@ def main() -> int:
     stacks = detect_stacks(prs)
     redundant = detect_redundant_pairs(prs)
     merge_order = build_merge_order(prs, stacks)
-
-    auto_candidates = [p for p in merge_order if p["auto_merge_ok"]]
-    first_auto = auto_candidates[0] if auto_candidates else None
+    merge_sequence = build_merge_sequence(merge_order)
+    next_merge = merge_sequence[0] if merge_sequence else None
 
     report = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "vision_order": "package CI / mirrors → benchmarks → lic → lip/lit/lis → roadmap",
+        "ordering_rules": [
+            "Repo tier: mirrors/httpd → benchmarks → lic → lip/lit/lis → roadmap (roadmap last)",
+            "Title hints: ci.yml / blocker fixes before agent-kit / bench / feature work",
+            "Stacks: parent branch PR must merge before child PR targeting parent head",
+            "Redundant pairs: close superseded PR after the including PR merges (human if unclear)",
+            "Only merge-approved + gate-ready PRs enter merge_sequence",
+            "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge",
+        ],
         "summary": {
             "open_prs": len(prs),
             "merge_approved": sum(1 for p in prs if p["merge_approved"]),
             "gate_ready": sum(1 for p in prs if p["gate_ready"]),
-            "auto_merge_candidates": len(auto_candidates),
+            "auto_merge_candidates": len(merge_sequence),
             "redundant_pairs": len(redundant),
             "stacks": len(stacks),
         },
-        "merge_first": first_auto,
+        "merge_first": next_merge,
+        "next_merge": next_merge,
+        "merge_sequence": merge_sequence,
         "merge_order": merge_order,
         "stacks": stacks,
         "redundant": redundant,
@@ -361,10 +429,13 @@ def main() -> int:
         print(json.dumps(report, indent=2))
     else:
         print(f"wrote {OUT}")
-        if first_auto:
+        if next_merge:
             print(
-                f"merge first (auto): {first_auto['repo']}#{first_auto['number']} {first_auto['url']}"
+                f"next merge: {next_merge['repo']}#{next_merge['number']} {next_merge['url']}"
             )
+            print(f"  reason: {next_merge.get('order_reason', '')}")
+        if len(merge_sequence) > 1:
+            print(f"  then: {merge_sequence[1]['repo']}#{merge_sequence[1]['number']} …")
         for w in report["warnings"][:10]:
             print(f"  warn: {w}")
         if len(report["warnings"]) > 10:
