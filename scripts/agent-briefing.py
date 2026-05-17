@@ -33,6 +33,8 @@ PREFLIGHT_SCRIPTS = [
     ("merge_plan", ["python3", "scripts/pr-merge-queue-plan.py"]),
     ("pr_program", ["python3", "scripts/run-pr-program.py"]),
     ("pr_branch_hygiene", ["python3", "scripts/pr-branch-hygiene.py"]),
+    ("ci_bug_triage", ["python3", "scripts/ci-bug-triage.py"]),
+    ("security_cwe_audit", ["python3", "scripts/security-cwe-audit.py"]),
 ]
 
 CURSOR_AGENTS = [
@@ -61,6 +63,26 @@ CURSOR_AGENTS = [
         "skills": ["explore-li-ecosystem", "audit-plan-completion"],
         "when": "Plan vs code drift, PH boxes, scaffold packages",
         "preflight": ["plan_audit", "explorer", "issue_triage"],
+    },
+    {
+        "id": "code_implementer",
+        "prompt": "li-cursor-agents/prompts/code-implementer.md",
+        "skills": ["explore-li-ecosystem", "audit-plan-completion"],
+        "when": "Implement gaps/queue items and open PRs",
+        "preflight": ["plan_audit", "explorer", "ci_bug_triage"],
+    },
+    {
+        "id": "bug_fixer",
+        "prompt": "li-cursor-agents/prompts/bug-fixer.md",
+        "when": "CI failures (local-ci/GHA) and bug issues",
+        "preflight": ["ci_bug_triage", "pr_program"],
+    },
+    {
+        "id": "security_auditor",
+        "prompt": "li-cursor-agents/prompts/security-auditor.md",
+        "skill": "li-ecosystem-discipline",
+        "when": "CVE/CWE catalog gaps across org repos",
+        "preflight": ["security_cwe_audit"],
     },
     {
         "id": "issue_planner",
@@ -143,7 +165,14 @@ CURSOR_AGENTS = [
 
 def run_script(name: str, cmd: list[str], skip_slow: bool) -> dict:
   # merge_plan must run every briefing — pr_merger depends on ordered queue
-    slow = name in ("explorer", "plan_audit", "pr_program", "pr_branch_hygiene")
+    slow = name in (
+        "explorer",
+        "plan_audit",
+        "pr_program",
+        "pr_branch_hygiene",
+        "ci_bug_triage",
+        "security_cwe_audit",
+    )
     if skip_slow and slow:
         return {"skipped": True, "reason": "--skip-slow"}
     env = os.environ.copy()
@@ -292,6 +321,47 @@ def recommend_agents(data: dict) -> list[dict]:
                 }
             )
 
+    ci_bug = data.get("ci_bug_triage") or {}
+    if isinstance(ci_bug, dict):
+        q = int((ci_bug.get("summary") or {}).get("work_queue_size") or 0)
+        if q > 0 and not _has_agent(rec, "bug_fixer"):
+            rec.append(
+                {
+                    "agent": "bug_fixer",
+                    "reason": f"{q} CI/bug item(s) in work queue (local-ci + issues + GHA red)",
+                }
+            )
+        if q > 0 and not _has_agent(rec, "code_implementer"):
+            rec.append(
+                {
+                    "agent": "code_implementer",
+                    "reason": "implement fixes from ci-bug-triage work queue",
+                }
+            )
+
+    sec = data.get("security_cwe_audit") or {}
+    if isinstance(sec, dict):
+        gaps_n = int((sec.get("summary") or {}).get("catalog_gaps") or 0)
+        wf_n = int((sec.get("summary") or {}).get("repos_without_security_workflow") or 0)
+        if (gaps_n > 0 or wf_n > 0) and not _has_agent(rec, "security_auditor"):
+            rec.append(
+                {
+                    "agent": "security_auditor",
+                    "reason": f"CWE/catalog gaps={gaps_n}, repos missing security workflow={wf_n}",
+                }
+            )
+
+    explorer = data.get("ecosystem_explorer") or {}
+    if isinstance(explorer, dict) and explorer.get("missing_std_modules") and not _has_agent(
+        rec, "code_implementer"
+    ):
+        rec.append(
+            {
+                "agent": "code_implementer",
+                "reason": "implement missing std modules from explorer",
+            }
+        )
+
     pr_prog = data.get("pr_program") or {}
     if isinstance(pr_prog, dict) and pr_prog.get("open", 0) > 0:
         if not _has_agent(rec, "pr_alignment"):
@@ -424,6 +494,9 @@ def main() -> int:
         "merge_plan": load_json(LATEST / "pr-merge-queue-plan.json"),
         "pr_program": load_json(LATEST / "pr-program-run.json"),
         "pr_branch_hygiene": load_json(LATEST / "pr-branch-hygiene.json"),
+        "ci_bug_triage": load_json(LATEST / "ci-bug-triage.json"),
+        "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
+        "local_ci_results": load_json(LATEST / "local-ci-results.json"),
         "cursor_agents": CURSOR_AGENTS,
         "recommended_agents": [],
     }
