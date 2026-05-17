@@ -7,14 +7,18 @@ import json
 import subprocess
 import sys
 from dataclasses import dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+LOCAL_CI_RESULTS = ROOT / "data/latest/local-ci-results.json"
+LOCAL_CI_MAX_AGE_HOURS = int(__import__("os").environ.get("LI_LOCAL_CI_MAX_AGE_HOURS", "48"))
 
 MERGE_APPROVED = "merge-approved"
 PLAN_APPROVED = "plan-approved"
 PLAN_NEEDED = "plan-needed"
-BLOCK_LABELS = frozenset({"do-not-merge", "blocked", "wontfix"})
+AGENT_INCOMPLETE = "agent-incomplete"
+BLOCK_LABELS = frozenset({"do-not-merge", "blocked", "wontfix", AGENT_INCOMPLETE})
 GOVERNANCE_REPOS = frozenset({"roadmap"})
 ORG_REPOS = (
     "lic",
@@ -43,6 +47,44 @@ def gh_json(args: list[str]) -> dict | list | None:
     return json.loads(proc.stdout)
 
 
+def _is_likely_agent_pr(pr: dict) -> bool:
+    import re
+
+    labels = {lb["name"] for lb in pr.get("labels") or []}
+    if labels & {"cursor-agent", "li-agent", "numerics-research", "autoresearch"}:
+        return True
+    head = pr.get("headRefName") or ""
+    if re.match(r"^(chore|feat|fix)\(agent", head, re.I) or head.startswith("chore/agent-"):
+        return True
+    body = pr.get("body") or ""
+    if "<!-- li-agent -->" in body or "## Agent deliverable" in body:
+        return True
+    return False
+
+
+def _agent_deliverable_ok(repo: str, number: int) -> tuple[bool, str]:
+    script = ROOT / "scripts" / "agent-pr-deliverable-gate.py"
+    if not script.is_file():
+        return True, "agent-pr-deliverable-gate.py not found (skipped)"
+    proc = subprocess.run(
+        [sys.executable, str(script), "--repo", repo, "--pr", str(number)],
+        capture_output=True,
+        text=True,
+        cwd=ROOT,
+    )
+    if proc.returncode == 0:
+        return True, "agent deliverable gate passed"
+    try:
+        data = json.loads((ROOT / "data/latest/agent-pr-deliverable-gate.json").read_text(encoding="utf-8"))
+        failures = data.get("failures") or []
+        if failures:
+            blockers = failures[0].get("blockers") or []
+            return False, "; ".join(blockers[:3]) or "agent deliverable gate failed"
+    except (OSError, json.JSONDecodeError):
+        pass
+    return False, proc.stderr[-200:] or "agent deliverable gate failed"
+
+
 def classify_ci(rollup: list[dict] | None) -> str:
     if not rollup:
         return "none"
@@ -54,6 +96,63 @@ def classify_ci(rollup: list[dict] | None) -> str:
         if st in ("QUEUED", "IN_PROGRESS", "PENDING", "WAITING"):
             return "pending"
     return "pass"
+
+
+def _parse_ts(ts: str) -> datetime | None:
+    if not ts:
+        return None
+    try:
+        if ts.endswith("Z"):
+            return datetime.fromisoformat(ts.replace("Z", "+00:00"))
+        return datetime.fromisoformat(ts)
+    except ValueError:
+        return None
+
+
+def local_ci_result(repo: str, number: int) -> dict | None:
+    """Latest li-local-ci run for this PR (from local-ci-sweep / run-pr)."""
+    if not LOCAL_CI_RESULTS.is_file():
+        return None
+    try:
+        data = json.loads(LOCAL_CI_RESULTS.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    key = f"{repo}#{number}"
+    for row in data.get("runs") or []:
+        if row.get("key") == key or (
+            row.get("repo") == repo and int(row.get("number") or 0) == number
+        ):
+            finished = _parse_ts(str(row.get("finished_at") or ""))
+            if finished:
+                age_h = (datetime.now(timezone.utc) - finished).total_seconds() / 3600
+                if age_h > LOCAL_CI_MAX_AGE_HOURS:
+                    return {**row, "stale": True}
+            return row
+    return None
+
+
+def ci_pass_with_local_fallback(repo: str, number: int, gha_ci: str) -> tuple[bool, str]:
+    """Accept local-ci pass when GHA checks are missing/failing (quota, skipped workflows)."""
+    if gha_ci == "pass":
+        return True, "GitHub required checks passed"
+    row = local_ci_result(repo, number)
+    if row and row.get("ok") and not row.get("stale"):
+        return (
+            True,
+            f"local-ci passed (profile {row.get('profile')}, GHA was `{gha_ci}`) — "
+            "li-local-ci run-pr / local-ci-sweep",
+        )
+    if row and row.get("stale"):
+        return False, f"local-ci stale (>{LOCAL_CI_MAX_AGE_HOURS}h); re-run local-ci-sweep (GHA `{gha_ci}`)"
+    if row and not row.get("ok"):
+        return False, f"local-ci failed exit={row.get('exit_code')} (GHA `{gha_ci}`)"
+    if gha_ci in ("none", "pending", "fail"):
+        return (
+            False,
+            f"CI status is `{gha_ci}` and no fresh local-ci pass — run: "
+            f"python3 scripts/local-ci-sweep.py --repo {repo} --pr {number}",
+        )
+    return False, f"CI status is `{gha_ci}`"
 
 
 @dataclass
@@ -138,6 +237,24 @@ def evaluate_pr(
         checks,
     )
 
+    if AGENT_INCOMPLETE in label_names:
+        _check(
+            "agent_work_complete",
+            False,
+            f"label `{AGENT_INCOMPLETE}` — agent must finish PR + deliverable checklist before merge",
+            blockers,
+            checks,
+        )
+    elif _is_likely_agent_pr(pr):
+        deliverable_ok, deliverable_detail = _agent_deliverable_ok(repo_name, number)
+        _check(
+            "agent_deliverable",
+            deliverable_ok,
+            deliverable_detail,
+            blockers,
+            checks,
+        )
+
     if PLAN_NEEDED in label_names and PLAN_APPROVED not in label_names:
         _check(
             "plan_approved",
@@ -156,13 +273,23 @@ def evaluate_pr(
         )
 
     ci = classify_ci(pr.get("statusCheckRollup"))
+    ci_ok, ci_detail = ci_pass_with_local_fallback(repo_name, number, ci)
     _check(
         "ci_green",
-        ci == "pass",
-        f"CI status is `{ci}` (all required checks must pass)",
+        ci_ok,
+        ci_detail,
         blockers,
         checks,
     )
+    row = local_ci_result(repo_name, number)
+    if row:
+        _check(
+            "local_ci_recorded",
+            bool(row.get("ok")) and not row.get("stale"),
+            f"local-ci @ {row.get('finished_at')} profile={row.get('profile')}",
+            blockers,
+            checks,
+        )
 
     decision = (pr.get("reviewDecision") or "").upper()
     if require_approval:
