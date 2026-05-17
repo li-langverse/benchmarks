@@ -134,7 +134,8 @@ CURSOR_AGENTS = [
 
 
 def run_script(name: str, cmd: list[str], skip_slow: bool) -> dict:
-    slow = name in ("explorer", "plan_audit", "pr_program", "merge_plan")
+  # merge_plan must run every briefing — pr_merger depends on ordered queue
+    slow = name in ("explorer", "plan_audit", "pr_program")
     if skip_slow and slow:
         return {"skipped": True, "reason": "--skip-slow"}
     env = os.environ.copy()
@@ -235,8 +236,19 @@ def recommend_agents(data: dict) -> list[dict]:
             rec.append({"agent": "pr_merger", "reason": "merge-approved PRs with passing gates"})
 
     merge_plan = data.get("merge_plan") or {}
-    if isinstance(merge_plan, dict) and merge_plan.get("merge_first") and not _has_agent(rec, "pr_merger"):
-        rec.append({"agent": "pr_merger", "reason": "merge queue has planned merge_first"})
+    if isinstance(merge_plan, dict):
+        seq = merge_plan.get("merge_sequence") or []
+        nxt = merge_plan.get("next_merge") or merge_plan.get("merge_first")
+        if nxt and not _has_agent(rec, "pr_merger"):
+            rec.append(
+                {
+                    "agent": "pr_merger",
+                    "reason": (
+                        f"merge queue: next {nxt.get('repo')}#{nxt.get('number')} "
+                        f"({len(seq)} in sequence)"
+                    ),
+                }
+            )
 
     triage = data.get("issue_triage") or {}
     if isinstance(triage, dict) and triage.get("needs_plan"):
