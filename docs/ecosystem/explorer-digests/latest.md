@@ -1,5 +1,5 @@
 # Ecosystem explorer digest
-Generated: 2026-05-16T22:23Z
+Generated: 2026-05-17T08:42Z
 ## Missing std modules (benchmarks expectations)
 - **std.io** (PH-IO-4): CSV/file ingest without Python
 - **std.csv** (PH-IO-4): Benchmark CSV parsing in Li
