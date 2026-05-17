@@ -1,11 +1,8 @@
 {
-  "generated_at": "2026-05-17T13:00Z",
-  "lic_root": "../li",
-  "lic_present": true,
-  "std_modules_on_disk": [
-    "std.bytes.bytes",
-    "std.execution.decorators"
-  ],
+  "generated_at": "2026-05-17T16:13Z",
+  "lic_root": "/Users/julian/Documents/coding-projects/benchmarks/lic",
+  "lic_present": false,
+  "std_modules_on_disk": [],
   "missing_std_modules": [
     {
       "module": "std.io",
@@ -59,13 +56,7 @@
       "scripts/ingest/build_summary_fixture.li"
     ]
   },
-  "lic_packages": [
-    "li-demo",
-    "li-httpd",
-    "li-net",
-    "li-std-core",
-    "li-std-math"
-  ],
+  "lic_packages": [],
   "physics_packages": [],
   "org_mirror_repos": [
     "li-net",
@@ -256,7 +247,74 @@
       "action": "Bump roadmap agent-kit; sync-agent-kit.sh"
     }
   ],
-  "open_ecosystem_gap_issues": [],
+  "open_ecosystem_gap_issues": [
+    {
+      "repo": "li-langverse/lic",
+      "number": 14,
+      "title": "[Ecosystem gap] Physics packages: scaffold lib.li \u2192 domain APIs",
+      "url": "https://github.com/li-langverse/lic/issues/14"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 18,
+      "title": "[Ecosystem gap] Catalog: tier-1 FFT micro-bench (FFTW/vendor roofline)",
+      "url": "https://github.com/li-langverse/benchmarks/issues/18"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 16,
+      "title": "[Ecosystem gap] Reconcile master plan partial PH rows + G-* provability debt",
+      "url": "https://github.com/li-langverse/lic/issues/16"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 15,
+      "title": "[Ecosystem gap] PH-7e/G-par: decorators \u2192 portable parallel lowering (Kokkos-class)",
+      "url": "https://github.com/li-langverse/lic/issues/15"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 13,
+      "title": "[Ecosystem gap] PH-IO-4/5/7: ship std.io, std.csv, std.summary, std.plot",
+      "url": "https://github.com/li-langverse/lic/issues/13"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 26,
+      "title": "[explorer-finding] Roofline + vendor FFT reference harness for catalog FFT row",
+      "url": "https://github.com/li-langverse/benchmarks/issues/26"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 20,
+      "title": "plan-needed: plan-completion-audit CI must checkout lic (LIC_ROOT)",
+      "url": "https://github.com/li-langverse/benchmarks/issues/20"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 27,
+      "title": "master-plan-gap: PH-7e / G-math \u2014 Phase 7e SIMD matmul partial \u2014 define Done criteria",
+      "url": "https://github.com/li-langverse/lic/issues/27"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 30,
+      "title": "[PH-H][master-plan-gap] Phase H \u2014 li-httpd M1 `.li` blocked-by plan: align 2e/2f exit vs httpd prerequisites",
+      "url": "https://github.com/li-langverse/lic/issues/30"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 28,
+      "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
+      "url": "https://github.com/li-langverse/benchmarks/issues/28"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 27,
+      "title": "[explorer-finding] Track Eigen / Kokkos / PETSc / Chapel release cadence in bench policy",
+      "url": "https://github.com/li-langverse/benchmarks/issues/27"
+    }
+  ],
   "agent_kit": {
     "entries": [
       {
