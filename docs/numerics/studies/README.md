@@ -6,6 +6,7 @@ Place one markdown study per numerics PR or research cycle:
 
 **Recent:**
 
+- [2026-05-17 — agent pass digest (red + near-limit + follow-ups)](./2026-05-17-numerics-research-agent-pass.md)
 - [2026-05-17 — `horner_pure_li` (red, pure-Li / PH-7e)](./2026-05-17-horner-pure-li-codegen.md)
 - [2026-05-17 — near-limit tier-1/2 greens above 1.0× cpp](./2026-05-17-near-limit-tier12-sota.md)
 
