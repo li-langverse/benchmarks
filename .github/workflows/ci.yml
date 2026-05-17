@@ -40,28 +40,20 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
-  dashboard-static:
+  # Pages deploy uses Vite (pages.yml) until lic main ships std/plot (PH-IO-5).
+  dashboard-build:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          repository: li-langverse/lic
-          path: lic
-      - name: Install LLVM 18
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: dashboard/package-lock.json
+      - name: Build Vite dashboard
+        working-directory: dashboard
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev python3
-      - run: |
-          export LLVM_DIR=/usr/lib/llvm-18/lib/cmake/llvm CC=clang-18
-          cd lic && ./scripts/build.sh
-          cd "$GITHUB_WORKSPACE"
-          chmod +x scripts/ingest/*.sh scripts/dashboard/*.sh scripts/regression-check.sh
-      - name: Ingest
-        env:
-          LIC_ROOT: ${{ github.workspace }}/lic
-        run: ./scripts/ingest/ingest-lic.sh
-      - name: Render static dashboard
-        env:
-          LIC_ROOT: ${{ github.workspace }}/lic
-        run: ./scripts/dashboard/render-static.sh
+          npm ci
+          npm run build
+      - name: Verify Pages artifact path
+        run: test -s dashboard/dist/index.html
