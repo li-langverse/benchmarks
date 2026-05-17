@@ -28,6 +28,7 @@ PREFLIGHT_SCRIPTS = [
     ("plan_audit", ["python3", "scripts/plan-completion-audit.py"]),
     ("ecosystem_audit", ["python3", "scripts/ecosystem-audit.py"]),
     ("org_ci_audit", ["python3", "scripts/ensure-org-repo-ci.py"]),
+    ("org_agent_kit_audit", ["python3", "scripts/ensure-org-agent-kit.py", "--local-only"]),
     ("explorer", ["python3", "scripts/ecosystem-explorer.py"]),
     ("merge_plan", ["python3", "scripts/pr-merge-queue-plan.py"]),
     ("pr_program", ["python3", "scripts/run-pr-program.py"]),
@@ -122,6 +123,13 @@ CURSOR_AGENTS = [
         "when": "Repos missing ci.yml on main",
         "preflight": ["org_ci_audit", "ecosystem_audit"],
     },
+    {
+        "id": "agent_kit_maintainer",
+        "prompt": "li-cursor-agents/prompts/agent-kit-maintainer.md",
+        "skills": ["li-ecosystem-discipline"],
+        "when": "Repos missing or drifted roadmap agent-kit (.cursor rules/hooks)",
+        "preflight": ["org_agent_kit_audit", "ecosystem_explorer"],
+    },
 ]
 
 
@@ -175,12 +183,31 @@ def recommend_agents(data: dict) -> list[dict]:
         ]
         if partial_hpc and not _has_agent(rec, "gap_explorer"):
             rec.append({"agent": "gap_explorer", "reason": f"{len(partial_hpc)} HPC library gaps"})
+        kit = explorer.get("agent_kit") or {}
+        if kit.get("drift") and not _has_agent(rec, "agent_kit_maintainer"):
+            rec.append(
+                {
+                    "agent": "agent_kit_maintainer",
+                    "reason": "agent-kit version mismatch across sibling clones",
+                }
+            )
 
     org_ci = data.get("org_ci_audit") or {}
     if isinstance(org_ci, dict):
         missing_ci = org_ci.get("repos_missing_ci") or []
         if missing_ci:
             rec.append({"agent": "ci_maintainer", "reason": f"{len(missing_ci)} repos missing CI on main"})
+
+    kit_audit = data.get("org_agent_kit_audit") or {}
+    if isinstance(kit_audit, dict):
+        needing = kit_audit.get("repos_needing_sync") or []
+        if needing:
+            rec.append(
+                {
+                    "agent": "agent_kit_maintainer",
+                    "reason": f"{len(needing)} repos missing or drifted agent-kit",
+                }
+            )
 
     audit = data.get("ecosystem_audit") or {}
     if isinstance(audit, dict):
@@ -283,6 +310,7 @@ def main() -> int:
         "ecosystem_audit": load_json(LATEST / "ecosystem-audit.json"),
         "ecosystem_explorer": load_json(LATEST / "ecosystem-explorer.json"),
         "org_ci_audit": load_json(LATEST / "org-repo-ci-audit.json"),
+        "org_agent_kit_audit": load_json(LATEST / "org-agent-kit-audit.json"),
         "merge_plan": load_json(LATEST / "pr-merge-queue-plan.json"),
         "pr_program": load_json(LATEST / "pr-program-run.json"),
         "cursor_agents": CURSOR_AGENTS,
