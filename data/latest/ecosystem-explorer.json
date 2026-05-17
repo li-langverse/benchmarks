@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-17T08:42Z",
+  "generated_at": "2026-05-17T16:23Z",
   "lic_root": "/Users/julian/Documents/coding-projects/li",
   "lic_present": true,
   "std_modules_on_disk": [
@@ -76,27 +76,25 @@
   ],
   "packages_without_org_mirror": [],
   "catalog": {
-    "total": 41,
+    "total": 25,
     "by_category": {
       "micro": 5,
-      "physics": 20,
+      "physics": 15,
       "correctness": 1,
       "http": 2,
-      "tooling": 9,
-      "security": 4
+      "tooling": 2
     },
     "by_tier": {
       "1": 5,
-      "2": 20,
+      "2": 15,
       "0": 1,
       "5": 2,
-      "3": 13
+      "3": 2
     },
     "variants": {
-      "shared_c_kernel": 1,
-      "default": 37,
-      "pure_li": 2,
-      "async_stub": 1
+      "shared_c_kernel": 9,
+      "default": 15,
+      "pure_li": 1
     },
     "suggested_catalog_gaps": [
       "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",

@@ -1,264 +1,90 @@
 {
-  "generated_at": "2026-05-17T08:42Z",
+  "generated_at": "2026-05-17T16:23Z",
   "roots": {
-    "lic": "/Users/julian/Documents/coding-projects/li",
+    "lic": "/Users/julian/Documents/coding-projects/lic",
     "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
     "roadmap": "/Users/julian/Documents/coding-projects/roadmap"
   },
   "summary": {
-    "open_tracker_items": 8,
-    "open_plan_checkboxes": 96,
-    "provability_partial": 12,
-    "provability_missing": 4,
-    "catalog_gaps": 15,
-    "total_findings": 135
+    "open_tracker_items": 1,
+    "open_plan_checkboxes": 0,
+    "provability_partial": 0,
+    "provability_missing": 0,
+    "catalog_gaps": 21,
+    "total_findings": 22
   },
   "master_plan_open": [
     {
-      "source": "lic:master_plan",
-      "item": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_return_linked=` (AST witness \u2194 MIR return); open goals checker"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contract` stub closed; `sqrt_open_bound` abs VC open; `lic verify --strict-lean`"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristics for race exploits"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))"
-    },
-    {
-      "source": "lic:master_plan",
-      "item": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnostic-v1` schema, handover docs, manifest stub ([llm-first spec](../specs/2026-05-16-li-llm-first-design.md), [agent-hand..."
+      "source": "master_plan",
+      "item": "missing file: /Users/julian/Documents/coding-projects/lic/docs/superpowers/plans/2026-05-14-li-master-plan.md"
     }
   ],
-  "plan_files_open": [
-    {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "Shared `params.toml` checked into all impl folders"
-    },
-    {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "Reference energy/trajectory hash documented in `README.md`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "C++ reference passes verify.py"
-    },
-    {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "Li reference passes `verify.py` and **`lic build`**"
-    },
-    {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "Timing runs separated from verification runs"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_return_linked=` (AST witness \u2194 MIR return); open goals checker"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contract` stub closed; `sqrt_open_bound` abs VC open; `lic verify --strict-lean`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristics for race exploits"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))"
-    },
-    {
-      "source": "lic:plans/2026-05-14-li-master-plan.md",
-      "item": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnostic-v1` schema, handover docs, manifest stub ([llm-first spec](../specs/2026-05-16-li-llm-first-design.md), [agent-hand..."
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
-      "item": "`cmake --build build` succeeds"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
-      "item": "`./build/compiler/lic/lic smoke-llvm` succeeds"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
-      "item": "Master plan Phase 0 checkbox checked"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`enum Type { Int, Uint, WrappingInt, Float64, Bool, Unit, String, Array { len: u64, elem: Box<Type> }, Option(Box<Type>), Enum(EnumId), Object(ObjectId), Proc { .. } }`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`TypeCtx::define_type`, `lookup`, `define_proc`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`check_module(&Module) -> Result<TypedModule, Vec<TypeError>>`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Return typed wrapper nodes or side table `node_id \u2192 Type`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Track `Owned | BorrowImm | BorrowMut` per local"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Reject: use after move, two `mut` borrows, mut while imm borrow live"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "v1: no references in struct fields yet"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Tests assert compile error messages mention dimension / type mismatch"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`lic check file.li` \u2014 parse + typecheck, exit 1 on errors"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`fib.li` typechecks"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "All `bad_*.li` fail with expected errors"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Borrow double-mut test fails cleanly"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`lower_module(TypedModule) -> MirModule`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "One basic block per stmt chain; if/while create CFG edges"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Map MIR types to LLVM types (`array` \u2192 struct or stack array)"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Emit `main` calling user `main` if present"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Debug: `li_bounds_fail` call on dynamic index"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`lic build input.li -o out [--release]`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Pipeline: parse \u2192 check \u2192 mir \u2192 llvm bitcode \u2192 `clang -o out`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Link `runtime/li_rt.c`"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Deferred until Phase 4 provides `echo` \u2014 for Phase 3 use:"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`lic build examples/hello.li -o hello && ./hello; echo $?` \u2192 0"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "insta snapshot of LLVM IR for `return 0` program"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Native binary from minimal proc"
-    }
-  ],
+  "plan_files_open": [],
   "provability_gaps": {
-    "partial": [
-      "**G-lean**",
-      "**G-vc**",
-      "**G-par**",
-      "**G-stdlib**",
-      "**G-dec**",
-      "**G-math**",
-      "**G-bnd**",
-      "**G-def**",
-      "**G-math-syn**",
-      "**G-async**",
-      "**G-net**",
-      "**G-narrow**"
-    ],
-    "missing": [
-      "**G-ann**",
-      "**G-gpu**",
-      "**G-meta**",
-      "**G-authz**"
-    ]
+    "missing_file": "/Users/julian/Documents/coding-projects/lic/docs/verification/provability-gaps.md",
+    "partial": [],
+    "missing": []
   },
   "catalog_gaps": [
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack"
+      "item": "catalog id=simd_dot path missing under LIC_ROOT: benchmarks/tier1_micro/simd_dot"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=three_body_pure path missing under LIC_ROOT: benchmarks/tier2_physics/three_body_pure"
+      "item": "catalog id=matmul_naive path missing under LIC_ROOT: benchmarks/tier1_micro/matmul_naive"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc"
+      "item": "catalog id=matmul_blocked path missing under LIC_ROOT: benchmarks/tier1_micro/matmul_blocked"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive"
+      "item": "catalog id=reduce_sum path missing under LIC_ROOT: benchmarks/tier1_micro/reduce_sum"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=orbit_two_body path missing under LIC_ROOT: benchmarks/tier2_physics/orbit_two_body"
+      "item": "catalog id=horner_pure_li path missing under LIC_ROOT: benchmarks/tier1_micro/horner_pure_li"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=fdtd_waveguide_2d path missing under LIC_ROOT: benchmarks/tier2_physics/fdtd_waveguide_2d"
+      "item": "catalog id=md_lennard_jones path missing under LIC_ROOT: benchmarks/tier2_physics/md_lennard_jones"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=schrodinger_1d_barrier path missing under LIC_ROOT: benchmarks/tier2_physics/schrodinger_1d_barrier"
+      "item": "catalog id=three_body path missing under LIC_ROOT: benchmarks/tier2_physics/three_body"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=nbody_gravity path missing under LIC_ROOT: benchmarks/tier2_physics/nbody_gravity"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=harmonic_oscillator_chain path missing under LIC_ROOT: benchmarks/tier2_physics/harmonic_oscillator_chain"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=wave_equation_1d path missing under LIC_ROOT: benchmarks/tier2_physics/wave_equation_1d"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=heat_equation_2d path missing under LIC_ROOT: benchmarks/tier2_physics/heat_equation_2d"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=double_pendulum path missing under LIC_ROOT: benchmarks/tier2_physics/double_pendulum"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=advection_diffusion_2d path missing under LIC_ROOT: benchmarks/tier2_physics/advection_diffusion_2d"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=wave_equation_2d path missing under LIC_ROOT: benchmarks/tier2_physics/wave_equation_2d"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=sph_dam_break_2d path missing under LIC_ROOT: benchmarks/tier2_physics/sph_dam_break_2d"
     },
     {
       "source": "benchmarks:catalog.toml",
@@ -266,31 +92,23 @@
     },
     {
       "source": "benchmarks:catalog.toml",
+      "item": "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack"
+    },
+    {
+      "source": "benchmarks:catalog.toml",
       "item": "catalog id=cloth_swing path missing under LIC_ROOT: benchmarks/tier2_physics/cloth_swing"
     },
     {
       "source": "benchmarks:catalog.toml",
-      "item": "catalog id=ragdoll_chain path missing under LIC_ROOT: benchmarks/tier2_physics/ragdoll_chain"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
       "item": "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=security_gate_full path missing under LIC_ROOT: scripts/ci-security.sh"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=security_corpus path missing under LIC_ROOT: li-tests/run_security.sh"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=security_cve_patterns path missing under LIC_ROOT: scripts/check-cve-coverage.sh"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=security_webserver_registry path missing under LIC_ROOT: scripts/check-webserver-bugs.sh"
     }
   ],
   "implementation_signals": [],
@@ -298,33 +116,33 @@
     {
       "priority": "P1",
       "action": "Close or update master plan phase tracker rows",
-      "count": 8
-    },
-    {
-      "priority": "P1",
-      "action": "Update provability-gaps.md when closing compiler work",
-      "partial": 12,
-      "missing": 4
+      "count": 1
     },
     {
       "priority": "P2",
       "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
       "benchmarks": [
-        "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack",
-        "catalog id=three_body_pure path missing under LIC_ROOT: benchmarks/tier2_physics/three_body_pure",
-        "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc",
-        "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive",
-        "catalog id=orbit_two_body path missing under LIC_ROOT: benchmarks/tier2_physics/orbit_two_body",
-        "catalog id=fdtd_waveguide_2d path missing under LIC_ROOT: benchmarks/tier2_physics/fdtd_waveguide_2d",
-        "catalog id=schrodinger_1d_barrier path missing under LIC_ROOT: benchmarks/tier2_physics/schrodinger_1d_barrier",
+        "catalog id=simd_dot path missing under LIC_ROOT: benchmarks/tier1_micro/simd_dot",
+        "catalog id=matmul_naive path missing under LIC_ROOT: benchmarks/tier1_micro/matmul_naive",
+        "catalog id=matmul_blocked path missing under LIC_ROOT: benchmarks/tier1_micro/matmul_blocked",
+        "catalog id=reduce_sum path missing under LIC_ROOT: benchmarks/tier1_micro/reduce_sum",
+        "catalog id=horner_pure_li path missing under LIC_ROOT: benchmarks/tier1_micro/horner_pure_li",
+        "catalog id=md_lennard_jones path missing under LIC_ROOT: benchmarks/tier2_physics/md_lennard_jones",
+        "catalog id=three_body path missing under LIC_ROOT: benchmarks/tier2_physics/three_body",
+        "catalog id=nbody_gravity path missing under LIC_ROOT: benchmarks/tier2_physics/nbody_gravity",
+        "catalog id=harmonic_oscillator_chain path missing under LIC_ROOT: benchmarks/tier2_physics/harmonic_oscillator_chain",
+        "catalog id=wave_equation_1d path missing under LIC_ROOT: benchmarks/tier2_physics/wave_equation_1d",
+        "catalog id=heat_equation_2d path missing under LIC_ROOT: benchmarks/tier2_physics/heat_equation_2d",
+        "catalog id=double_pendulum path missing under LIC_ROOT: benchmarks/tier2_physics/double_pendulum",
+        "catalog id=advection_diffusion_2d path missing under LIC_ROOT: benchmarks/tier2_physics/advection_diffusion_2d",
+        "catalog id=wave_equation_2d path missing under LIC_ROOT: benchmarks/tier2_physics/wave_equation_2d",
+        "catalog id=sph_dam_break_2d path missing under LIC_ROOT: benchmarks/tier2_physics/sph_dam_break_2d",
         "catalog id=euler_fluid_2d path missing under LIC_ROOT: benchmarks/tier2_physics/euler_fluid_2d",
+        "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive",
+        "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc",
+        "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack",
         "catalog id=cloth_swing path missing under LIC_ROOT: benchmarks/tier2_physics/cloth_swing",
-        "catalog id=ragdoll_chain path missing under LIC_ROOT: benchmarks/tier2_physics/ragdoll_chain",
-        "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness",
-        "catalog id=security_gate_full path missing under LIC_ROOT: scripts/ci-security.sh",
-        "catalog id=security_corpus path missing under LIC_ROOT: li-tests/run_security.sh",
-        "catalog id=security_cve_patterns path missing under LIC_ROOT: scripts/check-cve-coverage.sh",
-        "catalog id=security_webserver_registry path missing under LIC_ROOT: scripts/check-webserver-bugs.sh"
+        "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
       ]
     }
   ]

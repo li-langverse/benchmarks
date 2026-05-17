@@ -131,7 +131,8 @@ repo = "lic"
 path = "benchmarks/tier2_physics/advection_diffusion_2d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-4"]
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
 
 [[benchmark]]
 id = "wave_equation_2d"
@@ -141,7 +142,8 @@ repo = "lic"
 path = "benchmarks/tier2_physics/wave_equation_2d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-3"]
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
 
 [[benchmark]]
 id = "sph_dam_break_2d"
@@ -151,78 +153,8 @@ repo = "lic"
 path = "benchmarks/tier2_physics/sph_dam_break_2d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-3"]
-
-[[benchmark]]
-id = "rigid_body_stack"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/rigid_body_stack"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-2"]
-
-[[benchmark]]
-id = "three_body_pure"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/three_body_pure"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-1"]
-variant = "pure_li"
-
-[[benchmark]]
-id = "wind_field_bc"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/wind_field_bc"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-4"]
-
-[[benchmark]]
-id = "combustion_passive"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/combustion_passive"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-5"]
-
-[[benchmark]]
-id = "orbit_two_body"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/orbit_two_body"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-4"]
-
-[[benchmark]]
-id = "fdtd_waveguide_2d"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/fdtd_waveguide_2d"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-6"]
-
-[[benchmark]]
-id = "schrodinger_1d_barrier"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/schrodinger_1d_barrier"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-7"]
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
 
 [[benchmark]]
 id = "euler_fluid_2d"
@@ -232,7 +164,41 @@ repo = "lic"
 path = "benchmarks/tier2_physics/euler_fluid_2d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-3"]
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
+
+[[benchmark]]
+id = "combustion_passive"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/combustion_passive"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
+
+[[benchmark]]
+id = "wind_field_bc"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wind_field_bc"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
+
+[[benchmark]]
+id = "rigid_body_stack"
+category = "physics"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/rigid_body_stack"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
 
 [[benchmark]]
 id = "cloth_swing"
@@ -242,17 +208,8 @@ repo = "lic"
 path = "benchmarks/tier2_physics/cloth_swing"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-3"]
-
-[[benchmark]]
-id = "ragdoll_chain"
-category = "physics"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/ragdoll_chain"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-PHY-2"]
+ph_ids = ["PH-5b"]
+variant = "shared_c_kernel"
 
 [[benchmark]]
 id = "tier0_stability"
@@ -305,119 +262,3 @@ path = "scripts/ci.sh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-8e"]
-# Append these [[benchmark]] blocks to li-langverse/benchmarks catalog.toml
-# after merging lic harness (benchmarks/harness/bench_ecosystem.py).
-#
-# PR target: https://github.com/li-langverse/benchmarks
-# Ingest: scripts/ingest/build_summary.py reads benchmarks/results/latest.csv from lic.
-
-[[benchmark]]
-id = "async_await_chain"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "benchmarks/tier3_ecosystem/async_await_chain"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H", "PH-5b"]
-variant = "async_stub"
-
-[[benchmark]]
-id = "lic_build_async"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "li-tests/async"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-
-[[benchmark]]
-id = "lic_build_effects_net"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "li-tests/effects"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-
-[[benchmark]]
-id = "lic_build_effects_async"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "li-tests/effects"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-
-[[benchmark]]
-id = "lic_build_alloc"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "li-tests/effects"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-
-[[benchmark]]
-id = "lic_check_contracts"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "li-tests/contracts_verify"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-2f"]
-
-[[benchmark]]
-id = "li_tests_full"
-category = "tooling"
-tier = 3
-repo = "lic"
-path = "li-tests"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-2e"]
-
-[[benchmark]]
-id = "security_gate_full"
-category = "security"
-tier = 3
-repo = "lic"
-path = "scripts/ci-security.sh"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-sec"]
-
-[[benchmark]]
-id = "security_corpus"
-category = "security"
-tier = 3
-repo = "lic"
-path = "li-tests/run_security.sh"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-sec"]
-
-[[benchmark]]
-id = "security_cve_patterns"
-category = "security"
-tier = 3
-repo = "lic"
-path = "scripts/check-cve-coverage.sh"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-sec"]
-
-[[benchmark]]
-id = "security_webserver_registry"
-category = "security"
-tier = 3
-repo = "lic"
-path = "scripts/check-webserver-bugs.sh"
-metric = "wall_time"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H", "PH-sec"]

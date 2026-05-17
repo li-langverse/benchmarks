@@ -32,6 +32,10 @@ PREFLIGHT_SCRIPTS = [
     ("explorer", ["python3", "scripts/ecosystem-explorer.py"]),
     ("merge_plan", ["python3", "scripts/pr-merge-queue-plan.py"]),
     ("pr_program", ["python3", "scripts/run-pr-program.py"]),
+    ("pr_branch_hygiene", ["python3", "scripts/pr-branch-hygiene.py"]),
+    ("ci_bug_triage", ["python3", "scripts/ci-bug-triage.py"]),
+    ("security_cwe_audit", ["python3", "scripts/security-cwe-audit.py"]),
+    ("workspace_dirty_sweep", ["python3", "scripts/workspace-dirty-sweep.py"]),
 ]
 
 CURSOR_AGENTS = [
@@ -62,6 +66,26 @@ CURSOR_AGENTS = [
         "preflight": ["plan_audit", "explorer", "issue_triage"],
     },
     {
+        "id": "code_implementer",
+        "prompt": "li-cursor-agents/prompts/code-implementer.md",
+        "skills": ["explore-li-ecosystem", "audit-plan-completion"],
+        "when": "Implement gaps/queue items and open PRs",
+        "preflight": ["plan_audit", "explorer", "ci_bug_triage"],
+    },
+    {
+        "id": "bug_fixer",
+        "prompt": "li-cursor-agents/prompts/bug-fixer.md",
+        "when": "CI failures (local-ci/GHA) and bug issues",
+        "preflight": ["ci_bug_triage", "pr_program"],
+    },
+    {
+        "id": "security_auditor",
+        "prompt": "li-cursor-agents/prompts/security-auditor.md",
+        "skill": "li-ecosystem-discipline",
+        "when": "CVE/CWE catalog gaps across org repos",
+        "preflight": ["security_cwe_audit"],
+    },
+    {
         "id": "issue_planner",
         "prompt": ".cursor/automations/issue-feature-planner.md",
         "skill": "plan-feature-from-issue",
@@ -69,11 +93,18 @@ CURSOR_AGENTS = [
         "preflight": ["issue_triage"],
     },
     {
+        "id": "pr_branch_opener",
+        "prompt": "li-cursor-agents/prompts/pr-branch-opener.md",
+        "skill": "review-pr-alignment",
+        "when": "Pushed branches with no open PR",
+        "preflight": ["merge_plan", "pr_program", "pr_branch_hygiene"],
+    },
+    {
         "id": "pr_alignment",
         "prompt": ".cursor/automations/pr-alignment-agent.md",
         "skill": "review-pr-alignment",
-        "when": "Open PRs vs vision / roadmap / philosophy",
-        "preflight": ["merge_plan", "pr_program", "issue_triage"],
+        "when": "Open PRs vs vision / roadmap / philosophy; close superseded PRs",
+        "preflight": ["merge_plan", "pr_program", "pr_branch_hygiene", "issue_triage"],
     },
     {
         "id": "pr_reviewer",
@@ -130,12 +161,25 @@ CURSOR_AGENTS = [
         "when": "Repos missing or drifted roadmap agent-kit (.cursor rules/hooks)",
         "preflight": ["org_agent_kit_audit", "ecosystem_explorer"],
     },
+    {
+        "id": "workspace_sweeper",
+        "prompt": "li-cursor-agents/prompts/workspace-sweeper.md",
+        "when": "Uncommitted work in sibling clones — fallback commit/push/PR + restart stack",
+        "preflight": ["workspace_dirty_sweep"],
+    },
 ]
 
 
 def run_script(name: str, cmd: list[str], skip_slow: bool) -> dict:
   # merge_plan must run every briefing — pr_merger depends on ordered queue
-    slow = name in ("explorer", "plan_audit", "pr_program")
+    slow = name in (
+        "explorer",
+        "plan_audit",
+        "pr_program",
+        "pr_branch_hygiene",
+        "ci_bug_triage",
+        "security_cwe_audit",
+    )
     if skip_slow and slow:
         return {"skipped": True, "reason": "--skip-slow"}
     env = os.environ.copy()
@@ -162,6 +206,30 @@ def load_json(path: Path) -> dict | list | None:
 
 def _has_agent(rec: list[dict], agent_id: str) -> bool:
     return any(r.get("agent") == agent_id for r in rec)
+
+
+def build_agent_deliverable_gaps(data: dict) -> dict:
+    deliverable = data.get("agent_pr_deliverable_gate") or {}
+    plan = data.get("plan_completion_audit") or {}
+    plan_open = 0
+    if isinstance(plan, dict):
+        plan_open = int((plan.get("summary") or {}).get("total_findings", 0) or 0)
+    incomplete = []
+    if isinstance(deliverable, dict):
+        incomplete = deliverable.get("agent_incomplete_runs") or []
+    failures = []
+    if isinstance(deliverable, dict):
+        failures = deliverable.get("failures") or []
+    summary = deliverable.get("summary") if isinstance(deliverable, dict) else {}
+    numerics_blocked = int((summary or {}).get("numerics_blocked", 0) or 0)
+    return {
+        "plan_open_items": plan_open,
+        "incomplete_runs": len(incomplete),
+        "agent_prs_blocked": len(failures),
+        "numerics_without_evidence": numerics_blocked,
+        "incomplete_run_rows": incomplete[:12],
+        "agent_pr_failures": failures[:12],
+    }
 
 
 def recommend_agents(data: dict) -> list[dict]:
@@ -202,13 +270,27 @@ def recommend_agents(data: dict) -> list[dict]:
     kit_audit = data.get("org_agent_kit_audit") or {}
     if isinstance(kit_audit, dict):
         needing = kit_audit.get("repos_needing_sync") or []
-        if needing:
-            rec.append(
+        adoption = kit_audit.get("downstream_adoption") or {}
+        if adoption.get("kit_bumped") and not _has_agent(rec, "agent_kit_maintainer"):
+            rec.insert(
+                0,
                 {
                     "agent": "agent_kit_maintainer",
-                    "reason": f"{len(needing)} repos missing or drifted agent-kit",
-                }
+                    "reason": adoption.get("summary")
+                    or "roadmap agent-kit bumped — downstream repos need adoption",
+                },
             )
+        elif needing and not _has_agent(rec, "agent_kit_maintainer"):
+            version_behind = kit_audit.get("repos_version_behind") or []
+            canon_v = kit_audit.get("canonical_version") or "?"
+            if version_behind:
+                reason = (
+                    f"{len(version_behind)} repo(s) behind agent-kit {canon_v} "
+                    f"({len(needing)} total need sync)"
+                )
+            else:
+                reason = f"{len(needing)} repos missing or drifted agent-kit"
+            rec.append({"agent": "agent_kit_maintainer", "reason": reason})
 
     audit = data.get("ecosystem_audit") or {}
     if isinstance(audit, dict):
@@ -227,9 +309,70 @@ def recommend_agents(data: dict) -> list[dict]:
                 }
             )
 
+    pr_hygiene = data.get("pr_branch_hygiene") or {}
+    if isinstance(pr_hygiene, dict):
+        n_branch = int((pr_hygiene.get("summary") or {}).get("branches_needing_pr") or 0)
+        if n_branch > 0 and not _has_agent(rec, "pr_branch_opener"):
+            rec.append(
+                {
+                    "agent": "pr_branch_opener",
+                    "reason": f"{n_branch} branch(es) pushed without open PR",
+                }
+            )
+        n_close = int((pr_hygiene.get("summary") or {}).get("prs_recommended_close") or 0)
+        if n_close > 0 and not _has_agent(rec, "pr_alignment"):
+            rec.append(
+                {
+                    "agent": "pr_alignment",
+                    "reason": f"{n_close} PR(s) flagged for close/supersede review",
+                }
+            )
+
+    ci_bug = data.get("ci_bug_triage") or {}
+    if isinstance(ci_bug, dict):
+        q = int((ci_bug.get("summary") or {}).get("work_queue_size") or 0)
+        if q > 0 and not _has_agent(rec, "bug_fixer"):
+            rec.append(
+                {
+                    "agent": "bug_fixer",
+                    "reason": f"{q} CI/bug item(s) in work queue (local-ci + issues + GHA red)",
+                }
+            )
+        if q > 0 and not _has_agent(rec, "code_implementer"):
+            rec.append(
+                {
+                    "agent": "code_implementer",
+                    "reason": "implement fixes from ci-bug-triage work queue",
+                }
+            )
+
+    sec = data.get("security_cwe_audit") or {}
+    if isinstance(sec, dict):
+        gaps_n = int((sec.get("summary") or {}).get("catalog_gaps") or 0)
+        wf_n = int((sec.get("summary") or {}).get("repos_without_security_workflow") or 0)
+        if (gaps_n > 0 or wf_n > 0) and not _has_agent(rec, "security_auditor"):
+            rec.append(
+                {
+                    "agent": "security_auditor",
+                    "reason": f"CWE/catalog gaps={gaps_n}, repos missing security workflow={wf_n}",
+                }
+            )
+
+    explorer = data.get("ecosystem_explorer") or {}
+    if isinstance(explorer, dict) and explorer.get("missing_std_modules") and not _has_agent(
+        rec, "code_implementer"
+    ):
+        rec.append(
+            {
+                "agent": "code_implementer",
+                "reason": "implement missing std modules from explorer",
+            }
+        )
+
     pr_prog = data.get("pr_program") or {}
     if isinstance(pr_prog, dict) and pr_prog.get("open", 0) > 0:
-        rec.append({"agent": "pr_alignment", "reason": "open PRs need alignment triage"})
+        if not _has_agent(rec, "pr_alignment"):
+            rec.append({"agent": "pr_alignment", "reason": "open PRs need alignment triage"})
         if pr_prog.get("ci_green", 0) > 0:
             rec.append({"agent": "pr_reviewer", "reason": "CI-green PRs ready for standards review"})
         if pr_prog.get("gate_ready_labeled", 0) > 0:
@@ -253,6 +396,51 @@ def recommend_agents(data: dict) -> list[dict]:
     triage = data.get("issue_triage") or {}
     if isinstance(triage, dict) and triage.get("needs_plan"):
         rec.append({"agent": "issue_planner", "reason": "issues need plans"})
+
+    gaps = data.get("agent_deliverable_gaps") or {}
+    if isinstance(gaps, dict):
+        if gaps.get("incomplete_runs", 0) > 0 and not _has_agent(rec, "implementation_gaps"):
+            rec.append(
+                {
+                    "agent": "implementation_gaps",
+                    "reason": f"{gaps['incomplete_runs']} incomplete agent run(s) — SDK may have ended before PR/tests",
+                }
+            )
+        if gaps.get("agent_prs_blocked", 0) > 0 and not _has_agent(rec, "pr_reviewer"):
+            rec.append(
+                {
+                    "agent": "pr_reviewer",
+                    "reason": f"{gaps['agent_prs_blocked']} agent PR(s) fail deliverable / test-evidence gate",
+                }
+            )
+        if gaps.get("numerics_without_evidence", 0) > 0:
+            if not _has_agent(rec, "numerics_researcher"):
+                rec.append(
+                    {
+                        "agent": "numerics_researcher",
+                        "reason": f"{gaps['numerics_without_evidence']} numerics PR(s) without bench/test proof",
+                    }
+                )
+            if not _has_agent(rec, "autoresearch"):
+                rec.append(
+                    {
+                        "agent": "autoresearch",
+                        "reason": "autoresearch PR(s) missing li-tests/benchmarks evidence",
+                    }
+                )
+
+
+    dirty = data.get("workspace_dirty_sweep") or {}
+    if isinstance(dirty, dict):
+        n_dirty = int(dirty.get("dirty_count") or 0)
+        if n_dirty > 0 and not _has_agent(rec, "workspace_sweeper"):
+            rec.insert(
+                0,
+                {
+                    "agent": "workspace_sweeper",
+                    "reason": f"{n_dirty} sibling repo(s) with uncommitted work — fallback sweep",
+                },
+            )
 
     bench = (data.get("ecosystem_audit") or {}).get("benchmarks") or {}
     if isinstance(bench, dict) and bench.get("red"):
@@ -325,9 +513,54 @@ def main() -> int:
         "org_agent_kit_audit": load_json(LATEST / "org-agent-kit-audit.json"),
         "merge_plan": load_json(LATEST / "pr-merge-queue-plan.json"),
         "pr_program": load_json(LATEST / "pr-program-run.json"),
+        "pr_branch_hygiene": load_json(LATEST / "pr-branch-hygiene.json"),
+        "ci_bug_triage": load_json(LATEST / "ci-bug-triage.json"),
+        "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
+        "workspace_dirty_sweep": load_json(LATEST / "workspace-dirty-sweep.json"),
+        "local_ci_results": load_json(LATEST / "local-ci-results.json"),
         "cursor_agents": CURSOR_AGENTS,
         "recommended_agents": [],
     }
+    agents_root = Path(os.environ.get("LI_CURSOR_AGENTS_ROOT", ROOT.parent / "li-cursor-agents"))
+    if not args.skip_slow and subprocess.run(["which", "gh"], capture_output=True).returncode == 0:
+        runs["agent_deliverable_gate"] = run_script(
+            "agent_deliverable_gate",
+            ["python3", "scripts/agent-pr-deliverable-gate.py", "--sweep-agent-prs"],
+            False,
+        )
+    else:
+        runs["agent_deliverable_gate"] = {"skipped": True, "reason": "--skip-slow or gh missing"}
+
+    data["agent_pr_deliverable_gate"] = load_json(LATEST / "agent-pr-deliverable-gate.json")
+    if not data["agent_pr_deliverable_gate"] and agents_root.is_dir():
+        import importlib.util
+
+        gate_path = ROOT / "scripts" / "agent-pr-deliverable-gate.py"
+        if gate_path.is_file():
+            spec = importlib.util.spec_from_file_location("agent_pr_deliverable_gate", gate_path)
+            if spec and spec.loader:
+                mod = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(mod)
+                incomplete_only = mod.scan_incomplete_runs(agents_root)
+                if incomplete_only:
+                    data["agent_pr_deliverable_gate"] = {
+                        "agent_incomplete_runs": incomplete_only,
+                        "failures": [],
+                        "summary": {"incomplete_runs": len(incomplete_only)},
+                    }
+
+    data["agent_deliverable_gaps"] = build_agent_deliverable_gaps(data)
+    data["agent_incomplete_runs"] = (
+        (data.get("agent_pr_deliverable_gate") or {}).get("agent_incomplete_runs") or []
+        if isinstance(data.get("agent_pr_deliverable_gate"), dict)
+        else []
+    )
+    data["agent_pr_deliverable_failures"] = (
+        (data.get("agent_pr_deliverable_gate") or {}).get("failures") or []
+        if isinstance(data.get("agent_pr_deliverable_gate"), dict)
+        else []
+    )
+
     data["recommended_agents"] = recommend_agents(data)
     plan_audit = data.get("plan_completion_audit")
     data["org_roadmap"] = load_org_roadmap(plan_audit if isinstance(plan_audit, dict) else None)
