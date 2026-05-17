@@ -35,6 +35,7 @@ PREFLIGHT_SCRIPTS = [
     ("pr_branch_hygiene", ["python3", "scripts/pr-branch-hygiene.py"]),
     ("ci_bug_triage", ["python3", "scripts/ci-bug-triage.py"]),
     ("security_cwe_audit", ["python3", "scripts/security-cwe-audit.py"]),
+    ("workspace_dirty_sweep", ["python3", "scripts/workspace-dirty-sweep.py"]),
 ]
 
 CURSOR_AGENTS = [
@@ -159,6 +160,12 @@ CURSOR_AGENTS = [
         "skills": ["li-ecosystem-discipline"],
         "when": "Repos missing or drifted roadmap agent-kit (.cursor rules/hooks)",
         "preflight": ["org_agent_kit_audit", "ecosystem_explorer"],
+    },
+    {
+        "id": "workspace_sweeper",
+        "prompt": "li-cursor-agents/prompts/workspace-sweeper.md",
+        "when": "Uncommitted work in sibling clones — fallback commit/push/PR + restart stack",
+        "preflight": ["workspace_dirty_sweep"],
     },
 ]
 
@@ -422,6 +429,19 @@ def recommend_agents(data: dict) -> list[dict]:
                     }
                 )
 
+
+    dirty = data.get("workspace_dirty_sweep") or {}
+    if isinstance(dirty, dict):
+        n_dirty = int(dirty.get("dirty_count") or 0)
+        if n_dirty > 0 and not _has_agent(rec, "workspace_sweeper"):
+            rec.insert(
+                0,
+                {
+                    "agent": "workspace_sweeper",
+                    "reason": f"{n_dirty} sibling repo(s) with uncommitted work — fallback sweep",
+                },
+            )
+
     bench = (data.get("ecosystem_audit") or {}).get("benchmarks") or {}
     if isinstance(bench, dict) and bench.get("red"):
         rec.append({"agent": "numerics_researcher", "reason": "red benchmark rows"})
@@ -496,6 +516,7 @@ def main() -> int:
         "pr_branch_hygiene": load_json(LATEST / "pr-branch-hygiene.json"),
         "ci_bug_triage": load_json(LATEST / "ci-bug-triage.json"),
         "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
+        "workspace_dirty_sweep": load_json(LATEST / "workspace-dirty-sweep.json"),
         "local_ci_results": load_json(LATEST / "local-ci-results.json"),
         "cursor_agents": CURSOR_AGENTS,
         "recommended_agents": [],
