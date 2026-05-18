@@ -372,7 +372,7 @@ def recommend_agents(data: dict) -> list[dict]:
     pr_prog = data.get("pr_program") or {}
     if isinstance(pr_prog, dict) and pr_prog.get("open", 0) > 0:
         if not _has_agent(rec, "pr_alignment"):
-        rec.append({"agent": "pr_alignment", "reason": "open PRs need alignment triage"})
+            rec.append({"agent": "pr_alignment", "reason": "open PRs need alignment triage"})
         if pr_prog.get("ci_green", 0) > 0:
             rec.append({"agent": "pr_reviewer", "reason": "CI-green PRs ready for standards review"})
         if pr_prog.get("gate_ready_labeled", 0) > 0:

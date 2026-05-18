@@ -1,14 +1,46 @@
 {
-  "generated_at": "2026-05-17T19:52Z",
+  "generated_at": "2026-05-18T16:22Z",
   "summary": {
     "local_ci_failures": 0,
     "bug_issues": 0,
-    "gha_failing_prs": 4,
-    "work_queue_size": 4
+    "gha_failing_prs": 8,
+    "work_queue_size": 8
   },
   "local_ci_failures": [],
   "bug_issues": [],
   "gha_failing_prs": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 47,
+      "url": "https://github.com/li-langverse/lic/pull/47",
+      "title": "fix(lexer): '+' token fixes horner_pure_li pure_li red row (~72\u00d7 \u2192 ~0.3\u00d7)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 46,
+      "url": "https://github.com/li-langverse/lic/pull/46",
+      "title": "chore(security): downstream security-gate workflow template",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 45,
+      "url": "https://github.com/li-langverse/lic/pull/45",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 43,
+      "url": "https://github.com/li-langverse/lic/pull/43",
+      "title": "docs(numerics): red/near-limit SOTA map and bench repro (numerics_researcher)",
+      "reason": "GitHub Actions checks failing"
+    },
     {
       "kind": "pr_ci",
       "repo": "lic",
@@ -43,6 +75,38 @@
     }
   ],
   "work_queue": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 47,
+      "url": "https://github.com/li-langverse/lic/pull/47",
+      "title": "fix(lexer): '+' token fixes horner_pure_li pure_li red row (~72\u00d7 \u2192 ~0.3\u00d7)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 46,
+      "url": "https://github.com/li-langverse/lic/pull/46",
+      "title": "chore(security): downstream security-gate workflow template",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 45,
+      "url": "https://github.com/li-langverse/lic/pull/45",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 43,
+      "url": "https://github.com/li-langverse/lic/pull/43",
+      "title": "docs(numerics): red/near-limit SOTA map and bench repro (numerics_researcher)",
+      "reason": "GitHub Actions checks failing"
+    },
     {
       "kind": "pr_ci",
       "repo": "lic",

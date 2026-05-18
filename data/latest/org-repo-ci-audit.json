@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-17T20:19Z",
+  "generated_at": "2026-05-18T17:04Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
   "repos_ok": [
@@ -80,7 +80,11 @@
       "release.yml",
       "ubsan-lic.yml"
     ],
-    "lip": [],
+    "lip": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml"
+    ],
     "lis": [
       "branch-sync.yml",
       "ci.yml",

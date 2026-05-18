@@ -1,27 +1,14 @@
 {
-  "generated_at": "2026-05-18T16:12Z",
-  "catalog_path": "/Users/julian/Documents/coding-projects/li-cursor-agents/data/workspaces/li-langverse/lic/security_auditor-1779119928996/repo/security/cve-catalog.json",
+  "generated_at": "2026-05-18T16:22Z",
+  "catalog_path": null,
   "summary": {
-    "catalog_entries": 39,
+    "catalog_entries": 0,
     "catalog_gaps": 0,
-    "security_test_files": 12,
+    "security_test_files": 0,
     "repos_without_security_workflow": 8
   },
   "catalog_gaps": [],
-  "security_tests": [
-    "li-tests/security/deep_indent.li",
-    "li-tests/security/deeply_nested_calls.li",
-    "li-tests/security/empty.li",
-    "li-tests/security/integer_literal_flood.li",
-    "li-tests/security/invalid_utf8_strings.li",
-    "li-tests/security/long_line_no_newline.li",
-    "li-tests/security/many_tokens.li",
-    "li-tests/security/nested_parens.li",
-    "li-tests/security/pathological_generics.li",
-    "li-tests/security/truncated_proc.li",
-    "li-tests/security/unclosed_paren.li",
-    "li-tests/security/unclosed_string.li"
-  ],
+  "security_tests": [],
   "repos": [
     {
       "repo": "lic",

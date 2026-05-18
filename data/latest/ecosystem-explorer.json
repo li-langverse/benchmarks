@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-17T19:50Z",
-  "lic_root": "/Users/julian/Documents/coding-projects/benchmarks/lic",
-  "lic_present": false,
+  "generated_at": "2026-05-18T16:18Z",
+  "lic_root": "/Users/julian/Documents/coding-projects/li",
+  "lic_present": true,
   "std_modules_on_disk": [],
   "missing_std_modules": [
     {
@@ -343,15 +343,31 @@
     "entries": [
       {
         "path": "scripts/expected-agent-kit-version",
-        "version": "1.1.0+5f476d66cf8d1b57"
+        "version": "1.1.0+5f476d66cf8d1b57",
+        "repo_hint": "benchmarks"
       },
       {
-        "path": "/Users/julian/Documents/coding-projects/li/scripts/expected-agent-kit-version",
-        "version": "1.1.0+5f476d66cf8d1b57"
+        "path": "/Users/julian/Documents/coding-projects/roadmap/scripts/expected-agent-kit-version",
+        "version": "1.3.0+manual",
+        "repo_hint": "roadmap"
       }
     ],
-    "drift": false,
-    "canonical_hint": "run ensure-org-agent-kit.py"
+    "drift": true,
+    "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+    "repos_behind_canonical": [
+      {
+        "path": "scripts/expected-agent-kit-version",
+        "version": "1.1.0+5f476d66cf8d1b57",
+        "repo_hint": "benchmarks"
+      },
+      {
+        "path": "/Users/julian/Documents/coding-projects/roadmap/scripts/expected-agent-kit-version",
+        "version": "1.3.0+manual",
+        "repo_hint": "roadmap"
+      }
+    ],
+    "canonical_hint": "run ensure-org-agent-kit.py",
+    "downstream_agent": "agent_kit_maintainer"
   },
   "web_search_queries": [
     {
@@ -415,6 +431,22 @@
       "gaps": [
         "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",
         "Increase pure_li variant rows for PH-7e codegen proof"
+      ]
+    },
+    {
+      "priority": "P2",
+      "action": "Sync agent-kit versions across repos",
+      "versions": [
+        {
+          "path": "scripts/expected-agent-kit-version",
+          "version": "1.1.0+5f476d66cf8d1b57",
+          "repo_hint": "benchmarks"
+        },
+        {
+          "path": "/Users/julian/Documents/coding-projects/roadmap/scripts/expected-agent-kit-version",
+          "version": "1.3.0+manual",
+          "repo_hint": "roadmap"
+        }
       ]
     },
     {
