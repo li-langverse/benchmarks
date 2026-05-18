@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T17:23Z",
+  "generated_at": "2026-05-18T18:31Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
   "dirty_count": 2,
   "dirty_repos": [
@@ -25,8 +25,12 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 1,
+      "changed_files": 5,
       "safe_files": [
+        "data/handoffs/pending.jsonl",
+        "data/lanes/state.json",
+        "data/latest/agent-briefing.json",
+        "data/research-sessions/proof_gap_researcher.json",
         "fixtures/e2e-benchmarks/data/latest/agent-briefing.json"
       ],
       "test_commands": [
