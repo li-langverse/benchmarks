@@ -40,7 +40,14 @@ def gh_json(args: list[str]):
     proc = subprocess.run(["gh", *args], capture_output=True, text=True, check=False)
     if proc.returncode != 0 or not proc.stdout.strip():
         return None
-    return json.loads(proc.stdout)
+    raw = proc.stdout.strip()
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        # gh --jq '.[].name' emits newline-separated scalars, not a JSON array
+        if raw and not raw.startswith(("[", "{")):
+            return [line.strip() for line in raw.splitlines() if line.strip()]
+        return None
 
 
 def load_catalog() -> list[dict]:
@@ -86,18 +93,28 @@ def main() -> int:
     catalog = load_catalog()
     gaps: list[dict] = []
     for entry in catalog:
-        cwe = entry.get("cwe") or entry.get("CWE") or entry.get("cwe_id")
+        cwe_ids = entry.get("cwe_ids") or []
+        if not cwe_ids:
+            legacy = entry.get("cwe") or entry.get("CWE") or entry.get("cwe_id")
+            if legacy:
+                cwe_ids = [legacy]
         cve = entry.get("cve") or entry.get("id") or entry.get("cve_id")
         test_path = entry.get("li_test") or entry.get("test")
-        if not test_path and cwe:
-            gaps.append(
-                {
-                    "cwe": cwe,
-                    "cve": cve,
-                    "reason": "catalog row missing li-tests path",
-                    "severity": entry.get("severity", "unknown"),
-                }
-            )
+        mit = entry.get("li_mitigation", "")
+        if mit in ("not_applicable", "asan_target"):
+            continue
+        if not test_path and cwe_ids:
+            for cwe in cwe_ids:
+                suite = "security" if mit in ("fuzz_seed", "compile_reject_path") else "cve_patterns"
+                gaps.append(
+                    {
+                        "cwe": cwe,
+                        "cve": cve,
+                        "reason": f"catalog row missing li_test (expected li-tests/{suite}/)",
+                        "severity": entry.get("severity", "unknown"),
+                        "li_mitigation": mit,
+                    }
+                )
 
     repo_rows: list[dict] = []
     for repo in ORG_REPOS:
