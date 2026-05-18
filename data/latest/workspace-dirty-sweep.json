@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T19:41Z",
+  "generated_at": "2026-05-18T20:21Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
   "dirty_count": 3,
   "dirty_repos": [
@@ -25,25 +25,9 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 17,
+      "changed_files": 1,
       "safe_files": [
-        "dashboard-ui/next-env.d.ts",
-        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json",
-        "package.json",
-        "scripts/lib/dev-export-env.sh",
-        "src/backends/cursor-sdk-backend.ts",
-        "src/backends/mock-backend.ts",
-        "src/control-plane/run-history.ts",
-        "src/control-plane/runs-catalog.ts",
-        "src/control-plane/runtime.ts",
-        "src/db-api/index.ts",
-        "src/db-api/runtime-read.ts",
-        "src/e2e/dashboard-run-trace.e2e.ts",
-        "src/lanes/lane-state.ts",
-        "src/runner.ts",
-        "src/types.ts",
-        "src/control-plane/run-paths.ts",
-        "src/e2e/agent-activity-pipeline.e2e.ts"
+        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json"
       ],
       "test_commands": [
         "npm test"
