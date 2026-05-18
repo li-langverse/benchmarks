@@ -104,20 +104,26 @@ def branch_ahead(repo: str, base: str, head: str) -> int:
 
 
 def list_remote_branches(repo: str, limit: int) -> list[str]:
-    data = gh_json(
+    # --paginate + --jq emits newline-delimited names, not a JSON array.
+    proc = subprocess.run(
         [
+            "gh",
             "api",
             f"repos/{ORG}/{repo}/branches",
             "--paginate",
             "--jq",
             ".[].name",
-        ]
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
     )
-    if not isinstance(data, list):
+    if proc.returncode != 0 or not proc.stdout.strip():
         return []
     names: list[str] = []
-    for name in data:
-        if not isinstance(name, str):
+    for name in proc.stdout.splitlines():
+        name = name.strip()
+        if not name:
             continue
         if name in SKIP_BRANCH_NAMES:
             continue

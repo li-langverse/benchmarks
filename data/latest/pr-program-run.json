@@ -1,57 +1,83 @@
 {
-  "generated_at": "2026-05-16T21:44Z",
+  "generated_at": "2026-05-18T21:49Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 12,
-    "ci_green": 2,
+    "open_prs": 18,
+    "ci_green": 7,
     "merge_approved": 1,
-    "gate_ready_labeled": 0
+    "gate_ready_labeled": 1
   },
   "recommended_merge_order": [
     {
       "rank": 1,
-      "repo": "li-demo",
-      "number": 2,
-      "url": "https://github.com/li-langverse/li-demo/pull/2",
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "repo": "benchmarks",
+      "number": 33,
+      "url": "https://github.com/li-langverse/benchmarks/pull/33",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "ci": "pass",
+      "action": "auto-merge ok"
+    },
+    {
+      "rank": 2,
+      "repo": "li-language",
+      "number": 7,
+      "url": "https://github.com/li-langverse/li-language/pull/7",
+      "title": "chore(li-language): workspace sweep fallback",
       "ci": "pass",
       "action": "add merge-approved after review"
     },
     {
-      "rank": 2,
-      "repo": "roadmap",
-      "number": 4,
-      "url": "https://github.com/li-langverse/roadmap/pull/4",
-      "title": "chore(automations): Cursor prompts for development overview maintainer",
+      "rank": 3,
+      "repo": "lip",
+      "number": 5,
+      "url": "https://github.com/li-langverse/lip/pull/5",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
       "ci": "pass",
-      "action": "fix CI or review"
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 4,
+      "repo": "lit",
+      "number": 5,
+      "url": "https://github.com/li-langverse/lit/pull/5",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 5,
+      "repo": "lis",
+      "number": 2,
+      "url": "https://github.com/li-langverse/lis/pull/2",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 6,
+      "repo": "roadmap",
+      "number": 10,
+      "url": "https://github.com/li-langverse/roadmap/pull/10",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 7,
+      "repo": "roadmap",
+      "number": 11,
+      "url": "https://github.com/li-langverse/roadmap/pull/11",
+      "title": "chore(roadmap): workspace sweep fallback",
+      "ci": "pass",
+      "action": "add merge-approved after review"
     }
   ],
   "all_open": [
     {
-      "repo": "li-demo",
-      "number": 2,
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
-      "url": "https://github.com/li-langverse/li-demo/pull/2",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [
-        "dependencies",
-        "github_actions"
-      ],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 12
-    },
-    {
-      "repo": "roadmap",
-      "number": 4,
-      "title": "chore(automations): Cursor prompts for development overview maintainer",
-      "url": "https://github.com/li-langverse/roadmap/pull/4",
+      "repo": "benchmarks",
+      "number": 33,
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "url": "https://github.com/li-langverse/benchmarks/pull/33",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -59,189 +85,298 @@
         "merge-approved"
       ],
       "merge_approved": true,
+      "gate_ready_with_approval": true,
+      "gate_blockers_if_approved": [],
+      "priority_score": 20
+    },
+    {
+      "repo": "li-language",
+      "number": 7,
+      "title": "chore(li-language): workspace sweep fallback",
+      "url": "https://github.com/li-langverse/li-language/pull/7",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 35
+    },
+    {
+      "repo": "lip",
+      "number": 5,
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "url": "https://github.com/li-langverse/lip/pull/5",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 40
+    },
+    {
+      "repo": "lit",
+      "number": 5,
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "url": "https://github.com/li-langverse/lit/pull/5",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 40
+    },
+    {
+      "repo": "lis",
+      "number": 2,
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "url": "https://github.com/li-langverse/lis/pull/2",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 45
+    },
+    {
+      "repo": "roadmap",
+      "number": 10,
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "url": "https://github.com/li-langverse/roadmap/pull/10",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
         "governance_repo: `roadmap` requires human merge unless ALLOW_GOVERNANCE_MERGE=1"
       ],
       "priority_score": 90
     },
     {
-      "repo": "lic",
-      "number": 1,
-      "title": "fix(ci): sync dev CI fixes (lip/lit checkout, Windows LLVM, valgrind)",
-      "url": "https://github.com/li-langverse/lic/pull/1",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)"
-      ],
-      "priority_score": 130
-    },
-    {
-      "repo": "lic",
-      "number": 4,
-      "title": "fix(types): correct Ctx aggregate initializer field order",
-      "url": "https://github.com/li-langverse/lic/pull/4",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)"
-      ],
-      "priority_score": 130
-    },
-    {
-      "repo": "li-language",
-      "number": 3,
-      "title": "Enhance li-httpd implementation plan and expand physics benchmarks",
-      "url": "https://github.com/li-langverse/li-language/pull/3",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)"
-      ],
-      "priority_score": 135
-    },
-    {
-      "repo": "li-language",
-      "number": 5,
-      "title": "fix(ci): sync dev CI fixes (lip/lit checkout, Windows LLVM, valgrind)",
-      "url": "https://github.com/li-langverse/li-language/pull/5",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)"
-      ],
-      "priority_score": 135
-    },
-    {
-      "repo": "benchmarks",
-      "number": 3,
-      "title": "feat(ingest): PH-IO-4 Li CSV smoke before build_summary.py",
-      "url": "https://github.com/li-langverse/benchmarks/pull/3",
-      "base": "main",
-      "ci": "none",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 320
-    },
-    {
-      "repo": "benchmarks",
-      "number": 4,
-      "title": "feat(dashboard): PH-IO-5 static Pages deploy without Node",
-      "url": "https://github.com/li-langverse/benchmarks/pull/4",
-      "base": "main",
-      "ci": "none",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 320
-    },
-    {
-      "repo": "benchmarks",
-      "number": 5,
-      "title": "feat(ingest): PH-IO-7 Li summary.json before Python fallback",
-      "url": "https://github.com/li-langverse/benchmarks/pull/5",
-      "base": "main",
-      "ci": "none",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` (all required checks must pass)"
-      ],
-      "priority_score": 320
-    },
-    {
-      "repo": "lic",
-      "number": 2,
-      "title": "fix(env): restore Ctx initializer and add Cloud Agent instructions",
-      "url": "https://github.com/li-langverse/lic/pull/2",
-      "base": "main",
-      "ci": "fail",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)"
-      ],
-      "priority_score": 330
-    },
-    {
-      "repo": "lic",
-      "number": 3,
-      "title": "chore(agents): issue planning workflow + agent-kit 1.3.0",
-      "url": "https://github.com/li-langverse/lic/pull/3",
-      "base": "main",
-      "ci": "fail",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)"
-      ],
-      "priority_score": 330
-    },
-    {
       "repo": "roadmap",
-      "number": 6,
-      "title": "fix(overview): fetch live PR data via client-side GitHub API",
-      "url": "https://github.com/li-langverse/roadmap/pull/6",
+      "number": 11,
+      "title": "chore(roadmap): workspace sweep fallback",
+      "url": "https://github.com/li-langverse/roadmap/pull/11",
       "base": "main",
-      "ci": "fail",
-      "draft": true,
+      "ci": "pass",
+      "draft": false,
       "labels": [],
       "merge_approved": false,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` (all required checks must pass)",
         "governance_repo: `roadmap` requires human merge unless ALLOW_GOVERNANCE_MERGE=1"
       ],
-      "priority_score": 390
+      "priority_score": 90
+    },
+    {
+      "repo": "benchmarks",
+      "number": 32,
+      "title": "feat(briefing): swarm scorecard enrich + audit-refresh dispatch",
+      "url": "https://github.com/li-langverse/benchmarks/pull/32",
+      "base": "main",
+      "ci": "none",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 32"
+      ],
+      "priority_score": 120
+    },
+    {
+      "repo": "benchmarks",
+      "number": 34,
+      "title": "fix(security): security-cwe-audit preflight script",
+      "url": "https://github.com/li-langverse/benchmarks/pull/34",
+      "base": "main",
+      "ci": "none",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 34"
+      ],
+      "priority_score": 120
+    },
+    {
+      "repo": "lic",
+      "number": 8,
+      "title": "docs(vision): point agents at HPC, scientific computing, AI north star",
+      "url": "https://github.com/li-langverse/lic/pull/8",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 8"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 37,
+      "title": "chore(lic): Numerics researcher automated update",
+      "url": "https://github.com/li-langverse/lic/pull/37",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 37"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 40,
+      "title": "fix(codegen): '+' lexer and horner_pure_li benchmark (88\u00d7 \u2192 ~1.5\u00d7)",
+      "url": "https://github.com/li-langverse/lic/pull/40",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 40"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 43,
+      "title": "docs(numerics): red/near-limit SOTA map and bench repro (numerics_researcher)",
+      "url": "https://github.com/li-langverse/lic/pull/43",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 43"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 45,
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "url": "https://github.com/li-langverse/lic/pull/45",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 45"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 46,
+      "title": "chore(security): downstream security-gate workflow template",
+      "url": "https://github.com/li-langverse/lic/pull/46",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 46"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 47,
+      "title": "fix(lexer): '+' token fixes horner_pure_li pure_li red row (~72\u00d7 \u2192 ~0.3\u00d7)",
+      "url": "https://github.com/li-langverse/lic/pull/47",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 47"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 48,
+      "title": "chore(lic): Benchmark improver automated update",
+      "url": "https://github.com/li-langverse/lic/pull/48",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 48"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "li-language",
+      "number": 6,
+      "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
+      "url": "https://github.com/li-langverse/li-language/pull/6",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo li-language --pr 6"
+      ],
+      "priority_score": 135
     }
   ],
-  "plan_warnings": []
+  "plan_warnings": [
+    "lic#48 vs lic#40: human: pick one PR or rebase the other",
+    "benchmarks#34 vs benchmarks#32: close #32 after #34 merges"
+  ]
 }
