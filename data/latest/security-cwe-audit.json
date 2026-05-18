@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-18T22:30Z",
-  "catalog_path": "/Users/julian/Documents/coding-projects/lic/security/cve-catalog.json",
+  "generated_at": "2026-05-18T22:36Z",
+  "catalog_path": "/Users/julian/Documents/coding-projects/benchmarks/../lic/security/cve-catalog.json",
   "summary": {
     "catalog_entries": 39,
     "catalog_gaps": 0,

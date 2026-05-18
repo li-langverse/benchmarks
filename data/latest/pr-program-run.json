@@ -1,24 +1,69 @@
 {
-  "generated_at": "2026-05-18T16:22Z",
+  "generated_at": "2026-05-18T22:35Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 17,
-    "ci_green": 6,
-    "merge_approved": 0,
-    "gate_ready_labeled": 0
+    "open_prs": 26,
+    "ci_green": 12,
+    "merge_approved": 1,
+    "gate_ready_labeled": 1
   },
   "recommended_merge_order": [
     {
       "rank": 1,
-      "repo": "benchmarks",
-      "number": 33,
-      "url": "https://github.com/li-langverse/benchmarks/pull/33",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "repo": "li-demo",
+      "number": 4,
+      "url": "https://github.com/li-langverse/li-demo/pull/4",
+      "title": "chore(security): downstream security-gate workflow (li-demo)",
       "ci": "pass",
       "action": "add merge-approved after review"
     },
     {
       "rank": 2,
+      "repo": "benchmarks",
+      "number": 33,
+      "url": "https://github.com/li-langverse/benchmarks/pull/33",
+      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
+      "ci": "pass",
+      "action": "auto-merge ok"
+    },
+    {
+      "rank": 3,
+      "repo": "benchmarks",
+      "number": 35,
+      "url": "https://github.com/li-langverse/benchmarks/pull/35",
+      "title": "chore(benchmarks): workspace sweep fallback",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 4,
+      "repo": "benchmarks",
+      "number": 36,
+      "url": "https://github.com/li-langverse/benchmarks/pull/36",
+      "title": "feat(benchmarks): catalog tier-2 physics expansion",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 5,
+      "repo": "benchmarks",
+      "number": 37,
+      "url": "https://github.com/li-langverse/benchmarks/pull/37",
+      "title": "feat(benchmarks): agent briefing heap coordinator",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 6,
+      "repo": "li-language",
+      "number": 7,
+      "url": "https://github.com/li-langverse/li-language/pull/7",
+      "title": "chore(li-language): workspace sweep fallback",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 7,
       "repo": "lip",
       "number": 5,
       "url": "https://github.com/li-langverse/lip/pull/5",
@@ -27,7 +72,16 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 3,
+      "rank": 8,
+      "repo": "lip",
+      "number": 6,
+      "url": "https://github.com/li-langverse/lip/pull/6",
+      "title": "feat(lip): issue feature planning",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 9,
       "repo": "lit",
       "number": 5,
       "url": "https://github.com/li-langverse/lit/pull/5",
@@ -36,7 +90,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 4,
+      "rank": 10,
       "repo": "lis",
       "number": 2,
       "url": "https://github.com/li-langverse/lis/pull/2",
@@ -45,7 +99,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 5,
+      "rank": 11,
       "repo": "roadmap",
       "number": 10,
       "url": "https://github.com/li-langverse/roadmap/pull/10",
@@ -54,7 +108,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 6,
+      "rank": 12,
       "repo": "roadmap",
       "number": 11,
       "url": "https://github.com/li-langverse/roadmap/pull/11",
@@ -65,10 +119,42 @@
   ],
   "all_open": [
     {
+      "repo": "li-demo",
+      "number": 4,
+      "title": "chore(security): downstream security-gate workflow (li-demo)",
+      "url": "https://github.com/li-langverse/li-demo/pull/4",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 12
+    },
+    {
       "repo": "benchmarks",
       "number": 33,
       "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
       "url": "https://github.com/li-langverse/benchmarks/pull/33",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [
+        "merge-approved"
+      ],
+      "merge_approved": true,
+      "gate_ready_with_approval": true,
+      "gate_blockers_if_approved": [],
+      "priority_score": 20
+    },
+    {
+      "repo": "benchmarks",
+      "number": 35,
+      "title": "chore(benchmarks): workspace sweep fallback",
+      "url": "https://github.com/li-langverse/benchmarks/pull/35",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -81,10 +167,74 @@
       "priority_score": 20
     },
     {
+      "repo": "benchmarks",
+      "number": 36,
+      "title": "feat(benchmarks): catalog tier-2 physics expansion",
+      "url": "https://github.com/li-langverse/benchmarks/pull/36",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 20
+    },
+    {
+      "repo": "benchmarks",
+      "number": 37,
+      "title": "feat(benchmarks): agent briefing heap coordinator",
+      "url": "https://github.com/li-langverse/benchmarks/pull/37",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 20
+    },
+    {
+      "repo": "li-language",
+      "number": 7,
+      "title": "chore(li-language): workspace sweep fallback",
+      "url": "https://github.com/li-langverse/li-language/pull/7",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 35
+    },
+    {
       "repo": "lip",
       "number": 5,
       "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
       "url": "https://github.com/li-langverse/lip/pull/5",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 40
+    },
+    {
+      "repo": "lip",
+      "number": 6,
+      "title": "feat(lip): issue feature planning",
+      "url": "https://github.com/li-langverse/lip/pull/6",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -321,14 +471,65 @@
       "title": "chore(lic): Benchmark improver automated update",
       "url": "https://github.com/li-langverse/lic/pull/48",
       "base": "main",
-      "ci": "pending",
+      "ci": "fail",
       "draft": false,
       "labels": [],
       "merge_approved": false,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 48"
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 48"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 51,
+      "title": "feat(lic): agent planning automation",
+      "url": "https://github.com/li-langverse/lic/pull/51",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 51"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 52,
+      "title": "feat(physics): game-dev guide, runtime defaults, agent JSON type.index",
+      "url": "https://github.com/li-langverse/lic/pull/52",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 52"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 53,
+      "title": "fix(ci): dev PR3 sync and package CI scaffold",
+      "url": "https://github.com/li-langverse/lic/pull/53",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 53"
       ],
       "priority_score": 130
     },
@@ -351,9 +552,20 @@
     }
   ],
   "plan_warnings": [
+    "lic#52 vs lic#51: human: pick one PR or rebase the other",
+    "lic#48 vs lic#40: human: pick one PR or rebase the other",
+    "benchmarks#36 vs benchmarks#34: close #36 after #34 merges",
+    "benchmarks#36 vs benchmarks#32: close #36 after #32 merges",
     "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
+    "~92% file overlap on `main`; merge #51 first, then merge `origin/main` into #52 (preserve both sides) before merging #52",
+    "~75% file overlap on `main`; merge #47 first, then merge `origin/main` into #48 (preserve both sides) before merging #48",
+    "~100% file overlap on `main`; merge #40 first, then merge `origin/main` into #48 (preserve both sides) before merging #48",
+    "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
+    "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
+    "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
+    "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
     "~100% file overlap on `main`; merge #32 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
-    "benchmarks#34 CONFLICTING with main: rebase before merge",
-    "benchmarks#32 CONFLICTING with main: rebase before merge"
+    "benchmarks#37 CONFLICTING with main: rebase before merge",
+    "benchmarks#34 CONFLICTING with main: rebase before merge"
   ]
 }

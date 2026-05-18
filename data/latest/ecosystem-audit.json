@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T21:09Z",
+  "generated_at": "2026-05-18T23:40Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -7,9 +7,9 @@
     "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
   },
   "metrics": {
-    "open_prs": 21,
-    "failed_prs": 9,
-    "ready_prs": 7,
+    "open_prs": 29,
+    "failed_prs": 12,
+    "ready_prs": 12,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
   },
@@ -19,6 +19,36 @@
       "number": 6,
       "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
       "url": "https://github.com/li-langverse/li-language/pull/6",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    },
+    {
+      "repo": "lic",
+      "number": 53,
+      "title": "fix(ci): dev PR3 sync and package CI scaffold",
+      "url": "https://github.com/li-langverse/lic/pull/53",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    },
+    {
+      "repo": "lic",
+      "number": 52,
+      "title": "feat(physics): game-dev guide, runtime defaults, agent JSON type.index",
+      "url": "https://github.com/li-langverse/lic/pull/52",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    },
+    {
+      "repo": "lic",
+      "number": 51,
+      "title": "feat(lic): agent planning automation",
+      "url": "https://github.com/li-langverse/lic/pull/51",
       "base": "main",
       "ci": "fail",
       "draft": false,
@@ -108,9 +138,49 @@
   "ready_prs": [
     {
       "repo": "benchmarks",
+      "number": 37,
+      "title": "feat(benchmarks): agent briefing heap coordinator",
+      "url": "https://github.com/li-langverse/benchmarks/pull/37",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "benchmarks",
+      "number": 36,
+      "title": "feat(benchmarks): catalog tier-2 physics expansion",
+      "url": "https://github.com/li-langverse/benchmarks/pull/36",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "benchmarks",
+      "number": 35,
+      "title": "chore(benchmarks): workspace sweep fallback",
+      "url": "https://github.com/li-langverse/benchmarks/pull/35",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "benchmarks",
       "number": 33,
       "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
       "url": "https://github.com/li-langverse/benchmarks/pull/33",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "li-demo",
+      "number": 4,
+      "title": "chore(security): downstream security-gate workflow (li-demo)",
+      "url": "https://github.com/li-langverse/li-demo/pull/4",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -121,6 +191,16 @@
       "number": 7,
       "title": "chore(li-language): workspace sweep fallback",
       "url": "https://github.com/li-langverse/li-language/pull/7",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "lip",
+      "number": 6,
+      "title": "feat(lip): issue feature planning",
+      "url": "https://github.com/li-langverse/lip/pull/6",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -482,6 +562,9 @@
       "action": "Fix failing PR CI before new feature work",
       "prs": [
         "li-language#6",
+        "lic#53",
+        "lic#52",
+        "lic#51",
         "lic#48",
         "lic#47",
         "lic#46",
@@ -522,7 +605,7 @@
     {
       "priority": "P2",
       "action": "Human review merge queue (do not self-merge)",
-      "count": 7
+      "count": 12
     }
   ]
 }

@@ -1,14 +1,46 @@
 {
-  "generated_at": "2026-05-18T16:22Z",
+  "generated_at": "2026-05-18T22:36Z",
   "summary": {
     "local_ci_failures": 0,
     "bug_issues": 0,
-    "gha_failing_prs": 8,
-    "work_queue_size": 8
+    "gha_failing_prs": 12,
+    "work_queue_size": 12
   },
   "local_ci_failures": [],
   "bug_issues": [],
   "gha_failing_prs": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 53,
+      "url": "https://github.com/li-langverse/lic/pull/53",
+      "title": "fix(ci): dev PR3 sync and package CI scaffold",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 52,
+      "url": "https://github.com/li-langverse/lic/pull/52",
+      "title": "feat(physics): game-dev guide, runtime defaults, agent JSON type.index",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 51,
+      "url": "https://github.com/li-langverse/lic/pull/51",
+      "title": "feat(lic): agent planning automation",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 48,
+      "url": "https://github.com/li-langverse/lic/pull/48",
+      "title": "chore(lic): Benchmark improver automated update",
+      "reason": "GitHub Actions checks failing"
+    },
     {
       "kind": "pr_ci",
       "repo": "lic",
@@ -75,6 +107,38 @@
     }
   ],
   "work_queue": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 53,
+      "url": "https://github.com/li-langverse/lic/pull/53",
+      "title": "fix(ci): dev PR3 sync and package CI scaffold",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 52,
+      "url": "https://github.com/li-langverse/lic/pull/52",
+      "title": "feat(physics): game-dev guide, runtime defaults, agent JSON type.index",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 51,
+      "url": "https://github.com/li-langverse/lic/pull/51",
+      "title": "feat(lic): agent planning automation",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 48,
+      "url": "https://github.com/li-langverse/lic/pull/48",
+      "title": "chore(lic): Benchmark improver automated update",
+      "reason": "GitHub Actions checks failing"
+    },
     {
       "kind": "pr_ci",
       "repo": "lic",
