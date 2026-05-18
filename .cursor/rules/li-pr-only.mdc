@@ -5,9 +5,7 @@ alwaysApply: true
 
 # PR-only workflow (mandatory)
 
-Agents **never** push directly to protected branches (`main`, `dev`, `master`).
-
-**Ecosystem-first:** [tooling-catalog.md](../../docs/ecosystem/tooling-catalog.md) before new scripts; gap → `file-ecosystem-gap-issue.py` (rule **li-ecosystem-first.mdc**).
+Agents **never** push directly to protected branches (`main`, `dev`, `master`). GitHub ruleset **Li: protected branches** enforces this org-wide (see `roadmap/scripts/apply-org-branch-protection.sh`).
 
 ## Required flow
 
@@ -15,31 +13,19 @@ Agents **never** push directly to protected branches (`main`, `dev`, `master`).
 2. Commit changes on that branch.
 3. Open a PR (`gh pr create` is allowed).
 4. Ensure **CI is green** on the PR.
-5. **Stop** — do not `gh pr merge` or merge your own PR unless using the **merge-approved** automation below.
-
-### Automated merge (after review)
-
-When a **reviewer** (not the PR author) confirms [engineering standards](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md):
-
-1. Approve the PR on GitHub (`APPROVED`).
-2. Add label **`merge-approved`**.
-3. **`pr-merge-gate.py`** must pass (CI, plan labels, release notes).
-4. **GitHub Action** `pr-auto-merge.yml` or Cursor automation [pr-auto-merge.md](../automations/pr-auto-merge.md) runs `pr-auto-merge.py --execute`.
-
-Agents **must not** add `merge-approved` on their own PRs. **`roadmap`** governance PRs stay human-merge unless explicitly allowed.
+5. **Stop** — do not `gh pr merge` or merge your own PR. A human or designated reviewer merges after review.
 
 ## After verified work (`lic`)
 
 1. Commit on your feature branch with a clear message (`feat(phase-N): …` or `chore: …`).
-2. Push the branch and open/update the PR (**normal push only — no `--force`**):
+2. Push the branch and open/update the PR:
    ```bash
    git push -u origin HEAD
    gh pr create --fill || gh pr view --web
    ```
-   If push is rejected: `git fetch origin && git rebase origin/main && git push origin HEAD` — see [git-workflow.md](../../docs/ecosystem/git-workflow.md).
 3. Uses [`scripts/with-github-env.sh`](../../scripts/with-github-env.sh) when available. Never commit tokens.
 
-**Opt out (rare):** `LI_HOOK_ALLOW=1` for intentional direct-push to protected branches or **one** `--force-with-lease` on your feature branch after human approval (emergency only).
+**Opt out (rare):** `LI_HOOK_ALLOW=1` for intentional direct-push (emergency only).
 
 ## Cross-repo
 
