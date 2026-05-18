@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-18T20:54Z",
+  "generated_at": "2026-05-18T21:11Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
-  "dirty_count": 3,
+  "dirty_count": 2,
   "dirty_repos": [
     {
       "path": "/Users/julian/Documents/coding-projects/benchmarks",
@@ -25,27 +25,13 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 3,
+      "changed_files": 2,
       "safe_files": [
         "data/lanes/state.json",
-        "data/latest/agent-briefing.json",
-        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json"
+        "data/latest/agent-briefing.json"
       ],
       "test_commands": [
         "npm test"
-      ]
-    },
-    {
-      "path": "/Users/julian/Documents/coding-projects/li",
-      "repo": "li-language",
-      "org": "cap-jmk-real",
-      "branch": "feat/goal-scaffold-v1-docs",
-      "changed_files": 1,
-      "safe_files": [
-        ".cursor/debug-898ce1.log"
-      ],
-      "test_commands": [
-        "./li-tests/run_all.sh"
       ]
     }
   ]
