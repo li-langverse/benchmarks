@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T17:07Z",
+  "generated_at": "2026-05-18T17:23Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
   "dirty_count": 2,
   "dirty_repos": [
@@ -8,21 +8,15 @@
       "repo": "benchmarks",
       "org": "li-langverse",
       "branch": "chore/agent-security_auditor-audit-script",
-      "changed_files": 13,
+      "changed_files": 7,
       "safe_files": [
         "data/latest/agent-briefing.json",
-        "data/latest/ci-bug-triage.json",
         "data/latest/ecosystem-audit.json",
-        "data/latest/ecosystem-explorer.json",
         "data/latest/issue-feature-triage.json",
         "data/latest/org-agent-kit-audit.json",
         "data/latest/org-repo-ci-audit.json",
-        "data/latest/plan-completion-audit.json",
         "data/latest/pr-merge-queue-plan.json",
-        "data/latest/pr-program-run.json",
-        "data/latest/security-cwe-audit.json",
-        "data/latest/workspace-dirty-sweep.json",
-        "scripts/agent-briefing.py"
+        "data/latest/workspace-dirty-sweep.json"
       ],
       "test_commands": []
     },
@@ -31,10 +25,9 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 2,
+      "changed_files": 1,
       "safe_files": [
-        "data/lanes/state.json",
-        "data/latest/agent-briefing.json"
+        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json"
       ],
       "test_commands": [
         "npm test"
