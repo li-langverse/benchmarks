@@ -377,6 +377,31 @@ def web_search_queries(focus: str | None) -> list[dict]:
     return queries
 
 
+def _canonical_kit_stamp() -> str | None:
+    roadmap_kit = ROOT.parent / "roadmap" / "agent-kit"
+    manifest = roadmap_kit / "manifest.toml"
+    cursor_root = roadmap_kit / ".cursor"
+    if not manifest.is_file() or not cursor_root.is_dir():
+        return None
+    import hashlib
+
+    h = hashlib.sha256()
+    for dirpath, _, files in os.walk(cursor_root):
+        for f in sorted(files):
+            p = Path(dirpath) / f
+            rel = p.relative_to(cursor_root)
+            h.update(str(rel).encode())
+            h.update(p.read_bytes())
+    version = "unknown"
+    try:
+        import tomllib
+
+        version = tomllib.load(open(manifest, "rb")).get("version", "unknown")
+    except OSError:
+        pass
+    return f"{version}+{h.hexdigest()[:16]}"
+
+
 def agent_kit_versions() -> dict:
     versions = []
     roots = [
@@ -387,6 +412,7 @@ def agent_kit_versions() -> dict:
         ROOT / "lit",
         ROOT / "li-cursor-agents",
         ROOT.parent / "li",
+        ROOT.parent / "roadmap",
     ]
     seen: set[Path] = set()
     for repo_dir in roots:
@@ -398,15 +424,28 @@ def agent_kit_versions() -> dict:
         seen.add(resolved)
         p = repo_dir / "scripts/expected-agent-kit-version"
         if p.is_file():
+            stamp = p.read_text(encoding="utf-8").strip()
             versions.append(
                 {
                     "path": str(p.relative_to(ROOT)) if p.is_relative_to(ROOT) else str(p),
-                    "version": p.read_text(encoding="utf-8").strip(),
+                    "version": stamp,
+                    "repo_hint": repo_dir.name,
                 }
             )
     uniq = {v["version"] for v in versions}
-    drift = len(uniq) > 1
-    return {"entries": versions, "drift": drift, "canonical_hint": "run ensure-org-agent-kit.py"}
+    canonical = _canonical_kit_stamp()
+    behind_canonical = (
+        [v for v in versions if canonical and v["version"] != canonical] if canonical else []
+    )
+    drift = len(uniq) > 1 or bool(behind_canonical)
+    return {
+        "entries": versions,
+        "drift": drift,
+        "canonical_stamp": canonical,
+        "repos_behind_canonical": behind_canonical,
+        "canonical_hint": "run ensure-org-agent-kit.py",
+        "downstream_agent": "agent_kit_maintainer",
+    }
 
 
 def build_digest_md(report: dict) -> str:

@@ -1,59 +1,111 @@
 {
-  "generated_at": "2026-05-16T21:44Z",
+  "generated_at": "2026-05-17T20:21Z",
   "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
+  "ordering_rules": [
+    "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
+    "Title hints: ci.yml / blocker fixes before agent-kit / bench / feature work",
+    "Stacks: parent branch PR must merge before child PR targeting parent head",
+    "Same-repo overlap: merge lower-risk PR first; rebase others onto main (never drop commits)",
+    "CONFLICTING with base: excluded from merge_sequence until integrated with main",
+    "Redundant pairs: close superseded PR after the including PR merges (human if unclear)",
+    "Only merge-approved + gate-ready + mergeable PRs enter merge_sequence",
+    "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge",
+    "Progress: after every merge, remaining PRs must absorb latest main before their merge"
+  ],
   "summary": {
     "open_prs": 4,
-    "merge_approved": 1,
+    "merge_approved": 0,
     "gate_ready": 0,
+    "conflicting_with_main": 0,
     "auto_merge_candidates": 0,
     "redundant_pairs": 0,
-    "stacks": 0
+    "stacks": 0,
+    "pair_risk_count": 0,
+    "repos_with_plans": 1
   },
+  "repo_merge_plans": [
+    {
+      "repo": "lic",
+      "base": "main",
+      "open_prs": 4,
+      "local_merge_order": [
+        "lic#43",
+        "lic#40",
+        "lic#37",
+        "lic#8"
+      ],
+      "safe_merge_order": [],
+      "safe_next": null,
+      "conflicting_with_main": [],
+      "pair_risks": [],
+      "stacks": [],
+      "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
+    }
+  ],
+  "pair_risks": [],
   "merge_first": null,
+  "next_merge": null,
+  "merge_sequence": [],
   "merge_order": [
     {
       "rank": 1,
       "repo": "lic",
-      "number": 4,
-      "url": "https://github.com/li-langverse/lic/pull/4",
-      "title": "fix(types): correct Ctx aggregate initializer field order",
+      "number": 43,
+      "url": "https://github.com/li-langverse/lic/pull/43",
+      "title": "docs(numerics): red/near-limit SOTA map and bench repro (numerics_researcher)",
       "merge_approved": false,
       "gate_ready": false,
-      "priority_score": 235,
-      "auto_merge_ok": false
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "priority_score": 280,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 1; priority_score=280; awaiting merge-approved label"
     },
     {
       "rank": 2,
       "repo": "lic",
-      "number": 1,
-      "url": "https://github.com/li-langverse/lic/pull/1",
-      "title": "fix(ci): sync dev CI fixes (lip/lit checkout, Windows LLVM, valgrind)",
+      "number": 40,
+      "url": "https://github.com/li-langverse/lic/pull/40",
+      "title": "fix(codegen): '+' lexer and horner_pure_li benchmark (88\u00d7 \u2192 ~1.5\u00d7)",
       "merge_approved": false,
       "gate_ready": false,
-      "priority_score": 240,
-      "auto_merge_ok": false
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "priority_score": 245,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 2; priority_score=245; awaiting merge-approved label"
     },
     {
       "rank": 3,
-      "repo": "li-demo",
-      "number": 2,
-      "url": "https://github.com/li-langverse/li-demo/pull/2",
-      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "repo": "lic",
+      "number": 37,
+      "url": "https://github.com/li-langverse/lic/pull/37",
+      "title": "chore(lic): Numerics researcher automated update",
       "merge_approved": false,
       "gate_ready": false,
-      "priority_score": 262,
-      "auto_merge_ok": false
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "priority_score": 280,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 3; priority_score=280; awaiting merge-approved label"
     },
     {
       "rank": 4,
-      "repo": "roadmap",
-      "number": 4,
-      "url": "https://github.com/li-langverse/roadmap/pull/4",
-      "title": "chore(automations): Cursor prompts for development overview maintainer",
-      "merge_approved": true,
+      "repo": "lic",
+      "number": 8,
+      "url": "https://github.com/li-langverse/lic/pull/8",
+      "title": "docs(vision): point agents at HPC, scientific computing, AI north star",
+      "merge_approved": false,
       "gate_ready": false,
-      "priority_score": 340,
-      "auto_merge_ok": false
+      "mergeable": "MERGEABLE",
+      "merge_state": "BLOCKED",
+      "priority_score": 280,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 4; priority_score=280; awaiting merge-approved label"
     }
   ],
   "stacks": [],

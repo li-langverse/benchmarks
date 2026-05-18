@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-05-16T22:35Z",
+  "generated_at": "2026-05-17T20:19Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
   "repos_ok": [
     "benchmarks",
+    "li-cursor-agents",
     "li-demo",
     "li-httpd",
     "li-language",
@@ -16,7 +17,14 @@
     "lit",
     "roadmap"
   ],
-  "repos_missing_ci": [],
+  "repos_missing_ci": [
+    {
+      "repo": "li-local-ci",
+      "workflows": [],
+      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+      "suggested_required_check": "check"
+    }
+  ],
   "workflows": {
     "benchmarks": [
       "ci.yml",
@@ -28,6 +36,9 @@
       "pages.yml",
       "plan-completion-audit.yml",
       "pr-auto-merge.yml"
+    ],
+    "li-cursor-agents": [
+      "ci.yml"
     ],
     "li-demo": [
       "ci.yml",
@@ -43,6 +54,7 @@
       "docs.yml",
       "release.yml"
     ],
+    "li-local-ci": [],
     "li-net": [
       "ci.yml",
       "ecosystem-upstream.yml"
@@ -68,11 +80,7 @@
       "release.yml",
       "ubsan-lic.yml"
     ],
-    "lip": [
-      "ci.yml",
-      "ecosystem-upstream.yml",
-      "issue-feature-planning.yml"
-    ],
+    "lip": [],
     "lis": [
       "branch-sync.yml",
       "ci.yml",

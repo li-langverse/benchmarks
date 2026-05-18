@@ -132,27 +132,36 @@ def fetch_open_prs(repos: list[str]) -> list[dict]:
 
 
 def enrich_pr(row: dict) -> dict:
+    repo = row["repo"]
+    num = row["number"]
     detail = gh_json(
         [
             "pr",
             "view",
-            str(row["number"]),
+            str(num),
             "--repo",
-            f"li-langverse/{row['repo']}",
+            f"li-langverse/{repo}",
             "--json",
-            "files,commits",
+            "files,commits,mergeable,mergeStateStatus,baseRefName,headRefName",
         ]
     )
     files: list[str] = []
     commits = 0
+    mergeable = None
+    merge_state = None
     if isinstance(detail, dict):
         files = [f.get("path", "") for f in detail.get("files") or [] if f.get("path")]
         commits = len(detail.get("commits") or [])
-    ready, blockers = gate_ready(row["repo"], row["number"])
-    priority = REPO_PRIORITY.get(row["repo"], 60) + title_priority_boost(row["title"])
+        mergeable = detail.get("mergeable")
+        merge_state = detail.get("mergeStateStatus")
+    ready, blockers = gate_ready(repo, num)
+    priority = REPO_PRIORITY.get(repo, 60) + title_priority_boost(row["title"])
     if not ready:
         priority += 200
-    if row["merge_approved"] and ready:
+    if mergeable == "CONFLICTING":
+        priority += 150
+        blockers = list(blockers) + ["merge_conflicts_with_base"]
+    if row["merge_approved"] and ready and mergeable != "CONFLICTING":
         priority -= 30
     return {
         **row,
@@ -160,6 +169,8 @@ def enrich_pr(row: dict) -> dict:
         "commit_count": commits,
         "gate_ready": ready,
         "gate_blockers": blockers,
+        "mergeable": mergeable,
+        "merge_state": merge_state,
         "priority_score": priority,
     }
 
@@ -284,6 +295,135 @@ def pr_key(p: dict) -> str:
     return f"{p['repo']}#{p['number']}"
 
 
+def detect_pair_risks(group: list[dict]) -> list[dict]:
+    """Same-base PRs that touch overlapping files — merge order matters for main + branch progress."""
+    risks: list[dict] = []
+    for i, a in enumerate(group):
+        for b in group[i + 1 :]:
+            if a.get("head") == b.get("base") or b.get("head") == a.get("base"):
+                continue
+            overlap = file_overlap(a["files"], b["files"])
+            if overlap < 0.35:
+                continue
+            # Prefer merging smaller / CI-ready PR first so the other can rebase onto updated main.
+            first, second = (a, b)
+            if (b["commit_count"], b["number"]) < (a["commit_count"], a["number"]):
+                first, second = b, a
+            risks.append(
+                {
+                    "repo": a["repo"],
+                    "base": a.get("base", "main"),
+                    "merge_first": pr_key(first),
+                    "then_rebase_and_merge": pr_key(second),
+                    "url_first": first["url"],
+                    "url_second": second["url"],
+                    "file_overlap": round(overlap, 3),
+                    "reason": (
+                        f"~{overlap:.0%} file overlap on `{a.get('base', 'main')}`; "
+                        f"merge #{first['number']} first, then merge `origin/{a.get('base', 'main')}` "
+                        f"into #{second['number']} (preserve both sides) before merging #{second['number']}"
+                    ),
+                    "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md",
+                }
+            )
+    return risks
+
+
+def apply_pair_risk_order(group: list[dict], risks: list[dict]) -> list[dict]:
+    """Topological order: merge_first before then_rebase_and_merge."""
+    by_id = {pr_key(p): p for p in group}
+    ids = [pr_key(p) for p in group]
+    edges: list[tuple[str, str]] = []
+    for r in risks:
+        a, b = r["merge_first"], r["then_rebase_and_merge"]
+        if a in by_id and b in by_id:
+            edges.append((a, b))
+    for parent, child in edges:
+        if parent not in ids or child not in ids:
+            continue
+        pi, ci = ids.index(parent), ids.index(child)
+        if ci < pi:
+            ids.pop(ci)
+            ids.insert(pi + 1, child)
+    return [by_id[i] for i in ids]
+
+
+def build_repo_merge_plans(
+    prs: list[dict], stacks: list[dict], redundant: list[dict]
+) -> list[dict]:
+    """Per-repo (+ base branch) merge order, conflicts with main, and overlap risks."""
+    by_key: dict[tuple[str, str], list[dict]] = {}
+    for p in prs:
+        by_key.setdefault((p["repo"], p.get("base", "main")), []).append(p)
+
+    plans: list[dict] = []
+    for (repo, base), group in sorted(by_key.items()):
+        repo_stacks = [s for s in stacks if s.get("repo") == repo or repo in s.get("merge_first", "")]
+        risks = detect_pair_risks(group)
+        ordered = apply_pair_risk_order(group, risks)
+        ordered = enforce_stack_order(ordered, repo_stacks)
+
+        conflicting_main = [
+            {
+                "number": p["number"],
+                "url": p["url"],
+                "title": p["title"],
+                "merge_state": p.get("merge_state"),
+                "action": (
+                    "Do not merge until rebased: `git fetch origin && git checkout <head> && "
+                    "git merge origin/"
+                    f"{base}` — resolve conflicts preserving main + PR progress "
+                    "(see merge-conflict-resolution.md)"
+                ),
+            }
+            for p in group
+            if p.get("mergeable") == "CONFLICTING"
+        ]
+
+        safe_keys: list[str] = []
+        for p in ordered:
+            key = pr_key(p)
+            blocked_stack = any(
+                s["then"] == key and s["merge_first"] in {pr_key(x) for x in group}
+                for s in repo_stacks
+            )
+            parent_not_ready = False
+            for s in repo_stacks:
+                if s["then"] != key:
+                    continue
+                pid = s["merge_first"]
+                parent = next((x for x in group if pr_key(x) == pid), None)
+                if parent and not (parent["merge_approved"] and parent["gate_ready"]):
+                    parent_not_ready = True
+            if (
+                p.get("mergeable") != "CONFLICTING"
+                and p["merge_approved"]
+                and p["gate_ready"]
+                and not parent_not_ready
+            ):
+                safe_keys.append(key)
+
+        plans.append(
+            {
+                "repo": repo,
+                "base": base,
+                "open_prs": len(group),
+                "local_merge_order": [pr_key(p) for p in ordered],
+                "safe_merge_order": safe_keys,
+                "safe_next": safe_keys[0] if safe_keys else None,
+                "conflicting_with_main": conflicting_main,
+                "pair_risks": risks,
+                "stacks": [s for s in repo_stacks if s.get("merge_first", "").startswith(f"{repo}#")],
+                "progress_rule": (
+                    "After each merge to "
+                    f"{base}, remaining PRs must integrate latest {base} "
+                    "(merge or rebase) before merge — never discard main or open PR commits"
+                ),
+            }
+        )
+    return plans
+
+
 def stack_blocked_ids(prs: list[dict], stacks: list[dict]) -> dict[str, str]:
     """Child PRs blocked until stack parent is merge-approved + gate-ready."""
     by_id = {pr_key(p): p for p in prs}
@@ -295,10 +435,41 @@ def stack_blocked_ids(prs: list[dict], stacks: list[dict]) -> dict[str, str]:
         child = by_id.get(child_id)
         if not parent or not child:
             continue
-        if not (parent["merge_approved"] and parent["gate_ready"]):
+        if parent.get("mergeable") == "CONFLICTING":
+            blocked[child_id] = (
+                f"stack parent {parent_id} conflicts with base — resolve parent first"
+            )
+        elif not (parent["merge_approved"] and parent["gate_ready"]):
             blocked[child_id] = (
                 f"stacked on #{parent['number']}; merge parent {parent_id} first "
                 f"({parent['url']})"
+            )
+    return blocked
+
+
+def conflict_blocked_ids(prs: list[dict], pair_risks: list[dict]) -> dict[str, str]:
+    """Later PR in a high-overlap pair blocked until earlier PR merges (rebase required)."""
+    by_id = {pr_key(p): p for p in prs}
+    blocked: dict[str, str] = {}
+    for r in pair_risks:
+        first_id = r["merge_first"]
+        second_id = r["then_rebase_and_merge"]
+        first = by_id.get(first_id)
+        second = by_id.get(second_id)
+        if not first or not second:
+            continue
+        if first.get("mergeable") == "CONFLICTING":
+            blocked[second_id] = (
+                f"merge {first_id} blocked (conflicts with base); fix before #{second['number']}"
+            )
+        elif second.get("mergeable") == "CONFLICTING":
+            continue
+        elif first_id not in blocked and not (
+            first["merge_approved"] and first["gate_ready"]
+        ):
+            blocked[second_id] = (
+                f"overlap with {first_id} ({r['file_overlap']:.0%} files); "
+                f"merge {first_id} first, then rebase {second_id} onto main"
             )
     return blocked
 
@@ -332,19 +503,48 @@ def order_reason(p: dict, rank: int, blocked: dict[str, str]) -> str:
     return "; ".join(parts)
 
 
-def build_merge_order(prs: list[dict], stacks: list[dict]) -> list[dict]:
-    """Sort by repo/title priority; topological stack order; annotate blockers."""
+def build_merge_order(
+    prs: list[dict],
+    stacks: list[dict],
+    repo_plans: list[dict],
+    pair_risks: list[dict],
+) -> list[dict]:
+    """Sort by repo/title priority; per-repo overlap order; stacks; annotate blockers."""
     blocked = stack_blocked_ids(prs, stacks)
+    blocked.update(conflict_blocked_ids(prs, pair_risks))
+
+    local_rank: dict[str, int] = {}
+    for plan in repo_plans:
+        for i, key in enumerate(plan.get("local_merge_order") or []):
+            local_rank[key] = i
 
     def sort_key(p: dict) -> tuple:
-        blocked_boost = 1 if pr_key(p) in blocked else 0
-        return (blocked_boost, p["priority_score"], p["created_at"] or "")
+        key = pr_key(p)
+        blocked_boost = 1 if key in blocked else 0
+        conflict_boost = 1 if p.get("mergeable") == "CONFLICTING" else 0
+        return (
+            blocked_boost,
+            conflict_boost,
+            local_rank.get(key, 50),
+            p["priority_score"],
+            p["created_at"] or "",
+        )
 
     ordered = enforce_stack_order(sorted(prs, key=sort_key), stacks)
     plan: list[dict] = []
     for rank, p in enumerate(ordered, start=1):
         key = pr_key(p)
-        auto = p["merge_approved"] and p["gate_ready"] and key not in blocked
+        auto = (
+            p["merge_approved"]
+            and p["gate_ready"]
+            and p.get("mergeable") != "CONFLICTING"
+            and key not in blocked
+        )
+        block_parts: list[str] = []
+        if blocked.get(key):
+            block_parts.append(blocked[key])
+        if p.get("mergeable") == "CONFLICTING":
+            block_parts.append("conflicts with base — rebase onto main before merge")
         plan.append(
             {
                 "rank": rank,
@@ -354,9 +554,11 @@ def build_merge_order(prs: list[dict], stacks: list[dict]) -> list[dict]:
                 "title": p["title"],
                 "merge_approved": p["merge_approved"],
                 "gate_ready": p["gate_ready"],
+                "mergeable": p.get("mergeable"),
+                "merge_state": p.get("merge_state"),
                 "priority_score": p["priority_score"],
                 "auto_merge_ok": auto,
-                "blocked_reason": blocked.get(key),
+                "blocked_reason": "; ".join(block_parts) if block_parts else None,
                 "order_reason": order_reason(p, rank, blocked),
             }
         )
@@ -383,7 +585,14 @@ def main() -> int:
     prs = [enrich_pr(r) for r in raw]
     stacks = detect_stacks(prs)
     redundant = detect_redundant_pairs(prs)
-    merge_order = build_merge_order(prs, stacks)
+    all_pair_risks: list[dict] = []
+    by_key: dict[tuple[str, str], list[dict]] = {}
+    for p in prs:
+        by_key.setdefault((p["repo"], p.get("base", "main")), []).append(p)
+    for group in by_key.values():
+        all_pair_risks.extend(detect_pair_risks(group))
+    repo_merge_plans = build_repo_merge_plans(prs, stacks, redundant)
+    merge_order = build_merge_order(prs, stacks, repo_merge_plans, all_pair_risks)
     merge_sequence = build_merge_sequence(merge_order)
     next_merge = merge_sequence[0] if merge_sequence else None
 
@@ -394,18 +603,26 @@ def main() -> int:
             "Repo tier: mirrors/httpd → benchmarks → lic → lip/lit/lis → roadmap (roadmap last)",
             "Title hints: ci.yml / blocker fixes before agent-kit / bench / feature work",
             "Stacks: parent branch PR must merge before child PR targeting parent head",
+            "Same-repo overlap: merge lower-risk PR first; rebase others onto main (never drop commits)",
+            "CONFLICTING with base: excluded from merge_sequence until integrated with main",
             "Redundant pairs: close superseded PR after the including PR merges (human if unclear)",
-            "Only merge-approved + gate-ready PRs enter merge_sequence",
+            "Only merge-approved + gate-ready + mergeable PRs enter merge_sequence",
             "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge",
+            "Progress: after every merge, remaining PRs must absorb latest main before their merge",
         ],
         "summary": {
             "open_prs": len(prs),
             "merge_approved": sum(1 for p in prs if p["merge_approved"]),
             "gate_ready": sum(1 for p in prs if p["gate_ready"]),
+            "conflicting_with_main": sum(1 for p in prs if p.get("mergeable") == "CONFLICTING"),
             "auto_merge_candidates": len(merge_sequence),
             "redundant_pairs": len(redundant),
             "stacks": len(stacks),
+            "pair_risk_count": len(all_pair_risks),
+            "repos_with_plans": len(repo_merge_plans),
         },
+        "repo_merge_plans": repo_merge_plans,
+        "pair_risks": all_pair_risks,
         "merge_first": next_merge,
         "next_merge": next_merge,
         "merge_sequence": merge_sequence,
@@ -421,6 +638,13 @@ def main() -> int:
         )
     for s in stacks:
         report["warnings"].append(s["reason"])
+    for risk in all_pair_risks:
+        report["warnings"].append(risk["reason"])
+    for plan in repo_merge_plans:
+        for c in plan.get("conflicting_with_main") or []:
+            report["warnings"].append(
+                f"{plan['repo']}#{c['number']} CONFLICTING with {plan['base']}: rebase before merge"
+            )
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")

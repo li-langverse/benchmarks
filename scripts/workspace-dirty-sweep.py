@@ -21,6 +21,10 @@ SECRET = re.compile(
     r"(?:^|/)(?:\.env(?:\.|$)|\.env\.github|credentials\.json|\.pem$|id_rsa$|node_modules/)",
     re.I,
 )
+SWEEP_SKIP = re.compile(
+    r"(?:^|/)(?:logs/|data/workspaces-test/|supabase/\.(?:branches|temp)/|docs/\.mock-)",
+    re.I,
+)
 
 
 def git(*args: str, cwd: Path) -> str:
@@ -30,7 +34,8 @@ def git(*args: str, cwd: Path) -> str:
         capture_output=True,
         text=True,
     )
-    return proc.stdout.strip() if proc.returncode == 0 else ""
+    # rstrip only: .strip() removes leading space on the first status line (XY prefix).
+    return proc.stdout.rstrip() if proc.returncode == 0 else ""
 
 
 def test_commands(repo: Path) -> list[str]:
@@ -56,7 +61,7 @@ def scan_repo(path: Path) -> dict | None:
     if not porcelain:
         return None
     files = [ln[3:].strip() for ln in porcelain.splitlines() if ln[3:].strip()]
-    safe = [f for f in files if not SECRET.search(f)]
+    safe = [f for f in files if not SECRET.search(f) and not SWEEP_SKIP.search(f)]
     if not safe:
         return None
     remote = git("remote", "get-url", "origin", cwd=path)

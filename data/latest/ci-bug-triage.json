@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-05-17T19:52Z",
+  "summary": {
+    "local_ci_failures": 0,
+    "bug_issues": 0,
+    "gha_failing_prs": 4,
+    "work_queue_size": 4
+  },
+  "local_ci_failures": [],
+  "bug_issues": [],
+  "gha_failing_prs": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 40,
+      "url": "https://github.com/li-langverse/lic/pull/40",
+      "title": "fix(codegen): '+' lexer and horner_pure_li benchmark (88\u00d7 \u2192 ~1.5\u00d7)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 37,
+      "url": "https://github.com/li-langverse/lic/pull/37",
+      "title": "chore(lic): Numerics researcher automated update",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 8,
+      "url": "https://github.com/li-langverse/lic/pull/8",
+      "title": "docs(vision): point agents at HPC, scientific computing, AI north star",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-language",
+      "number": 6,
+      "url": "https://github.com/li-langverse/li-language/pull/6",
+      "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
+      "reason": "GitHub Actions checks failing"
+    }
+  ],
+  "work_queue": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 40,
+      "url": "https://github.com/li-langverse/lic/pull/40",
+      "title": "fix(codegen): '+' lexer and horner_pure_li benchmark (88\u00d7 \u2192 ~1.5\u00d7)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 37,
+      "url": "https://github.com/li-langverse/lic/pull/37",
+      "title": "chore(lic): Numerics researcher automated update",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 8,
+      "url": "https://github.com/li-langverse/lic/pull/8",
+      "title": "docs(vision): point agents at HPC, scientific computing, AI north star",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-language",
+      "number": 6,
+      "url": "https://github.com/li-langverse/li-language/pull/6",
+      "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
+      "reason": "GitHub Actions checks failing"
+    }
+  ]
+}
