@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T07:44Z",
+  "generated_at": "2026-05-19T08:13Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file.",
   "preflight_runs": {
@@ -22,7 +22,7 @@
     "org_ci_audit": {
       "command": "python3 scripts/ensure-org-repo-ci.py",
       "exit_code": 1,
-      "stdout_tail": "wrote /Users/julian/Documents/coding-projects/benchmarks/data/latest/org-repo-ci-audit.json\nOK: 13  missing: 1\n  MISSING li-local-ci: []\n",
+      "stdout_tail": "wrote /Users/julian/Documents/coding-projects/benchmarks/data/latest/org-repo-ci-audit.json\nOK: 0  missing: 14\n  MISSING benchmarks: []\n  MISSING li-cursor-agents: []\n  MISSING li-demo: []\n  MISSING li-httpd: []\n  MISSING li-language: []\n  MISSING li-local-ci: []\n  MISSING li-net: []\n  MISSING li-std-core: []\n  MISSING li-std-math: []\n  MISSING lic: []\n  MISSING lip: []\n  MISSING lis: []\n  MISSING lit: []\n  MISSING roadmap: []\n",
       "stderr_tail": ""
     },
     "org_agent_kit_audit": {
@@ -69,7 +69,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-19T07:38Z",
+    "generated_at": "2026-05-19T08:11Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -585,7 +585,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-19T07:39Z",
+    "generated_at": "2026-05-19T08:11Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li ≤1.2× cpp (tier-1/2); beat HPC SOTA everywhere — PH-5b, PH-7e pure-Li codegen",
@@ -596,7 +596,7 @@
       "open_prs": 29,
       "failed_prs": 12,
       "ready_prs": 12,
-      "repos_missing_ci_main": 1,
+      "repos_missing_ci_main": 14,
       "repos_without_live_pages": 10
     },
     "failed_prs": [
@@ -844,7 +844,20 @@
       }
     ],
     "missing_ci_on_main": [
-      "li-local-ci"
+      "benchmarks",
+      "li-cursor-agents",
+      "li-demo",
+      "li-httpd",
+      "li-language",
+      "li-local-ci",
+      "li-net",
+      "li-std-core",
+      "li-std-math",
+      "lic",
+      "lip",
+      "lis",
+      "lit",
+      "roadmap"
     ],
     "repos_without_live_docs": [
       "li-demo",
@@ -1165,7 +1178,20 @@
         "priority": "P0",
         "action": "Add ci.yml on main (lic/scripts/templates/github-repo/ci.yml); run ensure-org-repo-ci.py",
         "repos": [
-          "li-local-ci"
+          "benchmarks",
+          "li-cursor-agents",
+          "li-demo",
+          "li-httpd",
+          "li-language",
+          "li-local-ci",
+          "li-net",
+          "li-std-core",
+          "li-std-math",
+          "lic",
+          "lip",
+          "lis",
+          "lit",
+          "roadmap"
         ]
       },
       {
@@ -1654,114 +1680,117 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-19T07:39Z",
+    "generated_at": "2026-05-19T08:11Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
-    "repos_ok": [
-      "benchmarks",
-      "li-cursor-agents",
-      "li-demo",
-      "li-httpd",
-      "li-language",
-      "li-net",
-      "li-std-core",
-      "li-std-math",
-      "lic",
-      "lip",
-      "lis",
-      "lit",
-      "roadmap"
-    ],
+    "repos_ok": [],
     "repos_missing_ci": [
+      {
+        "repo": "benchmarks",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "ingest-smoke"
+      },
+      {
+        "repo": "li-cursor-agents",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "check"
+      },
+      {
+        "repo": "li-demo",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "check"
+      },
+      {
+        "repo": "li-httpd",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "check"
+      },
+      {
+        "repo": "li-language",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "build-and-test"
+      },
       {
         "repo": "li-local-ci",
         "workflows": [],
         "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
         "suggested_required_check": "check"
+      },
+      {
+        "repo": "li-net",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "check"
+      },
+      {
+        "repo": "li-std-core",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "check"
+      },
+      {
+        "repo": "li-std-math",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "check"
+      },
+      {
+        "repo": "lic",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "build-and-test"
+      },
+      {
+        "repo": "lip",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "bootstrap"
+      },
+      {
+        "repo": "lis",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": null
+      },
+      {
+        "repo": "lit",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "test"
+      },
+      {
+        "repo": "roadmap",
+        "workflows": [],
+        "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
+        "suggested_required_check": "verify-kit"
       }
     ],
     "workflows": {
-      "benchmarks": [
-        "ci.yml",
-        "ecosystem-audit.yml",
-        "ecosystem-explorer.yml",
-        "ingest.yml",
-        "issue-feature-planning.yml",
-        "org-repo-ci-audit.yml",
-        "pages.yml",
-        "plan-completion-audit.yml",
-        "pr-auto-merge.yml"
-      ],
-      "li-cursor-agents": [
-        "ci.yml"
-      ],
-      "li-demo": [
-        "ci.yml",
-        "ecosystem-upstream.yml"
-      ],
-      "li-httpd": [
-        "ci.yml",
-        "ecosystem-upstream.yml"
-      ],
-      "li-language": [
-        "benchmarks.yml",
-        "ci.yml",
-        "docs.yml",
-        "release.yml"
-      ],
+      "benchmarks": [],
+      "li-cursor-agents": [],
+      "li-demo": [],
+      "li-httpd": [],
+      "li-language": [],
       "li-local-ci": [],
-      "li-net": [
-        "ci.yml",
-        "ecosystem-upstream.yml"
-      ],
-      "li-std-core": [
-        "ci.yml",
-        "ecosystem-upstream.yml"
-      ],
-      "li-std-math": [
-        "ci.yml",
-        "ecosystem-upstream.yml"
-      ],
-      "lic": [
-        "benchmarks.yml",
-        "ci.yml",
-        "cve-catalog.yml",
-        "docs.yml",
-        "fuzz.yml",
-        "hpc-competitive.yml",
-        "lean.yml",
-        "memory.yml",
-        "notify-downstream.yml",
-        "release.yml",
-        "ubsan-lic.yml"
-      ],
-      "lip": [
-        "ci.yml",
-        "ecosystem-upstream.yml",
-        "issue-feature-planning.yml"
-      ],
-      "lis": [
-        "branch-sync.yml",
-        "ci.yml",
-        "issue-feature-planning.yml"
-      ],
-      "lit": [
-        "ci.yml",
-        "ecosystem-upstream.yml",
-        "issue-feature-planning.yml",
-        "notify-downstream.yml"
-      ],
-      "roadmap": [
-        "ci.yml",
-        "issue-feature-planning.yml",
-        "pages.yml"
-      ]
+      "li-net": [],
+      "li-std-core": [],
+      "li-std-math": [],
+      "lic": [],
+      "lip": [],
+      "lis": [],
+      "lit": [],
+      "roadmap": []
     },
     "policy": "docs/ecosystem/repo-ci-required.md",
     "lic_monorepo_hint": "Run lic/scripts/ensure-package-ci.sh before push-official-package-repo.sh"
   },
   "org_agent_kit_audit": {
-    "generated_at": "2026-05-19T07:39Z",
+    "generated_at": "2026-05-19T08:11Z",
     "org": "li-langverse",
     "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
     "roadmap_kit": "/Users/julian/Documents/coding-projects/roadmap/agent-kit",
@@ -2024,7 +2053,7 @@
     ]
   },
   "merge_plan": {
-    "generated_at": "2026-05-19T07:44Z",
+    "generated_at": "2026-05-19T08:13Z",
     "vision_order": "package CI / mirrors → benchmarks → lic → lip/lit/lis → roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd → benchmarks → lic → lip/lit/lis → roadmap (roadmap last)",
@@ -2781,10 +2810,9 @@
         "url_b": "https://github.com/li-langverse/benchmarks/pull/34",
         "overlap": 1,
         "reasons": [
-          "#34 branch includes all commits from #36",
           "100% file overlap"
         ],
-        "suggested_action": "close #36 after #34 merges"
+        "suggested_action": "human: pick one PR or rebase the other"
       },
       {
         "repo": "benchmarks",
@@ -2794,10 +2822,9 @@
         "url_b": "https://github.com/li-langverse/benchmarks/pull/32",
         "overlap": 1,
         "reasons": [
-          "#32 branch includes all commits from #36",
           "100% file overlap"
         ],
-        "suggested_action": "close #36 after #32 merges"
+        "suggested_action": "human: pick one PR or rebase the other"
       },
       {
         "repo": "benchmarks",
@@ -2807,18 +2834,17 @@
         "url_b": "https://github.com/li-langverse/benchmarks/pull/32",
         "overlap": 1,
         "reasons": [
-          "#34 branch includes all commits from #32",
           "100% file overlap"
         ],
-        "suggested_action": "close #32 after #34 merges"
+        "suggested_action": "human: pick one PR or rebase the other"
       }
     ],
     "warnings": [
       "lic#52 vs lic#51: human: pick one PR or rebase the other",
       "lic#48 vs lic#40: human: pick one PR or rebase the other",
-      "benchmarks#36 vs benchmarks#34: close #36 after #34 merges",
-      "benchmarks#36 vs benchmarks#32: close #36 after #32 merges",
-      "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
+      "benchmarks#36 vs benchmarks#34: human: pick one PR or rebase the other",
+      "benchmarks#36 vs benchmarks#32: human: pick one PR or rebase the other",
+      "benchmarks#34 vs benchmarks#32: human: pick one PR or rebase the other",
       "~92% file overlap on `main`; merge #51 first, then merge `origin/main` into #52 (preserve both sides) before merging #52",
       "~75% file overlap on `main`; merge #47 first, then merge `origin/main` into #48 (preserve both sides) before merging #48",
       "~100% file overlap on `main`; merge #40 first, then merge `origin/main` into #48 (preserve both sides) before merging #48",
@@ -3686,7 +3712,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-19T07:44Z",
+    "generated_at": "2026-05-19T08:13Z",
     "ecosystem_root": "/Users/julian/Documents/coding-projects",
     "dirty_count": 3,
     "dirty_repos": [
@@ -3712,15 +3738,23 @@
         "repo": "li-cursor-agents",
         "org": "li-langverse",
         "branch": "feat/agent-heap-control-plane",
-        "changed_files": 7,
+        "changed_files": 15,
         "safe_files": [
+          "dashboard-ui/next-env.d.ts",
           "data/lanes/state.json",
           "data/latest/agent-briefing.json",
+          "data/research-sessions/proof_gap_researcher.json",
           "fixtures/e2e-benchmarks/data/latest/agent-briefing.json",
-          "package.json",
-          "src/backends/mock-backend.ts",
-          "src/e2e/agent-all-leaves-sdk.e2e.ts",
-          "src/e2e/all-leaves-shared.ts"
+          "scripts/lib/dev-export-env.sh",
+          "src/lanes/lane-runtime.ts",
+          "src/lanes/research-lane.ts",
+          "src/research-goals/load-goals.test.ts",
+          "src/research-goals/load-goals.ts",
+          "data/handoffs/",
+          "src/async-swarm/research-agent-worker-pool.ts",
+          "src/e2e/demo-repo-parallel-agents.e2e.ts",
+          "src/lanes/research-parallel.ts",
+          "src/research-publish/"
         ],
         "test_commands": [
           "npm test"
@@ -3948,8 +3982,8 @@
   ],
   "recommended_agents": [
     {
-      "agent": "proof_gap_researcher",
-      "reason": "swarm: research goal provability_holes eligible (priority 9)",
+      "agent": "goal_researcher",
+      "reason": "swarm: research goal game_engine_ux eligible (priority 5)",
       "source": "research_goals_status"
     },
     {
@@ -3974,7 +4008,7 @@
     },
     {
       "agent": "ci_maintainer",
-      "reason": "1 repos missing CI on main"
+      "reason": "14 repos missing CI on main"
     },
     {
       "agent": "docs_maintainer",
@@ -4017,7 +4051,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-19T07:44Z",
+    "loaded_at": "2026-05-19T08:13Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -4100,7 +4134,7 @@
           },
           {
             "agent": "ci_maintainer",
-            "reason": "1 repos missing CI on main"
+            "reason": "14 repos missing CI on main"
           }
         ]
       }
@@ -4157,7 +4191,7 @@
       {
         "coordinator": "coord_platform",
         "agent": "ci_maintainer",
-        "reason": "1 repos missing CI on main",
+        "reason": "14 repos missing CI on main",
         "priority": 50
       }
     ],
@@ -4272,7 +4306,8 @@
     "active_research_session": "proof_gap_researcher:provability_holes (cycle 1)",
     "research_lane_enabled": true,
     "implement_lane_enabled": true,
-    "last_research_tick_at": "2026-05-18T23:03:01.952Z"
+    "last_research_tick_at": "2026-05-19T08:13:25.611Z",
+    "last_implement_tick_at": "2026-05-19T07:59:46.200Z"
   },
   "research_goals_status": [
     {
@@ -4280,14 +4315,16 @@
       "title": "Numerics / HPC benchmark SOTA",
       "agent": "numerics_researcher",
       "priority": 7,
-      "eligible": true
+      "last_run_at": "2026-05-19T08:00:03.465Z",
+      "eligible": false
     },
     {
       "goal_id": "simulation_techniques",
       "title": "Simulation methods and reference architectures",
       "agent": "goal_researcher",
       "priority": 6,
-      "eligible": true
+      "last_run_at": "2026-05-19T08:00:03.520Z",
+      "eligible": false
     },
     {
       "goal_id": "game_engine_ux",
@@ -4308,7 +4345,8 @@
       "title": "AI-first tooling on Li (training, inference, agents)",
       "agent": "goal_researcher",
       "priority": 6,
-      "eligible": true
+      "last_run_at": "2026-05-19T08:01:50.006Z",
+      "eligible": false
     },
     {
       "goal_id": "web_platform",
@@ -4322,21 +4360,24 @@
       "title": "Org-wide std/packages + ecosystem signals",
       "agent": "gap_explorer",
       "priority": 4,
-      "eligible": true
+      "last_run_at": "2026-05-19T08:00:06.825Z",
+      "eligible": false
     },
     {
       "goal_id": "stdlib_ecosystem",
       "title": "Deep std + li-std-* audit; packages to build vs improve",
       "agent": "stdlib_researcher",
       "priority": 8,
-      "eligible": true
+      "last_run_at": "2026-05-19T08:00:06.888Z",
+      "eligible": false
     },
     {
       "goal_id": "provability_holes",
       "title": "Proof holes — compiler, contracts, trusted axioms",
       "agent": "proof_gap_researcher",
       "priority": 9,
-      "eligible": true
+      "last_run_at": "2026-05-19T08:02:34.258Z",
+      "eligible": false
     }
   ],
   "provability_scorecard": {
@@ -4350,6 +4391,6 @@
     "missing_north_star_fit": [],
     "invalid_north_star_fit": []
   },
-  "swarm_enriched_at": "2026-05-19T07:44:31.674Z",
-  "swarm_recommendations_merged_at": "2026-05-19T07:44:31.674Z"
+  "swarm_enriched_at": "2026-05-19T08:13:25.915Z",
+  "swarm_recommendations_merged_at": "2026-05-19T08:13:25.916Z"
 }

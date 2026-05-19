@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T07:44Z",
+  "generated_at": "2026-05-19T08:13Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
   "dirty_count": 3,
   "dirty_repos": [
@@ -25,15 +25,23 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 7,
+      "changed_files": 15,
       "safe_files": [
+        "dashboard-ui/next-env.d.ts",
         "data/lanes/state.json",
         "data/latest/agent-briefing.json",
+        "data/research-sessions/proof_gap_researcher.json",
         "fixtures/e2e-benchmarks/data/latest/agent-briefing.json",
-        "package.json",
-        "src/backends/mock-backend.ts",
-        "src/e2e/agent-all-leaves-sdk.e2e.ts",
-        "src/e2e/all-leaves-shared.ts"
+        "scripts/lib/dev-export-env.sh",
+        "src/lanes/lane-runtime.ts",
+        "src/lanes/research-lane.ts",
+        "src/research-goals/load-goals.test.ts",
+        "src/research-goals/load-goals.ts",
+        "data/handoffs/",
+        "src/async-swarm/research-agent-worker-pool.ts",
+        "src/e2e/demo-repo-parallel-agents.e2e.ts",
+        "src/lanes/research-parallel.ts",
+        "src/research-publish/"
       ],
       "test_commands": [
         "npm test"
