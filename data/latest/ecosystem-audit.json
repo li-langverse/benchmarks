@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T20:58Z",
+  "generated_at": "2026-05-19T22:31Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -9,7 +9,7 @@
   "metrics": {
     "open_prs": 20,
     "failed_prs": 11,
-    "ready_prs": 0,
+    "ready_prs": 1,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
   },
@@ -125,7 +125,18 @@
       "ready": false
     }
   ],
-  "ready_prs": [],
+  "ready_prs": [
+    {
+      "repo": "lic",
+      "number": 69,
+      "title": "fix(lic): workspace import members parse + multiline def params",
+      "url": "https://github.com/li-langverse/lic/pull/69",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    }
+  ],
   "missing_ci_on_main": [
     "li-local-ci"
   ],
@@ -516,6 +527,11 @@
       "action": "Plan completion debt \u2014 run plan-completion-audit automation",
       "total_findings": 127,
       "master_open": 8
+    },
+    {
+      "priority": "P2",
+      "action": "Human review merge queue (do not self-merge)",
+      "count": 1
     }
   ]
 }

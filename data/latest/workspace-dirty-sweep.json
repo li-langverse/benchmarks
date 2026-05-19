@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T21:03Z",
+  "generated_at": "2026-05-19T22:36Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
   "dirty_count": 2,
   "dirty_repos": [
@@ -29,15 +29,16 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 7,
+      "changed_files": 8,
       "safe_files": [
         "data/lanes/state.json",
+        "data/latest/agent-briefing.json",
+        "data/research-sessions/goal_researcher.json",
+        "data/research-sessions/stdlib_researcher.json",
         "ux-harness/adapters/__pycache__/__init__.cpython-313.pyc",
         "ux-harness/adapters/__pycache__/base.cpython-313.pyc",
         "ux-harness/adapters/__pycache__/mock_data.cpython-313.pyc",
-        "ux-harness/sota/__pycache__/rubric.cpython-313.pyc",
-        "data/research-sessions/goal_researcher.json",
-        "data/research-sessions/stdlib_researcher.json"
+        "ux-harness/sota/__pycache__/rubric.cpython-313.pyc"
       ],
       "test_commands": [
         "npm test"

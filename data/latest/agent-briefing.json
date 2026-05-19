@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T21:03Z",
+  "generated_at": "2026-05-19T22:36Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file.",
   "preflight_runs": {
@@ -81,7 +81,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-19T20:58Z",
+    "generated_at": "2026-05-19T22:31Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -644,7 +644,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-19T20:58Z",
+    "generated_at": "2026-05-19T22:31Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li ≤1.2× cpp (tier-1/2); beat HPC SOTA everywhere — PH-5b, PH-7e pure-Li codegen",
@@ -654,7 +654,7 @@
     "metrics": {
       "open_prs": 20,
       "failed_prs": 11,
-      "ready_prs": 0,
+      "ready_prs": 1,
       "repos_missing_ci_main": 1,
       "repos_without_live_pages": 10
     },
@@ -770,7 +770,18 @@
         "ready": false
       }
     ],
-    "ready_prs": [],
+    "ready_prs": [
+      {
+        "repo": "lic",
+        "number": 69,
+        "title": "fix(lic): workspace import members parse + multiline def params",
+        "url": "https://github.com/li-langverse/lic/pull/69",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "ready": true
+      }
+    ],
     "missing_ci_on_main": [
       "li-local-ci"
     ],
@@ -1161,6 +1172,11 @@
         "action": "Plan completion debt — run plan-completion-audit automation",
         "total_findings": 127,
         "master_open": 8
+      },
+      {
+        "priority": "P2",
+        "action": "Human review merge queue (do not self-merge)",
+        "count": 1
       }
     ]
   },
@@ -1677,7 +1693,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-19T20:59Z",
+    "generated_at": "2026-05-19T22:31Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [
@@ -1785,7 +1801,7 @@
     "lic_monorepo_hint": "Run lic/scripts/ensure-package-ci.sh before push-official-package-repo.sh"
   },
   "org_agent_kit_audit": {
-    "generated_at": "2026-05-19T20:59Z",
+    "generated_at": "2026-05-19T22:31Z",
     "org": "li-langverse",
     "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
     "roadmap_kit": "/Users/julian/Documents/coding-projects/roadmap/agent-kit",
@@ -2048,7 +2064,7 @@
     ]
   },
   "org_new_repos_discovery": {
-    "generated_at": "2026-05-19T20:59Z",
+    "generated_at": "2026-05-19T22:31Z",
     "org": "li-langverse",
     "github_source": "gh_repo_list",
     "github_repos": [
@@ -2095,7 +2111,7 @@
     "downstream_agent": "org_repo_onboarder"
   },
   "merge_plan": {
-    "generated_at": "2026-05-19T21:03Z",
+    "generated_at": "2026-05-19T22:36Z",
     "vision_order": "package CI / mirrors → benchmarks → lic → lip/lit/lis → roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd → benchmarks → lic → lip/lit/lis → roadmap (roadmap last)",
@@ -2109,7 +2125,7 @@
       "Progress: after every merge, remaining PRs must absorb latest main before their merge"
     ],
     "summary": {
-      "open_prs": 14,
+      "open_prs": 15,
       "merge_approved": 0,
       "gate_ready": 0,
       "conflicting_with_main": 10,
@@ -2195,8 +2211,9 @@
       {
         "repo": "lic",
         "base": "main",
-        "open_prs": 11,
+        "open_prs": 12,
         "local_merge_order": [
+          "lic#69",
           "lic#60",
           "lic#53",
           "lic#51",
@@ -2354,6 +2371,21 @@
       {
         "rank": 1,
         "repo": "lic",
+        "number": 69,
+        "url": "https://github.com/li-langverse/lic/pull/69",
+        "title": "fix(lic): workspace import members parse + multiline def params",
+        "merge_approved": false,
+        "gate_ready": false,
+        "mergeable": "MERGEABLE",
+        "merge_state": "BLOCKED",
+        "priority_score": 280,
+        "auto_merge_ok": false,
+        "blocked_reason": null,
+        "order_reason": "rank 1; priority_score=280; awaiting merge-approved label"
+      },
+      {
+        "rank": 2,
+        "repo": "lic",
         "number": 46,
         "url": "https://github.com/li-langverse/lic/pull/46",
         "title": "chore(security): downstream security-gate workflow template",
@@ -2364,10 +2396,10 @@
         "priority_score": 230,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 1; priority_score=230; awaiting merge-approved label"
+        "order_reason": "rank 2; priority_score=230; awaiting merge-approved label"
       },
       {
-        "rank": 2,
+        "rank": 3,
         "repo": "lic",
         "number": 45,
         "url": "https://github.com/li-langverse/lic/pull/45",
@@ -2379,10 +2411,10 @@
         "priority_score": 240,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 2; priority_score=240; awaiting merge-approved label"
+        "order_reason": "rank 3; priority_score=240; awaiting merge-approved label"
       },
       {
-        "rank": 3,
+        "rank": 4,
         "repo": "lic",
         "number": 43,
         "url": "https://github.com/li-langverse/lic/pull/43",
@@ -2394,10 +2426,10 @@
         "priority_score": 280,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 3; priority_score=280; awaiting merge-approved label"
+        "order_reason": "rank 4; priority_score=280; awaiting merge-approved label"
       },
       {
-        "rank": 4,
+        "rank": 5,
         "repo": "lic",
         "number": 37,
         "url": "https://github.com/li-langverse/lic/pull/37",
@@ -2409,10 +2441,10 @@
         "priority_score": 280,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 4; priority_score=280; awaiting merge-approved label"
+        "order_reason": "rank 5; priority_score=280; awaiting merge-approved label"
       },
       {
-        "rank": 5,
+        "rank": 6,
         "repo": "benchmarks",
         "number": 39,
         "url": "https://github.com/li-langverse/benchmarks/pull/39",
@@ -2424,10 +2456,10 @@
         "priority_score": 420,
         "auto_merge_ok": false,
         "blocked_reason": "conflicts with base — rebase onto main before merge",
-        "order_reason": "rank 5; priority_score=420; awaiting merge-approved label"
+        "order_reason": "rank 6; priority_score=420; awaiting merge-approved label"
       },
       {
-        "rank": 6,
+        "rank": 7,
         "repo": "lic",
         "number": 60,
         "url": "https://github.com/li-langverse/lic/pull/60",
@@ -2439,10 +2471,10 @@
         "priority_score": 430,
         "auto_merge_ok": false,
         "blocked_reason": "conflicts with base — rebase onto main before merge",
-        "order_reason": "rank 6; priority_score=430; awaiting merge-approved label"
+        "order_reason": "rank 7; priority_score=430; awaiting merge-approved label"
       },
       {
-        "rank": 7,
+        "rank": 8,
         "repo": "lic",
         "number": 53,
         "url": "https://github.com/li-langverse/lic/pull/53",
@@ -2454,10 +2486,10 @@
         "priority_score": 390,
         "auto_merge_ok": false,
         "blocked_reason": "conflicts with base — rebase onto main before merge",
-        "order_reason": "rank 7; priority_score=390; awaiting merge-approved label"
+        "order_reason": "rank 8; priority_score=390; awaiting merge-approved label"
       },
       {
-        "rank": 8,
+        "rank": 9,
         "repo": "lic",
         "number": 51,
         "url": "https://github.com/li-langverse/lic/pull/51",
@@ -2469,10 +2501,10 @@
         "priority_score": 430,
         "auto_merge_ok": false,
         "blocked_reason": "conflicts with base — rebase onto main before merge",
-        "order_reason": "rank 8; priority_score=430; awaiting merge-approved label"
+        "order_reason": "rank 9; priority_score=430; awaiting merge-approved label"
       },
       {
-        "rank": 9,
+        "rank": 10,
         "repo": "lic",
         "number": 40,
         "url": "https://github.com/li-langverse/lic/pull/40",
@@ -2484,10 +2516,10 @@
         "priority_score": 395,
         "auto_merge_ok": false,
         "blocked_reason": "conflicts with base — rebase onto main before merge",
-        "order_reason": "rank 9; priority_score=395; awaiting merge-approved label"
+        "order_reason": "rank 10; priority_score=395; awaiting merge-approved label"
       },
       {
-        "rank": 10,
+        "rank": 11,
         "repo": "lic",
         "number": 8,
         "url": "https://github.com/li-langverse/lic/pull/8",
@@ -2499,10 +2531,10 @@
         "priority_score": 430,
         "auto_merge_ok": false,
         "blocked_reason": "conflicts with base — rebase onto main before merge",
-        "order_reason": "rank 10; priority_score=430; awaiting merge-approved label"
+        "order_reason": "rank 11; priority_score=430; awaiting merge-approved label"
       },
       {
-        "rank": 11,
+        "rank": 12,
         "repo": "benchmarks",
         "number": 32,
         "url": "https://github.com/li-langverse/benchmarks/pull/32",
@@ -2517,7 +2549,7 @@
         "order_reason": "merge benchmarks#39 blocked (conflicts with base); fix before #32"
       },
       {
-        "rank": 12,
+        "rank": 13,
         "repo": "benchmarks",
         "number": 34,
         "url": "https://github.com/li-langverse/benchmarks/pull/34",
@@ -2532,7 +2564,7 @@
         "order_reason": "merge benchmarks#32 blocked (conflicts with base); fix before #34"
       },
       {
-        "rank": 13,
+        "rank": 14,
         "repo": "lic",
         "number": 52,
         "url": "https://github.com/li-langverse/lic/pull/52",
@@ -2547,7 +2579,7 @@
         "order_reason": "merge lic#51 blocked (conflicts with base); fix before #52"
       },
       {
-        "rank": 14,
+        "rank": 15,
         "repo": "lic",
         "number": 48,
         "url": "https://github.com/li-langverse/lic/pull/48",
@@ -3475,7 +3507,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-19T21:03Z",
+    "generated_at": "2026-05-19T22:36Z",
     "ecosystem_root": "/Users/julian/Documents/coding-projects",
     "dirty_count": 2,
     "dirty_repos": [
@@ -3505,15 +3537,16 @@
         "repo": "li-cursor-agents",
         "org": "li-langverse",
         "branch": "feat/agent-heap-control-plane",
-        "changed_files": 7,
+        "changed_files": 8,
         "safe_files": [
           "data/lanes/state.json",
+          "data/latest/agent-briefing.json",
+          "data/research-sessions/goal_researcher.json",
+          "data/research-sessions/stdlib_researcher.json",
           "ux-harness/adapters/__pycache__/__init__.cpython-313.pyc",
           "ux-harness/adapters/__pycache__/base.cpython-313.pyc",
           "ux-harness/adapters/__pycache__/mock_data.cpython-313.pyc",
-          "ux-harness/sota/__pycache__/rubric.cpython-313.pyc",
-          "data/research-sessions/goal_researcher.json",
-          "data/research-sessions/stdlib_researcher.json"
+          "ux-harness/sota/__pycache__/rubric.cpython-313.pyc"
         ],
         "test_commands": [
           "npm test"
@@ -3522,7 +3555,7 @@
     ]
   },
   "ui_audit": {
-    "generated_at": "2026-05-19T21:03:23.245416+00:00",
+    "generated_at": "2026-05-19T22:36:01.624828+00:00",
     "platform": "Darwin",
     "summary": {
       "total": 6,
@@ -3654,7 +3687,7 @@
     ]
   },
   "ux_audit": {
-    "generated_at": "2026-05-19T21:03:23.245895+00:00",
+    "generated_at": "2026-05-19T22:36:01.625150+00:00",
     "platform": "Darwin",
     "summary": {
       "total": 6,
@@ -4250,7 +4283,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-19T21:03Z",
+    "loaded_at": "2026-05-19T22:36Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -4594,6 +4627,6 @@
     "missing_north_star_fit": [],
     "invalid_north_star_fit": []
   },
-  "swarm_enriched_at": "2026-05-19T21:03:23.563Z",
-  "swarm_recommendations_merged_at": "2026-05-19T21:03:23.563Z"
+  "swarm_enriched_at": "2026-05-19T22:36:01.912Z",
+  "swarm_recommendations_merged_at": "2026-05-19T22:36:01.912Z"
 }
