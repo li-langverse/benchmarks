@@ -1,0 +1,13 @@
+---
+description: Li reads like prose — simplicity, domain names (org-wide pointer)
+alwaysApply: true
+---
+
+# Li readability (org)
+
+When editing **Li source or docs** in any repo (`lic`, packages, benchmarks samples):
+
+- **Canonical rule:** `lic/.cursor/rules/li-readability-philosophy.mdc`
+- **Canonical doc:** `lic/docs/language/philosophy.md` (if `lic` is checked out)
+
+**Summary:** Code does what it reads like it does (Python-style). Use `import physics.runtime`, verb `proc` names (`step_world`), nouns for types (`Body`), no `li_std_*` in examples.
