@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T10:54Z",
+  "generated_at": "2026-05-19T19:10Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -7,23 +7,13 @@
     "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
   },
   "metrics": {
-    "open_prs": 20,
-    "failed_prs": 14,
-    "ready_prs": 1,
+    "open_prs": 19,
+    "failed_prs": 12,
+    "ready_prs": 0,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
   },
   "failed_prs": [
-    {
-      "repo": "benchmarks",
-      "number": 39,
-      "title": "chore(org): exclude li-cursor-agents from org sweeps",
-      "url": "https://github.com/li-langverse/benchmarks/pull/39",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "ready": false
-    },
     {
       "repo": "li-language",
       "number": 6,
@@ -36,9 +26,9 @@
     },
     {
       "repo": "lic",
-      "number": 55,
-      "title": "feat(physics,ui): li-std-ui/scene, std stubs, simulation-ready runtime",
-      "url": "https://github.com/li-langverse/lic/pull/55",
+      "number": 56,
+      "title": "chore(lic): workspace sweep fallback",
+      "url": "https://github.com/li-langverse/lic/pull/56",
       "base": "main",
       "ci": "fail",
       "draft": false,
@@ -79,16 +69,6 @@
       "number": 48,
       "title": "chore(lic): Benchmark improver automated update",
       "url": "https://github.com/li-langverse/lic/pull/48",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "ready": false
-    },
-    {
-      "repo": "lic",
-      "number": 47,
-      "title": "fix(lexer): '+' token fixes horner_pure_li pure_li red row (~72\u00d7 \u2192 ~0.3\u00d7)",
-      "url": "https://github.com/li-langverse/lic/pull/47",
       "base": "main",
       "ci": "fail",
       "draft": false,
@@ -155,18 +135,7 @@
       "ready": false
     }
   ],
-  "ready_prs": [
-    {
-      "repo": "benchmarks",
-      "number": 37,
-      "title": "feat(benchmarks): agent briefing heap coordinator",
-      "url": "https://github.com/li-langverse/benchmarks/pull/37",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "ready": true
-    }
-  ],
+  "ready_prs": [],
   "missing_ci_on_main": [
     "li-local-ci"
   ],
@@ -228,21 +197,54 @@
     ]
   },
   "plan_completion": {
-    "generated_at": "2026-05-18T16:17Z",
+    "generated_at": "2026-05-19T15:33Z",
     "roots": {
-      "lic": "/Users/julian/Documents/coding-projects/li",
+      "lic": "../lic",
       "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
       "roadmap": "/Users/julian/Documents/coding-projects/roadmap"
     },
     "summary": {
-      "open_tracker_items": 0,
-      "open_plan_checkboxes": 67,
-      "provability_partial": 0,
-      "provability_missing": 0,
-      "catalog_gaps": 9,
-      "total_findings": 76
+      "open_tracker_items": 8,
+      "open_plan_checkboxes": 96,
+      "provability_partial": 12,
+      "provability_missing": 4,
+      "catalog_gaps": 1,
+      "total_findings": 127
     },
-    "master_plan_open": [],
+    "master_plan_open": [
+      {
+        "source": "lic:master_plan",
+        "item": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_return_linked=` (AST witness \u2194 MIR return); open goals checker"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contract` stub closed; `sqrt_open_bound` abs VC open; `lic verify --strict-lean`"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristics for race exploits"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))"
+      },
+      {
+        "source": "lic:master_plan",
+        "item": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnostic-v1` schema, handover docs, manifest stub ([llm-first spec](../specs/2026-05-16-li-llm-first-design.md), [agent-hand..."
+      }
+    ],
     "plan_files_open": [
       {
         "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
@@ -263,6 +265,38 @@
       {
         "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
         "item": "Timing runs separated from verification runs"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_return_linked=` (AST witness \u2194 MIR return); open goals checker"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contract` stub closed; `sqrt_open_bound` abs VC open; `lic verify --strict-lean`"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristics for race exploits"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))"
+      },
+      {
+        "source": "lic:plans/2026-05-14-li-master-plan.md",
+        "item": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnostic-v1` schema, handover docs, manifest stub ([llm-first spec](../specs/2026-05-16-li-llm-first-design.md), [agent-hand..."
       },
       {
         "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
@@ -371,96 +405,78 @@
       {
         "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
         "item": "Native binary from minimal proc"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-        "item": "`-O2` flag forwarded to clang in `--release`"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-        "item": "Bounds check calls present in IR for dynamic index"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-04-runtime-stdlib.md",
-        "item": "`echo` accepts `string` or `int` (format in rt)"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-04-runtime-stdlib.md",
-        "item": "`li_rt_print_string`, `li_rt_print_int`"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-04-runtime-stdlib.md",
-        "item": "NUL-terminated `*const i8` or `{ ptr, len }` \u2014 pick `{ ptr, len }` struct `StringLit` as immutable static"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-04-runtime-stdlib.md",
-        "item": "v1: no heap strings; concatenation out of scope"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-04-runtime-stdlib.md",
-        "item": "`array[N,T]` as LLVM array type on stack"
-      },
-      {
-        "source": "lic:plans/2026-05-14-phase-04-runtime-stdlib.md",
-        "item": "Literal index: compile-time OOB error (phase 2) + no runtime check"
       }
     ],
     "provability_gaps": {
-      "partial": [],
-      "missing": []
+      "partial": [
+        "**G-lean**",
+        "**G-vc**",
+        "**G-par**",
+        "**G-stdlib**",
+        "**G-dec**",
+        "**G-math**",
+        "**G-bnd**",
+        "**G-def**",
+        "**G-math-syn**",
+        "**G-async**",
+        "**G-net**",
+        "**G-narrow**"
+      ],
+      "missing": [
+        "**G-ann**",
+        "**G-gpu**",
+        "**G-meta**",
+        "**G-authz**"
+      ]
     },
     "catalog_gaps": [
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=advection_diffusion_2d path missing under LIC_ROOT: benchmarks/tier2_physics/advection_diffusion_2d"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=wave_equation_2d path missing under LIC_ROOT: benchmarks/tier2_physics/wave_equation_2d"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=sph_dam_break_2d path missing under LIC_ROOT: benchmarks/tier2_physics/sph_dam_break_2d"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=euler_fluid_2d path missing under LIC_ROOT: benchmarks/tier2_physics/euler_fluid_2d"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack"
-      },
-      {
-        "source": "benchmarks:catalog.toml",
-        "item": "catalog id=cloth_swing path missing under LIC_ROOT: benchmarks/tier2_physics/cloth_swing"
-      },
       {
         "source": "benchmarks:catalog.toml",
         "item": "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
       }
     ],
-    "implementation_signals": [],
+    "implementation_signals": [
+      {
+        "source": "lic:li-std-physics-particles",
+        "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
+      },
+      {
+        "source": "lic:li-std-physics-hep",
+        "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
+      },
+      {
+        "source": "lic:li-std-physics-aero",
+        "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
+      },
+      {
+        "source": "lic:li-std-physics-quantum",
+        "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
+      },
+      {
+        "source": "lic:li-std-physics-fluids",
+        "item": "package lib.li looks like scaffold-only (<80 lines, version stub)"
+      },
+      {
+        "source": "lic:physics",
+        "item": "feat/physics-module-packages branch may be unpublished \u2014 see docs/physics/PUSH_PR.md"
+      }
+    ],
     "recommended_actions": [
+      {
+        "priority": "P1",
+        "action": "Close or update master plan phase tracker rows",
+        "count": 8
+      },
+      {
+        "priority": "P1",
+        "action": "Update provability-gaps.md when closing compiler work",
+        "partial": 12,
+        "missing": 4
+      },
       {
         "priority": "P2",
         "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
         "benchmarks": [
-          "catalog id=advection_diffusion_2d path missing under LIC_ROOT: benchmarks/tier2_physics/advection_diffusion_2d",
-          "catalog id=wave_equation_2d path missing under LIC_ROOT: benchmarks/tier2_physics/wave_equation_2d",
-          "catalog id=sph_dam_break_2d path missing under LIC_ROOT: benchmarks/tier2_physics/sph_dam_break_2d",
-          "catalog id=euler_fluid_2d path missing under LIC_ROOT: benchmarks/tier2_physics/euler_fluid_2d",
-          "catalog id=combustion_passive path missing under LIC_ROOT: benchmarks/tier2_physics/combustion_passive",
-          "catalog id=wind_field_bc path missing under LIC_ROOT: benchmarks/tier2_physics/wind_field_bc",
-          "catalog id=rigid_body_stack path missing under LIC_ROOT: benchmarks/tier2_physics/rigid_body_stack",
-          "catalog id=cloth_swing path missing under LIC_ROOT: benchmarks/tier2_physics/cloth_swing",
           "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
         ]
       }
@@ -471,14 +487,12 @@
       "priority": "P0",
       "action": "Fix failing PR CI before new feature work",
       "prs": [
-        "benchmarks#39",
         "li-language#6",
-        "lic#55",
+        "lic#56",
         "lic#53",
         "lic#52",
         "lic#51",
         "lic#48",
-        "lic#47",
         "lic#46",
         "lic#45",
         "lic#43",
@@ -511,13 +525,8 @@
     {
       "priority": "P1",
       "action": "Plan completion debt \u2014 run plan-completion-audit automation",
-      "total_findings": 76,
-      "master_open": 0
-    },
-    {
-      "priority": "P2",
-      "action": "Human review merge queue (do not self-merge)",
-      "count": 1
+      "total_findings": 127,
+      "master_open": 8
     }
   ]
 }

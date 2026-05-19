@@ -1,27 +1,14 @@
 {
-  "generated_at": "2026-05-19T10:58Z",
+  "generated_at": "2026-05-19T19:15Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
-  "dirty_count": 4,
+  "dirty_count": 3,
   "dirty_repos": [
-    {
-      "path": "/Users/julian/Documents/coding-projects/lic",
-      "repo": "lic",
-      "org": "li-langverse",
-      "branch": "main",
-      "changed_files": 1,
-      "safe_files": [
-        "docs/ecosystem/stdlib-research/"
-      ],
-      "test_commands": [
-        "./li-tests/run_all.sh"
-      ]
-    },
     {
       "path": "/Users/julian/Documents/coding-projects/benchmarks",
       "repo": "benchmarks",
       "org": "li-langverse",
       "branch": "chore/agent-security_auditor-audit-script",
-      "changed_files": 8,
+      "changed_files": 15,
       "safe_files": [
         "data/latest/agent-briefing.json",
         "data/latest/ecosystem-audit.json",
@@ -29,8 +16,15 @@
         "data/latest/issue-feature-triage.json",
         "data/latest/org-agent-kit-audit.json",
         "data/latest/org-repo-ci-audit.json",
+        "data/latest/plan-completion-audit.json",
         "data/latest/pr-merge-queue-plan.json",
-        "data/latest/workspace-dirty-sweep.json"
+        "data/latest/security-cwe-audit.json",
+        "data/latest/workspace-dirty-sweep.json",
+        "data/latest/org-new-repos-discovery.json",
+        "data/latest/ui-audit.json",
+        "data/latest/ui-ux-audit-meta.json",
+        "data/latest/ux-audit.json",
+        "docs/ecosystem/explorer-digests/2026-05-19-explorer-smoke.md"
       ],
       "test_commands": []
     },
@@ -39,11 +33,20 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 3,
+      "changed_files": 12,
       "safe_files": [
+        "dashboard-ui/next-env.d.ts",
         "data/lanes/state.json",
         "data/latest/agent-briefing.json",
-        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json"
+        "data/research-sessions/proof_gap_researcher.json",
+        "ux-harness/adapters/__pycache__/__init__.cpython-313.pyc",
+        "ux-harness/adapters/__pycache__/base.cpython-313.pyc",
+        "ux-harness/adapters/__pycache__/mock_data.cpython-313.pyc",
+        "ux-harness/artifacts/test-out/ui-audit.json",
+        "ux-harness/artifacts/test-out/ux-audit.json",
+        "ux-harness/sota/__pycache__/rubric.cpython-313.pyc",
+        "data/handoffs/",
+        "data/latest/remediation_manifest.json"
       ],
       "test_commands": [
         "npm test"

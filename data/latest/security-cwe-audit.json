@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-18T22:36Z",
-  "catalog_path": "/Users/julian/Documents/coding-projects/benchmarks/../lic/security/cve-catalog.json",
+  "generated_at": "2026-05-19T11:49Z",
+  "catalog_path": "/Users/julian/Documents/coding-projects/li-cursor-agents/data/workspaces/li-langverse/lic/security_auditor-1779191323778/repo/security/cve-catalog.json",
   "summary": {
     "catalog_entries": 39,
     "catalog_gaps": 0,
     "security_test_files": 12,
-    "repos_without_security_workflow": 8
+    "repos_without_security_workflow": 7
   },
   "catalog_gaps": [],
   "security_tests": [
@@ -60,8 +60,8 @@
     },
     {
       "repo": "li-demo",
-      "security_workflow": false,
-      "action": "add cve-catalog.yml or security gate workflow"
+      "security_workflow": true,
+      "action": null
     },
     {
       "repo": "li-cursor-agents",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T08:39Z",
+  "generated_at": "2026-05-19T15:33Z",
   "lic_root": "../lic",
   "lic_present": true,
   "std_modules_on_disk": [
@@ -376,15 +376,15 @@
     },
     {
       "repo": "li-langverse/benchmarks",
-      "number": 28,
-      "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
-      "url": "https://github.com/li-langverse/benchmarks/issues/28"
-    },
-    {
-      "repo": "li-langverse/benchmarks",
       "number": 27,
       "title": "[explorer-finding] Track Eigen / Kokkos / PETSc / Chapel release cadence in bench policy",
       "url": "https://github.com/li-langverse/benchmarks/issues/27"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 28,
+      "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
+      "url": "https://github.com/li-langverse/benchmarks/issues/28"
     },
     {
       "repo": "li-langverse/benchmarks",
