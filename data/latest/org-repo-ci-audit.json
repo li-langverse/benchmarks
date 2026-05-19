@@ -1,10 +1,9 @@
 {
-  "generated_at": "2026-05-18T22:21Z",
+  "generated_at": "2026-05-19T11:34Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
   "repos_ok": [
     "benchmarks",
-    "li-cursor-agents",
     "li-demo",
     "li-httpd",
     "li-language",
@@ -37,12 +36,10 @@
       "plan-completion-audit.yml",
       "pr-auto-merge.yml"
     ],
-    "li-cursor-agents": [
-      "ci.yml"
-    ],
     "li-demo": [
       "ci.yml",
-      "ecosystem-upstream.yml"
+      "ecosystem-upstream.yml",
+      "security-gate.yml"
     ],
     "li-httpd": [
       "ci.yml",

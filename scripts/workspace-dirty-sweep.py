@@ -79,7 +79,7 @@ def scan_repo(path: Path) -> dict | None:
 def main() -> int:
     anchor = Path(os.environ.get("LI_ECOSYSTEM_ROOT", ROOT.parent))
     names = os.environ.get(
-        "LI_WORKSPACE_SWEEP_REPO_NAMES", "lic,benchmarks,roadmap,li-cursor-agents,li"
+        "LI_WORKSPACE_SWEEP_REPO_NAMES", "lic,benchmarks,roadmap,lip,lit,lis,li-language"
     ).split(",")
     dirty: list[dict] = []
     for name in names:

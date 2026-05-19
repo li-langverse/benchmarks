@@ -1,0 +1,31 @@
+---
+description: li-demo is an automation sandbox — no merges or product work unless asked
+alwaysApply: true
+---
+
+# li-demo (automation testing repo)
+
+**`li-langverse/li-demo`** exists to exercise **Cursor Automations**, merge gates, security workflow templates, and org scripts — not for product features.
+
+## Default agent behavior
+
+- **Do not** open, merge, or close PRs on `li-demo` during org sweeps (`run-pr-program.py`, merge queue, hygiene).
+- **Do not** treat `li-demo` green CI as a signal to merge into product repos.
+- **Do not** add physics, stdlib, or compiler changes targeting `li-demo` unless the user explicitly names that repo.
+
+## When work on li-demo is allowed
+
+Only when the user **explicitly** asks, e.g.:
+
+- “test the automation on li-demo”
+- “merge li-demo#…”
+- “add a workflow stub to li-demo”
+
+## What agents should do instead
+
+- Core product: **`lic`**, **`benchmarks`**, **`lip`/`lit`/`lis`**, package mirrors (`li-std-*`, `li-net`, `li-httpd`).
+- Automation infra: **Cursor Automations** + benchmarks scripts — not li-demo merges by default.
+
+## Scripts
+
+`li-demo` is listed in `scripts/org_repos.py` for CI discovery but is in **`MERGE_IGNORE_REPOS`** for automated merge execution.
