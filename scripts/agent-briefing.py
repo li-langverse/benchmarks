@@ -522,14 +522,23 @@ def main() -> int:
         "recommended_agents": [],
     }
     agents_root = Path(os.environ.get("LI_CURSOR_AGENTS_ROOT", ROOT.parent / "li-cursor-agents"))
-    if not args.skip_slow and subprocess.run(["which", "gh"], capture_output=True).returncode == 0:
+    agents_enabled = os.environ.get("LI_CURSOR_AGENTS_ENABLED", "0") == "1"
+    if (
+        agents_enabled
+        and agents_root.is_dir()
+        and not args.skip_slow
+        and subprocess.run(["which", "gh"], capture_output=True).returncode == 0
+    ):
         runs["agent_deliverable_gate"] = run_script(
             "agent_deliverable_gate",
             ["python3", "scripts/agent-pr-deliverable-gate.py", "--sweep-agent-prs"],
             False,
         )
     else:
-        runs["agent_deliverable_gate"] = {"skipped": True, "reason": "--skip-slow or gh missing"}
+        runs["agent_deliverable_gate"] = {
+            "skipped": True,
+            "reason": "li-cursor-agents disabled (set LI_CURSOR_AGENTS_ENABLED=1 to scan)",
+        }
 
     data["agent_pr_deliverable_gate"] = load_json(LATEST / "agent-pr-deliverable-gate.json")
     if not data["agent_pr_deliverable_gate"] and agents_root.is_dir():
@@ -582,7 +591,7 @@ def main() -> int:
         print(f"  - {layer['coordinator']}: {agents}")
     if hp.get("validation_errors"):
         print("Heap validation errors:", hp["validation_errors"])
-    print("\nNext: li-cursor-agents supervisor or cursor.com/automations")
+    print("\nNext: cursor.com/automations or ./scripts/run-pr-program.py --execute")
     failed = [k for k, v in runs.items() if v.get("exit_code", 0) != 0 and not v.get("skipped")]
     return 1 if failed else 0
 

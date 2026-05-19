@@ -33,21 +33,8 @@ REQUIRED_RULES = [
 ]
 
 # Org repos that must carry synced agent-kit (code + agent runners).
-CORE_AGENT_KIT_REPOS = [
-    "lic",
-    "li-language",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-    "li-cursor-agents",
-    "li-net",
-    "li-httpd",
-    "li-std-core",
-    "li-std-math",
-    "li-demo",
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from org_repos import CORE_AGENT_KIT_REPOS  # noqa: E402
 
 LOCAL_DIR_ALIASES: dict[str, list[str]] = {
     "lic": ["lic", "li"],

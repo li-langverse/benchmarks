@@ -21,8 +21,13 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/org-repo-ci-audit.json"
 ORG = "li-langverse"
 REQUIRED_WORKFLOW = "ci.yml"
-# Repos exempt from single-job ci.yml (multi-workflow compiler mirrors)
-EXEMPT_REPOS: set[str] = set()  # li-language uses ci.yml — keep in audit
+
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+from org_repos import IGNORE_REPOS, filter_repos  # noqa: E402
+
+EXEMPT_REPOS: set[str] = set(IGNORE_REPOS)
 
 
 def gh_json(args: list[str]):
@@ -39,6 +44,17 @@ def list_org_repos() -> list[str]:
     return sorted(r["name"] for r in rows if not r.get("isArchived"))
 
 
+def local_workflow_names(repo: str) -> list[str]:
+    bases = [ROOT.parent / repo, ROOT / repo]
+    if repo == "benchmarks":
+        bases.insert(0, ROOT)
+    for base in bases:
+        wf = base / ".github" / "workflows"
+        if wf.is_dir():
+            return sorted(p.name for p in wf.iterdir() if p.suffix in (".yml", ".yaml"))
+    return []
+
+
 def workflow_names(repo: str) -> list[str]:
     proc = subprocess.run(
         ["gh", "api", f"repos/{ORG}/{repo}/contents/.github/workflows", "-q", ".[].name"],
@@ -46,9 +62,13 @@ def workflow_names(repo: str) -> list[str]:
         text=True,
         check=False,
     )
-    if proc.returncode != 0:
-        return []
-    return [ln.strip() for ln in proc.stdout.splitlines() if ln.strip()]
+    names = (
+        [ln.strip() for ln in proc.stdout.splitlines() if ln.strip()]
+        if proc.returncode == 0
+        else []
+    )
+    local = local_workflow_names(repo)
+    return names if names else local
 
 
 def has_ci(repo: str) -> bool:
@@ -84,7 +104,7 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
-    repos = args.repos if args.repos else list_org_repos()
+    repos = filter_repos(args.repos if args.repos else list_org_repos())
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     ok: list[str] = []
     missing: list[dict] = []

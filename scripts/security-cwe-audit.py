@@ -23,17 +23,8 @@ if not CATALOG.is_file() and (_li_repo / "security" / "cve-catalog.json").is_fil
 LI_TESTS = LIC / "li-tests"
 ORG = "li-langverse"
 
-ORG_REPOS = [
-    "lic",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "li-httpd",
-    "li-net",
-    "li-demo",
-    "li-cursor-agents",
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from org_repos import ORG_REPOS  # noqa: E402
 
 
 def gh_json(args: list[str]):
