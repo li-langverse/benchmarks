@@ -21,7 +21,7 @@ GATE_SCRIPT = ROOT / "scripts/pr-merge-gate.py"
 SWEEP_SCRIPT = ROOT / "scripts/pr-auto-merge-sweep.py"
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from org_repos import ORG_REPOS  # noqa: E402
+from org_repos import MERGE_IGNORE_REPOS, ORG_REPOS  # noqa: E402
 
 # Vision merge order (lower = earlier)
 REPO_PRIORITY = {
@@ -165,9 +165,15 @@ def main() -> int:
                 "url": c["url"],
                 "title": c["title"],
                 "ci": c["ci"],
-                "action": "add merge-approved after review"
-                if c["ci"] == "pass" and not c["merge_approved"]
-                else ("auto-merge ok" if c in ready_to_merge else "fix CI or review"),
+                "action": (
+                    "skip (automation sandbox — merge only if user asks)"
+                    if c["repo"] in MERGE_IGNORE_REPOS
+                    else (
+                        "add merge-approved after review"
+                        if c["ci"] == "pass" and not c["merge_approved"]
+                        else ("auto-merge ok" if c in ready_to_merge else "fix CI or review")
+                    )
+                ),
             }
             for i, c in enumerate(ci_green[:20])
         ],
@@ -188,6 +194,8 @@ def main() -> int:
             gate_extra.append("--no-release-notes")
         for c in ci_green:
             repo, num = c["repo"], c["number"]
+            if repo in MERGE_IGNORE_REPOS:
+                continue
             gh_label = subprocess.run(
                 ["gh", "label", "create", "merge-approved", "--repo", f"li-langverse/{repo}",
                  "--color", "5319E7", "--description", "Standards review passed", "--force"],
