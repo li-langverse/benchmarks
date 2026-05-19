@@ -1,0 +1,48 @@
+---
+description: When GHA minutes are exhausted, validate with local Actions (li-local-ci / local-ci.sh)
+alwaysApply: true
+---
+
+# Local Actions when GitHub minutes are gone
+
+Do **not** block merges solely because GitHub Actions is `none`, `skipped`, or quota-exhausted if **local CI passed**.
+
+## Required workflow
+
+1. **Single repo (lic):**
+   ```bash
+   cd lic && ./scripts/local-ci.sh
+   # or from benchmarks root:
+   ./scripts/run-local-actions.sh lic
+   ```
+
+2. **Org PR sweep (merge gate):**
+   ```bash
+   export LI_ACTIONS_QUOTA_EXCEEDED=1   # optional documentation flag
+   ./scripts/run-local-actions.sh sweep
+   # or: python3 scripts/local-ci-sweep.py --repo lic --pr N
+   ```
+
+3. **Refresh merge metadata:**
+   ```bash
+   python3 scripts/run-pr-program.py
+   ```
+
+## Tools
+
+| Tool | Role |
+|------|------|
+| `lic/scripts/local-ci.sh` | Mirrors lic GHA (`scripts/ci.sh`); `--docker` for Ubuntu parity |
+| `li-local-ci` | Org PR runner (`run-pr`); clone `li-langverse/li-local-ci` or set `LI_LOCAL_CI_ROOT` |
+| `scripts/run-local-actions.sh` | Entry point from benchmarks monorepo |
+| `data/latest/local-ci-results.json` | Merge gate reads this when GHA is red/none |
+
+## Before merging
+
+- Run local CI for the PR you touch; do not rely on green GHA alone when minutes are depleted.
+- `scripts/pr-merge-gate.py` accepts fresh local-ci pass (see `LOCAL_CI_MAX_AGE_HOURS`).
+
+## Do not
+
+- Burn org minutes re-running full matrix without need.
+- Merge with neither GHA green nor a fresh `local-ci-results.json` row for that PR.

@@ -23,21 +23,23 @@ import csv
 
 ## Std tree
 
-| Ergonomic | Std path | Package (monorepo) |
-|-----------|----------|---------------------|
-| `physics.relativity` | `std.physics.relativity` | `li-std-physics-relativity` |
-| `physics.runtime` | `std.physics.runtime` | `li-std-physics-runtime` |
-| `math` | `std.math` | `li-std-math` |
-| `math.numerics` | `std.math.numerics` | `li-std-numerics` |
-| `ui` | `std.ui` | `li-std-ui` |
-| `scene` | `std.scene` | `li-std-scene` |
+| Ergonomic | Std path | GitHub repo / `packages/` folder |
+|-----------|----------|----------------------------------|
+| `physics.relativity` | `std.physics.relativity` | `li-physics-relativity` |
+| `physics.runtime` | `std.physics.runtime` | `li-physics-runtime` |
+| `math` | `std.math` | `li-math` |
+| `math.numerics` | `std.math.numerics` | `li-math-numerics` |
+| `ui` | `std.ui` | `li-ui` |
+| `scene` | `std.scene` | `li-scene` |
+| `net.httpd` | — | `li-net-httpd` |
 
 Full table: `docs/language/import-style.md`
 
 ## New packages
 
-1. Run `./scripts/li-new-package li-std-physics-foo --official`
-2. Add `import_name = "physics.foo"` under `[package.metadata.li]` (or run `scripts/apply-import-names.py`)
+1. Run `./scripts/li-new-package --import-name physics.foo --official` (creates `packages/li-physics-foo`)
+2. Or run `scripts/apply-import-names.py` / `align-package-repo-names.py` on existing packages
+3. Set `github_repo` + `import_name` in `li.toml` (see `docs/ecosystem/repo-naming.md`)
 3. Add `std/physics/foo.li` facade (tag proc or re-export)
 4. Register in `packages/li.toml` workspace `members`
 

@@ -63,14 +63,44 @@ def classify_ci(rollup: list[dict] | None) -> str:
     return "pass"
 
 
-def run_one(bin_path: Path, repo: str, number: int) -> dict:
+def lic_root() -> Path | None:
+    for candidate in (
+        ROOT / "lic",
+        ROOT.parent / "lic",
+        Path(os.environ.get("LI_LIC_ROOT", "")),
+    ):
+        if candidate.is_dir() and (candidate / "scripts" / "local-ci.sh").is_file():
+            return candidate
+    return None
+
+
+def run_lic_local_ci_fallback(repo: str) -> int:
+    """When li-local-ci is absent, run lic's scripts/local-ci.sh for lic PRs only."""
+    if repo != "lic":
+        return 127
+    root = lic_root()
+    if root is None:
+        return 127
+    print(f"  fallback: {root}/scripts/local-ci.sh (no li-local-ci)")
     proc = subprocess.run(
-        [str(bin_path), "run-pr", "--repo", repo, "--pr", str(number), "--out", str(OUT)],
-        cwd=bin_path.parent.parent,
+        [str(root / "scripts" / "local-ci.sh")],
+        cwd=root,
         text=True,
-        capture_output=False,
     )
-    return {"repo": repo, "number": number, "exit_code": proc.returncode}
+    return proc.returncode
+
+
+def run_one(bin_path: Path | None, repo: str, number: int) -> dict:
+    if bin_path is not None:
+        proc = subprocess.run(
+            [str(bin_path), "run-pr", "--repo", repo, "--pr", str(number), "--out", str(OUT)],
+            cwd=bin_path.parent.parent,
+            text=True,
+            capture_output=False,
+        )
+        return {"repo": repo, "number": number, "exit_code": proc.returncode, "via": "li-local-ci"}
+    code = run_lic_local_ci_fallback(repo)
+    return {"repo": repo, "number": number, "exit_code": code, "via": "lic-local-ci.sh"}
 
 
 def load_results() -> dict:
@@ -95,11 +125,15 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
+    bin_path: Path | None = None
     try:
         bin_path = local_ci_bin()
     except FileNotFoundError as e:
-        print(e, file=sys.stderr)
-        return 1
+        print(f"warn: {e}", file=sys.stderr)
+        if lic_root() is None:
+            print("  clone li-langverse/li-local-ci or set LI_LOCAL_CI_ROOT / LI_LIC_ROOT", file=sys.stderr)
+            return 1
+        print("  fallback: lic/scripts/local-ci.sh for repo=lic only", file=sys.stderr)
 
     targets: list[tuple[str, int]] = []
     if args.repo and args.pr:
@@ -138,9 +172,13 @@ def main() -> int:
         return 0
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    print(f"local-ci sweep: {len(targets)} PR(s) via {bin_path}")
+    via = str(bin_path) if bin_path else f"{lic_root()}/scripts/local-ci.sh (fallback)"
+    print(f"local-ci sweep: {len(targets)} PR(s) via {via}")
     failed = 0
     for repo, num in targets:
+        if bin_path is None and repo != "lic":
+            print(f"--- skip {repo}#{num} (need li-local-ci for non-lic repos)")
+            continue
         print(f"--- {repo}#{num}")
         row = run_one(bin_path, repo, num)
         if row["exit_code"] != 0:
