@@ -1,0 +1,312 @@
+{
+  "generated_at": "2026-05-18T21:47Z",
+  "org": "li-langverse",
+  "summary": {
+    "repos_scanned": 13,
+    "branches_needing_pr": 36,
+    "prs_recommended_close": 1,
+    "prs_safe_close_now": 0
+  },
+  "branches_needing_pr": [
+    {
+      "repo": "lic",
+      "branch": "bot/fuzz-corpus-25983189553",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `bot/fuzz-corpus-25983189553` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch bot/fuzz-corpus-25983189553"
+    },
+    {
+      "repo": "lic",
+      "branch": "bot/fuzz-corpus-26017813643",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `bot/fuzz-corpus-26017813643` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch bot/fuzz-corpus-26017813643"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-code_implementer-99125914",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-code_implementer-99125914` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-code_implementer-99125914"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-numerics_researcher-35409172",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-numerics_researcher-35409172` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-35409172"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-numerics_researcher-37593827",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-numerics_researcher-37593827` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-37593827"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/sync-mirror-ci-script",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/sync-mirror-ci-script` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/sync-mirror-ci-script"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/cloud-env-setup-c81e",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/cloud-env-setup-c81e` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/cloud-env-setup-c81e"
+    },
+    {
+      "repo": "lic",
+      "branch": "feat/agent-planning-automation",
+      "base": "main",
+      "ahead_by": 10,
+      "reason": "branch `feat/agent-planning-automation` is 10 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/agent-planning-automation"
+    },
+    {
+      "repo": "lic",
+      "branch": "feat/package-ci-required",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `feat/package-ci-required` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/package-ci-required"
+    },
+    {
+      "repo": "lic",
+      "branch": "feat/physics-game-dev",
+      "base": "main",
+      "ahead_by": 10,
+      "reason": "branch `feat/physics-game-dev` is 10 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/physics-game-dev"
+    },
+    {
+      "repo": "lic",
+      "branch": "feat/vision-llm-agent-diagnostics",
+      "base": "main",
+      "ahead_by": 5,
+      "reason": "branch `feat/vision-llm-agent-diagnostics` is 5 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/vision-llm-agent-diagnostics"
+    },
+    {
+      "repo": "lic",
+      "branch": "fix/ci-dev-pr3-sync",
+      "base": "main",
+      "ahead_by": 8,
+      "reason": "branch `fix/ci-dev-pr3-sync` is 8 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch fix/ci-dev-pr3-sync"
+    },
+    {
+      "repo": "lip",
+      "branch": "feat/issue-feature-planning",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `feat/issue-feature-planning` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lip): sync branch feat/issue-feature-planning"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "cursor/li-plot-ph-io-5-c9a5",
+      "base": "main",
+      "ahead_by": 2,
+      "reason": "branch `cursor/li-plot-ph-io-5-c9a5` is 2 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch cursor/li-plot-ph-io-5-c9a5"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "cursor/li-summary-ph-io-7-c9a5",
+      "base": "main",
+      "ahead_by": 5,
+      "reason": "branch `cursor/li-summary-ph-io-7-c9a5` is 5 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch cursor/li-summary-ph-io-7-c9a5"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "feat/agent-briefing-heap",
+      "base": "main",
+      "ahead_by": 10,
+      "reason": "branch `feat/agent-briefing-heap` is 10 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch feat/agent-briefing-heap"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "feat/catalog-tier2-physics-expansion",
+      "base": "main",
+      "ahead_by": 19,
+      "reason": "branch `feat/catalog-tier2-physics-expansion` is 19 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch feat/catalog-tier2-physics-expansion"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "feat/cursor-agent-architecture",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `feat/cursor-agent-architecture` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch feat/cursor-agent-architecture"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "feat/ecosystem-explorer-automation",
+      "base": "main",
+      "ahead_by": 2,
+      "reason": "branch `feat/ecosystem-explorer-automation` is 2 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch feat/ecosystem-explorer-automation"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "feat/li-cursor-agents-sdk-bridge",
+      "base": "main",
+      "ahead_by": 5,
+      "reason": "branch `feat/li-cursor-agents-sdk-bridge` is 5 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch feat/li-cursor-agents-sdk-bridge"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "fix/ci-dashboard-vite-until-ph-io-5",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `fix/ci-dashboard-vite-until-ph-io-5` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch fix/ci-dashboard-vite-until-ph-io-5"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "fix/pages-vite-restore",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `fix/pages-vite-restore` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch fix/pages-vite-restore"
+    },
+    {
+      "repo": "roadmap",
+      "branch": "cursor/fix-refresh-workflow-c81e",
+      "base": "main",
+      "ahead_by": 2,
+      "reason": "branch `cursor/fix-refresh-workflow-c81e` is 2 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(roadmap): sync branch cursor/fix-refresh-workflow-c81e"
+    },
+    {
+      "repo": "roadmap",
+      "branch": "feat/docs-hpc-ai-north-star",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `feat/docs-hpc-ai-north-star` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(roadmap): sync branch feat/docs-hpc-ai-north-star"
+    },
+    {
+      "repo": "roadmap",
+      "branch": "feat/org-ci-branch-protection",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `feat/org-ci-branch-protection` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(roadmap): sync branch feat/org-ci-branch-protection"
+    },
+    {
+      "repo": "li-net",
+      "branch": "ci/pin-lic-main",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-net): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-httpd",
+      "branch": "ci/pin-lic-main",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-httpd): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-std-core",
+      "branch": "ci/pin-lic-main",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-std-core): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-std-math",
+      "branch": "ci/pin-lic-main",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-std-math): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-demo",
+      "branch": "ci/pin-lic-main",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-demo): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-language",
+      "branch": "feat/composable-by-default",
+      "base": "main",
+      "ahead_by": 40,
+      "reason": "branch `feat/composable-by-default` is 40 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-language): sync branch feat/composable-by-default"
+    },
+    {
+      "repo": "li-language",
+      "branch": "feat/hpc-competitive-intelligence",
+      "base": "main",
+      "ahead_by": 38,
+      "reason": "branch `feat/hpc-competitive-intelligence` is 38 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-language): sync branch feat/hpc-competitive-intelligence"
+    },
+    {
+      "repo": "li-language",
+      "branch": "feat/phase-2f-discharge-corpus",
+      "base": "main",
+      "ahead_by": 22,
+      "reason": "branch `feat/phase-2f-discharge-corpus` is 22 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-language): sync branch feat/phase-2f-discharge-corpus"
+    },
+    {
+      "repo": "li-language",
+      "branch": "feat/vision-llm-agent-diagnostics",
+      "base": "main",
+      "ahead_by": 42,
+      "reason": "branch `feat/vision-llm-agent-diagnostics` is 42 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-language): sync branch feat/vision-llm-agent-diagnostics"
+    },
+    {
+      "repo": "li-language",
+      "branch": "fix/ci-dev-pr3-sync",
+      "base": "main",
+      "ahead_by": 45,
+      "reason": "branch `fix/ci-dev-pr3-sync` is 45 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-language): sync branch fix/ci-dev-pr3-sync"
+    },
+    {
+      "repo": "li-cursor-agents",
+      "branch": "cursor/setup-dev-environment-e9cc",
+      "base": "main",
+      "ahead_by": 6,
+      "reason": "branch `cursor/setup-dev-environment-e9cc` is 6 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-cursor-agents): sync branch cursor/setup-dev-environment-e9cc"
+    }
+  ],
+  "prs_recommended_close": [
+    {
+      "repo": "benchmarks",
+      "number": 32,
+      "url": "https://github.com/li-langverse/benchmarks/pull/32",
+      "reason": "#34 branch includes all commits from #32; 100% file overlap",
+      "action": "close",
+      "safe_now": false,
+      "source": "merge_plan.redundant",
+      "suggested_action": "close #32 after #34 merges"
+    }
+  ]
+}

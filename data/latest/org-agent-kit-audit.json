@@ -1,0 +1,263 @@
+{
+  "generated_at": "2026-05-18T22:21Z",
+  "org": "li-langverse",
+  "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+  "roadmap_kit": "/Users/julian/Documents/coding-projects/roadmap/agent-kit",
+  "required_rules": [
+    ".cursor/rules/li-pr-only.mdc",
+    ".cursor/rules/li-ecosystem-gates.mdc",
+    ".cursor/rules/li-release-notes.mdc"
+  ],
+  "policy": "docs/ecosystem/ADOPTION.md",
+  "repos_ok": [],
+  "repos_needing_sync": [
+    {
+      "repo": "benchmarks",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/benchmarks",
+      "status": "drift",
+      "cursor_stamp": "1.1.0+5f476d66cf8d1b57",
+      "expected_stamp": "1.1.0+5f476d66cf8d1b57",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/benchmarks && ../roadmap/scripts/install-agent-kit.sh benchmarks"
+    },
+    {
+      "repo": "li-cursor-agents",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/li-cursor-agents",
+      "status": "drift",
+      "cursor_stamp": "1.2.1+8eff53a0aa2f5229",
+      "expected_stamp": "1.2.1+8eff53a0aa2f5229",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/li-cursor-agents && ../roadmap/scripts/install-agent-kit.sh li-cursor-agents"
+    },
+    {
+      "repo": "li-local-ci",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/li-local-ci",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /Users/julian/Documents/coding-projects/li-local-ci && ../roadmap/scripts/install-agent-kit.sh li-local-ci"
+    },
+    {
+      "repo": "lic",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lic",
+      "status": "drift",
+      "cursor_stamp": "1.1.0+5f476d66cf8d1b57",
+      "expected_stamp": "1.1.0+5f476d66cf8d1b57",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lic && ../roadmap/scripts/install-agent-kit.sh lic"
+    },
+    {
+      "repo": "lip",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lip",
+      "status": "drift",
+      "cursor_stamp": "1.2.0+dffd617dec8ede78",
+      "expected_stamp": "1.2.0+dffd617dec8ede78",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lip && ../roadmap/scripts/install-agent-kit.sh lip"
+    },
+    {
+      "repo": "lis",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lis",
+      "status": "drift",
+      "cursor_stamp": "1.2.0+dffd617dec8ede78",
+      "expected_stamp": "1.2.0+dffd617dec8ede78",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lis && ../roadmap/scripts/install-agent-kit.sh lis"
+    },
+    {
+      "repo": "lit",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lit",
+      "status": "drift",
+      "cursor_stamp": "1.2.0+dffd617dec8ede78",
+      "expected_stamp": "1.2.0+dffd617dec8ede78",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lit && ../roadmap/scripts/install-agent-kit.sh lit"
+    },
+    {
+      "repo": "roadmap",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/roadmap",
+      "status": "drift",
+      "cursor_stamp": "1.3.0+manual",
+      "expected_stamp": "1.3.0+manual",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/roadmap && ../roadmap/scripts/install-agent-kit.sh roadmap"
+    }
+  ],
+  "entries": [
+    {
+      "repo": "benchmarks",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/benchmarks",
+      "status": "drift",
+      "cursor_stamp": "1.1.0+5f476d66cf8d1b57",
+      "expected_stamp": "1.1.0+5f476d66cf8d1b57",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/benchmarks && ../roadmap/scripts/install-agent-kit.sh benchmarks"
+    },
+    {
+      "repo": "li-cursor-agents",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/li-cursor-agents",
+      "status": "drift",
+      "cursor_stamp": "1.2.1+8eff53a0aa2f5229",
+      "expected_stamp": "1.2.1+8eff53a0aa2f5229",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/li-cursor-agents && ../roadmap/scripts/install-agent-kit.sh li-cursor-agents"
+    },
+    {
+      "repo": "li-demo",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
+      "repo": "li-httpd",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
+      "repo": "li-language",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
+      "repo": "li-local-ci",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/li-local-ci",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /Users/julian/Documents/coding-projects/li-local-ci && ../roadmap/scripts/install-agent-kit.sh li-local-ci"
+    },
+    {
+      "repo": "li-net",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
+      "repo": "li-std-core",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
+      "repo": "li-std-math",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
+      "repo": "lic",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lic",
+      "status": "drift",
+      "cursor_stamp": "1.1.0+5f476d66cf8d1b57",
+      "expected_stamp": "1.1.0+5f476d66cf8d1b57",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lic && ../roadmap/scripts/install-agent-kit.sh lic"
+    },
+    {
+      "repo": "lip",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lip",
+      "status": "drift",
+      "cursor_stamp": "1.2.0+dffd617dec8ede78",
+      "expected_stamp": "1.2.0+dffd617dec8ede78",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lip && ../roadmap/scripts/install-agent-kit.sh lip"
+    },
+    {
+      "repo": "lis",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lis",
+      "status": "drift",
+      "cursor_stamp": "1.2.0+dffd617dec8ede78",
+      "expected_stamp": "1.2.0+dffd617dec8ede78",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lis && ../roadmap/scripts/install-agent-kit.sh lis"
+    },
+    {
+      "repo": "lit",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/lit",
+      "status": "drift",
+      "cursor_stamp": "1.2.0+dffd617dec8ede78",
+      "expected_stamp": "1.2.0+dffd617dec8ede78",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/lit && ../roadmap/scripts/install-agent-kit.sh lit"
+    },
+    {
+      "repo": "roadmap",
+      "present_locally": true,
+      "local_path": "/Users/julian/Documents/coding-projects/roadmap",
+      "status": "drift",
+      "cursor_stamp": "1.3.0+manual",
+      "expected_stamp": "1.3.0+manual",
+      "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /Users/julian/Documents/coding-projects/roadmap && ../roadmap/scripts/install-agent-kit.sh roadmap"
+    }
+  ]
+}
