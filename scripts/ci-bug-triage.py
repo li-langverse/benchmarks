@@ -17,21 +17,8 @@ OUT = ROOT / "data/latest/ci-bug-triage.json"
 LOCAL_CI = ROOT / "data/latest/local-ci-results.json"
 ORG = "li-langverse"
 
-ORG_REPOS = [
-    "lic",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-    "li-net",
-    "li-httpd",
-    "li-std-core",
-    "li-std-math",
-    "li-demo",
-    "li-language",
-    "li-cursor-agents",
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from org_repos import ORG_REPOS  # noqa: E402
 
 BUG_LABELS = {
     "bug",

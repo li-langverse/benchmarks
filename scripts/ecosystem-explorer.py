@@ -385,7 +385,6 @@ def agent_kit_versions() -> dict:
         ROOT / "lic",
         ROOT / "lip",
         ROOT / "lit",
-        ROOT / "li-cursor-agents",
         ROOT.parent / "li",
     ]
     seen: set[Path] = set()

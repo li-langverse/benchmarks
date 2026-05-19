@@ -20,20 +20,8 @@ PLAN_SCRIPT = ROOT / "scripts/pr-merge-queue-plan.py"
 GATE_SCRIPT = ROOT / "scripts/pr-merge-gate.py"
 SWEEP_SCRIPT = ROOT / "scripts/pr-auto-merge-sweep.py"
 
-ORG_REPOS = [
-    "lic",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-    "li-net",
-    "li-httpd",
-    "li-std-core",
-    "li-std-math",
-    "li-demo",
-    "li-language",
-]
+sys.path.insert(0, str(ROOT / "scripts"))
+from org_repos import ORG_REPOS  # noqa: E402
 
 # Vision merge order (lower = earlier)
 REPO_PRIORITY = {
