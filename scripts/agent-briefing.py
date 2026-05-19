@@ -37,6 +37,7 @@ PREFLIGHT_SCRIPTS = [
     ("ci_bug_triage", ["python3", "scripts/ci-bug-triage.py"]),
     ("security_cwe_audit", ["python3", "scripts/security-cwe-audit.py"]),
     ("workspace_dirty_sweep", ["python3", "scripts/workspace-dirty-sweep.py"]),
+    ("ui_ux_audit", ["python3", "scripts/ui-ux-audit.py"]),
 ]
 
 CURSOR_AGENTS = [
@@ -475,6 +476,43 @@ def recommend_agents(data: dict) -> list[dict]:
         if pure_li:
             rec.append({"agent": "autoresearch", "reason": f"{len(pure_li)} pure_li red — novel codegen path"})
 
+    ui = data.get("ui_audit") or {}
+    if isinstance(ui, dict):
+        ui_fail = int((ui.get("summary") or {}).get("failing") or 0)
+        if ui_fail > 0:
+            for agent, label in (
+                ("docs_ui_tester", "docs"),
+                ("gui_ui_tester", "gui"),
+                ("tui_ui_tester", "tui"),
+            ):
+                if not _has_agent(rec, agent):
+                    rec.append(
+                        {
+                            "agent": agent,
+                            "reason": f"ui-audit: {ui_fail} failing target(s) — {label} UI pass",
+                        }
+                    )
+
+    ux = data.get("ux_audit") or {}
+    if isinstance(ux, dict):
+        targets = ux.get("targets") or []
+        ux_fail = sum(
+            1 for t in targets if isinstance(t, dict) and t.get("status") == "fail"
+        )
+        if ux_fail > 0:
+            for agent, label in (
+                ("docs_ux_tester", "docs"),
+                ("gui_ux_tester", "gui"),
+                ("tui_ux_tester", "tui"),
+            ):
+                if not _has_agent(rec, agent):
+                    rec.append(
+                        {
+                            "agent": agent,
+                            "reason": f"ux-audit: {ux_fail} failing target(s) — {label} UX vs SOTA",
+                        }
+                    )
+
     if not rec:
         rec.append({"agent": "orchestrator", "reason": "routine weekly sweep"})
     return rec
@@ -577,6 +615,8 @@ def main() -> int:
     LATEST.mkdir(parents=True, exist_ok=True)
     runs: dict[str, dict] = {}
     for name, cmd in PREFLIGHT_SCRIPTS:
+        if name == "ui_ux_audit" and args.skip_slow:
+            cmd = [*cmd, "--mock"]
         runs[name] = run_script(name, cmd, args.skip_slow)
 
     data = {
@@ -597,6 +637,8 @@ def main() -> int:
         "ci_bug_triage": load_json(LATEST / "ci-bug-triage.json"),
         "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
         "workspace_dirty_sweep": load_json(LATEST / "workspace-dirty-sweep.json"),
+        "ui_audit": load_json(LATEST / "ui-audit.json"),
+        "ux_audit": load_json(LATEST / "ux-audit.json"),
         "local_ci_results": load_json(LATEST / "local-ci-results.json"),
         "cursor_agents": CURSOR_AGENTS,
         "recommended_agents": [],

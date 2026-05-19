@@ -59,6 +59,8 @@ jobs:
               "research_goals_status",
               "handoff_audit",
               "heap_plan",
+              "ui_audit",
+              "ux_audit",
           ):
               assert key in d, f"missing {key}"
           assert d.get("swarm_enriched_at"), "missing swarm_enriched_at"
