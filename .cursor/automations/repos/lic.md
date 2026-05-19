@@ -14,7 +14,7 @@ Parent prompt: [issue-feature-planner.md](../issue-feature-planner.md)
 |------------|-------------------|
 | New syntax | Phase 2* / 3*, `li-tests/`, handbook stub |
 | New std package | `li-new-package`, traceability, 80% coverage path |
-| Physics / numerics | `research-li-numerics` + study in `docs/numerics/studies/`; novel → `numerics-autoresearch` + algorithm note |
+| Physics / numerics | `research-li-numerics` skill, tier2 bench in lic |
 | Perf | `benchmarks/harness/` change + benchmarks catalog row |
 
 ## gh filter
@@ -22,7 +22,3 @@ Parent prompt: [issue-feature-planner.md](../issue-feature-planner.md)
 ```bash
 gh issue list --repo li-langverse/lic --label "feature,enhancement,plan-needed" --state open
 ```
-
-## Merge after review
-
-Copy `.github/workflows/pr-auto-merge.yml` from **benchmarks** (via agent-kit sync). Reviewer adds **`merge-approved`** when CI + standards pass; see skill **`merge-approved-pr`**.
