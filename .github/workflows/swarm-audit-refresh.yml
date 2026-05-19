@@ -24,6 +24,12 @@ jobs:
           path: li-cursor-agents
           ref: ${{ github.event.client_payload.ref || 'main' }}
 
+      - name: Checkout lic (docs UX audit)
+        uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lic
+          path: lic
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -44,9 +50,13 @@ jobs:
         env:
           LI_CURSOR_AGENTS_ROOT: ${{ github.workspace }}/li-cursor-agents
           LI_CONTROL_PLANE_STORE: disk
-          LIC_ROOT: ${{ github.workspace }}/../lic
+          LIC_ROOT: ${{ github.workspace }}/lic
         run: |
-          python3 scripts/agent-briefing.py --skip-slow
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            python3 scripts/agent-briefing.py
+          else
+            python3 scripts/agent-briefing.py --skip-slow
+          fi
 
       - name: Verify swarm briefing keys
         run: |

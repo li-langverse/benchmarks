@@ -19,14 +19,38 @@ HARNESS = AGENTS_ROOT / "ux-harness" / "run_audit.py"
 MANIFEST = AGENTS_ROOT / "config" / "ux-targets.json"
 
 
+def maybe_build_lic_docs(build_lic: bool, mock: bool) -> int:
+    if mock or not build_lic:
+        return 0
+    build_script = ROOT / "scripts" / "build-lic-docs.py"
+    if not build_script.is_file():
+        print(f"missing {build_script}", file=sys.stderr)
+        return 1
+    proc = subprocess.run(
+        [sys.executable, str(build_script)],
+        cwd=str(ROOT),
+        check=False,
+    )
+    return proc.returncode
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mock", action="store_true", help="Use harness mock mode (CI default)")
     parser.add_argument("--quick", action="store_true", help="Alias for --mock")
+    parser.add_argument(
+        "--build-lic",
+        action="store_true",
+        help="Build lic MkDocs site before audit (non-mock extended CI)",
+    )
     args = parser.parse_args()
     mock = args.mock or args.quick
 
     LATEST.mkdir(parents=True, exist_ok=True)
+
+    code = maybe_build_lic_docs(args.build_lic, mock)
+    if code != 0:
+        return code
 
     if not HARNESS.is_file():
         print(f"ux-harness missing: {HARNESS}", file=sys.stderr)

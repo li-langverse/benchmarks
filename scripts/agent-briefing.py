@@ -651,8 +651,11 @@ def main() -> int:
     LATEST.mkdir(parents=True, exist_ok=True)
     runs: dict[str, dict] = {}
     for name, cmd in PREFLIGHT_SCRIPTS:
-        if name == "ui_ux_audit" and args.skip_slow:
-            cmd = [*cmd, "--mock"]
+        if name == "ui_ux_audit":
+            if args.skip_slow:
+                cmd = [*cmd, "--mock"]
+            elif os.environ.get("LIC_ROOT"):
+                cmd = [*cmd, "--build-lic"]
         runs[name] = run_script(name, cmd, args.skip_slow)
 
     data = {
