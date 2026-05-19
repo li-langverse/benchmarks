@@ -1,4 +1,5 @@
 .DS_Store
+docs/.mock-*
 dashboard/node_modules/
 __pycache__/
 *.pyc
