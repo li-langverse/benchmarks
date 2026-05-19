@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T19:10Z",
+  "generated_at": "2026-05-19T20:58Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -7,8 +7,8 @@
     "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
   },
   "metrics": {
-    "open_prs": 19,
-    "failed_prs": 12,
+    "open_prs": 20,
+    "failed_prs": 11,
     "ready_prs": 0,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
@@ -19,16 +19,6 @@
       "number": 6,
       "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
       "url": "https://github.com/li-langverse/li-language/pull/6",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "ready": false
-    },
-    {
-      "repo": "lic",
-      "number": 56,
-      "title": "chore(lic): workspace sweep fallback",
-      "url": "https://github.com/li-langverse/lic/pull/56",
       "base": "main",
       "ci": "fail",
       "draft": false,
@@ -488,7 +478,6 @@
       "action": "Fix failing PR CI before new feature work",
       "prs": [
         "li-language#6",
-        "lic#56",
         "lic#53",
         "lic#52",
         "lic#51",
