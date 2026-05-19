@@ -176,6 +176,42 @@ CURSOR_AGENTS = [
         "when": "Uncommitted work in sibling clones — fallback commit/push/PR + restart stack",
         "preflight": ["workspace_dirty_sweep"],
     },
+    {
+        "id": "docs_ui_tester",
+        "prompt": "li-cursor-agents/prompts/docs-ui-tester.md",
+        "when": "Docs visual audit (axe, contrast, baselines)",
+        "preflight": ["ui_audit"],
+    },
+    {
+        "id": "docs_ux_tester",
+        "prompt": "li-cursor-agents/prompts/docs-ux-tester.md",
+        "when": "Docs journeys vs SOTA",
+        "preflight": ["ux_audit", "ui_audit"],
+    },
+    {
+        "id": "gui_ui_tester",
+        "prompt": "li-cursor-agents/prompts/gui-ui-tester.md",
+        "when": "GUI visual audit (dashboard, SDL, gui_gen)",
+        "preflight": ["ui_audit"],
+    },
+    {
+        "id": "gui_ux_tester",
+        "prompt": "li-cursor-agents/prompts/gui-ux-tester.md",
+        "when": "GUI flows vs SOTA",
+        "preflight": ["ux_audit"],
+    },
+    {
+        "id": "tui_ui_tester",
+        "prompt": "li-cursor-agents/prompts/tui-ui-tester.md",
+        "when": "TUI visual capture",
+        "preflight": ["ui_audit"],
+    },
+    {
+        "id": "tui_ux_tester",
+        "prompt": "li-cursor-agents/prompts/tui-ux-tester.md",
+        "when": "TUI journeys vs Textual/Bubble Tea SOTA",
+        "preflight": ["ux_audit"],
+    },
 ]
 
 
