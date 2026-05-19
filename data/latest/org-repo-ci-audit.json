@@ -1,109 +1,107 @@
 {
-  "generated_at": "2026-05-19T08:11Z",
+  "generated_at": "2026-05-19T10:54Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
-  "repos_ok": [],
+  "repos_ok": [
+    "benchmarks",
+    "li-cursor-agents",
+    "li-demo",
+    "li-httpd",
+    "li-language",
+    "li-net",
+    "li-std-core",
+    "li-std-math",
+    "lic",
+    "lip",
+    "lis",
+    "lit",
+    "roadmap"
+  ],
   "repos_missing_ci": [
-    {
-      "repo": "benchmarks",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "ingest-smoke"
-    },
-    {
-      "repo": "li-cursor-agents",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "check"
-    },
-    {
-      "repo": "li-demo",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "check"
-    },
-    {
-      "repo": "li-httpd",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "check"
-    },
-    {
-      "repo": "li-language",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "build-and-test"
-    },
     {
       "repo": "li-local-ci",
       "workflows": [],
       "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
       "suggested_required_check": "check"
-    },
-    {
-      "repo": "li-net",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "check"
-    },
-    {
-      "repo": "li-std-core",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "check"
-    },
-    {
-      "repo": "li-std-math",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "check"
-    },
-    {
-      "repo": "lic",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "build-and-test"
-    },
-    {
-      "repo": "lip",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "bootstrap"
-    },
-    {
-      "repo": "lis",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": null
-    },
-    {
-      "repo": "lit",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "test"
-    },
-    {
-      "repo": "roadmap",
-      "workflows": [],
-      "fix": "Add .github/workflows/ci.yml (see lic/scripts/templates/github-repo/ci.yml)",
-      "suggested_required_check": "verify-kit"
     }
   ],
   "workflows": {
-    "benchmarks": [],
-    "li-cursor-agents": [],
-    "li-demo": [],
-    "li-httpd": [],
-    "li-language": [],
+    "benchmarks": [
+      "ci.yml",
+      "ecosystem-audit.yml",
+      "ecosystem-explorer.yml",
+      "ingest.yml",
+      "issue-feature-planning.yml",
+      "org-repo-ci-audit.yml",
+      "pages.yml",
+      "plan-completion-audit.yml",
+      "pr-auto-merge.yml"
+    ],
+    "li-cursor-agents": [
+      "ci.yml"
+    ],
+    "li-demo": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "security-gate.yml"
+    ],
+    "li-httpd": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-language": [
+      "benchmarks.yml",
+      "ci.yml",
+      "docs.yml",
+      "release.yml"
+    ],
     "li-local-ci": [],
-    "li-net": [],
-    "li-std-core": [],
-    "li-std-math": [],
-    "lic": [],
-    "lip": [],
-    "lis": [],
-    "lit": [],
-    "roadmap": []
+    "li-net": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-std-core": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-std-math": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "lic": [
+      "benchmarks.yml",
+      "ci.yml",
+      "cve-catalog.yml",
+      "docs.yml",
+      "fuzz.yml",
+      "hpc-competitive.yml",
+      "lean.yml",
+      "memory.yml",
+      "notify-downstream.yml",
+      "release.yml",
+      "ubsan-lic.yml"
+    ],
+    "lip": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml"
+    ],
+    "lis": [
+      "branch-sync.yml",
+      "ci.yml",
+      "issue-feature-planning.yml"
+    ],
+    "lit": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml",
+      "notify-downstream.yml"
+    ],
+    "roadmap": [
+      "ci.yml",
+      "issue-feature-planning.yml",
+      "pages.yml"
+    ]
   },
   "policy": "docs/ecosystem/repo-ci-required.md",
   "lic_monorepo_hint": "Run lic/scripts/ensure-package-ci.sh before push-official-package-repo.sh"

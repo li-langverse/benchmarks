@@ -1,8 +1,11 @@
 {
-  "generated_at": "2026-05-18T16:18Z",
-  "lic_root": "/Users/julian/Documents/coding-projects/li",
+  "generated_at": "2026-05-19T08:39Z",
+  "lic_root": "../lic",
   "lic_present": true,
-  "std_modules_on_disk": [],
+  "std_modules_on_disk": [
+    "std.bytes.bytes",
+    "std.execution.decorators"
+  ],
   "missing_std_modules": [
     {
       "module": "std.io",
@@ -56,8 +59,40 @@
       "scripts/ingest/build_summary_fixture.li"
     ]
   },
-  "lic_packages": [],
-  "physics_packages": [],
+  "lic_packages": [
+    "li-demo",
+    "li-httpd",
+    "li-net",
+    "li-std-core",
+    "li-std-math",
+    "li-std-numerics",
+    "li-std-physics-aero",
+    "li-std-physics-chem",
+    "li-std-physics-core",
+    "li-std-physics-em",
+    "li-std-physics-fluids",
+    "li-std-physics-hep",
+    "li-std-physics-particles",
+    "li-std-physics-quantum",
+    "li-std-physics-relativity",
+    "li-std-physics-rigid",
+    "li-std-physics-runtime",
+    "li-std-physics-weather"
+  ],
+  "physics_packages": [
+    "li-std-physics-aero",
+    "li-std-physics-chem",
+    "li-std-physics-core",
+    "li-std-physics-em",
+    "li-std-physics-fluids",
+    "li-std-physics-hep",
+    "li-std-physics-particles",
+    "li-std-physics-quantum",
+    "li-std-physics-relativity",
+    "li-std-physics-rigid",
+    "li-std-physics-runtime",
+    "li-std-physics-weather"
+  ],
   "org_mirror_repos": [
     "li-net",
     "li-httpd",
@@ -65,7 +100,20 @@
     "li-std-math",
     "li-demo"
   ],
-  "packages_without_org_mirror": [],
+  "packages_without_org_mirror": [
+    "li-std-physics-aero",
+    "li-std-physics-chem",
+    "li-std-physics-core",
+    "li-std-physics-em",
+    "li-std-physics-fluids",
+    "li-std-physics-hep",
+    "li-std-physics-particles",
+    "li-std-physics-quantum",
+    "li-std-physics-relativity",
+    "li-std-physics-rigid",
+    "li-std-physics-runtime",
+    "li-std-physics-weather"
+  ],
   "catalog": {
     "total": 25,
     "by_category": {
@@ -253,6 +301,12 @@
       "number": 14,
       "title": "[Ecosystem gap] Physics packages: scaffold lib.li \u2192 domain APIs",
       "url": "https://github.com/li-langverse/lic/issues/14"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 50,
+      "title": "[Ecosystem gap] Publish li-std-physics-* org mirrors (12 packages)",
+      "url": "https://github.com/li-langverse/lic/issues/50"
     },
     {
       "repo": "li-langverse/benchmarks",

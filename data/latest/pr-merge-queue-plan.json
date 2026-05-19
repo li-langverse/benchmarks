@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T08:13Z",
+  "generated_at": "2026-05-19T10:58Z",
   "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
   "ordering_rules": [
     "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -13,32 +13,37 @@
     "Progress: after every merge, remaining PRs must absorb latest main before their merge"
   ],
   "summary": {
-    "open_prs": 24,
+    "open_prs": 16,
     "merge_approved": 1,
     "gate_ready": 0,
-    "conflicting_with_main": 5,
+    "conflicting_with_main": 6,
     "auto_merge_candidates": 0,
-    "redundant_pairs": 5,
+    "redundant_pairs": 3,
     "stacks": 0,
-    "pair_risk_count": 8,
-    "repos_with_plans": 7
+    "pair_risk_count": 6,
+    "repos_with_plans": 2
   },
   "repo_merge_plans": [
     {
       "repo": "benchmarks",
       "base": "main",
-      "open_prs": 6,
+      "open_prs": 4,
       "local_merge_order": [
+        "benchmarks#39",
         "benchmarks#37",
-        "benchmarks#36",
-        "benchmarks#35",
-        "benchmarks#33",
         "benchmarks#32",
         "benchmarks#34"
       ],
       "safe_merge_order": [],
       "safe_next": null,
       "conflicting_with_main": [
+        {
+          "number": 39,
+          "url": "https://github.com/li-langverse/benchmarks/pull/39",
+          "title": "chore(org): exclude li-cursor-agents from org sweeps",
+          "merge_state": "DIRTY",
+          "action": "Do not merge until rebased: `git fetch origin && git checkout <head> && git merge origin/main` \u2014 resolve conflicts preserving main + PR progress (see merge-conflict-resolution.md)"
+        },
         {
           "number": 37,
           "url": "https://github.com/li-langverse/benchmarks/pull/37",
@@ -65,45 +70,23 @@
         {
           "repo": "benchmarks",
           "base": "main",
-          "merge_first": "benchmarks#36",
+          "merge_first": "benchmarks#39",
           "then_rebase_and_merge": "benchmarks#34",
-          "url_first": "https://github.com/li-langverse/benchmarks/pull/36",
+          "url_first": "https://github.com/li-langverse/benchmarks/pull/39",
           "url_second": "https://github.com/li-langverse/benchmarks/pull/34",
-          "file_overlap": 1.0,
-          "reason": "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
+          "file_overlap": 0.667,
+          "reason": "~67% file overlap on `main`; merge #39 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
           "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
         },
         {
           "repo": "benchmarks",
           "base": "main",
-          "merge_first": "benchmarks#36",
+          "merge_first": "benchmarks#39",
           "then_rebase_and_merge": "benchmarks#32",
-          "url_first": "https://github.com/li-langverse/benchmarks/pull/36",
+          "url_first": "https://github.com/li-langverse/benchmarks/pull/39",
           "url_second": "https://github.com/li-langverse/benchmarks/pull/32",
-          "file_overlap": 1.0,
-          "reason": "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
-          "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
-        },
-        {
-          "repo": "benchmarks",
-          "base": "main",
-          "merge_first": "benchmarks#35",
-          "then_rebase_and_merge": "benchmarks#34",
-          "url_first": "https://github.com/li-langverse/benchmarks/pull/35",
-          "url_second": "https://github.com/li-langverse/benchmarks/pull/34",
-          "file_overlap": 0.647,
-          "reason": "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
-          "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
-        },
-        {
-          "repo": "benchmarks",
-          "base": "main",
-          "merge_first": "benchmarks#35",
-          "then_rebase_and_merge": "benchmarks#32",
-          "url_first": "https://github.com/li-langverse/benchmarks/pull/35",
-          "url_second": "https://github.com/li-langverse/benchmarks/pull/32",
-          "file_overlap": 0.647,
-          "reason": "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
+          "file_overlap": 0.667,
+          "reason": "~67% file overlap on `main`; merge #39 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
           "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
         },
         {
@@ -122,24 +105,11 @@
       "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
     },
     {
-      "repo": "li-demo",
-      "base": "main",
-      "open_prs": 1,
-      "local_merge_order": [
-        "li-demo#4"
-      ],
-      "safe_merge_order": [],
-      "safe_next": null,
-      "conflicting_with_main": [],
-      "pair_risks": [],
-      "stacks": [],
-      "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
-    },
-    {
       "repo": "lic",
       "base": "main",
-      "open_prs": 11,
+      "open_prs": 12,
       "local_merge_order": [
+        "lic#55",
         "lic#53",
         "lic#51",
         "lic#52",
@@ -207,64 +177,6 @@
       ],
       "stacks": [],
       "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
-    },
-    {
-      "repo": "lip",
-      "base": "main",
-      "open_prs": 2,
-      "local_merge_order": [
-        "lip#6",
-        "lip#5"
-      ],
-      "safe_merge_order": [],
-      "safe_next": null,
-      "conflicting_with_main": [],
-      "pair_risks": [],
-      "stacks": [],
-      "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
-    },
-    {
-      "repo": "lis",
-      "base": "main",
-      "open_prs": 1,
-      "local_merge_order": [
-        "lis#2"
-      ],
-      "safe_merge_order": [],
-      "safe_next": null,
-      "conflicting_with_main": [],
-      "pair_risks": [],
-      "stacks": [],
-      "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
-    },
-    {
-      "repo": "lit",
-      "base": "main",
-      "open_prs": 1,
-      "local_merge_order": [
-        "lit#5"
-      ],
-      "safe_merge_order": [],
-      "safe_next": null,
-      "conflicting_with_main": [],
-      "pair_risks": [],
-      "stacks": [],
-      "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
-    },
-    {
-      "repo": "roadmap",
-      "base": "main",
-      "open_prs": 2,
-      "local_merge_order": [
-        "roadmap#11",
-        "roadmap#10"
-      ],
-      "safe_merge_order": [],
-      "safe_next": null,
-      "conflicting_with_main": [],
-      "pair_risks": [],
-      "stacks": [],
-      "progress_rule": "After each merge to main, remaining PRs must integrate latest main (merge or rebase) before merge \u2014 never discard main or open PR commits"
     }
   ],
   "pair_risks": [
@@ -304,45 +216,23 @@
     {
       "repo": "benchmarks",
       "base": "main",
-      "merge_first": "benchmarks#36",
+      "merge_first": "benchmarks#39",
       "then_rebase_and_merge": "benchmarks#34",
-      "url_first": "https://github.com/li-langverse/benchmarks/pull/36",
+      "url_first": "https://github.com/li-langverse/benchmarks/pull/39",
       "url_second": "https://github.com/li-langverse/benchmarks/pull/34",
-      "file_overlap": 1.0,
-      "reason": "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
+      "file_overlap": 0.667,
+      "reason": "~67% file overlap on `main`; merge #39 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
       "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
     },
     {
       "repo": "benchmarks",
       "base": "main",
-      "merge_first": "benchmarks#36",
+      "merge_first": "benchmarks#39",
       "then_rebase_and_merge": "benchmarks#32",
-      "url_first": "https://github.com/li-langverse/benchmarks/pull/36",
+      "url_first": "https://github.com/li-langverse/benchmarks/pull/39",
       "url_second": "https://github.com/li-langverse/benchmarks/pull/32",
-      "file_overlap": 1.0,
-      "reason": "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
-      "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
-    },
-    {
-      "repo": "benchmarks",
-      "base": "main",
-      "merge_first": "benchmarks#35",
-      "then_rebase_and_merge": "benchmarks#34",
-      "url_first": "https://github.com/li-langverse/benchmarks/pull/35",
-      "url_second": "https://github.com/li-langverse/benchmarks/pull/34",
-      "file_overlap": 0.647,
-      "reason": "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
-      "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
-    },
-    {
-      "repo": "benchmarks",
-      "base": "main",
-      "merge_first": "benchmarks#35",
-      "then_rebase_and_merge": "benchmarks#32",
-      "url_first": "https://github.com/li-langverse/benchmarks/pull/35",
-      "url_second": "https://github.com/li-langverse/benchmarks/pull/32",
-      "file_overlap": 0.647,
-      "reason": "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
+      "file_overlap": 0.667,
+      "reason": "~67% file overlap on `main`; merge #39 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
       "resolution": "benchmarks/docs/ecosystem/merge-conflict-resolution.md"
     },
     {
@@ -363,156 +253,21 @@
   "merge_order": [
     {
       "rank": 1,
-      "repo": "li-demo",
-      "number": 4,
-      "url": "https://github.com/li-langverse/li-demo/pull/4",
-      "title": "chore(security): downstream security-gate workflow (li-demo)",
+      "repo": "lic",
+      "number": 55,
+      "url": "https://github.com/li-langverse/lic/pull/55",
+      "title": "feat(physics,ui): li-std-ui/scene, std stubs, simulation-ready runtime",
       "merge_approved": false,
       "gate_ready": false,
       "mergeable": "MERGEABLE",
       "merge_state": "BLOCKED",
-      "priority_score": 212,
+      "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 1; priority_score=212; awaiting merge-approved label"
+      "order_reason": "rank 1; priority_score=280; awaiting merge-approved label"
     },
     {
       "rank": 2,
-      "repo": "lit",
-      "number": 5,
-      "url": "https://github.com/li-langverse/lit/pull/5",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 250,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 2; priority_score=250; awaiting merge-approved label"
-    },
-    {
-      "rank": 3,
-      "repo": "lis",
-      "number": 2,
-      "url": "https://github.com/li-langverse/lis/pull/2",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 255,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 3; priority_score=255; awaiting merge-approved label"
-    },
-    {
-      "rank": 4,
-      "repo": "lip",
-      "number": 6,
-      "url": "https://github.com/li-langverse/lip/pull/6",
-      "title": "feat(lip): issue feature planning",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 290,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 4; priority_score=290; awaiting merge-approved label"
-    },
-    {
-      "rank": 5,
-      "repo": "roadmap",
-      "number": 11,
-      "url": "https://github.com/li-langverse/roadmap/pull/11",
-      "title": "chore(roadmap): workspace sweep fallback",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 340,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 5; priority_score=340; awaiting merge-approved label"
-    },
-    {
-      "rank": 6,
-      "repo": "benchmarks",
-      "number": 36,
-      "url": "https://github.com/li-langverse/benchmarks/pull/36",
-      "title": "feat(benchmarks): catalog tier-2 physics expansion",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 235,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 6; priority_score=235; awaiting merge-approved label"
-    },
-    {
-      "rank": 7,
-      "repo": "lip",
-      "number": 5,
-      "url": "https://github.com/li-langverse/lip/pull/5",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 250,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 7; priority_score=250; awaiting merge-approved label"
-    },
-    {
-      "rank": 8,
-      "repo": "roadmap",
-      "number": 10,
-      "url": "https://github.com/li-langverse/roadmap/pull/10",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 300,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 8; priority_score=300; awaiting merge-approved label"
-    },
-    {
-      "rank": 9,
-      "repo": "benchmarks",
-      "number": 35,
-      "url": "https://github.com/li-langverse/benchmarks/pull/35",
-      "title": "chore(benchmarks): workspace sweep fallback",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 235,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 9; priority_score=235; awaiting merge-approved label"
-    },
-    {
-      "rank": 10,
-      "repo": "benchmarks",
-      "number": 33,
-      "url": "https://github.com/li-langverse/benchmarks/pull/33",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": true,
-      "gate_ready": false,
-      "mergeable": "MERGEABLE",
-      "merge_state": "BLOCKED",
-      "priority_score": 230,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 10; priority_score=230; gate blocked: review_approved: reviewDecision is `REVIEW_REQUIRED` (need APPROVED), release_notes: no CHANGELOG.md or docs/release-notes/* in PR (required unless chore/deps)"
-    },
-    {
-      "rank": 11,
       "repo": "lic",
       "number": 47,
       "url": "https://github.com/li-langverse/lic/pull/47",
@@ -524,10 +279,10 @@
       "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 11; priority_score=280; awaiting merge-approved label"
+      "order_reason": "rank 2; priority_score=280; awaiting merge-approved label"
     },
     {
-      "rank": 12,
+      "rank": 3,
       "repo": "lic",
       "number": 46,
       "url": "https://github.com/li-langverse/lic/pull/46",
@@ -539,10 +294,10 @@
       "priority_score": 230,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 12; priority_score=230; awaiting merge-approved label"
+      "order_reason": "rank 3; priority_score=230; awaiting merge-approved label"
     },
     {
-      "rank": 13,
+      "rank": 4,
       "repo": "lic",
       "number": 45,
       "url": "https://github.com/li-langverse/lic/pull/45",
@@ -554,10 +309,10 @@
       "priority_score": 240,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 13; priority_score=240; awaiting merge-approved label"
+      "order_reason": "rank 4; priority_score=240; awaiting merge-approved label"
     },
     {
-      "rank": 14,
+      "rank": 5,
       "repo": "lic",
       "number": 43,
       "url": "https://github.com/li-langverse/lic/pull/43",
@@ -569,10 +324,10 @@
       "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 14; priority_score=280; awaiting merge-approved label"
+      "order_reason": "rank 5; priority_score=280; awaiting merge-approved label"
     },
     {
-      "rank": 15,
+      "rank": 6,
       "repo": "lic",
       "number": 40,
       "url": "https://github.com/li-langverse/lic/pull/40",
@@ -584,10 +339,10 @@
       "priority_score": 245,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 15; priority_score=245; awaiting merge-approved label"
+      "order_reason": "rank 6; priority_score=245; awaiting merge-approved label"
     },
     {
-      "rank": 16,
+      "rank": 7,
       "repo": "lic",
       "number": 37,
       "url": "https://github.com/li-langverse/lic/pull/37",
@@ -599,10 +354,10 @@
       "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 16; priority_score=280; awaiting merge-approved label"
+      "order_reason": "rank 7; priority_score=280; awaiting merge-approved label"
     },
     {
-      "rank": 17,
+      "rank": 8,
       "repo": "lic",
       "number": 8,
       "url": "https://github.com/li-langverse/lic/pull/8",
@@ -614,25 +369,40 @@
       "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 17; priority_score=280; awaiting merge-approved label"
+      "order_reason": "rank 8; priority_score=280; awaiting merge-approved label"
     },
     {
-      "rank": 18,
+      "rank": 9,
+      "repo": "benchmarks",
+      "number": 39,
+      "url": "https://github.com/li-langverse/benchmarks/pull/39",
+      "title": "chore(org): exclude li-cursor-agents from org sweeps",
+      "merge_approved": false,
+      "gate_ready": false,
+      "mergeable": "CONFLICTING",
+      "merge_state": "DIRTY",
+      "priority_score": 420,
+      "auto_merge_ok": false,
+      "blocked_reason": "conflicts with base \u2014 rebase onto main before merge",
+      "order_reason": "rank 9; priority_score=420; awaiting merge-approved label"
+    },
+    {
+      "rank": 10,
       "repo": "benchmarks",
       "number": 37,
       "url": "https://github.com/li-langverse/benchmarks/pull/37",
       "title": "feat(benchmarks): agent briefing heap coordinator",
-      "merge_approved": false,
+      "merge_approved": true,
       "gate_ready": false,
       "mergeable": "CONFLICTING",
       "merge_state": "DIRTY",
       "priority_score": 385,
       "auto_merge_ok": false,
       "blocked_reason": "conflicts with base \u2014 rebase onto main before merge",
-      "order_reason": "rank 18; priority_score=385; awaiting merge-approved label"
+      "order_reason": "rank 10; priority_score=385; gate blocked: review_approved: reviewDecision is `REVIEW_REQUIRED` (need APPROVED), merge_conflicts_with_base"
     },
     {
-      "rank": 19,
+      "rank": 11,
       "repo": "lic",
       "number": 53,
       "url": "https://github.com/li-langverse/lic/pull/53",
@@ -644,10 +414,10 @@
       "priority_score": 390,
       "auto_merge_ok": false,
       "blocked_reason": "conflicts with base \u2014 rebase onto main before merge",
-      "order_reason": "rank 19; priority_score=390; awaiting merge-approved label"
+      "order_reason": "rank 11; priority_score=390; awaiting merge-approved label"
     },
     {
-      "rank": 20,
+      "rank": 12,
       "repo": "lic",
       "number": 51,
       "url": "https://github.com/li-langverse/lic/pull/51",
@@ -659,25 +429,10 @@
       "priority_score": 430,
       "auto_merge_ok": false,
       "blocked_reason": "conflicts with base \u2014 rebase onto main before merge",
-      "order_reason": "rank 20; priority_score=430; awaiting merge-approved label"
+      "order_reason": "rank 12; priority_score=430; awaiting merge-approved label"
     },
     {
-      "rank": 21,
-      "repo": "benchmarks",
-      "number": 32,
-      "url": "https://github.com/li-langverse/benchmarks/pull/32",
-      "title": "feat(briefing): swarm scorecard enrich + audit-refresh dispatch",
-      "merge_approved": false,
-      "gate_ready": false,
-      "mergeable": "CONFLICTING",
-      "merge_state": "DIRTY",
-      "priority_score": 420,
-      "auto_merge_ok": false,
-      "blocked_reason": "conflicts with base \u2014 rebase onto main before merge",
-      "order_reason": "rank 21; priority_score=420; awaiting merge-approved label"
-    },
-    {
-      "rank": 22,
+      "rank": 13,
       "repo": "lic",
       "number": 52,
       "url": "https://github.com/li-langverse/lic/pull/52",
@@ -692,7 +447,7 @@
       "order_reason": "merge lic#51 blocked (conflicts with base); fix before #52"
     },
     {
-      "rank": 23,
+      "rank": 14,
       "repo": "lic",
       "number": 48,
       "url": "https://github.com/li-langverse/lic/pull/48",
@@ -707,7 +462,22 @@
       "order_reason": "overlap with lic#40 (100% files); merge lic#40 first, then rebase lic#48 onto main"
     },
     {
-      "rank": 24,
+      "rank": 15,
+      "repo": "benchmarks",
+      "number": 32,
+      "url": "https://github.com/li-langverse/benchmarks/pull/32",
+      "title": "feat(briefing): swarm scorecard enrich + audit-refresh dispatch",
+      "merge_approved": false,
+      "gate_ready": false,
+      "mergeable": "CONFLICTING",
+      "merge_state": "DIRTY",
+      "priority_score": 420,
+      "auto_merge_ok": false,
+      "blocked_reason": "merge benchmarks#39 blocked (conflicts with base); fix before #32; conflicts with base \u2014 rebase onto main before merge",
+      "order_reason": "merge benchmarks#39 blocked (conflicts with base); fix before #32"
+    },
+    {
+      "rank": 16,
       "repo": "benchmarks",
       "number": 34,
       "url": "https://github.com/li-langverse/benchmarks/pull/34",
@@ -750,55 +520,29 @@
     },
     {
       "repo": "benchmarks",
-      "pr_a": "benchmarks#36",
-      "pr_b": "benchmarks#34",
-      "url_a": "https://github.com/li-langverse/benchmarks/pull/36",
-      "url_b": "https://github.com/li-langverse/benchmarks/pull/34",
-      "overlap": 1.0,
-      "reasons": [
-        "100% file overlap"
-      ],
-      "suggested_action": "human: pick one PR or rebase the other"
-    },
-    {
-      "repo": "benchmarks",
-      "pr_a": "benchmarks#36",
-      "pr_b": "benchmarks#32",
-      "url_a": "https://github.com/li-langverse/benchmarks/pull/36",
-      "url_b": "https://github.com/li-langverse/benchmarks/pull/32",
-      "overlap": 1.0,
-      "reasons": [
-        "100% file overlap"
-      ],
-      "suggested_action": "human: pick one PR or rebase the other"
-    },
-    {
-      "repo": "benchmarks",
       "pr_a": "benchmarks#34",
       "pr_b": "benchmarks#32",
       "url_a": "https://github.com/li-langverse/benchmarks/pull/34",
       "url_b": "https://github.com/li-langverse/benchmarks/pull/32",
       "overlap": 1.0,
       "reasons": [
+        "#34 branch includes all commits from #32",
         "100% file overlap"
       ],
-      "suggested_action": "human: pick one PR or rebase the other"
+      "suggested_action": "close #32 after #34 merges"
     }
   ],
   "warnings": [
     "lic#52 vs lic#51: human: pick one PR or rebase the other",
     "lic#48 vs lic#40: human: pick one PR or rebase the other",
-    "benchmarks#36 vs benchmarks#34: human: pick one PR or rebase the other",
-    "benchmarks#36 vs benchmarks#32: human: pick one PR or rebase the other",
-    "benchmarks#34 vs benchmarks#32: human: pick one PR or rebase the other",
+    "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
     "~92% file overlap on `main`; merge #51 first, then merge `origin/main` into #52 (preserve both sides) before merging #52",
     "~75% file overlap on `main`; merge #47 first, then merge `origin/main` into #48 (preserve both sides) before merging #48",
     "~100% file overlap on `main`; merge #40 first, then merge `origin/main` into #48 (preserve both sides) before merging #48",
-    "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
-    "~100% file overlap on `main`; merge #36 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
-    "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
-    "~65% file overlap on `main`; merge #35 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
+    "~67% file overlap on `main`; merge #39 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
+    "~67% file overlap on `main`; merge #39 first, then merge `origin/main` into #32 (preserve both sides) before merging #32",
     "~100% file overlap on `main`; merge #32 first, then merge `origin/main` into #34 (preserve both sides) before merging #34",
+    "benchmarks#39 CONFLICTING with main: rebase before merge",
     "benchmarks#37 CONFLICTING with main: rebase before merge",
     "benchmarks#34 CONFLICTING with main: rebase before merge",
     "benchmarks#32 CONFLICTING with main: rebase before merge",

@@ -1,17 +1,31 @@
 {
-  "generated_at": "2026-05-19T08:13Z",
+  "generated_at": "2026-05-19T10:58Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
-  "dirty_count": 3,
+  "dirty_count": 4,
   "dirty_repos": [
+    {
+      "path": "/Users/julian/Documents/coding-projects/lic",
+      "repo": "lic",
+      "org": "li-langverse",
+      "branch": "main",
+      "changed_files": 1,
+      "safe_files": [
+        "docs/ecosystem/stdlib-research/"
+      ],
+      "test_commands": [
+        "./li-tests/run_all.sh"
+      ]
+    },
     {
       "path": "/Users/julian/Documents/coding-projects/benchmarks",
       "repo": "benchmarks",
       "org": "li-langverse",
       "branch": "chore/agent-security_auditor-audit-script",
-      "changed_files": 7,
+      "changed_files": 8,
       "safe_files": [
         "data/latest/agent-briefing.json",
         "data/latest/ecosystem-audit.json",
+        "data/latest/ecosystem-explorer.json",
         "data/latest/issue-feature-triage.json",
         "data/latest/org-agent-kit-audit.json",
         "data/latest/org-repo-ci-audit.json",
@@ -25,23 +39,11 @@
       "repo": "li-cursor-agents",
       "org": "li-langverse",
       "branch": "feat/agent-heap-control-plane",
-      "changed_files": 15,
+      "changed_files": 3,
       "safe_files": [
-        "dashboard-ui/next-env.d.ts",
         "data/lanes/state.json",
         "data/latest/agent-briefing.json",
-        "data/research-sessions/proof_gap_researcher.json",
-        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json",
-        "scripts/lib/dev-export-env.sh",
-        "src/lanes/lane-runtime.ts",
-        "src/lanes/research-lane.ts",
-        "src/research-goals/load-goals.test.ts",
-        "src/research-goals/load-goals.ts",
-        "data/handoffs/",
-        "src/async-swarm/research-agent-worker-pool.ts",
-        "src/e2e/demo-repo-parallel-agents.e2e.ts",
-        "src/lanes/research-parallel.ts",
-        "src/research-publish/"
+        "fixtures/e2e-benchmarks/data/latest/agent-briefing.json"
       ],
       "test_commands": [
         "npm test"
