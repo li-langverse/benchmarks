@@ -244,6 +244,17 @@ ph_ids = ["PH-H"]
 compare_oracle = "nginx"
 
 [[benchmark]]
+id = "static_large"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/static_large"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
 id = "lip_smoke"
 category = "tooling"
 tier = 3

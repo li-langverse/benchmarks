@@ -11,6 +11,8 @@ Profiles come from `suite.toml`:
 | `ci`      | off    | capped (default 3s via `BENCH_HTTP_QUICK_SEC`) |
 | `nightly` | on     | uses `[load].duration_sec` from each scenario |
 
+Scenarios in `suite.toml` **ci** / **nightly**: `static_small`, `keepalive_pipelining`, `static_large` (GET `/file.bin`, 1 MiB fixture auto-generated).
+
 `lang=li` throughput rows are **not** emitted until a `li-httpd` binary is wired in; set `LI_HTTPD_BIN` only as a placeholder hook for future work.
 
 ## Quick commands (from lis repo root)

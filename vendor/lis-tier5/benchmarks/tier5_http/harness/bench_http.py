@@ -299,6 +299,17 @@ def _append_rps_row(
         rows.append(_harness_row(name, f"wrk_parse_fail_{lang}"))
 
 
+def ensure_static_large_fixture(doc_root: Path, name: str) -> None:
+    """Create 1 MiB file.bin for static_large when missing."""
+    if name != "static_large":
+        return
+    target = doc_root / "file.bin"
+    if target.is_file() and target.stat().st_size >= 1024 * 1024:
+        return
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_bytes(b"\0" * (1024 * 1024))
+
+
 def bench_wrk_for_lang(
     name: str,
     cfg: dict[str, Any],
@@ -342,7 +353,10 @@ def bench_wrk_for_lang(
                 rows.append(_harness_row(name, f"verify_fail_{lang}:{path}"))
                 return rows, f"{lang}: verify failed"
 
-        url = f"http://127.0.0.1:{port}/"
+        url_path = str(load.get("url_path") or "/")
+        if not url_path.startswith("/"):
+            url_path = "/" + url_path
+        url = f"http://127.0.0.1:{port}{url_path}"
         rps, blob = run_wrk(url, threads, connections, duration, lua_path)
         log_bits.append(f"--- {lang} ---\n{blob[-1500:]}")
 
@@ -383,6 +397,7 @@ def bench_nginx_scenario(
     if not (doc_root / "index.html").is_file():
         rows.append(_harness_row(name, f"missing_fixture:{doc_root}"))
         return rows, "missing static fixture"
+    ensure_static_large_fixture(doc_root, name)
 
     if not shutil.which("wrk"):
         rows.append(_harness_row(name, "no_wrk"))
