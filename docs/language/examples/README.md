@@ -1,16 +1,16 @@
 # Li example sources for shareable code images
 
-Vendored **real** snippets (paths noted in each file header). Regenerate editor PNGs:
+Sources match **`lic` / benchmarks** files that compile today (no banner comments in `.li` — provenance below).
 
 ```bash
-pip install pillow   # once per environment
+pip install -r scripts/requirements-docs-visual.txt
 python3 scripts/render-li-code-image.py --all
 ```
 
-| Source file | Output PNG (gitignored, local) | Origin |
-|-------------|------------|--------|
-| `object_encapsulation.li` | `../assets/li-code-encapsulation-editor.png` | `lic` `li-tests/encapsulation/*` |
-| `parallel_with_disjoint.li` | `../assets/li-code-decorators-editor.png` | `lic` `li-tests/decorators/parallel_with_disjoint.li` |
-| `csv_ingest_smoke.li` | `../assets/li-code-ingest-editor.png` | `benchmarks` `scripts/ingest/csv_ingest_smoke.li` |
+| Source file | Output PNG (gitignored) | Upstream |
+|-------------|-------------------------|----------|
+| `object_encapsulation.li` | `../assets/li-code-encapsulation-editor.png` | `lic` `li-tests/encapsulation/object_public_field.li` + `private_field_access.li` |
+| `parallel_with_disjoint.li` | `../assets/li-code-decorators-editor.png` | `lic` `li-tests/decorators/parallel_with_disjoint.li` (exact) |
+| `csv_ingest_smoke.li` | `../assets/li-code-ingest-editor.png` | `benchmarks` `scripts/ingest/csv_ingest_smoke.li` on `main` (`proc`, `std.io`, `raises IO, Alloc`) |
 
-Highlighting is provided by `scripts/render-li-code-image.py` (Pygments `LiLexer` + VS Code–style colors). When Li grammar changes, extend the lexer in that script — no separate highlighter package yet.
+Renderer: `scripts/render-li-code-image.py` — strips `#` lines from PNG output, tight width (default max 520px).

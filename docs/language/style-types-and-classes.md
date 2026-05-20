@@ -14,7 +14,7 @@ On **`lic` `main` today**, encapsulation uses **`type Name = object`** with **`p
 
 ## Real code: public vs private fields
 
-From [`lic` encapsulation tests](https://github.com/li-langverse/lic/tree/main/li-tests/encapsulation) (vendored as [`examples/object_encapsulation.li`](examples/object_encapsulation.li)):
+From [`lic` encapsulation tests](https://github.com/li-langverse/lic/tree/main/li-tests/encapsulation) ([`examples/object_encapsulation.li`](examples/object_encapsulation.li) — compiles as typecheck negative for `leak`):
 
 ```li
 type Point = object
