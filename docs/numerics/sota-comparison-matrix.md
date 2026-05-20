@@ -3,7 +3,7 @@
 **Audience:** **lic** kernel authors, **benchmarks** catalog maintainers, numerics agents (`research-li-numerics`, `numerics-autoresearch`, `bench_improver`).  
 **Policy:** [benchmark honesty](../honesty/benchmark-dashboard.md) — the public dashboard today is primarily **Li vs in-repo C++ (or shared `common/*_core.c`)** on fixed harness sizes. **“Beats SOTA products”** requires named oracles, reproducible configs, and a study — not a green cell alone.
 
-**Methodology:** [research-methodology.md](./research-methodology.md) (Mode A survey vs Mode B autoresearch). **HPC rubric signals:** [ecosystem-explorer.md](../ecosystem/ecosystem-explorer.md).
+**Methodology:** [research-methodology.md](./research-methodology.md) (Mode A survey vs Mode B autoresearch). **HPC rubric signals:** [ecosystem-explorer.md](../ecosystem/ecosystem-explorer.md). **GEMM N-scaling / huge matrices:** [matmul-scaling-and-huge-gemm.md](./matmul-scaling-and-huge-gemm.md).
 
 ---
 

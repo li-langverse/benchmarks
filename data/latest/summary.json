@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T09:04:25.666307+00:00",
+  "generated_at": "2026-05-20T09:16:11.278506+00:00",
   "sources": {
     "lic_csv": "/workspace/lic/benchmarks/results/latest.csv",
     "lis_csv": "/workspace/lis/results/latest.csv",
@@ -8,8 +8,8 @@
   },
   "tier_counts": {
     "1": {
-      "green": 5,
-      "yellow": 0,
+      "green": 7,
+      "yellow": 1,
       "red": 0,
       "unknown": 0
     },
@@ -58,7 +58,7 @@
             },
             {
               "lang": "cpp",
-              "value": 0.001,
+              "value": 0.0011,
               "unit": "s",
               "variant": "release"
             },
@@ -79,7 +79,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/horner_pure_li",
           "status": "green",
-          "ratio_vs_reference": 0.4
+          "ratio_vs_reference": 0.3636
         },
         {
           "id": "matmul_blocked",
@@ -91,19 +91,19 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0104,
+              "value": 0.0103,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0104,
+              "value": 0.0102,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0101,
+              "value": 0.01,
               "unit": "s",
               "variant": "release"
             },
@@ -117,6 +117,84 @@
           "grouped": false,
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_blocked",
+          "status": "green",
+          "ratio_vs_reference": 1.0098
+        },
+        {
+          "id": "matmul_blocked_n1024",
+          "title": "matmul blocked n1024",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0833,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0822,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0826,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0808,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/matmul_blocked_n1024",
+          "status": "green",
+          "ratio_vs_reference": 1.0134
+        },
+        {
+          "id": "matmul_blocked_n128",
+          "title": "matmul blocked n128",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0012,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0012,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0011,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0012,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/matmul_blocked_n128",
           "status": "green",
           "ratio_vs_reference": 1.0
         },
@@ -136,7 +214,7 @@
             },
             {
               "lang": "cpp",
-              "value": 0.0024,
+              "value": 0.0037,
               "unit": "s",
               "variant": "release"
             },
@@ -148,7 +226,7 @@
             },
             {
               "lang": "julia",
-              "value": 0.0035,
+              "value": 0.0025,
               "unit": "s",
               "variant": "release"
             }
@@ -157,7 +235,46 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_naive",
           "status": "green",
-          "ratio_vs_reference": 1.0833
+          "ratio_vs_reference": 0.7027
+        },
+        {
+          "id": "matmul_naive_n128",
+          "title": "matmul naive n128",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0011,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0009,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.001,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0009,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/matmul_naive_n128",
+          "status": "yellow",
+          "ratio_vs_reference": 1.2222
         },
         {
           "id": "reduce_sum",
@@ -169,25 +286,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.3083,
+              "value": 0.3235,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.3087,
+              "value": 0.31,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.3048,
+              "value": 0.3054,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.3062,
+              "value": 0.3051,
               "unit": "s",
               "variant": "release"
             }
@@ -196,7 +313,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/reduce_sum",
           "status": "green",
-          "ratio_vs_reference": 0.9987
+          "ratio_vs_reference": 1.0435
         },
         {
           "id": "simd_dot",
@@ -208,25 +325,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0009,
+              "value": 0.0007,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0619,
+              "value": 0.0578,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0604,
+              "value": 0.0558,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0603,
+              "value": 0.0549,
               "unit": "s",
               "variant": "release"
             }
@@ -235,7 +352,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/simd_dot",
           "status": "green",
-          "ratio_vs_reference": 0.0145
+          "ratio_vs_reference": 0.0121
         }
       ]
     },
@@ -548,8 +665,8 @@
       "category": "micro",
       "metric": "wall_time",
       "li_value": 0.0004,
-      "cpp_value": 0.001,
-      "ratio_vs_cpp": 0.4,
+      "cpp_value": 0.0011,
+      "ratio_vs_cpp": 0.3636,
       "unit": "s",
       "variant": "pure_li",
       "status": "green",
@@ -569,7 +686,7 @@
         },
         {
           "lang": "cpp",
-          "value": 0.001,
+          "value": 0.0011,
           "unit": "s",
           "variant": "release"
         },
@@ -593,9 +710,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0104,
-      "cpp_value": 0.0104,
-      "ratio_vs_cpp": 1.0,
+      "li_value": 0.0103,
+      "cpp_value": 0.0102,
+      "ratio_vs_cpp": 1.0098,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -608,19 +725,19 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0104,
+          "value": 0.0103,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0104,
+          "value": 0.0102,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0101,
+          "value": 0.01,
           "unit": "s",
           "variant": "release"
         },
@@ -633,14 +750,104 @@
       ]
     },
     {
+      "benchmark": "matmul_blocked_n1024",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0833,
+      "cpp_value": 0.0822,
+      "ratio_vs_cpp": 1.0134,
+      "unit": "s",
+      "variant": "blocked_gemm_n1024",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_blocked_n1024",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0833,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.0822,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.0826,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0808,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "matmul_blocked_n128",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0012,
+      "cpp_value": 0.0012,
+      "ratio_vs_cpp": 1.0,
+      "unit": "s",
+      "variant": "blocked_gemm_n128",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_blocked_n128",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0012,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.0012,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.0011,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0012,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
       "benchmark": "matmul_naive",
       "repo": "lic",
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
       "li_value": 0.0026,
-      "cpp_value": 0.0024,
-      "ratio_vs_cpp": 1.0833,
+      "cpp_value": 0.0037,
+      "ratio_vs_cpp": 0.7027,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -660,7 +867,7 @@
         },
         {
           "lang": "cpp",
-          "value": 0.0024,
+          "value": 0.0037,
           "unit": "s",
           "variant": "release"
         },
@@ -672,7 +879,53 @@
         },
         {
           "lang": "julia",
-          "value": 0.0035,
+          "value": 0.0025,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "matmul_naive_n128",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0011,
+      "cpp_value": 0.0009,
+      "ratio_vs_cpp": 1.2222,
+      "unit": "s",
+      "variant": "naive_gemm_n128",
+      "status": "yellow",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_naive_n128",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0011,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.0009,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.001,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0009,
           "unit": "s",
           "variant": "release"
         }
@@ -684,9 +937,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.3083,
-      "cpp_value": 0.3087,
-      "ratio_vs_cpp": 0.9987,
+      "li_value": 0.3235,
+      "cpp_value": 0.31,
+      "ratio_vs_cpp": 1.0435,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -699,25 +952,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.3083,
+          "value": 0.3235,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.3087,
+          "value": 0.31,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.3048,
+          "value": 0.3054,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.3062,
+          "value": 0.3051,
           "unit": "s",
           "variant": "release"
         }
@@ -729,9 +982,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0009,
-      "cpp_value": 0.0619,
-      "ratio_vs_cpp": 0.0145,
+      "li_value": 0.0007,
+      "cpp_value": 0.0578,
+      "ratio_vs_cpp": 0.0121,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -745,25 +998,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0009,
+          "value": 0.0007,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0619,
+          "value": 0.0578,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0604,
+          "value": 0.0558,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0603,
+          "value": 0.0549,
           "unit": "s",
           "variant": "release"
         }

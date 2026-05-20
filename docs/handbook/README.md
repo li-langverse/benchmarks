@@ -9,7 +9,7 @@ This repo is the **org performance dashboard** — catalog, ingest, static Pages
 | **Dashboard (GitHub Pages)** | https://li-langverse.github.io/benchmarks/ |
 | **Handbook (this tree)** | [`docs/handbook/README.md`](README.md) |
 | **Ecosystem ops** | [`docs/ecosystem/`](../ecosystem/) |
-| **Numerics research** | [`docs/numerics/`](../numerics/) · [**SOTA comparison matrix**](../numerics/sota-comparison-matrix.md) (stability · perf · memory · long horizons) |
+| **Numerics research** | [`docs/numerics/`](../numerics/) · [**SOTA comparison matrix**](../numerics/sota-comparison-matrix.md) · [GEMM scaling / huge matrices](../numerics/matmul-scaling-and-huge-gemm.md) |
 | **Game dev & tier-2 physics map** | [`docs/game-dev/README.md`](../game-dev/README.md) |
 | **Benchmark run reports** | [`docs/benchmark-reports/`](benchmark-reports/) (snapshots) |
 

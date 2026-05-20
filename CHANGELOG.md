@@ -14,6 +14,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **GEMM multi-size catalog + doc:** `matmul_blocked_n128`, `matmul_blocked_n1024`, `matmul_naive_n128` in `catalog.toml`; [matmul scaling & huge GEMM](docs/numerics/matmul-scaling-and-huge-gemm.md) (BLIS blocking, Strassen, SUMMA, OOC); links from SOTA matrix + studies README; snapshot [benchmark-reports/2026-05-20-tier1-matmul-scaling.md](docs/benchmark-reports/2026-05-20-tier1-matmul-scaling.md).
 - **SOTA / simulation rubric:** [docs/numerics/sota-comparison-matrix.md](docs/numerics/sota-comparison-matrix.md) — stability, wall time at small/large scale, memory, long horizons; maps tiers to comparators; honest gap list vs dashboard-only claims (cross-linked from handbook, methodology, honesty labels, game-dev map, plan cross-links, AGENTS).
 - **Docs maintainer:** [handbook](docs/handbook/README.md), [plan cross-links](docs/ecosystem/plan-cross-links.md), [benchmark honesty labels](docs/honesty/benchmark-dashboard.md); Pages 404 runbook in [SETUP_GITHUB.md](SETUP_GITHUB.md)
 - **Agent-first architecture:** [cursor-agent-architecture.md](docs/ecosystem/cursor-agent-architecture.md) — Cursor Automations for explorer, PR alignment/review, implementation gaps, numerics SOTA; `agent-preflight.sh` / `agent-briefing.py` for preflight JSON only
