@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **HTTP tier-5 plots:** `scripts/plot_http_benchmarks.py` renders `http_*_rps.png` and `http_tier5_overview.png` from `lis/results/latest.csv` or `summary.json` http category; `scripts/run-http-benchmark-report.sh` runs bench + plots without rewriting `summary.json` (avoids ingest races with other agents).
+- **`render-benchmark-visuals.sh`:** optional lis HTTP plots; lic shareables failure no longer aborts when lis CSV is present.
+
 ### Fixed
 
 - **CI `dashboard-static`:** `ci.yml` gates the Vite `dashboard/dist` build (same as `pages.yml`) instead of `render-static.sh` until `lic` `main` ships `std/plot` (PH-IO-5). Restores green Benchmarks CI on open PRs.

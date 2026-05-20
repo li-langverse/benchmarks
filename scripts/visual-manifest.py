@@ -63,6 +63,11 @@ def main() -> int:
             "bench_speed_tier2.png",
             "speedup_vs_cpp.png",
         ],
+        "http_priority": [
+            "http_tier5_overview.png",
+            "http_static_small_rps.png",
+            "http_keepalive_pipelining_rps.png",
+        ],
     }
 
     (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
