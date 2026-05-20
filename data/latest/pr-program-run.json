@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T15:31Z",
+  "generated_at": "2026-05-20T16:12Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 24,
+    "open_prs": 25,
     "ci_green": 8,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -280,6 +280,23 @@
       "priority_score": 130
     },
     {
+      "repo": "lic",
+      "number": 94,
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "url": "https://github.com/li-langverse/lic/pull/94",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 94"
+      ],
+      "priority_score": 130
+    },
+    {
       "repo": "li-language",
       "number": 6,
       "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
@@ -384,7 +401,7 @@
     {
       "repo": "benchmarks",
       "number": 46,
-      "title": "docs(http): root-cause analysis for li-httpd vs nginx gap",
+      "title": "feat(tier5): HTTP exploit harness vs nginx and li-httpd",
       "url": "https://github.com/li-langverse/benchmarks/pull/46",
       "base": "main",
       "ci": "pass",
@@ -489,6 +506,9 @@
     }
   ],
   "plan_warnings": [
+    "lic#94 vs lic#85: human: pick one PR or rebase the other",
+    "lic#94 vs lic#82: human: pick one PR or rebase the other",
+    "lic#94 vs lic#80: human: pick one PR or rebase the other",
     "lic#85 vs lic#82: human: pick one PR or rebase the other",
     "lic#85 vs lic#80: human: pick one PR or rebase the other",
     "lic#82 vs lic#80: human: pick one PR or rebase the other",

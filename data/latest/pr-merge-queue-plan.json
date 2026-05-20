@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T15:30Z",
+  "generated_at": "2026-05-20T16:12Z",
   "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
   "ordering_rules": [
     "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -10,11 +10,11 @@
     "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge"
   ],
   "summary": {
-    "open_prs": 12,
+    "open_prs": 13,
     "merge_approved": 0,
     "gate_ready": 0,
     "auto_merge_candidates": 0,
-    "redundant_pairs": 7,
+    "redundant_pairs": 10,
     "stacks": 0
   },
   "merge_first": null,
@@ -166,6 +166,19 @@
     },
     {
       "rank": 12,
+      "repo": "lic",
+      "number": 94,
+      "url": "https://github.com/li-langverse/lic/pull/94",
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "merge_approved": false,
+      "gate_ready": false,
+      "priority_score": 280,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 12; priority_score=280; awaiting merge-approved label"
+    },
+    {
+      "rank": 13,
       "repo": "roadmap",
       "number": 12,
       "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -175,11 +188,47 @@
       "priority_score": 340,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 12; priority_score=340; awaiting merge-approved label"
+      "order_reason": "rank 13; priority_score=340; awaiting merge-approved label"
     }
   ],
   "stacks": [],
   "redundant": [
+    {
+      "repo": "lic",
+      "pr_a": "lic#94",
+      "pr_b": "lic#85",
+      "url_a": "https://github.com/li-langverse/lic/pull/94",
+      "url_b": "https://github.com/li-langverse/lic/pull/85",
+      "overlap": 1.0,
+      "reasons": [
+        "100% file overlap"
+      ],
+      "suggested_action": "human: pick one PR or rebase the other"
+    },
+    {
+      "repo": "lic",
+      "pr_a": "lic#94",
+      "pr_b": "lic#82",
+      "url_a": "https://github.com/li-langverse/lic/pull/94",
+      "url_b": "https://github.com/li-langverse/lic/pull/82",
+      "overlap": 1.0,
+      "reasons": [
+        "100% file overlap"
+      ],
+      "suggested_action": "human: pick one PR or rebase the other"
+    },
+    {
+      "repo": "lic",
+      "pr_a": "lic#94",
+      "pr_b": "lic#80",
+      "url_a": "https://github.com/li-langverse/lic/pull/94",
+      "url_b": "https://github.com/li-langverse/lic/pull/80",
+      "overlap": 1.0,
+      "reasons": [
+        "100% file overlap"
+      ],
+      "suggested_action": "human: pick one PR or rebase the other"
+    },
     {
       "repo": "lic",
       "pr_a": "lic#85",
@@ -267,6 +316,9 @@
     }
   ],
   "warnings": [
+    "lic#94 vs lic#85: human: pick one PR or rebase the other",
+    "lic#94 vs lic#82: human: pick one PR or rebase the other",
+    "lic#94 vs lic#80: human: pick one PR or rebase the other",
     "lic#85 vs lic#82: human: pick one PR or rebase the other",
     "lic#85 vs lic#80: human: pick one PR or rebase the other",
     "lic#82 vs lic#80: human: pick one PR or rebase the other",
