@@ -1,0 +1,21 @@
+---
+description: Ingest only — solvers live in lic as Li; SOTA benches registered in catalog
+globs:
+  - catalog.toml
+  - scripts/**/*
+  - docs/**/*
+alwaysApply: false
+---
+
+# SOTA benchmarks · Li solvers in `lic`
+
+Physics/math/simulation **implementations** are **Li-only** in `li-langverse/lic` (`packages/*`). This repo holds **catalog + ingest + dashboard** only.
+
+Before adding a `catalog.toml` benchmark row:
+
+1. Kernel exists under `lic/benchmarks/` (C oracle + Li shim).
+2. Package API exists in `lic/packages/` (not stub-only if claiming `workload_class = full`).
+3. `docs/benchmarks/sota-reference-registry.md` in **lic** lists the external SOTA reference.
+4. Run ingest from fresh `lic/benchmarks/results/latest.csv` after `bench.py --tier 12 --quick`.
+
+Mirror of `lic/.cursor/rules/li-sota-benchmark-li-only.mdc`.
