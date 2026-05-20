@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T13:33Z",
+  "generated_at": "2026-05-20T13:53Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
-    "branches_needing_pr": 58,
+    "branches_needing_pr": 57,
     "prs_recommended_close": 8,
     "prs_safe_close_now": 0
   },
@@ -191,14 +191,6 @@
       "ahead_by": 7,
       "reason": "branch `feat/simulation-ui-game-stdlib` is 7 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch feat/simulation-ui-game-stdlib"
-    },
-    {
-      "repo": "lic",
-      "branch": "feat/vision-llm-agent-diagnostics",
-      "base": "main",
-      "ahead_by": 5,
-      "reason": "branch `feat/vision-llm-agent-diagnostics` is 5 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch feat/vision-llm-agent-diagnostics"
     },
     {
       "repo": "lip",

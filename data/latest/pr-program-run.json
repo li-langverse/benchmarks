@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T13:34Z",
+  "generated_at": "2026-05-20T13:54Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 17,
-    "ci_green": 5,
+    "open_prs": 18,
+    "ci_green": 6,
     "merge_approved": 0,
     "gate_ready_labeled": 0
   },
@@ -46,6 +46,15 @@
     },
     {
       "rank": 5,
+      "repo": "lic",
+      "number": 80,
+      "url": "https://github.com/li-langverse/lic/pull/80",
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "ci": "pass",
+      "action": "add merge-approved after review"
+    },
+    {
+      "rank": 6,
       "repo": "roadmap",
       "number": 12,
       "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -118,6 +127,22 @@
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
       ],
       "priority_score": 20
+    },
+    {
+      "repo": "lic",
+      "number": 80,
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "url": "https://github.com/li-langverse/lic/pull/80",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+      ],
+      "priority_score": 30
     },
     {
       "repo": "roadmap",
@@ -329,7 +354,7 @@
       "title": "feat(2e/2f): call-site requires \u2014 E0304, locals, import, build gate",
       "url": "https://github.com/li-langverse/lic/pull/78",
       "base": "main",
-      "ci": "pending",
+      "ci": "fail",
       "draft": true,
       "labels": [],
       "merge_approved": false,
@@ -337,7 +362,7 @@
       "gate_blockers_if_approved": [
         "not_draft: PR is still a draft",
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 78"
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 78"
       ],
       "priority_score": 330
     }
