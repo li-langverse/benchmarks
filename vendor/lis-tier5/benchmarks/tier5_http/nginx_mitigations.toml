@@ -76,6 +76,54 @@ li_invariant = "no predictable TLS record IV in production"
 li_done = false
 
 [[mitigation]]
+id = "no_cgi_exec"
+cve = ["CVE-2014-6271", "CVE-2014-6278"]
+notes = "No CGI/shell execution on User-Agent or path; Shellshock class"
+exploit = "exploits/shellshock_user_agent.toml"
+li_invariant = "static server never invokes shell from headers"
+li_done = true
+
+[[mitigation]]
+id = "no_reverse_shell_callback"
+cve = []
+notes = "RCE must not open loopback callback (reverse-shell class)"
+exploit = "exploits/reverse_shell_canary.toml"
+li_invariant = "no outbound connect from worker on exploit probes"
+li_done = true
+
+[[mitigation]]
+id = "sensitive_file_exposure"
+cve = ["CVE-2001-0500"]
+notes = "Block /etc/passwd, shadow, proc, ssh keys via HTTP GET"
+exploit = "exploits/sensitive_file_read.toml"
+li_invariant = "docroot jail; no passwd/key bytes in response"
+li_done = true
+
+[[mitigation]]
+id = "privilege_path_alias_merge"
+cve = ["CVE-2013-4547"]
+notes = "Alias merge / ..;/ / null-byte path priv esc"
+exploit = "exploits/privilege_path_escalation.toml"
+li_invariant = "path_is_safe + no alias merge outside root"
+li_done = true
+
+[[mitigation]]
+id = "no_shell_metachar_in_path"
+cve = []
+notes = "Command injection in URI ($(), ;, |, backticks)"
+exploit = "exploits/command_injection_path.toml"
+li_invariant = "metachar paths never executed or echoed as id output"
+li_done = true
+
+[[mitigation]]
+id = "host_header_ssrf_block"
+cve = []
+notes = "Metadata Host / internal SSRF via misconfigured proxy"
+exploit = "exploits/host_header_ssrf.toml"
+li_invariant = "Host cannot fetch cloud metadata through static front"
+li_done = true
+
+[[mitigation]]
 id = "upstream_leak_censor"
 cve = []
 notes = "Tier G — SSE leak to client"

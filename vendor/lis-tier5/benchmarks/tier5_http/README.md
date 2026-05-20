@@ -15,6 +15,23 @@ Scenarios in `suite.toml` **ci** / **nightly**: `static_small`, `keepalive_pipel
 
 `lang=li` throughput rows are **not** emitted until a `li-httpd` binary is wired in; set `LI_HTTPD_BIN` only as a placeholder hook for future work.
 
+## Exploit harness (security)
+
+`harness/exploit_http.py` runs TOML-driven attacks from `exploits/` against **nginx** (oracle) and **li-httpd** on loopback only.
+
+| Tier | Examples |
+|------|----------|
+| A/B | slowloris, oversized line, duplicate Content-Length |
+| **C** | `reverse_shell_canary` (localhost callback sink), `sensitive_file_read`, `shellshock_user_agent`, `privilege_path_escalation`, `command_injection_path`, `host_header_ssrf` |
+
+Tier **C** probes RCE / reverse-shell / priv-esc *classes* — they do **not** deploy real shells or dial external hosts.
+
+```bash
+LI_HTTPD_BIN=/path/to/lic/build/li-httpd \
+  python3 benchmarks/tier5_http/harness/exploit_http.py --profile pr
+cat ../results/exploit_report.csv
+```
+
 ## Quick commands (from lis repo root)
 
 ```bash
