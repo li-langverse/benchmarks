@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-20T11:33Z",
+  "generated_at": "2026-05-20T19:46Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations \u2014 not in this file.",
   "preflight_runs": {
     "issue_triage": {
       "command": "python3 scripts/issue-feature-triage.py",
       "exit_code": 0,
-      "stdout_tail": "wrote /workspace/data/latest/issue-feature-triage.json (needs_plan=22, candidates=0)\n",
+      "stdout_tail": "wrote /workspace/data/latest/issue-feature-triage.json (needs_plan=23, candidates=0)\n",
       "stderr_tail": ""
     },
     "plan_audit": {
@@ -69,18 +69,88 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-20T11:32Z",
+    "generated_at": "2026-05-20T19:45Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
       "repos_scanned": 6,
-      "needs_plan": 22,
+      "needs_plan": 23,
       "candidates": 0
     },
     "repos": [
       {
         "repo": "lic",
         "needs_plan": [
+          {
+            "number": 117,
+            "title": "[explorer-finding] PETSc 3.25 PCBJKOKKOS device-native Jacobi \u2014 implicit PDE preconditioner rubric (G-math)",
+            "url": "https://github.com/li-langverse/lic/issues/117",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:43:31Z"
+          },
+          {
+            "number": 116,
+            "title": "[explorer-finding] Kokkos OpenMPTarget backend checklist vs Li std/execution offload (G-par, PH-7e)",
+            "url": "https://github.com/li-langverse/lic/issues/116",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:43:27Z"
+          },
+          {
+            "number": 113,
+            "title": "[explorer-finding] Chapel 2.8 HPC portability rubric vs Li std/execution (G-par, G-ai)",
+            "url": "https://github.com/li-langverse/lic/issues/113",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:28:46Z"
+          },
+          {
+            "number": 112,
+            "title": "[explorer-finding] HPX-style async futures vs Li tier-2 game physics scheduling (G-par)",
+            "url": "https://github.com/li-langverse/lic/issues/112",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:28:36Z"
+          },
+          {
+            "number": 110,
+            "title": "[explorer-finding] Kokkos 4.6 Views + execution-space semantics for Li tier-2 memory model (G-par, PH-7e)",
+            "url": "https://github.com/li-langverse/lic/issues/110",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:11:53Z"
+          },
+          {
+            "number": 109,
+            "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+            "url": "https://github.com/li-langverse/lic/issues/109",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:11:51Z"
+          },
+          {
+            "number": 108,
+            "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+            "url": "https://github.com/li-langverse/lic/issues/108",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:11:34Z"
+          },
           {
             "number": 50,
             "title": "[Ecosystem gap] Publish li-std-physics-* org mirrors (12 packages)",
@@ -159,87 +229,6 @@
               "plan-needed"
             ],
             "created_at": "2026-05-17T13:21:35Z"
-          },
-          {
-            "number": 19,
-            "title": "plan-needed: Vision-LLM \u2014 agent manifest CI + compact test export (beyond stub)",
-            "url": "https://github.com/li-langverse/lic/issues/19",
-            "labels": [
-              "master-plan-gap",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:09:09Z"
-          },
-          {
-            "number": 18,
-            "title": "plan-needed: Phase H M1 \u2014 li-httpd .li gateway after 2e\u20132f + P0 bytes/async",
-            "url": "https://github.com/li-langverse/lic/issues/18",
-            "labels": [
-              "master-plan-gap",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:09:07Z"
-          },
-          {
-            "number": 17,
-            "title": "master-plan-gap: Phase 2f / G-lean \u2014 close sqrt_open_bound; default Lean gate on lic build",
-            "url": "https://github.com/li-langverse/lic/issues/17",
-            "labels": [
-              "master-plan-gap",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:09:06Z"
-          },
-          {
-            "number": 16,
-            "title": "[Ecosystem gap] Reconcile master plan partial PH rows + G-* provability debt",
-            "url": "https://github.com/li-langverse/lic/issues/16",
-            "labels": [
-              "master-plan-gap",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:01:21Z"
-          },
-          {
-            "number": 15,
-            "title": "[Ecosystem gap] PH-7e/G-par: decorators \u2192 portable parallel lowering (Kokkos-class)",
-            "url": "https://github.com/li-langverse/lic/issues/15",
-            "labels": [
-              "feature",
-              "master-plan-gap",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:01:17Z"
-          },
-          {
-            "number": 14,
-            "title": "[Ecosystem gap] Physics packages: scaffold lib.li \u2192 domain APIs",
-            "url": "https://github.com/li-langverse/lic/issues/14",
-            "labels": [
-              "feature",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:01:14Z"
-          },
-          {
-            "number": 13,
-            "title": "[Ecosystem gap] PH-IO-4/5/7: ship std.io, std.csv, std.summary, std.plot",
-            "url": "https://github.com/li-langverse/lic/issues/13",
-            "labels": [
-              "feature",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T13:01:09Z"
-          },
-          {
-            "number": 11,
-            "title": "plan-needed: PH-7e / G-math \u2014 pure-Li horner codegen (88\u00d7 vs C++)",
-            "url": "https://github.com/li-langverse/lic/issues/11",
-            "labels": [
-              "master-plan-gap",
-              "plan-needed"
-            ],
-            "created_at": "2026-05-17T12:58:01Z"
           }
         ],
         "planned": [],
@@ -267,6 +256,26 @@
       {
         "repo": "benchmarks",
         "needs_plan": [
+          {
+            "number": 52,
+            "title": "[explorer-finding] VkFFT + FFTW/cuFFT crossover rubric for tier-1 FFT catalog row (PH-5b, G-math)",
+            "url": "https://github.com/li-langverse/benchmarks/issues/52",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:43:22Z"
+          },
+          {
+            "number": 51,
+            "title": "[explorer-finding] gearshifft multi-vendor FFT tiers for catalog FFT row (PH-5b, G-math)",
+            "url": "https://github.com/li-langverse/benchmarks/issues/51",
+            "labels": [
+              "explorer-finding",
+              "plan-needed"
+            ],
+            "created_at": "2026-05-20T19:28:47Z"
+          },
           {
             "number": 29,
             "title": "[plan-needed] Align catalog.toml lic paths with plan-completion-audit LIC_ROOT layout",
@@ -340,7 +349,7 @@
       {
         "priority": "P1",
         "action": "Run issue-feature-planner automation or comment planning checklist on issues",
-        "needs_plan": 22,
+        "needs_plan": 23,
         "candidates": 0
       }
     ]
@@ -495,7 +504,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-20T11:32Z",
+    "generated_at": "2026-05-20T19:45Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -503,13 +512,33 @@
       "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
     },
     "metrics": {
-      "open_prs": 14,
-      "failed_prs": 1,
-      "ready_prs": 1,
+      "open_prs": 23,
+      "failed_prs": 5,
+      "ready_prs": 2,
       "repos_missing_ci_main": 1,
       "repos_without_live_pages": 10
     },
     "failed_prs": [
+      {
+        "repo": "benchmarks",
+        "number": 50,
+        "title": "feat(tier5-http): multi-oracle bench and exploits (nginx, Apache, lighttpd, li)",
+        "url": "https://github.com/li-langverse/benchmarks/pull/50",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
+        "ready": false
+      },
+      {
+        "repo": "benchmarks",
+        "number": 49,
+        "title": "feat(tier5): Tier C HTTP exploits \u2014 reverse-shell canary and priv-esc",
+        "url": "https://github.com/li-langverse/benchmarks/pull/49",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
+        "ready": false
+      },
       {
         "repo": "li-language",
         "number": 6,
@@ -519,9 +548,39 @@
         "ci": "fail",
         "draft": false,
         "ready": false
+      },
+      {
+        "repo": "lic",
+        "number": 85,
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "url": "https://github.com/li-langverse/lic/pull/85",
+        "base": "main",
+        "ci": "fail",
+        "draft": false,
+        "ready": false
+      },
+      {
+        "repo": "lic",
+        "number": 81,
+        "title": "merge: World Studio + world_engine + UE proxy baselines",
+        "url": "https://github.com/li-langverse/lic/pull/81",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
+        "ready": false
       }
     ],
     "ready_prs": [
+      {
+        "repo": "benchmarks",
+        "number": 47,
+        "title": "docs(numerics): 2026-05-20 researcher pass \u2014 horner P0 + near-limit SOTA",
+        "url": "https://github.com/li-langverse/benchmarks/pull/47",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "ready": true
+      },
       {
         "repo": "roadmap",
         "number": 12,
@@ -747,7 +806,11 @@
         "priority": "P0",
         "action": "Fix failing PR CI before new feature work",
         "prs": [
-          "li-language#6"
+          "benchmarks#50",
+          "benchmarks#49",
+          "li-language#6",
+          "lic#85",
+          "lic#81"
         ]
       },
       {
@@ -780,12 +843,12 @@
       {
         "priority": "P2",
         "action": "Human review merge queue (do not self-merge)",
-        "count": 1
+        "count": 2
       }
     ]
   },
   "ecosystem_explorer": {
-    "generated_at": "2026-05-20T11:29Z",
+    "generated_at": "2026-05-20T19:43Z",
     "lic_root": "/workspace/lic",
     "lic_present": false,
     "std_modules_on_disk": [],
@@ -1072,6 +1135,12 @@
       },
       {
         "repo": "li-langverse/lic",
+        "number": 112,
+        "title": "[explorer-finding] HPX-style async futures vs Li tier-2 game physics scheduling (G-par)",
+        "url": "https://github.com/li-langverse/lic/issues/112"
+      },
+      {
+        "repo": "li-langverse/lic",
         "number": 65,
         "title": "[explorer-finding] Carbon p4880 + Mojo 1.0b \u2014 competitive safety matrix vs lic build certificate (G-meta, provable)",
         "url": "https://github.com/li-langverse/lic/issues/65"
@@ -1081,6 +1150,12 @@
         "number": 26,
         "title": "[explorer-finding] Roofline + vendor FFT reference harness for catalog FFT row",
         "url": "https://github.com/li-langverse/benchmarks/issues/26"
+      },
+      {
+        "repo": "li-langverse/benchmarks",
+        "number": 52,
+        "title": "[explorer-finding] VkFFT + FFTW/cuFFT crossover rubric for tier-1 FFT catalog row (PH-5b, G-math)",
+        "url": "https://github.com/li-langverse/benchmarks/issues/52"
       },
       {
         "repo": "li-langverse/benchmarks",
@@ -1102,9 +1177,27 @@
       },
       {
         "repo": "li-langverse/lic",
+        "number": 109,
+        "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+        "url": "https://github.com/li-langverse/lic/issues/109"
+      },
+      {
+        "repo": "li-langverse/lic",
+        "number": 117,
+        "title": "[explorer-finding] PETSc 3.25 PCBJKOKKOS device-native Jacobi \u2014 implicit PDE preconditioner rubric (G-math)",
+        "url": "https://github.com/li-langverse/lic/issues/117"
+      },
+      {
+        "repo": "li-langverse/lic",
         "number": 35,
         "title": "[explorer-finding] SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators (G-math, physics tier-2)",
         "url": "https://github.com/li-langverse/lic/issues/35"
+      },
+      {
+        "repo": "li-langverse/lic",
+        "number": 108,
+        "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+        "url": "https://github.com/li-langverse/lic/issues/108"
       },
       {
         "repo": "li-langverse/lic",
@@ -1120,21 +1213,9 @@
       },
       {
         "repo": "li-langverse/benchmarks",
-        "number": 27,
-        "title": "[explorer-finding] Track Eigen / Kokkos / PETSc / Chapel release cadence in bench policy",
-        "url": "https://github.com/li-langverse/benchmarks/issues/27"
-      },
-      {
-        "repo": "li-langverse/benchmarks",
-        "number": 28,
-        "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
-        "url": "https://github.com/li-langverse/benchmarks/issues/28"
-      },
-      {
-        "repo": "li-langverse/benchmarks",
-        "number": 31,
-        "title": "Numerics researcher pass (2026-05-17): horner_pure_li red + near-limit greens \u2014 SOTA map & lic path",
-        "url": "https://github.com/li-langverse/benchmarks/issues/31"
+        "number": 51,
+        "title": "[explorer-finding] gearshifft multi-vendor FFT tiers for catalog FFT row (PH-5b, G-math)",
+        "url": "https://github.com/li-langverse/benchmarks/issues/51"
       }
     ],
     "agent_kit": {
@@ -1219,7 +1300,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-20T11:32Z",
+    "generated_at": "2026-05-20T19:46Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [
@@ -1586,7 +1667,7 @@
     ]
   },
   "merge_plan": {
-    "generated_at": "2026-05-20T11:33Z",
+    "generated_at": "2026-05-20T19:46Z",
     "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -1597,7 +1678,7 @@
       "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge"
     ],
     "summary": {
-      "open_prs": 4,
+      "open_prs": 6,
       "merge_approved": 0,
       "gate_ready": 0,
       "auto_merge_candidates": 0,
@@ -1649,6 +1730,32 @@
       },
       {
         "rank": 4,
+        "repo": "benchmarks",
+        "number": 47,
+        "url": "https://github.com/li-langverse/benchmarks/pull/47",
+        "title": "docs(numerics): 2026-05-20 researcher pass \u2014 horner P0 + near-limit SOTA",
+        "merge_approved": false,
+        "gate_ready": false,
+        "priority_score": 270,
+        "auto_merge_ok": false,
+        "blocked_reason": null,
+        "order_reason": "rank 4; priority_score=270; awaiting merge-approved label"
+      },
+      {
+        "rank": 5,
+        "repo": "lic",
+        "number": 85,
+        "url": "https://github.com/li-langverse/lic/pull/85",
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "merge_approved": false,
+        "gate_ready": false,
+        "priority_score": 280,
+        "auto_merge_ok": false,
+        "blocked_reason": null,
+        "order_reason": "rank 5; priority_score=280; awaiting merge-approved label"
+      },
+      {
+        "rank": 6,
         "repo": "roadmap",
         "number": 12,
         "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -1658,7 +1765,7 @@
         "priority_score": 340,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 4; priority_score=340; awaiting merge-approved label"
+        "order_reason": "rank 6; priority_score=340; awaiting merge-approved label"
       }
     ],
     "stacks": [],
@@ -1682,7 +1789,7 @@
     ]
   },
   "pr_program": {
-    "generated_at": "2026-05-20T11:30Z",
+    "generated_at": "2026-05-20T11:34Z",
     "merge_first": null,
     "summary": {
       "open_prs": 11,
@@ -1840,23 +1947,6 @@
       },
       {
         "repo": "benchmarks",
-        "number": 44,
-        "title": "docs(language): PascalCase types, class visibility sketch, decorator shareables",
-        "url": "https://github.com/li-langverse/benchmarks/pull/44",
-        "base": "main",
-        "ci": "pass",
-        "draft": true,
-        "labels": [],
-        "merge_approved": false,
-        "gate_ready_with_approval": false,
-        "gate_blockers_if_approved": [
-          "not_draft: PR is still a draft",
-          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-        ],
-        "priority_score": 220
-      },
-      {
-        "repo": "benchmarks",
         "number": 45,
         "title": "feat(visuals): HTTP tier-5 plots from lis nginx bench CSV",
         "url": "https://github.com/li-langverse/benchmarks/pull/45",
@@ -1888,6 +1978,24 @@
           "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
         ],
         "priority_score": 220
+      },
+      {
+        "repo": "benchmarks",
+        "number": 44,
+        "title": "docs(language): PascalCase types, class visibility sketch, decorator shareables",
+        "url": "https://github.com/li-langverse/benchmarks/pull/44",
+        "base": "main",
+        "ci": "pending",
+        "draft": true,
+        "labels": [],
+        "merge_approved": false,
+        "gate_ready_with_approval": false,
+        "gate_blockers_if_approved": [
+          "not_draft: PR is still a draft",
+          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+          "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 44"
+        ],
+        "priority_score": 320
       }
     ],
     "plan_warnings": [
@@ -1895,12 +2003,12 @@
     ]
   },
   "pr_branch_hygiene": {
-    "generated_at": "2026-05-20T11:31Z",
+    "generated_at": "2026-05-20T19:46Z",
     "org": "li-langverse",
     "summary": {
       "repos_scanned": 12,
-      "branches_needing_pr": 63,
-      "prs_recommended_close": 6,
+      "branches_needing_pr": 65,
+      "prs_recommended_close": 13,
       "prs_safe_close_now": 0
     },
     "branches_needing_pr": [
@@ -1938,6 +2046,22 @@
       },
       {
         "repo": "lic",
+        "branch": "chore/agent-bench_improver-1779284446660",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-bench_improver-1779284446660` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-1779284446660"
+      },
+      {
+        "repo": "lic",
+        "branch": "chore/agent-bench_improver-1779291587030",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-bench_improver-1779291587030` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-1779291587030"
+      },
+      {
+        "repo": "lic",
         "branch": "chore/agent-bench_improver-19883836",
         "base": "main",
         "ahead_by": 3,
@@ -1951,6 +2075,22 @@
         "ahead_by": 2,
         "reason": "branch `chore/agent-bench_improver-42289450` is 2 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-42289450"
+      },
+      {
+        "repo": "lic",
+        "branch": "chore/agent-bench_improver-79285634",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-bench_improver-79285634` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-79285634"
+      },
+      {
+        "repo": "lic",
+        "branch": "chore/agent-bench_improver-horner-dce",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-bench_improver-horner-dce` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-horner-dce"
       },
       {
         "repo": "lic",
@@ -2002,6 +2142,14 @@
       },
       {
         "repo": "lic",
+        "branch": "chore/agent-numerics_researcher-84241347",
+        "base": "main",
+        "ahead_by": 2,
+        "reason": "branch `chore/agent-numerics_researcher-84241347` is 2 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-84241347"
+      },
+      {
+        "repo": "lic",
         "branch": "chore/agent-security_auditor-org-sweep",
         "base": "main",
         "ahead_by": 1,
@@ -2026,6 +2174,14 @@
       },
       {
         "repo": "lic",
+        "branch": "cursor/call-requires-full-gate-57b4",
+        "base": "main",
+        "ahead_by": 2,
+        "reason": "branch `cursor/call-requires-full-gate-57b4` is 2 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch cursor/call-requires-full-gate-57b4"
+      },
+      {
+        "repo": "lic",
         "branch": "cursor/cloud-env-setup-c81e",
         "base": "main",
         "ahead_by": 1,
@@ -2034,123 +2190,35 @@
       },
       {
         "repo": "lic",
-        "branch": "cursor/enforce-strict-ensures-57b4",
-        "base": "main",
-        "ahead_by": 1,
-        "reason": "branch `cursor/enforce-strict-ensures-57b4` is 1 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/enforce-strict-ensures-57b4"
-      },
-      {
-        "repo": "lic",
-        "branch": "cursor/fix-import-multiline-params-57b4",
-        "base": "main",
-        "ahead_by": 3,
-        "reason": "branch `cursor/fix-import-multiline-params-57b4` is 3 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/fix-import-multiline-params-57b4"
-      },
-      {
-        "repo": "lic",
         "branch": "cursor/fixed-point-warnings-57b4",
         "base": "main",
-        "ahead_by": 11,
-        "reason": "branch `cursor/fixed-point-warnings-57b4` is 11 commit(s) ahead of `main` with no open PR",
+        "ahead_by": 4,
+        "reason": "branch `cursor/fixed-point-warnings-57b4` is 4 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch cursor/fixed-point-warnings-57b4"
       },
       {
         "repo": "lic",
-        "branch": "cursor/object-field-mir-54aa",
+        "branch": "cursor/li-proxy-nginx-parity-54aa",
         "base": "main",
-        "ahead_by": 8,
-        "reason": "branch `cursor/object-field-mir-54aa` is 8 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/object-field-mir-54aa"
+        "ahead_by": 20,
+        "reason": "branch `cursor/li-proxy-nginx-parity-54aa` is 20 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch cursor/li-proxy-nginx-parity-54aa"
       },
       {
         "repo": "lic",
-        "branch": "cursor/ph-h-http-p0-and-li-http-54aa",
+        "branch": "cursor/post-83-docs-sync-57b4",
         "base": "main",
         "ahead_by": 1,
-        "reason": "branch `cursor/ph-h-http-p0-and-li-http-54aa` is 1 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/ph-h-http-p0-and-li-http-54aa"
+        "reason": "branch `cursor/post-83-docs-sync-57b4` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch cursor/post-83-docs-sync-57b4"
       },
       {
         "repo": "lic",
-        "branch": "cursor/rigid-var-param-57b4",
-        "base": "main",
-        "ahead_by": 8,
-        "reason": "branch `cursor/rigid-var-param-57b4` is 8 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/rigid-var-param-57b4"
-      },
-      {
-        "repo": "lic",
-        "branch": "cursor/scalar-precision-types-57b4",
-        "base": "main",
-        "ahead_by": 7,
-        "reason": "branch `cursor/scalar-precision-types-57b4` is 7 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/scalar-precision-types-57b4"
-      },
-      {
-        "repo": "lic",
-        "branch": "cursor/strict-trivial-ensures-57b4",
-        "base": "main",
-        "ahead_by": 13,
-        "reason": "branch `cursor/strict-trivial-ensures-57b4` is 13 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch cursor/strict-trivial-ensures-57b4"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/agent-planning-automation",
-        "base": "main",
-        "ahead_by": 10,
-        "reason": "branch `feat/agent-planning-automation` is 10 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/agent-planning-automation"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/docs-hpc-ai-north-star",
-        "base": "main",
-        "ahead_by": 3,
-        "reason": "branch `feat/docs-hpc-ai-north-star` is 3 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/docs-hpc-ai-north-star"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/package-ci-required",
+        "branch": "cursor/proof-pipeline-2ef-57b4",
         "base": "main",
         "ahead_by": 1,
-        "reason": "branch `feat/package-ci-required` is 1 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/package-ci-required"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/physics-game-dev",
-        "base": "main",
-        "ahead_by": 10,
-        "reason": "branch `feat/physics-game-dev` is 10 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/physics-game-dev"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/simulation-ui-game-stdlib",
-        "base": "main",
-        "ahead_by": 7,
-        "reason": "branch `feat/simulation-ui-game-stdlib` is 7 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/simulation-ui-game-stdlib"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/vision-llm-agent-diagnostics",
-        "base": "main",
-        "ahead_by": 5,
-        "reason": "branch `feat/vision-llm-agent-diagnostics` is 5 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/vision-llm-agent-diagnostics"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/world-studio-impl-1",
-        "base": "main",
-        "ahead_by": 62,
-        "reason": "branch `feat/world-studio-impl-1` is 62 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/world-studio-impl-1"
+        "reason": "branch `cursor/proof-pipeline-2ef-57b4` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch cursor/proof-pipeline-2ef-57b4"
       },
       {
         "repo": "lip",
@@ -2170,6 +2238,14 @@
       },
       {
         "repo": "benchmarks",
+        "branch": "chore/agent-gap_explorer-2026-05-20",
+        "base": "main",
+        "ahead_by": 2,
+        "reason": "branch `chore/agent-gap_explorer-2026-05-20` is 2 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(benchmarks): sync branch chore/agent-gap_explorer-2026-05-20"
+      },
+      {
+        "repo": "benchmarks",
         "branch": "chore/agent-kit-sync-benchmarks",
         "base": "main",
         "ahead_by": 1,
@@ -2186,6 +2262,14 @@
       },
       {
         "repo": "benchmarks",
+        "branch": "chore/pr-alignment-digest-2026-05-20",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/pr-alignment-digest-2026-05-20` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(benchmarks): sync branch chore/pr-alignment-digest-2026-05-20"
+      },
+      {
+        "repo": "benchmarks",
         "branch": "cursor/li-plot-ph-io-5-c9a5",
         "base": "main",
         "ahead_by": 2,
@@ -2199,6 +2283,14 @@
         "ahead_by": 5,
         "reason": "branch `cursor/li-summary-ph-io-7-c9a5` is 5 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(benchmarks): sync branch cursor/li-summary-ph-io-7-c9a5"
+      },
+      {
+        "repo": "benchmarks",
+        "branch": "cursor/lic-merge-queue-doc-57b4",
+        "base": "main",
+        "ahead_by": 10,
+        "reason": "branch `cursor/lic-merge-queue-doc-57b4` is 10 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(benchmarks): sync branch cursor/lic-merge-queue-doc-57b4"
       },
       {
         "repo": "benchmarks",
@@ -2263,6 +2355,14 @@
         "ahead_by": 3,
         "reason": "branch `merge/org-sweeps-and-heap` is 3 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(benchmarks): sync branch merge/org-sweeps-and-heap"
+      },
+      {
+        "repo": "benchmarks",
+        "branch": "merge/render-frame-catalog",
+        "base": "main",
+        "ahead_by": 29,
+        "reason": "branch `merge/render-frame-catalog` is 29 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(benchmarks): sync branch merge/render-frame-catalog"
       },
       {
         "repo": "roadmap",
@@ -2354,6 +2454,30 @@
       },
       {
         "repo": "li-demo",
+        "branch": "chore/agent-docs_maintainer-77703830",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-docs_maintainer-77703830` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(li-demo): sync branch chore/agent-docs_maintainer-77703830"
+      },
+      {
+        "repo": "li-demo",
+        "branch": "chore/agent-docs_maintainer-82029732",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-docs_maintainer-82029732` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(li-demo): sync branch chore/agent-docs_maintainer-82029732"
+      },
+      {
+        "repo": "li-demo",
+        "branch": "chore/agent-docs_maintainer-83095358",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-docs_maintainer-83095358` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(li-demo): sync branch chore/agent-docs_maintainer-83095358"
+      },
+      {
+        "repo": "li-demo",
         "branch": "ci/pin-lic-main",
         "base": "main",
         "ahead_by": 1,
@@ -2419,6 +2543,69 @@
         "safe_now": false,
         "source": "merge_plan.redundant",
         "suggested_action": "close #32 after #34 merges"
+      },
+      {
+        "repo": "lic",
+        "number": 101,
+        "url": "https://github.com/li-langverse/lic/pull/101",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "lic",
+        "number": 87,
+        "url": "https://github.com/li-langverse/lic/pull/87",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "lic",
+        "number": 84,
+        "url": "https://github.com/li-langverse/lic/pull/84",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "lic",
+        "number": 81,
+        "url": "https://github.com/li-langverse/lic/pull/81",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "benchmarks",
+        "number": 50,
+        "url": "https://github.com/li-langverse/benchmarks/pull/50",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "benchmarks",
+        "number": 49,
+        "url": "https://github.com/li-langverse/benchmarks/pull/49",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "benchmarks",
+        "number": 48,
+        "url": "https://github.com/li-langverse/benchmarks/pull/48",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
       },
       {
         "repo": "benchmarks",
@@ -2573,7 +2760,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-20T11:33Z",
+    "generated_at": "2026-05-20T19:46Z",
     "ecosystem_root": "/",
     "dirty_count": 0,
     "dirty_repos": []
@@ -2810,11 +2997,11 @@
     },
     {
       "agent": "pr_branch_opener",
-      "reason": "63 branch(es) pushed without open PR"
+      "reason": "65 branch(es) pushed without open PR"
     },
     {
       "agent": "pr_alignment",
-      "reason": "6 PR(s) flagged for close/supersede review"
+      "reason": "13 PR(s) flagged for close/supersede review"
     },
     {
       "agent": "bug_fixer",
@@ -2853,7 +3040,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-20T11:33Z",
+    "loaded_at": "2026-05-20T19:46Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -2887,7 +3074,7 @@
         "agents": [
           {
             "agent": "pr_alignment",
-            "reason": "6 PR(s) flagged for close/supersede review"
+            "reason": "13 PR(s) flagged for close/supersede review"
           }
         ]
       },
@@ -2956,7 +3143,7 @@
       {
         "coordinator": "coord_pull_requests",
         "agent": "pr_alignment",
-        "reason": "6 PR(s) flagged for close/supersede review",
+        "reason": "13 PR(s) flagged for close/supersede review",
         "priority": 10
       },
       {
