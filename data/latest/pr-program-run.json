@@ -1,24 +1,15 @@
 {
-  "generated_at": "2026-05-20T18:42Z",
+  "generated_at": "2026-05-20T19:02Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 28,
-    "ci_green": 8,
+    "open_prs": 27,
+    "ci_green": 7,
     "merge_approved": 0,
     "gate_ready_labeled": 0
   },
   "recommended_merge_order": [
     {
       "rank": 1,
-      "repo": "li-demo",
-      "number": 7,
-      "url": "https://github.com/li-langverse/li-demo/pull/7",
-      "title": "docs(li-demo): agent smoke marker for live run",
-      "ci": "pass",
-      "action": "skip (automation sandbox \u2014 merge only if user asks)"
-    },
-    {
-      "rank": 2,
       "repo": "li-demo",
       "number": 8,
       "url": "https://github.com/li-langverse/li-demo/pull/8",
@@ -27,7 +18,7 @@
       "action": "skip (automation sandbox \u2014 merge only if user asks)"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "repo": "li-demo",
       "number": 9,
       "url": "https://github.com/li-langverse/li-demo/pull/9",
@@ -36,7 +27,7 @@
       "action": "skip (automation sandbox \u2014 merge only if user asks)"
     },
     {
-      "rank": 4,
+      "rank": 3,
       "repo": "benchmarks",
       "number": 47,
       "url": "https://github.com/li-langverse/benchmarks/pull/47",
@@ -45,7 +36,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 5,
+      "rank": 4,
       "repo": "lic",
       "number": 80,
       "url": "https://github.com/li-langverse/lic/pull/80",
@@ -54,7 +45,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 6,
+      "rank": 5,
       "repo": "lic",
       "number": 82,
       "url": "https://github.com/li-langverse/lic/pull/82",
@@ -63,7 +54,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 7,
+      "rank": 6,
       "repo": "lic",
       "number": 85,
       "url": "https://github.com/li-langverse/lic/pull/85",
@@ -72,7 +63,7 @@
       "action": "add merge-approved after review"
     },
     {
-      "rank": 8,
+      "rank": 7,
       "repo": "roadmap",
       "number": 12,
       "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -82,22 +73,6 @@
     }
   ],
   "all_open": [
-    {
-      "repo": "li-demo",
-      "number": 7,
-      "title": "docs(li-demo): agent smoke marker for live run",
-      "url": "https://github.com/li-langverse/li-demo/pull/7",
-      "base": "main",
-      "ci": "pass",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 12
-    },
     {
       "repo": "li-demo",
       "number": 8,
