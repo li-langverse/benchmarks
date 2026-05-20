@@ -1,0 +1,21 @@
+name = "lb_round_robin"
+
+[proxy]
+enabled = true
+backend_count = 3
+
+[server]
+listen = ":8080"
+workers = 1
+
+[verify]
+requests = [
+  { method = "GET", path = "/", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/"
+duration_sec = 10
+connections = 8
+threads = 2

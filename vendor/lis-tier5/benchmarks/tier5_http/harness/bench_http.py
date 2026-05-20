@@ -111,7 +111,12 @@ def pick_port() -> int:
 
 
 def nginx_proxy_prefix_conf(front_port: int, backend_port: int, prefix: Path) -> str:
+    return nginx_lb_proxy_prefix_conf(front_port, [backend_port], prefix)
+
+
+def nginx_lb_proxy_prefix_conf(front_port: int, backend_ports: list[int], prefix: Path) -> str:
     px = str(prefix.resolve()).replace("\\", "/")
+    upstream_lines = "\n".join(f"    server 127.0.0.1:{p};" for p in backend_ports)
     return f"""worker_processes 1;
 error_log {px}/error.log warn;
 pid {px}/nginx.pid;
@@ -125,7 +130,7 @@ http {{
   uwsgi_temp_path {px}/uwsgi_temp;
   scgi_temp_path {px}/scgi_temp;
   upstream loopback_backend {{
-    server 127.0.0.1:{backend_port};
+{upstream_lines}
     keepalive 32;
   }}
   server {{
@@ -448,8 +453,16 @@ def bench_proxy_loopback_scenario(
     if not url_path.startswith("/"):
         url_path = "/" + url_path
 
-    backend_port = pick_port()
+    proxy_cfg = cfg.get("proxy") or {}
+    backend_count = int(proxy_cfg.get("backend_count") or 1)
+    if backend_count < 1:
+        backend_count = 1
+    if backend_count > 8:
+        backend_count = 8
+    backend_ports = [pick_port() for _ in range(backend_count)]
     front_port = pick_port()
+    csv_ports = ",".join(str(p) for p in backend_ports)
+    wrk_flags = "wrk proxy_lb" if backend_count > 1 else "wrk proxy_loopback"
 
     def run_wrk_on_front(lang: str) -> None:
         url = f"http://127.0.0.1:{front_port}{url_path}"
@@ -463,19 +476,31 @@ def bench_proxy_loopback_scenario(
             rps,
             variant=variant,
             connections=connections,
-            flags="wrk proxy_loopback",
+            flags=wrk_flags,
             sha=git_sha_short(),
             cpu=cpu_model(),
         )
 
-    # --- nginx oracle: backend + proxy front ---
-    tmp_b = tempfile.TemporaryDirectory(prefix="lis-nginx-be-")
-    prefix_b = Path(tmp_b.name)
-    if launch_nginx(prefix_b, nginx_prefix_conf(doc_root, backend_port, prefix_b)):
-        wait_for_port(backend_port)
+    # --- nginx oracle: backend(s) + proxy front ---
+    be_temps: list[tempfile.TemporaryDirectory[str]] = []
+    be_prefixes: list[Path] = []
+    nginx_ok = True
+    for bp in backend_ports:
+        tmp_b = tempfile.TemporaryDirectory(prefix="lis-nginx-be-")
+        prefix_b = Path(tmp_b.name)
+        if not launch_nginx(prefix_b, nginx_prefix_conf(doc_root, bp, prefix_b)):
+            nginx_ok = False
+            tmp_b.cleanup()
+            break
+        be_temps.append(tmp_b)
+        be_prefixes.append(prefix_b)
+        if not wait_for_port(bp):
+            nginx_ok = False
+            break
+    if nginx_ok:
         tmp_f = tempfile.TemporaryDirectory(prefix="lis-nginx-fe-")
         prefix_f = Path(tmp_f.name)
-        if launch_nginx(prefix_f, nginx_proxy_prefix_conf(front_port, backend_port, prefix_f)):
+        if launch_nginx(prefix_f, nginx_lb_proxy_prefix_conf(front_port, backend_ports, prefix_f)):
             if wait_for_port(front_port):
                 verify_cfg = cfg.get("verify") or {}
                 ok = True
@@ -492,21 +517,30 @@ def bench_proxy_loopback_scenario(
                 rows.append(_harness_row(name, "nginx_proxy_no_listen"))
             stop_nginx(prefix_f)
         tmp_f.cleanup()
-        stop_nginx(prefix_b)
     else:
         rows.append(_harness_row(name, "no_nginx_backend"))
-    tmp_b.cleanup()
+    for prefix_b in be_prefixes:
+        stop_nginx(prefix_b)
+    for tmp_b in be_temps:
+        tmp_b.cleanup()
 
     li_bin = resolve_li_httpd_bin()
     if li_bin:
-        backend_proc = subprocess.Popen(
-            [str(li_bin), str(backend_port), str(doc_root.resolve())],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-        if wait_for_port(backend_port):
+        be_procs: list[subprocess.Popen[str] | None] = []
+        li_ok = True
+        for bp in backend_ports:
+            proc = subprocess.Popen(
+                [str(li_bin), str(bp), str(doc_root.resolve())],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            be_procs.append(proc)
+            if not wait_for_port(bp):
+                li_ok = False
+                break
+        if li_ok:
             front_proc = subprocess.Popen(
-                [str(li_bin), str(front_port), str(doc_root.resolve()), str(backend_port)],
+                [str(li_bin), str(front_port), str(doc_root.resolve()), csv_ports],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
@@ -532,12 +566,13 @@ def bench_proxy_loopback_scenario(
                     front_proc.kill()
         else:
             rows.append(_harness_row(name, "li_backend_no_listen"))
-        if backend_proc:
-            backend_proc.terminate()
-            try:
-                backend_proc.wait(timeout=5)
-            except subprocess.TimeoutExpired:
-                backend_proc.kill()
+        for proc in be_procs:
+            if proc:
+                proc.terminate()
+                try:
+                    proc.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    proc.kill()
     else:
         rows.append(_harness_row(name, "no_li_httpd_bin"))
 
