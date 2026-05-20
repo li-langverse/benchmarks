@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T11:29Z",
+  "generated_at": "2026-05-20T19:43Z",
   "lic_root": "/workspace/lic",
   "lic_present": false,
   "std_modules_on_disk": [],
@@ -286,6 +286,12 @@
     },
     {
       "repo": "li-langverse/lic",
+      "number": 112,
+      "title": "[explorer-finding] HPX-style async futures vs Li tier-2 game physics scheduling (G-par)",
+      "url": "https://github.com/li-langverse/lic/issues/112"
+    },
+    {
+      "repo": "li-langverse/lic",
       "number": 65,
       "title": "[explorer-finding] Carbon p4880 + Mojo 1.0b \u2014 competitive safety matrix vs lic build certificate (G-meta, provable)",
       "url": "https://github.com/li-langverse/lic/issues/65"
@@ -295,6 +301,12 @@
       "number": 26,
       "title": "[explorer-finding] Roofline + vendor FFT reference harness for catalog FFT row",
       "url": "https://github.com/li-langverse/benchmarks/issues/26"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 52,
+      "title": "[explorer-finding] VkFFT + FFTW/cuFFT crossover rubric for tier-1 FFT catalog row (PH-5b, G-math)",
+      "url": "https://github.com/li-langverse/benchmarks/issues/52"
     },
     {
       "repo": "li-langverse/benchmarks",
@@ -316,9 +328,27 @@
     },
     {
       "repo": "li-langverse/lic",
+      "number": 109,
+      "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/109"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 117,
+      "title": "[explorer-finding] PETSc 3.25 PCBJKOKKOS device-native Jacobi \u2014 implicit PDE preconditioner rubric (G-math)",
+      "url": "https://github.com/li-langverse/lic/issues/117"
+    },
+    {
+      "repo": "li-langverse/lic",
       "number": 35,
       "title": "[explorer-finding] SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators (G-math, physics tier-2)",
       "url": "https://github.com/li-langverse/lic/issues/35"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 108,
+      "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+      "url": "https://github.com/li-langverse/lic/issues/108"
     },
     {
       "repo": "li-langverse/lic",
@@ -334,21 +364,9 @@
     },
     {
       "repo": "li-langverse/benchmarks",
-      "number": 27,
-      "title": "[explorer-finding] Track Eigen / Kokkos / PETSc / Chapel release cadence in bench policy",
-      "url": "https://github.com/li-langverse/benchmarks/issues/27"
-    },
-    {
-      "repo": "li-langverse/benchmarks",
-      "number": 28,
-      "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
-      "url": "https://github.com/li-langverse/benchmarks/issues/28"
-    },
-    {
-      "repo": "li-langverse/benchmarks",
-      "number": 31,
-      "title": "Numerics researcher pass (2026-05-17): horner_pure_li red + near-limit greens \u2014 SOTA map & lic path",
-      "url": "https://github.com/li-langverse/benchmarks/issues/31"
+      "number": 51,
+      "title": "[explorer-finding] gearshifft multi-vendor FFT tiers for catalog FFT row (PH-5b, G-math)",
+      "url": "https://github.com/li-langverse/benchmarks/issues/51"
     }
   ],
   "agent_kit": {
