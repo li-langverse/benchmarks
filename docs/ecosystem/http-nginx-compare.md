@@ -47,10 +47,10 @@ Example measured rows (`bench_http.py --profile ci`, Linux):
 
 | Scenario | nginx RPS | li RPS (`build/li-httpd`) | nginx/li (dashboard `ratio_vs_reference`) |
 |----------|-----------|---------------------------|-------------------------------------------|
-| `static_small` | ~66k | ~13k | ~5.25 (red until ≤1.0 threshold) |
-| `keepalive_pipelining` | ~76k | ~12k | ~6.21 |
+| `static_small` | ~65k | ~85k | **~0.76** (green) |
+| `keepalive_pipelining` | ~72k | ~138k | **~0.52** (green) |
 
-M0 **li-httpd** uses trusted POSIX seam [`runtime/li_rt_net.c`](https://github.com/li-langverse/lic/blob/main/runtime/li_rt_net.c) (fork-per-connection, minimal HTTP/1.1). Not yet a proved Li parser/router.
+**M1 li-httpd** ([`runtime/li_rt_net.c`](https://github.com/li-langverse/lic/blob/main/runtime/li_rt_net.c)): Linux `epoll`, HTTP/1.1 keep-alive, pipelined GET drain, `sendfile` (large files), single-segment small responses, `TCP_NODELAY`/`TCP_QUICKACK`. Prior ~5–9× gap was **`Connection: close` + fork-per-connection + delayed-ACK stalls** on keep-alive — not the wrk/nginx fixture.
 
 ## Why Li is ~5–9× slower (root cause, quantified)
 
@@ -73,31 +73,15 @@ Fairness controls (same fixture, nginx config matches harness: `sendfile on`, te
 
 So the gap is **not** only “more wrk connections” — even at **c=1**, nginx is ~**6×** faster because it serves many requests per connection while Li closes after one response.
 
-### Primary causes (in impact order)
+### Historical M0 causes (fixed in lic M1)
 
-1. **`Connection: close` + no keep-alive loop** — every response forces a new TCP connection under load. During `wrk -t2 -c4`, **established connections to the listen port** peaked at **~1175 (li)** vs **~21 (nginx)** on the same 300ms sample: Li pays accept + teardown continuously; nginx reuses a small connection pool.
+1. **`Connection: close` + fork-per-connection** — connection churn and process spawn dominated.
+2. **No pipeline drain** — one response per connection for 8× pipelined GETs.
+3. **Delayed ACK on keep-alive** — separate header/body sends stalled ~40ms/request until single-segment small responses + `TCP_QUICKACK`.
 
-2. **`fork()` per `accept()`** — child handles one `recv`, then exits; parent runs `waitpid(-1, WNOHANG)` in the accept loop. Micro-bench: **~53 µs/fork+reap**, **~19k processes/s** theoretical ceiling if each request required a new process. At **~8–13k RPS**, fork+process spawn is a large fraction of wall time.
+### M1 implementation (lic)
 
-3. **Pipelining mismatch (`keepalive_pipelining`)** — wrk’s lua script sends **8** `GET /` requests per connection with `Connection: keep-alive`. Li does **one** `recv(8192)`, returns **one** `HTTP/1.1` response, then closes. Probe: 8× pipelined GET → **1** response, `Connection: close` (body ~100 bytes total). Nginx drains the pipeline; Li under-serves the workload wrk counts as “requests”.
-
-4. **No `sendfile`** — nginx config enables **`sendfile on`**; Li **`open` → `read` entire file into `malloc` → `send`**. For a tiny file this is secondary to (1–3) but adds copies and allocator traffic per request.
-
-5. **No event reactor / worker pool** — single-threaded accept loop + processes; nginx uses an event-driven worker with **`worker_connections 4096`**.
-
-### What would *not* fix the gap alone
-
-- Faster `GET` parsing on a ~100-byte file (negligible vs fork + connection churn).
-- Li codegen / proof work without changing the C server's connection model.
-
-### Fixes that would move the ratio toward ≤1.0
-
-1. **HTTP/1.1 keep-alive** in the same worker (no per-request `fork`).
-2. **Pipeline drain** — read/process multiple requests per connection until EOF or timeout.
-3. **`sendfile(2)`** (or equivalent zero-copy) for static bodies.
-4. **Event loop** (`epoll`/`kqueue`) + fixed thread pool (match nginx architecture class).
-
-Re-bench after each step; expect the largest win from **(1)+(2)** before micro-optimizing reads.
+Keep-alive + `drain_requests` + epoll (Linux) + small-file header/body coalesce. Re-bench with `LI_HTTPD_BIN=lic/build/li-httpd`.
 
 ## Next steps
 
