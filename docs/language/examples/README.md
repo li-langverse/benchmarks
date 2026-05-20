@@ -7,7 +7,7 @@ pip install pillow   # once per environment
 python3 scripts/render-li-code-image.py --all
 ```
 
-| Source file | Output PNG | Origin |
+| Source file | Output PNG (gitignored, local) | Origin |
 |-------------|------------|--------|
 | `object_encapsulation.li` | `../assets/li-code-encapsulation-editor.png` | `lic` `li-tests/encapsulation/*` |
 | `parallel_with_disjoint.li` | `../assets/li-code-decorators-editor.png` | `lic` `li-tests/decorators/parallel_with_disjoint.li` |

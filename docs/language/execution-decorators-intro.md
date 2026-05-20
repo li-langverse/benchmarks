@@ -37,8 +37,6 @@ Lowering status: [`lic#15`](https://github.com/li-langverse/lic/issues/15) (Kokk
 
 ---
 
-## Shareable (editor screenshot)
+## Shareable (editor screenshot, local)
 
-Regenerate: `python3 scripts/render-li-code-image.py --all`
-
-![Li execution decorators — editor syntax highlighting of parallel_with_disjoint.li](assets/li-code-decorators-editor.png)
+Regenerate (not committed): `python3 scripts/render-li-code-image.py --all` → `docs/language/assets/li-code-decorators-editor.png`

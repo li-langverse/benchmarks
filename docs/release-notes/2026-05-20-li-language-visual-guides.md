@@ -18,7 +18,7 @@ Added `docs/language/` with real `lic` / benchmarks `.li` examples, **`scripts/r
 | Language docs | `docs/language/README.md`, `style-types-and-classes.md`, `execution-decorators-intro.md` | Real `type … = object` + `@parallel` text from `lic` tests |
 | Examples | `docs/language/examples/*.li` | Vendored from `lic` encapsulation/decorators + benchmarks ingest |
 | Renderer | `scripts/render-li-code-image.py`, `scripts/requirements-docs-visual.txt` | Editor-style PNG export (~30 KiB each) |
-| Shareables | `docs/language/assets/li-code-*-editor.png` | Three highlighted screenshots |
+| Shareables | `docs/language/assets/` (gitignored `*.png`) | Generate locally via `render-li-code-image.py --all` |
 | Handbook | `docs/handbook/README.md` | Link to `docs/language/` |
 
 ## Not changed
@@ -34,4 +34,4 @@ Added `docs/language/` with real `lic` / benchmarks `.li` examples, **`scripts/r
 | **Breaking** | N/A |
 | **Security** | N/A — static docs and PNGs only |
 | **Performance** | N/A — PNGs ~30 KiB each after editor render (replaces ~3 MB marketing cards) |
-| **Downstream** | Social posts can deep-link to raw GitHub PNG URLs or copy from `docs/language/assets/` |
+| **Downstream** | Copy PNGs from local `docs/language/assets/` after `render-li-code-image.py --all` — not stored in this repo |

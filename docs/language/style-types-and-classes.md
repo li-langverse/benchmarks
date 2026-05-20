@@ -40,10 +40,8 @@ def leak(v: Vault) -> int
 
 ---
 
-## Shareable (editor screenshot)
+## Shareable (editor screenshot, local)
 
-Regenerate: `python3 scripts/render-li-code-image.py --all`
-
-![Li encapsulation — editor syntax highlighting of object_encapsulation.li](assets/li-code-encapsulation-editor.png)
+Regenerate (not committed): `python3 scripts/render-li-code-image.py --all` → `docs/language/assets/li-code-encapsulation-editor.png`
 
 **Proof note:** contracts on exported APIs are the usual audit surface — see [`provability-gaps`](https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md).

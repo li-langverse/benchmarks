@@ -18,7 +18,7 @@ from pathlib import Path
 from pygments import lexers, highlight
 from pygments.formatter import Formatter
 from pygments.lexer import RegexLexer
-from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, Token
+from pygments.token import Comment, Keyword, Name, Number, Operator, Punctuation, String, Token
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_EXAMPLES = ROOT / "docs/language/examples"
