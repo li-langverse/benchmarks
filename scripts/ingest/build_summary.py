@@ -12,15 +12,27 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 LANG_ORDER = ["li", "cpp", "rust", "julia", "numpy", "nginx", "harness", "go", "python"]
-CATEGORY_ORDER = ["micro", "physics", "http", "tooling", "security", "correctness"]
+CATEGORY_ORDER = [
+    "micro",
+    "physics",
+    "world",
+    "http",
+    "tooling",
+    "security",
+    "correctness",
+]
 CATEGORY_LABELS = {
     "micro": "Micro / SIMD & linear algebra",
     "physics": "Physics & simulations",
+    "world": "World engine / gaming (timed)",
     "http": "HTTP / webserver (li-httpd · lis)",
     "tooling": "Ecosystem tooling (lip · lit · lic compile)",
     "security": "Security gates (CVE · webserver registry)",
     "correctness": "Correctness & stability",
 }
+
+# Prefer full-scale timings for competitive gaming/world rows when present.
+WORLD_GAMING_FULL_CSV_NAMES = ("world_engine_full.csv", "ingest_world_gaming.csv")
 
 
 def load_catalog() -> dict[str, dict]:
@@ -45,6 +57,23 @@ def merge_csv_rows(paths: list[Path]) -> list[dict]:
     for p in paths:
         rows.extend(parse_csv(p))
     return rows
+
+
+def merge_lic_perf_csvs(lic_root: Path) -> list[dict]:
+    """latest.csv plus full-scale world/gaming override rows."""
+    latest = lic_root / "benchmarks/results/latest.csv"
+    rows = parse_csv(latest)
+    by_key: dict[tuple[str, str, str], dict] = {}
+    for r in rows:
+        by_key[(r.get("benchmark", ""), r.get("lang", ""), r.get("metric", "wall_time"))] = r
+    for name in WORLD_GAMING_FULL_CSV_NAMES:
+        extra = lic_root / "benchmarks/results" / name
+        for r in parse_csv(extra):
+            if r.get("scale") == "quick":
+                continue
+            key = (r.get("benchmark", ""), r.get("lang", ""), r.get("metric", "wall_time"))
+            by_key[key] = r
+    return list(by_key.values())
 
 
 def status_for_ratio(ratio: float | None, threshold: float) -> str:
@@ -228,9 +257,12 @@ def main() -> int:
     lis_csv = lis_root / "results/latest.csv"
     stability_csv = lic_root / "benchmarks/results/stability.csv"
     security_csv = lic_root / "benchmarks/results/security.csv"
+    validity_json = lic_root / "benchmarks/results/validity.json"
+    world_json = lic_root / "benchmarks/competitive/world-engine-latest.json"
+    unreal_proxy = lic_root / "benchmarks/competitive/unreal-proxy-targets.json"
 
     catalog = load_catalog()
-    raw = merge_csv_rows([lic_csv, lis_csv])
+    raw = merge_lic_perf_csvs(lic_root) + parse_csv(lis_csv)
 
     by_bench: dict[str, list[dict]] = defaultdict(list)
     for row in raw:
@@ -364,15 +396,58 @@ def main() -> int:
             "charts": sorted(charts_by_cat[cat], key=lambda c: c["id"]),
         }
 
+    validity_summary = {}
+    if validity_json.is_file():
+        try:
+            validity_summary = json.loads(validity_json.read_text())
+        except json.JSONDecodeError:
+            validity_summary = {}
+
+    unreal_comparison = []
+    if unreal_proxy.is_file() and world_json.is_file():
+        try:
+            proxy_doc = json.loads(unreal_proxy.read_text())
+            world_doc = json.loads(world_json.read_text())
+            for bench_id, tgt in proxy_doc.get("targets", {}).items():
+                full = world_doc.get("full", {}).get(bench_id, {})
+                li_s = (full.get("li") or {}).get("s")
+                cpp_s = (full.get("cpp") or {}).get("s")
+                budget_ms = tgt.get("aspirational_budget_ms_at_60fps") or tgt.get(
+                    "aspirational_budget_ms"
+                )
+                if budget_ms is None:
+                    budget_ms = tgt.get("aspirational_budget_ms_per_tick")
+                li_ms = li_s * 1000.0 if li_s is not None else None
+                unreal_comparison.append(
+                    {
+                        "benchmark": bench_id,
+                        "li_ms": round(li_ms, 4) if li_ms is not None else None,
+                        "cpp_ms": round(cpp_s * 1000.0, 4) if cpp_s else None,
+                        "ue_proxy_budget_ms": budget_ms,
+                        "vs_ue_proxy_ratio": round(li_ms / budget_ms, 4)
+                        if li_ms is not None and budget_ms
+                        else None,
+                        "subsystem": tgt.get("subsystem", ""),
+                        "disclaimer": proxy_doc.get("disclaimer", ""),
+                    }
+                )
+        except json.JSONDecodeError:
+            pass
+
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": {
             "lic_csv": str(lic_csv),
             "lis_csv": str(lis_csv),
-         "stability_csv": str(stability_csv),
-         "security_csv": str(security_csv),
-         },
+            "stability_csv": str(stability_csv),
+            "security_csv": str(security_csv),
+            "validity_json": str(validity_json),
+            "world_engine_json": str(world_json),
+            "unreal_proxy_json": str(unreal_proxy),
+        },
         "tier_counts": dict(tier_counts),
+        "validity_summary": validity_summary.get("summary", {}),
+        "unreal_proxy_comparison": unreal_comparison,
         "categories": categories,
         "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),
     }
