@@ -179,7 +179,11 @@ def build_perf_chart(
     cpp_val = next((s["value"] for s in series if s["lang"] == "cpp"), None)
     oracle = cfg.get("compare_oracle", "cpp")
     ref_val = next((s["value"] for s in series if s["lang"] == oracle), cpp_val)
-    ratio = (li_val / ref_val) if li_val and ref_val and ref_val > 0 else None
+    ratio = (
+        (li_val / ref_val)
+        if li_val is not None and ref_val is not None and ref_val > 0
+        else None
+    )
     threshold = float(cfg.get("threshold_ratio_cpp", 1.2))
     if metric in ("rps", "throughput") and ratio is not None:
         ratio = 1.0 / ratio if ratio > 0 else None
