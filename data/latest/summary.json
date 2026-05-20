@@ -529,13 +529,13 @@
           "series": [
             {
               "lang": "li",
-              "value": 12281.47,
+              "value": 138270.83,
               "unit": "req/s",
               "variant": "ci"
             },
             {
               "lang": "nginx",
-              "value": 76311.55,
+              "value": 71880.33,
               "unit": "req/s",
               "variant": "ci"
             }
@@ -543,8 +543,8 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/tier5_http/scenarios/keepalive_pipelining",
-          "status": "red",
-          "ratio_vs_reference": 6.2136
+          "status": "green",
+          "ratio_vs_reference": 0.5199
         },
         {
           "id": "static_small",
@@ -556,13 +556,13 @@
           "series": [
             {
               "lang": "li",
-              "value": 12664.16,
+              "value": 84542.19,
               "unit": "req/s",
               "variant": "ci"
             },
             {
               "lang": "nginx",
-              "value": 66532.78,
+              "value": 64636.49,
               "unit": "req/s",
               "variant": "ci"
             }
@@ -570,8 +570,8 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/tier5_http/scenarios/static_small",
-          "status": "red",
-          "ratio_vs_reference": 5.2536
+          "status": "green",
+          "ratio_vs_reference": 0.7645
         }
       ]
     },
@@ -1331,12 +1331,12 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 12281.47,
+      "li_value": 138270.83,
       "cpp_value": null,
-      "ratio_vs_cpp": 6.2136,
+      "ratio_vs_cpp": 0.5199,
       "unit": "req/s",
       "variant": null,
-      "status": "red",
+      "status": "green",
       "ph_ids": [
         "PH-H"
       ],
@@ -1346,13 +1346,13 @@
       "langs": [
         {
           "lang": "li",
-          "value": 12281.47,
+          "value": 138270.83,
           "unit": "req/s",
           "variant": "ci"
         },
         {
           "lang": "nginx",
-          "value": 76311.55,
+          "value": 71880.33,
           "unit": "req/s",
           "variant": "ci"
         }
@@ -1364,12 +1364,12 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 12664.16,
+      "li_value": 84542.19,
       "cpp_value": null,
-      "ratio_vs_cpp": 5.2536,
+      "ratio_vs_cpp": 0.7645,
       "unit": "req/s",
       "variant": null,
-      "status": "red",
+      "status": "green",
       "ph_ids": [
         "PH-H"
       ],
@@ -1379,13 +1379,13 @@
       "langs": [
         {
           "lang": "li",
-          "value": 12664.16,
+          "value": 84542.19,
           "unit": "req/s",
           "variant": "ci"
         },
         {
           "lang": "nginx",
-          "value": 66532.78,
+          "value": 64636.49,
           "unit": "req/s",
           "variant": "ci"
         }
