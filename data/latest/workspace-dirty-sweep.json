@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-20T06:55Z",
+  "generated_at": "2026-05-20T07:07Z",
   "ecosystem_root": "/Users/julian/Documents/coding-projects",
-  "dirty_count": 2,
+  "dirty_count": 1,
   "dirty_repos": [
     {
       "path": "/Users/julian/Documents/coding-projects/benchmarks",
@@ -23,23 +23,6 @@
         "data/latest/workspace-dirty-sweep.json"
       ],
       "test_commands": []
-    },
-    {
-      "path": "/Users/julian/Documents/coding-projects/li-cursor-agents",
-      "repo": "li-cursor-agents",
-      "org": "li-langverse",
-      "branch": "feat/agent-heap-control-plane",
-      "changed_files": 5,
-      "safe_files": [
-        "dashboard-ui/next-env.d.ts",
-        "data/lanes/state.json",
-        "data/latest/agent-briefing.json",
-        "data/research-sessions/goal_researcher.json",
-        "data/research-sessions/stdlib_researcher.json"
-      ],
-      "test_commands": [
-        "npm test"
-      ]
     }
   ]
 }

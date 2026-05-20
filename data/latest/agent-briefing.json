@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T06:55Z",
+  "generated_at": "2026-05-20T07:07Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file.",
   "preflight_runs": {
@@ -66,7 +66,7 @@
     "workspace_dirty_sweep": {
       "command": "python3 scripts/workspace-dirty-sweep.py",
       "exit_code": 0,
-      "stdout_tail": "wrote /Users/julian/Documents/coding-projects/benchmarks/data/latest/workspace-dirty-sweep.json dirty_count=2\n",
+      "stdout_tail": "wrote /Users/julian/Documents/coding-projects/benchmarks/data/latest/workspace-dirty-sweep.json dirty_count=1\n",
       "stderr_tail": ""
     },
     "ui_ux_audit": {
@@ -81,7 +81,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-20T06:54Z",
+    "generated_at": "2026-05-20T07:07Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -644,7 +644,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-20T06:54Z",
+    "generated_at": "2026-05-20T07:05Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li ≤1.2× cpp (tier-1/2); beat HPC SOTA everywhere — PH-5b, PH-7e pure-Li codegen",
@@ -654,7 +654,7 @@
     "metrics": {
       "open_prs": 23,
       "failed_prs": 12,
-      "ready_prs": 2,
+      "ready_prs": 3,
       "repos_missing_ci_main": 14,
       "repos_without_live_pages": 10
     },
@@ -786,6 +786,16 @@
         "number": 69,
         "title": "fix(lic): workspace import members parse + multiline def params",
         "url": "https://github.com/li-langverse/lic/pull/69",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "ready": true
+      },
+      {
+        "repo": "lic",
+        "number": 60,
+        "title": "feat(packages): World Studio scaffolds (li-sim, li-studio, li-chem, li-voxel)",
+        "url": "https://github.com/li-langverse/lic/pull/60",
         "base": "main",
         "ci": "pass",
         "draft": false,
@@ -1223,7 +1233,7 @@
       {
         "priority": "P2",
         "action": "Human review merge queue (do not self-merge)",
-        "count": 2
+        "count": 3
       }
     ]
   },
@@ -1740,7 +1750,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-20T06:54Z",
+    "generated_at": "2026-05-20T07:06Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [],
@@ -1850,7 +1860,7 @@
     "lic_monorepo_hint": "Run lic/scripts/ensure-package-ci.sh before push-official-package-repo.sh"
   },
   "org_agent_kit_audit": {
-    "generated_at": "2026-05-20T06:54Z",
+    "generated_at": "2026-05-20T07:06Z",
     "org": "li-langverse",
     "canonical_stamp": "1.3.2+130de1d9a8d0e52c",
     "roadmap_kit": "/Users/julian/Documents/coding-projects/roadmap/agent-kit",
@@ -2102,7 +2112,7 @@
     ]
   },
   "org_new_repos_discovery": {
-    "generated_at": "2026-05-20T06:54Z",
+    "generated_at": "2026-05-20T07:06Z",
     "org": "li-langverse",
     "github_source": "gh_repo_list",
     "github_repos": [
@@ -2149,7 +2159,7 @@
     "downstream_agent": "org_repo_onboarder"
   },
   "merge_plan": {
-    "generated_at": "2026-05-20T06:55Z",
+    "generated_at": "2026-05-20T07:07Z",
     "vision_order": "package CI / mirrors → benchmarks → lic → lip/lit/lis → roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd → benchmarks → lic → lip/lit/lis → roadmap (roadmap last)",
@@ -3573,9 +3583,9 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-20T06:55Z",
+    "generated_at": "2026-05-20T07:07Z",
     "ecosystem_root": "/Users/julian/Documents/coding-projects",
-    "dirty_count": 2,
+    "dirty_count": 1,
     "dirty_repos": [
       {
         "path": "/Users/julian/Documents/coding-projects/benchmarks",
@@ -3597,28 +3607,11 @@
           "data/latest/workspace-dirty-sweep.json"
         ],
         "test_commands": []
-      },
-      {
-        "path": "/Users/julian/Documents/coding-projects/li-cursor-agents",
-        "repo": "li-cursor-agents",
-        "org": "li-langverse",
-        "branch": "feat/agent-heap-control-plane",
-        "changed_files": 5,
-        "safe_files": [
-          "dashboard-ui/next-env.d.ts",
-          "data/lanes/state.json",
-          "data/latest/agent-briefing.json",
-          "data/research-sessions/goal_researcher.json",
-          "data/research-sessions/stdlib_researcher.json"
-        ],
-        "test_commands": [
-          "npm test"
-        ]
       }
     ]
   },
   "ui_audit": {
-    "generated_at": "2026-05-20T06:55:37.353773+00:00",
+    "generated_at": "2026-05-20T07:07:28.127706+00:00",
     "platform": "Darwin",
     "summary": {
       "total": 6,
@@ -3750,7 +3743,7 @@
     ]
   },
   "ux_audit": {
-    "generated_at": "2026-05-20T06:55:37.354587+00:00",
+    "generated_at": "2026-05-20T07:07:28.128066+00:00",
     "platform": "Darwin",
     "summary": {
       "total": 6,
@@ -4259,7 +4252,7 @@
     },
     {
       "agent": "workspace_sweeper",
-      "reason": "2 sibling repo(s) with uncommitted work — fallback sweep"
+      "reason": "1 sibling repo(s) with uncommitted work — fallback sweep"
     },
     {
       "agent": "plan_verifier",
@@ -4346,7 +4339,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-20T06:55Z",
+    "loaded_at": "2026-05-20T07:07Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -4690,6 +4683,6 @@
     "missing_north_star_fit": [],
     "invalid_north_star_fit": []
   },
-  "swarm_enriched_at": "2026-05-20T06:55:37.907Z",
-  "swarm_recommendations_merged_at": "2026-05-20T06:55:37.907Z"
+  "swarm_enriched_at": "2026-05-20T07:07:28.423Z",
+  "swarm_recommendations_merged_at": "2026-05-20T07:07:28.424Z"
 }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T06:54Z",
+  "generated_at": "2026-05-20T07:05Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -9,7 +9,7 @@
   "metrics": {
     "open_prs": 23,
     "failed_prs": 12,
-    "ready_prs": 2,
+    "ready_prs": 3,
     "repos_missing_ci_main": 14,
     "repos_without_live_pages": 10
   },
@@ -141,6 +141,16 @@
       "number": 69,
       "title": "fix(lic): workspace import members parse + multiline def params",
       "url": "https://github.com/li-langverse/lic/pull/69",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "lic",
+      "number": 60,
+      "title": "feat(packages): World Studio scaffolds (li-sim, li-studio, li-chem, li-voxel)",
+      "url": "https://github.com/li-langverse/lic/pull/60",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -578,7 +588,7 @@
     {
       "priority": "P2",
       "action": "Human review merge queue (do not self-merge)",
-      "count": 2
+      "count": 3
     }
   ]
 }
