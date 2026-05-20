@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T14:08Z",
+  "generated_at": "2026-05-20T14:28Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations \u2014 not in this file.",
   "preflight_runs": {
@@ -69,7 +69,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-20T14:06Z",
+    "generated_at": "2026-05-20T14:27Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -495,7 +495,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-20T14:06Z",
+    "generated_at": "2026-05-20T14:27Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -503,9 +503,9 @@
       "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
     },
     "metrics": {
-      "open_prs": 25,
-      "failed_prs": 3,
-      "ready_prs": 6,
+      "open_prs": 26,
+      "failed_prs": 4,
+      "ready_prs": 7,
       "repos_missing_ci_main": 1,
       "repos_without_live_pages": 10
     },
@@ -518,6 +518,16 @@
         "base": "main",
         "ci": "fail",
         "draft": false,
+        "ready": false
+      },
+      {
+        "repo": "lic",
+        "number": 83,
+        "title": "feat(2e/2f/H): requires, refinements, Lean gate, M1 routing match",
+        "url": "https://github.com/li-langverse/lic/pull/83",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
         "ready": false
       },
       {
@@ -577,6 +587,16 @@
         "number": 7,
         "title": "docs(li-demo): agent smoke marker for live run",
         "url": "https://github.com/li-langverse/li-demo/pull/7",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "ready": true
+      },
+      {
+        "repo": "lic",
+        "number": 82,
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "url": "https://github.com/li-langverse/lic/pull/82",
         "base": "main",
         "ci": "pass",
         "draft": false,
@@ -818,6 +838,7 @@
         "action": "Fix failing PR CI before new feature work",
         "prs": [
           "li-language#6",
+          "lic#83",
           "lic#81",
           "lic#78"
         ]
@@ -852,7 +873,7 @@
       {
         "priority": "P2",
         "action": "Human review merge queue (do not self-merge)",
-        "count": 6
+        "count": 7
       }
     ]
   },
@@ -1291,7 +1312,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-20T14:07Z",
+    "generated_at": "2026-05-20T14:27Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [
@@ -1658,7 +1679,7 @@
     ]
   },
   "merge_plan": {
-    "generated_at": "2026-05-20T14:08Z",
+    "generated_at": "2026-05-20T14:28Z",
     "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -1884,11 +1905,11 @@
     ]
   },
   "pr_program": {
-    "generated_at": "2026-05-20T13:54Z",
+    "generated_at": "2026-05-20T14:11Z",
     "merge_first": null,
     "summary": {
-      "open_prs": 18,
-      "ci_green": 6,
+      "open_prs": 21,
+      "ci_green": 7,
       "merge_approved": 0,
       "gate_ready_labeled": 0
     },
@@ -1940,6 +1961,15 @@
       },
       {
         "rank": 6,
+        "repo": "lic",
+        "number": 82,
+        "url": "https://github.com/li-langverse/lic/pull/82",
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "ci": "pass",
+        "action": "add merge-approved after review"
+      },
+      {
+        "rank": 7,
         "repo": "roadmap",
         "number": 12,
         "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -2018,6 +2048,22 @@
         "number": 80,
         "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
         "url": "https://github.com/li-langverse/lic/pull/80",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "labels": [],
+        "merge_approved": false,
+        "gate_ready_with_approval": false,
+        "gate_blockers_if_approved": [
+          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+        ],
+        "priority_score": 30
+      },
+      {
+        "repo": "lic",
+        "number": 82,
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "url": "https://github.com/li-langverse/lic/pull/82",
         "base": "main",
         "ci": "pass",
         "draft": false,
@@ -2217,6 +2263,23 @@
         "priority_score": 220
       },
       {
+        "repo": "benchmarks",
+        "number": 48,
+        "title": "merge: world_engine ingest + UE proxy dashboard",
+        "url": "https://github.com/li-langverse/benchmarks/pull/48",
+        "base": "main",
+        "ci": "pass",
+        "draft": true,
+        "labels": [],
+        "merge_approved": false,
+        "gate_ready_with_approval": false,
+        "gate_blockers_if_approved": [
+          "not_draft: PR is still a draft",
+          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+        ],
+        "priority_score": 220
+      },
+      {
         "repo": "lic",
         "number": 77,
         "title": "feat(2e/2f): call-site callee requires VCs with literal discharge",
@@ -2250,9 +2313,28 @@
           "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 78"
         ],
         "priority_score": 330
+      },
+      {
+        "repo": "lic",
+        "number": 81,
+        "title": "merge: World Studio + world_engine + UE proxy baselines",
+        "url": "https://github.com/li-langverse/lic/pull/81",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
+        "labels": [],
+        "merge_approved": false,
+        "gate_ready_with_approval": false,
+        "gate_blockers_if_approved": [
+          "not_draft: PR is still a draft",
+          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+          "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 81"
+        ],
+        "priority_score": 330
       }
     ],
     "plan_warnings": [
+      "lic#82 vs lic#80: human: pick one PR or rebase the other",
       "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
       "li-demo#9 vs li-demo#8: human: pick one PR or rebase the other",
       "li-demo#9 vs li-demo#7: human: pick one PR or rebase the other",
@@ -2260,12 +2342,12 @@
     ]
   },
   "pr_branch_hygiene": {
-    "generated_at": "2026-05-20T13:53Z",
+    "generated_at": "2026-05-20T14:10Z",
     "org": "li-langverse",
     "summary": {
       "repos_scanned": 12,
-      "branches_needing_pr": 57,
-      "prs_recommended_close": 8,
+      "branches_needing_pr": 56,
+      "prs_recommended_close": 10,
       "prs_safe_close_now": 0
     },
     "branches_needing_pr": [
@@ -2367,6 +2449,14 @@
       },
       {
         "repo": "lic",
+        "branch": "chore/agent-numerics_researcher-84241347",
+        "base": "main",
+        "ahead_by": 1,
+        "reason": "branch `chore/agent-numerics_researcher-84241347` is 1 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-84241347"
+      },
+      {
+        "repo": "lic",
         "branch": "chore/agent-security_auditor-org-sweep",
         "base": "main",
         "ahead_by": 1,
@@ -2407,6 +2497,14 @@
       },
       {
         "repo": "lic",
+        "branch": "cursor/httpd-m1-perf-54aa",
+        "base": "main",
+        "ahead_by": 7,
+        "reason": "branch `cursor/httpd-m1-perf-54aa` is 7 commit(s) ahead of `main` with no open PR",
+        "suggested_title": "chore(lic): sync branch cursor/httpd-m1-perf-54aa"
+      },
+      {
+        "repo": "lic",
         "branch": "cursor/strict-trivial-ensures-57b4",
         "base": "main",
         "ahead_by": 6,
@@ -2428,30 +2526,6 @@
         "ahead_by": 3,
         "reason": "branch `feat/docs-hpc-ai-north-star` is 3 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch feat/docs-hpc-ai-north-star"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/package-ci-required",
-        "base": "main",
-        "ahead_by": 1,
-        "reason": "branch `feat/package-ci-required` is 1 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/package-ci-required"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/physics-game-dev",
-        "base": "main",
-        "ahead_by": 10,
-        "reason": "branch `feat/physics-game-dev` is 10 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/physics-game-dev"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/simulation-ui-game-stdlib",
-        "base": "main",
-        "ahead_by": 7,
-        "reason": "branch `feat/simulation-ui-game-stdlib` is 7 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/simulation-ui-game-stdlib"
       },
       {
         "repo": "lip",
@@ -2739,6 +2813,15 @@
       },
       {
         "repo": "lic",
+        "number": 81,
+        "url": "https://github.com/li-langverse/lic/pull/81",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "lic",
         "number": 78,
         "url": "https://github.com/li-langverse/lic/pull/78",
         "reason": "draft PR \u2014 confirm abandoned before close",
@@ -2750,6 +2833,15 @@
         "repo": "lic",
         "number": 77,
         "url": "https://github.com/li-langverse/lic/pull/77",
+        "reason": "draft PR \u2014 confirm abandoned before close",
+        "action": "close",
+        "safe_now": false,
+        "source": "draft"
+      },
+      {
+        "repo": "benchmarks",
+        "number": 48,
+        "url": "https://github.com/li-langverse/benchmarks/pull/48",
         "reason": "draft PR \u2014 confirm abandoned before close",
         "action": "close",
         "safe_now": false,
@@ -2908,7 +3000,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-20T14:08Z",
+    "generated_at": "2026-05-20T14:28Z",
     "ecosystem_root": "/",
     "dirty_count": 0,
     "dirty_repos": []
@@ -3145,11 +3237,11 @@
     },
     {
       "agent": "pr_branch_opener",
-      "reason": "57 branch(es) pushed without open PR"
+      "reason": "56 branch(es) pushed without open PR"
     },
     {
       "agent": "pr_alignment",
-      "reason": "8 PR(s) flagged for close/supersede review"
+      "reason": "10 PR(s) flagged for close/supersede review"
     },
     {
       "agent": "bug_fixer",
@@ -3188,7 +3280,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-20T14:08Z",
+    "loaded_at": "2026-05-20T14:28Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -3222,7 +3314,7 @@
         "agents": [
           {
             "agent": "pr_alignment",
-            "reason": "8 PR(s) flagged for close/supersede review"
+            "reason": "10 PR(s) flagged for close/supersede review"
           }
         ]
       },
@@ -3291,7 +3383,7 @@
       {
         "coordinator": "coord_pull_requests",
         "agent": "pr_alignment",
-        "reason": "8 PR(s) flagged for close/supersede review",
+        "reason": "10 PR(s) flagged for close/supersede review",
         "priority": 10
       },
       {
