@@ -17,8 +17,8 @@ LIC_ROOT=../lic ./scripts/dashboard/render-static.sh
 # Optional Vite dev (filters; not used on Pages deploy)
 cd dashboard && npm install && npm run dev
 
-# Optional: clone li-cursor-agents next to this repo (or under ./li-cursor-agents/)
-# for ./scripts/cursor-agent-run.sh — path is gitignored; see AGENTS.md
+# Optional: li-cursor-agents for ./scripts/cursor-agent-run.sh (gitignored).
+# Preferred sibling: ../li-cursor-agents ; else ./li-cursor-agents/ — see AGENTS.md
 ```
 
 ## Add a benchmark

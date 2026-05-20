@@ -24,4 +24,4 @@ Or run [`scripts/publish-github-pages.sh`](scripts/publish-github-pages.sh) from
 
 **Local fallback (no Pages):** `LIC_ROOT=../li ./scripts/dashboard/render-static.sh` → open `static-dashboard/index.html`.
 
-Handbook: [docs/handbook/README.md](docs/handbook/README.md).
+Handbook: [docs/handbook/README.md](docs/handbook/README.md) · Tier-2 / engine map: [docs/game-dev/README.md](docs/game-dev/README.md).
