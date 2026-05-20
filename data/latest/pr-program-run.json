@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T19:47Z",
+  "generated_at": "2026-05-20T20:02Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 20,
+    "open_prs": 23,
     "ci_green": 2,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -126,6 +126,40 @@
       "gate_blockers_if_approved": [
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
         "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 85"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 122,
+      "title": "docs(numerics): 2026-05-20 researcher pass \u2014 horner DCE + near-limit SOTA",
+      "url": "https://github.com/li-langverse/lic/pull/122",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 122"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 123,
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "url": "https://github.com/li-langverse/lic/pull/123",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 123"
       ],
       "priority_score": 130
     },
@@ -381,9 +415,30 @@
         "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 101"
       ],
       "priority_score": 330
+    },
+    {
+      "repo": "lic",
+      "number": 119,
+      "title": "feat(httpd): Li epoll proxy loop (nginx parity) + git push reset",
+      "url": "https://github.com/li-langverse/lic/pull/119",
+      "base": "main",
+      "ci": "none",
+      "draft": true,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "not_draft: PR is still a draft",
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 119"
+      ],
+      "priority_score": 330
     }
   ],
   "plan_warnings": [
+    "lic#123 vs lic#122: human: pick one PR or rebase the other",
+    "lic#123 vs lic#85: human: pick one PR or rebase the other",
+    "lic#122 vs lic#85: human: pick one PR or rebase the other",
     "benchmarks#34 vs benchmarks#32: close #32 after #34 merges"
   ]
 }

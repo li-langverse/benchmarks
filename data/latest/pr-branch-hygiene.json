@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-20T19:46Z",
+  "generated_at": "2026-05-20T20:01Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
-    "branches_needing_pr": 65,
-    "prs_recommended_close": 13,
+    "branches_needing_pr": 63,
+    "prs_recommended_close": 14,
     "prs_safe_close_now": 0
   },
   "branches_needing_pr": [
@@ -138,14 +138,6 @@
     },
     {
       "repo": "lic",
-      "branch": "chore/agent-numerics_researcher-84241347",
-      "base": "main",
-      "ahead_by": 2,
-      "reason": "branch `chore/agent-numerics_researcher-84241347` is 2 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-84241347"
-    },
-    {
-      "repo": "lic",
       "branch": "chore/agent-security_auditor-org-sweep",
       "base": "main",
       "ahead_by": 1,
@@ -194,14 +186,6 @@
     },
     {
       "repo": "lic",
-      "branch": "cursor/li-proxy-nginx-parity-54aa",
-      "base": "main",
-      "ahead_by": 20,
-      "reason": "branch `cursor/li-proxy-nginx-parity-54aa` is 20 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch cursor/li-proxy-nginx-parity-54aa"
-    },
-    {
-      "repo": "lic",
       "branch": "cursor/post-83-docs-sync-57b4",
       "base": "main",
       "ahead_by": 1,
@@ -236,8 +220,8 @@
       "repo": "benchmarks",
       "branch": "chore/agent-gap_explorer-2026-05-20",
       "base": "main",
-      "ahead_by": 2,
-      "reason": "branch `chore/agent-gap_explorer-2026-05-20` is 2 commit(s) ahead of `main` with no open PR",
+      "ahead_by": 3,
+      "reason": "branch `chore/agent-gap_explorer-2026-05-20` is 3 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(benchmarks): sync branch chore/agent-gap_explorer-2026-05-20"
     },
     {
@@ -539,6 +523,15 @@
       "safe_now": false,
       "source": "merge_plan.redundant",
       "suggested_action": "close #32 after #34 merges"
+    },
+    {
+      "repo": "lic",
+      "number": 119,
+      "url": "https://github.com/li-langverse/lic/pull/119",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
     },
     {
       "repo": "lic",

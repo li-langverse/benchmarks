@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-05-20T19:47Z",
+  "generated_at": "2026-05-20T20:02Z",
   "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
   "skill": "plan-feature-from-issue (see .cursor/skills/)",
   "summary": {
     "repos_scanned": 6,
-    "needs_plan": 23,
+    "needs_plan": 24,
     "candidates": 0
   },
   "repos": [
     {
       "repo": "lic",
       "needs_plan": [
+        {
+          "number": 125,
+          "title": "[explorer-finding] C++26 std::execution sender/receiver rubric vs Li async tier-2 scheduling (G-par, G-ai)",
+          "url": "https://github.com/li-langverse/lic/issues/125",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:00:03Z"
+        },
+        {
+          "number": 124,
+          "title": "[explorer-finding] OpenMP prescriptive vs descriptive divergent-branch rubric for competitive portable codegen (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/124",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:59:59Z"
+        },
         {
           "number": 117,
           "title": "[explorer-finding] PETSc 3.25 PCBJKOKKOS device-native Jacobi \u2014 implicit PDE preconditioner rubric (G-math)",
@@ -140,25 +160,6 @@
             "explorer-finding"
           ],
           "created_at": "2026-05-17T15:53:55Z"
-        },
-        {
-          "number": 24,
-          "title": "[plan-needed] tier0_stability: benchmarks/tier0_correctness missing on lic main",
-          "url": "https://github.com/li-langverse/lic/issues/24",
-          "labels": [
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T15:22:15Z"
-        },
-        {
-          "number": 20,
-          "title": "plan-needed: Phase 2i / G-math \u2014 matrix `@` shape rules + lowering plan",
-          "url": "https://github.com/li-langverse/lic/issues/20",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:21:35Z"
         }
       ],
       "planned": [],
@@ -186,6 +187,16 @@
     {
       "repo": "benchmarks",
       "needs_plan": [
+        {
+          "number": 53,
+          "title": "[explorer-finding] PH-IO-7: Python build_summary.py parity gate until std.summary ships (PH-IO-7)",
+          "url": "https://github.com/li-langverse/benchmarks/issues/53",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:00:06Z"
+        },
         {
           "number": 52,
           "title": "[explorer-finding] VkFFT + FFTW/cuFFT crossover rubric for tier-1 FFT catalog row (PH-5b, G-math)",
@@ -279,7 +290,7 @@
     {
       "priority": "P1",
       "action": "Run issue-feature-planner automation or comment planning checklist on issues",
-      "needs_plan": 23,
+      "needs_plan": 24,
       "candidates": 0
     }
   ]
