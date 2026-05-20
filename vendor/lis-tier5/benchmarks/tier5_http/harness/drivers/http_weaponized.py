@@ -27,9 +27,18 @@ def attack_chunked_encoding_bomb(host: str, port: int, attack: dict[str, Any]) -
     data = _raw(host, port, req)
     leaked = http_attacks._response_has_sensitive_leak(data)
     legit = http_attacks.legitimate_get(host, port)
+    status = data.split(b"\r\n", 1)[0] if data else b""
+    handled = (
+        len(data) == 0
+        or b"400" in status
+        or b"405" in status
+        or b"413" in status
+        or b"404" in status
+        or not leaked
+    )
     return {
         "no_sensitive_leak": not leaked,
-        "reject_or_close_attack": len(data) == 0 or b"400" in data or b"404" in data or not leaked,
+        "reject_or_close_attack": handled,
         "legitimate_client_ok": legit,
         "no_crash": True,
     }
