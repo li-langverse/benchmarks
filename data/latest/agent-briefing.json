@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T13:34Z",
+  "generated_at": "2026-05-20T14:08Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations \u2014 not in this file.",
   "preflight_runs": {
@@ -38,7 +38,7 @@
     "merge_plan": {
       "command": "python3 scripts/pr-merge-queue-plan.py",
       "exit_code": 0,
-      "stdout_tail": "wrote /workspace/data/latest/pr-merge-queue-plan.json\n  warn: benchmarks#34 vs benchmarks#32: close #32 after #34 merges\n  warn: li-demo#9 vs li-demo#8: human: pick one PR or rebase the other\n  warn: li-demo#9 vs li-demo#7: human: pick one PR or rebase the other\n  warn: li-demo#8 vs li-demo#7: human: pick one PR or rebase the other\n",
+      "stdout_tail": "wrote /workspace/data/latest/pr-merge-queue-plan.json\n  warn: lic#82 vs lic#80: human: pick one PR or rebase the other\n  warn: benchmarks#34 vs benchmarks#32: close #32 after #34 merges\n  warn: li-demo#9 vs li-demo#8: human: pick one PR or rebase the other\n  warn: li-demo#9 vs li-demo#7: human: pick one PR or rebase the other\n  warn: li-demo#8 vs li-demo#7: human: pick one PR or rebase the other\n",
       "stderr_tail": ""
     },
     "pr_program": {
@@ -69,7 +69,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-20T13:33Z",
+    "generated_at": "2026-05-20T14:06Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -495,7 +495,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-20T13:33Z",
+    "generated_at": "2026-05-20T14:06Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -503,9 +503,9 @@
       "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
     },
     "metrics": {
-      "open_prs": 21,
-      "failed_prs": 1,
-      "ready_prs": 5,
+      "open_prs": 25,
+      "failed_prs": 3,
+      "ready_prs": 6,
       "repos_missing_ci_main": 1,
       "repos_without_live_pages": 10
     },
@@ -518,6 +518,26 @@
         "base": "main",
         "ci": "fail",
         "draft": false,
+        "ready": false
+      },
+      {
+        "repo": "lic",
+        "number": 81,
+        "title": "merge: World Studio + world_engine + UE proxy baselines",
+        "url": "https://github.com/li-langverse/lic/pull/81",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
+        "ready": false
+      },
+      {
+        "repo": "lic",
+        "number": 78,
+        "title": "feat(2e/2f): call-site requires \u2014 E0304, locals, import, build gate",
+        "url": "https://github.com/li-langverse/lic/pull/78",
+        "base": "main",
+        "ci": "fail",
+        "draft": true,
         "ready": false
       }
     ],
@@ -557,6 +577,16 @@
         "number": 7,
         "title": "docs(li-demo): agent smoke marker for live run",
         "url": "https://github.com/li-langverse/li-demo/pull/7",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "ready": true
+      },
+      {
+        "repo": "lic",
+        "number": 80,
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "url": "https://github.com/li-langverse/lic/pull/80",
         "base": "main",
         "ci": "pass",
         "draft": false,
@@ -787,7 +817,9 @@
         "priority": "P0",
         "action": "Fix failing PR CI before new feature work",
         "prs": [
-          "li-language#6"
+          "li-language#6",
+          "lic#81",
+          "lic#78"
         ]
       },
       {
@@ -820,7 +852,7 @@
       {
         "priority": "P2",
         "action": "Human review merge queue (do not self-merge)",
-        "count": 5
+        "count": 6
       }
     ]
   },
@@ -1259,7 +1291,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-20T13:33Z",
+    "generated_at": "2026-05-20T14:07Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [
@@ -1626,7 +1658,7 @@
     ]
   },
   "merge_plan": {
-    "generated_at": "2026-05-20T13:34Z",
+    "generated_at": "2026-05-20T14:08Z",
     "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -1637,11 +1669,11 @@
       "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge"
     ],
     "summary": {
-      "open_prs": 8,
+      "open_prs": 10,
       "merge_approved": 0,
       "gate_ready": 0,
       "auto_merge_candidates": 0,
-      "redundant_pairs": 4,
+      "redundant_pairs": 5,
       "stacks": 0
     },
     "merge_first": null,
@@ -1741,6 +1773,32 @@
       },
       {
         "rank": 8,
+        "repo": "lic",
+        "number": 80,
+        "url": "https://github.com/li-langverse/lic/pull/80",
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "merge_approved": false,
+        "gate_ready": false,
+        "priority_score": 280,
+        "auto_merge_ok": false,
+        "blocked_reason": null,
+        "order_reason": "rank 8; priority_score=280; awaiting merge-approved label"
+      },
+      {
+        "rank": 9,
+        "repo": "lic",
+        "number": 82,
+        "url": "https://github.com/li-langverse/lic/pull/82",
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "merge_approved": false,
+        "gate_ready": false,
+        "priority_score": 280,
+        "auto_merge_ok": false,
+        "blocked_reason": null,
+        "order_reason": "rank 9; priority_score=280; awaiting merge-approved label"
+      },
+      {
+        "rank": 10,
         "repo": "roadmap",
         "number": 12,
         "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -1750,11 +1808,23 @@
         "priority_score": 340,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 8; priority_score=340; awaiting merge-approved label"
+        "order_reason": "rank 10; priority_score=340; awaiting merge-approved label"
       }
     ],
     "stacks": [],
     "redundant": [
+      {
+        "repo": "lic",
+        "pr_a": "lic#82",
+        "pr_b": "lic#80",
+        "url_a": "https://github.com/li-langverse/lic/pull/82",
+        "url_b": "https://github.com/li-langverse/lic/pull/80",
+        "overlap": 1.0,
+        "reasons": [
+          "100% file overlap"
+        ],
+        "suggested_action": "human: pick one PR or rebase the other"
+      },
       {
         "repo": "benchmarks",
         "pr_a": "benchmarks#34",
@@ -1806,6 +1876,7 @@
       }
     ],
     "warnings": [
+      "lic#82 vs lic#80: human: pick one PR or rebase the other",
       "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
       "li-demo#9 vs li-demo#8: human: pick one PR or rebase the other",
       "li-demo#9 vs li-demo#7: human: pick one PR or rebase the other",
@@ -1813,11 +1884,11 @@
     ]
   },
   "pr_program": {
-    "generated_at": "2026-05-20T13:34Z",
+    "generated_at": "2026-05-20T13:54Z",
     "merge_first": null,
     "summary": {
-      "open_prs": 17,
-      "ci_green": 5,
+      "open_prs": 18,
+      "ci_green": 6,
       "merge_approved": 0,
       "gate_ready_labeled": 0
     },
@@ -1860,6 +1931,15 @@
       },
       {
         "rank": 5,
+        "repo": "lic",
+        "number": 80,
+        "url": "https://github.com/li-langverse/lic/pull/80",
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "ci": "pass",
+        "action": "add merge-approved after review"
+      },
+      {
+        "rank": 6,
         "repo": "roadmap",
         "number": 12,
         "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -1932,6 +2012,22 @@
           "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
         ],
         "priority_score": 20
+      },
+      {
+        "repo": "lic",
+        "number": 80,
+        "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+        "url": "https://github.com/li-langverse/lic/pull/80",
+        "base": "main",
+        "ci": "pass",
+        "draft": false,
+        "labels": [],
+        "merge_approved": false,
+        "gate_ready_with_approval": false,
+        "gate_blockers_if_approved": [
+          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
+        ],
+        "priority_score": 30
       },
       {
         "repo": "roadmap",
@@ -2143,7 +2239,7 @@
         "title": "feat(2e/2f): call-site requires \u2014 E0304, locals, import, build gate",
         "url": "https://github.com/li-langverse/lic/pull/78",
         "base": "main",
-        "ci": "pending",
+        "ci": "fail",
         "draft": true,
         "labels": [],
         "merge_approved": false,
@@ -2151,7 +2247,7 @@
         "gate_blockers_if_approved": [
           "not_draft: PR is still a draft",
           "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-          "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 78"
+          "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 78"
         ],
         "priority_score": 330
       }
@@ -2164,11 +2260,11 @@
     ]
   },
   "pr_branch_hygiene": {
-    "generated_at": "2026-05-20T13:33Z",
+    "generated_at": "2026-05-20T13:53Z",
     "org": "li-langverse",
     "summary": {
       "repos_scanned": 12,
-      "branches_needing_pr": 58,
+      "branches_needing_pr": 57,
       "prs_recommended_close": 8,
       "prs_safe_close_now": 0
     },
@@ -2356,14 +2452,6 @@
         "ahead_by": 7,
         "reason": "branch `feat/simulation-ui-game-stdlib` is 7 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch feat/simulation-ui-game-stdlib"
-      },
-      {
-        "repo": "lic",
-        "branch": "feat/vision-llm-agent-diagnostics",
-        "base": "main",
-        "ahead_by": 5,
-        "reason": "branch `feat/vision-llm-agent-diagnostics` is 5 commit(s) ahead of `main` with no open PR",
-        "suggested_title": "chore(lic): sync branch feat/vision-llm-agent-diagnostics"
       },
       {
         "repo": "lip",
@@ -2820,7 +2908,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-20T13:34Z",
+    "generated_at": "2026-05-20T14:08Z",
     "ecosystem_root": "/",
     "dirty_count": 0,
     "dirty_repos": []
@@ -3057,7 +3145,7 @@
     },
     {
       "agent": "pr_branch_opener",
-      "reason": "58 branch(es) pushed without open PR"
+      "reason": "57 branch(es) pushed without open PR"
     },
     {
       "agent": "pr_alignment",
@@ -3100,7 +3188,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-20T13:34Z",
+    "loaded_at": "2026-05-20T14:08Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
