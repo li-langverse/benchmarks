@@ -51,7 +51,7 @@ Wider plan index: [plan-cross-links.md](../ecosystem/plan-cross-links.md).
 ## Local workflow
 
 1. Clone **lic** beside this repo (`LIC_ROOT=../lic` or `../li`).
-2. **Gap check (catalog vs tree):** from this repo, `LIC_ROOT=../lic python3 scripts/plan-completion-audit.py` — inspect `data/latest/plan-completion-audit.json` for missing `benchmarks/tier2_physics/*` paths (see [sync plan](../ecosystem/plans/2026-05-18-tier2-catalog-lic-sync.md)).
+2. **Gap check (catalog vs tree):** from this repo, `LIC_ROOT=../lic python3 scripts/plan-completion-audit.py` — inspect `data/latest/plan-completion-audit.json` for missing paths. **Tier 0:** `tier0_stability` maps to **`li-tests/benchmarks/tier0_correctness`** on **lic** (verify harness lives there, not under `benchmarks/tier0_correctness/`).
 3. Add or tune kernels under `lic/benchmarks/tier2_physics/<id>/` and run **lic**’s bench / CI.
 4. After CSV paths exist, run `./scripts/ingest/ingest-lic.sh` here so `data/latest/summary.json` and Pages stay honest.
 

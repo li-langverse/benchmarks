@@ -10,14 +10,15 @@
 
 Reconcile **benchmarks** `catalog.toml` tier-2 rows with directories that exist on **lic** `main` (or feature branch), so plan-completion-audit and ingest do not report false gaps for gaming-physics kernels that are catalog-only.
 
-## Current drift (2026-05-18, `LIC_ROOT=../li`)
+## Current drift (updated 2026-05-20)
 
-**Missing under lic tree** (catalog ahead of harness):
+**Tier-2 (`benchmarks/tier2_physics/*`):** Verified against **`lic`** checkout (e.g. `feat/world-studio-impl-1` / nested `lic/`): all **`catalog.toml`** tier-2 rows resolve to existing harness directories.
 
-- `advection_diffusion_2d`, `wave_equation_2d`, `sph_dam_break_2d`, `euler_fluid_2d`, `combustion_passive`, `wind_field_bc`, `rigid_body_stack`, `cloth_swing`
-- `tier0_stability` → `benchmarks/tier0_correctness` (tier 0)
+**Tier-0 (`tier0_stability`):** Sources and **`li-tests`** entries live under **`li-tests/benchmarks/tier0_correctness/`** on **lic** (see `lic/benchmarks/harness/verify.py` → `tier0_sources()`). The org catalog previously pointed at **`benchmarks/tier0_correctness`**, which does not exist as a directory — **fixed in benchmarks** by setting `path = "li-tests/benchmarks/tier0_correctness"` so `plan-completion-audit` catalog_gaps = **0** when `LIC_ROOT` includes those files.
 
-**Present** on `../li`: core tier-2 set (`nbody_gravity`, `double_pendulum`, `md_lennard_jones`, …).
+### Historical snapshot (2026-05-18)
+
+Previously missing under some **lic** trees: eight tier-2 dirs + wrong tier-0 path — now addressed on current **lic** branch + catalog path correction above.
 
 ## Non-goals
 
@@ -36,9 +37,9 @@ Reconcile **benchmarks** `catalog.toml` tier-2 rows with directories that exist 
 |-----|-------------|-----------|
 | A | Inventory: catalog id → path exists on `lic` main | Markdown table in plan or lic issue |
 | B | **Policy:** catalog rows require `path` on **lic** `main` before merge OR `status = "planned"` field in catalog.toml | No silent missing dirs |
-| C | **lic** PR(s): land 8 tier-2 dirs + `tier0_correctness` OR remove/defer catalog rows | `plan-completion-audit` catalog_gaps = 0 for those ids |
+| C | **lic** PR(s): land tier-2 dirs on default branch; tier-0 stays under `li-tests/benchmarks/tier0_correctness` | `plan-completion-audit` catalog_gaps = 0 |
 | D | **benchmarks** PR: catalog.toml sync (drop, defer, or point to shipped paths) | Ingest smoke green |
-| E | Close **lic#24** when tier0 harness path resolved | Single owner: lic |
+| E | Close **lic#24** when **benchmarks** `catalog.toml` tier0 path matches **lic** layout (done here) | Human verifies on `main` after merge |
 
 ## Tests / benches
 

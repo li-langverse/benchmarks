@@ -157,7 +157,7 @@ def build_stability_chart(stability_path: Path) -> dict | None:
         "series": series_flat,
         "grouped": True,
         "repo": "lic",
-        "path": "benchmarks/tier0_correctness",
+        "path": "li-tests/benchmarks/tier0_correctness",
         "status": "unknown",
     }
 

@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- **`tier0_stability` catalog path:** `catalog.toml` now points to **`li-tests/benchmarks/tier0_correctness`** on **lic** (matches harness layout); `plan-completion-audit` **catalog_gaps** clear when `LIC_ROOT` is current. See `docs/release-notes/2026-05-20-catalog-tier0-lic-path.md`.
 - **CI `dashboard-static`:** `ci.yml` gates the Vite `dashboard/dist` build (same as `pages.yml`) instead of `render-static.sh` until `lic` `main` ships `std/plot` (PH-IO-5). Restores green Benchmarks CI on open PRs.
 - **Pages 404:** `pages.yml` deploys the Vite `dashboard/dist` again; PH-IO-5 static render was uploading an empty `static-dashboard/` when `lic` lacks `std/plot`.
 
