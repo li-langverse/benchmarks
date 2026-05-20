@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-20T16:51Z",
+  "generated_at": "2026-05-20T17:13Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
     "branches_needing_pr": 56,
-    "prs_recommended_close": 11,
+    "prs_recommended_close": 12,
     "prs_safe_close_now": 0
   },
   "branches_needing_pr": [
@@ -467,6 +467,15 @@
       "safe_now": false,
       "source": "merge_plan.redundant",
       "suggested_action": "close #32 after #34 merges"
+    },
+    {
+      "repo": "lic",
+      "number": 101,
+      "url": "https://github.com/li-langverse/lic/pull/101",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
     },
     {
       "repo": "lic",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T16:47Z",
+  "generated_at": "2026-05-20T17:09Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -8,7 +8,7 @@
   },
   "metrics": {
     "open_prs": 31,
-    "failed_prs": 6,
+    "failed_prs": 5,
     "ready_prs": 8,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
@@ -52,16 +52,6 @@
       "base": "main",
       "ci": "fail",
       "draft": false,
-      "ready": false
-    },
-    {
-      "repo": "lic",
-      "number": 92,
-      "title": "feat(httpd): M1 TOML route loader \u2014 match_route from [routes]",
-      "url": "https://github.com/li-langverse/lic/pull/92",
-      "base": "main",
-      "ci": "fail",
-      "draft": true,
       "ready": false
     },
     {
@@ -375,7 +365,6 @@
         "li-language#6",
         "lic#98",
         "lic#94",
-        "lic#92",
         "lic#81"
       ]
     },

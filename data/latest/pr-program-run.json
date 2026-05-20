@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T16:52Z",
+  "generated_at": "2026-05-20T17:14Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 26,
+    "open_prs": 27,
     "ci_green": 8,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -455,7 +455,7 @@
       "title": "feat(tier5): Tier C HTTP exploits \u2014 reverse-shell canary and priv-esc",
       "url": "https://github.com/li-langverse/benchmarks/pull/49",
       "base": "main",
-      "ci": "pending",
+      "ci": "fail",
       "draft": true,
       "labels": [
         "plan-needed"
@@ -466,7 +466,7 @@
         "not_draft: PR is still a draft",
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
         "plan_approved: has `plan-needed` without `plan-approved`",
-        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 49"
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 49"
       ],
       "priority_score": 320
     },
@@ -524,6 +524,24 @@
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
         "plan_approved: has `plan-needed` without `plan-approved`",
         "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 87"
+      ],
+      "priority_score": 330
+    },
+    {
+      "repo": "lic",
+      "number": 101,
+      "title": "Agent-first GUI library + studio demo",
+      "url": "https://github.com/li-langverse/lic/pull/101",
+      "base": "main",
+      "ci": "none",
+      "draft": true,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "not_draft: PR is still a draft",
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 101"
       ],
       "priority_score": 330
     }
