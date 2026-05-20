@@ -89,7 +89,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `merge-approved-pr` | Pre-merge review checklist |
 | `plan-merge-queue` | What to merge first; redundant PRs after merge |
 | `write-li-release-notes` | Before merge-worthy PR |
-| `research-li-numerics` | SOTA numerics survey + evidence packs |
+| `research-li-numerics` | SOTA numerics survey + evidence packs; use [SOTA comparison matrix](../numerics/sota-comparison-matrix.md) for particle/PDE/memory/long-run scope |
 | `numerics-autoresearch` | Novel methods — algorithm notes + strict gates |
 
 Synced to other repos via **`roadmap/agent-kit`**.

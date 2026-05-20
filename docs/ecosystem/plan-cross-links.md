@@ -13,13 +13,14 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | **Milestones (themes)** | `roadmap` | [`docs/roadmap/milestones.md`](https://github.com/li-langverse/roadmap/blob/main/docs/roadmap/milestones.md) |
 | **Benchmark catalog & dashboard** | `benchmarks` | [`catalog.toml`](../../catalog.toml) · [handbook](../handbook/README.md) |
 | **Game dev / tier-2 physics (where to implement)** | `benchmarks` | [`docs/game-dev/README.md`](../game-dev/README.md) · [catalog ↔ lic sync plan](./plans/2026-05-18-tier2-catalog-lic-sync.md) |
+| **SOTA / simulation measurement rubric** | `benchmarks` | [`docs/numerics/sota-comparison-matrix.md`](../numerics/sota-comparison-matrix.md) · [numerics methodology](../numerics/research-methodology.md) |
 
 ## Edit rules
 
 1. **Cross-repo or pillar change** → update **master plan** + open **roadmap** proposal (human merge on governance paths).
 2. **Close a G-* row** → same PR as the implementation; update **provability-gaps.md** (Partial → Done only with evidence cited in the table).
 3. **Close a PH phase checkbox** → same PR as the deliverable; link bench rows or `li-tests` where applicable.
-4. **Perf claim** → `catalog.toml` row + ingest; cite dashboard URL; do not mark proof **Done** from bench green alone.
+4. **Perf claim** → `catalog.toml` row + ingest; cite dashboard URL; do not mark proof **Done** from bench green alone. **Simulation / SOTA breadth** (small vs large N, memory, long horizons, external engines) → [SOTA comparison matrix](../numerics/sota-comparison-matrix.md) + study under `docs/numerics/studies/`.
 
 ## Phase plan index (lic)
 

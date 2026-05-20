@@ -28,4 +28,4 @@ The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/lat
 
 ## Writing release notes / ADRs
 
-Use: “dashboard **green** at ratio *r* vs cpp on commit *sha*” — not “proved fast” or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)).
+Use: “dashboard **green** at ratio *r* vs cpp on commit *sha*” — not “proved fast” or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)). For **simulation / particles / memory / long runs**, see [SOTA comparison matrix](../numerics/sota-comparison-matrix.md) (what we measure today vs future oracle columns).

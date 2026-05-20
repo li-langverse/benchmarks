@@ -4,6 +4,8 @@
 
 **Philosophy:** [ecosystem-first](../ecosystem/ecosystem-first.md) — use org harness and visuals before inventing ad-hoc measurement. **Vision:** [vision-and-roadmap](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md) (PH-5b benchmark posture, PH-7e pure-Li performance). **Standards:** [engineering-standards](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md).
 
+**SOTA / simulation breadth:** [sota-comparison-matrix.md](./sota-comparison-matrix.md) — small vs large N, memory, long horizons, and how field SOTA (engines, MD codes, CFD) maps to catalog tiers **without overclaiming** the dashboard.
+
 ---
 
 ## Two research modes

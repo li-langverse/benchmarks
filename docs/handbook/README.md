@@ -9,7 +9,7 @@ This repo is the **org performance dashboard** — catalog, ingest, static Pages
 | **Dashboard (GitHub Pages)** | https://li-langverse.github.io/benchmarks/ |
 | **Handbook (this tree)** | [`docs/handbook/README.md`](README.md) |
 | **Ecosystem ops** | [`docs/ecosystem/`](../ecosystem/) |
-| **Numerics research** | [`docs/numerics/`](../numerics/) |
+| **Numerics research** | [`docs/numerics/`](../numerics/) · [**SOTA comparison matrix**](../numerics/sota-comparison-matrix.md) (stability · perf · memory · long horizons) |
 | **Game dev & tier-2 physics map** | [`docs/game-dev/README.md`](../game-dev/README.md) |
 
 If Pages returns **404**, enable **Settings → Pages → GitHub Actions** and run `pages.yml` on `main` — see [SETUP_GITHUB.md](../../SETUP_GITHUB.md).

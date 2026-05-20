@@ -44,6 +44,8 @@ Paths are `benchmarks/tier2_physics/<id>` on **lic**. Until those directories ex
 
 Wider plan index: [plan-cross-links.md](../ecosystem/plan-cross-links.md).
 
+**SOTA / measurement breadth (stability, small/large N, memory, long sims):** [SOTA comparison matrix](../numerics/sota-comparison-matrix.md) — align claims with catalog + **lic** harness; dashboard compares Li vs in-repo oracles unless extra columns are explicitly added.
+
 **Related intent:** [li-language PR #6](https://github.com/li-langverse/li-language/pull/6) (tier-2 gaming-physics suite expansion — implementation still lands under **lic** harness paths per sync plan).
 
 ---
