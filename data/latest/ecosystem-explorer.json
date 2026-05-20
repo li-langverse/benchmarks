@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T11:29Z",
+  "generated_at": "2026-05-20T19:26Z",
   "lic_root": "/workspace/lic",
   "lic_present": false,
   "std_modules_on_disk": [],
@@ -316,9 +316,21 @@
     },
     {
       "repo": "li-langverse/lic",
+      "number": 109,
+      "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/109"
+    },
+    {
+      "repo": "li-langverse/lic",
       "number": 35,
       "title": "[explorer-finding] SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators (G-math, physics tier-2)",
       "url": "https://github.com/li-langverse/lic/issues/35"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 108,
+      "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+      "url": "https://github.com/li-langverse/lic/issues/108"
     },
     {
       "repo": "li-langverse/lic",
@@ -343,6 +355,12 @@
       "number": 28,
       "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
       "url": "https://github.com/li-langverse/benchmarks/issues/28"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 110,
+      "title": "[explorer-finding] Kokkos 4.6 Views + execution-space semantics for Li tier-2 memory model (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/110"
     },
     {
       "repo": "li-langverse/benchmarks",
