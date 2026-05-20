@@ -3,9 +3,8 @@
 
 When ``nginx`` and ``wrk`` are on PATH (typical Linux CI after apt install), runs a
 short load test against stock nginx serving ``fixtures/static`` and records
-``lang=nginx`` ``metric=rps`` rows. ``lang=li`` rows are emitted only if
-``LI_HTTPD_BIN`` points to an executable that speaks HTTP on the bench port
-(not implemented yet — placeholder for li-httpd).
+``lang=nginx`` ``metric=rps`` rows. ``lang=li`` rows are emitted when ``LI_HTTPD_BIN`` (default: ``lic/build/li-httpd``)
+is built from ``packages/li-net-httpd`` in the **lic** repo.
 
 See ``benchmarks/tier5_http/README.md`` for local usage.
 """
@@ -224,6 +223,41 @@ def launch_nginx(prefix: Path, conf_text: str) -> bool:
     return False
 
 
+def resolve_li_httpd_bin() -> Path | None:
+    env = os.environ.get("LI_HTTPD_BIN")
+    if env:
+        p = Path(env)
+        if p.is_file():
+            return p
+    lic_root = os.environ.get("LIC_ROOT")
+    candidates: list[Path] = []
+    if lic_root:
+        candidates.append(Path(lic_root) / "build" / "li-httpd")
+    # workspace layout: benchmarks/vendor/lis-tier5 or lis sibling of lic
+    candidates.extend(
+        [
+            lis_repo_root().parent.parent / "lic" / "build" / "li-httpd",
+            Path("/workspace/lic/build/li-httpd"),
+        ]
+    )
+    for c in candidates:
+        if c.is_file():
+            return c
+    return None
+
+
+def wait_for_port(port: int, timeout_sec: float = 3.0) -> bool:
+    deadline = time.time() + timeout_sec
+    while time.time() < deadline:
+        try:
+            s = socket.create_connection(("127.0.0.1", port), timeout=0.1)
+            s.close()
+            return True
+        except OSError:
+            time.sleep(0.02)
+    return False
+
+
 def stop_nginx(prefix: Path) -> None:
     pid_path = prefix / "nginx.pid"
     if pid_path.is_file():
@@ -234,13 +268,48 @@ def stop_nginx(prefix: Path) -> None:
             pass
     # allow worker shutdown
     time.sleep(0.1)
-def bench_nginx_scenario(
+def _append_rps_row(
+    rows: list[dict[str, str]],
+    name: str,
+    lang: str,
+    rps: float | None,
+    *,
+    variant: str,
+    connections: int,
+    flags: str,
+    sha: str,
+    cpu: str,
+) -> None:
+    if rps is not None and rps > 0:
+        rows.append(
+            {
+                "benchmark": name,
+                "lang": lang,
+                "variant": variant,
+                "threads": str(connections),
+                "metric": "rps",
+                "value": f"{rps:.4f}",
+                "unit": "req/s",
+                "git_sha": sha,
+                "cpu_model": cpu,
+                "flags": flags,
+            }
+        )
+    else:
+        rows.append(_harness_row(name, f"wrk_parse_fail_{lang}"))
+
+
+def bench_wrk_for_lang(
     name: str,
     cfg: dict[str, Any],
     *,
     quick: bool,
+    lang: str,
+    port: int,
+    doc_root: Path,
+    start_server,
+    stop_server,
 ) -> tuple[list[dict[str, str]], str]:
-    """Return CSV rows and human log tail."""
     rows: list[dict[str, str]] = []
     log_bits: list[str] = []
 
@@ -252,19 +321,6 @@ def bench_nginx_scenario(
         duration = min(duration, int(os.environ.get("BENCH_HTTP_QUICK_SEC", "3")))
     pipeline = int(load.get("pipeline") or 1)
 
-    fixtures = cfg.get("_fixtures", {})
-    rel_static = fixtures.get("static_root", "fixtures/static")
-    doc_root = tier5_root() / rel_static
-    if not (doc_root / "index.html").is_file():
-        rows.append(_harness_row(name, f"missing_fixture:{doc_root}"))
-        return rows, "missing static fixture"
-
-    wrk_bin = shutil.which("wrk")
-    if not wrk_bin:
-        rows.append(_harness_row(name, "no_wrk"))
-        return rows, "wrk not found"
-
-    port = pick_port()
     lua_path: Path | None = None
     tmp_lua: tempfile.TemporaryDirectory[str] | None = None
     if pipeline > 1:
@@ -272,81 +328,118 @@ def bench_nginx_scenario(
         lua_path = Path(tmp_lua.name) / "pipeline.lua"
         write_wrk_pipeline_lua(lua_path, port, pipeline)
 
-    tmp = tempfile.TemporaryDirectory(prefix="lis-nginx-")
-    prefix = Path(tmp.name)
-    conf = nginx_prefix_conf(doc_root, port, prefix)
+    ctx = start_server(port, doc_root)
     try:
-        if not launch_nginx(prefix, conf):
-            rows.append(_harness_row(name, "no_nginx"))
-            return rows, "nginx not available or failed to start"
-
-        url = f"http://127.0.0.1:{port}/"
-        # small wait for bind
-        for _ in range(100):
-            try:
-                s = socket.create_connection(("127.0.0.1", port), timeout=0.1)
-                s.close()
-                break
-            except OSError:
-                time.sleep(0.02)
+        if not wait_for_port(port):
+            rows.append(_harness_row(name, f"{lang}_no_listen"))
+            return rows, f"{lang}: port not ready"
 
         verify_cfg = cfg.get("verify") or {}
         for req in verify_cfg.get("requests") or []:
             path = req.get("path") or "/"
             expect = int(req.get("expect_status") or 200)
             if not verify_http_get(f"http://127.0.0.1:{port}{path}", expect):
-                rows.append(_harness_row(name, f"verify_fail:{path}"))
-                return rows, "HTTP verify failed before wrk"
+                rows.append(_harness_row(name, f"verify_fail_{lang}:{path}"))
+                return rows, f"{lang}: verify failed"
 
+        url = f"http://127.0.0.1:{port}/"
         rps, blob = run_wrk(url, threads, connections, duration, lua_path)
-        log_bits.append(blob[-2000:])
+        log_bits.append(f"--- {lang} ---\n{blob[-1500:]}")
 
         variant = "ci" if quick else "release"
-        sha = git_sha_short()
-        cpu = cpu_model()
         flags = f"wrk pipeline={pipeline}" if pipeline > 1 else "wrk"
-
-        if rps is not None and rps > 0:
-            rows.append(
-                {
-                    "benchmark": name,
-                    "lang": "nginx",
-                    "variant": variant,
-                    "threads": str(connections),
-                    "metric": "rps",
-                    "value": f"{rps:.4f}",
-                    "unit": "req/s",
-                    "git_sha": sha,
-                    "cpu_model": cpu,
-                    "flags": flags,
-                }
-            )
-        else:
-            rows.append(_harness_row(name, "wrk_parse_fail"))
-
-        # Future: LI_HTTPD_BIN → start li-httpd, second wrk, lang=li row
-        li_bin = os.environ.get("LI_HTTPD_BIN")
-        if li_bin and Path(li_bin).is_file():
-            rows.append(
-                {
-                    "benchmark": name,
-                    "lang": "harness",
-                    "variant": "stub",
-                    "threads": "1",
-                    "metric": "verify_only",
-                    "value": "1",
-                    "unit": "bool",
-                    "git_sha": sha,
-                    "cpu_model": cpu,
-                    "flags": "li_httpd_bench_notwired",
-                }
-            )
-
+        _append_rps_row(
+            rows,
+            name,
+            lang,
+            rps,
+            variant=variant,
+            connections=connections,
+            flags=flags,
+            sha=git_sha_short(),
+            cpu=cpu_model(),
+        )
     finally:
-        stop_nginx(prefix)
-        tmp.cleanup()
+        stop_server(ctx)
         if tmp_lua is not None:
             tmp_lua.cleanup()
+
+    return rows, "\n".join(log_bits)
+
+
+def bench_nginx_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """Return CSV rows and human log tail (nginx oracle + optional li-httpd)."""
+    rows: list[dict[str, str]] = []
+    log_bits: list[str] = []
+
+    fixtures = cfg.get("_fixtures", {})
+    rel_static = fixtures.get("static_root", "fixtures/static")
+    doc_root = tier5_root() / rel_static
+    if not (doc_root / "index.html").is_file():
+        rows.append(_harness_row(name, f"missing_fixture:{doc_root}"))
+        return rows, "missing static fixture"
+
+    if not shutil.which("wrk"):
+        rows.append(_harness_row(name, "no_wrk"))
+        return rows, "wrk not found"
+
+    def start_nginx(port: int, _root: Path):
+        tmp = tempfile.TemporaryDirectory(prefix="lis-nginx-")
+        prefix = Path(tmp.name)
+        conf = nginx_prefix_conf(_root, port, prefix)
+        if not launch_nginx(prefix, conf):
+            tmp.cleanup()
+            return None
+        return (tmp, prefix)
+
+    def stop_nginx_ctx(ctx) -> None:
+        if not ctx:
+            return
+        tmp, prefix = ctx
+        stop_nginx(prefix)
+        tmp.cleanup()
+
+    port_n = pick_port()
+    n_rows, n_log = bench_wrk_for_lang(
+        name, cfg, quick=quick, lang="nginx", port=port_n, doc_root=doc_root,
+        start_server=start_nginx, stop_server=stop_nginx_ctx,
+    )
+    rows.extend(n_rows)
+    log_bits.append(n_log)
+
+    li_bin = resolve_li_httpd_bin()
+    if li_bin:
+        def start_li(port: int, root: Path):
+            proc = subprocess.Popen(
+                [str(li_bin), str(port), str(root.resolve())],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            return proc
+
+        def stop_li(proc) -> None:
+            if proc is None:
+                return
+            proc.terminate()
+            try:
+                proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+
+        port_l = pick_port()
+        l_rows, l_log = bench_wrk_for_lang(
+            name, cfg, quick=quick, lang="li", port=port_l, doc_root=doc_root,
+            start_server=start_li, stop_server=stop_li,
+        )
+        rows.extend(l_rows)
+        log_bits.append(l_log)
+    else:
+        rows.append(_harness_row(name, "no_li_httpd_bin"))
 
     return rows, "\n".join(log_bits)
 

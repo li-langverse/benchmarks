@@ -41,8 +41,19 @@ LIC_ROOT=../lic LIS_ROOT=../lis ./scripts/ingest/ingest-lic.sh
 - **Benchmarks CI** runs vendored `bench_http.py`, then `ingest-lic.sh` (HTTP merge if no lic CSV).
 - **Ingest workflow** accepts `repository_dispatch` types `lic-bench-complete` and `lis-bench-complete`.
 
-## Next: Li vs nginx
+## Li vs nginx (M0 static server, local ci profile)
 
-1. **lic** — P0 net/http + real `httpd_serve` ([httpd-prerequisites](https://github.com/li-langverse/lic/blob/main/docs/ecosystem/httpd-prerequisites.md)).
-2. **lis** — wire `LI_HTTPD_BIN` in `bench_http.py` (second wrk pass, `lang=li` row).
-3. Remove **vendor/lis-tier5** after **lis** harness is on `main`.
+Example measured rows (`bench_http.py --profile ci`, Linux):
+
+| Scenario | nginx RPS | li RPS (`build/li-httpd`) | nginx/li (dashboard `ratio_vs_reference`) |
+|----------|-----------|---------------------------|-------------------------------------------|
+| `static_small` | ~66k | ~13k | ~5.25 (red until ≤1.0 threshold) |
+| `keepalive_pipelining` | ~76k | ~12k | ~6.21 |
+
+M0 **li-httpd** uses trusted POSIX seam [`runtime/li_rt_net.c`](https://github.com/li-langverse/lic/blob/main/runtime/li_rt_net.c) (fork-per-connection, minimal HTTP/1.1). Not yet a proved Li parser/router.
+
+## Next steps
+
+1. Merge **lic** branch `cursor/httpd-serve-m0-54aa` (human push — bot 403).
+2. Merge **benchmarks** #45 and **lis** harness PR; drop **vendor/lis-tier5** when upstream has harness.
+3. Parser proofs, keep-alive in Li server, async reactor — close gap vs nginx.
