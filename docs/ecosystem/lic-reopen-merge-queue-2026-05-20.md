@@ -13,4 +13,6 @@
 
 **Agent note:** Reopened via `gh pr reopen`; push/rebase requires write access on `lic` (blocked for `cursor[bot]`). Human or org token: `git fetch origin pull/N/head && git rebase origin/main && git push`.
 
+**Merge discipline:** Never delete progress when merging or rebasing — integrate both sides (union of features, regenerate generated files). Do not close PRs to “clean the queue” without landing or cherry-picking their commits. See [merge-conflict-resolution.md](merge-conflict-resolution.md) and skill `resolve-merge-conflicts`.
+
 **#70 CI:** Last run had `build-and-test` / `build-and-test-macos` red — re-run after rebase on current `main`.
