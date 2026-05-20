@@ -57,7 +57,15 @@ cve = ["CVE-2019-20372"]
 notes = "CL.TE desync class"
 exploit = "exploits/request_smuggling_cl_te.toml"
 li_invariant = "no conflicting content-length + chunked front"
-li_done = false
+li_done = true
+
+[[mitigation]]
+id = "request_smuggling_te_cl"
+cve = ["CWE-444"]
+notes = "TE.CL desync — chunked + short Content-Length"
+exploit = "exploits/request_smuggling_te_cl.toml"
+li_invariant = "reject TE+CL conflict; no inner request served"
+li_done = true
 
 [[mitigation]]
 id = "proxy_loopback_allowlist"

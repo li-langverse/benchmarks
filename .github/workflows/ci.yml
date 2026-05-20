@@ -20,8 +20,8 @@ jobs:
           repository: li-langverse/lis
           path: lis
 
-      - name: Install nginx + wrk (tier-5 HTTP oracle)
-        run: sudo apt-get update && sudo apt-get install -y nginx wrk
+      - name: Install nginx + wrk + apache2 (tier-5 HTTP oracles)
+        run: sudo apt-get update && sudo apt-get install -y nginx wrk apache2
 
       - name: Run tier-5 HTTP bench (vendored harness)
         run: |
@@ -38,6 +38,14 @@ jobs:
           LLVM_DIR: /usr/lib/llvm-18/lib/cmake/llvm
           CC: clang-18
         run: cd lic && ./scripts/build.sh
+
+      - name: Build li-httpd and run tier-5 exploit gate (pr profile)
+        env:
+          LI_REPO_ROOT: ${{ github.workspace }}/lic
+        run: |
+          chmod +x scripts/run-tier5-http-exploits.sh
+          ./lic/build/compiler/lic/lic build packages/li-net-httpd/src/lib.li -o lic/build/li-httpd
+          TIER5_EXPLOIT_LANGS=nginx,apache,li ./scripts/run-tier5-http-exploits.sh
 
       - name: Ingest (Li summary + Python fallback)
         env:

@@ -29,8 +29,15 @@ Tier **C** probes RCE / reverse-shell / priv-esc *classes* — they do **not** d
 ```bash
 LI_HTTPD_BIN=/path/to/lic/build/li-httpd \
   python3 benchmarks/tier5_http/harness/exploit_http.py --profile pr
+# Oracles: nginx + apache2 + li-httpd
+TIER5_EXPLOIT_LANGS=nginx,apache,li ./scripts/run-tier5-http-exploits.sh
+# Nightly adds CL.TE / TE.CL smuggling probes
+TIER5_EXPLOIT_PROFILE=nightly TIER5_EXPLOIT_LANGS=nginx,apache,li \
+  python3 benchmarks/tier5_http/harness/exploit_http.py --profile nightly
 cat ../results/exploit_report.csv
 ```
+
+**CI:** Benchmarks `ci.yml` builds `li-httpd` and runs `./scripts/run-tier5-http-exploits.sh` with `TIER5_EXPLOIT_LANGS=nginx,apache,li` (requires `apache2` package).
 
 ## Quick commands (from lis repo root)
 

@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **Tier-5 HTTP exploits:** `exploit_http.py` + `harness/drivers/http_attacks.py` (12 PR attacks incl. tier **C** reverse-shell canary, sensitive file read, Shellshock, priv-esc paths); `nginx_mitigations.toml`; `suite_exploits.toml`; `tier5_exploits_pr` — see [2026-05-21-tier5-http-exploits.md](docs/release-notes/2026-05-21-tier5-http-exploits.md).
+- **Tier-5 HTTP exploits:** Apache oracle, CL.TE/TE.CL smuggling drivers, `run-tier5-http-exploits.sh`, CI gate (`nginx,apache,li`); 12 PR + 2 nightly smuggling attacks — [2026-05-21-tier5-http-exploits.md](docs/release-notes/2026-05-21-tier5-http-exploits.md).
 
 ### Added
 

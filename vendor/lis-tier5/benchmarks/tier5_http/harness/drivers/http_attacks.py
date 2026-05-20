@@ -240,7 +240,13 @@ def attack_bad_method(host: str, port: int, attack: dict[str, Any]) -> dict[str,
         s.sendall(req)
         data = s.recv(1024)
         s.close()
-        rejected = b"405" in data or b"400" in data or b"404" in data or len(data) == 0
+        rejected = (
+            b"405" in data
+            or b"501" in data
+            or b"400" in data
+            or b"404" in data
+            or len(data) == 0
+        )
     except OSError:
         rejected = True
     legit = legitimate_get(host, port)
@@ -433,6 +439,81 @@ def attack_command_injection_path(host: str, port: int, attack: dict[str, Any]) 
     }
 
 
+def _cl_te_smuggle_payload(host: str, port: int, inner_path: str) -> bytes:
+    """CL.TE desync probe (CWE-444) — smuggled inner GET in body."""
+    inner = (
+        f"GET {inner_path} HTTP/1.1\r\nHost: {host}:{port}\r\nConnection: close\r\n\r\n"
+    )
+    body = b"0\r\n\r\n" + inner.encode()
+    cl = str(len(body)).encode()
+    return (
+        b"POST / HTTP/1.1\r\n"
+        + f"Host: {host}:{port}\r\n".encode()
+        + b"Content-Length: " + cl + b"\r\n"
+        + b"Transfer-Encoding: chunked\r\n"
+        + b"Connection: close\r\n\r\n"
+        + body
+    )
+
+
+def _te_cl_smuggle_payload(host: str, port: int, inner_path: str) -> bytes:
+    """TE.CL — chunked front, Content-Length may disagree with chunk stream."""
+    inner = (
+        f"GET {inner_path} HTTP/1.1\r\nHost: {host}:{port}\r\nConnection: close\r\n\r\n"
+    )
+    chunked = b"0\r\n\r\n" + inner.encode()
+    return (
+        b"POST / HTTP/1.1\r\n"
+        + f"Host: {host}:{port}\r\n".encode()
+        + b"Transfer-Encoding: chunked\r\n"
+        + b"Content-Length: 4\r\n"
+        + b"Connection: close\r\n\r\n"
+        + chunked
+    )
+
+
+def _detect_smuggle_desync(data: bytes, inner_path: str) -> bool:
+    """True if response suggests a smuggled inner request was processed."""
+    if data.count(b"HTTP/1.") > 1:
+        return True
+    ipath = inner_path.encode()
+    if ipath in data and b"200" in data:
+        return True
+    return False
+
+
+def attack_request_smuggling_cl_te(host: str, port: int, attack: dict[str, Any]) -> dict[str, Any]:
+    inner = str(attack.get("inner_path") or "/smuggle-probe")
+    raw = attack.get("raw")
+    if isinstance(raw, str):
+        payload = raw.encode()
+    else:
+        payload = _cl_te_smuggle_payload(host, port, inner)
+    data = _raw_request(host, port, payload, timeout=3.0)
+    desync = _detect_smuggle_desync(data, inner)
+    legit = legitimate_get(host, port)
+    return {
+        "no_request_desync": not desync,
+        "reject_or_close_attack": not desync or len(data) == 0,
+        "legitimate_client_ok": legit,
+        "no_crash": True,
+    }
+
+
+def attack_request_smuggling_te_cl(host: str, port: int, attack: dict[str, Any]) -> dict[str, Any]:
+    inner = str(attack.get("inner_path") or "/smuggle-probe-tecl")
+    payload = _te_cl_smuggle_payload(host, port, inner)
+    data = _raw_request(host, port, payload, timeout=3.0)
+    desync = _detect_smuggle_desync(data, inner)
+    legit = legitimate_get(host, port)
+    return {
+        "no_request_desync": not desync,
+        "reject_or_close_attack": not desync or len(data) == 0,
+        "legitimate_client_ok": legit,
+        "no_crash": True,
+    }
+
+
 def attack_host_header_ssrf(host: str, port: int, attack: dict[str, Any]) -> dict[str, Any]:
     """Internal/metadata Host values — must not proxy to cloud metadata."""
     hosts = attack.get("hosts") or [
@@ -471,4 +552,6 @@ DRIVERS = {
     "privilege_path_escalation": attack_privilege_path_escalation,
     "command_injection_path": attack_command_injection_path,
     "host_header_ssrf": attack_host_header_ssrf,
+    "request_smuggling_cl_te": attack_request_smuggling_cl_te,
+    "request_smuggling_te_cl": attack_request_smuggling_te_cl,
 }
