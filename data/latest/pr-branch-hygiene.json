@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-20T12:03Z",
+  "generated_at": "2026-05-20T12:22Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
     "branches_needing_pr": 59,
-    "prs_recommended_close": 8,
+    "prs_recommended_close": 6,
     "prs_safe_close_now": 0
   },
   "branches_needing_pr": [
@@ -204,8 +204,8 @@
       "repo": "lic",
       "branch": "feat/world-studio-impl-1",
       "base": "main",
-      "ahead_by": 63,
-      "reason": "branch `feat/world-studio-impl-1` is 63 commit(s) ahead of `main` with no open PR",
+      "ahead_by": 64,
+      "reason": "branch `feat/world-studio-impl-1` is 64 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch feat/world-studio-impl-1"
     },
     {
@@ -491,24 +491,6 @@
       "safe_now": false,
       "source": "merge_plan.redundant",
       "suggested_action": "close #32 after #34 merges"
-    },
-    {
-      "repo": "lic",
-      "number": 72,
-      "url": "https://github.com/li-langverse/lic/pull/72",
-      "reason": "draft PR \u2014 confirm abandoned before close",
-      "action": "close",
-      "safe_now": false,
-      "source": "draft"
-    },
-    {
-      "repo": "lic",
-      "number": 68,
-      "url": "https://github.com/li-langverse/lic/pull/68",
-      "reason": "draft PR \u2014 confirm abandoned before close",
-      "action": "close",
-      "safe_now": false,
-      "source": "draft"
     },
     {
       "repo": "benchmarks",

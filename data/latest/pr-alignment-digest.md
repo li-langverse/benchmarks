@@ -1,20 +1,20 @@
-# PR alignment agent digest — 2026-05-20 (12:04Z pass)
+# PR alignment agent digest — 2026-05-20 (12:24Z pass)
 
 **Agent:** `pr_alignment`  
-**Preflight:** `pr-merge-queue-plan.py`, `pr-branch-hygiene.py`, `run-pr-program.py` (refreshed 12:04Z)  
+**Preflight:** `pr-merge-queue-plan.py`, `pr-branch-hygiene.py`, `run-pr-program.py`, `issue-feature-triage.py` (refreshed 12:23Z)  
 **Org:** li-langverse  
 **Merges performed:** 0 (agent does not merge)
 
 ## Executive summary
 
-- Preflight: **17 open PRs** org-wide; merge queue ranks **8** PRs (li-demo#7 → roadmap#12).
-- **1 PR closed:** [lic#68](https://github.com/li-langverse/lic/pull/68) superseded after **lic#69** merged (12:04:58Z).
-- **0 other closes** — hygiene lists **8** close candidates, all `safe_now: false`; benchmarks#32 still blocked on #34.
-- **8/8** merge-order PRs already carry **PR alignment (agent)** comments from earlier today — no duplicate comments posted.
-- **CI-green (GHA):** benchmarks#47, lic#73, roadmap#12; lic#69 merged this tick; li-demo#7 sandbox skip.
-- **Merged since last digest:** lic#69 (workspace import), lic#70 (E0303), lic#71 (scalar types).
-- **Redundant pair:** benchmarks#32 ⊂ #34 — defer close until #34 merges.
-- **local_ci_results:** null — benchmarks#32/#34/#39 still GHA `none`.
+- Preflight: **15 open PRs** org-wide; merge queue ranks **9** PRs (li-demo#7 → roadmap#12); **lic#75 merged** during this tick.
+- **0 PRs closed** this run — hygiene lists **6** close candidates, all `safe_now: false`; no duplicate-bot exceptions.
+- **1 alignment refresh:** [lic#72](https://github.com/li-langverse/lic/pull/72) — reopened ready-for-review; updated comment + removed conflicting `plan-needed` label.
+- **7/8** open merge-order PRs already carry **PR alignment (agent)** comments from earlier today — no duplicate spam on stable rows.
+- **CI-green (GHA):** benchmarks#47, lic#73, roadmap#12; li-demo#7 sandbox skip; lic#72 CI pending after reopen.
+- **Redundant pair:** benchmarks#32 ⊂ #34 — defer close until #34 merges (both in merge_order).
+- **Merged since last digest:** lic#69 (workspace import), lic#75 (physics release note); lic#68 closed as superseded.
+- **local_ci_results:** null — benchmarks#32/#34/#39 GHA `none` on branch; run `local-ci-sweep` if gate needs local-ci.
 
 ## Deliverable / findings
 
@@ -22,14 +22,14 @@
 
 | PR | Action | Reason |
 |----|--------|--------|
-| [lic#68](https://github.com/li-langverse/lic/pull/68) | **Closed** | Superseded by merged lic#69; comment + `gh pr close` |
-| benchmarks#32 | **Deferred** | Close after #34 merges (`safe_now: false`; in merge_order) |
-| benchmarks#42–#46 | **Deferred** | Draft PRs updated 2026-05-20 — not abandoned |
-| lic#72 | **Deferred** | Active draft; `plan-approved` + CI fail — not abandoned |
+| [benchmarks#32](https://github.com/li-langverse/benchmarks/pull/32) | **Deferred** | Close after #34 merges (`safe_now: false`; in merge_order) |
+| [benchmarks#42–#46](https://github.com/li-langverse/benchmarks/pull/42) | **Deferred** | Draft PRs — CI pass on several; not abandoned |
+| [lic#72](https://github.com/li-langverse/lic/pull/72) | **Active** | Reopened ready-for-review; not close candidate |
+| [lic#68](https://github.com/li-langverse/lic/pull/68) | **Already closed** | Superseded by lic#69/#75 |
 
-**Closes this run:** 1 (lic#68)
+**Closes this run:** 0
 
-### Per-PR alignment (8 merge-order PRs)
+### Per-PR alignment (8 open merge-order PRs)
 
 | PR | Verdict | Notes |
 |----|---------|-------|
@@ -38,22 +38,28 @@
 | [benchmarks#34](https://github.com/li-langverse/benchmarks/pull/34) | aligned | Security CWE audit preflight; merge before closing #32 |
 | [benchmarks#39](https://github.com/li-langverse/benchmarks/pull/39) | aligned | Org sweep excludes li-cursor-agents; GHA `none` |
 | [benchmarks#47](https://github.com/li-langverse/benchmarks/pull/47) | aligned | PH-5b/PH-7e numerics docs; CI pass |
-| [lic#69](https://github.com/li-langverse/lic/pull/69) | aligned (merged) | Workspace import + multiline def — merged 12:04Z |
-| [lic#73](https://github.com/li-langverse/lic/pull/73) | aligned | MIR object fields; CI pass (incl. Windows) |
+| [lic#72](https://github.com/li-langverse/lic/pull/72) | aligned | Phase H; plan-approved; CI pending — **comment refreshed** |
+| [lic#73](https://github.com/li-langverse/lic/pull/73) | aligned | MIR object fields; CI pass (multi-platform) |
 | [roadmap#12](https://github.com/li-langverse/roadmap/pull/12) | aligned | Ecosystem stats docs; governance — human merge |
+
+### Merged / removed from queue
+
+| PR | Verdict | Notes |
+|----|---------|-------|
+| [lic#75](https://github.com/li-langverse/lic/pull/75) | aligned (merged) | Release note for rigid var-param via #69 |
+| [lic#69](https://github.com/li-langverse/lic/pull/69) | aligned (merged) | Workspace import + multiline def |
 
 ### Additional reviewed (hygiene / drafts)
 
 | PR | Verdict | Notes |
 |----|---------|-------|
-| [lic#72](https://github.com/li-langverse/lic/pull/72) | needs plan | Phase H; draft; CI fail; link lic#18/#30 |
-| [benchmarks#42–#46](https://github.com/li-langverse/benchmarks/pull/42) | aligned / wait (draft) | PH-IO ingest, language docs, HTTP plots — active |
-| [lic#71](https://github.com/li-langverse/lic/pull/71) | aligned (merged) | Scalar precision types — merged with `plan-needed` |
+| [benchmarks#42–#46](https://github.com/li-langverse/benchmarks/pull/42) | aligned / wait (draft) | PH-IO ingest, language docs, HTTP plots — active drafts |
+| [li-language#6](https://github.com/li-langverse/li-language/pull/6) | needs CI fix | Tier-2 gaming physics; GHA fail — bug_fixer queue |
 
 ### Labels
 
+- Removed `plan-needed` on **lic#72** (conflicted with `plan-approved`).
 - Did not add `merge-approved` (pr-review-agent only).
-- Did not modify labels on open PRs.
 
 ### Local CI
 
@@ -61,7 +67,7 @@
 
 ### Control plane
 
-- Latest `pr_alignment` run: `pr_alignment-1779277703880` finished 11:48Z; this pass refreshes digest + lic#68 close.
+- Latest finished `pr_alignment` run before this pass: `pr_alignment-1779278523164` (12:02Z).
 
 ## Recommended issues/PRs
 
@@ -72,13 +78,14 @@
 | Human review roadmap#12 (governance merge) | roadmap | — |
 | Run local-ci-sweep for benchmarks#32, #34, #39 | benchmarks | — |
 | Close benchmarks#32 after benchmarks#34 merges | benchmarks | superseded |
-| Fix CI on lic#72 before ready-for-review | lic | plan-approved, plan-needed |
+| Monitor lic#72 CI after ready-for-review reopen | lic | plan-approved |
+| Fix CI on li-language#6 | li-language | — |
 | Human merge li-demo#7 if smoke test intended on main | li-demo | — |
 
 ## Deferred
 
 - Close **benchmarks#32** after **#34** merges.
-- **7 draft PRs** (benchmarks#42–#46, lic#72) — confirm abandoned before close.
+- **5 draft PRs** (benchmarks#42–#46) — confirm abandoned before close.
 - **59 branches** without open PRs — `pr_branch_opener` agent.
 - **22 issues** with `plan-needed` — `issue_planner` agent.
-- **li-language#6** (CI fail) — bug_fixer; not in merge_order top 8.
+- **li-language#6** (CI fail) — bug_fixer; outside merge_order top 8.

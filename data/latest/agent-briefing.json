@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T12:02Z",
+  "generated_at": "2026-05-20T12:21Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations \u2014 not in this file.",
   "preflight_runs": {
@@ -69,7 +69,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-20T12:01Z",
+    "generated_at": "2026-05-20T12:20Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -495,7 +495,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-20T12:01Z",
+    "generated_at": "2026-05-20T12:20Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -503,9 +503,9 @@
       "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
     },
     "metrics": {
-      "open_prs": 22,
+      "open_prs": 20,
       "failed_prs": 2,
-      "ready_prs": 5,
+      "ready_prs": 4,
       "repos_missing_ci_main": 1,
       "repos_without_live_pages": 10
     },
@@ -527,7 +527,7 @@
         "url": "https://github.com/li-langverse/lic/pull/72",
         "base": "main",
         "ci": "fail",
-        "draft": true,
+        "draft": false,
         "ready": false
       }
     ],
@@ -557,16 +557,6 @@
         "number": 73,
         "title": "fix(mir): object field access and expanded object parameters",
         "url": "https://github.com/li-langverse/lic/pull/73",
-        "base": "main",
-        "ci": "pass",
-        "draft": false,
-        "ready": true
-      },
-      {
-        "repo": "lic",
-        "number": 71,
-        "title": "feat(types): scalar precision types float4\u2013float512, int4\u2013int512",
-        "url": "https://github.com/li-langverse/lic/pull/71",
         "base": "main",
         "ci": "pass",
         "draft": false,
@@ -831,7 +821,7 @@
       {
         "priority": "P2",
         "action": "Human review merge queue (do not self-merge)",
-        "count": 5
+        "count": 4
       }
     ]
   },
@@ -1270,7 +1260,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-20T12:01Z",
+    "generated_at": "2026-05-20T12:20Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [
@@ -1637,7 +1627,7 @@
     ]
   },
   "merge_plan": {
-    "generated_at": "2026-05-20T12:02Z",
+    "generated_at": "2026-05-20T12:21Z",
     "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -1648,7 +1638,7 @@
       "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge"
     ],
     "summary": {
-      "open_prs": 8,
+      "open_prs": 9,
       "merge_approved": 0,
       "gate_ready": 0,
       "auto_merge_candidates": 0,
@@ -1727,9 +1717,9 @@
       {
         "rank": 6,
         "repo": "lic",
-        "number": 69,
-        "url": "https://github.com/li-langverse/lic/pull/69",
-        "title": "fix(lic): workspace import members parse + multiline def params",
+        "number": 72,
+        "url": "https://github.com/li-langverse/lic/pull/72",
+        "title": "feat(phase-h): li-http package, P0 runtime stubs, std.bytes path fix",
         "merge_approved": false,
         "gate_ready": false,
         "priority_score": 280,
@@ -1752,6 +1742,19 @@
       },
       {
         "rank": 8,
+        "repo": "lic",
+        "number": 75,
+        "url": "https://github.com/li-langverse/lic/pull/75",
+        "title": "docs(physics): rigid var-param release note (implementation via #69)",
+        "merge_approved": false,
+        "gate_ready": false,
+        "priority_score": 280,
+        "auto_merge_ok": false,
+        "blocked_reason": null,
+        "order_reason": "rank 8; priority_score=280; awaiting merge-approved label"
+      },
+      {
+        "rank": 9,
         "repo": "roadmap",
         "number": 12,
         "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -1761,7 +1764,7 @@
         "priority_score": 340,
         "auto_merge_ok": false,
         "blocked_reason": null,
-        "order_reason": "rank 8; priority_score=340; awaiting merge-approved label"
+        "order_reason": "rank 9; priority_score=340; awaiting merge-approved label"
       }
     ],
     "stacks": [],
@@ -1785,10 +1788,10 @@
     ]
   },
   "pr_program": {
-    "generated_at": "2026-05-20T11:50Z",
+    "generated_at": "2026-05-20T12:04Z",
     "merge_first": null,
     "summary": {
-      "open_prs": 19,
+      "open_prs": 17,
       "ci_green": 4,
       "merge_approved": 0,
       "gate_ready_labeled": 0
@@ -1815,9 +1818,9 @@
       {
         "rank": 3,
         "repo": "lic",
-        "number": 69,
-        "url": "https://github.com/li-langverse/lic/pull/69",
-        "title": "fix(lic): workspace import members parse + multiline def params",
+        "number": 73,
+        "url": "https://github.com/li-langverse/lic/pull/73",
+        "title": "fix(mir): object field access and expanded object parameters",
         "ci": "pass",
         "action": "add merge-approved after review"
       },
@@ -1866,9 +1869,9 @@
       },
       {
         "repo": "lic",
-        "number": 69,
-        "title": "fix(lic): workspace import members parse + multiline def params",
-        "url": "https://github.com/li-langverse/lic/pull/69",
+        "number": 73,
+        "title": "fix(mir): object field access and expanded object parameters",
+        "url": "https://github.com/li-langverse/lic/pull/73",
         "base": "main",
         "ci": "pass",
         "draft": false,
@@ -1950,9 +1953,9 @@
       },
       {
         "repo": "lic",
-        "number": 70,
-        "title": "feat(contracts): reject ensures true on value returns (E0303)",
-        "url": "https://github.com/li-langverse/lic/pull/70",
+        "number": 69,
+        "title": "fix(lic): workspace import members parse + multiline def params",
+        "url": "https://github.com/li-langverse/lic/pull/69",
         "base": "main",
         "ci": "pending",
         "draft": false,
@@ -1961,24 +1964,7 @@
         "gate_ready_with_approval": false,
         "gate_blockers_if_approved": [
           "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-          "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 70"
-        ],
-        "priority_score": 130
-      },
-      {
-        "repo": "lic",
-        "number": 73,
-        "title": "fix(mir): object field access and expanded object parameters",
-        "url": "https://github.com/li-langverse/lic/pull/73",
-        "base": "main",
-        "ci": "pending",
-        "draft": false,
-        "labels": [],
-        "merge_approved": false,
-        "gate_ready_with_approval": false,
-        "gate_blockers_if_approved": [
-          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-          "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 73"
+          "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 69"
         ],
         "priority_score": 130
       },
@@ -2120,23 +2106,6 @@
       },
       {
         "repo": "lic",
-        "number": 71,
-        "title": "feat(types): scalar precision types float4\u2013float512, int4\u2013int512",
-        "url": "https://github.com/li-langverse/lic/pull/71",
-        "base": "main",
-        "ci": "pass",
-        "draft": true,
-        "labels": [],
-        "merge_approved": false,
-        "gate_ready_with_approval": false,
-        "gate_blockers_if_approved": [
-          "not_draft: PR is still a draft",
-          "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-        ],
-        "priority_score": 230
-      },
-      {
-        "repo": "lic",
         "number": 72,
         "title": "feat(phase-h): li-http package, P0 runtime stubs, std.bytes path fix",
         "url": "https://github.com/li-langverse/lic/pull/72",
@@ -2144,7 +2113,8 @@
         "ci": "fail",
         "draft": true,
         "labels": [
-          "plan-approved"
+          "plan-approved",
+          "plan-needed"
         ],
         "merge_approved": false,
         "gate_ready_with_approval": false,
@@ -2161,12 +2131,12 @@
     ]
   },
   "pr_branch_hygiene": {
-    "generated_at": "2026-05-20T11:49Z",
+    "generated_at": "2026-05-20T12:03Z",
     "org": "li-langverse",
     "summary": {
       "repos_scanned": 12,
       "branches_needing_pr": 59,
-      "prs_recommended_close": 9,
+      "prs_recommended_close": 8,
       "prs_safe_close_now": 0
     },
     "branches_needing_pr": [
@@ -2302,16 +2272,16 @@
         "repo": "lic",
         "branch": "cursor/fixed-point-warnings-57b4",
         "base": "main",
-        "ahead_by": 11,
-        "reason": "branch `cursor/fixed-point-warnings-57b4` is 11 commit(s) ahead of `main` with no open PR",
+        "ahead_by": 4,
+        "reason": "branch `cursor/fixed-point-warnings-57b4` is 4 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch cursor/fixed-point-warnings-57b4"
       },
       {
         "repo": "lic",
         "branch": "cursor/strict-trivial-ensures-57b4",
         "base": "main",
-        "ahead_by": 13,
-        "reason": "branch `cursor/strict-trivial-ensures-57b4` is 13 commit(s) ahead of `main` with no open PR",
+        "ahead_by": 6,
+        "reason": "branch `cursor/strict-trivial-ensures-57b4` is 6 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch cursor/strict-trivial-ensures-57b4"
       },
       {
@@ -2366,8 +2336,8 @@
         "repo": "lic",
         "branch": "feat/world-studio-impl-1",
         "base": "main",
-        "ahead_by": 62,
-        "reason": "branch `feat/world-studio-impl-1` is 62 commit(s) ahead of `main` with no open PR",
+        "ahead_by": 63,
+        "reason": "branch `feat/world-studio-impl-1` is 63 commit(s) ahead of `main` with no open PR",
         "suggested_title": "chore(lic): sync branch feat/world-studio-impl-1"
       },
       {
@@ -2665,15 +2635,6 @@
       },
       {
         "repo": "lic",
-        "number": 71,
-        "url": "https://github.com/li-langverse/lic/pull/71",
-        "reason": "draft PR \u2014 confirm abandoned before close",
-        "action": "close",
-        "safe_now": false,
-        "source": "draft"
-      },
-      {
-        "repo": "lic",
         "number": 68,
         "url": "https://github.com/li-langverse/lic/pull/68",
         "reason": "draft PR \u2014 confirm abandoned before close",
@@ -2834,7 +2795,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-20T12:02Z",
+    "generated_at": "2026-05-20T12:21Z",
     "ecosystem_root": "/",
     "dirty_count": 0,
     "dirty_repos": []
@@ -3075,7 +3036,7 @@
     },
     {
       "agent": "pr_alignment",
-      "reason": "9 PR(s) flagged for close/supersede review"
+      "reason": "8 PR(s) flagged for close/supersede review"
     },
     {
       "agent": "bug_fixer",
@@ -3114,7 +3075,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-20T12:02Z",
+    "loaded_at": "2026-05-20T12:21Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -3148,7 +3109,7 @@
         "agents": [
           {
             "agent": "pr_alignment",
-            "reason": "9 PR(s) flagged for close/supersede review"
+            "reason": "8 PR(s) flagged for close/supersede review"
           }
         ]
       },
@@ -3217,7 +3178,7 @@
       {
         "coordinator": "coord_pull_requests",
         "agent": "pr_alignment",
-        "reason": "9 PR(s) flagged for close/supersede review",
+        "reason": "8 PR(s) flagged for close/supersede review",
         "priority": 10
       },
       {

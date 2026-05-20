@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T12:04Z",
+  "generated_at": "2026-05-20T12:23Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 17,
+    "open_prs": 15,
     "ci_green": 4,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -164,18 +164,21 @@
     },
     {
       "repo": "lic",
-      "number": 69,
-      "title": "fix(lic): workspace import members parse + multiline def params",
-      "url": "https://github.com/li-langverse/lic/pull/69",
+      "number": 72,
+      "title": "feat(phase-h): li-http package, P0 runtime stubs, std.bytes path fix",
+      "url": "https://github.com/li-langverse/lic/pull/72",
       "base": "main",
       "ci": "pending",
       "draft": false,
-      "labels": [],
+      "labels": [
+        "plan-approved",
+        "plan-needed"
+      ],
       "merge_approved": false,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 69"
+        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 72"
       ],
       "priority_score": 130
     },
@@ -297,44 +300,6 @@
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
       ],
       "priority_score": 220
-    },
-    {
-      "repo": "lic",
-      "number": 68,
-      "title": "fix(physics): var RigidBody param for rigid integrate + composable smoke",
-      "url": "https://github.com/li-langverse/lic/pull/68",
-      "base": "main",
-      "ci": "pass",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 230
-    },
-    {
-      "repo": "lic",
-      "number": 72,
-      "title": "feat(phase-h): li-http package, P0 runtime stubs, std.bytes path fix",
-      "url": "https://github.com/li-langverse/lic/pull/72",
-      "base": "main",
-      "ci": "fail",
-      "draft": true,
-      "labels": [
-        "plan-approved",
-        "plan-needed"
-      ],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 72"
-      ],
-      "priority_score": 330
     }
   ],
   "plan_warnings": [
