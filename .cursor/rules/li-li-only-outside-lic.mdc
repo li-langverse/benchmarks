@@ -1,0 +1,52 @@
+---
+description: Product code is Li in every repo except lic; C/FFI trusted seam only in lic runtime
+alwaysApply: true
+---
+
+# Li-only outside `lic` (mandatory)
+
+**North star:** User-facing behavior, servers, parsers, and package APIs are written in **Li** (`.li`).  
+**Exception repo:** **`lic`** alone hosts the compiler, `li_rt*.c` trusted seams, and Lean/`trusted.lean` FFI audit.
+
+## Repo boundaries
+
+| Repo class | Examples | Allowed languages for **product logic** |
+|------------|----------|----------------------------------------|
+| **Compiler / runtime** | `lic` | Li (`std/`, `packages/`, `compiler/`) + **minimal** audited C in `runtime/` for syscalls/ABI |
+| **Packages & services** | `li-httpd`, `li-net`, `li-std-*`, `lis`, `lip`, `lit` | **Li only** — no new `.c`/`.cpp`/`.rs` implementations |
+| **Harness / dashboard** | `benchmarks`, `lis` tier-5 | Python/bash for **orchestration** (wrk, nginx, CSV, ingest) — not HTTP servers |
+
+## Rules
+
+1. **Do not** add HTTP server loops, parsers, or routing in C outside `lic/runtime/`.
+2. **Do not** copy `li_rt_net.c` (or slices of it) into `lis`, `benchmarks`, `li-demo`, or org package mirrors.
+3. **Do** implement `httpd`, `net`, physics, etc. in `packages/<name>/src/*.li` (and `std/` facades in `lic`).
+4. **FFI:** `extern proc` in packages must call symbols implemented in **`lic` `runtime/`** only — one audited seam ([httpd plan](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-16-li-httpd-plan.md)).
+5. **Benches** (`lis` `bench_http.py`, `benchmarks` ingest): compare **binaries built from Li** (`LI_HTTPD_BIN`); never check in alternate C servers in non-`lic` repos.
+
+## `lic` runtime (trusted seam, not application layer)
+
+Allowed in `runtime/li_rt_net.c` (and siblings):
+
+- `tcp_listen` / `tcp_accept` / `tcp_send` / `tcp_recv` / `tcp_close`
+- `sendfile` (or equivalent) as a **single** syscall wrapper
+- Tiny helpers (`bytes_len`, `bytes_slice`) until `std/bytes` is real
+
+**Avoid growing** monolithic `httpd_serve_*` / full HTTP state machines in C.  
+**Prefer:** Li `def` loops in `packages/li-net-httpd` (and org `li-httpd`) calling granular `extern proc` shims.
+
+## Current debt (acknowledged)
+
+M1 tier-5 perf temporarily lives in `httpd_serve_static_blocking` in `li_rt_net.c` for bench unblock.  
+**Migration:** move keep-alive, pipeline drain, and static routing into **Li**; leave only I/O shims in C. Track via P0-net / P0-http in [httpd-prerequisites.md](https://github.com/li-langverse/lic/blob/main/docs/ecosystem/httpd-prerequisites.md).
+
+## When blocked
+
+If Li lacks bytes/async/parser to port logic:
+
+1. Extend **`lic`** `std/` or `runtime/` shim — do **not** add C in other repos.
+2. File **`ecosystem-gap`** if compiler/stdlib work is required before the Li port.
+
+## Agent-kit
+
+Canonical rule for all repos: sync from `roadmap/agent-kit/` via `./scripts/sync-agent-kit.sh` after merging rule changes in **roadmap** or **benchmarks** (whichever owns the org template this turn).

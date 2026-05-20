@@ -1,6 +1,6 @@
 # Agent instructions (`benchmarks`)
 
-**Philosophy:** [ecosystem-first](docs/ecosystem/ecosystem-first.md) — use [tooling-catalog](docs/ecosystem/tooling-catalog.md) before inventing tooling. If blocked, `python3 scripts/file-ecosystem-gap-issue.py` → labels `ecosystem-gap` + `plan-needed` for planner automations.
+**Philosophy:** [ecosystem-first](docs/ecosystem/ecosystem-first.md) — use [tooling-catalog](docs/ecosystem/tooling-catalog.md) before inventing tooling. **Li-only outside `lic`** — product logic in `.li`; C trusted seam only in `lic/runtime/` (rule **li-li-only-outside-lic.mdc**). If blocked, `python3 scripts/file-ecosystem-gap-issue.py` → labels `ecosystem-gap` + `plan-needed` for planner automations.
 
 1. Read [handbook](docs/handbook/README.md) and [plan cross-links](docs/ecosystem/plan-cross-links.md); [provability gaps](https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md) before proof/perf claims.
 2. Read [roadmap: release-notes](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) — **write before PR**.
