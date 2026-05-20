@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-05-20T06:46Z",
+  "catalog_path": null,
+  "summary": {
+    "catalog_entries": 0,
+    "catalog_gaps": 0,
+    "security_test_files": 0,
+    "repos_without_security_workflow": 12
+  },
+  "catalog_gaps": [],
+  "security_tests": [],
+  "repos": [
+    {
+      "repo": "lic",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "lip",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "lit",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "lis",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "benchmarks",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "roadmap",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "li-net",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "li-httpd",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "li-std-core",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "li-std-math",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "li-demo",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    },
+    {
+      "repo": "li-language",
+      "security_workflow": false,
+      "action": "add cve-catalog.yml or security gate workflow"
+    }
+  ]
+}

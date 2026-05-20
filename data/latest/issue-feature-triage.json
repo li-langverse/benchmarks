@@ -1,16 +1,36 @@
 {
-  "generated_at": "2026-05-18T22:21Z",
+  "generated_at": "2026-05-20T11:34Z",
   "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
   "skill": "plan-feature-from-issue (see .cursor/skills/)",
   "summary": {
     "repos_scanned": 6,
-    "needs_plan": 20,
+    "needs_plan": 22,
     "candidates": 0
   },
   "repos": [
     {
       "repo": "lic",
       "needs_plan": [
+        {
+          "number": 50,
+          "title": "[Ecosystem gap] Publish li-std-physics-* org mirrors (12 packages)",
+          "url": "https://github.com/li-langverse/lic/issues/50",
+          "labels": [
+            "feature",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-18T22:30:04Z"
+        },
+        {
+          "number": 49,
+          "title": "master-plan-gap: provability-gaps summary table drifts from G-math register (PH-2i, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/49",
+          "labels": [
+            "master-plan-gap",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-18T22:30:04Z"
+        },
         {
           "number": 35,
           "title": "[explorer-finding] SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators (G-math, physics tier-2)",
@@ -250,7 +270,7 @@
     {
       "priority": "P1",
       "action": "Run issue-feature-planner automation or comment planning checklist on issues",
-      "needs_plan": 20,
+      "needs_plan": 22,
       "candidates": 0
     }
   ]

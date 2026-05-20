@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-18T21:47Z",
+  "generated_at": "2026-05-20T11:34Z",
   "org": "li-langverse",
   "summary": {
-    "repos_scanned": 13,
-    "branches_needing_pr": 36,
-    "prs_recommended_close": 1,
+    "repos_scanned": 12,
+    "branches_needing_pr": 63,
+    "prs_recommended_close": 6,
     "prs_safe_close_now": 0
   },
   "branches_needing_pr": [
@@ -26,11 +26,51 @@
     },
     {
       "repo": "lic",
+      "branch": "bot/fuzz-corpus-26080724978",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `bot/fuzz-corpus-26080724978` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch bot/fuzz-corpus-26080724978"
+    },
+    {
+      "repo": "lic",
+      "branch": "bot/fuzz-corpus-26145881324",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `bot/fuzz-corpus-26145881324` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch bot/fuzz-corpus-26145881324"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-bench_improver-19883836",
+      "base": "main",
+      "ahead_by": 3,
+      "reason": "branch `chore/agent-bench_improver-19883836` is 3 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-19883836"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-bench_improver-42289450",
+      "base": "main",
+      "ahead_by": 2,
+      "reason": "branch `chore/agent-bench_improver-42289450` is 2 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-42289450"
+    },
+    {
+      "repo": "lic",
       "branch": "chore/agent-code_implementer-99125914",
       "base": "main",
       "ahead_by": 1,
       "reason": "branch `chore/agent-code_implementer-99125914` is 1 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch chore/agent-code_implementer-99125914"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-kit-sync-lic",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-kit-sync-lic` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-kit-sync-lic"
     },
     {
       "repo": "lic",
@@ -42,11 +82,35 @@
     },
     {
       "repo": "lic",
+      "branch": "chore/agent-numerics_researcher-36418025",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-numerics_researcher-36418025` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-36418025"
+    },
+    {
+      "repo": "lic",
       "branch": "chore/agent-numerics_researcher-37593827",
       "base": "main",
       "ahead_by": 1,
       "reason": "branch `chore/agent-numerics_researcher-37593827` is 1 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-37593827"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-numerics_researcher-38536946",
+      "base": "main",
+      "ahead_by": 5,
+      "reason": "branch `chore/agent-numerics_researcher-38536946` is 5 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-38536946"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-security_auditor-org-sweep",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-security_auditor-org-sweep` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-security_auditor-org-sweep"
     },
     {
       "repo": "lic",
@@ -58,6 +122,14 @@
     },
     {
       "repo": "lic",
+      "branch": "chore/workspace-sweep-mpciswnf",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/workspace-sweep-mpciswnf` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/workspace-sweep-mpciswnf"
+    },
+    {
+      "repo": "lic",
       "branch": "cursor/cloud-env-setup-c81e",
       "base": "main",
       "ahead_by": 1,
@@ -66,11 +138,83 @@
     },
     {
       "repo": "lic",
+      "branch": "cursor/enforce-strict-ensures-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/enforce-strict-ensures-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/enforce-strict-ensures-57b4"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/fix-import-multiline-params-57b4",
+      "base": "main",
+      "ahead_by": 3,
+      "reason": "branch `cursor/fix-import-multiline-params-57b4` is 3 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/fix-import-multiline-params-57b4"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/fixed-point-warnings-57b4",
+      "base": "main",
+      "ahead_by": 11,
+      "reason": "branch `cursor/fixed-point-warnings-57b4` is 11 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/fixed-point-warnings-57b4"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/object-field-mir-54aa",
+      "base": "main",
+      "ahead_by": 8,
+      "reason": "branch `cursor/object-field-mir-54aa` is 8 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/object-field-mir-54aa"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/ph-h-http-p0-and-li-http-54aa",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/ph-h-http-p0-and-li-http-54aa` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/ph-h-http-p0-and-li-http-54aa"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/rigid-var-param-57b4",
+      "base": "main",
+      "ahead_by": 8,
+      "reason": "branch `cursor/rigid-var-param-57b4` is 8 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/rigid-var-param-57b4"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/scalar-precision-types-57b4",
+      "base": "main",
+      "ahead_by": 7,
+      "reason": "branch `cursor/scalar-precision-types-57b4` is 7 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/scalar-precision-types-57b4"
+    },
+    {
+      "repo": "lic",
+      "branch": "cursor/strict-trivial-ensures-57b4",
+      "base": "main",
+      "ahead_by": 13,
+      "reason": "branch `cursor/strict-trivial-ensures-57b4` is 13 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/strict-trivial-ensures-57b4"
+    },
+    {
+      "repo": "lic",
       "branch": "feat/agent-planning-automation",
       "base": "main",
       "ahead_by": 10,
       "reason": "branch `feat/agent-planning-automation` is 10 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch feat/agent-planning-automation"
+    },
+    {
+      "repo": "lic",
+      "branch": "feat/docs-hpc-ai-north-star",
+      "base": "main",
+      "ahead_by": 3,
+      "reason": "branch `feat/docs-hpc-ai-north-star` is 3 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/docs-hpc-ai-north-star"
     },
     {
       "repo": "lic",
@@ -90,6 +234,14 @@
     },
     {
       "repo": "lic",
+      "branch": "feat/simulation-ui-game-stdlib",
+      "base": "main",
+      "ahead_by": 7,
+      "reason": "branch `feat/simulation-ui-game-stdlib` is 7 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/simulation-ui-game-stdlib"
+    },
+    {
+      "repo": "lic",
       "branch": "feat/vision-llm-agent-diagnostics",
       "base": "main",
       "ahead_by": 5,
@@ -98,19 +250,43 @@
     },
     {
       "repo": "lic",
-      "branch": "fix/ci-dev-pr3-sync",
+      "branch": "feat/world-studio-impl-1",
       "base": "main",
-      "ahead_by": 8,
-      "reason": "branch `fix/ci-dev-pr3-sync` is 8 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch fix/ci-dev-pr3-sync"
+      "ahead_by": 62,
+      "reason": "branch `feat/world-studio-impl-1` is 62 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch feat/world-studio-impl-1"
     },
     {
       "repo": "lip",
-      "branch": "feat/issue-feature-planning",
+      "branch": "cursor/sync-def-syntax-57b4",
       "base": "main",
       "ahead_by": 1,
-      "reason": "branch `feat/issue-feature-planning` is 1 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lip): sync branch feat/issue-feature-planning"
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lip): sync branch cursor/sync-def-syntax-57b4"
+    },
+    {
+      "repo": "lit",
+      "branch": "cursor/sync-def-syntax-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lit): sync branch cursor/sync-def-syntax-57b4"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "chore/agent-kit-sync-benchmarks",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-kit-sync-benchmarks` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch chore/agent-kit-sync-benchmarks"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "chore/local-actions-rule",
+      "base": "main",
+      "ahead_by": 26,
+      "reason": "branch `chore/local-actions-rule` is 26 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch chore/local-actions-rule"
     },
     {
       "repo": "benchmarks",
@@ -185,6 +361,14 @@
       "suggested_title": "chore(benchmarks): sync branch fix/pages-vite-restore"
     },
     {
+      "repo": "benchmarks",
+      "branch": "merge/org-sweeps-and-heap",
+      "base": "main",
+      "ahead_by": 3,
+      "reason": "branch `merge/org-sweeps-and-heap` is 3 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch merge/org-sweeps-and-heap"
+    },
+    {
       "repo": "roadmap",
       "branch": "cursor/fix-refresh-workflow-c81e",
       "base": "main",
@@ -217,12 +401,28 @@
       "suggested_title": "chore(li-net): sync branch ci/pin-lic-main"
     },
     {
+      "repo": "li-net",
+      "branch": "cursor/sync-def-syntax-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-net): sync branch cursor/sync-def-syntax-57b4"
+    },
+    {
       "repo": "li-httpd",
       "branch": "ci/pin-lic-main",
       "base": "main",
       "ahead_by": 1,
       "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(li-httpd): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-httpd",
+      "branch": "cursor/sync-def-syntax-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-httpd): sync branch cursor/sync-def-syntax-57b4"
     },
     {
       "repo": "li-std-core",
@@ -233,6 +433,14 @@
       "suggested_title": "chore(li-std-core): sync branch ci/pin-lic-main"
     },
     {
+      "repo": "li-std-core",
+      "branch": "cursor/sync-def-syntax-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-std-core): sync branch cursor/sync-def-syntax-57b4"
+    },
+    {
       "repo": "li-std-math",
       "branch": "ci/pin-lic-main",
       "base": "main",
@@ -241,12 +449,28 @@
       "suggested_title": "chore(li-std-math): sync branch ci/pin-lic-main"
     },
     {
+      "repo": "li-std-math",
+      "branch": "cursor/sync-def-syntax-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-std-math): sync branch cursor/sync-def-syntax-57b4"
+    },
+    {
       "repo": "li-demo",
       "branch": "ci/pin-lic-main",
       "base": "main",
       "ahead_by": 1,
       "reason": "branch `ci/pin-lic-main` is 1 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(li-demo): sync branch ci/pin-lic-main"
+    },
+    {
+      "repo": "li-demo",
+      "branch": "cursor/sync-def-syntax-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-demo): sync branch cursor/sync-def-syntax-57b4"
     },
     {
       "repo": "li-language",
@@ -287,14 +511,6 @@
       "ahead_by": 45,
       "reason": "branch `fix/ci-dev-pr3-sync` is 45 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(li-language): sync branch fix/ci-dev-pr3-sync"
-    },
-    {
-      "repo": "li-cursor-agents",
-      "branch": "cursor/setup-dev-environment-e9cc",
-      "base": "main",
-      "ahead_by": 6,
-      "reason": "branch `cursor/setup-dev-environment-e9cc` is 6 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(li-cursor-agents): sync branch cursor/setup-dev-environment-e9cc"
     }
   ],
   "prs_recommended_close": [
@@ -307,6 +523,51 @@
       "safe_now": false,
       "source": "merge_plan.redundant",
       "suggested_action": "close #32 after #34 merges"
+    },
+    {
+      "repo": "benchmarks",
+      "number": 46,
+      "url": "https://github.com/li-langverse/benchmarks/pull/46",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
+    },
+    {
+      "repo": "benchmarks",
+      "number": 45,
+      "url": "https://github.com/li-langverse/benchmarks/pull/45",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
+    },
+    {
+      "repo": "benchmarks",
+      "number": 44,
+      "url": "https://github.com/li-langverse/benchmarks/pull/44",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
+    },
+    {
+      "repo": "benchmarks",
+      "number": 43,
+      "url": "https://github.com/li-langverse/benchmarks/pull/43",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
+    },
+    {
+      "repo": "benchmarks",
+      "number": 42,
+      "url": "https://github.com/li-langverse/benchmarks/pull/42",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
     }
   ]
 }
