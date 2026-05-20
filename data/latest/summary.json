@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T09:44:14.183498+00:00",
+  "generated_at": "2026-05-20T09:47:58.751716+00:00",
   "sources": {
     "lic_csv": "/workspace/lic/benchmarks/results/latest.csv",
     "lis_csv": "/workspace/lis/results/latest.csv",
@@ -52,7 +52,7 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0004,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
@@ -70,7 +70,7 @@
             },
             {
               "lang": "julia",
-              "value": 0.0009,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             }
@@ -79,7 +79,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/horner_pure_li",
           "status": "green",
-          "ratio_vs_reference": 0.4444
+          "ratio_vs_reference": 0.6667
         },
         {
           "id": "matmul_blocked",
@@ -91,19 +91,19 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0105,
-              "unit": "s",
-              "variant": "release"
-            },
-            {
-              "lang": "cpp",
               "value": 0.0103,
               "unit": "s",
               "variant": "release"
             },
             {
-              "lang": "rust",
+              "lang": "cpp",
               "value": 0.0101,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.01,
               "unit": "s",
               "variant": "release"
             },
@@ -118,7 +118,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_blocked",
           "status": "green",
-          "ratio_vs_reference": 1.0194
+          "ratio_vs_reference": 1.0198
         },
         {
           "id": "matmul_blocked_n1024",
@@ -130,25 +130,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0831,
+              "value": 0.0826,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0833,
+              "value": 0.0797,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0811,
+              "value": 0.082,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0816,
+              "value": 0.08,
               "unit": "s",
               "variant": "release"
             }
@@ -157,7 +157,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_blocked_n1024",
           "status": "green",
-          "ratio_vs_reference": 0.9976
+          "ratio_vs_reference": 1.0364
         },
         {
           "id": "matmul_blocked_n128",
@@ -169,19 +169,19 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0012,
+              "value": 0.0013,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0012,
+              "value": 0.0013,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0014,
+              "value": 0.0012,
               "unit": "s",
               "variant": "release"
             },
@@ -208,7 +208,7 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0034,
+              "value": 0.0036,
               "unit": "s",
               "variant": "release"
             },
@@ -220,13 +220,13 @@
             },
             {
               "lang": "rust",
-              "value": 0.0035,
+              "value": 0.0026,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0026,
+              "value": 0.0035,
               "unit": "s",
               "variant": "release"
             }
@@ -235,7 +235,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_naive",
           "status": "red",
-          "ratio_vs_reference": 1.36
+          "ratio_vs_reference": 1.44
         },
         {
           "id": "matmul_naive_n128",
@@ -247,25 +247,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0008,
+              "value": 0.0009,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.001,
+              "value": 0.0008,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0006,
+              "value": 0.0008,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0009,
+              "value": 0.0008,
               "unit": "s",
               "variant": "release"
             }
@@ -274,7 +274,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_naive_n128",
           "status": "green",
-          "ratio_vs_reference": 0.8
+          "ratio_vs_reference": 1.125
         },
         {
           "id": "reduce_sum",
@@ -286,25 +286,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.3064,
+              "value": 0.3028,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.3069,
+              "value": 0.3081,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.3056,
+              "value": 0.3042,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.3071,
+              "value": 0.3018,
               "unit": "s",
               "variant": "release"
             }
@@ -313,7 +313,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/reduce_sum",
           "status": "green",
-          "ratio_vs_reference": 0.9984
+          "ratio_vs_reference": 0.9828
         },
         {
           "id": "simd_dot",
@@ -325,25 +325,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0007,
+              "value": 0.0004,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0599,
+              "value": 0.0597,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.058,
+              "value": 0.0535,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0578,
+              "value": 0.0507,
               "unit": "s",
               "variant": "release"
             }
@@ -352,7 +352,7 @@
           "repo": "lic",
           "path": "benchmarks/tier1_micro/simd_dot",
           "status": "green",
-          "ratio_vs_reference": 0.0117
+          "ratio_vs_reference": 0.0067
         }
       ]
     },
@@ -369,25 +369,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.1133,
+              "value": 0.1135,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.1139,
+              "value": 0.1138,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.1123,
+              "value": 0.1134,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.1135,
+              "value": 0.1115,
               "unit": "s",
               "variant": "release"
             }
@@ -396,7 +396,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/advection_diffusion_2d",
           "status": "green",
-          "ratio_vs_reference": 0.9947
+          "ratio_vs_reference": 0.9974
         },
         {
           "id": "cloth_swing",
@@ -408,13 +408,13 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0013,
+              "value": 0.0012,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0012,
+              "value": 0.0013,
               "unit": "s",
               "variant": "release"
             },
@@ -426,7 +426,7 @@
             },
             {
               "lang": "julia",
-              "value": 0.0012,
+              "value": 0.0013,
               "unit": "s",
               "variant": "release"
             }
@@ -435,7 +435,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/cloth_swing",
           "status": "green",
-          "ratio_vs_reference": 1.0833
+          "ratio_vs_reference": 0.9231
         },
         {
           "id": "combustion_passive",
@@ -453,7 +453,7 @@
             },
             {
               "lang": "cpp",
-              "value": 0.0006,
+              "value": 0.0007,
               "unit": "s",
               "variant": "release"
             },
@@ -474,7 +474,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/combustion_passive",
           "status": "green",
-          "ratio_vs_reference": 0.6667
+          "ratio_vs_reference": 0.5714
         },
         {
           "id": "double_pendulum",
@@ -486,13 +486,13 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.319,
+              "value": 0.3173,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.3174,
+              "value": 0.3173,
               "unit": "s",
               "variant": "release"
             },
@@ -504,7 +504,7 @@
             },
             {
               "lang": "julia",
-              "value": 0.3179,
+              "value": 0.3172,
               "unit": "s",
               "variant": "release"
             }
@@ -513,7 +513,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/double_pendulum",
           "status": "green",
-          "ratio_vs_reference": 1.005
+          "ratio_vs_reference": 1.0
         },
         {
           "id": "euler_fluid_2d",
@@ -537,13 +537,13 @@
             },
             {
               "lang": "rust",
-              "value": 0.0007,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0007,
+              "value": 0.0004,
               "unit": "s",
               "variant": "release"
             }
@@ -564,25 +564,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0007,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0007,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0004,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0005,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             }
@@ -603,25 +603,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0884,
+              "value": 0.0834,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0831,
+              "value": 0.0884,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0833,
+              "value": 0.0884,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0883,
+              "value": 0.0994,
               "unit": "s",
               "variant": "release"
             }
@@ -630,7 +630,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/harmonic_oscillator_chain",
           "status": "green",
-          "ratio_vs_reference": 1.0638
+          "ratio_vs_reference": 0.9434
         },
         {
           "id": "heat_equation_2d",
@@ -642,25 +642,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.1326,
+              "value": 0.1346,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.1328,
+              "value": 0.1332,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.1324,
+              "value": 0.1338,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.1313,
+              "value": 0.132,
               "unit": "s",
               "variant": "release"
             }
@@ -669,7 +669,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/heat_equation_2d",
           "status": "green",
-          "ratio_vs_reference": 0.9985
+          "ratio_vs_reference": 1.0105
         },
         {
           "id": "md_lennard_jones",
@@ -681,19 +681,19 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0027,
+              "value": 0.0026,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 2.5896,
+              "value": 2.5962,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 2.5832,
+              "value": 2.584,
               "unit": "s",
               "variant": "release"
             },
@@ -720,25 +720,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 1.1682,
+              "value": 1.168,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 1.1669,
+              "value": 1.1674,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 1.1667,
+              "value": 1.1677,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 1.1663,
+              "value": 1.1676,
               "unit": "s",
               "variant": "release"
             }
@@ -747,7 +747,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/nbody_gravity",
           "status": "green",
-          "ratio_vs_reference": 1.0011
+          "ratio_vs_reference": 1.0005
         },
         {
           "id": "orbit_two_body",
@@ -759,25 +759,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0015,
-              "unit": "s",
-              "variant": "release"
-            },
-            {
-              "lang": "cpp",
               "value": 0.0016,
               "unit": "s",
               "variant": "release"
             },
             {
+              "lang": "cpp",
+              "value": 0.0017,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
               "lang": "rust",
-              "value": 0.0015,
+              "value": 0.0016,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.0015,
+              "value": 0.0016,
               "unit": "s",
               "variant": "release"
             }
@@ -786,7 +786,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/orbit_two_body",
           "status": "green",
-          "ratio_vs_reference": 0.9375
+          "ratio_vs_reference": 0.9412
         },
         {
           "id": "ragdoll_chain",
@@ -804,13 +804,13 @@
             },
             {
               "lang": "cpp",
-              "value": 0.0009,
+              "value": 0.0008,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0008,
+              "value": 0.0009,
               "unit": "s",
               "variant": "release"
             },
@@ -825,7 +825,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/ragdoll_chain",
           "status": "green",
-          "ratio_vs_reference": 0.8889
+          "ratio_vs_reference": 1.0
         },
         {
           "id": "rigid_body_stack",
@@ -837,19 +837,19 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0004,
+              "value": 0.0007,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.0005,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.0007,
+              "value": 0.0004,
               "unit": "s",
               "variant": "release"
             },
@@ -864,7 +864,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/rigid_body_stack",
           "status": "green",
-          "ratio_vs_reference": 0.8
+          "ratio_vs_reference": 1.1667
         },
         {
           "id": "schrodinger_1d_barrier",
@@ -876,7 +876,7 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0009,
+              "value": 0.0011,
               "unit": "s",
               "variant": "release"
             },
@@ -903,7 +903,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/schrodinger_1d_barrier",
           "status": "green",
-          "ratio_vs_reference": 0.9
+          "ratio_vs_reference": 1.1
         },
         {
           "id": "sph_dam_break_2d",
@@ -915,25 +915,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.8363,
+              "value": 0.8348,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.8344,
+              "value": 0.835,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.8351,
+              "value": 0.8342,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.8351,
+              "value": 0.834,
               "unit": "s",
               "variant": "release"
             }
@@ -942,7 +942,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/sph_dam_break_2d",
           "status": "green",
-          "ratio_vs_reference": 1.0023
+          "ratio_vs_reference": 0.9998
         },
         {
           "id": "three_body",
@@ -954,7 +954,7 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.2437,
+              "value": 0.2436,
               "unit": "s",
               "variant": "release"
             },
@@ -966,7 +966,7 @@
             },
             {
               "lang": "rust",
-              "value": 0.2434,
+              "value": 0.2433,
               "unit": "s",
               "variant": "release"
             },
@@ -981,7 +981,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/three_body",
           "status": "green",
-          "ratio_vs_reference": 1.0016
+          "ratio_vs_reference": 1.0012
         },
         {
           "id": "wave_equation_1d",
@@ -993,25 +993,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 1.6588,
+              "value": 1.775,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 1.7754,
+              "value": 1.7744,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 1.6564,
+              "value": 1.7721,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 1.6567,
+              "value": 1.7728,
               "unit": "s",
               "variant": "release"
             }
@@ -1020,7 +1020,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/wave_equation_1d",
           "status": "green",
-          "ratio_vs_reference": 0.9343
+          "ratio_vs_reference": 1.0003
         },
         {
           "id": "wave_equation_2d",
@@ -1032,25 +1032,25 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.2741,
+              "value": 0.272,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "cpp",
-              "value": 0.2723,
+              "value": 0.2748,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "rust",
-              "value": 0.2752,
+              "value": 0.272,
               "unit": "s",
               "variant": "release"
             },
             {
               "lang": "julia",
-              "value": 0.2758,
+              "value": 0.274,
               "unit": "s",
               "variant": "release"
             }
@@ -1059,7 +1059,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/wave_equation_2d",
           "status": "green",
-          "ratio_vs_reference": 1.0066
+          "ratio_vs_reference": 0.9898
         },
         {
           "id": "wind_field_bc",
@@ -1071,7 +1071,7 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0007,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
@@ -1083,7 +1083,7 @@
             },
             {
               "lang": "rust",
-              "value": 0.0007,
+              "value": 0.0006,
               "unit": "s",
               "variant": "release"
             },
@@ -1098,7 +1098,7 @@
           "repo": "lic",
           "path": "benchmarks/tier2_physics/wind_field_bc",
           "status": "green",
-          "ratio_vs_reference": 1.0
+          "ratio_vs_reference": 0.8571
         }
       ]
     },
@@ -1195,9 +1195,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0004,
+      "li_value": 0.0006,
       "cpp_value": 0.0009,
-      "ratio_vs_cpp": 0.4444,
+      "ratio_vs_cpp": 0.6667,
       "unit": "s",
       "variant": "pure_li",
       "status": "green",
@@ -1211,7 +1211,7 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0004,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
@@ -1229,7 +1229,7 @@
         },
         {
           "lang": "julia",
-          "value": 0.0009,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         }
@@ -1241,9 +1241,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0105,
-      "cpp_value": 0.0103,
-      "ratio_vs_cpp": 1.0194,
+      "li_value": 0.0103,
+      "cpp_value": 0.0101,
+      "ratio_vs_cpp": 1.0198,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -1256,19 +1256,19 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0105,
-          "unit": "s",
-          "variant": "release"
-        },
-        {
-          "lang": "cpp",
           "value": 0.0103,
           "unit": "s",
           "variant": "release"
         },
         {
-          "lang": "rust",
+          "lang": "cpp",
           "value": 0.0101,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.01,
           "unit": "s",
           "variant": "release"
         },
@@ -1286,9 +1286,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0831,
-      "cpp_value": 0.0833,
-      "ratio_vs_cpp": 0.9976,
+      "li_value": 0.0826,
+      "cpp_value": 0.0797,
+      "ratio_vs_cpp": 1.0364,
       "unit": "s",
       "variant": "blocked_gemm_n1024",
       "status": "green",
@@ -1301,25 +1301,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0831,
+          "value": 0.0826,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0833,
+          "value": 0.0797,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0811,
+          "value": 0.082,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0816,
+          "value": 0.08,
           "unit": "s",
           "variant": "release"
         }
@@ -1331,8 +1331,8 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0012,
-      "cpp_value": 0.0012,
+      "li_value": 0.0013,
+      "cpp_value": 0.0013,
       "ratio_vs_cpp": 1.0,
       "unit": "s",
       "variant": "blocked_gemm_n128",
@@ -1346,19 +1346,19 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0012,
+          "value": 0.0013,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0012,
+          "value": 0.0013,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0014,
+          "value": 0.0012,
           "unit": "s",
           "variant": "release"
         },
@@ -1376,9 +1376,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0034,
+      "li_value": 0.0036,
       "cpp_value": 0.0025,
-      "ratio_vs_cpp": 1.36,
+      "ratio_vs_cpp": 1.44,
       "unit": "s",
       "variant": null,
       "status": "red",
@@ -1392,7 +1392,7 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0034,
+          "value": 0.0036,
           "unit": "s",
           "variant": "release"
         },
@@ -1404,13 +1404,13 @@
         },
         {
           "lang": "rust",
-          "value": 0.0035,
+          "value": 0.0026,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0026,
+          "value": 0.0035,
           "unit": "s",
           "variant": "release"
         }
@@ -1422,9 +1422,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0008,
-      "cpp_value": 0.001,
-      "ratio_vs_cpp": 0.8,
+      "li_value": 0.0009,
+      "cpp_value": 0.0008,
+      "ratio_vs_cpp": 1.125,
       "unit": "s",
       "variant": "naive_gemm_n128",
       "status": "green",
@@ -1438,25 +1438,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0008,
+          "value": 0.0009,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.001,
+          "value": 0.0008,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0006,
+          "value": 0.0008,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0009,
+          "value": 0.0008,
           "unit": "s",
           "variant": "release"
         }
@@ -1468,9 +1468,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.3064,
-      "cpp_value": 0.3069,
-      "ratio_vs_cpp": 0.9984,
+      "li_value": 0.3028,
+      "cpp_value": 0.3081,
+      "ratio_vs_cpp": 0.9828,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -1483,25 +1483,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.3064,
+          "value": 0.3028,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.3069,
+          "value": 0.3081,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.3056,
+          "value": 0.3042,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.3071,
+          "value": 0.3018,
           "unit": "s",
           "variant": "release"
         }
@@ -1513,9 +1513,9 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0007,
-      "cpp_value": 0.0599,
-      "ratio_vs_cpp": 0.0117,
+      "li_value": 0.0004,
+      "cpp_value": 0.0597,
+      "ratio_vs_cpp": 0.0067,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -1529,25 +1529,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0007,
+          "value": 0.0004,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0599,
+          "value": 0.0597,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.058,
+          "value": 0.0535,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0578,
+          "value": 0.0507,
           "unit": "s",
           "variant": "release"
         }
@@ -1559,9 +1559,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.1133,
-      "cpp_value": 0.1139,
-      "ratio_vs_cpp": 0.9947,
+      "li_value": 0.1135,
+      "cpp_value": 0.1138,
+      "ratio_vs_cpp": 0.9974,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -1574,25 +1574,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.1133,
+          "value": 0.1135,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.1139,
+          "value": 0.1138,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.1123,
+          "value": 0.1134,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.1135,
+          "value": 0.1115,
           "unit": "s",
           "variant": "release"
         }
@@ -1604,9 +1604,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0013,
-      "cpp_value": 0.0012,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0012,
+      "cpp_value": 0.0013,
+      "ratio_vs_cpp": 0.9231,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -1619,13 +1619,13 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0013,
+          "value": 0.0012,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0012,
+          "value": 0.0013,
           "unit": "s",
           "variant": "release"
         },
@@ -1637,7 +1637,7 @@
         },
         {
           "lang": "julia",
-          "value": 0.0012,
+          "value": 0.0013,
           "unit": "s",
           "variant": "release"
         }
@@ -1650,8 +1650,8 @@
       "category": "physics",
       "metric": "wall_time",
       "li_value": 0.0004,
-      "cpp_value": 0.0006,
-      "ratio_vs_cpp": 0.6667,
+      "cpp_value": 0.0007,
+      "ratio_vs_cpp": 0.5714,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -1670,7 +1670,7 @@
         },
         {
           "lang": "cpp",
-          "value": 0.0006,
+          "value": 0.0007,
           "unit": "s",
           "variant": "release"
         },
@@ -1694,9 +1694,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.319,
-      "cpp_value": 0.3174,
-      "ratio_vs_cpp": 1.005,
+      "li_value": 0.3173,
+      "cpp_value": 0.3173,
+      "ratio_vs_cpp": 1.0,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -1709,13 +1709,13 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.319,
+          "value": 0.3173,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.3174,
+          "value": 0.3173,
           "unit": "s",
           "variant": "release"
         },
@@ -1727,7 +1727,7 @@
         },
         {
           "lang": "julia",
-          "value": 0.3179,
+          "value": 0.3172,
           "unit": "s",
           "variant": "release"
         }
@@ -1766,13 +1766,13 @@
         },
         {
           "lang": "rust",
-          "value": 0.0007,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0007,
+          "value": 0.0004,
           "unit": "s",
           "variant": "release"
         }
@@ -1784,8 +1784,8 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0007,
-      "cpp_value": 0.0007,
+      "li_value": 0.0006,
+      "cpp_value": 0.0006,
       "ratio_vs_cpp": 1.0,
       "unit": "s",
       "variant": "shared_c_kernel",
@@ -1799,25 +1799,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0007,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0007,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0004,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0005,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         }
@@ -1829,9 +1829,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0884,
-      "cpp_value": 0.0831,
-      "ratio_vs_cpp": 1.0638,
+      "li_value": 0.0834,
+      "cpp_value": 0.0884,
+      "ratio_vs_cpp": 0.9434,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -1844,25 +1844,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0884,
+          "value": 0.0834,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0831,
+          "value": 0.0884,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0833,
+          "value": 0.0884,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0883,
+          "value": 0.0994,
           "unit": "s",
           "variant": "release"
         }
@@ -1874,9 +1874,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.1326,
-      "cpp_value": 0.1328,
-      "ratio_vs_cpp": 0.9985,
+      "li_value": 0.1346,
+      "cpp_value": 0.1332,
+      "ratio_vs_cpp": 1.0105,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -1889,25 +1889,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.1326,
+          "value": 0.1346,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.1328,
+          "value": 0.1332,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.1324,
+          "value": 0.1338,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.1313,
+          "value": 0.132,
           "unit": "s",
           "variant": "release"
         }
@@ -1919,8 +1919,8 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0027,
-      "cpp_value": 2.5896,
+      "li_value": 0.0026,
+      "cpp_value": 2.5962,
       "ratio_vs_cpp": 0.001,
       "unit": "s",
       "variant": null,
@@ -1934,19 +1934,19 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0027,
+          "value": 0.0026,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 2.5896,
+          "value": 2.5962,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 2.5832,
+          "value": 2.584,
           "unit": "s",
           "variant": "release"
         },
@@ -1964,9 +1964,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 1.1682,
-      "cpp_value": 1.1669,
-      "ratio_vs_cpp": 1.0011,
+      "li_value": 1.168,
+      "cpp_value": 1.1674,
+      "ratio_vs_cpp": 1.0005,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -1979,25 +1979,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 1.1682,
+          "value": 1.168,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 1.1669,
+          "value": 1.1674,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 1.1667,
+          "value": 1.1677,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 1.1663,
+          "value": 1.1676,
           "unit": "s",
           "variant": "release"
         }
@@ -2009,9 +2009,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0015,
-      "cpp_value": 0.0016,
-      "ratio_vs_cpp": 0.9375,
+      "li_value": 0.0016,
+      "cpp_value": 0.0017,
+      "ratio_vs_cpp": 0.9412,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2024,25 +2024,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0015,
-          "unit": "s",
-          "variant": "release"
-        },
-        {
-          "lang": "cpp",
           "value": 0.0016,
           "unit": "s",
           "variant": "release"
         },
         {
+          "lang": "cpp",
+          "value": 0.0017,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
           "lang": "rust",
-          "value": 0.0015,
+          "value": 0.0016,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.0015,
+          "value": 0.0016,
           "unit": "s",
           "variant": "release"
         }
@@ -2055,8 +2055,8 @@
       "category": "physics",
       "metric": "wall_time",
       "li_value": 0.0008,
-      "cpp_value": 0.0009,
-      "ratio_vs_cpp": 0.8889,
+      "cpp_value": 0.0008,
+      "ratio_vs_cpp": 1.0,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2075,13 +2075,13 @@
         },
         {
           "lang": "cpp",
-          "value": 0.0009,
+          "value": 0.0008,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0008,
+          "value": 0.0009,
           "unit": "s",
           "variant": "release"
         },
@@ -2099,9 +2099,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0004,
-      "cpp_value": 0.0005,
-      "ratio_vs_cpp": 0.8,
+      "li_value": 0.0007,
+      "cpp_value": 0.0006,
+      "ratio_vs_cpp": 1.1667,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2114,19 +2114,19 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0004,
+          "value": 0.0007,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.0005,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.0007,
+          "value": 0.0004,
           "unit": "s",
           "variant": "release"
         },
@@ -2144,9 +2144,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0009,
+      "li_value": 0.0011,
       "cpp_value": 0.001,
-      "ratio_vs_cpp": 0.9,
+      "ratio_vs_cpp": 1.1,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2159,7 +2159,7 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0009,
+          "value": 0.0011,
           "unit": "s",
           "variant": "release"
         },
@@ -2189,9 +2189,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.8363,
-      "cpp_value": 0.8344,
-      "ratio_vs_cpp": 1.0023,
+      "li_value": 0.8348,
+      "cpp_value": 0.835,
+      "ratio_vs_cpp": 0.9998,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2204,25 +2204,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.8363,
+          "value": 0.8348,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.8344,
+          "value": 0.835,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.8351,
+          "value": 0.8342,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.8351,
+          "value": 0.834,
           "unit": "s",
           "variant": "release"
         }
@@ -2234,9 +2234,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.2437,
+      "li_value": 0.2436,
       "cpp_value": 0.2433,
-      "ratio_vs_cpp": 1.0016,
+      "ratio_vs_cpp": 1.0012,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -2249,7 +2249,7 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.2437,
+          "value": 0.2436,
           "unit": "s",
           "variant": "release"
         },
@@ -2261,7 +2261,7 @@
         },
         {
           "lang": "rust",
-          "value": 0.2434,
+          "value": 0.2433,
           "unit": "s",
           "variant": "release"
         },
@@ -2279,9 +2279,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 1.6588,
-      "cpp_value": 1.7754,
-      "ratio_vs_cpp": 0.9343,
+      "li_value": 1.775,
+      "cpp_value": 1.7744,
+      "ratio_vs_cpp": 1.0003,
       "unit": "s",
       "variant": null,
       "status": "green",
@@ -2294,25 +2294,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 1.6588,
+          "value": 1.775,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 1.7754,
+          "value": 1.7744,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 1.6564,
+          "value": 1.7721,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 1.6567,
+          "value": 1.7728,
           "unit": "s",
           "variant": "release"
         }
@@ -2324,9 +2324,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.2741,
-      "cpp_value": 0.2723,
-      "ratio_vs_cpp": 1.0066,
+      "li_value": 0.272,
+      "cpp_value": 0.2748,
+      "ratio_vs_cpp": 0.9898,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2339,25 +2339,25 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.2741,
+          "value": 0.272,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "cpp",
-          "value": 0.2723,
+          "value": 0.2748,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "rust",
-          "value": 0.2752,
+          "value": 0.272,
           "unit": "s",
           "variant": "release"
         },
         {
           "lang": "julia",
-          "value": 0.2758,
+          "value": 0.274,
           "unit": "s",
           "variant": "release"
         }
@@ -2369,9 +2369,9 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.0007,
+      "li_value": 0.0006,
       "cpp_value": 0.0007,
-      "ratio_vs_cpp": 1.0,
+      "ratio_vs_cpp": 0.8571,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
@@ -2384,7 +2384,7 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0007,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
@@ -2396,7 +2396,7 @@
         },
         {
           "lang": "rust",
-          "value": 0.0007,
+          "value": 0.0006,
           "unit": "s",
           "variant": "release"
         },
