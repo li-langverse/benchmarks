@@ -12,6 +12,7 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | **Ecosystem governance** | `roadmap` | [`docs/ecosystem/vision-and-roadmap.md`](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md) |
 | **Milestones (themes)** | `roadmap` | [`docs/roadmap/milestones.md`](https://github.com/li-langverse/roadmap/blob/main/docs/roadmap/milestones.md) |
 | **Benchmark catalog & dashboard** | `benchmarks` | [`catalog.toml`](../../catalog.toml) · [handbook](../handbook/README.md) |
+| **Game dev / tier-2 physics (where to implement)** | `benchmarks` | [`docs/game-dev/README.md`](../game-dev/README.md) · [catalog ↔ lic sync plan](./plans/2026-05-18-tier2-catalog-lic-sync.md) |
 
 ## Edit rules
 
