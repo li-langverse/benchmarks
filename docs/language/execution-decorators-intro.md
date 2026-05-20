@@ -1,47 +1,44 @@
 # Execution decorators in Li (intro)
 
-**Source of truth:** [`lic` `std/execution/decorators.li`](https://github.com/li-langverse/lic/blob/main/std/execution/decorators.li) (Phase 7d-d).
+**Source of truth:** [`lic` `std/execution/decorators.li`](https://github.com/li-langverse/lic/blob/main/std/execution/decorators.li) and [`li-tests/decorators/parallel_with_disjoint.li`](https://github.com/li-langverse/lic/blob/main/li-tests/decorators/parallel_with_disjoint.li).
 
-Users attach **compile-time execution decorators** to `def` / loops:
+Execution decorators attach to **`def`** or loops and are **elaborated at compile time** — they are **not** runtime calls.
+
+## Real code: `@cpu` + `@parallel` on a parallel loop
+
+Vendored copy: [`examples/parallel_with_disjoint.li`](examples/parallel_with_disjoint.li)
 
 ```li
 @cpu
-@parallel(disjoint = disjointElem)
-@vectorized
-def hotLoop(xs: ptr, n: int64) -> unit
-  requires n >= 0
+@parallel(disjoint=disjoint_elem)
+def par_decorated() -> int
+  requires true
+  ensures true
+  decreases 0
 =
-  # ...
-  return
+  var buf: array[8, f64]
+  parallel for i in 0..<8
+    requires disjoint_elem(i, buf)
+    decreases 8 - i
+  =
+    buf[i] = 1.0
+  return 0
 ```
 
-## What makes them “execution” decorators?
+`disjoint_elem` documents that iterations do not race on `buf` — ties into **G-par** / race checks in `lic`.
 
-- They are **elaborated at compile time** — **not** ordinary runtime calls.
-- They participate in the **parallel / vector / device** policy story (`PH-7e`, **G-par**): see ecosystem notes on Kokkos-class lowering vs LLVM / OpenMP.
-
-## Reserved names (cannot be a user-defined single-segment decorator)
-
-From `decorators.li` commentary:
+## Reserved single-segment names
 
 `parallel`, `vectorized`, `async`, `cpu`, `gpu`, `tpu`, `user_defined`, `serial`, `no_vectorize`
 
-**User-defined** decorators that are not in this reserved set should use **multi-segment names**, e.g. `li_math_tiled_parallel`, to avoid collisions with the execution policy namespace.
+User decorators outside this set should use **multi-segment** names (e.g. `li_math_tiled_parallel`).
 
-## Mental model (one line each)
-
-| Decorator | Plain-language intent |
-|-----------|------------------------|
-| `@cpu` | Prefer host CPU execution policy for this region |
-| `@parallel(...)` | Structured parallelism with disjointness / scheduling hints |
-| `@vectorized` | SIMD / autovec-friendly loop body |
-| `@serial` | Intentionally sequential (opt out of parallel rewrite) |
-| `@no_vectorize` | Prevent vectorizer from changing numerics layout |
-
-Exact parameters and lowering are **`lic` implementation details** — watch [`lic#15`](https://github.com/li-langverse/lic/issues/15) and related **G-par** issues for codegen status.
+Lowering status: [`lic#15`](https://github.com/li-langverse/lic/issues/15) (Kokkos-class / LLVM OpenMP path).
 
 ---
 
-## Shareable one-pager
+## Shareable (editor screenshot)
 
-![Li execution decorators — reserved @cpu @parallel @vectorized and policy model](assets/li-execution-decorators-card.png)
+Regenerate: `python3 scripts/render-li-code-image.py --all`
+
+![Li execution decorators — editor syntax highlighting of parallel_with_disjoint.li](assets/li-code-decorators-editor.png)

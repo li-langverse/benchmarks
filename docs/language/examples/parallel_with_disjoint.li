@@ -1,0 +1,16 @@
+# From lic: li-tests/decorators/parallel_with_disjoint.li
+# Compile-time @cpu + @parallel on a parallel for — not runtime decorator calls.
+@cpu
+@parallel(disjoint=disjoint_elem)
+def par_decorated() -> int
+  requires true
+  ensures true
+  decreases 0
+=
+  var buf: array[8, f64]
+  parallel for i in 0..<8
+    requires disjoint_elem(i, buf)
+    decreases 8 - i
+  =
+    buf[i] = 1.0
+  return 0

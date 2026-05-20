@@ -31,4 +31,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Actions budget doc (`docs/ecosystem/actions-budget.md`).
 - Benchmark history snapshots (`data/history/`, `scripts/record-benchmark-history.py`) with ratio deltas between ingests.
 - Agent-kit sync and release-notes policy (roadmap v1.1.0).
-- **Li language guides (shareable):** [docs/language/README.md](docs/language/README.md) — PascalCase types / camelCase members, illustrative class visibility, execution `@` decorators (see `lic` `std/execution/decorators.li`); PNG cards in `docs/language/assets/`; handbook link from [docs/handbook/README.md](docs/handbook/README.md).
+- **Li language guides (shareable):** [docs/language/README.md](docs/language/README.md) — real `lic` encapsulation + decorator tests and benchmarks ingest as **editor-style syntax-highlighted PNGs** via `scripts/render-li-code-image.py`; handbook link from [docs/handbook/README.md](docs/handbook/README.md).

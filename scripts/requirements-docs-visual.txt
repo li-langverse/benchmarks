@@ -1,0 +1,2 @@
+# Optional — render editor-style Li code PNGs (scripts/render-li-code-image.py)
+pillow>=10.0.0

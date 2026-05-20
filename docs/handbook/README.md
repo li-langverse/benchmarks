@@ -43,4 +43,4 @@ Dashboard rows are **measurements**, not proof certificates. Labels and threshol
 
 ## Li language (style + shareables)
 
-Short guides and **PNG cards** for posts: [`docs/language/README.md`](../language/README.md) (PascalCase types, class visibility sketch, execution `@` decorators).
+Short guides and **syntax-highlighted code PNGs** for posts: [`docs/language/README.md`](../language/README.md) — regenerate via `scripts/render-li-code-image.py --all`.

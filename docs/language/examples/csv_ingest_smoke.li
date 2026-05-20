@@ -1,0 +1,23 @@
+# From benchmarks: scripts/ingest/csv_ingest_smoke.li (PH-IO-4)
+# Real ingest path: read CSV → parse → validate columns before summary build.
+import io
+import csv
+
+def main() raises IoError, AllocError -> int
+  requires true
+  ensures result == 0
+  decreases 0
+=
+  var blob: ptr = io_read_file("fixtures/lic_sample.csv", 65536)
+  var data: ptr = io_blob_data(blob)
+  var n: int64 = io_blob_len(blob)
+  var doc: ptr = csv_parse(data, n)
+  if csv_row_count(doc) != 2:
+    return 1
+  if csv_col_index(doc, "benchmark") != 0:
+    return 2
+  if csv_col_index(doc, "lang") != 1:
+    return 3
+  csv_free(doc)
+  io_free(blob)
+  return 0
