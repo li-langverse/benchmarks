@@ -4,7 +4,8 @@
 **Mode:** Mode A — SOTA survey (no novel algorithms)  
 **Dashboard:** https://li-langverse.github.io/benchmarks/  
 **Bench ids:** `horner_pure_li` (red); `matmul_blocked`, `nbody_gravity`, `double_pendulum`, `wave_equation_1d`, `harmonic_oscillator_chain`, `heat_equation_2d`, `reduce_sum` (green, >1.0× cpp)  
-**Evidence gate:** this file under `docs/numerics/` + repro commands below
+**Evidence gate:** this file under `docs/numerics/` + repro commands below  
+**Pass verified:** 2026-05-20 — `numerics-evidence-checklist.py` OK; `benchmark-failures-report.sh` matches ingest snapshot below.
 
 ---
 
@@ -87,6 +88,8 @@ cd benchmarks
 ```
 
 **Expected (ingest snapshot 2026-05-16):** 1 RED (`horner_pure_li` ~88.821×); 7 green rows >1.0× cpp listed in §1.
+
+**This pass (2026-05-20, `benchmark-failures-report.sh`):** unchanged — 1 RED, 7 near-threshold greens, 5 unknown; no catalog threshold edits.
 
 ```bash
 export LIC_ROOT=/path/to/lic
