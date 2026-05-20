@@ -17,6 +17,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `.cursor/rules/li-ecosystem-first.mdc` | Agent rule (always on) |
 | `.cursor/rules/li-ecosystem-gates.mdc` | Functionality / security / perf |
 | `.cursor/rules/li-git-hygiene.mdc` | No force push; rebase + normal push |
+| [Game dev / tier-2 physics](../game-dev/README.md) | **lic** harness vs catalog; World Studio = **lic** checkout |
 
 ---
 
@@ -27,7 +28,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `ecosystem-audit.py` | Org PR CI, missing `ci.yml`, benchmark posture JSON |
 | `ensure-org-repo-ci.py` | Fail if any org repo lacks `ci.yml` → `org-repo-ci-audit.json` |
 | `agent-briefing.py` / `agent-preflight.sh` | Aggregate preflight JSON → `agent-briefing.json` for **Cursor agents** |
-| `cursor-agent-run.sh` | Delegates to **li-cursor-agents** (`@cursor/sdk` local or `--mock`) |
+| `cursor-agent-run.sh` | Delegates to **li-cursor-agents** (`@cursor/sdk` local or `--mock`); defaults to **sibling** `../li-cursor-agents` then `./li-cursor-agents` |
 | `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` (agent interprets) |
 | `issue-feature-triage.py` | Open issues needing plans |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |

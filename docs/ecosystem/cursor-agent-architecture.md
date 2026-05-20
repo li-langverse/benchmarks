@@ -15,7 +15,9 @@ The stack is:
 ### Local SDK runner (li-cursor-agents)
 
 ```bash
-git clone https://github.com/li-langverse/li-cursor-agents li-cursor-agents
+# Preferred: sibling clone (matches agent-briefing.py default)
+git clone https://github.com/li-langverse/li-cursor-agents ../li-cursor-agents
+# Or: ./li-cursor-agents under benchmarks (gitignored)
 cd benchmarks   # or repo root if monorepo checkout
 ./scripts/cursor-agent-run.sh --agent ecosystem_explorer --mock   # CI-safe
 export CURSOR_API_KEY=...   # or CURSOR_SDK_KEY / CURSOR_SDK
