@@ -37,7 +37,7 @@ def parse_lis_csv(path: Path) -> dict[str, list[dict]]:
     return by_bench
 
 
-HTTP_ORACLE_LANGS = ("li", "nginx", "apache", "lighttpd", "caddy", "harness")
+HTTP_ORACLE_LANGS = ("li", "nginx", "apache", "lighttpd", "caddy", "node", "bun", "harness")
 
 
 def series_from_rows(rows: list[dict], metric: str) -> list[dict]:

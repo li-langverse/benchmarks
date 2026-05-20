@@ -19,6 +19,8 @@ LANG_COLORS = {
     "apache": "#D22128",
     "lighttpd": "#FBCA2F",
     "caddy": "#22B8CF",
+    "node": "#3C873A",
+    "bun": "#FBF0DF",
     "li": "#5c4ee5",
     "harness": "#888888",
     "cpp": "#00599c",

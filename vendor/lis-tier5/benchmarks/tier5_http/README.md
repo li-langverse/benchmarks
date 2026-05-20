@@ -13,11 +13,11 @@ Profiles come from `suite.toml`:
 
 Scenarios in `suite.toml` **ci** / **nightly**: `static_small`, `keepalive_pipelining`, `static_large` (GET `/file.bin`, 1 MiB fixture auto-generated).
 
-Throughput rows are emitted per oracle in `BENCH_HTTP_ORACLES` (default **`nginx,apache,lighttpd,li`**). Set `LI_HTTPD_BIN` for `lang=li`. Optional **`caddy`** when `caddy` is on `PATH`.
+Throughput rows are emitted per oracle in `BENCH_HTTP_ORACLES` (default **`nginx,apache,lighttpd,node,bun,li`**). **`node`** / **`bun`** use `harness/static_server.mjs`. Set `LI_HTTPD_BIN` for `lang=li`. Optional **`caddy`** when `caddy` is on `PATH`.
 
 ## Exploit harness (security)
 
-`harness/exploit_http.py` runs TOML-driven attacks from `exploits/` against **nginx**, **Apache**, optional **lighttpd**/**caddy**, and **li-httpd** on loopback only.
+`harness/exploit_http.py` runs TOML-driven attacks from `exploits/` against **nginx**, **Apache**, **Node**, **Bun**, optional **lighttpd**/**caddy**, and **li-httpd** on loopback only.
 
 | Tier | Examples |
 |------|----------|
@@ -47,7 +47,8 @@ python3 benchmarks/tier5_http/harness/bench_http.py --profile ci --no-bench
 
 # Multi-oracle wrk (Linux example)
 sudo apt-get install -y nginx wrk apache2 lighttpd
-BENCH_HTTP_ORACLES=nginx,apache,lighttpd,li ./scripts/run-tier5-http-bench.sh
+# Node 22+ and Bun on PATH (see CI setup-node / setup-bun)
+BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li ./scripts/run-tier5-http-bench.sh
 cat vendor/lis-tier5/results/latest.csv
 ```
 

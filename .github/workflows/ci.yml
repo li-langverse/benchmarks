@@ -23,6 +23,14 @@ jobs:
       - name: Install webservers + wrk (tier-5 HTTP oracles)
         run: sudo apt-get update && sudo apt-get install -y nginx wrk apache2 lighttpd
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "latest"
+
       - name: Install LLVM 18
         run: |
           sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev python3
@@ -39,9 +47,9 @@ jobs:
         run: |
           chmod +x scripts/run-tier5-http-bench.sh scripts/run-tier5-http-exploits.sh
           ./lic/build/compiler/lic/lic build packages/li-net-httpd/src/lib.li -o lic/build/li-httpd
-          BENCH_HTTP_ORACLES=nginx,apache,lighttpd,li ./scripts/run-tier5-http-bench.sh
-          TIER5_EXPLOIT_LANGS=nginx,apache,lighttpd,li ./scripts/run-tier5-http-exploits.sh
-          TIER5_EXPLOIT_PROFILE=weaponized TIER5_EXPLOIT_LANGS=nginx,apache,lighttpd,li ./scripts/run-tier5-http-exploits.sh
+          BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li ./scripts/run-tier5-http-bench.sh
+          TIER5_EXPLOIT_LANGS=nginx,apache,node,bun,li ./scripts/run-tier5-http-exploits.sh
+          TIER5_EXPLOIT_PROFILE=weaponized TIER5_EXPLOIT_LANGS=nginx,apache,node,bun,li ./scripts/run-tier5-http-exploits.sh
 
       - name: Ingest (Li summary + Python fallback)
         env:

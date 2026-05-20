@@ -401,6 +401,12 @@ def bench_wrk_for_lang(
 
         variant = "ci" if quick else "release"
         flags = f"wrk pipeline={pipeline}" if pipeline > 1 else "wrk"
+        if lang in ("node", "bun"):
+            from http_oracles import runtime_version
+
+            ver = runtime_version(lang)
+            if ver:
+                flags = f"{flags} {ver}"
         _append_rps_row(
             rows,
             name,

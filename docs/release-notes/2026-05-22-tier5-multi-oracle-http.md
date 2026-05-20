@@ -2,7 +2,7 @@
 
 ## Summary
 
-`bench_http.py` and `exploit_http.py` share `harness/http_oracles.py` so tier-5 HTTP benchmarks compare **nginx, Apache httpd, lighttpd, and li-httpd** (optional **caddy**) on the same wrk scenarios and exploit drivers.
+`bench_http.py` and `exploit_http.py` share `harness/http_oracles.py` so tier-5 HTTP benchmarks compare **nginx, Apache httpd, lighttpd, Node.js, Bun, and li-httpd** (optional **caddy**) on the same wrk scenarios and exploit drivers.
 
 ## Agent continuation
 

@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 HARNESS="$ROOT/vendor/lis-tier5/benchmarks/tier5_http/harness/bench_http.py"
 PROFILE="${BENCH_HTTP_PROFILE:-ci}"
-ORACLES="${BENCH_HTTP_ORACLES:-nginx,apache,lighttpd,li}"
+ORACLES="${BENCH_HTTP_ORACLES:-nginx,apache,lighttpd,node,bun,li}"
 
 if [[ ! -f "$HARNESS" ]]; then
   echo "run-tier5-http-bench: missing $HARNESS (sync vendor/lis-tier5)" >&2

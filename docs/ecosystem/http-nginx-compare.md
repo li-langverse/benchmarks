@@ -18,10 +18,11 @@ Until **lis** `main` ships the harness, **benchmarks** vendors a copy under [`ve
 
 ```bash
 sudo apt-get install -y nginx wrk apache2 lighttpd
+# Node 22+ and Bun (CI: setup-node / setup-bun)
 pip install matplotlib  # optional plots
 
 # Bench (vendor or lis checkout)
-BENCH_HTTP_ORACLES=nginx,apache,lighttpd,li ./scripts/run-tier5-http-bench.sh
+BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li ./scripts/run-tier5-http-bench.sh
 
 # Merge HTTP into dashboard data without wiping lic rows (when lic CSV absent)
 python3 scripts/ingest/merge_lis_http_into_summary.py vendor/lis-tier5/results/latest.csv
