@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T17:32Z",
+  "generated_at": "2026-05-20T17:52Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -8,7 +8,7 @@
   },
   "metrics": {
     "open_prs": 31,
-    "failed_prs": 5,
+    "failed_prs": 6,
     "ready_prs": 8,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
@@ -49,6 +49,16 @@
       "number": 94,
       "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
       "url": "https://github.com/li-langverse/lic/pull/94",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "ready": false
+    },
+    {
+      "repo": "lic",
+      "number": 91,
+      "title": "fix(bench): honest horner_pure_li + numerics researcher pass (PH-5b/7e)",
+      "url": "https://github.com/li-langverse/lic/pull/91",
       "base": "main",
       "ci": "fail",
       "draft": false,
@@ -365,6 +375,7 @@
         "li-language#6",
         "lic#98",
         "lic#94",
+        "lic#91",
         "lic#81"
       ]
     },

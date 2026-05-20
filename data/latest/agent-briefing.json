@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T17:33Z",
+  "generated_at": "2026-05-20T17:53Z",
   "role": "preflight_for_cursor_agents",
   "note": "Intelligence (web, review, gaps) runs in Cursor Automations \u2014 not in this file.",
   "preflight_runs": {
@@ -69,7 +69,7 @@
     }
   },
   "issue_triage": {
-    "generated_at": "2026-05-20T17:32Z",
+    "generated_at": "2026-05-20T17:52Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "skill": "plan-feature-from-issue (see .cursor/skills/)",
     "summary": {
@@ -495,7 +495,7 @@
     ]
   },
   "ecosystem_audit": {
-    "generated_at": "2026-05-20T17:32Z",
+    "generated_at": "2026-05-20T17:52Z",
     "vision": {
       "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
       "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -504,7 +504,7 @@
     },
     "metrics": {
       "open_prs": 31,
-      "failed_prs": 5,
+      "failed_prs": 6,
       "ready_prs": 8,
       "repos_missing_ci_main": 1,
       "repos_without_live_pages": 10
@@ -545,6 +545,16 @@
         "number": 94,
         "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
         "url": "https://github.com/li-langverse/lic/pull/94",
+        "base": "main",
+        "ci": "fail",
+        "draft": false,
+        "ready": false
+      },
+      {
+        "repo": "lic",
+        "number": 91,
+        "title": "fix(bench): honest horner_pure_li + numerics researcher pass (PH-5b/7e)",
+        "url": "https://github.com/li-langverse/lic/pull/91",
         "base": "main",
         "ci": "fail",
         "draft": false,
@@ -861,6 +871,7 @@
           "li-language#6",
           "lic#98",
           "lic#94",
+          "lic#91",
           "lic#81"
         ]
       },
@@ -1333,7 +1344,7 @@
     ]
   },
   "org_ci_audit": {
-    "generated_at": "2026-05-20T17:32Z",
+    "generated_at": "2026-05-20T17:52Z",
     "org": "li-langverse",
     "required_workflow": "ci.yml",
     "repos_ok": [
@@ -1700,7 +1711,7 @@
     ]
   },
   "merge_plan": {
-    "generated_at": "2026-05-20T17:33Z",
+    "generated_at": "2026-05-20T17:53Z",
     "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
     "ordering_rules": [
       "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -2160,7 +2171,7 @@
     ]
   },
   "pr_program": {
-    "generated_at": "2026-05-20T17:14Z",
+    "generated_at": "2026-05-20T17:37Z",
     "merge_first": null,
     "summary": {
       "open_prs": 27,
@@ -2696,12 +2707,15 @@
         "base": "main",
         "ci": "none",
         "draft": true,
-        "labels": [],
+        "labels": [
+          "plan-needed"
+        ],
         "merge_approved": false,
         "gate_ready_with_approval": false,
         "gate_blockers_if_approved": [
           "not_draft: PR is still a draft",
           "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+          "plan_approved: has `plan-needed` without `plan-approved`",
           "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 101"
         ],
         "priority_score": 330
@@ -2726,7 +2740,7 @@
     ]
   },
   "pr_branch_hygiene": {
-    "generated_at": "2026-05-20T17:13Z",
+    "generated_at": "2026-05-20T17:35Z",
     "org": "li-langverse",
     "summary": {
       "repos_scanned": 12,
@@ -3402,7 +3416,7 @@
     ]
   },
   "workspace_dirty_sweep": {
-    "generated_at": "2026-05-20T17:33Z",
+    "generated_at": "2026-05-20T17:53Z",
     "ecosystem_root": "/",
     "dirty_count": 0,
     "dirty_repos": []
@@ -3682,7 +3696,7 @@
   "agent_incomplete_runs": [],
   "agent_pr_deliverable_failures": [],
   "org_roadmap": {
-    "loaded_at": "2026-05-20T17:33Z",
+    "loaded_at": "2026-05-20T17:53Z",
     "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
     "engineering_standards_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/engineering-standards.md",
     "master_plan_url": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",

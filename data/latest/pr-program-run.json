@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T17:37Z",
+  "generated_at": "2026-05-20T17:57Z",
   "merge_first": null,
   "summary": {
     "open_prs": 27,
@@ -268,14 +268,14 @@
       "title": "fix(bench): honest horner_pure_li + numerics researcher pass (PH-5b/7e)",
       "url": "https://github.com/li-langverse/lic/pull/91",
       "base": "main",
-      "ci": "none",
+      "ci": "fail",
       "draft": false,
       "labels": [],
       "merge_approved": false,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 91"
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 91"
       ],
       "priority_score": 130
     },
