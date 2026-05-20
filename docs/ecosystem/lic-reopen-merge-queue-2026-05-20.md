@@ -8,7 +8,7 @@
 | 2 | [#71](https://github.com/li-langverse/lic/pull/71) | `cursor/scalar-precision-types-57b4` | **Merged** — scalar precision types |
 | 3 | [#69](https://github.com/li-langverse/lic/pull/69) | `cursor/fix-import-multiline-params-57b4` | **Merged** — workspace imports + multiline `def` |
 | 4 | [#75](https://github.com/li-langverse/lic/pull/75) | `cursor/rigid-var-param-57b4` | **Merged** — docs-only (implementation via #69); replaces closed #68 |
-| 5 | [#72](https://github.com/li-langverse/lic/pull/72) | `cursor/ph-h-http-p0-and-li-http-54aa` | **Open** — CI fix: `import_parse` local fixture (`c2913db`) |
+| 5 | [#72](https://github.com/li-langverse/lic/pull/72) | `cursor/ph-h-http-p0-and-li-http-54aa` | **Merged** — Phase-H `li-http` + P0 stubs (`63445d1`) |
 | 6 | [#73](https://github.com/li-langverse/lic/pull/73) | `cursor/object-field-mir-54aa` | **Merged** — MIR object fields (`ce42928` on `main`) |
 
 **Merge discipline:** Never delete progress when merging or rebasing — integrate both sides (union of features, regenerate generated files). Do not close PRs to “clean the queue” without landing or cherry-picking their commits. See [merge-conflict-resolution.md](merge-conflict-resolution.md) and skill `resolve-merge-conflicts`.
