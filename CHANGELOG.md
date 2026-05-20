@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Tier-5 HTTP exploits:** `exploit_http.py` + `harness/drivers/http_attacks.py` (6 PR attacks vs nginx + li-httpd); `nginx_mitigations.toml` li_done rows; `suite_exploits.toml`; `tier5_exploits_pr` catalog row; `lb_least_conn` / `lb_peer_down` scenarios — see [2026-05-21-tier5-http-exploits.md](docs/release-notes/2026-05-21-tier5-http-exploits.md).
+
+### Added
+
 - **nginx compare pipeline:** vendored `vendor/lis-tier5/` harness (sync via `scripts/sync-lis-tier5-vendor.sh`), `scripts/ingest/merge_lis_http_into_summary.py` (HTTP-only ingest without lic CSV), [http-nginx-compare.md](docs/ecosystem/http-nginx-compare.md).
 - **HTTP tier-5 plots:** `scripts/plot_http_benchmarks.py` renders `http_*_rps.png` and `http_tier5_overview.png` from `lis/results/latest.csv` or `summary.json` http category; `scripts/run-http-benchmark-report.sh` runs bench + plots without rewriting `summary.json` (avoids ingest races with other agents).
 - **`render-benchmark-visuals.sh`:** optional lis HTTP plots; lic shareables failure no longer aborts when lis CSV is present.

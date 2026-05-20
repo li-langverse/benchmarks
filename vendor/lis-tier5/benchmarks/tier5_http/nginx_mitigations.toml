@@ -1,5 +1,84 @@
+# Machine-readable nginx / webserver mitigation catalog (tier-5 HTTP).
+# Sources: nginx CHANGES Security, CWE/CAPEC, Envoy/Apache hardening guides.
+# Run: python3 scripts/audit-nginx-mitigations.py (lic) to refresh stubs.
+
 [[mitigation]]
 id = "duplicate_content_length"
+cve = ["CVE-2019-20372"]
+nginx_version_fixed = "1.17.7"
+notes = "Reject duplicate Content-Length"
+exploit = "exploits/duplicate_content_length.toml"
 li_invariant = "single parser rejects duplicate Content-Length"
+li_done = true
+
+[[mitigation]]
+id = "client_header_timeout"
+cve = []
+notes = "slowloris — client_header_timeout / client_body_timeout"
 exploit = "exploits/slowloris.toml"
+li_invariant = "partial headers cannot hold slot forever"
+li_done = true
+
+[[mitigation]]
+id = "large_client_header_buffers"
+cve = []
+notes = "oversized request line / headers"
+exploit = "exploits/oversized_request_line.toml"
+li_invariant = "request line bounded; excess rejected"
+li_done = true
+
+[[mitigation]]
+id = "path_traversal_blocks"
+cve = ["CVE-2001-0500"]
+notes = "no alias traversal; encoded .. blocked"
+exploit = "exploits/path_traversal.toml"
+li_invariant = "path_is_safe rejects .., %, backslash, double-slash"
+li_done = true
+
+[[mitigation]]
+id = "worker_connections_limit"
+cve = []
+notes = "connection exhaustion"
+exploit = "exploits/connection_flood.toml"
+li_invariant = "max connections bounded; server stays responsive"
+li_done = true
+
+[[mitigation]]
+id = "invalid_method_reject"
+cve = []
+notes = "unknown HTTP methods"
+exploit = "exploits/bad_method.toml"
+li_invariant = "non-GET static path returns error without crash"
+li_done = true
+
+[[mitigation]]
+id = "request_smuggling_cl_te"
+cve = ["CVE-2019-20372"]
+notes = "CL.TE desync class"
+exploit = "exploits/request_smuggling_cl_te.toml"
+li_invariant = "no conflicting content-length + chunked front"
+li_done = false
+
+[[mitigation]]
+id = "proxy_loopback_allowlist"
+cve = []
+notes = "SSRF — upstream loopback only in M1"
+exploit = "exploits/path_traversal.toml"
+li_invariant = "upstream host locked to 127.0.0.1"
+li_done = true
+
+[[mitigation]]
+id = "tls_record_iv_unique"
+cve = []
+notes = "OpenSSL RAND — Tier F"
+exploit = "exploits/rng_constant_bytes.toml"
+li_invariant = "no predictable TLS record IV in production"
+li_done = false
+
+[[mitigation]]
+id = "upstream_leak_censor"
+cve = []
+notes = "Tier G — SSE leak to client"
+exploit = "exploits/leak_openai_key_in_sse.toml"
+li_invariant = "leak patterns redacted on egress when enabled"
 li_done = false

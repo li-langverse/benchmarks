@@ -462,7 +462,13 @@ def bench_proxy_loopback_scenario(
     backend_ports = [pick_port() for _ in range(backend_count)]
     front_port = pick_port()
     csv_ports = ",".join(str(p) for p in backend_ports)
-    wrk_flags = "wrk proxy_lb" if backend_count > 1 else "wrk proxy_loopback"
+    lb_mode = str(proxy_cfg.get("lb_mode") or "round_robin")
+    kill_idx = proxy_cfg.get("kill_backend_index")
+    wrk_flags = "wrk proxy_lb"
+    if backend_count == 1:
+        wrk_flags = "wrk proxy_loopback"
+    if lb_mode == "least_conn":
+        wrk_flags = "wrk proxy_least_conn"
 
     def run_wrk_on_front(lang: str) -> None:
         url = f"http://127.0.0.1:{front_port}{url_path}"
@@ -539,8 +545,11 @@ def bench_proxy_loopback_scenario(
                 li_ok = False
                 break
         if li_ok:
+            li_front_cmd = [str(li_bin), str(front_port), str(doc_root.resolve()), csv_ports]
+            if lb_mode == "least_conn":
+                li_front_cmd.append("least_conn")
             front_proc = subprocess.Popen(
-                [str(li_bin), str(front_port), str(doc_root.resolve()), csv_ports],
+                li_front_cmd,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
@@ -554,6 +563,19 @@ def bench_proxy_loopback_scenario(
                         rows.append(_harness_row(name, f"verify_fail_li:{path}"))
                         ok = False
                         break
+                if ok and kill_idx is not None:
+                    ki = int(kill_idx)
+                    if 0 <= ki < len(be_procs) and be_procs[ki]:
+                        be_procs[ki].terminate()
+                        try:
+                            be_procs[ki].wait(timeout=2)
+                        except subprocess.TimeoutExpired:
+                            be_procs[ki].kill()
+                        be_procs[ki] = None
+                        time.sleep(0.2)
+                        if not verify_http_get(f"http://127.0.0.1:{front_port}/", 200):
+                            rows.append(_harness_row(name, "verify_fail_li:after_kill"))
+                            ok = False
                 if ok:
                     run_wrk_on_front("li")
             else:
