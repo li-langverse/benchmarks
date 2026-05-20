@@ -352,6 +352,20 @@ compare_oracle = "unreal_proxy"
 unreal_proxy_budget_ms = 4.0
 
 [[benchmark]]
+id = "render_frame_present"
+category = "world"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_world/render_frame_present"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-GD-5"]
+variant = "shared_c_kernel"
+workload_class = "world_engine"
+compare_oracle = "unreal_proxy"
+unreal_proxy_budget_ms = 8.0
+
+[[benchmark]]
 id = "tier0_stability"
 category = "correctness"
 tier = 0
