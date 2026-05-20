@@ -1,16 +1,46 @@
 {
-  "generated_at": "2026-05-20T19:03Z",
+  "generated_at": "2026-05-20T19:19Z",
   "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
   "skill": "plan-feature-from-issue (see .cursor/skills/)",
   "summary": {
     "repos_scanned": 6,
-    "needs_plan": 22,
+    "needs_plan": 23,
     "candidates": 0
   },
   "repos": [
     {
       "repo": "lic",
       "needs_plan": [
+        {
+          "number": 110,
+          "title": "[explorer-finding] Kokkos 4.6 Views + execution-space semantics for Li tier-2 memory model (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/110",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:11:53Z"
+        },
+        {
+          "number": 109,
+          "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/109",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:11:51Z"
+        },
+        {
+          "number": 108,
+          "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+          "url": "https://github.com/li-langverse/lic/issues/108",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:11:34Z"
+        },
         {
           "number": 50,
           "title": "[Ecosystem gap] Publish li-std-physics-* org mirrors (12 packages)",
@@ -150,26 +180,6 @@
             "plan-needed"
           ],
           "created_at": "2026-05-17T13:01:14Z"
-        },
-        {
-          "number": 13,
-          "title": "[Ecosystem gap] PH-IO-4/5/7: ship std.io, std.csv, std.summary, std.plot",
-          "url": "https://github.com/li-langverse/lic/issues/13",
-          "labels": [
-            "feature",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:01:09Z"
-        },
-        {
-          "number": 11,
-          "title": "plan-needed: PH-7e / G-math \u2014 pure-Li horner codegen (88\u00d7 vs C++)",
-          "url": "https://github.com/li-langverse/lic/issues/11",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T12:58:01Z"
         }
       ],
       "planned": [],
@@ -270,7 +280,7 @@
     {
       "priority": "P1",
       "action": "Run issue-feature-planner automation or comment planning checklist on issues",
-      "needs_plan": 22,
+      "needs_plan": 23,
       "candidates": 0
     }
   ]

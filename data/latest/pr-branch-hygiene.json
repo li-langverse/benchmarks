@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T19:00Z",
+  "generated_at": "2026-05-20T19:18Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
-    "branches_needing_pr": 56,
+    "branches_needing_pr": 64,
     "prs_recommended_close": 13,
     "prs_safe_close_now": 0
   },
@@ -42,6 +42,22 @@
     },
     {
       "repo": "lic",
+      "branch": "chore/agent-bench_improver-1779284446660",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-bench_improver-1779284446660` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-1779284446660"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-bench_improver-1779291587030",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-bench_improver-1779291587030` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-1779291587030"
+    },
+    {
+      "repo": "lic",
       "branch": "chore/agent-bench_improver-19883836",
       "base": "main",
       "ahead_by": 3,
@@ -55,6 +71,22 @@
       "ahead_by": 2,
       "reason": "branch `chore/agent-bench_improver-42289450` is 2 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-42289450"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-bench_improver-79285634",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-bench_improver-79285634` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-79285634"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-bench_improver-horner-dce",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-bench_improver-horner-dce` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-bench_improver-horner-dce"
     },
     {
       "repo": "lic",
@@ -103,6 +135,14 @@
       "ahead_by": 5,
       "reason": "branch `chore/agent-numerics_researcher-38536946` is 5 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-38536946"
+    },
+    {
+      "repo": "lic",
+      "branch": "chore/agent-numerics_researcher-84241347",
+      "base": "main",
+      "ahead_by": 2,
+      "reason": "branch `chore/agent-numerics_researcher-84241347` is 2 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-84241347"
     },
     {
       "repo": "lic",
@@ -399,6 +439,30 @@
       "ahead_by": 1,
       "reason": "branch `cursor/sync-def-syntax-57b4` is 1 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(li-std-math): sync branch cursor/sync-def-syntax-57b4"
+    },
+    {
+      "repo": "li-demo",
+      "branch": "chore/agent-docs_maintainer-77703830",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-docs_maintainer-77703830` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-demo): sync branch chore/agent-docs_maintainer-77703830"
+    },
+    {
+      "repo": "li-demo",
+      "branch": "chore/agent-docs_maintainer-82029732",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-docs_maintainer-82029732` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-demo): sync branch chore/agent-docs_maintainer-82029732"
+    },
+    {
+      "repo": "li-demo",
+      "branch": "chore/agent-docs_maintainer-83095358",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `chore/agent-docs_maintainer-83095358` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(li-demo): sync branch chore/agent-docs_maintainer-83095358"
     },
     {
       "repo": "li-demo",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T19:04Z",
+  "generated_at": "2026-05-20T19:19Z",
   "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
   "ordering_rules": [
     "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -10,11 +10,11 @@
     "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge"
   ],
   "summary": {
-    "open_prs": 8,
+    "open_prs": 6,
     "merge_approved": 0,
     "gate_ready": 0,
     "auto_merge_candidates": 0,
-    "redundant_pairs": 2,
+    "redundant_pairs": 1,
     "stacks": 0
   },
   "merge_first": null,
@@ -23,36 +23,36 @@
   "merge_order": [
     {
       "rank": 1,
-      "repo": "li-demo",
-      "number": 8,
-      "url": "https://github.com/li-langverse/li-demo/pull/8",
-      "title": "chore(li-demo): Docs maintainer automated update",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 262,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 1; priority_score=262; awaiting merge-approved label"
-    },
-    {
-      "rank": 2,
-      "repo": "li-demo",
-      "number": 9,
-      "url": "https://github.com/li-langverse/li-demo/pull/9",
-      "title": "chore(li-demo): Docs maintainer automated update",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 262,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 2; priority_score=262; awaiting merge-approved label"
-    },
-    {
-      "rank": 3,
       "repo": "benchmarks",
       "number": 32,
       "url": "https://github.com/li-langverse/benchmarks/pull/32",
       "title": "feat(briefing): swarm scorecard enrich + audit-refresh dispatch",
+      "merge_approved": false,
+      "gate_ready": false,
+      "priority_score": 270,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 1; priority_score=270; awaiting merge-approved label"
+    },
+    {
+      "rank": 2,
+      "repo": "benchmarks",
+      "number": 34,
+      "url": "https://github.com/li-langverse/benchmarks/pull/34",
+      "title": "fix(security): security-cwe-audit preflight script",
+      "merge_approved": false,
+      "gate_ready": false,
+      "priority_score": 270,
+      "auto_merge_ok": false,
+      "blocked_reason": null,
+      "order_reason": "rank 2; priority_score=270; awaiting merge-approved label"
+    },
+    {
+      "rank": 3,
+      "repo": "benchmarks",
+      "number": 39,
+      "url": "https://github.com/li-langverse/benchmarks/pull/39",
+      "title": "chore(org): exclude li-cursor-agents from org sweeps",
       "merge_approved": false,
       "gate_ready": false,
       "priority_score": 270,
@@ -63,9 +63,9 @@
     {
       "rank": 4,
       "repo": "benchmarks",
-      "number": 34,
-      "url": "https://github.com/li-langverse/benchmarks/pull/34",
-      "title": "fix(security): security-cwe-audit preflight script",
+      "number": 47,
+      "url": "https://github.com/li-langverse/benchmarks/pull/47",
+      "title": "docs(numerics): 2026-05-20 researcher pass \u2014 horner P0 + near-limit SOTA",
       "merge_approved": false,
       "gate_ready": false,
       "priority_score": 270,
@@ -75,32 +75,6 @@
     },
     {
       "rank": 5,
-      "repo": "benchmarks",
-      "number": 39,
-      "url": "https://github.com/li-langverse/benchmarks/pull/39",
-      "title": "chore(org): exclude li-cursor-agents from org sweeps",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 270,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 5; priority_score=270; awaiting merge-approved label"
-    },
-    {
-      "rank": 6,
-      "repo": "benchmarks",
-      "number": 47,
-      "url": "https://github.com/li-langverse/benchmarks/pull/47",
-      "title": "docs(numerics): 2026-05-20 researcher pass \u2014 horner P0 + near-limit SOTA",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 270,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 6; priority_score=270; awaiting merge-approved label"
-    },
-    {
-      "rank": 7,
       "repo": "lic",
       "number": 85,
       "url": "https://github.com/li-langverse/lic/pull/85",
@@ -110,10 +84,10 @@
       "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 7; priority_score=280; awaiting merge-approved label"
+      "order_reason": "rank 5; priority_score=280; awaiting merge-approved label"
     },
     {
-      "rank": 8,
+      "rank": 6,
       "repo": "roadmap",
       "number": 12,
       "url": "https://github.com/li-langverse/roadmap/pull/12",
@@ -123,7 +97,7 @@
       "priority_score": 340,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 8; priority_score=340; awaiting merge-approved label"
+      "order_reason": "rank 6; priority_score=340; awaiting merge-approved label"
     }
   ],
   "stacks": [],
@@ -140,22 +114,9 @@
         "100% file overlap"
       ],
       "suggested_action": "close #32 after #34 merges"
-    },
-    {
-      "repo": "li-demo",
-      "pr_a": "li-demo#9",
-      "pr_b": "li-demo#8",
-      "url_a": "https://github.com/li-langverse/li-demo/pull/9",
-      "url_b": "https://github.com/li-langverse/li-demo/pull/8",
-      "overlap": 1.0,
-      "reasons": [
-        "100% file overlap"
-      ],
-      "suggested_action": "human: pick one PR or rebase the other"
     }
   ],
   "warnings": [
-    "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
-    "li-demo#9 vs li-demo#8: human: pick one PR or rebase the other"
+    "benchmarks#34 vs benchmarks#32: close #32 after #34 merges"
   ]
 }
