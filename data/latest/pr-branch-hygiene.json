@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T15:08Z",
+  "generated_at": "2026-05-20T15:29Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
-    "branches_needing_pr": 57,
+    "branches_needing_pr": 56,
     "prs_recommended_close": 11,
     "prs_safe_close_now": 0
   },
@@ -106,14 +106,6 @@
     },
     {
       "repo": "lic",
-      "branch": "chore/agent-numerics_researcher-84241347",
-      "base": "main",
-      "ahead_by": 1,
-      "reason": "branch `chore/agent-numerics_researcher-84241347` is 1 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch chore/agent-numerics_researcher-84241347"
-    },
-    {
-      "repo": "lic",
       "branch": "chore/agent-security_auditor-org-sweep",
       "base": "main",
       "ahead_by": 1,
@@ -162,6 +154,14 @@
     },
     {
       "repo": "lic",
+      "branch": "cursor/post-83-docs-sync-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/post-83-docs-sync-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/post-83-docs-sync-57b4"
+    },
+    {
+      "repo": "lic",
       "branch": "cursor/proof-pipeline-2ef-57b4",
       "base": "main",
       "ahead_by": 1,
@@ -175,14 +175,6 @@
       "ahead_by": 6,
       "reason": "branch `cursor/strict-trivial-ensures-57b4` is 6 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch cursor/strict-trivial-ensures-57b4"
-    },
-    {
-      "repo": "lic",
-      "branch": "feat/agent-planning-automation",
-      "base": "main",
-      "ahead_by": 10,
-      "reason": "branch `feat/agent-planning-automation` is 10 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch feat/agent-planning-automation"
     },
     {
       "repo": "lip",
@@ -478,8 +470,8 @@
     },
     {
       "repo": "lic",
-      "number": 89,
-      "url": "https://github.com/li-langverse/lic/pull/89",
+      "number": 92,
+      "url": "https://github.com/li-langverse/lic/pull/92",
       "reason": "draft PR \u2014 confirm abandoned before close",
       "action": "close",
       "safe_now": false,
