@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T17:52Z",
+  "generated_at": "2026-05-20T18:38Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -7,13 +7,23 @@
     "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
   },
   "metrics": {
-    "open_prs": 31,
-    "failed_prs": 6,
+    "open_prs": 32,
+    "failed_prs": 7,
     "ready_prs": 8,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
   },
   "failed_prs": [
+    {
+      "repo": "benchmarks",
+      "number": 50,
+      "title": "feat(tier5-http): multi-oracle bench and exploits (nginx, Apache, lighttpd, li)",
+      "url": "https://github.com/li-langverse/benchmarks/pull/50",
+      "base": "main",
+      "ci": "fail",
+      "draft": true,
+      "ready": false
+    },
     {
       "repo": "benchmarks",
       "number": 49,
@@ -371,6 +381,7 @@
       "priority": "P0",
       "action": "Fix failing PR CI before new feature work",
       "prs": [
+        "benchmarks#50",
         "benchmarks#49",
         "li-language#6",
         "lic#98",

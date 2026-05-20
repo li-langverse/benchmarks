@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T17:57Z",
+  "generated_at": "2026-05-20T18:42Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 27,
+    "open_prs": 28,
     "ci_green": 8,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -467,6 +467,24 @@
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
         "plan_approved: has `plan-needed` without `plan-approved`",
         "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 49"
+      ],
+      "priority_score": 320
+    },
+    {
+      "repo": "benchmarks",
+      "number": 50,
+      "title": "feat(tier5-http): multi-oracle bench and exploits (nginx, Apache, lighttpd, li)",
+      "url": "https://github.com/li-langverse/benchmarks/pull/50",
+      "base": "main",
+      "ci": "fail",
+      "draft": true,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "not_draft: PR is still a draft",
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo benchmarks --pr 50"
       ],
       "priority_score": 320
     },

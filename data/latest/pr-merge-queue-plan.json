@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T17:57Z",
+  "generated_at": "2026-05-20T18:41Z",
   "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
   "ordering_rules": [
     "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
