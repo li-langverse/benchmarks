@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T14:32Z",
+  "generated_at": "2026-05-20T14:49Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 22,
+    "open_prs": 24,
     "ci_green": 7,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -238,6 +238,40 @@
       "priority_score": 120
     },
     {
+      "repo": "lic",
+      "number": 83,
+      "title": "feat(2e/2f/H): requires, refinements, Lean gate, M1 routing match",
+      "url": "https://github.com/li-langverse/lic/pull/83",
+      "base": "main",
+      "ci": "fail",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 83"
+      ],
+      "priority_score": 130
+    },
+    {
+      "repo": "lic",
+      "number": 85,
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "url": "https://github.com/li-langverse/lic/pull/85",
+      "base": "main",
+      "ci": "pending",
+      "draft": false,
+      "labels": [],
+      "merge_approved": false,
+      "gate_ready_with_approval": false,
+      "gate_blockers_if_approved": [
+        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 85"
+      ],
+      "priority_score": 130
+    },
+    {
       "repo": "li-language",
       "number": 6,
       "title": "feat(benchmarks): expand tier-2 gaming-physics suite (5 kernels)",
@@ -428,11 +462,11 @@
     },
     {
       "repo": "lic",
-      "number": 83,
-      "title": "feat(2e/2f/H): requires, refinements, Lean gate, M1 routing match",
-      "url": "https://github.com/li-langverse/lic/pull/83",
+      "number": 84,
+      "title": "perf(httpd): M1 C epoll hot path \u2014 beat nginx on tier-5 loopback",
+      "url": "https://github.com/li-langverse/lic/pull/84",
       "base": "main",
-      "ci": "fail",
+      "ci": "none",
       "draft": true,
       "labels": [],
       "merge_approved": false,
@@ -440,12 +474,14 @@
       "gate_blockers_if_approved": [
         "not_draft: PR is still a draft",
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `fail` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 83"
+        "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 84"
       ],
       "priority_score": 330
     }
   ],
   "plan_warnings": [
+    "lic#85 vs lic#82: human: pick one PR or rebase the other",
+    "lic#85 vs lic#80: human: pick one PR or rebase the other",
     "lic#82 vs lic#80: human: pick one PR or rebase the other",
     "benchmarks#34 vs benchmarks#32: close #32 after #34 merges",
     "li-demo#9 vs li-demo#8: human: pick one PR or rebase the other",

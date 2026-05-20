@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T14:30Z",
+  "generated_at": "2026-05-20T14:48Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
@@ -154,14 +154,6 @@
     },
     {
       "repo": "lic",
-      "branch": "cursor/httpd-m1-perf-54aa",
-      "base": "main",
-      "ahead_by": 7,
-      "reason": "branch `cursor/httpd-m1-perf-54aa` is 7 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch cursor/httpd-m1-perf-54aa"
-    },
-    {
-      "repo": "lic",
       "branch": "cursor/strict-trivial-ensures-57b4",
       "base": "main",
       "ahead_by": 6,
@@ -311,6 +303,14 @@
       "ahead_by": 3,
       "reason": "branch `merge/org-sweeps-and-heap` is 3 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(benchmarks): sync branch merge/org-sweeps-and-heap"
+    },
+    {
+      "repo": "benchmarks",
+      "branch": "merge/render-frame-catalog",
+      "base": "main",
+      "ahead_by": 29,
+      "reason": "branch `merge/render-frame-catalog` is 29 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(benchmarks): sync branch merge/render-frame-catalog"
     },
     {
       "repo": "roadmap",
@@ -470,8 +470,8 @@
     },
     {
       "repo": "lic",
-      "number": 83,
-      "url": "https://github.com/li-langverse/lic/pull/83",
+      "number": 84,
+      "url": "https://github.com/li-langverse/lic/pull/84",
       "reason": "draft PR \u2014 confirm abandoned before close",
       "action": "close",
       "safe_now": false,
