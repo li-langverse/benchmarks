@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-20T11:50Z",
+  "generated_at": "2026-05-20T12:04Z",
   "merge_first": null,
   "summary": {
-    "open_prs": 19,
+    "open_prs": 17,
     "ci_green": 4,
     "merge_approved": 0,
     "gate_ready_labeled": 0
@@ -29,9 +29,9 @@
     {
       "rank": 3,
       "repo": "lic",
-      "number": 69,
-      "url": "https://github.com/li-langverse/lic/pull/69",
-      "title": "fix(lic): workspace import members parse + multiline def params",
+      "number": 73,
+      "url": "https://github.com/li-langverse/lic/pull/73",
+      "title": "fix(mir): object field access and expanded object parameters",
       "ci": "pass",
       "action": "add merge-approved after review"
     },
@@ -80,9 +80,9 @@
     },
     {
       "repo": "lic",
-      "number": 69,
-      "title": "fix(lic): workspace import members parse + multiline def params",
-      "url": "https://github.com/li-langverse/lic/pull/69",
+      "number": 73,
+      "title": "fix(mir): object field access and expanded object parameters",
+      "url": "https://github.com/li-langverse/lic/pull/73",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -164,9 +164,9 @@
     },
     {
       "repo": "lic",
-      "number": 70,
-      "title": "feat(contracts): reject ensures true on value returns (E0303)",
-      "url": "https://github.com/li-langverse/lic/pull/70",
+      "number": 69,
+      "title": "fix(lic): workspace import members parse + multiline def params",
+      "url": "https://github.com/li-langverse/lic/pull/69",
       "base": "main",
       "ci": "pending",
       "draft": false,
@@ -175,24 +175,7 @@
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 70"
-      ],
-      "priority_score": 130
-    },
-    {
-      "repo": "lic",
-      "number": 73,
-      "title": "fix(mir): object field access and expanded object parameters",
-      "url": "https://github.com/li-langverse/lic/pull/73",
-      "base": "main",
-      "ci": "pending",
-      "draft": false,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
-        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 73"
+        "ci_green: CI status is `pending` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 69"
       ],
       "priority_score": 130
     },
@@ -334,23 +317,6 @@
     },
     {
       "repo": "lic",
-      "number": 71,
-      "title": "feat(types): scalar precision types float4\u2013float512, int4\u2013int512",
-      "url": "https://github.com/li-langverse/lic/pull/71",
-      "base": "main",
-      "ci": "pass",
-      "draft": true,
-      "labels": [],
-      "merge_approved": false,
-      "gate_ready_with_approval": false,
-      "gate_blockers_if_approved": [
-        "not_draft: PR is still a draft",
-        "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)"
-      ],
-      "priority_score": 230
-    },
-    {
-      "repo": "lic",
       "number": 72,
       "title": "feat(phase-h): li-http package, P0 runtime stubs, std.bytes path fix",
       "url": "https://github.com/li-langverse/lic/pull/72",
@@ -358,7 +324,8 @@
       "ci": "fail",
       "draft": true,
       "labels": [
-        "plan-approved"
+        "plan-approved",
+        "plan-needed"
       ],
       "merge_approved": false,
       "gate_ready_with_approval": false,

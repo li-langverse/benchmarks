@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-20T11:49Z",
+  "generated_at": "2026-05-20T12:03Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
     "branches_needing_pr": 59,
-    "prs_recommended_close": 9,
+    "prs_recommended_close": 8,
     "prs_safe_close_now": 0
   },
   "branches_needing_pr": [
@@ -140,16 +140,16 @@
       "repo": "lic",
       "branch": "cursor/fixed-point-warnings-57b4",
       "base": "main",
-      "ahead_by": 11,
-      "reason": "branch `cursor/fixed-point-warnings-57b4` is 11 commit(s) ahead of `main` with no open PR",
+      "ahead_by": 4,
+      "reason": "branch `cursor/fixed-point-warnings-57b4` is 4 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch cursor/fixed-point-warnings-57b4"
     },
     {
       "repo": "lic",
       "branch": "cursor/strict-trivial-ensures-57b4",
       "base": "main",
-      "ahead_by": 13,
-      "reason": "branch `cursor/strict-trivial-ensures-57b4` is 13 commit(s) ahead of `main` with no open PR",
+      "ahead_by": 6,
+      "reason": "branch `cursor/strict-trivial-ensures-57b4` is 6 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch cursor/strict-trivial-ensures-57b4"
     },
     {
@@ -204,8 +204,8 @@
       "repo": "lic",
       "branch": "feat/world-studio-impl-1",
       "base": "main",
-      "ahead_by": 62,
-      "reason": "branch `feat/world-studio-impl-1` is 62 commit(s) ahead of `main` with no open PR",
+      "ahead_by": 63,
+      "reason": "branch `feat/world-studio-impl-1` is 63 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch feat/world-studio-impl-1"
     },
     {
@@ -496,15 +496,6 @@
       "repo": "lic",
       "number": 72,
       "url": "https://github.com/li-langverse/lic/pull/72",
-      "reason": "draft PR \u2014 confirm abandoned before close",
-      "action": "close",
-      "safe_now": false,
-      "source": "draft"
-    },
-    {
-      "repo": "lic",
-      "number": 71,
-      "url": "https://github.com/li-langverse/lic/pull/71",
       "reason": "draft PR \u2014 confirm abandoned before close",
       "action": "close",
       "safe_now": false,
