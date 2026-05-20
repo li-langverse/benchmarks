@@ -37,9 +37,12 @@ def parse_lis_csv(path: Path) -> dict[str, list[dict]]:
     return by_bench
 
 
+HTTP_ORACLE_LANGS = ("li", "nginx", "apache", "lighttpd", "caddy", "harness")
+
+
 def series_from_rows(rows: list[dict], metric: str) -> list[dict]:
     series = []
-    for lang in ("li", "nginx", "harness"):
+    for lang in HTTP_ORACLE_LANGS:
         matches = [r for r in rows if r.get("lang") == lang and r.get("metric") == metric]
         if not matches:
             continue

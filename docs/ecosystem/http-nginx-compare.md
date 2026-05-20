@@ -1,8 +1,8 @@
 # HTTP benchmarks vs nginx (tier-5)
 
-## Oracle
+## Oracles
 
-[`catalog.toml`](../../catalog.toml) rows `static_small` and `keepalive_pipelining` use `compare_oracle = "nginx"` and metric **`rps`**. The dashboard shows **`ratio_vs_reference`** only when both **`lang=nginx`** and **`lang=li`** RPS rows exist (threshold `1.0` = match or beat nginx on throughput).
+[`catalog.toml`](../../catalog.toml) HTTP scenarios use `compare_oracle = "nginx"` for **li vs nginx** ratio gates. The harness also records **Apache httpd**, **lighttpd**, and optional **caddy** RPS on the same wrk fixtures (`BENCH_HTTP_ORACLES`, default `nginx,apache,lighttpd,li`). Security exploits use the same oracle set via `TIER5_EXPLOIT_LANGS` and `harness/http_oracles.py`.
 
 ## Repos
 
@@ -17,11 +17,11 @@ Until **lis** `main` ships the harness, **benchmarks** vendors a copy under [`ve
 ## Local run
 
 ```bash
-sudo apt-get install -y nginx wrk
+sudo apt-get install -y nginx wrk apache2 lighttpd
 pip install matplotlib  # optional plots
 
 # Bench (vendor or lis checkout)
-python3 vendor/lis-tier5/benchmarks/tier5_http/harness/bench_http.py --profile ci
+BENCH_HTTP_ORACLES=nginx,apache,lighttpd,li ./scripts/run-tier5-http-bench.sh
 
 # Merge HTTP into dashboard data without wiping lic rows (when lic CSV absent)
 python3 scripts/ingest/merge_lis_http_into_summary.py vendor/lis-tier5/results/latest.csv

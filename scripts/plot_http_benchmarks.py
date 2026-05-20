@@ -16,6 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/visuals/latest"
 LANG_COLORS = {
     "nginx": "#009639",
+    "apache": "#D22128",
+    "lighttpd": "#FBCA2F",
+    "caddy": "#22B8CF",
     "li": "#5c4ee5",
     "harness": "#888888",
     "cpp": "#00599c",

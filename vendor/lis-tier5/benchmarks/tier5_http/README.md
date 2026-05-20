@@ -13,11 +13,11 @@ Profiles come from `suite.toml`:
 
 Scenarios in `suite.toml` **ci** / **nightly**: `static_small`, `keepalive_pipelining`, `static_large` (GET `/file.bin`, 1 MiB fixture auto-generated).
 
-`lang=li` throughput rows are **not** emitted until a `li-httpd` binary is wired in; set `LI_HTTPD_BIN` only as a placeholder hook for future work.
+Throughput rows are emitted per oracle in `BENCH_HTTP_ORACLES` (default **`nginx,apache,lighttpd,li`**). Set `LI_HTTPD_BIN` for `lang=li`. Optional **`caddy`** when `caddy` is on `PATH`.
 
 ## Exploit harness (security)
 
-`harness/exploit_http.py` runs TOML-driven attacks from `exploits/` against **nginx** (oracle) and **li-httpd** on loopback only.
+`harness/exploit_http.py` runs TOML-driven attacks from `exploits/` against **nginx**, **Apache**, optional **lighttpd**/**caddy**, and **li-httpd** on loopback only.
 
 | Tier | Examples |
 |------|----------|
@@ -42,13 +42,13 @@ cat ../results/exploit_report.csv
 ## Quick commands (from lis repo root)
 
 ```bash
-# TOML-only / harness rows (no nginx)
+# TOML-only / harness rows (no wrk)
 python3 benchmarks/tier5_http/harness/bench_http.py --profile ci --no-bench
 
-# Full nginx + wrk (install deps first, Linux example)
-sudo apt-get install -y nginx wrk
-python3 benchmarks/tier5_http/harness/bench_http.py --profile ci
-cat results/latest.csv
+# Multi-oracle wrk (Linux example)
+sudo apt-get install -y nginx wrk apache2 lighttpd
+BENCH_HTTP_ORACLES=nginx,apache,lighttpd,li ./scripts/run-tier5-http-bench.sh
+cat vendor/lis-tier5/results/latest.csv
 ```
 
 Single scenario:

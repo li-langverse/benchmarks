@@ -20,17 +20,11 @@ jobs:
           repository: li-langverse/lis
           path: lis
 
-      - name: Install nginx + wrk + apache2 (tier-5 HTTP oracles)
-        run: sudo apt-get update && sudo apt-get install -y nginx wrk apache2
-
-      - name: Run tier-5 HTTP bench (vendored harness)
-        run: |
-          python3 vendor/lis-tier5/benchmarks/tier5_http/harness/bench_http.py --profile ci
-          test -s vendor/lis-tier5/results/latest.csv
+      - name: Install webservers + wrk (tier-5 HTTP oracles)
+        run: sudo apt-get update && sudo apt-get install -y nginx wrk apache2 lighttpd
 
       - name: Install LLVM 18
         run: |
-          sudo apt-get update
           sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev python3
 
       - name: Build lic
@@ -39,14 +33,15 @@ jobs:
           CC: clang-18
         run: cd lic && ./scripts/build.sh
 
-      - name: Build li-httpd and run tier-5 exploit gate (pr + weaponized)
+      - name: Build li-httpd and run tier-5 HTTP bench + exploit gates
         env:
           LI_REPO_ROOT: ${{ github.workspace }}/lic
         run: |
-          chmod +x scripts/run-tier5-http-exploits.sh
+          chmod +x scripts/run-tier5-http-bench.sh scripts/run-tier5-http-exploits.sh
           ./lic/build/compiler/lic/lic build packages/li-net-httpd/src/lib.li -o lic/build/li-httpd
-          TIER5_EXPLOIT_LANGS=nginx,apache,li ./scripts/run-tier5-http-exploits.sh
-          TIER5_EXPLOIT_PROFILE=weaponized TIER5_EXPLOIT_LANGS=nginx,apache,li ./scripts/run-tier5-http-exploits.sh
+          BENCH_HTTP_ORACLES=nginx,apache,lighttpd,li ./scripts/run-tier5-http-bench.sh
+          TIER5_EXPLOIT_LANGS=nginx,apache,lighttpd,li ./scripts/run-tier5-http-exploits.sh
+          TIER5_EXPLOIT_PROFILE=weaponized TIER5_EXPLOIT_LANGS=nginx,apache,lighttpd,li ./scripts/run-tier5-http-exploits.sh
 
       - name: Ingest (Li summary + Python fallback)
         env:

@@ -305,6 +305,8 @@ def stop_nginx(prefix: Path) -> None:
             pass
     # allow worker shutdown
     time.sleep(0.1)
+
+
 def _append_rps_row(
     rows: list[dict[str, str]],
     name: str,
@@ -607,9 +609,17 @@ def bench_nginx_scenario(
     *,
     quick: bool,
 ) -> tuple[list[dict[str, str]], str]:
-    """Return CSV rows and human log tail (nginx oracle + optional li-httpd)."""
+    """Return CSV rows and human log tail (multi-oracle bench + optional li-httpd)."""
     if proxy_scenario_enabled(cfg):
         return bench_proxy_loopback_scenario(name, cfg, quick=quick)
+
+    from http_oracles import (
+        BENCH_ORACLE_HOOKS,
+        DEFAULT_BENCH_ORACLES,
+        oracle_available,
+        parse_oracle_langs,
+        pick_port as oracle_pick_port,
+    )
 
     rows: list[dict[str, str]] = []
     log_bits: list[str] = []
@@ -626,58 +636,28 @@ def bench_nginx_scenario(
         rows.append(_harness_row(name, "no_wrk"))
         return rows, "wrk not found"
 
-    def start_nginx(port: int, _root: Path):
-        tmp = tempfile.TemporaryDirectory(prefix="lis-nginx-")
-        prefix = Path(tmp.name)
-        conf = nginx_prefix_conf(_root, port, prefix)
-        if not launch_nginx(prefix, conf):
-            tmp.cleanup()
-            return None
-        return (tmp, prefix)
-
-    def stop_nginx_ctx(ctx) -> None:
-        if not ctx:
-            return
-        tmp, prefix = ctx
-        stop_nginx(prefix)
-        tmp.cleanup()
-
-    port_n = pick_port()
-    n_rows, n_log = bench_wrk_for_lang(
-        name, cfg, quick=quick, lang="nginx", port=port_n, doc_root=doc_root,
-        start_server=start_nginx, stop_server=stop_nginx_ctx,
-    )
-    rows.extend(n_rows)
-    log_bits.append(n_log)
-
-    li_bin = resolve_li_httpd_bin()
-    if li_bin:
-        def start_li(port: int, root: Path):
-            proc = subprocess.Popen(
-                [str(li_bin), str(port), str(root.resolve())],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            return proc
-
-        def stop_li(proc) -> None:
-            if proc is None:
-                return
-            proc.terminate()
-            try:
-                proc.wait(timeout=5)
-            except subprocess.TimeoutExpired:
-                proc.kill()
-
-        port_l = pick_port()
-        l_rows, l_log = bench_wrk_for_lang(
-            name, cfg, quick=quick, lang="li", port=port_l, doc_root=doc_root,
-            start_server=start_li, stop_server=stop_li,
+    for lang in parse_oracle_langs("BENCH_HTTP_ORACLES", DEFAULT_BENCH_ORACLES):
+        if lang not in BENCH_ORACLE_HOOKS:
+            rows.append(_harness_row(name, f"unknown_oracle_{lang}"))
+            continue
+        if not oracle_available(lang):
+            rows.append(_harness_row(name, f"no_{lang}"))
+            continue
+        start_fn, stop_fn = BENCH_ORACLE_HOOKS[lang]
+        port = oracle_pick_port()
+        lang_rows, lang_log = bench_wrk_for_lang(
+            name,
+            cfg,
+            quick=quick,
+            lang=lang,
+            port=port,
+            doc_root=doc_root,
+            start_server=start_fn,
+            stop_server=stop_fn,
         )
-        rows.extend(l_rows)
-        log_bits.append(l_log)
-    else:
-        rows.append(_harness_row(name, "no_li_httpd_bin"))
+        rows.extend(lang_rows)
+        if lang_log:
+            log_bits.append(lang_log)
 
     return rows, "\n".join(log_bits)
 
