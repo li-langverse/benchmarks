@@ -31,12 +31,23 @@ jobs:
           path: artifacts
         continue-on-error: true
 
+      - name: Checkout lis
+        uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+
       - name: Build summary
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+          LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
-          CSV="lic/benchmarks/results/latest.csv"
-          if [[ -f artifacts/latest.csv ]]; then CSV="artifacts/latest.csv"; fi
-          python3 scripts/ingest/build_summary.py lic "$CSV"
+          if [[ -f artifacts/latest.csv ]]; then
+            mkdir -p lic/benchmarks/results
+            cp artifacts/latest.csv lic/benchmarks/results/latest.csv
+          fi
+          ./scripts/ingest/ingest-lic.sh
         continue-on-error: true
 
       - name: Regression check (advisory on PR)
