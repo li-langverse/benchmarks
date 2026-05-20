@@ -16,6 +16,9 @@ Aggregated **benchmark status** for the Li org. Harnesses and sources stay in ea
 LIC_ROOT=../lic ./scripts/dashboard/render-static.sh
 # Optional Vite dev (filters; not used on Pages deploy)
 cd dashboard && npm install && npm run dev
+
+# Optional: clone li-cursor-agents next to this repo (or under ./li-cursor-agents/)
+# for ./scripts/cursor-agent-run.sh — path is gitignored; see AGENTS.md
 ```
 
 ## Add a benchmark

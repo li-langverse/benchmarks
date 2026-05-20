@@ -18,3 +18,5 @@ lip/
 lit/
 lis/
 roadmap/
+# Optional local clone for ./scripts/cursor-agent-run.sh (sibling or subfolder)
+li-cursor-agents/
