@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T17:14Z",
+  "generated_at": "2026-05-20T17:37Z",
   "merge_first": null,
   "summary": {
     "open_prs": 27,
@@ -535,12 +535,15 @@
       "base": "main",
       "ci": "none",
       "draft": true,
-      "labels": [],
+      "labels": [
+        "plan-needed"
+      ],
       "merge_approved": false,
       "gate_ready_with_approval": false,
       "gate_blockers_if_approved": [
         "not_draft: PR is still a draft",
         "merge_approved_label: missing label `merge-approved` (reviewer adds after standards pass)",
+        "plan_approved: has `plan-needed` without `plan-approved`",
         "ci_green: CI status is `none` and no fresh local-ci pass \u2014 run: python3 scripts/local-ci-sweep.py --repo lic --pr 101"
       ],
       "priority_score": 330
