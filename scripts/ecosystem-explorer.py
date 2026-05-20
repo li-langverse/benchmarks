@@ -28,27 +28,28 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/ecosystem-explorer.json"
 
 # Modules referenced by benchmarks ingest/dashboard (may not exist on lic@main yet).
+# Import surface uses short names (`import io`); on disk lic still maps these to std/* paths.
 EXPECTED_STD_MODULES = [
     {
-        "module": "std.io",
+        "module": "io",
         "ph_id": "PH-IO-4",
         "why": "CSV/file ingest without Python",
         "refs": ["scripts/ingest/csv_ingest_smoke.li"],
     },
     {
-        "module": "std.csv",
+        "module": "csv",
         "ph_id": "PH-IO-4",
         "why": "Benchmark CSV parsing in Li",
         "refs": ["scripts/ingest/csv_ingest_smoke.li"],
     },
     {
-        "module": "std.summary",
+        "module": "summary",
         "ph_id": "PH-IO-7",
         "why": "Build data/latest/summary.json in Li",
         "refs": ["scripts/ingest/build_summary.li"],
     },
     {
-        "module": "std.plot",
+        "module": "plot",
         "ph_id": "PH-IO-5",
         "why": "Static dashboard without Node/Vite",
         "refs": ["scripts/dashboard/render_dashboard.li"],
@@ -153,7 +154,7 @@ LANGUAGE_IMPROVEMENT_HEURISTICS = [
     {
         "id": "stdlib-surface",
         "signal": "std/* module count << ingest/dashboard imports",
-        "action": "Prioritize PH-IO std.io, std.csv, std.summary, std.plot in lic",
+        "action": "Prioritize PH-IO modules (import io, csv, summary, plot) in lic",
     },
     {
         "id": "pure-li-benches",
@@ -234,8 +235,9 @@ def scan_lic_packages(lic: Path) -> list[str]:
 
 
 def scan_std_imports_in_repo(root: Path) -> dict[str, list[str]]:
+    """Collect `import <name>` lines from repo .li files (short names + legacy std.*)."""
     imports: dict[str, set[str]] = {}
-    pat = re.compile(r"import\s+(std\.[a-zA-Z0-9_.]+)")
+    pat = re.compile(r"^\s*import\s+([A-Za-z_][A-Za-z0-9_.]*)\s*$", re.MULTILINE)
     for path in root.rglob("*.li"):
         if "lic/" in str(path) and root == ROOT:
             continue
@@ -250,12 +252,21 @@ def scan_std_imports_in_repo(root: Path) -> dict[str, list[str]]:
 
 
 def std_module_present(modules_on_disk: list[str], want: str) -> bool:
-    # want: std.io -> std/io or std.io path
-    needle = want.replace(".", "/")
-    for m in modules_on_disk:
-        if m == want or m.replace(".", "/") == needle:
+    """Resolve import surface name (e.g. io, csv) against lic std/*.li scan (std.dotted)."""
+    candidates: list[str] = []
+    if want.startswith("std."):
+        candidates.append(want)
+    else:
+        candidates.append("std." + want)
+        candidates.append(want)
+    for c in candidates:
+        needle = c.replace(".", "/")
+        for m in modules_on_disk:
+            if m == c or m.replace(".", "/") == needle:
+                return True
+        if any(m.startswith(c + ".") for m in modules_on_disk):
             return True
-    return any(m.startswith(want + ".") for m in modules_on_disk)
+    return False
 
 
 def missing_std_report(modules_on_disk: list[str]) -> list[dict]:
@@ -412,7 +423,7 @@ def build_digest_md(report: dict) -> str:
     lines = [
         f"# Ecosystem explorer digest\n",
         f"Generated: {report['generated_at']}\n",
-        "## Missing std modules (benchmarks expectations)\n",
+        "## Missing PH-IO modules (`import io`, `csv`, `summary`, `plot`)\n",
     ]
     for m in report.get("missing_std_modules", []):
         if m.get("status") == "missing":

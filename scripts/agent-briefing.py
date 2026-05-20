@@ -244,7 +244,7 @@ def recommend_agents(data: dict) -> list[dict]:
     if isinstance(explorer, dict):
         miss = [m for m in explorer.get("missing_std_modules", []) if m.get("status") == "missing"]
         if miss:
-            rec.append({"agent": "gap_explorer", "reason": f"{len(miss)} missing std modules"})
+            rec.append({"agent": "gap_explorer", "reason": f"{len(miss)} missing PH-IO modules"})
         partial_hpc = [
             h
             for h in explorer.get("hpc_libraries", [])
@@ -365,7 +365,7 @@ def recommend_agents(data: dict) -> list[dict]:
         rec.append(
             {
                 "agent": "code_implementer",
-                "reason": "implement missing std modules from explorer",
+                "reason": "implement missing PH-IO modules from explorer",
             }
         )
 

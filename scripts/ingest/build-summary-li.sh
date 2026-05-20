@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PH-IO-7 — Li summary.json build (requires lic with std/summary).
+# PH-IO-7 — Li summary.json build (requires lic `import summary`).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -22,7 +22,7 @@ BIN="build/ingest_summary_li_$$"
 trap 'rm -f "$ROOT/$BIN" "$ROOT/$BIN.exe"' EXIT
 
 if ! (cd "$ROOT" && "$LIC" build "$INGEST_DIR/build_summary.li" -o "$BIN" 2>/dev/null); then
-  echo "build-summary-li: skip (lic lacks std/summary — PH-IO-7)"
+  echo "build-summary-li: skip (lic lacks summary module — PH-IO-7)"
   exit 1
 fi
 ec=0

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Li surface (PH-IO samples):** benchmarks `.li` scripts use `def` (not `proc`), short imports (`import io`, `import csv`, `import summary`, `import plot`), and clearer effect types `raises IoError, AllocError`; `ecosystem-explorer.py` expects the same import surface while still matching `std/*` paths on a `lic` checkout.
+
 ### Fixed
 
 - **CI `dashboard-static`:** `ci.yml` gates the Vite `dashboard/dist` build (same as `pages.yml`) instead of `render-static.sh` until `lic` `main` ships `std/plot` (PH-IO-5). Restores green Benchmarks CI on open PRs.

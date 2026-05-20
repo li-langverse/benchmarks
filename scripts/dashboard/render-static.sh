@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PH-IO-5 — static dashboard via lic std/plot (no Node).
+# PH-IO-5 — static dashboard via lic `import plot` (no Node).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
@@ -18,7 +18,7 @@ if [[ -x "$LIC_ROOT/build/compiler/lic/lic" ]]; then
 elif LIC_BIN="$(command -v lic 2>/dev/null)"; then
   LIC="$LIC_BIN"
 else
-  echo "render-static: skip (no lic with std/plot)"
+  echo "render-static: skip (no lic with plot module)"
   exit 0
 fi
 
@@ -27,7 +27,7 @@ BIN="${TMPDIR:-/tmp}/li_render_dashboard_$$"
 trap 'rm -f "$BIN" "$BIN.exe"' EXIT
 
 if ! "$LIC" build "$DASH_DIR/render_dashboard.li" -o "$BIN" 2>/dev/null; then
-  echo "render-static: skip (lic lacks std/plot — PH-IO-5)"
+  echo "render-static: skip (lic lacks plot — PH-IO-5)"
   exit 0
 fi
 ec=0

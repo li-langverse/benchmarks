@@ -54,7 +54,7 @@ Slash command: `/explore-ecosystem`
 
 | Field | Meaning |
 |-------|---------|
-| `missing_std_modules` | `std.io`, `std.csv`, … expected by benchmarks ingest |
+| `missing_std_modules` | `io`, `csv`, `summary`, `plot` (import surface) vs lic `std/*` on disk — expected by benchmarks ingest |
 | `hpc_libraries` | Static rubric vs Li status (`missing` / `partial` / …) |
 | `catalog.suggested_catalog_gaps` | New bench categories (FFT, pure_li, …) |
 | `web_search_queries` | Ready-made queries for Cursor web search |
@@ -68,9 +68,9 @@ Slash command: `/explore-ecosystem`
 ```bash
 python3 scripts/file-ecosystem-gap-issue.py \
   --repo lic \
-  --title "std/csv: PH-IO-4 CSV ingest for benchmarks" \
-  --what-tried "ecosystem-explorer: std.csv missing on main" \
-  --expected "import std.csv in ingest smoke" \
+  --title "csv: PH-IO-4 CSV ingest for benchmarks" \
+  --what-tried "ecosystem-explorer: csv module missing on main" \
+  --expected "import csv in ingest smoke compiles" \
   --blocked "module not found at compile time"
 ```
 
