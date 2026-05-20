@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **nginx compare pipeline:** vendored `vendor/lis-tier5/` harness (sync via `scripts/sync-lis-tier5-vendor.sh`), `scripts/ingest/merge_lis_http_into_summary.py` (HTTP-only ingest without lic CSV), [http-nginx-compare.md](docs/ecosystem/http-nginx-compare.md).
 - **HTTP tier-5 plots:** `scripts/plot_http_benchmarks.py` renders `http_*_rps.png` and `http_tier5_overview.png` from `lis/results/latest.csv` or `summary.json` http category; `scripts/run-http-benchmark-report.sh` runs bench + plots without rewriting `summary.json` (avoids ingest races with other agents).
 - **`render-benchmark-visuals.sh`:** optional lis HTTP plots; lic shareables failure no longer aborts when lis CSV is present.
 

@@ -20,6 +20,14 @@ jobs:
           repository: li-langverse/lis
           path: lis
 
+      - name: Install nginx + wrk (tier-5 HTTP oracle)
+        run: sudo apt-get update && sudo apt-get install -y nginx wrk
+
+      - name: Run tier-5 HTTP bench (vendored harness)
+        run: |
+          python3 vendor/lis-tier5/benchmarks/tier5_http/harness/bench_http.py --profile ci
+          test -s vendor/lis-tier5/results/latest.csv
+
       - name: Install LLVM 18
         run: |
           sudo apt-get update
@@ -35,9 +43,16 @@ jobs:
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
+          LIS_VENDOR_ROOT: ${{ github.workspace }}/vendor/lis-tier5
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
           ./scripts/ingest/ingest-lic.sh
+          python3 -c "
+          import json
+          d=json.load(open('data/latest/summary.json'))
+          http=d.get('categories',{}).get('http',{}).get('charts',[])
+          assert any(c.get('series') for c in http), 'http charts need nginx rps series'
+          "
 
       - name: Summary compare gate (fixture)
         env:

@@ -8,7 +8,7 @@ on:
         required: false
         default: main
   repository_dispatch:
-    types: [lic-bench-complete]
+    types: [lic-bench-complete, lis-bench-complete]
 
 jobs:
   ingest-lic:
@@ -23,12 +23,20 @@ jobs:
           path: lic
           ref: ${{ github.event.client_payload.ref || inputs.lic_ref || 'main' }}
 
-      - name: Download bench artifact (if dispatch)
-        if: github.event_name == 'repository_dispatch'
+      - name: Download lic bench artifact (if dispatch)
+        if: github.event_name == 'repository_dispatch' && github.event.action == 'lic-bench-complete'
         uses: actions/download-artifact@v4
         with:
           name: benchmark-csv
-          path: artifacts
+          path: artifacts/lic
+        continue-on-error: true
+
+      - name: Download lis tier-5 CSV (if dispatch)
+        if: github.event_name == 'repository_dispatch' && github.event.action == 'lis-bench-complete'
+        uses: actions/download-artifact@v4
+        with:
+          name: lis-tier5-http-csv
+          path: artifacts/lis
         continue-on-error: true
 
       - name: Checkout lis
@@ -37,15 +45,25 @@ jobs:
           repository: li-langverse/lis
           path: lis
 
+      - name: Install nginx + wrk (tier-5)
+        run: sudo apt-get update && sudo apt-get install -y nginx wrk
+
       - name: Build summary
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
+          LIS_VENDOR_ROOT: ${{ github.workspace }}/vendor/lis-tier5
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
-          if [[ -f artifacts/latest.csv ]]; then
+          if [[ -f artifacts/lic/latest.csv ]]; then
             mkdir -p lic/benchmarks/results
-            cp artifacts/latest.csv lic/benchmarks/results/latest.csv
+            cp artifacts/lic/latest.csv lic/benchmarks/results/latest.csv
+          fi
+          if [[ -f artifacts/lis/latest.csv ]]; then
+            mkdir -p vendor/lis-tier5/results
+            cp artifacts/lis/latest.csv vendor/lis-tier5/results/latest.csv
+          else
+            python3 vendor/lis-tier5/benchmarks/tier5_http/harness/bench_http.py --profile ci
           fi
           ./scripts/ingest/ingest-lic.sh
         continue-on-error: true
