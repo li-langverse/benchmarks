@@ -95,6 +95,7 @@ path = "benchmarks/tier2_physics/md_lennard_jones"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "three_body"
@@ -105,6 +106,7 @@ path = "benchmarks/tier2_physics/three_body"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "nbody_gravity"
@@ -115,6 +117,7 @@ path = "benchmarks/tier2_physics/nbody_gravity"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "harmonic_oscillator_chain"
@@ -125,6 +128,7 @@ path = "benchmarks/tier2_physics/harmonic_oscillator_chain"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "wave_equation_1d"
@@ -135,6 +139,7 @@ path = "benchmarks/tier2_physics/wave_equation_1d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "heat_equation_2d"
@@ -145,6 +150,7 @@ path = "benchmarks/tier2_physics/heat_equation_2d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "double_pendulum"
@@ -155,6 +161,7 @@ path = "benchmarks/tier2_physics/double_pendulum"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+workload_class = "full"
 
 [[benchmark]]
 id = "advection_diffusion_2d"
@@ -166,6 +173,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "full"
 
 [[benchmark]]
 id = "wave_equation_2d"
@@ -177,6 +185,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "full"
 
 [[benchmark]]
 id = "sph_dam_break_2d"
@@ -188,6 +197,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "euler_fluid_2d"
@@ -199,6 +209,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "combustion_passive"
@@ -210,6 +221,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "wind_field_bc"
@@ -221,6 +233,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "rigid_body_stack"
@@ -232,6 +245,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "cloth_swing"
@@ -243,6 +257,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "orbit_two_body"
@@ -254,6 +269,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "fdtd_waveguide_2d"
@@ -265,6 +281,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "schrodinger_1d_barrier"
@@ -276,6 +293,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "ragdoll_chain"
@@ -287,6 +305,7 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
+workload_class = "v0_gaming"
 
 [[benchmark]]
 id = "tier0_stability"

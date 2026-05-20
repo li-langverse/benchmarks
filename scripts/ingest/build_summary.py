@@ -76,12 +76,28 @@ def lang_series(
             val = float(r["value"])
         except (TypeError, ValueError):
             continue
+        stdev_raw = r.get("value_stdev", "")
+        stdev = None
+        if stdev_raw not in (None, ""):
+            try:
+                stdev = float(stdev_raw)
+            except (TypeError, ValueError):
+                stdev = None
+        runs_raw = r.get("timing_runs", "")
+        timing_runs = None
+        if runs_raw not in (None, ""):
+            try:
+                timing_runs = int(runs_raw)
+            except (TypeError, ValueError):
+                timing_runs = None
         out.append(
             {
                 "lang": lang,
                 "value": val,
                 "unit": r.get("unit") or "",
                 "variant": r.get("variant") or "",
+                "value_stdev": stdev,
+                "timing_runs": timing_runs,
             }
         )
     return out
@@ -302,9 +318,11 @@ def main() -> int:
         chart = build_perf_chart(bench_id, cfg, raw)
         charts_by_cat[category].append(chart)
 
-        li_val = next((s["value"] for s in chart["series"] if s["lang"] == "li"), None)
+        li_series = next((s for s in chart["series"] if s["lang"] == "li"), None)
+        li_val = li_series["value"] if li_series else None
         ref = chart["reference_lang"]
-        ref_val = next((s["value"] for s in chart["series"] if s["lang"] == ref), None)
+        ref_series = next((s for s in chart["series"] if s["lang"] == ref), None)
+        ref_val = ref_series["value"] if ref_series else None
         ratio = chart.get("ratio_vs_reference")
         st = chart["status"]
         tier = str(cfg.get("tier", 0))
@@ -318,10 +336,16 @@ def main() -> int:
                 "category": category,
                 "metric": metric,
                 "li_value": li_val,
+                "li_value_stdev": li_series.get("value_stdev") if li_series else None,
+                "timing_runs": li_series.get("timing_runs") if li_series else None,
                 "cpp_value": ref_val if ref == "cpp" else None,
+                "cpp_value_stdev": ref_series.get("value_stdev")
+                if ref_series and ref == "cpp"
+                else None,
                 "ratio_vs_cpp": ratio,
                 "unit": chart.get("unit"),
                 "variant": cfg.get("variant"),
+                "workload_class": cfg.get("workload_class"),
                 "status": st,
                 "ph_ids": cfg.get("ph_ids", []),
                 "path": cfg.get("path", ""),

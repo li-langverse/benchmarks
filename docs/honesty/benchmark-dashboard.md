@@ -20,6 +20,14 @@ The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/lat
 | `pure_li` | Li-only codegen path — cite **PH-7e**; red here is compiler work |
 | `async_stub` | Tooling smoke — not HPC competitive |
 
+## Timing spread
+
+`latest.csv` may include **`value_stdev`** and **`timing_runs`** (harness: 3–6 repetitions, median reported). Sub-millisecond **v0_gaming** rows can flip green/yellow/red while stdev is large — read spread before tuning thresholds.
+
+## Workload class
+
+Catalog field **`workload_class`**: `full` (reference sim scale) vs `v0_gaming` (roadmap harness). See [workload-scale-and-algorithm-depth.md](../benchmark-reports/workload-scale-and-algorithm-depth.md).
+
 ## Proof vs performance
 
 - **G-*** rows in [provability-gaps.md](https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md) describe **proof wiring**, not bench color.
