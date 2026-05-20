@@ -110,6 +110,38 @@ def pick_port() -> int:
     return int(port)
 
 
+def nginx_proxy_prefix_conf(front_port: int, backend_port: int, prefix: Path) -> str:
+    px = str(prefix.resolve()).replace("\\", "/")
+    return f"""worker_processes 1;
+error_log {px}/error.log warn;
+pid {px}/nginx.pid;
+daemon on;
+events {{ worker_connections 4096; }}
+http {{
+  access_log off;
+  client_body_temp_path {px}/client_temp;
+  proxy_temp_path {px}/proxy_temp;
+  fastcgi_temp_path {px}/fastcgi_temp;
+  uwsgi_temp_path {px}/uwsgi_temp;
+  scgi_temp_path {px}/scgi_temp;
+  upstream loopback_backend {{
+    server 127.0.0.1:{backend_port};
+    keepalive 32;
+  }}
+  server {{
+    listen 127.0.0.1:{front_port};
+    server_name _;
+    location / {{
+      proxy_pass http://loopback_backend;
+      proxy_http_version 1.1;
+      proxy_set_header Host $host;
+      proxy_set_header Connection "";
+    }}
+  }}
+}}
+"""
+
+
 def nginx_prefix_conf(document_root: Path, port: int, prefix: Path) -> str:
     dr = str(document_root.resolve()).replace("\\", "/")
     px = str(prefix.resolve()).replace("\\", "/")
@@ -381,6 +413,137 @@ def bench_wrk_for_lang(
     return rows, "\n".join(log_bits)
 
 
+def proxy_scenario_enabled(cfg: dict[str, Any]) -> bool:
+    return bool((cfg.get("proxy") or {}).get("enabled"))
+
+
+def bench_proxy_loopback_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """Two-tier loopback: backend static server + front reverse proxy."""
+    rows: list[dict[str, str]] = []
+    log_bits: list[str] = []
+
+    fixtures = cfg.get("_fixtures", {})
+    rel_static = fixtures.get("static_root", "fixtures/static")
+    doc_root = tier5_root() / rel_static
+    if not (doc_root / "index.html").is_file():
+        rows.append(_harness_row(name, f"missing_fixture:{doc_root}"))
+        return rows, "missing static fixture"
+
+    if not shutil.which("wrk"):
+        rows.append(_harness_row(name, "no_wrk"))
+        return rows, "wrk not found"
+
+    load = cfg.get("load") or {}
+    threads = int(load.get("threads") or cfg.get("_load_defaults", {}).get("threads") or 2)
+    connections = int(load.get("connections") or 8)
+    duration = int(load.get("duration_sec") or 10)
+    if quick:
+        duration = min(duration, int(os.environ.get("BENCH_HTTP_QUICK_SEC", "3")))
+    url_path = str(load.get("url_path") or "/")
+    if not url_path.startswith("/"):
+        url_path = "/" + url_path
+
+    backend_port = pick_port()
+    front_port = pick_port()
+
+    def run_wrk_on_front(lang: str) -> None:
+        url = f"http://127.0.0.1:{front_port}{url_path}"
+        rps, blob = run_wrk(url, threads, connections, duration, None)
+        log_bits.append(f"--- {lang} proxy ---\n{blob[-1500:]}")
+        variant = "ci" if quick else "release"
+        _append_rps_row(
+            rows,
+            name,
+            lang,
+            rps,
+            variant=variant,
+            connections=connections,
+            flags="wrk proxy_loopback",
+            sha=git_sha_short(),
+            cpu=cpu_model(),
+        )
+
+    # --- nginx oracle: backend + proxy front ---
+    tmp_b = tempfile.TemporaryDirectory(prefix="lis-nginx-be-")
+    prefix_b = Path(tmp_b.name)
+    if launch_nginx(prefix_b, nginx_prefix_conf(doc_root, backend_port, prefix_b)):
+        wait_for_port(backend_port)
+        tmp_f = tempfile.TemporaryDirectory(prefix="lis-nginx-fe-")
+        prefix_f = Path(tmp_f.name)
+        if launch_nginx(prefix_f, nginx_proxy_prefix_conf(front_port, backend_port, prefix_f)):
+            if wait_for_port(front_port):
+                verify_cfg = cfg.get("verify") or {}
+                ok = True
+                for req in verify_cfg.get("requests") or []:
+                    path = req.get("path") or "/"
+                    expect = int(req.get("expect_status") or 200)
+                    if not verify_http_get(f"http://127.0.0.1:{front_port}{path}", expect):
+                        rows.append(_harness_row(name, f"verify_fail_nginx:{path}"))
+                        ok = False
+                        break
+                if ok:
+                    run_wrk_on_front("nginx")
+            else:
+                rows.append(_harness_row(name, "nginx_proxy_no_listen"))
+            stop_nginx(prefix_f)
+        tmp_f.cleanup()
+        stop_nginx(prefix_b)
+    else:
+        rows.append(_harness_row(name, "no_nginx_backend"))
+    tmp_b.cleanup()
+
+    li_bin = resolve_li_httpd_bin()
+    if li_bin:
+        backend_proc = subprocess.Popen(
+            [str(li_bin), str(backend_port), str(doc_root.resolve())],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        if wait_for_port(backend_port):
+            front_proc = subprocess.Popen(
+                [str(li_bin), str(front_port), str(doc_root.resolve()), str(backend_port)],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            if wait_for_port(front_port):
+                verify_cfg = cfg.get("verify") or {}
+                ok = True
+                for req in verify_cfg.get("requests") or []:
+                    path = req.get("path") or "/"
+                    expect = int(req.get("expect_status") or 200)
+                    if not verify_http_get(f"http://127.0.0.1:{front_port}{path}", expect):
+                        rows.append(_harness_row(name, f"verify_fail_li:{path}"))
+                        ok = False
+                        break
+                if ok:
+                    run_wrk_on_front("li")
+            else:
+                rows.append(_harness_row(name, "li_proxy_no_listen"))
+            if front_proc:
+                front_proc.terminate()
+                try:
+                    front_proc.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    front_proc.kill()
+        else:
+            rows.append(_harness_row(name, "li_backend_no_listen"))
+        if backend_proc:
+            backend_proc.terminate()
+            try:
+                backend_proc.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                backend_proc.kill()
+    else:
+        rows.append(_harness_row(name, "no_li_httpd_bin"))
+
+    return rows, "\n".join(log_bits)
+
+
 def bench_nginx_scenario(
     name: str,
     cfg: dict[str, Any],
@@ -388,6 +551,9 @@ def bench_nginx_scenario(
     quick: bool,
 ) -> tuple[list[dict[str, str]], str]:
     """Return CSV rows and human log tail (nginx oracle + optional li-httpd)."""
+    if proxy_scenario_enabled(cfg):
+        return bench_proxy_loopback_scenario(name, cfg, quick=quick)
+
     rows: list[dict[str, str]] = []
     log_bits: list[str] = []
 
