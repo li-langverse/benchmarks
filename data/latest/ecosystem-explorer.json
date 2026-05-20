@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T19:57Z",
+  "generated_at": "2026-05-20T20:12Z",
   "lic_root": "/workspace/lic",
   "lic_present": false,
   "std_modules_on_disk": [],
@@ -346,6 +346,12 @@
     },
     {
       "repo": "li-langverse/lic",
+      "number": 124,
+      "title": "[explorer-finding] OpenMP prescriptive vs descriptive divergent-branch rubric for competitive portable codegen (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/124"
+    },
+    {
+      "repo": "li-langverse/lic",
       "number": 108,
       "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
       "url": "https://github.com/li-langverse/lic/issues/108"
@@ -361,12 +367,6 @@
       "number": 30,
       "title": "[PH-H][master-plan-gap] Phase H \u2014 li-httpd M1 `.li` blocked-by plan: align 2e/2f exit vs httpd prerequisites",
       "url": "https://github.com/li-langverse/lic/issues/30"
-    },
-    {
-      "repo": "li-langverse/benchmarks",
-      "number": 51,
-      "title": "[explorer-finding] gearshifft multi-vendor FFT tiers for catalog FFT row (PH-5b, G-math)",
-      "url": "https://github.com/li-langverse/benchmarks/issues/51"
     }
   ],
   "agent_kit": {
