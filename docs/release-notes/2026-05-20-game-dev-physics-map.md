@@ -6,7 +6,7 @@
 ## Summary
 
 - New hub: [`docs/game-dev/README.md`](../game-dev/README.md) — where **lic** vs **benchmarks** responsibilities sit; catalog ↔ engine threads; World Studio pointer (implement in **lic**).
-- Linked from [handbook](../handbook/README.md) and [plan cross-links](../ecosystem/plan-cross-links.md).
+- Linked from [handbook](../handbook/README.md), [plan cross-links](../ecosystem/plan-cross-links.md), [README](../../README.md), [AGENTS](../../AGENTS.md), and li-language PR #6 pointer (suite intent; harness on **lic**).
 
 ## Cross-repo follow-ups
 
