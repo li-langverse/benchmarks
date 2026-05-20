@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 
-LANG_ORDER = ["li", "cpp", "rust", "julia", "nginx", "harness", "go", "python"]
+LANG_ORDER = ["li", "cpp", "rust", "julia", "numpy", "nginx", "harness", "go", "python"]
 CATEGORY_ORDER = ["micro", "physics", "http", "tooling", "security", "correctness"]
 CATEGORY_LABELS = {
     "micro": "Micro / SIMD & linear algebra",

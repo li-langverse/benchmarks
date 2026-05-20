@@ -34,4 +34,6 @@ See **`lic/benchmarks/tier2_physics/BENCH_WORKLOADS.md`** for per-bench grid/ste
 - **sph_dam_break_2d:** 512 particles, 10k steps.
 - **fdtd**, **combustion**, **cloth**, **rigid_body_stack:** larger N/steps.
 
-Regenerate: `python3 benchmarks/harness/bench.py --tier 12 --runs 5` in **lic**, then `build_summary.py` in **benchmarks**.
+Regenerate: `python3 benchmarks/harness/bench.py --tier 12 --runs 5` in **lic** (outputs **cpp, rust, julia, numpy, li**), then `build_summary.py` in **benchmarks**.
+
+**NumPy column:** idiomatic NumPy port per bench; not a second C binary. Compare Li vs **numpy** in `summary.json` `langs` arrays; primary gate remains Li vs **cpp**.

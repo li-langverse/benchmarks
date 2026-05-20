@@ -1,6 +1,6 @@
 # Benchmark dashboard honesty labels
 
-The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **wall-clock ratios vs C++**, not formal proof or correctness certificates.
+The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **wall-clock ratios vs C++**, not formal proof or correctness certificates. Tier 1–2 harness runs always include **`numpy`** (`harness/numpy_kernels.py`); matmul/dot/sum use BLAS-backed NumPy ops.
 
 ## Status colors
 
