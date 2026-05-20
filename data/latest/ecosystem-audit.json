@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-20T14:44Z",
+  "generated_at": "2026-05-20T15:05Z",
   "vision": {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li \u22641.2\u00d7 cpp (tier-1/2); beat HPC SOTA everywhere \u2014 PH-5b, PH-7e pure-Li codegen",
@@ -7,9 +7,9 @@
     "merge_order": "P0 package CI PRs \u2192 benchmarks#1 \u2192 lic dev\u2192main"
   },
   "metrics": {
-    "open_prs": 28,
-    "failed_prs": 4,
-    "ready_prs": 7,
+    "open_prs": 26,
+    "failed_prs": 2,
+    "ready_prs": 8,
     "repos_missing_ci_main": 1,
     "repos_without_live_pages": 10
   },
@@ -26,29 +26,9 @@
     },
     {
       "repo": "lic",
-      "number": 83,
-      "title": "feat(2e/2f/H): requires, refinements, Lean gate, M1 routing match",
-      "url": "https://github.com/li-langverse/lic/pull/83",
-      "base": "main",
-      "ci": "fail",
-      "draft": false,
-      "ready": false
-    },
-    {
-      "repo": "lic",
       "number": 81,
       "title": "merge: World Studio + world_engine + UE proxy baselines",
       "url": "https://github.com/li-langverse/lic/pull/81",
-      "base": "main",
-      "ci": "fail",
-      "draft": true,
-      "ready": false
-    },
-    {
-      "repo": "lic",
-      "number": 78,
-      "title": "feat(2e/2f): call-site requires \u2014 E0304, locals, import, build gate",
-      "url": "https://github.com/li-langverse/lic/pull/78",
       "base": "main",
       "ci": "fail",
       "draft": true,
@@ -91,6 +71,16 @@
       "number": 7,
       "title": "docs(li-demo): agent smoke marker for live run",
       "url": "https://github.com/li-langverse/li-demo/pull/7",
+      "base": "main",
+      "ci": "pass",
+      "draft": false,
+      "ready": true
+    },
+    {
+      "repo": "lic",
+      "number": 85,
+      "title": "fix(bench): honest horner_pure_li timings (volatile sink + DCE guard)",
+      "url": "https://github.com/li-langverse/lic/pull/85",
       "base": "main",
       "ci": "pass",
       "draft": false,
@@ -342,9 +332,7 @@
       "action": "Fix failing PR CI before new feature work",
       "prs": [
         "li-language#6",
-        "lic#83",
-        "lic#81",
-        "lic#78"
+        "lic#81"
       ]
     },
     {
@@ -377,7 +365,7 @@
     {
       "priority": "P2",
       "action": "Human review merge queue (do not self-merge)",
-      "count": 7
+      "count": 8
     }
   ]
 }

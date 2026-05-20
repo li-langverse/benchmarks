@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-20T14:48Z",
+  "generated_at": "2026-05-20T15:08Z",
   "org": "li-langverse",
   "summary": {
     "repos_scanned": 12,
-    "branches_needing_pr": 56,
+    "branches_needing_pr": 57,
     "prs_recommended_close": 11,
     "prs_safe_close_now": 0
   },
@@ -138,6 +138,14 @@
     },
     {
       "repo": "lic",
+      "branch": "cursor/call-requires-full-gate-57b4",
+      "base": "main",
+      "ahead_by": 2,
+      "reason": "branch `cursor/call-requires-full-gate-57b4` is 2 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/call-requires-full-gate-57b4"
+    },
+    {
+      "repo": "lic",
       "branch": "cursor/cloud-env-setup-c81e",
       "base": "main",
       "ahead_by": 1,
@@ -154,6 +162,14 @@
     },
     {
       "repo": "lic",
+      "branch": "cursor/proof-pipeline-2ef-57b4",
+      "base": "main",
+      "ahead_by": 1,
+      "reason": "branch `cursor/proof-pipeline-2ef-57b4` is 1 commit(s) ahead of `main` with no open PR",
+      "suggested_title": "chore(lic): sync branch cursor/proof-pipeline-2ef-57b4"
+    },
+    {
+      "repo": "lic",
       "branch": "cursor/strict-trivial-ensures-57b4",
       "base": "main",
       "ahead_by": 6,
@@ -167,14 +183,6 @@
       "ahead_by": 10,
       "reason": "branch `feat/agent-planning-automation` is 10 commit(s) ahead of `main` with no open PR",
       "suggested_title": "chore(lic): sync branch feat/agent-planning-automation"
-    },
-    {
-      "repo": "lic",
-      "branch": "feat/docs-hpc-ai-north-star",
-      "base": "main",
-      "ahead_by": 3,
-      "reason": "branch `feat/docs-hpc-ai-north-star` is 3 commit(s) ahead of `main` with no open PR",
-      "suggested_title": "chore(lic): sync branch feat/docs-hpc-ai-north-star"
     },
     {
       "repo": "lip",
@@ -470,6 +478,24 @@
     },
     {
       "repo": "lic",
+      "number": 89,
+      "url": "https://github.com/li-langverse/lic/pull/89",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
+    },
+    {
+      "repo": "lic",
+      "number": 87,
+      "url": "https://github.com/li-langverse/lic/pull/87",
+      "reason": "draft PR \u2014 confirm abandoned before close",
+      "action": "close",
+      "safe_now": false,
+      "source": "draft"
+    },
+    {
+      "repo": "lic",
       "number": 84,
       "url": "https://github.com/li-langverse/lic/pull/84",
       "reason": "draft PR \u2014 confirm abandoned before close",
@@ -481,24 +507,6 @@
       "repo": "lic",
       "number": 81,
       "url": "https://github.com/li-langverse/lic/pull/81",
-      "reason": "draft PR \u2014 confirm abandoned before close",
-      "action": "close",
-      "safe_now": false,
-      "source": "draft"
-    },
-    {
-      "repo": "lic",
-      "number": 78,
-      "url": "https://github.com/li-langverse/lic/pull/78",
-      "reason": "draft PR \u2014 confirm abandoned before close",
-      "action": "close",
-      "safe_now": false,
-      "source": "draft"
-    },
-    {
-      "repo": "lic",
-      "number": 77,
-      "url": "https://github.com/li-langverse/lic/pull/77",
       "reason": "draft PR \u2014 confirm abandoned before close",
       "action": "close",
       "safe_now": false,
