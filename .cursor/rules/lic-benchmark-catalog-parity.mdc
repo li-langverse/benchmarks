@@ -1,0 +1,29 @@
+---
+description: lic catalog rows in benchmarks repo must match real harness paths; ingest honesty
+globs:
+  - catalog.toml
+  - scripts/ingest/**/*
+  - docs/numerics/**/*
+  - docs/benchmark-reports/**/*
+alwaysApply: false
+---
+
+# lic benchmark catalog parity (benchmarks repo)
+
+## When editing `catalog.toml`
+
+1. **`repo = "lic"`** rows: path must be a **directory** under the **`lic`** checkout (`benchmarks/tier*` or `li-tests/benchmarks/*`). Run:
+
+   `LIC_ROOT=/path/to/lic python3 scripts/plan-completion-audit.py`
+
+   Target **`catalog_gaps`: 0** before merge.
+
+2. **New perf id** → implement harness in **lic** first, then add catalog row (never catalog-only).
+
+3. **Ingest:** after CSV exists, `LIC_ROOT=… ./scripts/ingest/ingest-lic.sh` — **unknown** rows are honest until CSV fills.
+
+## Cross-links
+
+- **lic:** [package-suite-coverage-audit](https://github.com/li-langverse/lic/blob/main/docs/benchmarks/package-suite-coverage-audit.md) (packages ↔ benches)
+- **lic rules:** `li-package-benchmark-suites.mdc`, `benchmarks.mdc`, `li-strict-by-default.mdc`
+- **Honesty:** `docs/honesty/benchmark-dashboard.md` · [SOTA matrix](docs/numerics/sota-comparison-matrix.md)

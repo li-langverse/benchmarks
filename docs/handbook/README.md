@@ -12,6 +12,7 @@ This repo is the **org performance dashboard** — catalog, ingest, static Pages
 | **Numerics research** | [`docs/numerics/`](../numerics/) · [**SOTA comparison matrix**](../numerics/sota-comparison-matrix.md) · [GEMM scaling / huge matrices](../numerics/matmul-scaling-and-huge-gemm.md) |
 | **Game dev & tier-2 physics map** | [`docs/game-dev/README.md`](../game-dev/README.md) |
 | **Benchmark run reports** | [`docs/benchmark-reports/`](benchmark-reports/) (snapshots) |
+| **Cursor rules (org)** | [`.cursor/rules/`](../../.cursor/rules/) — e.g. `lic-benchmark-catalog-parity.mdc` for `catalog.toml` ↔ **lic** paths |
 
 If Pages returns **404**, enable **Settings → Pages → GitHub Actions** and run `pages.yml` on `main` — see [SETUP_GITHUB.md](../../SETUP_GITHUB.md).
 
