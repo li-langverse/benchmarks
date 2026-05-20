@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Tier-5 weaponized exploits:** profile `weaponized` (chunked bomb, cache poison, pipeline stuffing, etc.); CI runs pr + weaponized; proxy perf notes in lic release notes.
 - **Tier-5 HTTP exploits:** Apache oracle, CL.TE/TE.CL smuggling drivers, `run-tier5-http-exploits.sh`, CI gate (`nginx,apache,li`); 12 PR + 2 nightly smuggling attacks — [2026-05-21-tier5-http-exploits.md](docs/release-notes/2026-05-21-tier5-http-exploits.md).
 
 ### Added
