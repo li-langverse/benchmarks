@@ -11,27 +11,24 @@
     {
       "at": "2026-05-21T07:50:28.995147+00:00",
       "path": "data/history/2026-05-21T075029Z.json"
-    }
-  ],
-  "latest_deltas": [
-    {
-      "benchmark": "keepalive_pipelining",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
     },
     {
-      "benchmark": "proxy_loopback",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "at": "2026-05-21T08:01:02.561276+00:00",
+      "path": "data/history/2026-05-21T080102Z.json"
     },
     {
-      "benchmark": "static_small",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "at": "2026-05-21T08:08:43.903087+00:00",
+      "path": "data/history/2026-05-21T080843Z.json"
+    },
+    {
+      "at": "2026-05-21T08:09:09.944944+00:00",
+      "path": "data/history/2026-05-21T080909Z.json"
+    },
+    {
+      "at": "2026-05-21T08:09:29.862378+00:00",
+      "path": "data/history/2026-05-21T080929Z.json"
     }
   ],
-  "updated_at": "2026-05-21T07:50:29.018334+00:00"
+  "latest_deltas": [],
+  "updated_at": "2026-05-21T08:09:29.903621+00:00"
 }

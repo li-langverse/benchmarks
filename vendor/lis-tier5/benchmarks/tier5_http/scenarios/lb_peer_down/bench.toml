@@ -1,0 +1,21 @@
+name = "lb_peer_down"
+
+[proxy]
+enabled = true
+backend_count = 3
+kill_backend_index = 1
+
+[server]
+listen = ":8080"
+
+[verify]
+requests = [
+  { method = "GET", path = "/", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/"
+duration_sec = 5
+connections = 8
+threads = 2

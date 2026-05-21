@@ -1,0 +1,21 @@
+name = "lb_least_conn"
+
+[proxy]
+enabled = true
+backend_count = 3
+lb_mode = "least_conn"
+
+[server]
+listen = ":8080"
+
+[verify]
+requests = [
+  { method = "GET", path = "/", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/"
+duration_sec = 8
+connections = 8
+threads = 2

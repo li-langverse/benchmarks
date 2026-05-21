@@ -2,7 +2,7 @@
 
 ## Summary
 
-Adds `run-full-benchmark-suite.sh` so agents run tier-0 through tier-5 HTTP, ingest, and `benchmark-failures-report.sh` after every perf/httpd/compiler/physics change; fixes tier-5 nginx temp paths, wrk pipelining on Debian, and HTTP ingest variant selection.
+Adds `run-full-benchmark-suite.sh` so agents run tier-0 through tier-5 HTTP (multi-oracle webservers + supplemental proxy variants), ingest, and `benchmark-failures-report.sh` after every perf/httpd/compiler/physics change.
 
 ## Agent continuation
 
@@ -17,7 +17,8 @@ Adds `run-full-benchmark-suite.sh` so agents run tier-0 through tier-5 HTTP, ing
 |------|------|----------|
 | Full suite | `scripts/run-full-benchmark-suite.sh` | tier0 warn-continue; resilient tier1/2 loop; merge `http_tier5.csv` |
 | Bench env | `scripts/setup-lic-for-bench.sh` | LLVM 18, clang, libomp, wrk, nginx |
-| Tier-5 HTTP | `scripts/tier5-http-bench.py` | `/tmp/nginx-bench` temp dirs; Lua pipeline; `proxy_loopback` variants |
+| Multi-oracle HTTP | `vendor/lis-tier5/`, `run-tier5-http-bench.sh` | nginx, apache, lighttpd, node, bun, li per scenario |
+| Supplemental proxy | `scripts/tier5-http-bench.py` | `li_epoll` + `c_epoll` vs nginx on `proxy_loopback` |
 | Ingest | `scripts/ingest/build_summary.py` | `variant` filter for `li` rows (`proxy_loopback` → `li_epoll`) |
 | Catalog | `catalog.toml` | `proxy_loopback` row (`compare_oracle=nginx`) |
 | Docs | `docs/ecosystem/full-benchmark-suite.md`, `tooling-catalog.md`, `AGENTS.md` | mandatory post-implementation run |

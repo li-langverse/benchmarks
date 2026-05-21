@@ -76,41 +76,81 @@ PY
 log "tier 3 — ecosystem (compile, security, async)"
 python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" || { echo "tier3 failed" >&2; exit 1; }
 
-log "tier 5 — HTTP (static_small, keepalive_pipelining, proxy_loopback)"
+log "tier 5 — HTTP multi-oracle (nginx, apache, lighttpd, node, bun, li)"
+export BENCH_HTTP_PROFILE="${BENCH_HTTP_PROFILE:-nightly}"
+export BENCH_HTTP_ORACLES="${BENCH_HTTP_ORACLES:-nginx,apache,lighttpd,node,bun,li}"
+if [[ -f "$ROOT/scripts/run-tier5-http-bench.sh" ]]; then
+  "$ROOT/scripts/run-tier5-http-bench.sh" || echo "WARN: multi-oracle tier5 failed" >&2
+else
+  echo "WARN: missing run-tier5-http-bench.sh (sync vendor/lis-tier5)" >&2
+fi
+
+log "tier 5 — supplemental proxy_loopback (li_epoll + li c_epoll vs nginx)"
 python3 "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "${HTTP_BENCH_RUNS:-5}" || {
-  echo "WARN: tier5 http failed" >&2
+  echo "WARN: tier5 supplemental http failed" >&2
 }
 
-# Merge HTTP rows into lic latest.csv for ingest
-python3 - <<'PY' "$LIC_ROOT"
+# Merge tier-5 CSV rows into lic latest.csv for ingest
+python3 - <<'PY' "$ROOT" "$LIC_ROOT"
 import csv
 import sys
 from pathlib import Path
 
-lic = Path(sys.argv[1])
+root = Path(sys.argv[1])
+lic = Path(sys.argv[2])
 latest = lic / "benchmarks/results/latest.csv"
-http = lic / "benchmarks/results/http_tier5.csv"
+tier5_vendor = root / "vendor/lis-tier5/results/latest.csv"
+tier5_extra = lic / "benchmarks/results/http_tier5.csv"
+
+import tomllib
+
+catalog = tomllib.loads((root / "catalog.toml").read_text(encoding="utf-8"))
+http_ids = {b["id"] for b in catalog.get("benchmark", []) if b.get("category") == "http"}
+
 header = None
 rows = []
 if latest.is_file():
     with latest.open(newline="") as f:
         r = csv.DictReader(f)
         header = r.fieldnames
-        rows = [row for row in r if row.get("benchmark") not in {
-            "static_small", "keepalive_pipelining", "proxy_loopback"
-        }]
-if http.is_file():
-    with http.open(newline="") as f:
+        rows = [row for row in r if row.get("benchmark") not in http_ids]
+
+def extend_csv(path: Path, *, supplemental: bool = False) -> None:
+    global header
+    if not path.is_file():
+        return
+    with path.open(newline="") as f:
         r = csv.DictReader(f)
         header = header or r.fieldnames
-        rows.extend(list(r))
+        for row in r:
+            bid = row.get("benchmark") or ""
+            lang = row.get("lang") or ""
+            variant = row.get("variant") or ""
+            metric = row.get("metric") or ""
+            key = (bid, lang, variant, metric)
+            if supplemental:
+                if bid != "proxy_loopback":
+                    continue
+                if key in seen_http:
+                    continue
+                if lang == "li" and variant not in ("c_epoll", "li_epoll"):
+                    continue
+                if lang == "nginx":
+                    continue
+            else:
+                seen_http.add(key)
+            rows.append(row)
+
+seen_http: set[tuple[str, str, str, str]] = set()
+extend_csv(tier5_vendor)
+extend_csv(tier5_extra, supplemental=True)
 if not header:
     sys.exit(0)
 with latest.open("w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=header)
     w.writeheader()
     w.writerows(rows)
-print(f"merged http into {latest}")
+print(f"merged tier5 ({tier5_vendor.name if tier5_vendor.is_file() else '—'} + extra) into {latest}")
 PY
 
 cd "$ROOT"

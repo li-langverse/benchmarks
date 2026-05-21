@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21T08:09:36.788326+00:00",
+  "generated_at": "2026-05-21T08:08:43.903087+00:00",
   "sources": {
     "lic_csv": "/workspace/lic/benchmarks/results/latest.csv",
     "lis_csv": "/workspace/../lis/results/latest.csv",
@@ -722,6 +722,12 @@
               "variant": "release"
             },
             {
+              "lang": "li",
+              "value": 158522.44,
+              "unit": "req/s",
+              "variant": "ci"
+            },
+            {
               "lang": "nginx",
               "value": 77406.14,
               "unit": "req/s",
@@ -762,21 +768,9 @@
           "series": [
             {
               "lang": "li",
-              "value": 98364.47,
-              "unit": "req/s",
-              "variant": "release"
-            },
-            {
-              "lang": "li",
               "value": 169408.46,
               "unit": "req/s",
               "variant": "li_epoll"
-            },
-            {
-              "lang": "li",
-              "value": 168398.07,
-              "unit": "req/s",
-              "variant": "c_epoll"
             },
             {
               "lang": "nginx",
@@ -804,6 +798,12 @@
               "value": 141071.53,
               "unit": "req/s",
               "variant": "release"
+            },
+            {
+              "lang": "li",
+              "value": 109082.92,
+              "unit": "req/s",
+              "variant": "ci"
             },
             {
               "lang": "nginx",
@@ -1777,6 +1777,12 @@
           "variant": "release"
         },
         {
+          "lang": "li",
+          "value": 158522.44,
+          "unit": "req/s",
+          "variant": "ci"
+        },
+        {
           "lang": "nginx",
           "value": 77406.14,
           "unit": "req/s",
@@ -1808,7 +1814,7 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 98364.47,
+      "li_value": 169408.46,
       "cpp_value": null,
       "ratio_vs_cpp": 0.2995,
       "unit": "req/s",
@@ -1823,21 +1829,9 @@
       "langs": [
         {
           "lang": "li",
-          "value": 98364.47,
-          "unit": "req/s",
-          "variant": "release"
-        },
-        {
-          "lang": "li",
           "value": 169408.46,
           "unit": "req/s",
           "variant": "li_epoll"
-        },
-        {
-          "lang": "li",
-          "value": 168398.07,
-          "unit": "req/s",
-          "variant": "c_epoll"
         },
         {
           "lang": "nginx",
@@ -1871,6 +1865,12 @@
           "value": 141071.53,
           "unit": "req/s",
           "variant": "release"
+        },
+        {
+          "lang": "li",
+          "value": 109082.92,
+          "unit": "req/s",
+          "variant": "ci"
         },
         {
           "lang": "nginx",

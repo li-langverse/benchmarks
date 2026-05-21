@@ -31,10 +31,22 @@ const LANG_COLORS: Record<string, string> = {
   rust: "var(--lang-rust)",
   julia: "var(--lang-julia)",
   nginx: "var(--lang-nginx)",
+  apache: "var(--lang-apache)",
+  lighttpd: "var(--lang-lighttpd)",
+  node: "var(--lang-node)",
+  bun: "var(--lang-bun)",
   harness: "var(--lang-harness)",
   go: "var(--lang-go)",
   python: "var(--lang-python)",
 };
+
+function barLangLabel(p: LangPoint): string {
+  if (p.variant && p.lang === "li") return `${p.lang}/${p.variant}`;
+  if (p.variant && p.variant !== "ci" && p.variant !== "release") {
+    return `${p.lang}/${p.variant}`;
+  }
+  return p.lang;
+}
 
 function esc(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -90,7 +102,7 @@ export function renderBarChart(chart: ChartSpec): string {
               <div class="bar-track">
                 <div class="bar-fill${isRef ? " ref" : ""}" style="height:${h}%;background:${color}"></div>
               </div>
-              <div class="bar-label">${esc(p.lang)}</div>
+              <div class="bar-label">${esc(barLangLabel(p))}</div>
             </div>`;
         })
         .join("");

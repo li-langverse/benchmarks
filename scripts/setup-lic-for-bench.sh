@@ -10,14 +10,18 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 need_apt=0
-for pkg in ninja-build cmake llvm-18-dev libzstd-dev clang-18 g++-13 wrk nginx; do
+for pkg in ninja-build cmake llvm-18-dev libzstd-dev clang-18 g++-13 wrk nginx \
+  apache2 lighttpd nodejs; do
   dpkg -s "$pkg" >/dev/null 2>&1 || need_apt=1
 done
 if [[ "$need_apt" == "1" ]]; then
   sudo apt-get update -qq
   sudo apt-get install -y -qq build-essential g++-13 gcc-13 clang-18 \
-    ninja-build cmake llvm-18-dev libzstd-dev libstdc++-13-dev libomp-18-dev wrk nginx
+    ninja-build cmake llvm-18-dev libzstd-dev libstdc++-13-dev libomp-18-dev \
+    wrk nginx apache2 lighttpd nodejs
 fi
+# Bun is optional (not in Debian main); tier-5 skips when `bun` is missing.
+command -v bun >/dev/null 2>&1 || echo "note: install bun for tier-5 bun oracle (optional)" >&2
 
 export LLVM_DIR="${LLVM_DIR:-/usr/lib/llvm-18/lib/cmake/llvm}"
 export CXX=g++-13 CC=gcc-13 LI_REPO_ROOT="$LIC_ROOT"

@@ -111,7 +111,18 @@ function categoryNav(categories: Summary["categories"]): string {
 }
 
 function legend(): string {
-  const langs = ["li", "cpp", "rust", "julia", "nginx", "harness"];
+  const langs = [
+    "li",
+    "cpp",
+    "rust",
+    "julia",
+    "nginx",
+    "apache",
+    "lighttpd",
+    "node",
+    "bun",
+    "harness",
+  ];
   return `
     <div class="lang-legend">
       ${langs

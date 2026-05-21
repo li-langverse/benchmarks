@@ -12,6 +12,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 LANG_ORDER = ["li", "cpp", "rust", "julia", "nginx", "harness", "go", "python"]
+HTTP_LANG_ORDER = [
+    "li",
+    "nginx",
+    "apache",
+    "lighttpd",
+    "caddy",
+    "node",
+    "bun",
+    "harness",
+]
 CATEGORY_ORDER = ["micro", "physics", "http", "tooling", "security", "correctness"]
 CATEGORY_LABELS = {
     "micro": "Micro / SIMD & linear algebra",
@@ -88,6 +98,50 @@ def lang_series(
                 "variant": r.get("variant") or "",
             }
         )
+    return out
+
+
+def http_lang_series(
+    rows: list[dict], bench_id: str, metric: str, *, variant: str | None = None
+) -> list[dict]:
+    """All webserver oracles for tier-5 charts (multiple li variants when present)."""
+    bench_rows = [
+        r
+        for r in rows
+        if r.get("benchmark") == bench_id and r.get("metric") == metric
+    ]
+    out: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+
+    def append_row(r: dict) -> None:
+        lang = r.get("lang") or ""
+        var = r.get("variant") or ""
+        key = (lang, var)
+        if key in seen:
+            return
+        try:
+            val = float(r["value"])
+        except (TypeError, ValueError):
+            return
+        seen.add(key)
+        out.append(
+            {
+                "lang": lang,
+                "value": val,
+                "unit": r.get("unit") or "",
+                "variant": var,
+            }
+        )
+
+    for lang in HTTP_LANG_ORDER:
+        matches = [r for r in bench_rows if r.get("lang") == lang]
+        if not matches:
+            continue
+        if lang == "li":
+            for r in matches:
+                append_row(r)
+        else:
+            append_row(matches[0])
     return out
 
 
@@ -171,16 +225,24 @@ def build_perf_chart(
 ) -> dict:
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
-    series = lang_series(rows, bench_id, metric, variant=variant)
+    is_http = cfg.get("category") == "http"
+    series_fn = http_lang_series if is_http else lang_series
+    series = series_fn(rows, bench_id, metric, variant=variant)
     if not series:
         bench_rows = [r for r in rows if r.get("benchmark") == bench_id]
         metrics = {r.get("metric") for r in bench_rows if r.get("metric")}
         for alt in sorted(metrics):
-            series = lang_series(rows, bench_id, alt, variant=variant)
+            series = series_fn(rows, bench_id, alt, variant=variant)
             if series:
                 metric = alt
                 break
-    li_val = next((s["value"] for s in series if s["lang"] == "li"), None)
+    if variant:
+        li_val = next(
+            (s["value"] for s in series if s["lang"] == "li" and s.get("variant") == variant),
+            next((s["value"] for s in series if s["lang"] == "li"), None),
+        )
+    else:
+        li_val = next((s["value"] for s in series if s["lang"] == "li"), None)
     cpp_val = next((s["value"] for s in series if s["lang"] == "cpp"), None)
     oracle = cfg.get("compare_oracle", "cpp")
     ref_val = next((s["value"] for s in series if s["lang"] == oracle), cpp_val)

@@ -24,9 +24,14 @@ LIC_ROOT=/workspace/lic ./scripts/run-full-benchmark-suite.sh
 
 ## HTTP scenarios (tier 5)
 
-- `static_small` — 1 KiB file, li-httpd epoll vs nginx
-- `keepalive_pipelining` — wrk Lua pipeline depth 8 (Debian wrk lacks `--pipeline`)
-- `proxy_loopback` — Li epoll (default), `LI_HTTPD_PROXY_C=1`, nginx oracle
+**Multi-oracle** (`run-tier5-http-bench.sh` → `vendor/lis-tier5/` harness): compares **nginx**, **apache**, **lighttpd**, **node**, **bun**, and **li-httpd** on each scenario (skips oracles not installed).
+
+- `static_small` — 1 KiB static file
+- `keepalive_pipelining` — wrk pipelined keep-alive
+- `proxy_loopback` — reverse proxy loopback (nginx + li; supplemental script adds `li/c_epoll`)
+- Plus load-balancer scenarios in the vendor suite (`lb_*`, `static_large`) when present in CSV
+
+Env: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li` · `BENCH_HTTP_PROFILE=nightly` (wrk timing; `ci` is TOML-only)
 
 ## Faster iteration
 

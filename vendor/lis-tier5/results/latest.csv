@@ -1,0 +1,24 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags
+static_small,nginx,release,4,rps,83928.5500,req/s,f3461bf,x86_64,wrk
+static_small,apache,release,4,rps,46648.9600,req/s,f3461bf,x86_64,wrk
+static_small,lighttpd,release,4,rps,148220.4200,req/s,f3461bf,x86_64,wrk
+static_small,node,release,4,rps,28563.4200,req/s,f3461bf,x86_64,wrk v22.22.2
+static_small,li,release,4,rps,141071.5300,req/s,f3461bf,x86_64,wrk
+keepalive_pipelining,nginx,release,16,rps,77406.1400,req/s,f3461bf,x86_64,wrk pipeline=8
+keepalive_pipelining,apache,release,16,rps,54105.0400,req/s,f3461bf,x86_64,wrk pipeline=8
+keepalive_pipelining,lighttpd,release,16,rps,202774.7700,req/s,f3461bf,x86_64,wrk pipeline=8
+keepalive_pipelining,node,release,16,rps,22100.3000,req/s,f3461bf,x86_64,wrk pipeline=8 v22.22.2
+keepalive_pipelining,li,release,16,rps,203477.0900,req/s,f3461bf,x86_64,wrk pipeline=8
+static_large,nginx,release,8,rps,7334.5200,req/s,f3461bf,x86_64,wrk
+static_large,apache,release,8,rps,6385.6300,req/s,f3461bf,x86_64,wrk
+static_large,lighttpd,release,8,rps,8009.3800,req/s,f3461bf,x86_64,wrk
+static_large,node,release,8,rps,2793.1500,req/s,f3461bf,x86_64,wrk v22.22.2
+static_large,li,release,8,rps,8919.7400,req/s,f3461bf,x86_64,wrk
+proxy_loopback,nginx,release,8,rps,50739.3300,req/s,f3461bf,x86_64,wrk proxy_loopback
+proxy_loopback,li,release,8,rps,98364.4700,req/s,f3461bf,x86_64,wrk proxy_loopback
+lb_round_robin,nginx,release,8,rps,71129.5600,req/s,f3461bf,x86_64,wrk proxy_lb
+lb_round_robin,li,release,8,rps,158913.0200,req/s,f3461bf,x86_64,wrk proxy_lb
+lb_least_conn,nginx,release,8,rps,71259.2500,req/s,f3461bf,x86_64,wrk proxy_least_conn
+lb_least_conn,li,release,8,rps,153269.8000,req/s,f3461bf,x86_64,wrk proxy_least_conn
+lb_peer_down,nginx,release,8,rps,71292.2000,req/s,f3461bf,x86_64,wrk proxy_lb
+lb_peer_down,li,release,8,rps,159297.5200,req/s,f3461bf,x86_64,wrk proxy_lb
