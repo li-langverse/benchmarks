@@ -55,115 +55,105 @@
     {
       "at": "2026-05-21T12:05:31.637172+00:00",
       "path": "data/history/2026-05-21T120531Z.json"
+    },
+    {
+      "at": "2026-05-21T12:19:31.845499+00:00",
+      "path": "data/history/2026-05-21T121931Z.json"
     }
   ],
   "latest_deltas": [
     {
       "benchmark": "horner_pure_li",
       "field": "ratio_vs_cpp",
-      "from": 0.8182,
-      "to": 0.3636,
-      "delta": -0.4546,
-      "improved": true
-    },
-    {
-      "benchmark": "matmul_blocked",
-      "field": "status",
-      "from": "green",
-      "to": "red"
-    },
-    {
-      "benchmark": "matmul_blocked",
-      "field": "ratio_vs_cpp",
-      "from": 1.0192,
-      "to": 1.5248,
-      "delta": 0.5056,
+      "from": 0.3636,
+      "to": 0.4444,
+      "delta": 0.0808,
       "improved": false
     },
     {
       "benchmark": "matmul_naive",
-      "field": "status",
-      "from": "green",
-      "to": "red"
-    },
-    {
-      "benchmark": "matmul_naive",
       "field": "ratio_vs_cpp",
-      "from": 0.6857,
-      "to": 1.36,
-      "delta": 0.6743,
+      "from": 1.36,
+      "to": 1.4,
+      "delta": 0.04,
       "improved": false
     },
     {
       "benchmark": "reduce_sum",
       "field": "ratio_vs_cpp",
-      "from": 1.0444,
-      "to": 0.9893,
-      "delta": -0.0551,
+      "from": 0.9893,
+      "to": 0.9776,
+      "delta": -0.0117,
       "improved": true
     },
     {
       "benchmark": "advection_diffusion_2d",
       "field": "ratio_vs_cpp",
-      "from": 1.0119,
-      "to": 0.9919,
-      "delta": -0.02,
-      "improved": true
+      "from": 0.9919,
+      "to": 1.1109,
+      "delta": 0.119,
+      "improved": false
+    },
+    {
+      "benchmark": "harmonic_oscillator_chain",
+      "field": "status",
+      "from": "green",
+      "to": "yellow"
     },
     {
       "benchmark": "harmonic_oscillator_chain",
       "field": "ratio_vs_cpp",
-      "from": 0.8893,
-      "to": 0.744,
-      "delta": -0.1453,
-      "improved": true
+      "from": 0.744,
+      "to": 1.2151,
+      "delta": 0.4711,
+      "improved": false
     },
     {
       "benchmark": "heat_equation_2d",
       "field": "ratio_vs_cpp",
-      "from": 0.8381,
-      "to": 1.0756,
-      "delta": 0.2375,
-      "improved": false
+      "from": 1.0756,
+      "to": 0.9592,
+      "delta": -0.1164,
+      "improved": true
     },
     {
       "benchmark": "wave_equation_2d",
       "field": "ratio_vs_cpp",
-      "from": 1.0079,
-      "to": 1.0191,
-      "delta": 0.0112,
-      "improved": false
+      "from": 1.0191,
+      "to": 0.9993,
+      "delta": -0.0198,
+      "improved": true
     },
     {
       "benchmark": "keepalive_pipelining",
       "field": "ratio_vs_cpp",
-      "from": 0.4284,
-      "to": 0.4028,
-      "delta": -0.0256,
+      "from": 0.4028,
+      "to": 0.3897,
+      "delta": -0.0131,
       "improved": true
     },
     {
       "benchmark": "static_large",
       "field": "status",
-      "from": "green",
-      "to": "red"
+      "from": "red",
+      "to": "green"
     },
     {
       "benchmark": "static_large",
       "field": "ratio_vs_cpp",
-      "from": 0.9829,
-      "to": 1.1337,
-      "delta": 0.1508,
-      "improved": false
+      "from": 1.1337,
+      "to": 0.9476,
+      "delta": -0.1861,
+      "improved": true
     },
     {
       "benchmark": "static_small",
       "field": "ratio_vs_cpp",
-      "from": 0.599,
-      "to": 0.6223,
-      "delta": 0.0233,
-      "improved": false
+      "from": 0.6223,
+      "to": 0.5193,
+      "delta": -0.103,
+      "improved": true
     }
   ],
-  "updated_at": "2026-05-21T12:05:31.666233+00:00"
+  "updated_at": "2026-05-21T12:19:31.889626+00:00"
 }
