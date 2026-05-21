@@ -434,6 +434,10 @@ def rate_limit_scenario_enabled(cfg: dict[str, Any]) -> bool:
     return bool((cfg.get("rate_limit") or {}).get("enabled"))
 
 
+def tls_scenario_enabled(cfg: dict[str, Any]) -> bool:
+    return bool((cfg.get("tls") or {}).get("enabled"))
+
+
 def write_li_runtime_conf(
     path: Path,
     *,
@@ -469,6 +473,35 @@ def verify_rate_limit_429(port: int, *, burst_requests: int = 30) -> bool:
         except (urllib.error.URLError, OSError, ValueError):
             pass
     return False
+
+
+def bench_tls_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """HTTPS tier5 — skipped until li-tls terminates in li-httpd (M1.5)."""
+    _ = quick
+    if os.environ.get("LI_HTTPD_TLS", "").strip() in ("1", "true", "yes"):
+        rows: list[dict[str, str]] = []
+        rows.append(_harness_row(name, "tls_not_wired"))
+        return rows, "LI_HTTPD_TLS set but li-tls not linked"
+    rows = [
+        {
+            "benchmark": name,
+            "lang": "li",
+            "variant": "ci",
+            "threads": "1",
+            "metric": "verify_skip",
+            "value": "1",
+            "unit": "bool",
+            "git_sha": git_sha_short(),
+            "cpu_model": cpu_model(),
+            "flags": "tls_m15_pending",
+        }
+    ]
+    return rows, "https_static deferred to M1.5 (li-tls scaffold)"
 
 
 def bench_rate_limit_scenario(
@@ -732,6 +765,8 @@ def bench_nginx_scenario(
     """Return CSV rows and human log tail (multi-oracle bench + optional li-httpd)."""
     if rate_limit_scenario_enabled(cfg):
         return bench_rate_limit_scenario(name, cfg, quick=quick)
+    if tls_scenario_enabled(cfg):
+        return bench_tls_scenario(name, cfg, quick=quick)
     if proxy_scenario_enabled(cfg):
         return bench_proxy_loopback_scenario(name, cfg, quick=quick)
 

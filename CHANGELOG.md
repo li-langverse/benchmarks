@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **HTTP https_static:** tier5 nightly stub (`verify_skip` until `li-tls` ships) + `catalog.toml` row — [2026-05-22-httpd-https-static-tier5.md](docs/release-notes/2026-05-22-httpd-https-static-tier5.md).
 - **HTTP rate_limit_429:** tier5 verify scenario + `catalog.toml` row; harness `bench_rate_limit_scenario` in `vendor/lis-tier5` — [2026-05-22-httpd-rate-limit-tier5.md](docs/release-notes/2026-05-22-httpd-rate-limit-tier5.md).
 - **Master-plan progress:** `scripts/httpd-masterplan-step.sh` → `data/latest/httpd-masterplan-progress.md`.
 - **Full benchmark matrix:** `benchmark-matrix-report.py` → `data/latest/benchmark-matrix.md` + `.json` (perf catalog + HTTP RPS grid + exploit matrix); always run at end of full suite.

@@ -7,5 +7,5 @@ include = ["static_small", "keepalive_pipelining", "static_large", "proxy_loopba
 timing = false
 
 [profiles.nightly]
-include = ["static_small", "keepalive_pipelining", "static_large", "proxy_loopback", "lb_round_robin", "lb_least_conn", "lb_peer_down", "rate_limit_429"]
+include = ["static_small", "keepalive_pipelining", "static_large", "proxy_loopback", "lb_round_robin", "lb_least_conn", "lb_peer_down", "rate_limit_429", "https_static"]
 timing = true

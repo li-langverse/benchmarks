@@ -32,6 +32,7 @@ Env: `SKIP_BUILD=1`, `SKIP_TIER0=1`, `SKIP_EXPLOITS=1` only for fast iteration â
 | LB least-conn | `lb_least_conn` | pr | `lb_least_conn` |
 | LB peer down | `lb_peer_down` | pr | `lb_peer_down` |
 | Rate limit 429 | `rate_limit_429` (verify_pass, li only) | `connection_flood`, `bad_method` | ci + nightly |
+| HTTPS static | `https_static` (verify_skip until li-tls) | TLS exploits (M1.5) | nightly only |
 | TLS / HTTPS | `https_static_small` (M1.5) | TLS renegotiation / cert probes | TBD |
 | SSE streaming | `sse_long_stream` (M1.5) | `leak_openai_key_in_sse` | nightly |
 | HTTP/2 | `h2_multiplex` (M2) | smuggling variants | nightly |
