@@ -1,0 +1,63 @@
+---
+description: Mandatory full HTTP RPS comparison table (li + nginx/apache/lighttpd/node/bun) after every li-httpd step
+globs:
+  - "**/li_rt_net.c"
+  - "**/li_rt_httpd.c"
+  - "**/packages/li-net-httpd/**"
+  - "**/packages/li-httpd/**"
+  - "**/tier5_http/**"
+  - "**/catalog.toml"
+  - "**/benchmark-matrix-report.py"
+  - "**/http-server-rps-matrix.md"
+  - "**/http-server-benchmark-growth.md"
+alwaysApply: false
+---
+
+# HTTP webserver benchmark matrix (mandatory)
+
+After **every** li-httpd implementation step (runtime, packages, tier-5 scenario, or catalog row):
+
+## 1. Run tier-5 throughput (all scenarios)
+
+```bash
+cd benchmarks
+export LIC_ROOT=/path/to/lic   # epoll checkout for real RPS; main stub = static only
+export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
+export BENCH_HTTP_PROFILE=nightly
+export BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li
+./scripts/run-tier5-http-bench.sh
+./scripts/benchmark-matrix-report.py
+```
+
+Optional supplemental proxy row: `python3 scripts/tier5-http-bench.py --lic-root "$LIC_ROOT"`.
+
+Full org sweep: `LIC_ROOT=… ./scripts/run-full-benchmark-suite.sh` (never `SKIP_EXPLOITS=1` on merge-worthy httpd PRs).
+
+## 2. Fill the comparison table
+
+Read and update (auto-generated, commit when changed):
+
+- `docs/ecosystem/http-server-rps-matrix.md`
+- `data/latest/benchmark-matrix.md` (HTTP sections)
+
+**Every scenario** from `vendor/lis-tier5/benchmarks/tier5_http/suite.toml` must appear:
+
+| RPS | `static_small`, `keepalive_pipelining`, `static_large`, `proxy_loopback`, `lb_round_robin`, `lb_least_conn`, `lb_peer_down` |
+| Verify | `rate_limit_429`, `https_static` |
+
+**Columns (RPS rows):** `li`, `nginx`, `apache`, `lighttpd`, `node`, `bun`, `li/nginx`.
+
+- **`li` must be present on every row** — use measured RPS, `FAIL` (harness `wrk_parse_fail_li`), or `—` with **Li notes** in the matrix when blocked.
+- Do not drop proxy/LB rows because only nginx has data today.
+
+## 3. PR / release notes
+
+- Paste the **HTTP performance (RPS)** table into the PR body.
+- `CHANGELOG.md` + `docs/release-notes/YYYY-MM-DD-*.md` with before/after RPS for touched scenarios.
+- New capability → add scenario per [http-server-benchmark-growth.md](../../docs/ecosystem/http-server-benchmark-growth.md).
+
+## 4. Do not
+
+- Tune gates on `lic` `main` stub alone without epoll `LIC_ROOT` (see [lic-httpd-bench-compat.md](../../docs/ecosystem/lic-httpd-bench-compat.md)).
+- Copy `li_rt_net.c` into **benchmarks**.
+- Merge httpd perf without re-running the matrix on the same `LIC_ROOT` commit you ship.

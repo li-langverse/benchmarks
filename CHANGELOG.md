@@ -8,6 +8,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **lic (coordination):** proxy/LB bench fix on `cursor/httpd-proxy-bench-fix-54aa` — see lic `docs/release-notes/2026-05-22-httpd-proxy-bench-fix.md`.
+
+- **HTTP RPS matrix:** `docs/ecosystem/http-server-rps-matrix.md` + `benchmark-matrix-report.py` full scenario grid (`li` on every row); rule `.cursor/rules/li-httpd-bench-matrix.mdc` — [2026-05-22-http-server-rps-matrix.md](docs/release-notes/2026-05-22-http-server-rps-matrix.md).
 - **HTTP https_static:** tier5 nightly stub (`verify_skip` until `li-tls` ships) + `catalog.toml` row — [2026-05-22-httpd-https-static-tier5.md](docs/release-notes/2026-05-22-httpd-https-static-tier5.md).
 - **HTTP rate_limit_429:** tier5 verify scenario + `catalog.toml` row; harness `bench_rate_limit_scenario` in `vendor/lis-tier5` — [2026-05-22-httpd-rate-limit-tier5.md](docs/release-notes/2026-05-22-httpd-rate-limit-tier5.md).
 - **Master-plan progress:** `scripts/httpd-masterplan-step.sh` → `data/latest/httpd-masterplan-progress.md`.
@@ -19,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- **Tier-5 proxy oracles:** Apache `BalancerMember` syntax (drop `status+H`; `ProxySet lbmethod=byrequests`); lighttpd proxy `document-root` + per-backend host tuples — [2026-05-22-httpd-proxy-oracles.md](docs/release-notes/2026-05-22-httpd-proxy-oracles.md).
 - **Tier-5 HTTP benches:** nginx `client_body_temp_path` under `/tmp/nginx-bench`; wrk pipelining via Lua (Debian wrk lacks `--pipeline`).
 - **Ingest:** `build_summary.py` honors catalog `variant` when multiple `li` rows exist (e.g. `proxy_loopback` / `li_epoll`).
 - **Ingest workflows:** `ingest.yml` no longer passes a CSV path as the second argument to `build_summary.py` (that was interpreted as `lis` root and dropped HTTP merge). Workflows now check out **lis**, merge dispatch artifacts into `lic/benchmarks/results/latest.csv`, and run `./scripts/ingest/ingest-lic.sh` with `LIC_ROOT` / `LIS_ROOT`. **Benchmarks CI** and **ecosystem-audit** check out **lis** and set `LIS_ROOT` for the same reason.
