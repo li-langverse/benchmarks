@@ -8,7 +8,23 @@ Run from the **benchmarks** repo when `lic` (and optionally `lis`) are checked o
 cd benchmarks
 LIC_ROOT=/workspace/lic ./scripts/run-full-benchmark-suite.sh
 ./scripts/benchmark-failures-report.sh
+cat data/latest/benchmark-matrix.md
 ```
+
+## Full matrix (always)
+
+`benchmark-matrix-report.py` writes:
+
+- `data/latest/benchmark-matrix.json` — machine-readable sections + `http_performance` + `http_exploits` grids
+- `data/latest/benchmark-matrix.md` — human tables (all catalog rows, HTTP RPS by oracle, exploit pass/fail)
+
+Included automatically at the end of `run-full-benchmark-suite.sh`.
+
+## HTTP exploits (tier 5)
+
+`run-tier5-http-exploits.sh` — `vendor/lis-tier5` harness, profile `pr` by default (`TIER5_EXPLOIT_PROFILE`, `TIER5_EXPLOIT_LANGS`).
+
+Skip only for fast iteration: `SKIP_EXPLOITS=1`. Growth policy: [http-server-benchmark-growth.md](./http-server-benchmark-growth.md).
 
 ## What runs
 

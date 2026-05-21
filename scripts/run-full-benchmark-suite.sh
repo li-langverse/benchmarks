@@ -8,6 +8,7 @@ PROFILE="${BENCH_PROFILE:-full}"
 RUNS="${BENCH_RUNS:-3}"
 SKIP_BUILD="${SKIP_BUILD:-0}"
 SKIP_TIER0="${SKIP_TIER0:-0}"
+SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}"
 
 log() { echo "==> $*"; }
 
@@ -90,6 +91,17 @@ python3 "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "${HTT
   echo "WARN: tier5 supplemental http failed" >&2
 }
 
+if [[ "$SKIP_EXPLOITS" != "1" ]] && [[ -f "$ROOT/scripts/run-tier5-http-exploits.sh" ]]; then
+  log "tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
+  export TIER5_EXPLOIT_PROFILE="${TIER5_EXPLOIT_PROFILE:-pr}"
+  export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,apache,li}"
+  if ! "$ROOT/scripts/run-tier5-http-exploits.sh"; then
+    echo "WARN: tier5 HTTP exploits had failures (see exploit_report.csv)" >&2
+  fi
+else
+  log "tier 5 — HTTP exploits skipped (SKIP_EXPLOITS=1)"
+fi
+
 # Merge tier-5 CSV rows into lic latest.csv for ingest
 python3 - <<'PY' "$ROOT" "$LIC_ROOT"
 import csv
@@ -160,4 +172,8 @@ LIC_ROOT="$LIC_ROOT" LIS_ROOT="$LIS_ROOT" ./scripts/ingest/ingest-lic.sh || true
 log "benchmark status report"
 ./scripts/benchmark-failures-report.sh || true
 
-log "done — see data/latest/summary.json"
+log "full benchmark matrix (perf + HTTP oracles + exploits)"
+python3 "$ROOT/scripts/benchmark-matrix-report.py" --json-only || true
+echo "matrix: $ROOT/data/latest/benchmark-matrix.md"
+
+log "done — see data/latest/summary.json and data/latest/benchmark-matrix.md"

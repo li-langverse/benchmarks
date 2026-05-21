@@ -45,6 +45,9 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `benchmark-failures-report.sh` | Human-readable bench failures |
 | `run-full-benchmark-suite.sh` | **Mandatory after implementation:** tier0→1/2→3→5 HTTP → ingest → failures report ([full-benchmark-suite.md](./full-benchmark-suite.md)) |
 | `setup-lic-for-bench.sh` | apt + build `lic` / `li-httpd` for local benches (clang-18, libomp) |
+| `run-full-benchmark-suite.sh` | **Mandatory after implementation:** full suite + ingest + matrix + exploits |
+| `benchmark-matrix-report.py` | Full matrix → `data/latest/benchmark-matrix.md` + `.json` |
+| `run-tier5-http-exploits.sh` | Tier-5 HTTP exploit grid (`exploit_report.csv`) |
 | `run-tier5-http-bench.sh` | Tier-5 multi-oracle HTTP (`vendor/lis-tier5`: nginx, apache, lighttpd, node, bun, li) |
 | `tier5-http-bench.py` | Supplemental `proxy_loopback` (`li_epoll` + `c_epoll` vs nginx) |
 | `sync-lis-tier5-vendor.sh` | Refresh `vendor/lis-tier5` from sibling **lis** checkout |
