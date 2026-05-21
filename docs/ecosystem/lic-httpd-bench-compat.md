@@ -1,5 +1,7 @@
 # lic ↔ benchmarks httpd compatibility
 
+**Why is `li_rt_net.c` in lic?** See [why-li-rt-net-in-lic.md](https://github.com/li-langverse/lic/blob/cursor/httpd-rebase-main-54aa/docs/ecosystem/why-li-rt-net-in-lic.md) (lands with [lic#149](https://github.com/li-langverse/lic/pull/149)).
+
 ## Which `lic` checkout for tier-5 HTTP?
 
 | `lic` branch / `main` | `build/li-httpd` | Tier-5 wrk RPS | Routing tests |
