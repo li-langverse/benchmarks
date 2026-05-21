@@ -1,5 +1,7 @@
 # lic ↔ benchmarks httpd compatibility
 
+**Full RPS table (all scenarios, `li` every row):** [http-server-rps-matrix.md](http-server-rps-matrix.md) — refresh via `./scripts/benchmark-matrix-report.py` after tier-5 benches.
+
 ## Which `lic` checkout for tier-5 HTTP?
 
 | `lic` branch / `main` | `build/li-httpd` | Tier-5 wrk RPS | Routing tests |

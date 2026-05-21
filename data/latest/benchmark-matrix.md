@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-05-21T12:19:32.063518+00:00
+Generated: 2026-05-21T13:50:17.090999+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -25,15 +25,24 @@ Status: **green** — 0 failures / 36 cells
 
 ## HTTP performance (RPS)
 
-| scenario | li | nginx | apache | lighttpd | node |
-|---|---|---|---|---|---|
-| keepalive_pipelining | 227,598 | 88,703 | 64,737 | 242,284 | 30,166 |
-| lb_least_conn | — | 72,443 | — | — | — |
-| lb_peer_down | — | 72,872 | — | — | — |
-| lb_round_robin | — | 67,628 | — | — | — |
-| proxy_loopback | — | 79,206 | — | — | — |
-| static_large | 9,499 | 9,001 | 8,940 | 8,985 | 3,205 |
-| static_small | 139,762 | 72,576 | 41,062 | 121,266 | 26,386 |
+| scenario | li | nginx | apache | lighttpd | node | bun | li/nginx |
+|---|---|---|---|---|---|---|---|
+| static_small | 135,343 | 85,276 | 52,230 | 177,456 | 29,382 | — | 1.59× |
+| keepalive_pipelining | 233,938 | 95,637 | 64,981 | 235,147 | 29,975 | — | 2.45× |
+| static_large | 9,226 | 8,857 | 8,820 | 9,084 | 3,141 | — | 1.04× |
+| proxy_loopback | FAIL | 77,204 | — | — | — | — | — |
+| lb_round_robin | FAIL | 68,477 | — | — | — | — | — |
+| lb_least_conn | FAIL | 71,359 | — | — | — | — | — |
+| lb_peer_down | FAIL | 72,199 | — | — | — | — | — |
+
+**Li notes:** `lb_least_conn`: wrk_parse_fail_li; `lb_peer_down`: wrk_parse_fail_li; `lb_round_robin`: wrk_parse_fail_li; `proxy_loopback`: wrk_parse_fail_li
+
+## HTTP verify / feature gates (non-RPS)
+
+| scenario | li | other oracles |
+|---|---|---|
+| rate_limit_429 | pass | N/A (li-only or pending) |
+| https_static | skip | N/A (li-only or pending) |
 
 ## Correctness
 
