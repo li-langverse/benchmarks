@@ -43,6 +43,9 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `setup-org-labels.sh` | Create org labels (`plan-needed`, `merge-approved`, …) |
 | `sync-agent-kit.sh` | Pull agent-kit from sibling `roadmap` |
 | `benchmark-failures-report.sh` | Human-readable bench failures |
+| `run-full-benchmark-suite.sh` | **Mandatory after implementation:** tier0→1/2→3→5 HTTP → ingest → failures report ([full-benchmark-suite.md](./full-benchmark-suite.md)) |
+| `setup-lic-for-bench.sh` | apt + build `lic` / `li-httpd` for local benches (clang-18, libomp) |
+| `tier5-http-bench.py` | Tier-5 HTTP: `static_small`, `keepalive_pipelining`, `proxy_loopback` (nginx oracle) |
 | `record-benchmark-history.py` | History index for dashboard |
 | `render-benchmark-visuals.sh` | Visual manifest / PNG pipeline |
 | `visual-manifest.py` | Visual catalog helpers |

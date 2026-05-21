@@ -58,7 +58,7 @@ def status_for_ratio(ratio: float | None, threshold: float) -> str:
 
 
 def lang_series(
-    rows: list[dict], bench_id: str, metric: str
+    rows: list[dict], bench_id: str, metric: str, *, variant: str | None = None
 ) -> list[dict]:
     out = []
     for lang in LANG_ORDER:
@@ -69,6 +69,10 @@ def lang_series(
             and r.get("lang") == lang
             and r.get("metric") == metric
         ]
+        if variant and lang == "li":
+            preferred = [r for r in matches if (r.get("variant") or "") == variant]
+            if preferred:
+                matches = preferred
         if not matches:
             continue
         r = matches[0]
@@ -166,12 +170,13 @@ def build_perf_chart(
     bench_id: str, cfg: dict, rows: list[dict]
 ) -> dict:
     metric = cfg.get("metric", "wall_time")
-    series = lang_series(rows, bench_id, metric)
+    variant = cfg.get("variant")
+    series = lang_series(rows, bench_id, metric, variant=variant)
     if not series:
         bench_rows = [r for r in rows if r.get("benchmark") == bench_id]
         metrics = {r.get("metric") for r in bench_rows if r.get("metric")}
         for alt in sorted(metrics):
-            series = lang_series(rows, bench_id, alt)
+            series = lang_series(rows, bench_id, alt, variant=variant)
             if series:
                 metric = alt
                 break

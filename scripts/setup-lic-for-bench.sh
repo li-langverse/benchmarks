@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Build lic + li-httpd for local / agent benchmark runs (Debian/Ubuntu).
+set -euo pipefail
+SCRIPT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+LIC_ROOT="${LIC_ROOT:-$SCRIPT_ROOT/lic}"
+if [[ ! -d "$LIC_ROOT" ]]; then
+  echo "missing LIC_ROOT=$LIC_ROOT" >&2
+  exit 1
+fi
+
+export DEBIAN_FRONTEND=noninteractive
+need_apt=0
+for pkg in ninja-build cmake llvm-18-dev libzstd-dev clang-18 g++-13 wrk nginx; do
+  dpkg -s "$pkg" >/dev/null 2>&1 || need_apt=1
+done
+if [[ "$need_apt" == "1" ]]; then
+  sudo apt-get update -qq
+  sudo apt-get install -y -qq build-essential g++-13 gcc-13 clang-18 \
+    ninja-build cmake llvm-18-dev libzstd-dev libstdc++-13-dev libomp-18-dev wrk nginx
+fi
+
+export LLVM_DIR="${LLVM_DIR:-/usr/lib/llvm-18/lib/cmake/llvm}"
+export CXX=g++-13 CC=gcc-13 LI_REPO_ROOT="$LIC_ROOT"
+echo "==> lic compiler"
+( cd "$LIC_ROOT" && ./scripts/build.sh )
+echo "==> li-httpd"
+( cd "$LIC_ROOT" && CC=clang-18 CXX=clang++-18 ./build/compiler/lic/lic build \
+  packages/li-net-httpd/src/lib.li -o build/li-httpd )
+test -x "$LIC_ROOT/build/li-httpd"
+echo "OK LIC_ROOT=$LIC_ROOT"

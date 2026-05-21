@@ -244,6 +244,18 @@ ph_ids = ["PH-H"]
 compare_oracle = "nginx"
 
 [[benchmark]]
+id = "proxy_loopback"
+category = "http"
+tier = 5
+repo = "lic"
+path = "packages/li-net-httpd"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+variant = "li_epoll"
+
+[[benchmark]]
 id = "lip_smoke"
 category = "tooling"
 tier = 3
