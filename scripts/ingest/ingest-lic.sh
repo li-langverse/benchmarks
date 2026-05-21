@@ -10,3 +10,4 @@ if ! "$ROOT/scripts/ingest/build-summary-li.sh"; then
 fi
 python3 "$ROOT/scripts/record-benchmark-history.py" || true
 "$ROOT/scripts/regression-check.sh" || true
+python3 "$ROOT/scripts/benchmark-matrix-report.py" --json-only 2>/dev/null || true

@@ -15,6 +15,11 @@ jobs:
           repository: li-langverse/lic
           path: lic
 
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+
       - name: Install LLVM 18
         run: |
           sudo apt-get update
@@ -29,6 +34,7 @@ jobs:
       - name: Ingest (Li summary + Python fallback)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
+          LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
           ./scripts/ingest/ingest-lic.sh

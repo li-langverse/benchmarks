@@ -6,8 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **HTTP https_static:** tier5 nightly stub (`verify_skip` until `li-tls` ships) + `catalog.toml` row — [2026-05-22-httpd-https-static-tier5.md](docs/release-notes/2026-05-22-httpd-https-static-tier5.md).
+- **HTTP rate_limit_429:** tier5 verify scenario + `catalog.toml` row; harness `bench_rate_limit_scenario` in `vendor/lis-tier5` — [2026-05-22-httpd-rate-limit-tier5.md](docs/release-notes/2026-05-22-httpd-rate-limit-tier5.md).
+- **Master-plan progress:** `scripts/httpd-masterplan-step.sh` → `data/latest/httpd-masterplan-progress.md`.
+- **Full benchmark matrix:** `benchmark-matrix-report.py` → `data/latest/benchmark-matrix.md` + `.json` (perf catalog + HTTP RPS grid + exploit matrix); always run at end of full suite.
+- **Tier-5 HTTP exploits:** `run-tier5-http-exploits.sh` in full suite (`SKIP_EXPLOITS=1` for fast iter only); [http-server-benchmark-growth.md](docs/ecosystem/http-server-benchmark-growth.md).
+- **Full benchmark suite:** `scripts/run-full-benchmark-suite.sh`, `setup-lic-for-bench.sh`, `tier5-http-bench.py`; [full-benchmark-suite.md](docs/ecosystem/full-benchmark-suite.md); **AGENTS.md** mandates run after perf/httpd/compiler/physics work.
+- **Tier-5 multi-oracle HTTP:** `vendor/lis-tier5/` harness + `run-tier5-http-bench.sh` — **nginx**, **apache**, **lighttpd**, **node**, **bun**, **li** on `static_small` / `keepalive_pipelining`; dashboard shows all oracles.
+- **Catalog:** tier-5 HTTP rows for `static_large`, `proxy_loopback`, `lb_round_robin`, `lb_least_conn`, `lb_peer_down` (dashboard was missing proxy/LB dimensions).
+
 ### Fixed
 
+- **Tier-5 HTTP benches:** nginx `client_body_temp_path` under `/tmp/nginx-bench`; wrk pipelining via Lua (Debian wrk lacks `--pipeline`).
+- **Ingest:** `build_summary.py` honors catalog `variant` when multiple `li` rows exist (e.g. `proxy_loopback` / `li_epoll`).
+- **Ingest workflows:** `ingest.yml` no longer passes a CSV path as the second argument to `build_summary.py` (that was interpreted as `lis` root and dropped HTTP merge). Workflows now check out **lis**, merge dispatch artifacts into `lic/benchmarks/results/latest.csv`, and run `./scripts/ingest/ingest-lic.sh` with `LIC_ROOT` / `LIS_ROOT`. **Benchmarks CI** and **ecosystem-audit** check out **lis** and set `LIS_ROOT` for the same reason.
 - **CI `dashboard-static`:** `ci.yml` gates the Vite `dashboard/dist` build (same as `pages.yml`) instead of `render-static.sh` until `lic` `main` ships `std/plot` (PH-IO-5). Restores green Benchmarks CI on open PRs.
 - **Pages 404:** `pages.yml` deploys the Vite `dashboard/dist` again; PH-IO-5 static render was uploading an empty `static-dashboard/` when `lic` lacks `std/plot`.
 

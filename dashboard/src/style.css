@@ -173,6 +173,10 @@ a:hover {
   --lang-rust: #f0883e;
   --lang-julia: #a371f7;
   --lang-nginx: #d29922;
+  --lang-apache: #bc8cff;
+  --lang-lighttpd: #56d4dd;
+  --lang-node: #3fb950;
+  --lang-bun: #f0e68c;
   --lang-harness: #8b949e;
   --lang-go: #79c0ff;
   --lang-python: #ffd33d;
@@ -227,6 +231,10 @@ a:hover {
 .legend-swatch[data-lang="rust"] { background: var(--lang-rust); }
 .legend-swatch[data-lang="julia"] { background: var(--lang-julia); }
 .legend-swatch[data-lang="nginx"] { background: var(--lang-nginx); }
+.legend-swatch[data-lang="apache"] { background: var(--lang-apache); }
+.legend-swatch[data-lang="lighttpd"] { background: var(--lang-lighttpd); }
+.legend-swatch[data-lang="node"] { background: var(--lang-node); }
+.legend-swatch[data-lang="bun"] { background: var(--lang-bun); }
 .legend-swatch[data-lang="harness"] { background: var(--lang-harness); }
 
 .chart-section {

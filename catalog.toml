@@ -244,6 +244,96 @@ ph_ids = ["PH-H"]
 compare_oracle = "nginx"
 
 [[benchmark]]
+id = "proxy_loopback"
+category = "http"
+tier = 5
+repo = "lic"
+path = "packages/li-net-httpd"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+variant = "li_epoll"
+
+[[benchmark]]
+id = "static_large"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/static_large"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lb_round_robin"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_round_robin"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lb_least_conn"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_least_conn"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lb_peer_down"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_peer_down"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "rate_limit_429"
+category = "http"
+tier = 5
+repo = "lic"
+path = "packages/li-httpd/examples/rate_limit_static.toml"
+metric = "verify_pass"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "li"
+variant = "rate_limit"
+
+[[benchmark]]
+id = "https_static"
+category = "http"
+tier = 5
+repo = "lic"
+path = "packages/li-tls/examples/dev-self-signed.toml"
+metric = "verify_skip"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "li"
+variant = "tls_m15_pending"
+
+[[benchmark]]
+id = "tier5_http_exploits"
+category = "security"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/harness/exploit_http.py"
+metric = "pass_rate"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+
+[[benchmark]]
 id = "lip_smoke"
 category = "tooling"
 tier = 3

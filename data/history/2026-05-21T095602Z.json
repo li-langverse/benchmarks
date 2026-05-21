@@ -1,0 +1,2212 @@
+{
+  "generated_at": "2026-05-21T09:56:02.839055+00:00",
+  "sources": {
+    "lic_csv": "/workspace/lic/benchmarks/results/latest.csv",
+    "lis_csv": "/workspace/../lis/results/latest.csv",
+    "stability_csv": "/workspace/lic/benchmarks/results/stability.csv",
+    "security_csv": "/workspace/lic/benchmarks/results/security.csv"
+  },
+  "tier_counts": {
+    "1": {
+      "green": 4,
+      "yellow": 0,
+      "red": 1,
+      "unknown": 0
+    },
+    "2": {
+      "green": 10,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 5
+    },
+    "0": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 1
+    },
+    "5": {
+      "green": 6,
+      "yellow": 1,
+      "red": 0,
+      "unknown": 1
+    },
+    "3": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 2
+    }
+  },
+  "categories": {
+    "micro": {
+      "label": "Micro / SIMD & linear algebra",
+      "charts": [
+        {
+          "id": "horner_pure_li",
+          "title": "horner pure li",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0009,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0011,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0009,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.001,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/horner_pure_li",
+          "status": "green",
+          "ratio_vs_reference": 0.8182
+        },
+        {
+          "id": "matmul_blocked",
+          "title": "matmul blocked",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0105,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0101,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.01,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0102,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/matmul_blocked",
+          "status": "green",
+          "ratio_vs_reference": 1.0396
+        },
+        {
+          "id": "matmul_naive",
+          "title": "matmul naive",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0035,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0026,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0034,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0035,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/matmul_naive",
+          "status": "red",
+          "ratio_vs_reference": 1.3462
+        },
+        {
+          "id": "reduce_sum",
+          "title": "reduce sum",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.3001,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.3151,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.3056,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.2981,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/reduce_sum",
+          "status": "green",
+          "ratio_vs_reference": 0.9524
+        },
+        {
+          "id": "simd_dot",
+          "title": "simd dot",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0007,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.058,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0563,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0512,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/simd_dot",
+          "status": "green",
+          "ratio_vs_reference": 0.0121
+        }
+      ]
+    },
+    "physics": {
+      "label": "Physics & simulations",
+      "charts": [
+        {
+          "id": "advection_diffusion_2d",
+          "title": "advection diffusion 2d",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.1115,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.1129,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.1249,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.1127,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/advection_diffusion_2d",
+          "status": "green",
+          "ratio_vs_reference": 0.9876
+        },
+        {
+          "id": "cloth_swing",
+          "title": "cloth swing",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/cloth_swing",
+          "status": "unknown",
+          "ratio_vs_reference": null
+        },
+        {
+          "id": "combustion_passive",
+          "title": "combustion passive",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/combustion_passive",
+          "status": "unknown",
+          "ratio_vs_reference": null
+        },
+        {
+          "id": "double_pendulum",
+          "title": "double pendulum",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.3177,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.3176,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.3178,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.3197,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/double_pendulum",
+          "status": "green",
+          "ratio_vs_reference": 1.0003
+        },
+        {
+          "id": "euler_fluid_2d",
+          "title": "euler fluid 2d",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/euler_fluid_2d",
+          "status": "unknown",
+          "ratio_vs_reference": null
+        },
+        {
+          "id": "harmonic_oscillator_chain",
+          "title": "harmonic oscillator chain",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.0829,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.112,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0886,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0884,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/harmonic_oscillator_chain",
+          "status": "green",
+          "ratio_vs_reference": 0.7402
+        },
+        {
+          "id": "heat_equation_2d",
+          "title": "heat equation 2d",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.1305,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.1341,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.1385,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.1334,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/heat_equation_2d",
+          "status": "green",
+          "ratio_vs_reference": 0.9732
+        },
+        {
+          "id": "md_lennard_jones",
+          "title": "md lennard jones",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.003,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 2.5971,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 2.5885,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 2.5909,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/md_lennard_jones",
+          "status": "green",
+          "ratio_vs_reference": 0.0012
+        },
+        {
+          "id": "nbody_gravity",
+          "title": "nbody gravity",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 1.1703,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 1.1879,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 1.1693,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 1.1698,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/nbody_gravity",
+          "status": "green",
+          "ratio_vs_reference": 0.9852
+        },
+        {
+          "id": "rigid_body_stack",
+          "title": "rigid body stack",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/rigid_body_stack",
+          "status": "unknown",
+          "ratio_vs_reference": null
+        },
+        {
+          "id": "sph_dam_break_2d",
+          "title": "sph dam break 2d",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.8401,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.8394,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.8377,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.8391,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/sph_dam_break_2d",
+          "status": "green",
+          "ratio_vs_reference": 1.0008
+        },
+        {
+          "id": "three_body",
+          "title": "three body",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.2435,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.2435,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.2437,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.2436,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/three_body",
+          "status": "green",
+          "ratio_vs_reference": 1.0
+        },
+        {
+          "id": "wave_equation_1d",
+          "title": "wave equation 1d",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 1.6583,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 1.6576,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 1.6568,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 1.7976,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/wave_equation_1d",
+          "status": "green",
+          "ratio_vs_reference": 1.0004
+        },
+        {
+          "id": "wave_equation_2d",
+          "title": "wave equation 2d",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "li",
+              "value": 0.2787,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.2745,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "rust",
+              "value": 0.272,
+              "unit": "s",
+              "variant": "release"
+            },
+            {
+              "lang": "julia",
+              "value": 0.2775,
+              "unit": "s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/wave_equation_2d",
+          "status": "green",
+          "ratio_vs_reference": 1.0153
+        },
+        {
+          "id": "wind_field_bc",
+          "title": "wind field bc",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier2_physics/wind_field_bc",
+          "status": "unknown",
+          "ratio_vs_reference": null
+        }
+      ]
+    },
+    "http": {
+      "label": "HTTP / webserver (li-httpd \u00b7 lis)",
+      "charts": [
+        {
+          "id": "keepalive_pipelining",
+          "title": "keepalive pipelining",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 244800.29,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "nginx",
+              "value": 94633.99,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "apache",
+              "value": 58145.84,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "lighttpd",
+              "value": 201675.31,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "node",
+              "value": 30129.45,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/scenarios/keepalive_pipelining",
+          "status": "green",
+          "ratio_vs_reference": 0.3866
+        },
+        {
+          "id": "lb_least_conn",
+          "title": "lb least conn",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 120739.9,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "nginx",
+              "value": 43547.54,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/scenarios/lb_least_conn",
+          "status": "green",
+          "ratio_vs_reference": 0.3607
+        },
+        {
+          "id": "lb_peer_down",
+          "title": "lb peer down",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 97644.77,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "nginx",
+              "value": 44091.33,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/scenarios/lb_peer_down",
+          "status": "green",
+          "ratio_vs_reference": 0.4515
+        },
+        {
+          "id": "lb_round_robin",
+          "title": "lb round robin",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 123567.8,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "nginx",
+              "value": 71698.4,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/scenarios/lb_round_robin",
+          "status": "green",
+          "ratio_vs_reference": 0.5802
+        },
+        {
+          "id": "proxy_loopback",
+          "title": "proxy loopback",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 151092.78,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "li",
+              "value": 115690.27,
+              "unit": "req/s",
+              "variant": "li_epoll"
+            },
+            {
+              "lang": "li",
+              "value": 133315.1,
+              "unit": "req/s",
+              "variant": "c_epoll"
+            },
+            {
+              "lang": "nginx",
+              "value": 77540.01,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lic",
+          "path": "packages/li-net-httpd",
+          "status": "green",
+          "ratio_vs_reference": 0.6702
+        },
+        {
+          "id": "static_large",
+          "title": "static large",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 7920.5,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "nginx",
+              "value": 8141.29,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "apache",
+              "value": 7639.02,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "lighttpd",
+              "value": 8775.82,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "node",
+              "value": 2715.54,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/scenarios/static_large",
+          "status": "yellow",
+          "ratio_vs_reference": 1.0279
+        },
+        {
+          "id": "static_small",
+          "title": "static small",
+          "metric": "rps",
+          "unit": "req/s",
+          "lower_is_better": false,
+          "reference_lang": "nginx",
+          "series": [
+            {
+              "lang": "li",
+              "value": 143643.23,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "nginx",
+              "value": 84827.21,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "apache",
+              "value": 50167.37,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "lighttpd",
+              "value": 104486.43,
+              "unit": "req/s",
+              "variant": "release"
+            },
+            {
+              "lang": "node",
+              "value": 22527.03,
+              "unit": "req/s",
+              "variant": "release"
+            }
+          ],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/scenarios/static_small",
+          "status": "green",
+          "ratio_vs_reference": 0.5905
+        }
+      ]
+    },
+    "tooling": {
+      "label": "Ecosystem tooling (lip \u00b7 lit \u00b7 lic compile)",
+      "charts": [
+        {
+          "id": "lip_smoke",
+          "title": "lip_smoke",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lip",
+          "path": "scripts/ci.sh",
+          "status": "unknown",
+          "pending": true
+        },
+        {
+          "id": "lit_smoke",
+          "title": "lit_smoke",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lit",
+          "path": "scripts/ci.sh",
+          "status": "unknown",
+          "pending": true
+        }
+      ]
+    },
+    "security": {
+      "label": "Security gates (CVE \u00b7 webserver registry)",
+      "charts": [
+        {
+          "id": "security_gates",
+          "title": "Security gate wall time",
+          "metric": "wall_time",
+          "unit": "s",
+          "lower_is_better": true,
+          "reference_lang": "harness",
+          "series": [
+            {
+              "lang": "harness",
+              "value": 0.1337,
+              "unit": "wall_time",
+              "label": "security_corpus"
+            },
+            {
+              "lang": "harness",
+              "value": 0.0222,
+              "unit": "wall_time",
+              "label": "security_cve_patterns"
+            },
+            {
+              "lang": "harness",
+              "value": 0.0202,
+              "unit": "wall_time",
+              "label": "security_webserver_registry"
+            },
+            {
+              "lang": "harness",
+              "value": 0.333,
+              "unit": "wall_time",
+              "label": "ci_security_full"
+            }
+          ],
+          "grouped": true,
+          "repo": "lic",
+          "path": "scripts/ci-security.sh",
+          "status": "unknown"
+        },
+        {
+          "id": "tier5_http_exploits",
+          "title": "tier5 http exploits",
+          "metric": "pass_rate",
+          "unit": "",
+          "lower_is_better": false,
+          "reference_lang": "cpp",
+          "series": [],
+          "grouped": false,
+          "repo": "lis",
+          "path": "benchmarks/tier5_http/harness/exploit_http.py",
+          "status": "unknown",
+          "ratio_vs_reference": null
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "benchmark": "tier0_stability",
+      "repo": "lic",
+      "tier": 0,
+      "category": "correctness",
+      "metric": "stability",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": null,
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier0_correctness",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "horner_pure_li",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0009,
+      "cpp_value": 0.0011,
+      "ratio_vs_cpp": 0.8182,
+      "unit": "s",
+      "variant": "pure_li",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/horner_pure_li",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0009,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.0011,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.0009,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.001,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "matmul_blocked",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0105,
+      "cpp_value": 0.0101,
+      "ratio_vs_cpp": 1.0396,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_blocked",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0105,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.0101,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.01,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0102,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "matmul_naive",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0035,
+      "cpp_value": 0.0026,
+      "ratio_vs_cpp": 1.3462,
+      "unit": "s",
+      "variant": null,
+      "status": "red",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/matmul_naive",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0035,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.0026,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.0034,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0035,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "reduce_sum",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.3001,
+      "cpp_value": 0.3151,
+      "ratio_vs_cpp": 0.9524,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier1_micro/reduce_sum",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.3001,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.3151,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.3056,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.2981,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "simd_dot",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": 0.0007,
+      "cpp_value": 0.058,
+      "ratio_vs_cpp": 0.0121,
+      "unit": "s",
+      "variant": "shared_c_kernel",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/simd_dot",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0007,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.058,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.0563,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0512,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "advection_diffusion_2d",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.1115,
+      "cpp_value": 0.1129,
+      "ratio_vs_cpp": 0.9876,
+      "unit": "s",
+      "variant": "shared_c_kernel",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/advection_diffusion_2d",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.1115,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.1129,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.1249,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.1127,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "cloth_swing",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": "",
+      "variant": "shared_c_kernel",
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/cloth_swing",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": []
+    },
+    {
+      "benchmark": "combustion_passive",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": "",
+      "variant": "shared_c_kernel",
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/combustion_passive",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": []
+    },
+    {
+      "benchmark": "double_pendulum",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.3177,
+      "cpp_value": 0.3176,
+      "ratio_vs_cpp": 1.0003,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/double_pendulum",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.3177,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.3176,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.3178,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.3197,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "euler_fluid_2d",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": "",
+      "variant": "shared_c_kernel",
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/euler_fluid_2d",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": []
+    },
+    {
+      "benchmark": "harmonic_oscillator_chain",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.0829,
+      "cpp_value": 0.112,
+      "ratio_vs_cpp": 0.7402,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/harmonic_oscillator_chain",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.0829,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.112,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.0886,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.0884,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "heat_equation_2d",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.1305,
+      "cpp_value": 0.1341,
+      "ratio_vs_cpp": 0.9732,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/heat_equation_2d",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.1305,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.1341,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.1385,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.1334,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "md_lennard_jones",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.003,
+      "cpp_value": 2.5971,
+      "ratio_vs_cpp": 0.0012,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/md_lennard_jones",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.003,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 2.5971,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 2.5885,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 2.5909,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "nbody_gravity",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 1.1703,
+      "cpp_value": 1.1879,
+      "ratio_vs_cpp": 0.9852,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/nbody_gravity",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 1.1703,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 1.1879,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 1.1693,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 1.1698,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "rigid_body_stack",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": "",
+      "variant": "shared_c_kernel",
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/rigid_body_stack",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": []
+    },
+    {
+      "benchmark": "sph_dam_break_2d",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.8401,
+      "cpp_value": 0.8394,
+      "ratio_vs_cpp": 1.0008,
+      "unit": "s",
+      "variant": "shared_c_kernel",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/sph_dam_break_2d",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.8401,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.8394,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.8377,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.8391,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "three_body",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.2435,
+      "cpp_value": 0.2435,
+      "ratio_vs_cpp": 1.0,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/three_body",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.2435,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.2435,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.2437,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.2436,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "wave_equation_1d",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 1.6583,
+      "cpp_value": 1.6576,
+      "ratio_vs_cpp": 1.0004,
+      "unit": "s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/wave_equation_1d",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 1.6583,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 1.6576,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 1.6568,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 1.7976,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "wave_equation_2d",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": 0.2787,
+      "cpp_value": 0.2745,
+      "ratio_vs_cpp": 1.0153,
+      "unit": "s",
+      "variant": "shared_c_kernel",
+      "status": "green",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/wave_equation_2d",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 0.2787,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "cpp",
+          "value": 0.2745,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "rust",
+          "value": 0.272,
+          "unit": "s",
+          "variant": "release"
+        },
+        {
+          "lang": "julia",
+          "value": 0.2775,
+          "unit": "s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "wind_field_bc",
+      "repo": "lic",
+      "tier": 2,
+      "category": "physics",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": "",
+      "variant": "shared_c_kernel",
+      "status": "unknown",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/tier2_physics/wind_field_bc",
+      "threshold_ratio_cpp": 1.2,
+      "ci_url": "",
+      "langs": []
+    },
+    {
+      "benchmark": "lip_smoke",
+      "repo": "lip",
+      "tier": 3,
+      "category": "tooling",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": null,
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-8b"
+      ],
+      "path": "scripts/ci.sh",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "lit_smoke",
+      "repo": "lit",
+      "tier": 3,
+      "category": "tooling",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": null,
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-8e"
+      ],
+      "path": "scripts/ci.sh",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "keepalive_pipelining",
+      "repo": "lis",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 244800.29,
+      "cpp_value": null,
+      "ratio_vs_cpp": 0.3866,
+      "unit": "req/s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/scenarios/keepalive_pipelining",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 244800.29,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "nginx",
+          "value": 94633.99,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "apache",
+          "value": 58145.84,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "lighttpd",
+          "value": 201675.31,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "node",
+          "value": 30129.45,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "lb_least_conn",
+      "repo": "lis",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 120739.9,
+      "cpp_value": null,
+      "ratio_vs_cpp": 0.3607,
+      "unit": "req/s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/scenarios/lb_least_conn",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 120739.9,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "nginx",
+          "value": 43547.54,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "lb_peer_down",
+      "repo": "lis",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 97644.77,
+      "cpp_value": null,
+      "ratio_vs_cpp": 0.4515,
+      "unit": "req/s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/scenarios/lb_peer_down",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 97644.77,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "nginx",
+          "value": 44091.33,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "lb_round_robin",
+      "repo": "lis",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 123567.8,
+      "cpp_value": null,
+      "ratio_vs_cpp": 0.5802,
+      "unit": "req/s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/scenarios/lb_round_robin",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 123567.8,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "nginx",
+          "value": 71698.4,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "proxy_loopback",
+      "repo": "lic",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 151092.78,
+      "cpp_value": null,
+      "ratio_vs_cpp": 0.6702,
+      "unit": "req/s",
+      "variant": "li_epoll",
+      "status": "green",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "packages/li-net-httpd",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 151092.78,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "li",
+          "value": 115690.27,
+          "unit": "req/s",
+          "variant": "li_epoll"
+        },
+        {
+          "lang": "li",
+          "value": 133315.1,
+          "unit": "req/s",
+          "variant": "c_epoll"
+        },
+        {
+          "lang": "nginx",
+          "value": 77540.01,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "static_large",
+      "repo": "lis",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 7920.5,
+      "cpp_value": null,
+      "ratio_vs_cpp": 1.0279,
+      "unit": "req/s",
+      "variant": null,
+      "status": "yellow",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/scenarios/static_large",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 7920.5,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "nginx",
+          "value": 8141.29,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "apache",
+          "value": 7639.02,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "lighttpd",
+          "value": 8775.82,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "node",
+          "value": 2715.54,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "static_small",
+      "repo": "lis",
+      "tier": 5,
+      "category": "http",
+      "metric": "rps",
+      "li_value": 143643.23,
+      "cpp_value": null,
+      "ratio_vs_cpp": 0.5905,
+      "unit": "req/s",
+      "variant": null,
+      "status": "green",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/scenarios/static_small",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "li",
+          "value": 143643.23,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "nginx",
+          "value": 84827.21,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "apache",
+          "value": 50167.37,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "lighttpd",
+          "value": 104486.43,
+          "unit": "req/s",
+          "variant": "release"
+        },
+        {
+          "lang": "node",
+          "value": 22527.03,
+          "unit": "req/s",
+          "variant": "release"
+        }
+      ]
+    },
+    {
+      "benchmark": "tier5_http_exploits",
+      "repo": "lis",
+      "tier": 5,
+      "category": "security",
+      "metric": "pass_rate",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "unit": "",
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-H"
+      ],
+      "path": "benchmarks/tier5_http/harness/exploit_http.py",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": "",
+      "langs": []
+    }
+  ]
+}

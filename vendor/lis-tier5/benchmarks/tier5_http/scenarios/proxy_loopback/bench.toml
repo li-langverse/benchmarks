@@ -1,0 +1,20 @@
+name = "proxy_loopback"
+
+[proxy]
+enabled = true
+
+[server]
+listen = ":8080"
+workers = 1
+
+[verify]
+requests = [
+  { method = "GET", path = "/", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/"
+duration_sec = 10
+connections = 8
+threads = 2

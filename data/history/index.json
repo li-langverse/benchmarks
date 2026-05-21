@@ -3,8 +3,183 @@
     {
       "at": "2026-05-16T15:10:14.562929+00:00",
       "path": "data/history/2026-05-16T173133Z.json"
+    },
+    {
+      "at": "2026-05-21T07:43:24.028003+00:00",
+      "path": "data/history/2026-05-21T074324Z.json"
+    },
+    {
+      "at": "2026-05-21T07:50:28.995147+00:00",
+      "path": "data/history/2026-05-21T075029Z.json"
+    },
+    {
+      "at": "2026-05-21T08:01:02.561276+00:00",
+      "path": "data/history/2026-05-21T080102Z.json"
+    },
+    {
+      "at": "2026-05-21T08:08:43.903087+00:00",
+      "path": "data/history/2026-05-21T080843Z.json"
+    },
+    {
+      "at": "2026-05-21T08:09:09.944944+00:00",
+      "path": "data/history/2026-05-21T080909Z.json"
+    },
+    {
+      "at": "2026-05-21T08:09:29.862378+00:00",
+      "path": "data/history/2026-05-21T080929Z.json"
+    },
+    {
+      "at": "2026-05-21T08:17:57.229628+00:00",
+      "path": "data/history/2026-05-21T081757Z.json"
+    },
+    {
+      "at": "2026-05-21T09:56:02.839055+00:00",
+      "path": "data/history/2026-05-21T095602Z.json"
+    },
+    {
+      "at": "2026-05-21T10:10:58.534111+00:00",
+      "path": "data/history/2026-05-21T101058Z.json"
+    },
+    {
+      "at": "2026-05-21T10:23:53.940671+00:00",
+      "path": "data/history/2026-05-21T102353Z.json"
+    },
+    {
+      "at": "2026-05-21T10:36:56.258651+00:00",
+      "path": "data/history/2026-05-21T103656Z.json"
+    },
+    {
+      "at": "2026-05-21T11:52:17.854653+00:00",
+      "path": "data/history/2026-05-21T115217Z.json"
     }
   ],
-  "latest_deltas": [],
-  "updated_at": "2026-05-16T17:31:33.789930+00:00"
+  "latest_deltas": [
+    {
+      "benchmark": "horner_pure_li",
+      "field": "ratio_vs_cpp",
+      "from": 0.4444,
+      "to": 0.8182,
+      "delta": 0.3738,
+      "improved": false
+    },
+    {
+      "benchmark": "matmul_blocked",
+      "field": "ratio_vs_cpp",
+      "from": 0.9717,
+      "to": 1.0192,
+      "delta": 0.0475,
+      "improved": false
+    },
+    {
+      "benchmark": "matmul_naive",
+      "field": "ratio_vs_cpp",
+      "from": 0.9714,
+      "to": 0.6857,
+      "delta": -0.2857,
+      "improved": true
+    },
+    {
+      "benchmark": "reduce_sum",
+      "field": "ratio_vs_cpp",
+      "from": 1.0039,
+      "to": 1.0444,
+      "delta": 0.0405,
+      "improved": false
+    },
+    {
+      "benchmark": "advection_diffusion_2d",
+      "field": "ratio_vs_cpp",
+      "from": 0.9396,
+      "to": 1.0119,
+      "delta": 0.0723,
+      "improved": false
+    },
+    {
+      "benchmark": "harmonic_oscillator_chain",
+      "field": "ratio_vs_cpp",
+      "from": 1.0,
+      "to": 0.8893,
+      "delta": -0.1107,
+      "improved": true
+    },
+    {
+      "benchmark": "heat_equation_2d",
+      "field": "ratio_vs_cpp",
+      "from": 1.0228,
+      "to": 0.8381,
+      "delta": -0.1847,
+      "improved": true
+    },
+    {
+      "benchmark": "three_body",
+      "field": "ratio_vs_cpp",
+      "from": 1.0,
+      "to": 0.9898,
+      "delta": -0.0102,
+      "improved": true
+    },
+    {
+      "benchmark": "wave_equation_1d",
+      "field": "ratio_vs_cpp",
+      "from": 0.9587,
+      "to": 0.9934,
+      "delta": 0.0347,
+      "improved": false
+    },
+    {
+      "benchmark": "keepalive_pipelining",
+      "field": "ratio_vs_cpp",
+      "from": 0.4608,
+      "to": 0.4284,
+      "delta": -0.0324,
+      "improved": true
+    },
+    {
+      "benchmark": "lb_least_conn",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "lb_peer_down",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "lb_round_robin",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "proxy_loopback",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "static_large",
+      "field": "status",
+      "from": "yellow",
+      "to": "green"
+    },
+    {
+      "benchmark": "static_large",
+      "field": "ratio_vs_cpp",
+      "from": 1.0659,
+      "to": 0.9829,
+      "delta": -0.083,
+      "improved": true
+    },
+    {
+      "benchmark": "static_small",
+      "field": "ratio_vs_cpp",
+      "from": 0.6185,
+      "to": 0.599,
+      "delta": -0.0195,
+      "improved": true
+    }
+  ],
+  "updated_at": "2026-05-21T11:52:17.878067+00:00"
 }

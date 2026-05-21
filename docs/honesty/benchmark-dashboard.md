@@ -1,6 +1,6 @@
 # Benchmark dashboard honesty labels
 
-The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **wall-clock ratios vs C++**, not formal proof or correctness certificates.
+The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **wall-clock ratios vs a catalog reference** (usually C++ (`cpp`); tier-5 HTTP uses **nginx** where `compare_oracle` is set), not formal proof or correctness certificates.
 
 ## Status colors
 
@@ -29,3 +29,19 @@ The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/lat
 ## Writing release notes / ADRs
 
 Use: “dashboard **green** at ratio *r* vs cpp on commit *sha*” — not “proved fast” or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)).
+
+## HTTP tier-5 vs nginx (catalog)
+
+Tier-5 rows `static_small` and `keepalive_pipelining` use `compare_oracle = "nginx"` and metric **`rps`** in [`catalog.toml`](../../catalog.toml). `scripts/ingest/build_summary.py` treats **nginx** as the reference language for those charts (same ratio machinery as C++, with an inversion so higher Li RPS is “better” vs the threshold).
+
+**Today:** [`lis`](https://github.com/li-langverse/lis) `benchmarks/tier5_http/harness/bench_http.py` is still **TOML validation / stub** until `li-httpd` and the wrk/nginx baseline pipeline land; there is no checked-in `lis/results/latest.csv` producer yet. Dashboard **unknown** + empty `series` for `keepalive_pipelining` means **no measured RPS comparison** — not “Li is slower than nginx.” Product intent vs nginx (agent gateway, streaming, schema-driven config, proof-backed core) is described in **lis** `docs/plan.md`, separate from dashboard throughput rows.
+
+## Local vs CI ingest
+
+- **Local:** Clone **lic** and **lis** as siblings of **benchmarks** (or set `LIC_ROOT` / `LIS_ROOT`), then run `./scripts/ingest/ingest-lic.sh` from the benchmarks repo. `build_summary.py` merges `lic/benchmarks/results/latest.csv` and `lis/results/latest.csv`.
+- **CI:** PR/push **Benchmarks CI** (`.github/workflows/ci.yml`) checks out `lic` + `lis`, builds `lic`, and runs the same ingest path so `build_summary.li` / Python fallback see a real `lis/` tree.
+- **Manual ingest workflow** (`.github/workflows/ingest.yml`): checks out `lic` + `lis`, copies dispatch artifact `artifacts/latest.csv` into `lic/benchmarks/results/latest.csv` when present, then runs `ingest-lic.sh`.
+
+## `li-local-ci` vs dashboard data
+
+**[`li-local-ci`](https://github.com/li-langverse/li-local-ci)** (driven from benchmarks via `scripts/local-ci-sweep.py`) records PR verification when **GitHub Actions** is missing, skipped, or red (minutes/quota). Results land in `data/latest/local-ci-results.json` and are read by `scripts/pr-merge-gate.py` as a **merge gate** signal — they **do not** replace `lis` CSV ingest or update `summary.json` / Pages. Use local-ci for “did this PR pass the same checks locally?”; use ingest + `lis` bench artifacts for “what does the public dashboard show?”

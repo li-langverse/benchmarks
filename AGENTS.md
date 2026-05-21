@@ -12,11 +12,14 @@
 
 ## Standing ops (every session)
 
-1. Run `python3 scripts/ecosystem-audit.py` — failed PRs, missing `ci.yml` on `main`, missing live docs, benchmark reds vs [master plan PH-5b/PH-7e](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md).
-2. Read `data/latest/ecosystem-audit.json` and `data/history/index.json` (`latest_deltas`) for time-resolved benchmark changes.
-3. Align fixes to vision: P0 package CI → merge queue → lic compiler perf (pure-Li tier-1), not dashboard-only threshold tweaks.
-4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
-5. On catalog miss or script failure → **file ecosystem-gap issue** (do not only patch locally).
+1. After **any implementation** that touches perf, httpd, compiler, or physics kernels: run **`./scripts/run-full-benchmark-suite.sh`** (or `SKIP_BUILD=1` if already built); read **`data/latest/benchmark-matrix.md`** (full matrix), **`./scripts/benchmark-failures-report.sh`**, and `data/latest/summary.json`. For **httpd** changes: do **not** set `SKIP_EXPLOITS=1` on merge-worthy work — see [http-server-benchmark-growth.md](docs/ecosystem/http-server-benchmark-growth.md).
+2. Run `python3 scripts/ecosystem-audit.py` — failed PRs, missing `ci.yml` on `main`, missing live docs, benchmark reds vs [master plan PH-5b/PH-7e](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md).
+3. Read `data/latest/ecosystem-audit.json` and `data/history/index.json` (`latest_deltas`) for time-resolved benchmark changes.
+4. Align fixes to vision: P0 package CI → merge queue → lic compiler perf (pure-Li tier-1), not dashboard-only threshold tweaks.
+5. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
+6. On catalog miss or script failure → **file ecosystem-gap issue** (do not only patch locally).
+
+**Full suite** (`LIC_ROOT=../lic`): tier-0 → tier-1/2 → tier-3 → tier-5 HTTP multi-oracle + supplemental proxy → **tier-5 exploits** → ingest → failures report → **`benchmark-matrix-report.py`** (always).
 
 **Agent-first:** Intelligence (explorer, PR review/alignment, numerics SOTA, plan gaps) = **[Cursor Automations](https://cursor.com/automations)** + web search. Scripts only **preflight** JSON: `./scripts/agent-preflight.sh` → [cursor-agent-architecture.md](docs/ecosystem/cursor-agent-architecture.md).
 
