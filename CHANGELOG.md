@@ -10,7 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - **Full benchmark suite:** `scripts/run-full-benchmark-suite.sh`, `setup-lic-for-bench.sh`, `tier5-http-bench.py`; [full-benchmark-suite.md](docs/ecosystem/full-benchmark-suite.md); **AGENTS.md** mandates run after perf/httpd/compiler/physics work.
 - **Tier-5 multi-oracle HTTP:** `vendor/lis-tier5/` harness + `run-tier5-http-bench.sh` — **nginx**, **apache**, **lighttpd**, **node**, **bun**, **li** on `static_small` / `keepalive_pipelining`; dashboard shows all oracles.
-- **Catalog:** `proxy_loopback` tier-5 HTTP row (`compare_oracle=nginx`).
+- **Catalog:** tier-5 HTTP rows for `static_large`, `proxy_loopback`, `lb_round_robin`, `lb_least_conn`, `lb_peer_down` (dashboard was missing proxy/LB dimensions).
 
 ### Fixed
 

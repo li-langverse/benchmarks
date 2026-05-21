@@ -26,10 +26,17 @@ LIC_ROOT=/workspace/lic ./scripts/run-full-benchmark-suite.sh
 
 **Multi-oracle** (`run-tier5-http-bench.sh` → `vendor/lis-tier5/` harness): compares **nginx**, **apache**, **lighttpd**, **node**, **bun**, and **li-httpd** on each scenario (skips oracles not installed).
 
-- `static_small` — 1 KiB static file
-- `keepalive_pipelining` — wrk pipelined keep-alive
-- `proxy_loopback` — reverse proxy loopback (nginx + li; supplemental script adds `li/c_epoll`)
-- Plus load-balancer scenarios in the vendor suite (`lb_*`, `static_large`) when present in CSV
+| Scenario | What it measures | Oracles compared |
+|----------|------------------|------------------|
+| `static_small` | 1 KiB static file | nginx, apache, lighttpd, node, bun, li |
+| `static_large` | large static payload | same (all static oracles) |
+| `keepalive_pipelining` | HTTP/1.1 pipelined keep-alive | same |
+| `proxy_loopback` | single-backend reverse proxy loopback | **nginx + li** (+ supplemental `li/li_epoll`, `li/c_epoll`) |
+| `lb_round_robin` | 3-backend proxy, round-robin | **nginx + li** only |
+| `lb_least_conn` | 3-backend proxy, least-conn | **nginx + li** only |
+| `lb_peer_down` | LB with one backend killed mid-run | **nginx + li** only |
+
+Apache/lighttpd/node/bun are **not** wired for proxy/LB yet (`PROXY_ORACLES` in `http_oracles.py`).
 
 Env: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li` · `BENCH_HTTP_PROFILE=nightly` (wrk timing; `ci` is TOML-only)
 

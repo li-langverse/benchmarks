@@ -256,6 +256,50 @@ compare_oracle = "nginx"
 variant = "li_epoll"
 
 [[benchmark]]
+id = "static_large"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/static_large"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lb_round_robin"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_round_robin"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lb_least_conn"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_least_conn"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
+id = "lb_peer_down"
+category = "http"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_peer_down"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
+compare_oracle = "nginx"
+
+[[benchmark]]
 id = "lip_smoke"
 category = "tooling"
 tier = 3
