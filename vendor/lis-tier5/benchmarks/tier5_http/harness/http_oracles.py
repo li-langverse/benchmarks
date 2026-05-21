@@ -337,9 +337,7 @@ def stop_lighttpd(prefix: Path) -> None:
 
 def apache_proxy_lb_conf(front_port: int, backend_ports: list[int], prefix: Path) -> str:
     mod = apache_modules_dir()
-    members = "\n".join(
-        f"    BalancerMember http://127.0.0.1:{p} status+H" for p in backend_ports
-    )
+    members = "\n".join(f"    BalancerMember http://127.0.0.1:{p}" for p in backend_ports)
     px = str(prefix.resolve()).replace("\\", "/")
     return f"""ServerRoot "{px}"
 ServerName 127.0.0.1
@@ -356,6 +354,7 @@ Listen 127.0.0.1:{front_port}
 ProxyPreserveHost On
 <Proxy balancer://tier5>
 {members}
+  ProxySet lbmethod=byrequests
 </Proxy>
 ProxyPass / balancer://tier5/
 ProxyPassReverse / balancer://tier5/
@@ -364,13 +363,20 @@ ProxyPassReverse / balancer://tier5/
 
 def lighttpd_proxy_lb_conf(front_port: int, backend_ports: list[int], prefix: Path) -> str:
     px = str(prefix.resolve()).replace("\\", "/")
-    host_list = ", ".join(f'"127.0.0.1:{p}"' for p in backend_ports)
-    return f"""server.modules = ("mod_proxy", "mod_indexfile")
+    docroot = px + "/htdocs"
+    members = "\n".join(
+        f'    ( "host" => "127.0.0.1", "port" => {p} ),' for p in backend_ports
+    )
+    return f"""server.modules = ("mod_proxy", "mod_indexfile", "mod_access")
+server.document-root = "{docroot}"
 server.port = {front_port}
 server.bind = "127.0.0.1"
 server.pid-file = "{px}/lighttpd.pid"
 server.errorlog = "{px}/logs/error.log"
-proxy.server = ("/" => (( "host" => ({host_list}), "port" => 80 )))
+proxy.balance = "round-robin"
+proxy.server = ("/" => (
+{members}
+))
 """
 
 
@@ -706,6 +712,7 @@ def start_lighttpd_proxy_bench(
     _ = doc_root
     tmp = tempfile.TemporaryDirectory(prefix="lis-lighttpd-proxy-")
     prefix = Path(tmp.name)
+    (prefix / "htdocs").mkdir(parents=True, exist_ok=True)
     conf = lighttpd_proxy_lb_conf(front_port, backend_ports, prefix)
     if not launch_lighttpd(prefix, conf, front_port):
         tmp.cleanup()

@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- **Tier-5 proxy oracles:** Apache `BalancerMember` syntax (drop `status+H`; `ProxySet lbmethod=byrequests`); lighttpd proxy `document-root` + per-backend host tuples — [2026-05-22-httpd-proxy-oracles.md](docs/release-notes/2026-05-22-httpd-proxy-oracles.md).
 - **Tier-5 HTTP benches:** nginx `client_body_temp_path` under `/tmp/nginx-bench`; wrk pipelining via Lua (Debian wrk lacks `--pipeline`).
 - **Ingest:** `build_summary.py` honors catalog `variant` when multiple `li` rows exist (e.g. `proxy_loopback` / `li_epoll`).
 - **Ingest workflows:** `ingest.yml` no longer passes a CSV path as the second argument to `build_summary.py` (that was interpreted as `lis` root and dropped HTTP merge). Workflows now check out **lis**, merge dispatch artifacts into `lic/benchmarks/results/latest.csv`, and run `./scripts/ingest/ingest-lic.sh` with `LIC_ROOT` / `LIS_ROOT`. **Benchmarks CI** and **ecosystem-audit** check out **lis** and set `LIS_ROOT` for the same reason.
