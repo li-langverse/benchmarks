@@ -30,6 +30,7 @@ Read `recommended_agents` and each artifact in `data/latest/*.json`.
 | CI-green PRs, no `merge-approved` | **pr-review-agent** (max 3 PRs) |
 | Red benchmarks | **numerics-research-cycle** + web/HPC SOTA |
 | `needs_plan` issues | **issue-feature-planner** (max 3 issues) |
+| Duplicate/stale issues, explorer bursts | **issue-hygiene-agent** |
 | `merge-approved` + gate ready | **pr-auto-merge** (execute one merge, re-plan) |
 
 Do **one mission deeply** rather than all shallowly if timeboxed.

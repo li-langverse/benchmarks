@@ -44,6 +44,7 @@ cat data/latest/agent-briefing.json   # → recommended_agents
 | **Implementation gaps** | Weekly | [implementation-gaps-agent.md](../../.cursor/automations/implementation-gaps-agent.md) | `explore-li-ecosystem`, `audit-plan-completion` |
 | Plan completion | Weekly | [plan-completion-audit.md](../../.cursor/automations/plan-completion-audit.md) | `audit-plan-completion` |
 | Issue planner | 2×/week | [issue-feature-planner.md](../../.cursor/automations/issue-feature-planner.md) | `plan-feature-from-issue` |
+| **Issue hygiene** | Weekly | [issue-hygiene-agent.md](../../.cursor/automations/issue-hygiene-agent.md) | `plan-feature-from-issue`, `review-pr-alignment` |
 | **PR alignment** | Daily | [pr-alignment-agent.md](../../.cursor/automations/pr-alignment-agent.md) | `review-pr-alignment` |
 | **PR review** | Daily / on PR | [pr-review-agent.md](../../.cursor/automations/pr-review-agent.md) | `merge-approved-pr`, `review-pr-alignment` |
 | **Numerics research** | Weekly | [numerics-research-cycle.md](../../.cursor/automations/numerics-research-cycle.md) | `research-li-numerics`, `numerics-autoresearch` |
