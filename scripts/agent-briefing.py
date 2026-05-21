@@ -25,6 +25,7 @@ ROADMAP = Path(os.environ.get("ROADMAP_ROOT", ROOT.parent / "roadmap"))
 
 PREFLIGHT_SCRIPTS = [
     ("issue_triage", ["python3", "scripts/issue-feature-triage.py"]),
+    ("issue_hygiene", ["python3", "scripts/issue-backlog-hygiene.py"]),
     ("plan_audit", ["python3", "scripts/plan-completion-audit.py"]),
     ("ecosystem_audit", ["python3", "scripts/ecosystem-audit.py"]),
     ("org_ci_audit", ["python3", "scripts/ensure-org-repo-ci.py"]),
@@ -91,6 +92,12 @@ CURSOR_AGENTS = [
         "skill": "plan-feature-from-issue",
         "when": "plan-needed / feature issues",
         "preflight": ["issue_triage"],
+    },
+    {
+        "id": "issue_hygiene",
+        "prompt": ".cursor/automations/issue-hygiene-agent.md",
+        "when": "Duplicate/stale issues, explorer-finding bursts, backlog routing",
+        "preflight": ["issue_hygiene", "issue_triage"],
     },
     {
         "id": "pr_branch_opener",
@@ -179,6 +186,7 @@ def run_script(name: str, cmd: list[str], skip_slow: bool) -> dict:
         "pr_branch_hygiene",
         "ci_bug_triage",
         "security_cwe_audit",
+        "issue_hygiene",
     )
     if skip_slow and slow:
         return {"skipped": True, "reason": "--skip-slow"}
@@ -393,6 +401,23 @@ def recommend_agents(data: dict) -> list[dict]:
                 }
             )
 
+    hygiene = data.get("issue_backlog_hygiene") or {}
+    if isinstance(hygiene, dict):
+        summary = hygiene.get("summary") or {}
+        dup = int(summary.get("duplicate_clusters") or 0)
+        stale_n = int(summary.get("stale_candidates") or 0)
+        spam = int(summary.get("explorer_spam_repos") or 0)
+        if (dup > 0 or stale_n > 3 or spam > 0) and not _has_agent(rec, "issue_hygiene"):
+            rec.append(
+                {
+                    "agent": "issue_hygiene",
+                    "reason": (
+                        f"backlog hygiene: dup_clusters={dup} stale={stale_n} "
+                        f"explorer_spam_repos={spam}"
+                    ),
+                }
+            )
+
     triage = data.get("issue_triage") or {}
     if isinstance(triage, dict) and triage.get("needs_plan"):
         rec.append({"agent": "issue_planner", "reason": "issues need plans"})
@@ -506,6 +531,7 @@ def main() -> int:
         "note": "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file.",
         "preflight_runs": runs,
         "issue_triage": load_json(LATEST / "issue-feature-triage.json"),
+        "issue_backlog_hygiene": load_json(LATEST / "issue-backlog-hygiene.json"),
         "plan_completion_audit": load_json(LATEST / "plan-completion-audit.json"),
         "ecosystem_audit": load_json(LATEST / "ecosystem-audit.json"),
         "ecosystem_explorer": load_json(LATEST / "ecosystem-explorer.json"),

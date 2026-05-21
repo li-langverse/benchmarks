@@ -30,6 +30,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `cursor-agent-run.sh` | Delegates to **li-cursor-agents** (`@cursor/sdk` local or `--mock`) |
 | `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` (agent interprets) |
 | `issue-feature-triage.py` | Open issues needing plans |
+| `issue-backlog-hygiene.py` | Duplicate/stale issues, explorer bursts, planner vs implementer routing |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
 | `pr-merge-gate.py` | Merge readiness (CI, review, labels) |
 | `pr-auto-merge.py` | Merge one PR when gate passes |
