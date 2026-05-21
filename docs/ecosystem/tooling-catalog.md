@@ -31,7 +31,8 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` (agent interprets) |
 | `issue-feature-triage.py` | Open issues needing plans |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
-| `pr-merge-gate.py` | Merge readiness (CI, review, labels) |
+| `pr-merge-gate.py` | Merge readiness (CI, review, labels); accepts **local-ci** when GHA quota/red |
+| `local-ci-sweep.py` | Run **li-local-ci** on open PRs → `data/latest/local-ci-results.json` |
 | `pr-auto-merge.py` | Merge one PR when gate passes |
 | `pr-auto-merge-sweep.py` | Sweep `merge-approved` PRs (`--use-plan` for safe order) |
 | `pr-merge-queue-plan.py` | Merge order, stacks, redundant PR detection |
@@ -50,6 +51,15 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `publish-github-pages.sh` | Pages deploy helper |
 | `ingest/ingest-lic.sh` | Ingest lic CSV → summary |
 | `ingest/build_summary.py` | Build `data/latest/summary.json` |
+
+**[`li-local-ci`](https://github.com/li-langverse/li-local-ci)** (sibling clone or `LI_LOCAL_CI_ROOT`): when **GitHub Actions minutes are exhausted**, run the same CI locally (act → workflow YAML, or **profile fallback** e.g. `lic-host` → `./scripts/ci.sh`). Merge gate reads `local-ci-results.json` for up to 48h (`LI_LOCAL_CI_MAX_AGE_HOURS`).
+
+```bash
+git clone https://github.com/li-langverse/li-local-ci ../li-local-ci   # or set LI_LOCAL_CI_ROOT
+python3 scripts/local-ci-sweep.py --repo lic --pr 134
+../li-local-ci/bin/li-local-ci run-pr --repo lic --pr 134 --profile legacy   # explicit lic-host
+python3 scripts/pr-merge-gate.py --repo lic --pr 134   # ci_green via local-ci when GHA fail/none
+```
 
 **`lic` (not duplicated here):** `./scripts/ci.sh`, `li-tests/run_all.sh`, `benchmarks/harness/bench.py`, `scripts/check-stdlib-coverage.sh`, …
 

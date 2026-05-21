@@ -17,6 +17,7 @@
 3. Align fixes to vision: P0 package CI → merge queue → lic compiler perf (pure-Li tier-1), not dashboard-only threshold tweaks.
 4. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 5. On catalog miss or script failure → **file ecosystem-gap issue** (do not only patch locally).
+6. **GHA quota / red checks:** use **[li-local-ci](https://github.com/li-langverse/li-local-ci)** — `python3 scripts/local-ci-sweep.py --repo <repo> --pr <n>` writes `data/latest/local-ci-results.json`; `pr-merge-gate.py` treats a fresh local pass as **ci_green** (see [tooling-catalog](docs/ecosystem/tooling-catalog.md)).
 
 **Agent-first:** Intelligence (explorer, PR review/alignment, numerics SOTA, plan gaps) = **[Cursor Automations](https://cursor.com/automations)** + web search. Scripts only **preflight** JSON: `./scripts/agent-preflight.sh` → [cursor-agent-architecture.md](docs/ecosystem/cursor-agent-architecture.md).
 
