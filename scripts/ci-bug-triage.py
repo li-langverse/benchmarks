@@ -18,7 +18,7 @@ LOCAL_CI = ROOT / "data/latest/local-ci-results.json"
 ORG = "li-langverse"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from org_repos import ORG_REPOS  # noqa: E402
+from org_repos import org_repos_for_sweep  # noqa: E402
 
 BUG_LABELS = {
     "bug",
@@ -80,7 +80,7 @@ def local_ci_failures() -> list[dict]:
 
 def bug_issues() -> list[dict]:
     rows: list[dict] = []
-    for repo in ORG_REPOS:
+    for repo in org_repos_for_sweep():
         issues = gh_json(
             [
                 "issue",
@@ -115,7 +115,7 @@ def bug_issues() -> list[dict]:
 
 def gha_failing_prs() -> list[dict]:
     rows: list[dict] = []
-    for repo in ORG_REPOS:
+    for repo in org_repos_for_sweep():
         prs = gh_json(
             [
                 "pr",

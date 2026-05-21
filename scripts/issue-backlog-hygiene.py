@@ -22,11 +22,7 @@ OUT = ROOT / "data/latest/issue-backlog-hygiene.json"
 ORG = "li-langverse"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from org_repos import filter_merge_repos  # noqa: E402
-
-SCAN_REPOS = filter_merge_repos(
-    ["lic", "lip", "lit", "lis", "benchmarks", "roadmap", "li-net", "li-httpd"]
-)
+from org_repos import org_repos_for_sweep  # noqa: E402
 
 STALE_DAYS = 75
 DUPLICATE_TITLE_RATIO = 0.88
@@ -214,7 +210,7 @@ def find_close_candidates(rows: list[dict]) -> list[dict]:
     return out
 
 
-def build_report(rows: list[dict], *, live: bool) -> dict:
+def build_report(rows: list[dict], *, live: bool, repos: list[str] | None = None) -> dict:
     now = datetime.now(timezone.utc)
     duplicate_clusters = find_duplicate_clusters(rows)
     stale = find_stale(rows, now)
@@ -233,12 +229,15 @@ def build_report(rows: list[dict], *, live: bool) -> dict:
 
     dup_issue_count = sum(len(c["duplicates"]) for c in duplicate_clusters)
 
+    sweep = repos or sorted({r["repo"] for r in rows})
     return {
         "generated_at": now.strftime("%Y-%m-%dT%H:%MZ"),
         "live_scan": live,
         "skill": "issue_hygiene agent — see .cursor/automations/issue-hygiene-agent.md",
+        "repos_scanned": sweep,
         "summary": {
-            "repos_scanned": len({r["repo"] for r in rows}),
+            "repos_in_org_sweep": len(sweep),
+            "repos_with_open_issues": len({r["repo"] for r in rows}),
             "open_issues": len(rows),
             "duplicate_clusters": len(duplicate_clusters),
             "duplicate_issues": dup_issue_count,
@@ -345,7 +344,7 @@ def run_self_test() -> int:
             "comments": 2,
         },
     ]
-    report = build_report(fixture_rows, live=False)
+    report = build_report(fixture_rows, live=False, repos=["lic"])
     assert report["summary"]["duplicate_clusters"] >= 1, report
     assert report["summary"]["route_implementer"] >= 1, report
     assert report["summary"]["route_planner"] >= 1, report
@@ -367,18 +366,20 @@ def main() -> int:
         print("gh required (or use --self-test)", file=sys.stderr)
         return 1
 
+    repos = org_repos_for_sweep()
     rows: list[dict] = []
-    for repo in SCAN_REPOS:
+    for repo in repos:
         rows.extend(fetch_open_issues(repo))
 
-    report = build_report(rows, live=True)
+    report = build_report(rows, live=True, repos=repos)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     s = report["summary"]
     print(
         f"wrote {OUT} "
-        f"(open={s['open_issues']} dup_clusters={s['duplicate_clusters']} "
-        f"stale={s['stale_candidates']} route_planner={s['route_planner']})"
+        f"(sweep={s['repos_in_org_sweep']} open={s['open_issues']} "
+        f"dup_clusters={s['duplicate_clusters']} stale={s['stale_candidates']} "
+        f"route_planner={s['route_planner']})"
     )
     return 0
 

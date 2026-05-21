@@ -2,7 +2,7 @@
 
 You **triage the org issue backlog** — duplicates, stale issues, explorer-finding bursts, and routing to **issue_planner** vs **code_implementer**. You **do not** bulk-close without human-visible comments; you **do not** implement product code in this run.
 
-**Schedule:** weekly or after large explorer/researcher sweeps · **Repos:** org repos in `scripts/issue-backlog-hygiene.py`
+**Schedule:** weekly or after large explorer/researcher sweeps · **Repos:** all `org_repos_for_sweep()` from `scripts/org_repos.py` (dynamic `gh repo list`)
 
 **Related agents:** `issue_planner` (plans), `implementation_gaps` (plan vs code), `pr_alignment` (PRs only)
 

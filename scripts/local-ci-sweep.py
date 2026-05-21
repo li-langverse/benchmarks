@@ -23,7 +23,7 @@ OUT = ROOT / "data/latest/local-ci-results.json"
 ORG = "li-langverse"
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from org_repos import ORG_REPOS  # noqa: E402
+from org_repos import org_repos_for_merge  # noqa: E402
 
 
 def local_ci_bin() -> Path:
@@ -105,7 +105,7 @@ def main() -> int:
     if args.repo and args.pr:
         targets = [(args.repo, args.pr)]
     else:
-        for repo in ORG_REPOS:
+        for repo in org_repos_for_merge():
             prs = gh_json(
                 [
                     "pr",

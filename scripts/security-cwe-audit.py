@@ -24,7 +24,7 @@ LI_TESTS = LIC / "li-tests"
 ORG = "li-langverse"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from org_repos import ORG_REPOS  # noqa: E402
+from org_repos import org_repos_for_sweep  # noqa: E402
 
 
 def gh_json(args: list[str]):
@@ -91,7 +91,7 @@ def main() -> int:
             )
 
     repo_rows: list[dict] = []
-    for repo in ORG_REPOS:
+    for repo in org_repos_for_sweep():
         has_wf = repo_has_security_workflow(repo)
         repo_rows.append(
             {

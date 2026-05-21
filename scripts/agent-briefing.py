@@ -20,6 +20,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/agent-briefing.json"
 LATEST = ROOT / "data/latest"
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+from org_repos import build_org_repos_catalog, refresh_org_repos  # noqa: E402
 LIC = Path(os.environ.get("LIC_ROOT", ROOT.parent / "lic"))
 ROADMAP = Path(os.environ.get("ROADMAP_ROOT", ROOT.parent / "roadmap"))
 
@@ -521,6 +525,11 @@ def main() -> int:
     args = parser.parse_args()
 
     LATEST.mkdir(parents=True, exist_ok=True)
+    catalog = build_org_repos_catalog()
+    (LATEST / "org-repos-catalog.json").write_text(
+        json.dumps(catalog, indent=2) + "\n", encoding="utf-8"
+    )
+    refresh_org_repos()
     runs: dict[str, dict] = {}
     for name, cmd in PREFLIGHT_SCRIPTS:
         runs[name] = run_script(name, cmd, args.skip_slow)
@@ -529,6 +538,7 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "role": "preflight_for_cursor_agents",
         "note": "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file.",
+        "org_repos_catalog": catalog,
         "preflight_runs": runs,
         "issue_triage": load_json(LATEST / "issue-feature-triage.json"),
         "issue_backlog_hygiene": load_json(LATEST / "issue-backlog-hygiene.json"),

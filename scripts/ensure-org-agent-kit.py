@@ -34,7 +34,7 @@ REQUIRED_RULES = [
 
 # Org repos that must carry synced agent-kit (code + agent runners).
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from org_repos import CORE_AGENT_KIT_REPOS  # noqa: E402
+from org_repos import agent_kit_target_repos, list_org_repos as org_list_all  # noqa: E402
 
 LOCAL_DIR_ALIASES: dict[str, list[str]] = {
     "lic": ["lic", "li"],
@@ -67,10 +67,7 @@ def gh_json(args: list[str]):
 
 
 def list_org_repos() -> list[str]:
-    rows = gh_json(["repo", "list", ORG, "--limit", "100", "--json", "name,isArchived"])
-    if not rows:
-        return CORE_AGENT_KIT_REPOS
-    return sorted(r["name"] for r in rows if not r.get("isArchived"))
+    return org_list_all()
 
 
 def resolve_local_dir(repo: str) -> Path | None:
@@ -195,7 +192,7 @@ def main() -> int:
         return 1
 
     stamp = canonical_stamp()
-    repos = args.repos if args.repos else sorted(set(CORE_AGENT_KIT_REPOS) | set(list_org_repos()))
+    repos = args.repos if args.repos else sorted(set(agent_kit_target_repos()) | set(list_org_repos()))
 
     entries: list[dict] = []
     for repo in repos:

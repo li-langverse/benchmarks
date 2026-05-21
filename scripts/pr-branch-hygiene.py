@@ -20,7 +20,7 @@ OUT = ROOT / "data/latest/pr-branch-hygiene.json"
 ORG = "li-langverse"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from org_repos import ORG_REPOS  # noqa: E402
+from org_repos import org_repos_for_sweep  # noqa: E402
 
 SKIP_BRANCH_PREFIXES = (
     "dependabot/",
@@ -222,7 +222,7 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
-    repos = [args.repo] if args.repo else ORG_REPOS
+    repos = [args.repo] if args.repo else org_repos_for_sweep()
     merge_plan_path = ROOT / "data/latest/pr-merge-queue-plan.json"
     merge_plan: dict = {}
     if merge_plan_path.is_file():

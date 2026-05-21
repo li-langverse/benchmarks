@@ -15,15 +15,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-# Repos that accept feature issues + planning
-ORG_REPOS = [
-    "lic",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from org_repos import org_repos_for_sweep  # noqa: E402
 
 FEATURE_LABELS = {
     "feature",
@@ -104,7 +97,8 @@ def main() -> int:
         return 1
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-    by_repo = [triage_repo(r) for r in ORG_REPOS]
+    repos = org_repos_for_sweep()
+    by_repo = [triage_repo(r) for r in repos]
     total_needs = sum(len(r.get("needs_plan", [])) for r in by_repo)
     total_candidates = sum(len(r.get("candidates", [])) for r in by_repo)
 
@@ -112,12 +106,13 @@ def main() -> int:
         "generated_at": now,
         "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
         "skill": "plan-feature-from-issue (see .cursor/skills/)",
+        "repo_names": repos,
         "summary": {
-            "repos_scanned": len(ORG_REPOS),
+            "repos_scanned": len(repos),
             "needs_plan": total_needs,
             "candidates": total_candidates,
         },
-        "repos": by_repo,
+        "by_repo": by_repo,
         "recommended_actions": [],
     }
 

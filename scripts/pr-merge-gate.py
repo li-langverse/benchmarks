@@ -20,19 +20,8 @@ PLAN_NEEDED = "plan-needed"
 AGENT_INCOMPLETE = "agent-incomplete"
 BLOCK_LABELS = frozenset({"do-not-merge", "blocked", "wontfix", AGENT_INCOMPLETE})
 GOVERNANCE_REPOS = frozenset({"roadmap"})
-ORG_REPOS = (
-    "lic",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-    "li-net",
-    "li-httpd",
-    "li-std-core",
-    "li-std-math",
-    "li-demo",
-)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from org_repos import org_repos_for_merge  # noqa: E402
 
 
 def gh_json(args: list[str]) -> dict | list | None:
@@ -345,7 +334,7 @@ def evaluate_pr(
 
 
 def list_merge_candidates(repo: str | None = None) -> list[GateResult]:
-    repos = [repo] if repo else list(ORG_REPOS)
+    repos = [repo] if repo else org_repos_for_merge()
     out: list[GateResult] = []
     for r in repos:
         rows = gh_json(

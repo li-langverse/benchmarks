@@ -25,7 +25,7 @@ REQUIRED_WORKFLOW = "ci.yml"
 _SCRIPTS = Path(__file__).resolve().parent
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
-from org_repos import IGNORE_REPOS, filter_repos  # noqa: E402
+from org_repos import IGNORE_REPOS, filter_repos, list_org_repos as org_list_all  # noqa: E402
 
 EXEMPT_REPOS: set[str] = set(IGNORE_REPOS)
 
@@ -35,13 +35,6 @@ def gh_json(args: list[str]):
     if proc.returncode != 0 or not proc.stdout.strip():
         return None
     return json.loads(proc.stdout)
-
-
-def list_org_repos() -> list[str]:
-    rows = gh_json(["repo", "list", ORG, "--limit", "100", "--json", "name,isArchived"])
-    if not rows:
-        return []
-    return sorted(r["name"] for r in rows if not r.get("isArchived"))
 
 
 def local_workflow_names(repo: str) -> list[str]:
@@ -104,7 +97,7 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
-    repos = filter_repos(args.repos if args.repos else list_org_repos())
+    repos = filter_repos(args.repos if args.repos else org_list_all())
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
     ok: list[str] = []
     missing: list[dict] = []

@@ -21,7 +21,7 @@ GATE_SCRIPT = ROOT / "scripts/pr-merge-gate.py"
 SWEEP_SCRIPT = ROOT / "scripts/pr-auto-merge-sweep.py"
 
 sys.path.insert(0, str(ROOT / "scripts"))
-from org_repos import MERGE_IGNORE_REPOS, ORG_REPOS  # noqa: E402
+from org_repos import MERGE_IGNORE_REPOS, org_repos_for_sweep, refresh_org_repos  # noqa: E402
 
 # Vision merge order (lower = earlier)
 REPO_PRIORITY = {
@@ -81,11 +81,14 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
+    refresh_org_repos()
+    sweep_repos = org_repos_for_sweep()
+
     subprocess.run([sys.executable, str(PLAN_SCRIPT)], check=False)
     plan = json.loads((ROOT / "data/latest/pr-merge-queue-plan.json").read_text(encoding="utf-8"))
 
     candidates: list[dict] = []
-    for repo in ORG_REPOS:
+    for repo in sweep_repos:
         prs = gh_json(
             [
                 "pr",

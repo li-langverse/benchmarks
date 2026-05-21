@@ -31,6 +31,7 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 | `ecosystem-explorer.py` | Missing std/libs, HPC rubric, Reddit/web query hints → `ecosystem-explorer.json` (agent interprets) |
 | `issue-feature-triage.py` | Open issues needing plans |
 | `issue-backlog-hygiene.py` | Duplicate/stale issues, explorer bursts, planner vs implementer routing |
+| `org_repos.py` | **Single source** — `gh repo list` for org repos; `org_repos_for_sweep` / `org_repos_for_merge`; writes `org-repos-catalog.json` in briefing |
 | `plan-completion-audit.py` | Master plan / checkbox / G-* drift |
 | `pr-merge-gate.py` | Merge readiness (CI, review, labels) |
 | `pr-auto-merge.py` | Merge one PR when gate passes |

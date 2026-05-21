@@ -10,34 +10,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-def list_org_repos() -> list[str]:
-    """All non-archived li-langverse repos (dynamic)."""
-    proc = subprocess.run(
-        ["gh", "repo", "list", "li-langverse", "--limit", "100", "--json", "name,isArchived"],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if proc.returncode != 0 or not proc.stdout.strip():
-        return [
-            "lic",
-            "li-language",
-            "lip",
-            "lit",
-            "lis",
-            "benchmarks",
-            "roadmap",
-            "li-net",
-            "li-httpd",
-            "li-std-core",
-            "li-std-math",
-            "li-demo",
-        ]
-    rows = json.loads(proc.stdout)
-    return sorted(r["name"] for r in rows if not r.get("isArchived"))
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+from org_repos import list_org_repos  # noqa: E402
 
-
-ORG_REPOS: list[str] = []  # filled in main()
+ORG_REPOS: list[str] = []  # filled in main() — full org (includes li-demo, li-local-ci)
 LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",

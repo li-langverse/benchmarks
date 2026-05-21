@@ -18,19 +18,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/pr-merge-queue-plan.json"
 
-ORG_REPOS = [
-    "lic",
-    "lip",
-    "lit",
-    "lis",
-    "benchmarks",
-    "roadmap",
-    "li-net",
-    "li-httpd",
-    "li-std-core",
-    "li-std-math",
-    "li-demo",
-]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from org_repos import org_repos_for_merge  # noqa: E402
 
 # Lower = merge earlier (vision: package CI → benchmarks → lic → tooling → governance)
 REPO_PRIORITY: dict[str, int] = {
@@ -378,7 +367,7 @@ def main() -> int:
         print("gh required", file=sys.stderr)
         return 1
 
-    repos = [args.repo] if args.repo else ORG_REPOS
+    repos = [args.repo] if args.repo else org_repos_for_merge()
     raw = fetch_open_prs(repos)
     prs = [enrich_pr(r) for r in raw]
     stacks = detect_stacks(prs)

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Dynamic org repos:** `scripts/org_repos.py` centralizes `gh repo list` for all preflight/agents; `org-repos-catalog.json` in briefing (`docs/release-notes/2026-05-21-dynamic-org-repos.md`)
+
 ### Fixed
 
 - **CI `dashboard-static`:** `ci.yml` gates the Vite `dashboard/dist` build (same as `pages.yml`) instead of `render-static.sh` until `lic` `main` ships `std/plot` (PH-IO-5). Restores green Benchmarks CI on open PRs.
