@@ -2755,3 +2755,957 @@ Status: **green** — 0 failures / 36 cells
 
 ```
 
+
+## Step: step-7-wave7-passive-health-validate — 2026-05-21T10:29:09Z
+
+M1 wave 7: passive upstream health + lic-validate-httpd-config
+
+```bash
+# full suite (fast flags optional: SKIP_BUILD=1 if lic built)
+LIC_ROOT=/workspace/lic SKIP_BUILD=${SKIP_BUILD:-1} SKIP_TIER0=${SKIP_TIER0:-1} \
+  BENCH_RUNS=${BENCH_RUNS:-1} HTTP_BENCH_RUNS=${HTTP_BENCH_RUNS:-2} \
+  /workspace/scripts/run-full-benchmark-suite.sh
+```
+
+==> setup lic + li-httpd
+note: install bun for tier-5 bun oracle (optional)
+==> lic compiler
+-- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
+-- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
+-- Found LLVM 18.1.3
+-- Building with -fPIC
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /workspace/lic/build
+ninja: no work to do.
+==> li-httpd
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+OK LIC_ROOT=/workspace/lic
+==> tier 1+2 — micro + physics (runs=1)
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+simd_dot cpp wall_time=0.0588s (median of 1)
+simd_dot rust wall_time=0.0539s (median of 1)
+simd_dot julia wall_time=0.0532s (median of 1)
+simd_dot li wall_time=0.0007s (median of 1)
+ok simd_dot
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+matmul_naive cpp wall_time=0.0035s (median of 1)
+matmul_naive rust wall_time=0.0023s (median of 1)
+matmul_naive julia wall_time=0.0025s (median of 1)
+matmul_naive li wall_time=0.0034s (median of 1)
+ok matmul_naive
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+matmul_blocked cpp wall_time=0.0106s (median of 1)
+matmul_blocked rust wall_time=0.0100s (median of 1)
+matmul_blocked julia wall_time=0.0100s (median of 1)
+matmul_blocked li wall_time=0.0103s (median of 1)
+ok matmul_blocked
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+reduce_sum cpp wall_time=0.3094s (median of 1)
+reduce_sum rust wall_time=0.3285s (median of 1)
+reduce_sum julia wall_time=0.3457s (median of 1)
+reduce_sum li wall_time=0.3106s (median of 1)
+ok reduce_sum
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+horner_pure_li cpp wall_time=0.0009s (median of 1)
+horner_pure_li rust wall_time=0.0010s (median of 1)
+horner_pure_li julia wall_time=0.0007s (median of 1)
+horner_pure_li li wall_time=0.0004s (median of 1)
+ok horner_pure_li
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+md_lennard_jones cpp wall_time=2.6133s (median of 1)
+md_lennard_jones rust wall_time=2.6695s (median of 1)
+md_lennard_jones julia wall_time=2.5887s (median of 1)
+md_lennard_jones li wall_time=0.0032s (median of 1)
+ok md_lennard_jones
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+three_body cpp wall_time=0.2438s (median of 1)
+three_body rust wall_time=0.2446s (median of 1)
+three_body julia wall_time=0.2437s (median of 1)
+three_body li wall_time=0.2438s (median of 1)
+ok three_body
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+nbody_gravity cpp wall_time=1.1719s (median of 1)
+nbody_gravity rust wall_time=1.1702s (median of 1)
+nbody_gravity julia wall_time=1.1721s (median of 1)
+nbody_gravity li wall_time=1.1742s (median of 1)
+ok nbody_gravity
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+harmonic_oscillator_chain cpp wall_time=0.0885s (median of 1)
+harmonic_oscillator_chain rust wall_time=0.0830s (median of 1)
+harmonic_oscillator_chain julia wall_time=0.0831s (median of 1)
+harmonic_oscillator_chain li wall_time=0.0885s (median of 1)
+ok harmonic_oscillator_chain
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+wave_equation_1d cpp wall_time=1.8522s (median of 1)
+wave_equation_1d rust wall_time=1.7856s (median of 1)
+wave_equation_1d julia wall_time=1.7982s (median of 1)
+wave_equation_1d li wall_time=1.7757s (median of 1)
+ok wave_equation_1d
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+heat_equation_2d cpp wall_time=0.1273s (median of 1)
+heat_equation_2d rust wall_time=0.1288s (median of 1)
+heat_equation_2d julia wall_time=0.1287s (median of 1)
+heat_equation_2d li wall_time=0.1302s (median of 1)
+ok heat_equation_2d
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+double_pendulum cpp wall_time=0.3173s (median of 1)
+double_pendulum rust wall_time=0.3180s (median of 1)
+double_pendulum julia wall_time=0.3325s (median of 1)
+double_pendulum li wall_time=0.3184s (median of 1)
+ok double_pendulum
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+advection_diffusion_2d cpp wall_time=0.1109s (median of 1)
+advection_diffusion_2d rust wall_time=0.1107s (median of 1)
+advection_diffusion_2d julia wall_time=0.1114s (median of 1)
+advection_diffusion_2d li wall_time=0.1042s (median of 1)
+ok advection_diffusion_2d
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+wave_equation_2d cpp wall_time=0.2753s (median of 1)
+wave_equation_2d rust wall_time=0.2761s (median of 1)
+wave_equation_2d julia wall_time=0.2899s (median of 1)
+wave_equation_2d li wall_time=0.2774s (median of 1)
+ok wave_equation_2d
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+sph_dam_break_2d cpp wall_time=0.8389s (median of 1)
+sph_dam_break_2d rust wall_time=0.8355s (median of 1)
+sph_dam_break_2d julia wall_time=0.8357s (median of 1)
+sph_dam_break_2d li wall_time=0.8395s (median of 1)
+ok sph_dam_break_2d
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip rigid_body_stack: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/rigid_body_stack/li/main.li', '-o', '/workspace/lic/build/bench/rigid_body_stack/rigid_body_stack_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+/workspace/lic/benchmarks/tier2_physics/three_body_pure/li/main.li:6:5: error [lic.error]: expected ':'
+/workspace/lic/benchmarks/tier2_physics/three_body_pure/li/main.li:6:7: error [lic.error]: expected ')'
+/workspace/lic/benchmarks/tier2_physics/three_body_pure/li/main.li:6:7: error [lic.error]: expected '='
+/workspace/lic/benchmarks/tier2_physics/three_body_pure/li/main.li:6:7: error [lic.error]: expected indented block
+/workspace/lic/benchmarks/tier2_physics/three_body_pure/li/main.li:6:7: error [lic.error]: expected top-level declaration
+WARN skip three_body_pure: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/three_body_pure/li/main.li', '-o', '/workspace/lic/build/bench/three_body_pure/three_body_pure_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip wind_field_bc: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/wind_field_bc/li/main.li', '-o', '/workspace/lic/build/bench/wind_field_bc/wind_field_bc_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip combustion_passive: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/combustion_passive/li/main.li', '-o', '/workspace/lic/build/bench/combustion_passive/combustion_passive_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip orbit_two_body: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/orbit_two_body/li/main.li', '-o', '/workspace/lic/build/bench/orbit_two_body/orbit_two_body_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip fdtd_waveguide_2d: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/fdtd_waveguide_2d/li/main.li', '-o', '/workspace/lic/build/bench/fdtd_waveguide_2d/fdtd_waveguide_2d_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip schrodinger_1d_barrier: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/schrodinger_1d_barrier/li/main.li', '-o', '/workspace/lic/build/bench/schrodinger_1d_barrier/schrodinger_1d_barrier_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip euler_fluid_2d: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/euler_fluid_2d/li/main.li', '-o', '/workspace/lic/build/bench/euler_fluid_2d/euler_fluid_2d_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip cloth_swing: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/cloth_swing/li/main.li', '-o', '/workspace/lic/build/bench/cloth_swing/cloth_swing_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+module:1:1: error [E0301]: Every `extern proc` must declare what must be true before it runs (`requires`).
+module:1:1: error [E0301]: Every `extern proc` must declare what it guarantees on exit (`ensures`).
+module:1:1: error [lic.error]: proc calls extern but does not declare raises IO
+WARN skip ragdoll_chain: Command '['/workspace/lic/build/compiler/lic/lic', 'build', '/workspace/lic/benchmarks/tier2_physics/ragdoll_chain/li/main.li', '-o', '/workspace/lic/build/bench/ragdoll_chain/ragdoll_chain_li', '--release', '-O3', '-ffast-math', '-march=native']' returned non-zero exit status 1.
+tier12: 10 skipped: rigid_body_stack, three_body_pure, wind_field_bc, combustion_passive, orbit_two_body, fdtd_waveguide_2d, schrodinger_1d_barrier, euler_fluid_2d, cloth_swing, ragdoll_chain
+updated /workspace/lic/benchmarks/results/latest.csv
+==> tier 3 — ecosystem (compile, security, async)
+runtime/li_rt_net.c:613:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  613 |     iov[iovcnt].iov_base = ptr_i(a);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:618:26: warning: assigning to 'void *' from 'const char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  618 |     iov[iovcnt].iov_base = ptr_i(b);
+      |                          ^ ~~~~~~~~
+runtime/li_rt_net.c:731:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+  731 |   memcpy(ptr_i(p), "not found", 9);
+      |          ^~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3525:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3525 |   ssize_t n = read((int)fd, ptr_i(buf), (size_t)max_bytes);
+      |                             ^~~~~~~~~~
+/usr/include/unistd.h:371:38: note: passing argument to parameter '__buf' here
+  371 | extern ssize_t read (int __fd, void *__buf, size_t __nbytes) __wur
+      |                                      ^
+runtime/li_rt_net.c:3588:10: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3588 |   memcpy(ptr_i(dst) + off, ptr_i(src), (size_t)n);
+      |          ^~~~~~~~~~~~~~~~
+/usr/include/string.h:43:39: note: passing argument to parameter '__dest' here
+   43 | extern void *memcpy (void *__restrict __dest, const void *__restrict __src,
+      |                                       ^
+runtime/li_rt_net.c:3596:20: warning: passing 'const char *' to parameter of type 'char *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3596 |   int n = snprintf(ptr_i(buf), (size_t)cap,
+      |                    ^~~~~~~~~~
+/usr/include/stdio.h:385:39: note: passing argument to parameter '__s' here
+  385 | extern int snprintf (char *__restrict __s, size_t __maxlen,
+      |                                       ^
+runtime/li_rt_net.c:3780:29: warning: passing 'const char *' to parameter of type 'void *' discards qualifiers [-Wincompatible-pointer-types-discards-qualifiers]
+ 3780 |   ssize_t r = recv((int)fd, ptr_i(buf), (size_t)cap, 0);
+      |                             ^~~~~~~~~~
+/usr/include/x86_64-linux-gnu/sys/socket.h:145:38: note: passing argument to parameter '__buf' here
+  145 | extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+      |                                      ^
+7 warnings generated.
+lic_build_async lic build wall_time=0.0022s
+lic_build_effects_net lic build wall_time=0.0020s
+lic_build_effects_async lic build wall_time=0.0020s
+lic_build_alloc lic build wall_time=0.0020s
+lic_check_contracts lic build wall_time=0.0020s
+async_await_chain li wall_time=0.0008s
+security_security_corpus wall_time=0.1287s
+security_security_cve_patterns wall_time=0.0226s
+security_security_webserver_registry wall_time=0.0201s
+updated /workspace/lic/benchmarks/results/latest.csv (+6 ecosystem rows)
+==> tier 5 — HTTP multi-oracle (nginx, apache, lighttpd, node, bun, li)
+bench_http: wrote 27 row(s) -> /workspace/vendor/lis-tier5/results/latest.csv
+run-tier5-http-bench: ok (profile=nightly, oracles=nginx,apache,lighttpd,node,bun,li)
+==> tier 5 — supplemental proxy_loopback (li_epoll + li c_epoll vs nginx)
+2026/05/21 10:34:51 [notice] 65292#65292: signal process started
+2026/05/21 10:35:32 [notice] 65336#65336: signal process started
+2026/05/21 10:36:36 [notice] 65406#65406: signal process started
+static_small li=87354 nginx=101297
+keepalive_pipelining li=132620 nginx=120948
+proxy_loopback li=131356 li_c=110508 nginx=57484
+tier5-http-bench: wrote 7 rows -> /workspace/lic/benchmarks/results/http_tier5.csv
+==> tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=pr)
+exploit_http: 36 row(s) -> /workspace/vendor/lis-tier5/results/exploit_report.csv (0 fail)
+run-tier5-http-exploits: ok (pr, langs=nginx,apache,li, csv=/workspace/vendor/lis-tier5/results/exploit_report.csv)
+merged tier5 (latest.csv + extra) into /workspace/lic/benchmarks/results/latest.csv
+==> ingest + summary.json
+ingest-csv-smoke: skip (lic lacks std/io + std/csv — PH-IO-4)
+build-summary-li: skip (lic lacks std/summary — PH-IO-7)
+wrote /workspace/data/latest/summary.json (32 rows, 32 charts)
+recorded 2026-05-21T103656Z.json (15 deltas vs previous)
+regression check ok: 32 rows
+==> benchmark status report
+=== Benchmark failures report ===
+Dashboard: https://li-langverse.github.io/benchmarks/
+generated_at: 2026-05-21T10:36:56.258651+00:00
+
+RED: none
+
+YELLOW (1):
+  static_large                 tier=5    1.066×  lis  PH=PH-H
+
+GREEN near threshold (>1.0× cpp, 6):
+  heat_equation_2d             tier=2    1.023×  lic  PH=PH-5b
+  wave_equation_2d             tier=2    1.008×  lic  PH=PH-5b
+  reduce_sum                   tier=1    1.004×  lic  PH=PH-5b
+  double_pendulum              tier=2    1.004×  lic  PH=PH-5b
+  nbody_gravity                tier=2    1.002×  lic  PH=PH-5b
+  sph_dam_break_2d             tier=2    1.001×  lic  PH=PH-5b
+
+UNKNOWN / no data (9):
+  tier0_stability              tier=0  lic
+  cloth_swing                  tier=2  lic
+  combustion_passive           tier=2  lic
+  euler_fluid_2d               tier=2  lic
+  rigid_body_stack             tier=2  lic
+  wind_field_bc                tier=2  lic
+  lip_smoke                    tier=3  lip
+  lit_smoke                    tier=3  lit
+  tier5_http_exploits          tier=5  lis
+
+Since last snapshot (15 deltas):
+  {'benchmark': 'matmul_blocked', 'field': 'status', 'from': 'red', 'to': 'green'}
+  {'benchmark': 'matmul_blocked', 'field': 'ratio_vs_cpp', 'from': 1.4528, 'to': 0.9717, 'delta': -0.4811, 'improved': True}
+  {'benchmark': 'matmul_naive', 'field': 'ratio_vs_cpp', 'from': 1.0417, 'to': 0.9714, 'delta': -0.0703, 'improved': True}
+  {'benchmark': 'reduce_sum', 'field': 'ratio_vs_cpp', 'from': 0.9938, 'to': 1.0039, 'delta': 0.0101, 'improved': False}
+  {'benchmark': 'advection_diffusion_2d', 'field': 'ratio_vs_cpp', 'from': 1.0108, 'to': 0.9396, 'delta': -0.0712, 'improved': True}
+  {'benchmark': 'harmonic_oscillator_chain', 'field': 'ratio_vs_cpp', 'from': 0.8337, 'to': 1.0, 'delta': 0.1663, 'improved': False}
+  {'benchmark': 'heat_equation_2d', 'field': 'ratio_vs_cpp', 'from': 0.9139, 'to': 1.0228, 'delta': 0.1089, 'improved': False}
+  {'benchmark': 'wave_equation_1d', 'field': 'ratio_vs_cpp', 'from': 1.0123, 'to': 0.9587, 'delta': -0.0536, 'improved': True}
+  {'benchmark': 'wave_equation_2d', 'field': 'ratio_vs_cpp', 'from': 1.0406, 'to': 1.0076, 'delta': -0.033, 'improved': True}
+  {'benchmark': 'keepalive_pipelining', 'field': 'ratio_vs_cpp', 'from': 0.3908, 'to': 0.4608, 'delta': 0.07, 'improved': False}
+  {'benchmark': 'lb_least_conn', 'field': 'ratio_vs_cpp', 'from': 0.4471, 'to': 0.3612, 'delta': -0.0859, 'improved': True}
+  {'benchmark': 'lb_round_robin', 'field': 'ratio_vs_cpp', 'from': 0.4442, 'to': 0.5094, 'delta': 0.0652, 'improved': False}
+  {'benchmark': 'proxy_loopback', 'field': 'ratio_vs_cpp', 'from': 0.475, 'to': 0.6074, 'delta': 0.1324, 'improved': False}
+  {'benchmark': 'static_large', 'field': 'status', 'from': 'green', 'to': 'yellow'}
+  {'benchmark': 'static_large', 'field': 'ratio_vs_cpp', 'from': 0.9645, 'to': 1.0659, 'delta': 0.1014, 'improved': False}
+==> full benchmark matrix (perf + HTTP oracles + exploits)
+benchmark-matrix-report: wrote /workspace/data/latest/benchmark-matrix.json and /workspace/data/latest/benchmark-matrix.md
+matrix: /workspace/data/latest/benchmark-matrix.md
+==> done — see data/latest/summary.json and data/latest/benchmark-matrix.md
+benchmark-matrix-report: wrote /workspace/data/latest/benchmark-matrix.json and /workspace/data/latest/benchmark-matrix.md
+=== Benchmark failures report ===
+Dashboard: https://li-langverse.github.io/benchmarks/
+generated_at: 2026-05-21T10:36:56.258651+00:00
+
+RED: none
+
+YELLOW (1):
+  static_large                 tier=5    1.066×  lis  PH=PH-H
+
+GREEN near threshold (>1.0× cpp, 6):
+  heat_equation_2d             tier=2    1.023×  lic  PH=PH-5b
+  wave_equation_2d             tier=2    1.008×  lic  PH=PH-5b
+  reduce_sum                   tier=1    1.004×  lic  PH=PH-5b
+  double_pendulum              tier=2    1.004×  lic  PH=PH-5b
+  nbody_gravity                tier=2    1.002×  lic  PH=PH-5b
+  sph_dam_break_2d             tier=2    1.001×  lic  PH=PH-5b
+
+UNKNOWN / no data (9):
+  tier0_stability              tier=0  lic
+  cloth_swing                  tier=2  lic
+  combustion_passive           tier=2  lic
+  euler_fluid_2d               tier=2  lic
+  rigid_body_stack             tier=2  lic
+  wind_field_bc                tier=2  lic
+  lip_smoke                    tier=3  lip
+  lit_smoke                    tier=3  lit
+  tier5_http_exploits          tier=5  lis
+
+Since last snapshot (15 deltas):
+  {'benchmark': 'matmul_blocked', 'field': 'status', 'from': 'red', 'to': 'green'}
+  {'benchmark': 'matmul_blocked', 'field': 'ratio_vs_cpp', 'from': 1.4528, 'to': 0.9717, 'delta': -0.4811, 'improved': True}
+  {'benchmark': 'matmul_naive', 'field': 'ratio_vs_cpp', 'from': 1.0417, 'to': 0.9714, 'delta': -0.0703, 'improved': True}
+  {'benchmark': 'reduce_sum', 'field': 'ratio_vs_cpp', 'from': 0.9938, 'to': 1.0039, 'delta': 0.0101, 'improved': False}
+  {'benchmark': 'advection_diffusion_2d', 'field': 'ratio_vs_cpp', 'from': 1.0108, 'to': 0.9396, 'delta': -0.0712, 'improved': True}
+  {'benchmark': 'harmonic_oscillator_chain', 'field': 'ratio_vs_cpp', 'from': 0.8337, 'to': 1.0, 'delta': 0.1663, 'improved': False}
+  {'benchmark': 'heat_equation_2d', 'field': 'ratio_vs_cpp', 'from': 0.9139, 'to': 1.0228, 'delta': 0.1089, 'improved': False}
+  {'benchmark': 'wave_equation_1d', 'field': 'ratio_vs_cpp', 'from': 1.0123, 'to': 0.9587, 'delta': -0.0536, 'improved': True}
+  {'benchmark': 'wave_equation_2d', 'field': 'ratio_vs_cpp', 'from': 1.0406, 'to': 1.0076, 'delta': -0.033, 'improved': True}
+  {'benchmark': 'keepalive_pipelining', 'field': 'ratio_vs_cpp', 'from': 0.3908, 'to': 0.4608, 'delta': 0.07, 'improved': False}
+  {'benchmark': 'lb_least_conn', 'field': 'ratio_vs_cpp', 'from': 0.4471, 'to': 0.3612, 'delta': -0.0859, 'improved': True}
+  {'benchmark': 'lb_round_robin', 'field': 'ratio_vs_cpp', 'from': 0.4442, 'to': 0.5094, 'delta': 0.0652, 'improved': False}
+  {'benchmark': 'proxy_loopback', 'field': 'ratio_vs_cpp', 'from': 0.475, 'to': 0.6074, 'delta': 0.1324, 'improved': False}
+  {'benchmark': 'static_large', 'field': 'status', 'from': 'green', 'to': 'yellow'}
+  {'benchmark': 'static_large', 'field': 'ratio_vs_cpp', 'from': 0.9645, 'to': 1.0659, 'delta': 0.1014, 'improved': False}
+
+### Matrix excerpt
+```
+# Benchmark matrix (full)
+
+Generated: 2026-05-21T10:36:56.439638+00:00
+
+Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
+
+## HTTP exploits (tier 5)
+
+Status: **green** — 0 failures / 36 cells
+
+| exploit | li | nginx | apache |
+|---|---|---|---|
+| bad_method | pass | pass | pass |
+| command_injection_path | pass | pass | pass |
+| connection_flood | pass | pass | pass |
+| duplicate_content_length | pass | pass | pass |
+| host_header_ssrf | pass | pass | pass |
+| oversized_request_line | pass | pass | pass |
+| path_traversal | pass | pass | pass |
+| privilege_path_escalation | pass | pass | pass |
+| reverse_shell_canary | pass | pass | pass |
+| sensitive_file_read | pass | pass | pass |
+| shellshock_user_agent | pass | pass | pass |
+| slowloris | pass | pass | pass |
+
+## HTTP performance (RPS)
+
+| scenario | li | nginx | apache | lighttpd | node |
+|---|---|---|---|---|---|
+| keepalive_pipelining | 208,697 | 96,160 | 58,195 | 232,308 | 24,043 |
+| lb_least_conn | 123,980 | 44,777 | — | — | — |
+| lb_peer_down | 128,000 | 52,321 | — | — | — |
+| lb_round_robin | 99,822 | 50,853 | — | — | — |
+| proxy_loopback | 152,310 | 79,787 | — | — | — |
+| static_large | 7,872 | 8,391 | 8,759 | 9,126 | 2,764 |
+| static_small | 137,930 | 85,304 | 50,717 | 184,667 | 29,007 |
+
+## Correctness
+
+| benchmark | tier | status | ratio | repo |
+|---|---|---|---|---|
+| tier0_stability | 0 | unknown | — | lic |
+
+## Micro
+
+```
+

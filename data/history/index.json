@@ -43,151 +43,129 @@
     {
       "at": "2026-05-21T10:23:53.940671+00:00",
       "path": "data/history/2026-05-21T102353Z.json"
+    },
+    {
+      "at": "2026-05-21T10:36:56.258651+00:00",
+      "path": "data/history/2026-05-21T103656Z.json"
     }
   ],
   "latest_deltas": [
     {
-      "benchmark": "horner_pure_li",
-      "field": "ratio_vs_cpp",
-      "from": 0.5,
-      "to": 0.4444,
-      "delta": -0.0556,
-      "improved": true
-    },
-    {
       "benchmark": "matmul_blocked",
       "field": "status",
-      "from": "green",
-      "to": "red"
+      "from": "red",
+      "to": "green"
     },
     {
       "benchmark": "matmul_blocked",
       "field": "ratio_vs_cpp",
-      "from": 1.02,
-      "to": 1.4528,
-      "delta": 0.4328,
-      "improved": false
+      "from": 1.4528,
+      "to": 0.9717,
+      "delta": -0.4811,
+      "improved": true
     },
     {
       "benchmark": "matmul_naive",
       "field": "ratio_vs_cpp",
-      "from": 0.7143,
-      "to": 1.0417,
-      "delta": 0.3274,
-      "improved": false
+      "from": 1.0417,
+      "to": 0.9714,
+      "delta": -0.0703,
+      "improved": true
     },
     {
       "benchmark": "reduce_sum",
       "field": "ratio_vs_cpp",
-      "from": 0.9827,
-      "to": 0.9938,
-      "delta": 0.0111,
+      "from": 0.9938,
+      "to": 1.0039,
+      "delta": 0.0101,
       "improved": false
     },
     {
       "benchmark": "advection_diffusion_2d",
       "field": "ratio_vs_cpp",
-      "from": 0.9806,
-      "to": 1.0108,
-      "delta": 0.0302,
-      "improved": false
+      "from": 1.0108,
+      "to": 0.9396,
+      "delta": -0.0712,
+      "improved": true
     },
     {
       "benchmark": "harmonic_oscillator_chain",
       "field": "ratio_vs_cpp",
-      "from": 0.9775,
-      "to": 0.8337,
-      "delta": -0.1438,
-      "improved": true
+      "from": 0.8337,
+      "to": 1.0,
+      "delta": 0.1663,
+      "improved": false
     },
     {
       "benchmark": "heat_equation_2d",
       "field": "ratio_vs_cpp",
-      "from": 0.9785,
-      "to": 0.9139,
-      "delta": -0.0646,
-      "improved": true
-    },
-    {
-      "benchmark": "nbody_gravity",
-      "field": "ratio_vs_cpp",
-      "from": 0.9893,
-      "to": 1.0016,
-      "delta": 0.0123,
+      "from": 0.9139,
+      "to": 1.0228,
+      "delta": 0.1089,
       "improved": false
     },
     {
       "benchmark": "wave_equation_1d",
       "field": "ratio_vs_cpp",
-      "from": 1.0791,
-      "to": 1.0123,
-      "delta": -0.0668,
+      "from": 1.0123,
+      "to": 0.9587,
+      "delta": -0.0536,
       "improved": true
     },
     {
       "benchmark": "wave_equation_2d",
       "field": "ratio_vs_cpp",
-      "from": 1.0236,
-      "to": 1.0406,
-      "delta": 0.017,
-      "improved": false
+      "from": 1.0406,
+      "to": 1.0076,
+      "delta": -0.033,
+      "improved": true
     },
     {
       "benchmark": "keepalive_pipelining",
       "field": "ratio_vs_cpp",
-      "from": 0.4407,
-      "to": 0.3908,
-      "delta": -0.0499,
-      "improved": true
+      "from": 0.3908,
+      "to": 0.4608,
+      "delta": 0.07,
+      "improved": false
     },
     {
       "benchmark": "lb_least_conn",
       "field": "ratio_vs_cpp",
-      "from": 0.4205,
-      "to": 0.4471,
-      "delta": 0.0266,
-      "improved": false
-    },
-    {
-      "benchmark": "lb_peer_down",
-      "field": "ratio_vs_cpp",
-      "from": 0.456,
-      "to": 0.4061,
-      "delta": -0.0499,
+      "from": 0.4471,
+      "to": 0.3612,
+      "delta": -0.0859,
       "improved": true
     },
     {
       "benchmark": "lb_round_robin",
       "field": "ratio_vs_cpp",
-      "from": 0.4568,
-      "to": 0.4442,
-      "delta": -0.0126,
-      "improved": true
+      "from": 0.4442,
+      "to": 0.5094,
+      "delta": 0.0652,
+      "improved": false
     },
     {
       "benchmark": "proxy_loopback",
       "field": "ratio_vs_cpp",
-      "from": 0.6384,
-      "to": 0.475,
-      "delta": -0.1634,
-      "improved": true
+      "from": 0.475,
+      "to": 0.6074,
+      "delta": 0.1324,
+      "improved": false
+    },
+    {
+      "benchmark": "static_large",
+      "field": "status",
+      "from": "green",
+      "to": "yellow"
     },
     {
       "benchmark": "static_large",
       "field": "ratio_vs_cpp",
-      "from": 0.8988,
-      "to": 0.9645,
-      "delta": 0.0657,
+      "from": 0.9645,
+      "to": 1.0659,
+      "delta": 0.1014,
       "improved": false
-    },
-    {
-      "benchmark": "static_small",
-      "field": "ratio_vs_cpp",
-      "from": 0.7062,
-      "to": 0.6102,
-      "delta": -0.096,
-      "improved": true
     }
   ],
-  "updated_at": "2026-05-21T10:23:53.964792+00:00"
+  "updated_at": "2026-05-21T10:36:56.282903+00:00"
 }
