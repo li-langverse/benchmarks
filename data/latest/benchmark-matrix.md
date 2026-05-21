@@ -1,26 +1,39 @@
 # Benchmark matrix (full)
 
-Generated: 2026-05-21T09:46:06.788829+00:00
+Generated: 2026-05-21T10:10:58.696302+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
 ## HTTP exploits (tier 5)
 
-Status: **unknown** — 0 failures / 0 cells
+Status: **green** — 0 failures / 36 cells
 
-_No exploit_report.csv — run `./scripts/run-tier5-http-exploits.sh`_
+| exploit | li | nginx | apache |
+|---|---|---|---|
+| bad_method | pass | pass | pass |
+| command_injection_path | pass | pass | pass |
+| connection_flood | pass | pass | pass |
+| duplicate_content_length | pass | pass | pass |
+| host_header_ssrf | pass | pass | pass |
+| oversized_request_line | pass | pass | pass |
+| path_traversal | pass | pass | pass |
+| privilege_path_escalation | pass | pass | pass |
+| reverse_shell_canary | pass | pass | pass |
+| sensitive_file_read | pass | pass | pass |
+| shellshock_user_agent | pass | pass | pass |
+| slowloris | pass | pass | pass |
 
 ## HTTP performance (RPS)
 
 | scenario | li | nginx | apache | lighttpd | node |
 |---|---|---|---|---|---|
-| keepalive_pipelining | 203,477 | 77,406 | 54,105 | 202,775 | 22,100 |
-| lb_least_conn | 153,270 | 71,259 | — | — | — |
-| lb_peer_down | 159,298 | 71,292 | — | — | — |
-| lb_round_robin | 158,913 | 71,130 | — | — | — |
-| proxy_loopback | 98,364 | 50,739 | — | — | — |
-| static_large | 8,920 | 7,335 | 6,386 | 8,009 | 2,793 |
-| static_small | 141,072 | 83,929 | 46,649 | 148,220 | 28,563 |
+| keepalive_pipelining | 216,833 | 95,551 | 65,714 | 245,944 | 27,705 |
+| lb_least_conn | 163,029 | 68,559 | — | — | — |
+| lb_peer_down | 159,101 | 72,551 | — | — | — |
+| lb_round_robin | 156,930 | 71,685 | — | — | — |
+| proxy_loopback | 157,554 | 74,445 | — | — | — |
+| static_large | 9,233 | 8,298 | 7,593 | 8,944 | 3,206 |
+| static_small | 115,905 | 81,851 | 52,212 | 162,307 | 28,462 |
 
 ## Correctness
 
@@ -32,43 +45,44 @@ _No exploit_report.csv — run `./scripts/run-tier5-http-exploits.sh`_
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| horner_pure_li | 1 | green | 0.545× | lic |
-| matmul_blocked | 1 | red | 1.339× | lic |
-| matmul_naive | 1 | green | 0.658× | lic |
-| reduce_sum | 1 | green | 0.979× | lic |
-| simd_dot | 1 | green | 0.014× | lic |
+| horner_pure_li | 1 | green | 0.500× | lic |
+| matmul_blocked | 1 | green | 1.020× | lic |
+| matmul_naive | 1 | green | 0.714× | lic |
+| reduce_sum | 1 | green | 0.983× | lic |
+| simd_dot | 1 | green | 0.010× | lic |
 
 ## Physics
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| advection_diffusion_2d | 2 | green | 1.022× | lic |
+| advection_diffusion_2d | 2 | green | 0.981× | lic |
 | cloth_swing | 2 | unknown | — | lic |
 | combustion_passive | 2 | unknown | — | lic |
-| double_pendulum | 2 | green | 1.038× | lic |
+| double_pendulum | 2 | green | 1.004× | lic |
 | euler_fluid_2d | 2 | unknown | — | lic |
-| harmonic_oscillator_chain | 2 | green | 0.999× | lic |
-| heat_equation_2d | 2 | green | 1.101× | lic |
+| harmonic_oscillator_chain | 2 | green | 0.978× | lic |
+| heat_equation_2d | 2 | green | 0.979× | lic |
 | md_lennard_jones | 2 | green | 0.001× | lic |
-| nbody_gravity | 2 | green | 0.999× | lic |
+| nbody_gravity | 2 | green | 0.989× | lic |
 | rigid_body_stack | 2 | unknown | — | lic |
-| sph_dam_break_2d | 2 | green | 1.008× | lic |
+| sph_dam_break_2d | 2 | green | 1.000× | lic |
 | three_body | 2 | green | 1.000× | lic |
-| wave_equation_1d | 2 | green | 0.977× | lic |
-| wave_equation_2d | 2 | green | 1.017× | lic |
+| wave_equation_1d | 2 | green | 1.079× | lic |
+| wave_equation_2d | 2 | green | 1.024× | lic |
 | wind_field_bc | 2 | unknown | — | lic |
 
 ## HTTP catalog gates
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| keepalive_pipelining | 5 | green | 0.380× | lis |
-| lb_least_conn | 5 | green | 0.511× | lis |
-| lb_peer_down | 5 | green | 0.428× | lis |
-| lb_round_robin | 5 | green | 0.508× | lis |
-| proxy_loopback | 5 | green | 0.299× | lic |
-| static_large | 5 | red | 1.287× | lis |
-| static_small | 5 | green | 0.595× | lis |
+| keepalive_pipelining | 5 | green | 0.441× | lis |
+| lb_least_conn | 5 | green | 0.420× | lis |
+| lb_peer_down | 5 | green | 0.456× | lis |
+| lb_round_robin | 5 | green | 0.457× | lis |
+| proxy_loopback | 5 | green | 0.638× | lic |
+| rate_limit_429 | 5 | green | 1.000× | lic |
+| static_large | 5 | green | 0.899× | lis |
+| static_small | 5 | green | 0.706× | lis |
 
 ## Security
 
