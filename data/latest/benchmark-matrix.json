@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21T15:36:04.164886+00:00",
+  "generated_at": "2026-05-21T18:19:12.251367+00:00",
   "sources": {
     "summary_json": "/workspace/data/latest/summary.json",
     "catalog_toml": "/workspace/catalog.toml",
@@ -355,11 +355,7 @@
         "li_value": 1.0,
         "ph_ids": [
           "PH-H"
-        ],
-        "rps_by_lang": {
-          "apache": 817.1,
-          "lighttpd": 899.4
-        }
+        ]
       },
       {
         "id": "keepalive_pipelining",
@@ -375,10 +371,8 @@
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 224312.01,
-          "nginx": 89075.47,
-          "apache": 64827.54,
-          "lighttpd": 246988.82
+          "li": 235097.45,
+          "nginx": 144627.25
         }
       },
       {
@@ -395,9 +389,7 @@
           "PH-H"
         ],
         "rps_by_lang": {
-          "nginx": 67104.8,
-          "apache": 39647.79,
-          "lighttpd": 23680.13
+          "li": 11405.15
         }
       },
       {
@@ -414,9 +406,7 @@
           "PH-H"
         ],
         "rps_by_lang": {
-          "nginx": 56542.51,
-          "apache": 48268.19,
-          "lighttpd": 20694.15
+          "li": 18454.74
         }
       },
       {
@@ -433,9 +423,7 @@
           "PH-H"
         ],
         "rps_by_lang": {
-          "nginx": 44098.94,
-          "apache": 39428.89,
-          "lighttpd": 27498.32
+          "li": 9141.23
         }
       },
       {
@@ -452,9 +440,8 @@
           "PH-H"
         ],
         "rps_by_lang": {
-          "nginx": 58204.71,
-          "apache": 40707.54,
-          "lighttpd": 24619.58
+          "li": 9120.95,
+          "nginx": 52619.96
         }
       },
       {
@@ -483,13 +470,7 @@
         "li_value": 9498.59,
         "ph_ids": [
           "PH-H"
-        ],
-        "rps_by_lang": {
-          "li": 9170.4,
-          "nginx": 8918.83,
-          "apache": 8954.51,
-          "lighttpd": 9170.62
-        }
+        ]
       },
       {
         "id": "static_small",
@@ -505,10 +486,8 @@
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 138187.26,
-          "nginx": 75738.01,
-          "apache": 50220.91,
-          "lighttpd": 174233.69
+          "li": 135466.19,
+          "nginx": 130455.99
         }
       }
     ],
@@ -561,46 +540,25 @@
   },
   "http_performance": {
     "static_small": {
-      "nginx": 75738.01,
-      "apache": 50220.91,
-      "lighttpd": 174233.69,
-      "li": 138187.26
+      "li": 135466.19,
+      "nginx": 130455.99
     },
     "keepalive_pipelining": {
-      "nginx": 89075.47,
-      "apache": 64827.54,
-      "lighttpd": 246988.82,
-      "li": 224312.01
-    },
-    "static_large": {
-      "nginx": 8918.83,
-      "apache": 8954.51,
-      "lighttpd": 9170.62,
-      "li": 9170.4
+      "li": 235097.45,
+      "nginx": 144627.25
     },
     "proxy_loopback": {
-      "nginx": 58204.71,
-      "apache": 40707.54,
-      "lighttpd": 24619.58
+      "li": 9120.95,
+      "nginx": 52619.96
     },
     "lb_round_robin": {
-      "nginx": 44098.94,
-      "apache": 39428.89,
-      "lighttpd": 27498.32
+      "li": 9141.23
     },
     "lb_least_conn": {
-      "nginx": 67104.8,
-      "apache": 39647.79,
-      "lighttpd": 23680.13
+      "li": 11405.15
     },
     "lb_peer_down": {
-      "nginx": 56542.51,
-      "apache": 48268.19,
-      "lighttpd": 20694.15
-    },
-    "https_static": {
-      "apache": 817.1,
-      "lighttpd": 899.4
+      "li": 18454.74
     }
   },
   "http_performance_order": [
@@ -625,10 +583,7 @@
     "https_static"
   ],
   "http_li_status": {
-    "proxy_loopback": "verify_fail_li:/",
-    "lb_round_robin": "verify_fail_li:/",
-    "lb_least_conn": "verify_fail_li:/",
-    "lb_peer_down": "verify_fail_li:/",
+    "static_large": "wrk_parse_fail_li",
     "rate_limit_429": "verify_pass",
     "https_static": "verify_skip"
   },

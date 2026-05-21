@@ -1,34 +1,10 @@
 benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags
-static_small,nginx,release,4,rps,75738.0100,req/s,e4b11fd,x86_64,wrk
-static_small,apache,release,4,rps,50220.9100,req/s,e4b11fd,x86_64,wrk
-static_small,lighttpd,release,4,rps,174233.6900,req/s,e4b11fd,x86_64,wrk
-static_small,li,release,4,rps,138187.2600,req/s,e4b11fd,x86_64,wrk
-keepalive_pipelining,nginx,release,16,rps,89075.4700,req/s,e4b11fd,x86_64,wrk pipeline=8
-keepalive_pipelining,apache,release,16,rps,64827.5400,req/s,e4b11fd,x86_64,wrk pipeline=8
-keepalive_pipelining,lighttpd,release,16,rps,246988.8200,req/s,e4b11fd,x86_64,wrk pipeline=8
-keepalive_pipelining,li,release,16,rps,224312.0100,req/s,e4b11fd,x86_64,wrk pipeline=8
-static_large,nginx,release,8,rps,8918.8300,req/s,e4b11fd,x86_64,wrk
-static_large,apache,release,8,rps,8954.5100,req/s,e4b11fd,x86_64,wrk
-static_large,lighttpd,release,8,rps,9170.6200,req/s,e4b11fd,x86_64,wrk
-static_large,li,release,8,rps,9170.4000,req/s,e4b11fd,x86_64,wrk
-proxy_loopback,nginx,release,8,rps,58204.7100,req/s,e4b11fd,x86_64,wrk proxy_loopback
-proxy_loopback,apache,release,8,rps,40707.5400,req/s,e4b11fd,x86_64,wrk proxy_loopback
-proxy_loopback,lighttpd,release,8,rps,24619.5800,req/s,e4b11fd,x86_64,wrk proxy_loopback
-proxy_loopback,harness,ci,1,verify_only,1,bool,e4b11fd,x86_64,verify_fail_li:/
-lb_round_robin,nginx,release,8,rps,44098.9400,req/s,e4b11fd,x86_64,wrk proxy_lb
-lb_round_robin,apache,release,8,rps,39428.8900,req/s,e4b11fd,x86_64,wrk proxy_lb
-lb_round_robin,lighttpd,release,8,rps,27498.3200,req/s,e4b11fd,x86_64,wrk proxy_lb
-lb_round_robin,harness,ci,1,verify_only,1,bool,e4b11fd,x86_64,verify_fail_li:/
-lb_least_conn,nginx,release,8,rps,67104.8000,req/s,e4b11fd,x86_64,wrk proxy_least_conn
-lb_least_conn,apache,release,8,rps,39647.7900,req/s,e4b11fd,x86_64,wrk proxy_least_conn
-lb_least_conn,lighttpd,release,8,rps,23680.1300,req/s,e4b11fd,x86_64,wrk proxy_least_conn
-lb_least_conn,harness,ci,1,verify_only,1,bool,e4b11fd,x86_64,verify_fail_li:/
-lb_peer_down,nginx,release,8,rps,56542.5100,req/s,e4b11fd,x86_64,wrk proxy_lb
-lb_peer_down,apache,release,8,rps,48268.1900,req/s,e4b11fd,x86_64,wrk proxy_lb
-lb_peer_down,lighttpd,release,8,rps,20694.1500,req/s,e4b11fd,x86_64,wrk proxy_lb
-lb_peer_down,harness,ci,1,verify_only,1,bool,e4b11fd,x86_64,verify_fail_li:/
-rate_limit_429,li,ci,1,verify_pass,1,bool,e4b11fd,x86_64,rate_limit rps=2 burst=1
-https_static,harness,ci,1,verify_only,1,bool,e4b11fd,x86_64,nginx_tls_no_start
-https_static,apache,release,8,rps,817.1000,req/s,e4b11fd,x86_64,openssl s_time https
-https_static,lighttpd,release,8,rps,899.4000,req/s,e4b11fd,x86_64,openssl s_time https
-https_static,li,ci,1,verify_skip,1,bool,e4b11fd,x86_64,tls_m15_pending
+static_small,li,release,4,rps,135466.1900,req/s,0612e11,x86_64,wrk
+keepalive_pipelining,li,release,16,rps,235097.4500,req/s,0612e11,x86_64,wrk pipeline=8
+static_large,harness,ci,1,verify_only,1,bool,0612e11,x86_64,wrk_parse_fail_li
+proxy_loopback,li,release,8,rps,9120.9500,req/s,0612e11,x86_64,wrk proxy_loopback
+lb_round_robin,li,release,8,rps,9141.2300,req/s,0612e11,x86_64,wrk proxy_lb
+lb_least_conn,li,release,8,rps,11405.1500,req/s,0612e11,x86_64,wrk proxy_least_conn
+lb_peer_down,li,release,8,rps,18454.7400,req/s,0612e11,x86_64,wrk proxy_lb
+rate_limit_429,li,ci,1,verify_pass,1,bool,0612e11,x86_64,rate_limit rps=2 burst=1
+https_static,li,ci,1,verify_skip,1,bool,0612e11,x86_64,tls_m15_pending
