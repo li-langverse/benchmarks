@@ -30,5 +30,6 @@ echo "==> lic compiler"
 echo "==> li-httpd"
 ( cd "$LIC_ROOT" && CC=clang-18 CXX=clang++-18 ./build/compiler/lic/lic build \
   packages/li-net-httpd/src/lib.li -o build/li-httpd )
+# Requires `import std.runtime.seam` in lib.li (trusted ABI); package-only build may omit Li codegen.
 test -x "$LIC_ROOT/build/li-httpd"
 echo "OK LIC_ROOT=$LIC_ROOT"
