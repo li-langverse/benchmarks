@@ -430,6 +430,120 @@ def proxy_scenario_enabled(cfg: dict[str, Any]) -> bool:
     return bool((cfg.get("proxy") or {}).get("enabled"))
 
 
+def rate_limit_scenario_enabled(cfg: dict[str, Any]) -> bool:
+    return bool((cfg.get("rate_limit") or {}).get("enabled"))
+
+
+def write_li_runtime_conf(
+    path: Path,
+    *,
+    port: int,
+    doc_root: Path,
+    rate_limit_rps: int,
+    rate_limit_burst: int,
+) -> None:
+    lines = [
+        f"listen_port={port}",
+        f"document_root={doc_root.resolve()}",
+        f"rate_limit_rps={rate_limit_rps}",
+        f"rate_limit_burst={rate_limit_burst}",
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def verify_rate_limit_429(port: int, *, burst_requests: int = 30) -> bool:
+    """First request 200, then rapid burst must yield at least one 429."""
+    if not verify_http_get(f"http://127.0.0.1:{port}/", 200):
+        return False
+    import urllib.error
+    import urllib.request
+
+    for _ in range(burst_requests):
+        try:
+            with urllib.request.urlopen(f"http://127.0.0.1:{port}/", timeout=1) as resp:
+                if int(resp.status) == 429:
+                    return True
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                return True
+        except (urllib.error.URLError, OSError, ValueError):
+            pass
+    return False
+
+
+def bench_rate_limit_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """li-httpd only: global token bucket must return HTTP 429 under burst."""
+    rows: list[dict[str, str]] = []
+    _ = quick
+
+    fixtures = cfg.get("_fixtures", {})
+    rel_static = fixtures.get("static_root", "fixtures/static")
+    doc_root = tier5_root() / rel_static
+    if not (doc_root / "index.html").is_file():
+        rows.append(_harness_row(name, f"missing_fixture:{doc_root}"))
+        return rows, "missing static fixture"
+
+    rl = cfg.get("rate_limit") or {}
+    rps = int(rl.get("rps") or 2)
+    burst = int(rl.get("burst") or 1)
+
+    li_bin = resolve_li_httpd_bin()
+    if not li_bin:
+        rows.append(_harness_row(name, "no_li_httpd_bin"))
+        return rows, "no li-httpd"
+
+    port = pick_port()
+    tmp = tempfile.TemporaryDirectory(prefix="lis-rate-limit-")
+    conf_path = Path(tmp.name) / "runtime.conf"
+    write_li_runtime_conf(
+        conf_path,
+        port=port,
+        doc_root=doc_root,
+        rate_limit_rps=rps,
+        rate_limit_burst=burst,
+    )
+    proc = subprocess.Popen(
+        [str(li_bin), str(conf_path.resolve())],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    try:
+        if not wait_for_port(port):
+            rows.append(_harness_row(name, "li_rate_limit_no_listen"))
+            return rows, "li: port not ready"
+        if verify_rate_limit_429(port):
+            rows.append(
+                {
+                    "benchmark": name,
+                    "lang": "li",
+                    "variant": "ci",
+                    "threads": "1",
+                    "metric": "verify_pass",
+                    "value": "1",
+                    "unit": "bool",
+                    "git_sha": git_sha_short(),
+                    "cpu_model": cpu_model(),
+                    "flags": f"rate_limit rps={rps} burst={burst}",
+                }
+            )
+        else:
+            rows.append(_harness_row(name, "verify_fail_li:rate_limit_429"))
+    finally:
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        tmp.cleanup()
+
+    return rows, "rate_limit verify"
+
+
 def bench_proxy_loopback_scenario(
     name: str,
     cfg: dict[str, Any],
@@ -616,6 +730,8 @@ def bench_nginx_scenario(
     quick: bool,
 ) -> tuple[list[dict[str, str]], str]:
     """Return CSV rows and human log tail (multi-oracle bench + optional li-httpd)."""
+    if rate_limit_scenario_enabled(cfg):
+        return bench_rate_limit_scenario(name, cfg, quick=quick)
     if proxy_scenario_enabled(cfg):
         return bench_proxy_loopback_scenario(name, cfg, quick=quick)
 

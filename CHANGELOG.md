@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **HTTP rate_limit_429:** tier5 verify scenario + `catalog.toml` row; harness `bench_rate_limit_scenario` in `vendor/lis-tier5` — [2026-05-22-httpd-rate-limit-tier5.md](docs/release-notes/2026-05-22-httpd-rate-limit-tier5.md).
+- **Master-plan progress:** `scripts/httpd-masterplan-step.sh` → `data/latest/httpd-masterplan-progress.md`.
 - **Full benchmark matrix:** `benchmark-matrix-report.py` → `data/latest/benchmark-matrix.md` + `.json` (perf catalog + HTTP RPS grid + exploit matrix); always run at end of full suite.
 - **Tier-5 HTTP exploits:** `run-tier5-http-exploits.sh` in full suite (`SKIP_EXPLOITS=1` for fast iter only); [http-server-benchmark-growth.md](docs/ecosystem/http-server-benchmark-growth.md).
 - **Full benchmark suite:** `scripts/run-full-benchmark-suite.sh`, `setup-lic-for-bench.sh`, `tier5-http-bench.py`; [full-benchmark-suite.md](docs/ecosystem/full-benchmark-suite.md); **AGENTS.md** mandates run after perf/httpd/compiler/physics work.
