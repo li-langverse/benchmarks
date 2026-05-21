@@ -475,33 +475,139 @@ def verify_rate_limit_429(port: int, *, burst_requests: int = 30) -> bool:
     return False
 
 
+def openssl_https_rps(port: int, duration_sec: int) -> float | None:
+    """TLS throughput via openssl s_time (self-signed friendly)."""
+    openssl = shutil.which("openssl")
+    if not openssl:
+        return None
+    proc = subprocess.run(
+        [openssl, "s_time", "-connect", f"127.0.0.1:{port}", "-new", "-time", str(duration_sec)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    blob = (proc.stdout or "") + (proc.stderr or "")
+    for line in blob.splitlines():
+        if "connections" in line.lower() and "/" in line:
+            parts = line.split()
+            for i, p in enumerate(parts):
+                if p == "connections" and i > 0:
+                    try:
+                        return float(parts[i - 1].replace(",", "")) / max(duration_sec, 1)
+                    except ValueError:
+                        pass
+    m = re.search(r"(\d+(?:\.\d+)?)\s+connections\s+in\s+[\d.]+\s+seconds", blob, re.I)
+    if m:
+        return float(m.group(1)) / max(duration_sec, 1)
+    return None
+
+
+def verify_https_get(port: int, path: str = "/") -> bool:
+    import ssl
+    import urllib.error
+    import urllib.request
+
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    url = f"https://127.0.0.1:{port}{path}"
+    try:
+        with urllib.request.urlopen(url, timeout=5, context=ctx) as resp:
+            return int(resp.status) == 200
+    except (urllib.error.URLError, OSError, ValueError, ssl.SSLError):
+        return False
+
+
 def bench_tls_scenario(
     name: str,
     cfg: dict[str, Any],
     *,
     quick: bool,
 ) -> tuple[list[dict[str, str]], str]:
-    """HTTPS tier5 — skipped until li-tls terminates in li-httpd (M1.5)."""
-    _ = quick
-    if os.environ.get("LI_HTTPD_TLS", "").strip() in ("1", "true", "yes"):
-        rows: list[dict[str, str]] = []
-        rows.append(_harness_row(name, "tls_not_wired"))
-        return rows, "LI_HTTPD_TLS set but li-tls not linked"
-    rows = [
-        {
-            "benchmark": name,
-            "lang": "li",
-            "variant": "ci",
-            "threads": "1",
-            "metric": "verify_skip",
-            "value": "1",
-            "unit": "bool",
-            "git_sha": git_sha_short(),
-            "cpu_model": cpu_model(),
-            "flags": "tls_m15_pending",
-        }
-    ]
-    return rows, "https_static deferred to M1.5 (li-tls scaffold)"
+    """HTTPS tier5 — multi-oracle TLS handshake/RPS (openssl s_time); li verify_skip until M1.5."""
+    rows: list[dict[str, str]] = []
+    log_bits: list[str] = []
+
+    fixtures = cfg.get("_fixtures", {})
+    rel_static = fixtures.get("static_root", "fixtures/static")
+    doc_root = tier5_root() / rel_static
+    if not (doc_root / "index.html").is_file():
+        rows.append(_harness_row(name, f"missing_fixture:{doc_root}"))
+        return rows, "missing static fixture"
+
+    load = cfg.get("load") or {}
+    duration = int(load.get("duration_sec") or 10)
+    if quick:
+        duration = min(duration, int(os.environ.get("BENCH_HTTP_QUICK_SEC", "3")))
+
+    from http_oracles import (
+        DEFAULT_BENCH_ORACLES,
+        TLS_BENCH_HOOKS,
+        ensure_tls_cert,
+        oracle_available,
+        parse_oracle_langs,
+    )
+
+    tmp_tls = tempfile.TemporaryDirectory(prefix="lis-tls-")
+    cert_pair = ensure_tls_cert(Path(tmp_tls.name))
+    if not cert_pair:
+        rows.append(_harness_row(name, "no_tls_cert"))
+        return rows, "openssl cert generation failed"
+    cert, key = cert_pair
+
+    for lang in parse_oracle_langs("BENCH_HTTP_ORACLES", DEFAULT_BENCH_ORACLES):
+        if lang == "node" or lang == "bun":
+            rows.append(_harness_row(name, f"no_{lang}_https"))
+            continue
+        if lang == "li":
+            rows.append(
+                {
+                    "benchmark": name,
+                    "lang": "li",
+                    "variant": "ci",
+                    "threads": "1",
+                    "metric": "verify_skip",
+                    "value": "1",
+                    "unit": "bool",
+                    "git_sha": git_sha_short(),
+                    "cpu_model": cpu_model(),
+                    "flags": "tls_m15_pending",
+                }
+            )
+            continue
+        if lang not in TLS_BENCH_HOOKS or not oracle_available(lang):
+            rows.append(_harness_row(name, f"no_{lang}"))
+            continue
+        port = pick_port()
+        start_fn, stop_fn = TLS_BENCH_HOOKS[lang]
+        ctx = start_fn(port, doc_root, cert, key)
+        try:
+            if ctx is None:
+                rows.append(_harness_row(name, f"{lang}_tls_no_start"))
+                continue
+            if not wait_for_port(port, timeout_sec=8.0):
+                rows.append(_harness_row(name, f"{lang}_tls_no_listen"))
+                continue
+            if not verify_https_get(port):
+                rows.append(_harness_row(name, f"verify_fail_{lang}:https"))
+                continue
+            rps = openssl_https_rps(port, duration)
+            log_bits.append(f"--- {lang} tls ---\n{rps}")
+            _append_rps_row(
+                rows,
+                name,
+                lang,
+                rps,
+                variant="ci" if quick else "release",
+                connections=8,
+                flags="openssl s_time https",
+                sha=git_sha_short(),
+                cpu=cpu_model(),
+            )
+        finally:
+            stop_fn(ctx)
+    tmp_tls.cleanup()
+    return rows, "\n".join(log_bits)
 
 
 def bench_rate_limit_scenario(
@@ -642,116 +748,76 @@ def bench_proxy_loopback_scenario(
             cpu=cpu_model(),
         )
 
-    # --- nginx oracle: backend(s) + proxy front ---
-    be_temps: list[tempfile.TemporaryDirectory[str]] = []
-    be_prefixes: list[Path] = []
-    nginx_ok = True
-    for bp in backend_ports:
-        tmp_b = tempfile.TemporaryDirectory(prefix="lis-nginx-be-")
-        prefix_b = Path(tmp_b.name)
-        if not launch_nginx(prefix_b, nginx_prefix_conf(doc_root, bp, prefix_b)):
-            nginx_ok = False
-            tmp_b.cleanup()
-            break
-        be_temps.append(tmp_b)
-        be_prefixes.append(prefix_b)
-        if not wait_for_port(bp):
-            nginx_ok = False
-            break
-    if nginx_ok:
-        tmp_f = tempfile.TemporaryDirectory(prefix="lis-nginx-fe-")
-        prefix_f = Path(tmp_f.name)
-        if launch_nginx(prefix_f, nginx_lb_proxy_prefix_conf(front_port, backend_ports, prefix_f)):
-            if wait_for_port(front_port):
-                verify_cfg = cfg.get("verify") or {}
-                ok = True
-                for req in verify_cfg.get("requests") or []:
-                    path = req.get("path") or "/"
-                    expect = int(req.get("expect_status") or 200)
-                    if not verify_http_get(f"http://127.0.0.1:{front_port}{path}", expect):
-                        rows.append(_harness_row(name, f"verify_fail_nginx:{path}"))
-                        ok = False
-                        break
-                if ok:
-                    run_wrk_on_front("nginx")
-            else:
-                rows.append(_harness_row(name, "nginx_proxy_no_listen"))
-            stop_nginx(prefix_f)
-        tmp_f.cleanup()
-    else:
-        rows.append(_harness_row(name, "no_nginx_backend"))
-    for prefix_b in be_prefixes:
-        stop_nginx(prefix_b)
-    for tmp_b in be_temps:
-        tmp_b.cleanup()
+    from http_oracles import (
+        PROXY_BENCH_HOOKS,
+        parse_proxy_oracle_langs,
+        start_nginx_static_backends,
+        stop_nginx_static_backends,
+    )
 
-    li_bin = resolve_li_httpd_bin()
-    if li_bin:
-        be_procs: list[subprocess.Popen[str] | None] = []
-        li_ok = True
-        for bp in backend_ports:
-            proc = subprocess.Popen(
-                [str(li_bin), str(bp), str(doc_root.resolve())],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            be_procs.append(proc)
-            if not wait_for_port(bp):
-                li_ok = False
-                break
-        if li_ok:
-            li_front_cmd = [str(li_bin), str(front_port), str(doc_root.resolve()), csv_ports]
-            if lb_mode == "least_conn":
-                li_front_cmd.append("least_conn")
-            front_proc = subprocess.Popen(
-                li_front_cmd,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            if wait_for_port(front_port):
+    backends = start_nginx_static_backends(backend_ports, doc_root)
+    if len(backends) != len(backend_ports):
+        rows.append(_harness_row(name, "no_nginx_backend"))
+        return rows, "backend nginx static failed"
+
+    os.environ["BENCH_HTTP_LB_MODE"] = lb_mode
+    try:
+        for lang in parse_proxy_oracle_langs():
+            if lang not in PROXY_BENCH_HOOKS:
+                rows.append(_harness_row(name, f"unknown_proxy_oracle_{lang}"))
+                continue
+            if lang == "li" and not resolve_li_httpd_bin():
+                rows.append(_harness_row(name, "no_li_httpd_bin"))
+                continue
+            if lang == "apache" and not (
+                shutil.which("apache2") or shutil.which("apachectl") or shutil.which("httpd")
+            ):
+                rows.append(_harness_row(name, "no_apache"))
+                continue
+            if lang == "lighttpd" and not shutil.which("lighttpd"):
+                rows.append(_harness_row(name, "no_lighttpd"))
+                continue
+            if lang == "caddy" and not shutil.which("caddy"):
+                rows.append(_harness_row(name, "no_caddy"))
+                continue
+            if lang == "nginx" and not shutil.which("nginx"):
+                rows.append(_harness_row(name, "no_nginx"))
+                continue
+
+            start_fn, stop_fn = PROXY_BENCH_HOOKS[lang]
+            ctx = start_fn(front_port, doc_root, backend_ports)
+            try:
+                if ctx is None:
+                    rows.append(_harness_row(name, f"{lang}_proxy_start_fail"))
+                    continue
+                if not wait_for_port(front_port):
+                    rows.append(_harness_row(name, f"{lang}_proxy_no_listen"))
+                    continue
                 verify_cfg = cfg.get("verify") or {}
                 ok = True
                 for req in verify_cfg.get("requests") or []:
                     path = req.get("path") or "/"
                     expect = int(req.get("expect_status") or 200)
                     if not verify_http_get(f"http://127.0.0.1:{front_port}{path}", expect):
-                        rows.append(_harness_row(name, f"verify_fail_li:{path}"))
+                        rows.append(_harness_row(name, f"verify_fail_{lang}:{path}"))
                         ok = False
                         break
-                if ok and kill_idx is not None:
+                if ok and kill_idx is not None and lang == "li":
                     ki = int(kill_idx)
-                    if 0 <= ki < len(be_procs) and be_procs[ki]:
-                        be_procs[ki].terminate()
-                        try:
-                            be_procs[ki].wait(timeout=2)
-                        except subprocess.TimeoutExpired:
-                            be_procs[ki].kill()
-                        be_procs[ki] = None
+                    if 0 <= ki < len(backends):
+                        from http_oracles import stop_nginx_bench
+
+                        stop_nginx_bench(backends[ki])
                         time.sleep(0.2)
                         if not verify_http_get(f"http://127.0.0.1:{front_port}/", 200):
                             rows.append(_harness_row(name, "verify_fail_li:after_kill"))
                             ok = False
                 if ok:
-                    run_wrk_on_front("li")
-            else:
-                rows.append(_harness_row(name, "li_proxy_no_listen"))
-            if front_proc:
-                front_proc.terminate()
-                try:
-                    front_proc.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    front_proc.kill()
-        else:
-            rows.append(_harness_row(name, "li_backend_no_listen"))
-        for proc in be_procs:
-            if proc:
-                proc.terminate()
-                try:
-                    proc.wait(timeout=5)
-                except subprocess.TimeoutExpired:
-                    proc.kill()
-    else:
-        rows.append(_harness_row(name, "no_li_httpd_bin"))
+                    run_wrk_on_front(lang)
+            finally:
+                stop_fn(ctx)
+    finally:
+        stop_nginx_static_backends([b for b in backends if b])
 
     return rows, "\n".join(log_bits)
 

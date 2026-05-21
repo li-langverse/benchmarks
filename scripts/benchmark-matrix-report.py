@@ -102,7 +102,21 @@ def merge_http_csv_rows() -> list[dict[str, str]]:
         variant = r.get("variant") or ""
         key = (bid, lang, metric)
         if bid == "proxy_loopback" and lang == "li" and variant in ("li_epoll", "c_epoll"):
-            keyed[key] = r
+            try:
+                sup_val = float(r.get("value") or 0)
+            except (TypeError, ValueError):
+                sup_val = 0.0
+            prev = keyed.get(key)
+            if prev is None:
+                if sup_val > 0:
+                    keyed[key] = r
+            else:
+                try:
+                    prev_val = float(prev.get("value") or 0)
+                except (TypeError, ValueError):
+                    prev_val = 0.0
+                if sup_val > prev_val:
+                    keyed[key] = r
         elif key not in keyed:
             keyed[key] = r
     return list(keyed.values())
@@ -307,7 +321,14 @@ def render_http_rps_section(matrix: dict) -> list[str]:
     lines.append("|---|---|---|")
     for bid in verify_order:
         li_cell = (verify.get(bid) or {}).get("li") or li_notes.get(bid) or "—"
-        lines.append(f"| {bid} | {li_cell} | N/A (li-only or pending) |")
+        extra = []
+        if bid in hp:
+            for lang in HTTP_BENCH_LANGS:
+                v = hp[bid].get(lang)
+                if v is not None:
+                    extra.append(f"{lang}={v:,.0f}")
+        extra_s = "; ".join(extra) if extra else "other oracles N/A"
+        lines.append(f"| {bid} | {li_cell} | {extra_s} |")
     lines.append("")
     return lines
 

@@ -13,4 +13,8 @@ requests = [
 ]
 
 [load]
-tool = "none"
+tool = "wrk"
+url_path = "/"
+duration_sec = 10
+connections = 8
+threads = 2

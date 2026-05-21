@@ -66,4 +66,4 @@ Override: `TIER5_EXPLOIT_PROFILE=weaponized TIER5_EXPLOIT_LANGS=nginx,apache,li`
 
 ## Multi-oracle HTTP (throughput)
 
-`BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li` — proxy/LB scenarios remain **nginx + li** only until `PROXY_ORACLES` expands in `http_oracles.py`.
+`BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li` · `BENCH_PROXY_ORACLES=nginx,apache,lighttpd,caddy,li` (proxy/LB fronts; backends are nginx static). HTTPS: `https_static` uses `openssl s_time` per oracle; **li** remains `verify_skip` until `li-tls` terminates.

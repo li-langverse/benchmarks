@@ -15,7 +15,8 @@ from typing import Any, Callable
 DEFAULT_BENCH_ORACLES = ("nginx", "apache", "lighttpd", "node", "bun", "li")
 DEFAULT_EXPLOIT_ORACLES = ("nginx", "apache", "node", "bun", "li")
 STATIC_ORACLES = frozenset({"nginx", "apache", "lighttpd", "caddy", "node", "bun"})
-PROXY_ORACLES = frozenset({"nginx", "li"})  # apache/caddy proxy configs not wired yet
+DEFAULT_PROXY_ORACLES = ("nginx", "apache", "lighttpd", "caddy", "li")
+PROXY_ORACLES = frozenset(DEFAULT_PROXY_ORACLES)
 
 
 def parse_oracle_langs(env_var: str, default: tuple[str, ...]) -> list[str]:
@@ -109,6 +110,43 @@ def resolve_li_httpd_bin() -> Path | None:
 
 
 # --- nginx ---
+
+
+def parse_proxy_oracle_langs() -> list[str]:
+    return parse_oracle_langs("BENCH_PROXY_ORACLES", DEFAULT_PROXY_ORACLES)
+
+
+def nginx_lb_proxy_prefix_conf(front_port: int, backend_ports: list[int], prefix: Path) -> str:
+    px = str(prefix.resolve()).replace("\\", "/")
+    upstream_lines = "\n".join(f"    server 127.0.0.1:{p};" for p in backend_ports)
+    return f"""worker_processes 1;
+error_log {px}/error.log warn;
+pid {px}/nginx.pid;
+daemon on;
+events {{ worker_connections 4096; }}
+http {{
+  access_log off;
+  client_body_temp_path {px}/client_temp;
+  proxy_temp_path {px}/proxy_temp;
+  fastcgi_temp_path {px}/fastcgi_temp;
+  uwsgi_temp_path {px}/uwsgi_temp;
+  scgi_temp_path {px}/scgi_temp;
+  upstream loopback_backend {{
+{upstream_lines}
+    keepalive 32;
+  }}
+  server {{
+    listen 127.0.0.1:{front_port};
+    server_name _;
+    location / {{
+      proxy_pass http://loopback_backend;
+      proxy_http_version 1.1;
+      proxy_set_header Host $host;
+      proxy_set_header Connection "";
+    }}
+  }}
+}}
+"""
 
 
 def nginx_prefix_conf(document_root: Path, port: int, prefix: Path) -> str:
@@ -297,6 +335,165 @@ def stop_lighttpd(prefix: Path) -> None:
     time.sleep(0.05)
 
 
+def apache_proxy_lb_conf(front_port: int, backend_ports: list[int], prefix: Path) -> str:
+    mod = apache_modules_dir()
+    members = "\n".join(
+        f"    BalancerMember http://127.0.0.1:{p} status+H" for p in backend_ports
+    )
+    px = str(prefix.resolve()).replace("\\", "/")
+    return f"""ServerRoot "{px}"
+ServerName 127.0.0.1
+PidFile logs/httpd.pid
+ErrorLog logs/error.log
+LoadModule mpm_event_module {mod}/mod_mpm_event.so
+LoadModule authz_core_module {mod}/mod_authz_core.so
+LoadModule proxy_module {mod}/mod_proxy.so
+LoadModule proxy_http_module {mod}/mod_proxy_http.so
+LoadModule proxy_balancer_module {mod}/mod_proxy_balancer.so
+LoadModule slotmem_shm_module {mod}/mod_slotmem_shm.so
+LoadModule lbmethod_byrequests_module {mod}/mod_lbmethod_byrequests.so
+Listen 127.0.0.1:{front_port}
+ProxyPreserveHost On
+<Proxy balancer://tier5>
+{members}
+</Proxy>
+ProxyPass / balancer://tier5/
+ProxyPassReverse / balancer://tier5/
+"""
+
+
+def lighttpd_proxy_lb_conf(front_port: int, backend_ports: list[int], prefix: Path) -> str:
+    px = str(prefix.resolve()).replace("\\", "/")
+    host_list = ", ".join(f'"127.0.0.1:{p}"' for p in backend_ports)
+    return f"""server.modules = ("mod_proxy", "mod_indexfile")
+server.port = {front_port}
+server.bind = "127.0.0.1"
+server.pid-file = "{px}/lighttpd.pid"
+server.errorlog = "{px}/logs/error.log"
+proxy.server = ("/" => (( "host" => ({host_list}), "port" => 80 )))
+"""
+
+
+def caddy_proxy_lb_conf(front_port: int, backend_ports: list[int]) -> str:
+    backends = " ".join(f"127.0.0.1:{p}" for p in backend_ports)
+    return f"""127.0.0.1:{front_port} {{
+  reverse_proxy {backends}
+}}
+"""
+
+
+def ensure_tls_cert(tmp: Path) -> tuple[Path, Path] | None:
+    cert = tmp / "tier5.pem"
+    key = tmp / "tier5-key.pem"
+    if cert.is_file() and key.is_file():
+        return cert, key
+    openssl = shutil.which("openssl")
+    if not openssl:
+        return None
+    subprocess.run(
+        [
+            openssl,
+            "req",
+            "-x509",
+            "-newkey",
+            "rsa:2048",
+            "-keyout",
+            str(key),
+            "-out",
+            str(cert),
+            "-days",
+            "1",
+            "-nodes",
+            "-subj",
+            "/CN=127.0.0.1",
+        ],
+        check=False,
+        capture_output=True,
+    )
+    if cert.is_file() and key.is_file():
+        return cert, key
+    return None
+
+
+def nginx_https_conf(document_root: Path, port: int, prefix: Path, cert: Path, key: Path) -> str:
+    dr = str(document_root.resolve()).replace("\\", "/")
+    px = str(prefix.resolve()).replace("\\", "/")
+    crt = str(cert.resolve()).replace("\\", "/")
+    k = str(key.resolve()).replace("\\", "/")
+    return f"""worker_processes 1;
+error_log {px}/error.log warn;
+pid {px}/nginx.pid;
+daemon on;
+events {{ worker_connections 1024; }}
+http {{
+  access_log off;
+  client_body_temp_path {px}/client_temp;
+  server {{
+    listen 127.0.0.1:{port} ssl;
+    server_name _;
+    ssl_certificate {crt};
+    ssl_certificate_key {k};
+    root {dr};
+    location / {{ try_files $uri /index.html =404; }}
+  }}
+}}
+"""
+
+
+def apache_https_conf(document_root: Path, port: int, prefix: Path, cert: Path, key: Path) -> str:
+    mod = apache_modules_dir()
+    dr = str(document_root.resolve()).replace("\\", "/")
+    px = str(prefix.resolve()).replace("\\", "/")
+    crt = str(cert.resolve()).replace("\\", "/")
+    k = str(key.resolve()).replace("\\", "/")
+    return f"""ServerRoot "{px}"
+PidFile logs/httpd.pid
+ErrorLog logs/error.log
+LoadModule mpm_event_module {mod}/mod_mpm_event.so
+LoadModule authz_core_module {mod}/mod_authz_core.so
+LoadModule ssl_module {mod}/mod_ssl.so
+LoadModule dir_module {mod}/mod_dir.so
+Listen 127.0.0.1:{port}
+DocumentRoot "{dr}"
+<Directory "{dr}">
+  Require all granted
+</Directory>
+SSLEngine on
+SSLCertificateFile "{crt}"
+SSLCertificateKeyFile "{k}"
+"""
+
+
+def lighttpd_https_conf(document_root: Path, port: int, prefix: Path, cert: Path, key: Path) -> str:
+    dr = str(document_root.resolve()).replace("\\", "/")
+    px = str(prefix.resolve()).replace("\\", "/")
+    crt = str(cert.resolve()).replace("\\", "/")
+    k = str(key.resolve()).replace("\\", "/")
+    return f"""server.modules = ("mod_openssl", "mod_indexfile")
+server.document-root = "{dr}"
+server.port = {port}
+server.bind = "127.0.0.1"
+server.pid-file = "{px}/lighttpd.pid"
+server.errorlog = "{px}/logs/error.log"
+ssl.engine = "enable"
+ssl.pemfile = "{crt}"
+ssl.privkey = "{k}"
+index-file.names = ("index.html")
+"""
+
+
+def caddy_https_conf(document_root: Path, port: int, cert: Path, key: Path) -> str:
+    dr = str(document_root.resolve()).replace("\\", "/")
+    crt = str(cert.resolve()).replace("\\", "/")
+    k = str(key.resolve()).replace("\\", "/")
+    return f"""127.0.0.1:{port} {{
+  tls {crt} {k}
+  root * {dr}
+  file_server
+}}
+"""
+
+
 # --- caddy ---
 
 
@@ -468,6 +665,181 @@ def start_bun_bench(port: int, doc_root: Path) -> subprocess.Popen[str] | None:
 
 def stop_bun_bench(proc: subprocess.Popen[str] | None) -> None:
     stop_li_bench(proc)
+
+
+def start_nginx_proxy_bench(
+    front_port: int, doc_root: Path, backend_ports: list[int]
+) -> tuple[tempfile.TemporaryDirectory[str], Path] | None:
+    tmp = tempfile.TemporaryDirectory(prefix="lis-nginx-proxy-")
+    prefix = Path(tmp.name)
+    conf = nginx_lb_proxy_prefix_conf(front_port, backend_ports, prefix)
+    if not launch_nginx(prefix, conf):
+        tmp.cleanup()
+        return None
+    return tmp, prefix
+
+
+def stop_nginx_proxy_bench(ctx: tuple[tempfile.TemporaryDirectory[str], Path] | None) -> None:
+    stop_nginx_bench(ctx)
+
+
+def start_apache_proxy_bench(
+    front_port: int, doc_root: Path, backend_ports: list[int]
+) -> tuple[tempfile.TemporaryDirectory[str], Path] | None:
+    _ = doc_root
+    tmp = tempfile.TemporaryDirectory(prefix="lis-apache-proxy-")
+    prefix = Path(tmp.name)
+    conf = apache_proxy_lb_conf(front_port, backend_ports, prefix)
+    if not launch_apache(prefix, conf, front_port):
+        tmp.cleanup()
+        return None
+    return tmp, prefix
+
+
+def stop_apache_proxy_bench(ctx: tuple[tempfile.TemporaryDirectory[str], Path] | None) -> None:
+    stop_apache_bench(ctx)
+
+
+def start_lighttpd_proxy_bench(
+    front_port: int, doc_root: Path, backend_ports: list[int]
+) -> tuple[tempfile.TemporaryDirectory[str], Path] | None:
+    _ = doc_root
+    tmp = tempfile.TemporaryDirectory(prefix="lis-lighttpd-proxy-")
+    prefix = Path(tmp.name)
+    conf = lighttpd_proxy_lb_conf(front_port, backend_ports, prefix)
+    if not launch_lighttpd(prefix, conf, front_port):
+        tmp.cleanup()
+        return None
+    return tmp, prefix
+
+
+def stop_lighttpd_proxy_bench(ctx: tuple[tempfile.TemporaryDirectory[str], Path] | None) -> None:
+    stop_lighttpd_bench(ctx)
+
+
+def start_caddy_proxy_bench(
+    front_port: int, doc_root: Path, backend_ports: list[int]
+) -> tuple[tempfile.TemporaryDirectory[str], subprocess.Popen[str]] | None:
+    _ = doc_root
+    tmp = tempfile.TemporaryDirectory(prefix="lis-caddy-proxy-")
+    prefix = Path(tmp.name)
+    conf = caddy_proxy_lb_conf(front_port, backend_ports)
+    proc = launch_caddy(prefix, conf, front_port)
+    if proc is None:
+        tmp.cleanup()
+        return None
+    return tmp, proc
+
+
+def stop_caddy_proxy_bench(ctx: tuple[tempfile.TemporaryDirectory[str], subprocess.Popen[str]] | None) -> None:
+    stop_caddy_bench(ctx)
+
+
+def start_li_proxy_bench(
+    front_port: int, doc_root: Path, backend_ports: list[int]
+) -> subprocess.Popen[str] | None:
+    li_bin = resolve_li_httpd_bin()
+    if not li_bin:
+        return None
+    csv_ports = ",".join(str(p) for p in backend_ports)
+    cmd = [str(li_bin), str(front_port), str(doc_root.resolve()), csv_ports]
+    if os.environ.get("BENCH_HTTP_LB_MODE", "").strip() == "least_conn":
+        cmd.append("least_conn")
+    return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+
+def stop_li_proxy_bench(proc: subprocess.Popen[str] | None) -> None:
+    stop_li_bench(proc)
+
+
+def start_nginx_static_backends(
+    backend_ports: list[int], doc_root: Path
+) -> list[tuple[tempfile.TemporaryDirectory[str], Path]]:
+    out: list[tuple[tempfile.TemporaryDirectory[str], Path]] = []
+    for bp in backend_ports:
+        ctx = start_nginx_bench(bp, doc_root)
+        if ctx:
+            out.append(ctx)
+        else:
+            break
+    return out
+
+
+def stop_nginx_static_backends(backends: list[tuple[tempfile.TemporaryDirectory[str], Path]]) -> None:
+    for ctx in backends:
+        stop_nginx_bench(ctx)
+
+
+ProxyStarter = Callable[[int, Path, list[int]], Any]
+ProxyStopper = Callable[[Any], None]
+
+PROXY_BENCH_HOOKS: dict[str, tuple[ProxyStarter, ProxyStopper]] = {
+    "nginx": (start_nginx_proxy_bench, stop_nginx_proxy_bench),
+    "apache": (start_apache_proxy_bench, stop_apache_proxy_bench),
+    "lighttpd": (start_lighttpd_proxy_bench, stop_lighttpd_proxy_bench),
+    "caddy": (start_caddy_proxy_bench, stop_caddy_proxy_bench),
+    "li": (start_li_proxy_bench, stop_li_proxy_bench),
+}
+
+
+def start_nginx_https_bench(
+    port: int, doc_root: Path, cert: Path, key: Path
+) -> tuple[tempfile.TemporaryDirectory[str], Path] | None:
+    tmp = tempfile.TemporaryDirectory(prefix="lis-nginx-tls-")
+    prefix = Path(tmp.name)
+    conf = nginx_https_conf(doc_root, port, prefix, cert, key)
+    if not launch_nginx(prefix, conf):
+        tmp.cleanup()
+        return None
+    return tmp, prefix
+
+
+def start_apache_https_bench(
+    port: int, doc_root: Path, cert: Path, key: Path
+) -> tuple[tempfile.TemporaryDirectory[str], Path] | None:
+    tmp = tempfile.TemporaryDirectory(prefix="lis-apache-tls-")
+    prefix = Path(tmp.name)
+    conf = apache_https_conf(doc_root, port, prefix, cert, key)
+    if not launch_apache(prefix, conf, port):
+        tmp.cleanup()
+        return None
+    return tmp, prefix
+
+
+def start_lighttpd_https_bench(
+    port: int, doc_root: Path, cert: Path, key: Path
+) -> tuple[tempfile.TemporaryDirectory[str], Path] | None:
+    tmp = tempfile.TemporaryDirectory(prefix="lis-lighttpd-tls-")
+    prefix = Path(tmp.name)
+    conf = lighttpd_https_conf(doc_root, port, prefix, cert, key)
+    if not launch_lighttpd(prefix, conf, port):
+        tmp.cleanup()
+        return None
+    return tmp, prefix
+
+
+def start_caddy_https_bench(
+    port: int, doc_root: Path, cert: Path, key: Path
+) -> tuple[tempfile.TemporaryDirectory[str], subprocess.Popen[str]] | None:
+    tmp = tempfile.TemporaryDirectory(prefix="lis-caddy-tls-")
+    prefix = Path(tmp.name)
+    conf = caddy_https_conf(doc_root, port, cert, key)
+    proc = launch_caddy(prefix, conf, port)
+    if proc is None:
+        tmp.cleanup()
+        return None
+    return tmp, proc
+
+
+TlsStarter = Callable[[int, Path, Path, Path], Any]
+TlsStopper = Callable[[Any], None]
+
+TLS_BENCH_HOOKS: dict[str, tuple[TlsStarter, TlsStopper]] = {
+    "nginx": (start_nginx_https_bench, stop_nginx_proxy_bench),
+    "apache": (start_apache_https_bench, stop_apache_proxy_bench),
+    "lighttpd": (start_lighttpd_https_bench, stop_lighttpd_proxy_bench),
+    "caddy": (start_caddy_https_bench, stop_caddy_proxy_bench),
+}
 
 
 BenchStarter = Callable[[int, Path], Any]
