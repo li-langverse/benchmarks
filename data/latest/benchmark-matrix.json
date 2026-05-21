@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-21T10:36:56.439638+00:00",
+  "generated_at": "2026-05-21T11:52:18.014422+00:00",
   "sources": {
     "summary_json": "/workspace/data/latest/summary.json",
     "catalog_toml": "/workspace/catalog.toml",
@@ -26,10 +26,10 @@
       "unknown": 1
     },
     "5": {
-      "green": 7,
-      "yellow": 1,
+      "green": 5,
+      "yellow": 0,
       "red": 0,
-      "unknown": 1
+      "unknown": 5
     },
     "3": {
       "green": 0,
@@ -63,9 +63,9 @@
         "category": "micro",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 0.4444,
+        "ratio_vs_reference": 0.8182,
         "reference_lang": "cpp",
-        "li_value": 0.0004,
+        "li_value": 0.0009,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -78,9 +78,9 @@
         "category": "micro",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 0.9717,
+        "ratio_vs_reference": 1.0192,
         "reference_lang": "cpp",
-        "li_value": 0.0103,
+        "li_value": 0.0106,
         "ph_ids": [
           "PH-5b"
         ]
@@ -92,9 +92,9 @@
         "category": "micro",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 0.9714,
+        "ratio_vs_reference": 0.6857,
         "reference_lang": "cpp",
-        "li_value": 0.0034,
+        "li_value": 0.0024,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -107,9 +107,9 @@
         "category": "micro",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0039,
+        "ratio_vs_reference": 1.0444,
         "reference_lang": "cpp",
-        "li_value": 0.3106,
+        "li_value": 0.3386,
         "ph_ids": [
           "PH-5b"
         ]
@@ -121,9 +121,9 @@
         "category": "micro",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 0.0119,
+        "ratio_vs_reference": 0.0143,
         "reference_lang": "cpp",
-        "li_value": 0.0007,
+        "li_value": 0.0008,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -138,9 +138,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 0.9396,
+        "ratio_vs_reference": 1.0119,
         "reference_lang": "cpp",
-        "li_value": 0.1042,
+        "li_value": 0.1107,
         "ph_ids": [
           "PH-5b"
         ]
@@ -180,9 +180,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0035,
+        "ratio_vs_reference": 1.0072,
         "reference_lang": "cpp",
-        "li_value": 0.3184,
+        "li_value": 0.3198,
         "ph_ids": [
           "PH-5b"
         ]
@@ -208,9 +208,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0,
+        "ratio_vs_reference": 0.8893,
         "reference_lang": "cpp",
-        "li_value": 0.0885,
+        "li_value": 0.0884,
         "ph_ids": [
           "PH-5b"
         ]
@@ -222,9 +222,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0228,
+        "ratio_vs_reference": 0.8381,
         "reference_lang": "cpp",
-        "li_value": 0.1302,
+        "li_value": 0.1294,
         "ph_ids": [
           "PH-5b"
         ]
@@ -238,7 +238,7 @@
         "status": "green",
         "ratio_vs_reference": 0.0012,
         "reference_lang": "cpp",
-        "li_value": 0.0032,
+        "li_value": 0.0031,
         "ph_ids": [
           "PH-5b"
         ]
@@ -250,9 +250,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.002,
+        "ratio_vs_reference": 0.9976,
         "reference_lang": "cpp",
-        "li_value": 1.1742,
+        "li_value": 1.1719,
         "ph_ids": [
           "PH-5b"
         ]
@@ -278,9 +278,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0007,
+        "ratio_vs_reference": 0.9983,
         "reference_lang": "cpp",
-        "li_value": 0.8395,
+        "li_value": 0.8412,
         "ph_ids": [
           "PH-5b"
         ]
@@ -292,9 +292,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0,
+        "ratio_vs_reference": 0.9898,
         "reference_lang": "cpp",
-        "li_value": 0.2438,
+        "li_value": 0.2435,
         "ph_ids": [
           "PH-5b"
         ]
@@ -306,9 +306,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 0.9587,
+        "ratio_vs_reference": 0.9934,
         "reference_lang": "cpp",
-        "li_value": 1.7757,
+        "li_value": 1.8064,
         "ph_ids": [
           "PH-5b"
         ]
@@ -320,9 +320,9 @@
         "category": "physics",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0076,
+        "ratio_vs_reference": 1.0079,
         "reference_lang": "cpp",
-        "li_value": 0.2774,
+        "li_value": 0.2689,
         "ph_ids": [
           "PH-5b"
         ]
@@ -344,24 +344,38 @@
     ],
     "http": [
       {
+        "id": "https_static",
+        "tier": 5,
+        "repo": "lic",
+        "category": "http",
+        "metric": "verify_skip",
+        "status": "green",
+        "ratio_vs_reference": 1.0,
+        "reference_lang": "li",
+        "li_value": 1.0,
+        "ph_ids": [
+          "PH-H"
+        ]
+      },
+      {
         "id": "keepalive_pipelining",
         "tier": 5,
         "repo": "lis",
         "category": "http",
         "metric": "rps",
         "status": "green",
-        "ratio_vs_reference": 0.4608,
+        "ratio_vs_reference": 0.4284,
         "reference_lang": "nginx",
-        "li_value": 208696.53,
+        "li_value": 223327.1,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 208696.53,
-          "nginx": 96160.0,
-          "apache": 58195.21,
-          "lighttpd": 232307.94,
-          "node": 24042.69
+          "li": 223327.1,
+          "nginx": 95677.9,
+          "apache": 66731.07,
+          "lighttpd": 247620.54,
+          "node": 30930.05
         }
       },
       {
@@ -370,16 +384,15 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "green",
-        "ratio_vs_reference": 0.3612,
+        "status": "unknown",
+        "ratio_vs_reference": null,
         "reference_lang": "nginx",
-        "li_value": 123979.54,
+        "li_value": null,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 123979.54,
-          "nginx": 44777.09
+          "nginx": 67003.89
         }
       },
       {
@@ -388,16 +401,15 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "green",
-        "ratio_vs_reference": 0.4088,
+        "status": "unknown",
+        "ratio_vs_reference": null,
         "reference_lang": "nginx",
-        "li_value": 127999.89,
+        "li_value": null,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 127999.89,
-          "nginx": 52320.75
+          "nginx": 65027.27
         }
       },
       {
@@ -406,16 +418,15 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "green",
-        "ratio_vs_reference": 0.5094,
+        "status": "unknown",
+        "ratio_vs_reference": null,
         "reference_lang": "nginx",
-        "li_value": 99821.62,
+        "li_value": null,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 99821.62,
-          "nginx": 50853.04
+          "nginx": 71538.91
         }
       },
       {
@@ -424,16 +435,15 @@
         "repo": "lic",
         "category": "http",
         "metric": "rps",
-        "status": "green",
-        "ratio_vs_reference": 0.6074,
+        "status": "unknown",
+        "ratio_vs_reference": null,
         "reference_lang": "nginx",
-        "li_value": 152310.37,
+        "li_value": 0.0,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 152310.37,
-          "nginx": 79786.66
+          "nginx": 77411.89
         }
       },
       {
@@ -456,19 +466,19 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "yellow",
-        "ratio_vs_reference": 1.0659,
+        "status": "green",
+        "ratio_vs_reference": 0.9829,
         "reference_lang": "nginx",
-        "li_value": 7872.11,
+        "li_value": 9155.55,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 7872.11,
-          "nginx": 8390.99,
-          "apache": 8759.27,
-          "lighttpd": 9125.68,
-          "node": 2764.06
+          "li": 9155.55,
+          "nginx": 8999.08,
+          "apache": 8889.48,
+          "lighttpd": 9165.56,
+          "node": 3196.36
         }
       },
       {
@@ -478,18 +488,18 @@
         "category": "http",
         "metric": "rps",
         "status": "green",
-        "ratio_vs_reference": 0.6185,
+        "ratio_vs_reference": 0.599,
         "reference_lang": "nginx",
-        "li_value": 137930.25,
+        "li_value": 138866.91,
         "ph_ids": [
           "PH-H"
         ],
         "rps_by_lang": {
-          "li": 137930.25,
-          "nginx": 85303.61,
-          "apache": 50716.6,
-          "lighttpd": 184667.39,
-          "node": 29007.1
+          "li": 138866.91,
+          "nginx": 83176.75,
+          "apache": 52564.89,
+          "lighttpd": 185305.19,
+          "node": 28925.07
         }
       }
     ],
@@ -542,41 +552,37 @@
   },
   "http_performance": {
     "static_small": {
-      "nginx": 85303.61,
-      "apache": 50716.6,
-      "lighttpd": 184667.39,
-      "node": 29007.1,
-      "li": 137930.25
+      "nginx": 83176.75,
+      "apache": 52564.89,
+      "lighttpd": 185305.19,
+      "node": 28925.07,
+      "li": 138866.91
     },
     "keepalive_pipelining": {
-      "nginx": 96160.0,
-      "apache": 58195.21,
-      "lighttpd": 232307.94,
-      "node": 24042.69,
-      "li": 208696.53
+      "nginx": 95677.9,
+      "apache": 66731.07,
+      "lighttpd": 247620.54,
+      "node": 30930.05,
+      "li": 223327.1
     },
     "static_large": {
-      "nginx": 8390.99,
-      "apache": 8759.27,
-      "lighttpd": 9125.68,
-      "node": 2764.06,
-      "li": 7872.11
+      "nginx": 8999.08,
+      "apache": 8889.48,
+      "lighttpd": 9165.56,
+      "node": 3196.36,
+      "li": 9155.55
     },
     "proxy_loopback": {
-      "nginx": 79786.66,
-      "li": 152310.37
+      "nginx": 77411.89
     },
     "lb_round_robin": {
-      "nginx": 50853.04,
-      "li": 99821.62
+      "nginx": 71538.91
     },
     "lb_least_conn": {
-      "nginx": 44777.09,
-      "li": 123979.54
+      "nginx": 67003.89
     },
     "lb_peer_down": {
-      "nginx": 52320.75,
-      "li": 127999.89
+      "nginx": 65027.27
     }
   },
   "http_exploits": {
