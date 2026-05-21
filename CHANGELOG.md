@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **lic (coordination):** proxy/LB bench fix on `cursor/httpd-proxy-bench-fix-54aa` — see lic `docs/release-notes/2026-05-22-httpd-proxy-bench-fix.md`.
+- **lic merged (#153 proxy epoll + seam, #156 E0360 ptr ABI):** tier5 `proxy_loopback,li` ~9.1k req/s (quick wrk); matrix refreshed — [2026-05-21-bench-matrix-post-lic-merge.md](docs/release-notes/2026-05-21-bench-matrix-post-lic-merge.md).
 
 - **HTTP RPS matrix:** `docs/ecosystem/http-server-rps-matrix.md` + `benchmark-matrix-report.py` full scenario grid (`li` on every row); rule `.cursor/rules/li-httpd-bench-matrix.mdc` — [2026-05-22-http-server-rps-matrix.md](docs/release-notes/2026-05-22-http-server-rps-matrix.md).
 - **HTTP https_static:** tier5 nightly stub (`verify_skip` until `li-tls` ships) + `catalog.toml` row — [2026-05-22-httpd-https-static-tier5.md](docs/release-notes/2026-05-22-httpd-https-static-tier5.md).
