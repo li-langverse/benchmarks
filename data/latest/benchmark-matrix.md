@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-05-21T12:05:31.801670+00:00
+Generated: 2026-05-21T12:19:32.063518+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -27,13 +27,13 @@ Status: **green** — 0 failures / 36 cells
 
 | scenario | li | nginx | apache | lighttpd | node |
 |---|---|---|---|---|---|
-| keepalive_pipelining | 232,360 | 93,595 | 62,240 | 216,744 | 22,280 |
-| lb_least_conn | — | 45,794 | — | — | — |
-| lb_peer_down | — | 49,980 | — | — | — |
-| lb_round_robin | — | 43,623 | — | — | — |
-| proxy_loopback | — | 58,771 | — | — | — |
-| static_large | 7,891 | 8,946 | 8,791 | 9,105 | 2,619 |
-| static_small | 139,091 | 86,561 | 53,065 | 165,505 | 28,772 |
+| keepalive_pipelining | 227,598 | 88,703 | 64,737 | 242,284 | 30,166 |
+| lb_least_conn | — | 72,443 | — | — | — |
+| lb_peer_down | — | 72,872 | — | — | — |
+| lb_round_robin | — | 67,628 | — | — | — |
+| proxy_loopback | — | 79,206 | — | — | — |
+| static_large | 9,499 | 9,001 | 8,940 | 8,985 | 3,205 |
+| static_small | 139,762 | 72,576 | 41,062 | 121,266 | 26,386 |
 
 ## Correctness
 
@@ -45,30 +45,30 @@ Status: **green** — 0 failures / 36 cells
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| horner_pure_li | 1 | green | 0.364× | lic |
-| matmul_blocked | 1 | red | 1.525× | lic |
-| matmul_naive | 1 | red | 1.360× | lic |
-| reduce_sum | 1 | green | 0.989× | lic |
-| simd_dot | 1 | green | 0.014× | lic |
+| horner_pure_li | 1 | green | 0.444× | lic |
+| matmul_blocked | 1 | red | 1.535× | lic |
+| matmul_naive | 1 | red | 1.400× | lic |
+| reduce_sum | 1 | green | 0.978× | lic |
+| simd_dot | 1 | green | 0.015× | lic |
 
 ## Physics
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| advection_diffusion_2d | 2 | green | 0.992× | lic |
+| advection_diffusion_2d | 2 | green | 1.111× | lic |
 | cloth_swing | 2 | unknown | — | lic |
 | combustion_passive | 2 | unknown | — | lic |
 | double_pendulum | 2 | green | 1.000× | lic |
 | euler_fluid_2d | 2 | unknown | — | lic |
-| harmonic_oscillator_chain | 2 | green | 0.744× | lic |
-| heat_equation_2d | 2 | green | 1.076× | lic |
+| harmonic_oscillator_chain | 2 | yellow | 1.215× | lic |
+| heat_equation_2d | 2 | green | 0.959× | lic |
 | md_lennard_jones | 2 | green | 0.001× | lic |
 | nbody_gravity | 2 | green | 1.000× | lic |
 | rigid_body_stack | 2 | unknown | — | lic |
-| sph_dam_break_2d | 2 | green | 1.005× | lic |
-| three_body | 2 | green | 1.000× | lic |
-| wave_equation_1d | 2 | green | 0.993× | lic |
-| wave_equation_2d | 2 | green | 1.019× | lic |
+| sph_dam_break_2d | 2 | green | 0.995× | lic |
+| three_body | 2 | green | 0.998× | lic |
+| wave_equation_1d | 2 | green | 1.001× | lic |
+| wave_equation_2d | 2 | green | 0.999× | lic |
 | wind_field_bc | 2 | unknown | — | lic |
 
 ## HTTP catalog gates
@@ -76,14 +76,14 @@ Status: **green** — 0 failures / 36 cells
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
 | https_static | 5 | green | 1.000× | lic |
-| keepalive_pipelining | 5 | green | 0.403× | lis |
+| keepalive_pipelining | 5 | green | 0.390× | lis |
 | lb_least_conn | 5 | unknown | — | lis |
 | lb_peer_down | 5 | unknown | — | lis |
 | lb_round_robin | 5 | unknown | — | lis |
 | proxy_loopback | 5 | unknown | — | lic |
 | rate_limit_429 | 5 | green | 1.000× | lic |
-| static_large | 5 | red | 1.134× | lis |
-| static_small | 5 | green | 0.622× | lis |
+| static_large | 5 | green | 0.948× | lis |
+| static_small | 5 | green | 0.519× | lis |
 
 ## Security
 
