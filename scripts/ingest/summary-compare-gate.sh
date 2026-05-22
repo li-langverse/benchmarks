@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
 export LI_REPO_ROOT="${LI_REPO_ROOT:-$LIC_ROOT}"
-export CC="${CC:-clang-18}"
+export CC="${CC:-clang-22}"
 
 if [[ ! -x "$LIC_ROOT/build/compiler/lic/lic" ]]; then
   echo "summary-compare-gate: skip (lic not built)"

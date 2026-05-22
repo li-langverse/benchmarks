@@ -15,13 +15,18 @@ Ingest triggers: `workflow_dispatch`, `repository_dispatch` (`lic-bench-complete
 2. **Pages source** — Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**
 3. **Enable via API** (optional):  
    `gh api repos/li-langverse/benchmarks/pages -X POST -f build_type=workflow`
-4. **Run deploy** — push to `main` touching `data/latest/**` or `scripts/dashboard/**`, or:  
-   `gh workflow run pages.yml --repo li-langverse/benchmarks`
-5. **Wait for green** — workflow **Deploy dashboard** → environment **github-pages**
-6. **Verify** — `curl -sI https://li-langverse.github.io/benchmarks/ | head -1` → `HTTP/2 200`
+4. **Run deploy (no Actions)** — from a machine with `gh` + push access:  
+   `./scripts/deploy-pages-local.sh --build`  
+   (builds Vite dashboard, pushes `gh-pages`, sets Pages source to branch deploy)
+5. **Verify** — `curl -sI https://li-langverse.github.io/benchmarks/ | head -1` → `HTTP/2 200`
 
-Or run [`scripts/publish-github-pages.sh`](scripts/publish-github-pages.sh) from a machine with `with-github-env.sh` + push access.
+**Actions alternative:** `gh workflow run pages.yml --repo li-langverse/benchmarks` or `./scripts/deploy-pages-local.sh --workflow`
 
-**Local fallback (no Pages):** `LIC_ROOT=../li ./scripts/dashboard/render-static.sh` → open `static-dashboard/index.html`.
+Or run [`scripts/publish-github-pages.sh`](scripts/publish-github-pages.sh) (wraps local deploy).
+
+**Offline preview (no GitHub):** `LIC_ROOT=../lic ./scripts/dashboard/render-static.sh` → open `static-dashboard/index.html`.
+
+**Refresh benchmark data (no ingest Actions):**  
+`LIC_ROOT=../lic ./scripts/run-full-benchmark-suite.sh` then `./scripts/deploy-pages-local.sh --build`
 
 Handbook: [docs/handbook/README.md](docs/handbook/README.md).

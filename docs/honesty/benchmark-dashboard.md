@@ -1,6 +1,6 @@
 # Benchmark dashboard honesty labels
 
-The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **wall-clock ratios vs a catalog reference** (usually C++ (`cpp`); tier-5 HTTP uses **nginx** where `compare_oracle` is set), not formal proof or correctness certificates.
+The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **ratios only** vs a catalog reference (**`cpp` = 1.00×** for micro/physics; tier-5 HTTP uses **nginx** or another `compare_oracle` when set). **Absolute wall times are not published** on the site. Each ingest records **hardware** (`cpu_model`, flags, host uname, git shas) in `summary.json` → `hardware`. Not formal proof or correctness certificates.
 
 ## Status colors
 
@@ -28,7 +28,15 @@ The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/lat
 
 ## Writing release notes / ADRs
 
-Use: “dashboard **green** at ratio *r* vs cpp on commit *sha*” — not “proved fast” or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)).
+Use: “dashboard **green** at *r*× vs **cpp** on *cpu_model* / commit *sha*” — not absolute seconds, “proved fast”, or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)).
+
+## Local publish (no Actions)
+
+```bash
+LIC_ROOT=../lic ./scripts/refresh-live-sites.sh
+```
+
+See skill **`run-local-pages-benchmarks`** in **lic** `.cursor/skills/`.
 
 ## HTTP tier-5 vs nginx (catalog)
 

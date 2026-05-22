@@ -6,7 +6,7 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 DASH_DIR="$(cd "$(dirname "$0")" && pwd)"
 LIC_ROOT="${LIC_ROOT:-$ROOT/../lic}"
 export LI_REPO_ROOT="${LI_REPO_ROOT:-$LIC_ROOT}"
-export CC="${CC:-clang-18}"
+export CC="${CC:-clang-22}"
 
 if [[ ! -f "$ROOT/data/latest/summary.json" ]]; then
   echo "render-static: missing data/latest/summary.json (run ingest first)"

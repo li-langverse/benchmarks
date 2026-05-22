@@ -55,6 +55,7 @@ function esc(s: string): string {
 function formatValue(v: number, unit: string): string {
   if (unit === "pass") return v >= 1 ? "pass" : "fail";
   if (unit === "bool") return v >= 1 ? "OK" : "—";
+  if (unit === "×") return `${v.toFixed(2)}×`;
   if (v >= 1000 || (v > 0 && v < 0.01)) return v.toExponential(2);
   return v.toFixed(4);
 }
@@ -85,7 +86,7 @@ export function renderBarChart(chart: ChartSpec): string {
     ? groupSeries(chart.series)
     : [{ label: "", points: chart.series }];
   const allValues = chart.series.map((s) => s.value).filter((v) => v > 0);
-  const maxVal = Math.max(...allValues, 1e-12);
+  const maxVal = Math.max(...allValues, 1.0);
 
   const groupHtml = groups
     .map((g) => {
@@ -95,7 +96,7 @@ export function renderBarChart(chart: ChartSpec): string {
           const color = LANG_COLORS[p.lang] ?? "var(--muted)";
           const isRef = p.lang === chart.reference_lang;
           return `
-            <div class="bar-col" title="${esc(p.lang)}: ${formatValue(p.value, p.unit)} ${esc(p.unit)}">
+            <div class="bar-col" title="${esc(p.lang)}: ${formatValue(p.value, p.unit)} vs ${esc(chart.reference_lang)}">
               
               
               <div class="bar-value">${formatValue(p.value, p.unit)}</div>
@@ -126,7 +127,7 @@ export function renderBarChart(chart: ChartSpec): string {
         <span class="badge ${chart.status}">${chart.status}</span>
       </header>
       <p class="chart-meta">
-        ${esc(chart.metric)} · ${esc(chart.unit || "—")} ·
+        ${esc(chart.metric)} · ratio (${esc(chart.unit || "×")}) ·
         <a href="https://github.com/li-langverse/${esc(chart.repo)}/tree/main/${esc(chart.path)}" target="_blank" rel="noopener">${esc(chart.repo)}</a>
         ${ratio}
       </p>

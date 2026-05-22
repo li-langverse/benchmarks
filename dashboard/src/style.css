@@ -40,6 +40,38 @@ header p {
   font-size: 0.9rem;
 }
 
+.hardware-banner {
+  margin: 1rem 2rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 0.88rem;
+}
+
+.hardware-banner h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.hardware-banner ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+
+.hw-note {
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+  font-size: 0.82rem;
+}
+
+.legend-title {
+  width: 100%;
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
 main {
   padding: 1.5rem 2rem 3rem;
   max-width: 1400px;

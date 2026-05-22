@@ -1,8 +1,20 @@
 import "./style.css";
 import { renderCategorySection, type ChartSpec } from "./charts";
 
+type Hardware = {
+  reference_lang: string;
+  cpu_models: string[];
+  cpu_model_primary: string;
+  build_flags: string[];
+  git_shas: string[];
+  host_uname: string;
+  host_platform: string;
+  display_note: string;
+};
+
 type Summary = {
   generated_at: string;
+  hardware?: Hardware;
   sources: Record<string, string>;
   tier_counts: Record<string, { green: number; yellow: number; red: number; unknown: number }>;
   categories: Record<string, { label: string; charts: ChartSpec[] }>;
@@ -15,9 +27,8 @@ type Row = {
   tier: number;
   category?: string;
   metric: string;
-  li_value: number | null;
-  cpp_value: number | null;
   ratio_vs_cpp: number | null;
+  reference_lang?: string;
   unit: string | null;
   variant?: string | null;
   status: string;
@@ -41,7 +52,6 @@ function tierStrip(counts: Summary["tier_counts"]): string {
     .map((t) => {
       const c = counts[t] ?? { green: 0, yellow: 0, red: 0, unknown: 0 };
       return `
-        
         <div class="tier-card">
           <h3>Tier ${t}</h3>
           <div class="counts">
@@ -59,29 +69,48 @@ function badge(status: string): string {
   return `<span class="badge ${status}">${status}</span>`;
 }
 
-function fmt(n: number | null, unit: string | null): string {
+function fmtRatio(n: number | null, ref: string): string {
   if (n == null) return "—";
-  return `${n.toFixed(4)}${unit ? " " + unit : ""}`;
+  return `${n.toFixed(3)}× vs ${ref}`;
+}
+
+function hardwareBanner(hw: Hardware | undefined): string {
+  if (!hw) return "";
+  const cpus =
+    hw.cpu_models.length > 0 ? hw.cpu_models.join(", ") : hw.cpu_model_primary;
+  const flags = hw.build_flags.length ? hw.build_flags.join(" · ") : "—";
+  const shas = hw.git_shas.length ? hw.git_shas.join(", ") : "—";
+  return `
+    <section class="hardware-banner" aria-label="Measurement hardware">
+      <h2>Hardware &amp; reference</h2>
+      <p><strong>Reference:</strong> <code>${hw.reference_lang}</code> = 1.00× · all bars and table ratios are relative (no absolute wall times).</p>
+      <ul>
+        <li><strong>CPU:</strong> ${cpus}</li>
+        <li><strong>Host:</strong> ${hw.host_uname || hw.host_platform}</li>
+        <li><strong>Build flags:</strong> ${flags}</li>
+        <li><strong>git sha(s):</strong> ${shas}</li>
+      </ul>
+      <p class="hw-note">${hw.display_note}</p>
+    </section>`;
 }
 
 function renderTable(rows: Row[]): string {
   return rows
-    .map(
-      (r) => `
+    .map((r) => {
+      const ref = r.reference_lang ?? "cpp";
+      return `
     <tr data-tier="${r.tier}" data-repo="${r.repo}" data-status="${r.status}" data-category="${r.category ?? ""}">
       <td><strong>${r.benchmark}</strong></td>
       <td>${r.category ?? "—"}</td>
       <td>${r.repo}</td>
       <td class="mono">${r.tier}</td>
       <td>${r.metric}</td>
-      <td class="mono">${fmt(r.li_value, r.unit)}</td>
-      <td class="mono">${fmt(r.cpp_value, r.unit)}</td>
-      <td class="mono">${r.ratio_vs_cpp != null ? r.ratio_vs_cpp.toFixed(3) + "×" : "—"}</td>
+      <td class="mono">${fmtRatio(r.ratio_vs_cpp, ref)}</td>
       <td>${badge(r.status)}</td>
       <td class="mono">${(r.ph_ids ?? []).join(", ")}</td>
       <td class="mono"><a href="https://github.com/li-langverse/${r.repo}/tree/main/${r.path}" target="_blank" rel="noopener">source</a></td>
-    </tr>`
-    )
+    </tr>`;
+    })
     .join("");
 }
 
@@ -125,6 +154,7 @@ function legend(): string {
   ];
   return `
     <div class="lang-legend">
+      <p class="legend-title">Bar height = ratio vs reference (<code>cpp</code> or catalog oracle); reference lang is always 1.00×</p>
       ${langs
         .map(
           (l) =>
@@ -153,10 +183,11 @@ async function main() {
     app.innerHTML = `
       <header>
         <h1>Li benchmarks</h1>
-        <p>Updated ${new Date(data.generated_at).toLocaleString()} · <a href="https://github.com/li-langverse/benchmarks">repo</a></p>
+        <p>Updated ${new Date(data.generated_at).toLocaleString()} · relative to <strong>cpp</strong> (or catalog oracle) · <a href="https://github.com/li-langverse/benchmarks">repo</a></p>
       </header>
       <main>
         ${alert}
+        ${hardwareBanner(data.hardware)}
         <section class="tier-strip">${tierStrip(data.tier_counts)}</section>
         <nav class="category-nav">${categoryNav(data.categories)}</nav>
         ${legend()}
@@ -173,7 +204,7 @@ async function main() {
             <thead>
               <tr>
                 <th>Benchmark</th><th>Category</th><th>Repo</th><th>Tier</th><th>Metric</th>
-                <th>Li</th><th>Ref</th><th>Ratio</th><th>Status</th><th>PH</th><th>Path</th>
+                <th>Ratio</th><th>Status</th><th>PH</th><th>Path</th>
               </tr>
             </thead>
             <tbody>${renderTable(data.rows)}</tbody>

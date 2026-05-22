@@ -5,6 +5,8 @@ from __future__ import annotations
 import csv
 import json
 import sys
+import platform
+import subprocess
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -55,6 +57,65 @@ def merge_csv_rows(paths: list[Path]) -> list[dict]:
     for p in paths:
         rows.extend(parse_csv(p))
     return rows
+
+
+def collect_hardware(rows: list[dict]) -> dict:
+    """Machine context for honest comparison — always surfaced on the dashboard."""
+    cpus = sorted({(r.get("cpu_model") or "").strip() for r in rows if (r.get("cpu_model") or "").strip()})
+    flags = sorted({(r.get("flags") or "").strip() for r in rows if (r.get("flags") or "").strip()})
+    shas = sorted({(r.get("git_sha") or "")[:12] for r in rows if (r.get("git_sha") or "").strip()})
+    uname = ""
+    try:
+        uname = subprocess.check_output(["uname", "-sr"], text=True, timeout=2).strip()
+    except (OSError, subprocess.SubprocessError):
+        uname = platform.platform()
+    return {
+        "reference_lang": "cpp",
+        "cpu_models": cpus,
+        "cpu_model_primary": cpus[0] if cpus else platform.machine() or "unknown",
+        "build_flags": flags,
+        "git_shas": shas,
+        "host_uname": uname,
+        "host_platform": platform.platform(),
+        "display_note": (
+            "All timings are ratios vs the catalog reference (cpp for micro/physics; "
+            "compare_oracle for HTTP). Absolute wall times are not published on the dashboard."
+        ),
+    }
+
+
+def ratio_for_point(
+    value: float, ref_value: float, metric: str
+) -> float | None:
+    if ref_value <= 0 or value <= 0:
+        return None
+    if metric in ("rps", "throughput"):
+        return ref_value / value
+    return value / ref_value
+
+
+def to_relative_series(
+    series: list[dict], reference_lang: str, metric: str
+) -> list[dict]:
+    ref_val = next((s["value"] for s in series if s["lang"] == reference_lang), None)
+    if ref_val is None or ref_val <= 0:
+        return []
+    out: list[dict] = []
+    for s in series:
+        ratio = ratio_for_point(float(s["value"]), float(ref_val), metric)
+        if ratio is None:
+            continue
+        out.append(
+            {
+                "lang": s["lang"],
+                "value": round(ratio, 4),
+                "unit": "×",
+                "variant": s.get("variant") or "",
+                "label": s.get("label"),
+                "is_reference": s["lang"] == reference_lang,
+            }
+        )
+    return out
 
 
 def status_for_ratio(ratio: float | None, threshold: float) -> str:
@@ -251,14 +312,15 @@ def build_perf_chart(
     if metric in ("rps", "throughput") and ratio is not None:
         ratio = 1.0 / ratio if ratio > 0 else None
     st = status_for_ratio(ratio, threshold)
+    rel_series = to_relative_series(series, oracle, metric) if series else []
     return {
         "id": bench_id,
         "title": bench_id.replace("_", " "),
         "metric": metric,
-        "unit": series[0]["unit"] if series else "",
+        "unit": "×",
         "lower_is_better": metric in ("wall_time", "latency"),
         "reference_lang": oracle,
-        "series": series,
+        "series": rel_series,
         "grouped": False,
         "repo": cfg.get("repo", "lic"),
         "path": cfg.get("path", ""),
@@ -309,10 +371,9 @@ def main() -> int:
                     "tier": cfg.get("tier", 0),
                     "category": category,
                     "metric": metric,
-                    "li_value": None,
-                    "cpp_value": None,
                     "ratio_vs_cpp": None,
-                    "unit": None,
+                    "reference_lang": "cpp",
+                    "unit": "×",
                     "variant": None,
                     "status": "unknown",
                     "ph_ids": cfg.get("ph_ids", []),
@@ -348,10 +409,9 @@ def main() -> int:
                     "tier": cfg.get("tier", 0),
                     "category": category,
                     "metric": metric,
-                    "li_value": None,
-                    "cpp_value": None,
                     "ratio_vs_cpp": None,
-                    "unit": None,
+                    "reference_lang": "cpp",
+                    "unit": "×",
                     "variant": cfg.get("variant"),
                     "status": "unknown",
                     "ph_ids": cfg.get("ph_ids", []),
@@ -365,9 +425,7 @@ def main() -> int:
         chart = build_perf_chart(bench_id, cfg, raw)
         charts_by_cat[category].append(chart)
 
-        li_val = next((s["value"] for s in chart["series"] if s["lang"] == "li"), None)
         ref = chart["reference_lang"]
-        ref_val = next((s["value"] for s in chart["series"] if s["lang"] == ref), None)
         ratio = chart.get("ratio_vs_reference")
         st = chart["status"]
         tier = str(cfg.get("tier", 0))
@@ -380,10 +438,9 @@ def main() -> int:
                 "tier": cfg.get("tier", 0),
                 "category": category,
                 "metric": metric,
-                "li_value": li_val,
-                "cpp_value": ref_val if ref == "cpp" else None,
                 "ratio_vs_cpp": ratio,
-                "unit": chart.get("unit"),
+                "reference_lang": ref,
+                "unit": "×",
                 "variant": cfg.get("variant"),
                 "status": st,
                 "ph_ids": cfg.get("ph_ids", []),
@@ -405,12 +462,13 @@ def main() -> int:
 
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "hardware": collect_hardware(raw),
         "sources": {
             "lic_csv": str(lic_csv),
             "lis_csv": str(lis_csv),
-         "stability_csv": str(stability_csv),
-         "security_csv": str(security_csv),
-         },
+            "stability_csv": str(stability_csv),
+            "security_csv": str(security_csv),
+        },
         "tier_counts": dict(tier_counts),
         "categories": categories,
         "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),

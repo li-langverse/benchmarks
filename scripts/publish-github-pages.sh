@@ -2,20 +2,18 @@
 # Publish benchmarks repo to GitHub and enable Pages (requires repo to exist + push access).
 set -euo pipefail
 BENCH_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-LI_ROOT="$(cd "$BENCH_ROOT/../li" && pwd)"
-WRAPPER="${LI_ROOT}/scripts/with-github-env.sh"
-
-if [[ ! -x "$WRAPPER" ]]; then
-  echo "error: missing $WRAPPER" >&2
+WRAPPER=""
+for d in "$BENCH_ROOT/../lic" "$BENCH_ROOT/../li"; do
+  if [[ -x "$d/scripts/with-github-env.sh" ]]; then
+    WRAPPER="$d/scripts/with-github-env.sh"
+    break
+  fi
+done
+if [[ -z "$WRAPPER" ]]; then
+  echo "error: missing lic/scripts/with-github-env.sh (set GH_TOKEN + gh auth)" >&2
   exit 1
 fi
-
-echo "==> build dashboard"
-cd "$BENCH_ROOT/dashboard"
-npm ci
-npm run build
-mkdir -p dist/latest
-cp "$BENCH_ROOT/data/latest/summary.json" dist/latest/
+export WITH_GITHUB_ENV="$WRAPPER"
 
 echo "==> ensure remote"
 cd "$BENCH_ROOT"
@@ -37,15 +35,9 @@ fi
 echo "==> push main"
 "$WRAPPER" git push -u origin main
 
-echo "==> enable GitHub Pages (workflow)"
-"$WRAPPER" gh api repos/li-langverse/benchmarks/pages \
-  -X POST \
-  -f build_type=workflow \
-  2>/dev/null || echo "(pages may already be enabled)"
-
-echo "==> run Deploy dashboard workflow"
-"$WRAPPER" gh workflow run pages.yml --repo li-langverse/benchmarks
-"$WRAPPER" gh run list --repo li-langverse/benchmarks --workflow=pages.yml --limit 3
+echo "==> deploy Pages (local build — no Actions)"
+"$BENCH_ROOT/scripts/deploy-pages-local.sh" --build
 
 echo ""
-echo "When CI finishes: https://li-langverse.github.io/benchmarks/"
+echo "Live: https://li-langverse.github.io/benchmarks/"
+echo "To use Actions instead: ./scripts/deploy-pages-local.sh --workflow"

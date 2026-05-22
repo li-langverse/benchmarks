@@ -12,7 +12,11 @@ Aggregated **benchmark status** for the Li org. Harnesses and sources stay in ea
 # Refresh summary from sibling lic checkout
 ./scripts/ingest/ingest-lic.sh
 
-# Static dashboard (PH-IO-5 — matches GitHub Pages)
+# Publish live dashboard (no GitHub Actions)
+LIC_ROOT=../lic ./scripts/run-full-benchmark-suite.sh   # optional: full bench + ingest
+./scripts/deploy-pages-local.sh --build
+
+# Static dashboard (PH-IO-5 — offline preview)
 LIC_ROOT=../lic ./scripts/dashboard/render-static.sh
 # Optional Vite dev (filters; not used on Pages deploy)
 cd dashboard && npm install && npm run dev

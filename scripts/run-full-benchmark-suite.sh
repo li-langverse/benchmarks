@@ -27,8 +27,8 @@ fi
 
 export LIC="$LIC_ROOT/build/compiler/lic/lic"
 export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
-export CC="${CC:-clang-18}"
-export CXX="${CXX:-clang++-18}"
+export CC="${CC:-clang-22}"
+export CXX="${CXX:-clang++-22}"
 
 cd "$LIC_ROOT"
 mkdir -p benchmarks/results

@@ -7,7 +7,7 @@
 3. **PR-only** — branch + PR; **normal push only** ([git-workflow](docs/ecosystem/git-workflow.md)); CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
 4. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
 5. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
-6. Dashboard: https://li-langverse.github.io/benchmarks/ — perf labels: [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md)
+6. Dashboard: https://li-langverse.github.io/benchmarks/ — **ratios vs cpp only** + **hardware** banner; local publish: skill `run-local-pages-benchmarks` / `./scripts/refresh-live-sites.sh` — [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md)
 7. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
 8. **lic httpd:** tier-5 HTTP RPS needs epoll `build/li-httpd` — [lic-httpd-bench-compat.md](docs/ecosystem/lic-httpd-bench-compat.md); `lic` `main` may be routing-oracle-only until the httpd perf branch merges.
 
