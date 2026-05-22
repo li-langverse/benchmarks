@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Dashboard ingest:** tier-1+2 `summary.json` + history snapshot including `rigid_body_stack` — [2026-05-22-tier2-dashboard-ingest.md](docs/release-notes/2026-05-22-tier2-dashboard-ingest.md) (pending **lic#169** merge for driver fix on `main`).
+
 ### Added
 
 - **lic merged (#153 proxy epoll + seam, #156 E0360 ptr ABI):** tier5 `proxy_loopback,li` ~9.1k req/s (quick wrk); matrix refreshed — [2026-05-21-bench-matrix-post-lic-merge.md](docs/release-notes/2026-05-21-bench-matrix-post-lic-merge.md).
