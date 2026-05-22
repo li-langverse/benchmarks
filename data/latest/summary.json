@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22T15:56:49.697213+00:00",
+  "generated_at": "2026-05-22T16:25:25.167731+00:00",
   "hardware": {
     "reference_lang": "cpp",
     "cpu_models": [
@@ -21,10 +21,10 @@
     "display_note": "All timings are ratios vs the catalog reference (cpp for micro/physics; compare_oracle for HTTP). Absolute wall times are not published on the dashboard."
   },
   "sources": {
-    "lic_csv": "/home/s4il0r/Documents/Cursor/li-langverse/lic/benchmarks/results/latest.csv",
-    "lis_csv": "/home/s4il0r/Documents/Cursor/li-langverse/lis/results/latest.csv",
-    "stability_csv": "/home/s4il0r/Documents/Cursor/li-langverse/lic/benchmarks/results/stability.csv",
-    "security_csv": "/home/s4il0r/Documents/Cursor/li-langverse/lic/benchmarks/results/security.csv"
+    "lic_csv": "../lic/benchmarks/results/latest.csv",
+    "lis_csv": "../lis/results/latest.csv",
+    "stability_csv": "../lic/benchmarks/results/stability.csv",
+    "security_csv": "../lic/benchmarks/results/security.csv"
   },
   "tier_counts": {
     "1": {
@@ -45,13 +45,19 @@
       "red": 0,
       "unknown": 1
     },
-    "5": {
+    "3": {
       "green": 0,
       "yellow": 0,
       "red": 0,
-      "unknown": 10
+      "unknown": 9
     },
-    "3": {
+    "4": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 1
+    },
+    "5": {
       "green": 0,
       "yellow": 0,
       "red": 0,
@@ -1026,6 +1032,121 @@
           "ratio_vs_reference": null
         }
       ]
+    },
+    "correctness": {
+      "label": "Correctness & stability",
+      "charts": [
+        {
+          "id": "tier0_stability",
+          "title": "Tier 0 stability (pass=1)",
+          "metric": "stability",
+          "unit": "pass",
+          "lower_is_better": false,
+          "reference_lang": "cpp",
+          "series": [
+            {
+              "lang": "cpp",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "harmonic_energy"
+            },
+            {
+              "lang": "rust",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "harmonic_energy"
+            },
+            {
+              "lang": "julia",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "harmonic_energy"
+            },
+            {
+              "lang": "li",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "harmonic_energy"
+            },
+            {
+              "lang": "cpp",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "momentum_drift"
+            },
+            {
+              "lang": "rust",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "momentum_drift"
+            },
+            {
+              "lang": "julia",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "momentum_drift"
+            },
+            {
+              "lang": "li",
+              "value": 1.0,
+              "unit": "pass",
+              "label": "momentum_drift"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "nve_energy_msd"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "nve_energy_msd"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "nve_energy_msd"
+            },
+            {
+              "lang": "li",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "nve_energy_msd"
+            },
+            {
+              "lang": "cpp",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "timestep_halving_ratio"
+            },
+            {
+              "lang": "rust",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "timestep_halving_ratio"
+            },
+            {
+              "lang": "julia",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "timestep_halving_ratio"
+            },
+            {
+              "lang": "li",
+              "value": 0.0,
+              "unit": "pass",
+              "label": "timestep_halving_ratio"
+            }
+          ],
+          "grouped": true,
+          "repo": "lic",
+          "path": "benchmarks/tier0_correctness",
+          "status": "unknown"
+        }
+      ]
     }
   },
   "rows": [
@@ -1926,45 +2047,9 @@
       "langs": []
     },
     {
-      "benchmark": "lip_smoke",
-      "repo": "lip",
-      "tier": 3,
-      "category": "tooling",
-      "metric": "wall_time",
-      "ratio_vs_cpp": null,
-      "reference_lang": "cpp",
-      "unit": "\u00d7",
-      "variant": null,
-      "status": "unknown",
-      "ph_ids": [
-        "PH-8b"
-      ],
-      "path": "scripts/ci.sh",
-      "threshold_ratio_cpp": 1.0,
-      "ci_url": ""
-    },
-    {
-      "benchmark": "lit_smoke",
-      "repo": "lit",
-      "tier": 3,
-      "category": "tooling",
-      "metric": "wall_time",
-      "ratio_vs_cpp": null,
-      "reference_lang": "cpp",
-      "unit": "\u00d7",
-      "variant": null,
-      "status": "unknown",
-      "ph_ids": [
-        "PH-8e"
-      ],
-      "path": "scripts/ci.sh",
-      "threshold_ratio_cpp": 1.0,
-      "ci_url": ""
-    },
-    {
       "benchmark": "https_static",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -1983,7 +2068,7 @@
     {
       "benchmark": "keepalive_pipelining",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2002,7 +2087,7 @@
     {
       "benchmark": "lb_least_conn",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2021,7 +2106,7 @@
     {
       "benchmark": "lb_peer_down",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2040,7 +2125,7 @@
     {
       "benchmark": "lb_round_robin",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2059,7 +2144,7 @@
     {
       "benchmark": "proxy_loopback",
       "repo": "lic",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2078,7 +2163,7 @@
     {
       "benchmark": "rate_limit_429",
       "repo": "lic",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "verify_pass",
       "ratio_vs_cpp": null,
@@ -2097,7 +2182,7 @@
     {
       "benchmark": "static_large",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2116,7 +2201,7 @@
     {
       "benchmark": "static_small",
       "repo": "lis",
-      "tier": 5,
+      "tier": 3,
       "category": "http",
       "metric": "rps",
       "ratio_vs_cpp": null,
@@ -2135,7 +2220,7 @@
     {
       "benchmark": "tier5_http_exploits",
       "repo": "lis",
-      "tier": 5,
+      "tier": 4,
       "category": "security",
       "metric": "pass_rate",
       "ratio_vs_cpp": null,
@@ -2150,6 +2235,42 @@
       "threshold_ratio_cpp": 1.0,
       "ci_url": "",
       "langs": []
+    },
+    {
+      "benchmark": "lip_smoke",
+      "repo": "lip",
+      "tier": 5,
+      "category": "tooling",
+      "metric": "wall_time",
+      "ratio_vs_cpp": null,
+      "reference_lang": "cpp",
+      "unit": "\u00d7",
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-8b"
+      ],
+      "path": "scripts/ci.sh",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
+    },
+    {
+      "benchmark": "lit_smoke",
+      "repo": "lit",
+      "tier": 5,
+      "category": "tooling",
+      "metric": "wall_time",
+      "ratio_vs_cpp": null,
+      "reference_lang": "cpp",
+      "unit": "\u00d7",
+      "variant": null,
+      "status": "unknown",
+      "ph_ids": [
+        "PH-8e"
+      ],
+      "path": "scripts/ci.sh",
+      "threshold_ratio_cpp": 1.0,
+      "ci_url": ""
     }
   ]
 }

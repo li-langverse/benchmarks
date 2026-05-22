@@ -1,5 +1,8 @@
 # Master benchmark catalog — sources stay in each repo.
 # category: micro | physics | http | tooling | correctness
+#
+# Tiers (active suite: 0→1→2→3→4; tier 5 ecosystem deferred):
+#   0 correctness · 1 micro · 2 physics · 3 HTTP · 4 HTTP exploits · 5 ecosystem (lip/lit/compile)
 
 [[benchmark]]
 id = "simd_dot"
@@ -224,7 +227,7 @@ ph_ids = ["PH-5b"]
 [[benchmark]]
 id = "static_small"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/static_small"
 metric = "rps"
@@ -235,7 +238,7 @@ compare_oracle = "nginx"
 [[benchmark]]
 id = "keepalive_pipelining"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/keepalive_pipelining"
 metric = "rps"
@@ -246,7 +249,7 @@ compare_oracle = "nginx"
 [[benchmark]]
 id = "proxy_loopback"
 category = "http"
-tier = 5
+tier = 3
 repo = "lic"
 path = "packages/li-net-httpd"
 metric = "rps"
@@ -258,7 +261,7 @@ variant = "li_epoll"
 [[benchmark]]
 id = "static_large"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/static_large"
 metric = "rps"
@@ -269,7 +272,7 @@ compare_oracle = "nginx"
 [[benchmark]]
 id = "lb_round_robin"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/lb_round_robin"
 metric = "rps"
@@ -280,7 +283,7 @@ compare_oracle = "nginx"
 [[benchmark]]
 id = "lb_least_conn"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/lb_least_conn"
 metric = "rps"
@@ -291,7 +294,7 @@ compare_oracle = "nginx"
 [[benchmark]]
 id = "lb_peer_down"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/lb_peer_down"
 metric = "rps"
@@ -302,7 +305,7 @@ compare_oracle = "nginx"
 [[benchmark]]
 id = "rate_limit_429"
 category = "http"
-tier = 5
+tier = 3
 repo = "lic"
 path = "packages/li-httpd/examples/rate_limit_static.toml"
 metric = "verify_pass"
@@ -314,7 +317,7 @@ variant = "rate_limit"
 [[benchmark]]
 id = "https_static"
 category = "http"
-tier = 5
+tier = 3
 repo = "lis"
 path = "benchmarks/tier5_http/scenarios/https_static"
 metric = "rps"
@@ -326,7 +329,7 @@ variant = "tls_m15_pending"
 [[benchmark]]
 id = "tier5_http_exploits"
 category = "security"
-tier = 5
+tier = 4
 repo = "lis"
 path = "benchmarks/tier5_http/harness/exploit_http.py"
 metric = "pass_rate"
@@ -336,7 +339,7 @@ ph_ids = ["PH-H"]
 [[benchmark]]
 id = "lip_smoke"
 category = "tooling"
-tier = 3
+tier = 5
 repo = "lip"
 path = "scripts/ci.sh"
 metric = "wall_time"
@@ -346,7 +349,7 @@ ph_ids = ["PH-8b"]
 [[benchmark]]
 id = "lit_smoke"
 category = "tooling"
-tier = 3
+tier = 5
 repo = "lit"
 path = "scripts/ci.sh"
 metric = "wall_time"

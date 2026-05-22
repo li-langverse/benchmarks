@@ -47,7 +47,7 @@ async function loadSummary(): Promise<Summary> {
 }
 
 function tierStrip(counts: Summary["tier_counts"]): string {
-  const tiers = ["0", "1", "2", "3", "5"];
+  const tiers = ["0", "1", "2", "3", "4", "5"];
   return tiers
     .map((t) => {
       const c = counts[t] ?? { green: 0, yellow: 0, red: 0, unknown: 0 };
@@ -196,7 +196,7 @@ async function main() {
           <h2>All benchmarks</h2>
           <div class="filters">
             <label>Category <select id="f-category"><option value="">all</option><option>micro</option><option>physics</option><option>http</option><option>tooling</option><option>correctness</option></select></label>
-            <label>Tier <select id="f-tier"><option value="">all</option><option>0</option><option>1</option><option>2</option><option>3</option><option>5</option></select></label>
+            <label>Tier <select id="f-tier"><option value="">all</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
             <label>Repo <select id="f-repo"><option value="">all</option><option>lic</option><option>lis</option><option>lip</option><option>lit</option></select></label>
             <label><input type="checkbox" id="f-fail" /> Failing / warn only</label>
           </div>

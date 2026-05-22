@@ -11,6 +11,19 @@ LIC_ROOT=/workspace/lic ./scripts/run-full-benchmark-suite.sh
 cat data/latest/benchmark-matrix.md
 ```
 
+## Tier ladder
+
+| Tier | What | Default in full suite |
+|------|------|------------------------|
+| **0** | Correctness (`li-tests`, verify, stability) | yes |
+| **1** | Micro vs **cpp** | yes |
+| **2** | Physics vs **cpp** | yes |
+| **3** | HTTP oracles (nginx, apache, node, li-httpd, …) | yes |
+| **4** | HTTP exploits | yes (`SKIP_EXPLOITS=1` to skip) |
+| **5** | Ecosystem (compile, security, lip/lit) | **no** — `RUN_TIER5_ECOSYSTEM=1` |
+
+Script paths still use `tier5_http` / `run-tier5-http-bench.sh` on disk; log labels say **tier 3/4**.
+
 ## Full matrix (always)
 
 `benchmark-matrix-report.py` writes:
@@ -20,7 +33,7 @@ cat data/latest/benchmark-matrix.md
 
 Included automatically at the end of `run-full-benchmark-suite.sh`.
 
-## HTTP exploits (tier 5)
+## HTTP exploits (tier 4)
 
 `run-tier5-http-exploits.sh` — `vendor/lis-tier5` harness, profile `pr` by default (`TIER5_EXPLOIT_PROFILE`, `TIER5_EXPLOIT_LANGS`).
 
@@ -32,13 +45,14 @@ Skip only for fast iteration: `SKIP_EXPLOITS=1`. Growth policy: [http-server-ben
 |------|--------|--------|
 | Build | `setup-lic-for-bench.sh` | `lic/build/compiler/lic/lic`, `lic/build/li-httpd` |
 | Tier 0 | `lic/benchmarks/harness/bench.py --tier 0` | `stability.csv`, verify |
-| Tier 1+2 | `bench.py --tier 12 --runs 3` | `lic/benchmarks/results/latest.csv` |
-| Tier 3 | `bench_ecosystem.py` | compile + security rows |
-| Tier 5 HTTP | `tier5-http-bench.py` | `http_tier5.csv` → merged into `latest.csv` |
+| Tier 1+2 | inline tier-1/2 specs | `lic/benchmarks/results/latest.csv` |
+| Tier 3 | `run-tier5-http-bench.sh` + `tier5-http-bench.py` | HTTP rows → merged into `latest.csv` |
+| Tier 4 | `run-tier5-http-exploits.sh` | `exploit_report.csv` |
+| Tier 5 | `bench_ecosystem.py` | optional (`RUN_TIER5_ECOSYSTEM=1`) |
 | Ingest | `ingest-lic.sh` | `data/latest/summary.json` |
 | Report | `benchmark-failures-report.sh` | RED/YELLOW/GREEN summary |
 
-## HTTP scenarios (tier 5)
+## HTTP scenarios (tier 3)
 
 **Multi-oracle** (`run-tier5-http-bench.sh` → `vendor/lis-tier5/` harness): compares **nginx**, **apache**, **lighttpd**, **node**, **bun**, and **li-httpd** on each scenario (skips oracles not installed).
 
@@ -59,13 +73,13 @@ Env: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li` · `BENCH_HTTP_PROFI
 ## Faster iteration
 
 ```bash
-SKIP_BUILD=1 SKIP_TIER0=1 BENCH_RUNS=1 ./scripts/run-full-benchmark-suite.sh
+SKIP_BUILD=1 SKIP_TIER0=1 SKIP_EXPLOITS=1 BENCH_RUNS=1 ./scripts/run-full-benchmark-suite.sh
 ```
 
-## Env
+## Ecosystem (tier 5, later)
 
-| Variable | Default |
-|----------|---------|
-| `LIC_ROOT` | `./lic` or `/workspace/lic` |
-| `BENCH_RUNS` | `3` (tier 1/2/3) |
-| `HTTP_BENCH_RUNS` | `5` (tier 5) |
+When compile benches use the same flags as `li-tests` (`--allow-open-vc` where needed):
+
+```bash
+RUN_TIER5_ECOSYSTEM=1 ./scripts/run-full-benchmark-suite.sh
+```

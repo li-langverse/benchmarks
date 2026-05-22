@@ -1,6 +1,6 @@
 # Benchmark dashboard honesty labels
 
-The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **ratios only** vs a catalog reference (**`cpp` = 1.00×** for micro/physics; tier-5 HTTP uses **nginx** or another `compare_oracle` when set). **Absolute wall times are not published** on the site. Each ingest records **hardware** (`cpu_model`, flags, host uname, git shas) in `summary.json` → `hardware`. Not formal proof or correctness certificates.
+The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **ratios only** vs a catalog reference (**`cpp` = 1.00×** for micro/physics; **tier-3 HTTP** uses **nginx** or another `compare_oracle` when set). **Absolute wall times are not published** on the site. Each ingest records **hardware** (`cpu_model`, flags, host uname, git shas) in `summary.json` → `hardware`. Not formal proof or correctness certificates.
 
 ## Status colors
 
@@ -38,9 +38,9 @@ LIC_ROOT=../lic ./scripts/refresh-live-sites.sh
 
 See skill **`run-local-pages-benchmarks`** in **lic** `.cursor/skills/`.
 
-## HTTP tier-5 vs nginx (catalog)
+## HTTP tier-3 vs nginx (catalog)
 
-Tier-5 rows `static_small` and `keepalive_pipelining` use `compare_oracle = "nginx"` and metric **`rps`** in [`catalog.toml`](../../catalog.toml). `scripts/ingest/build_summary.py` treats **nginx** as the reference language for those charts (same ratio machinery as C++, with an inversion so higher Li RPS is “better” vs the threshold).
+Tier-3 rows `static_small` and `keepalive_pipelining` use `compare_oracle = "nginx"` and metric **`rps`** in [`catalog.toml`](../../catalog.toml). `scripts/ingest/build_summary.py` treats **nginx** as the reference language for those charts (same ratio machinery as C++, with an inversion so higher Li RPS is “better” vs the threshold).
 
 **Today:** [`lis`](https://github.com/li-langverse/lis) `benchmarks/tier5_http/harness/bench_http.py` is still **TOML validation / stub** until `li-httpd` and the wrk/nginx baseline pipeline land; there is no checked-in `lis/results/latest.csv` producer yet. Dashboard **unknown** + empty `series` for `keepalive_pipelining` means **no measured RPS comparison** — not “Li is slower than nginx.” Product intent vs nginx (agent gateway, streaming, schema-driven config, proof-backed core) is described in **lis** `docs/plan.md`, separate from dashboard throughput rows.
 

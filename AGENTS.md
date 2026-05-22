@@ -9,7 +9,7 @@
 5. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
 6. Dashboard: https://li-langverse.github.io/benchmarks/ — **ratios vs cpp only** + **hardware** banner; local publish: skill `run-local-pages-benchmarks` / `./scripts/refresh-live-sites.sh` — [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md)
 7. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
-8. **lic httpd:** tier-5 HTTP RPS needs epoll `build/li-httpd` — [lic-httpd-bench-compat.md](docs/ecosystem/lic-httpd-bench-compat.md); `lic` `main` may be routing-oracle-only until the httpd perf branch merges.
+8. **lic httpd:** tier-3 HTTP RPS needs epoll `build/li-httpd` — [lic-httpd-bench-compat.md](docs/ecosystem/lic-httpd-bench-compat.md); `lic` `main` may be routing-oracle-only until the httpd perf branch merges.
 
 ## Standing ops (every session)
 
@@ -20,7 +20,7 @@
 5. If queue is healthy and benches are green, improve **lic** harness kernels (goal: Li ≤1.2× cpp everywhere; beat HPC SOTAs on tier-2 physics).
 6. On catalog miss or script failure → **file ecosystem-gap issue** (do not only patch locally).
 
-**Full suite** (`LIC_ROOT=../lic`): tier-0 → tier-1/2 → tier-3 → tier-5 HTTP multi-oracle + supplemental proxy → **tier-5 exploits** → ingest → failures report → **`benchmark-matrix-report.py`** (always).
+**Full suite** (`LIC_ROOT=../lic`): tier-0 → tier-1/2 → **tier-3 HTTP** + supplemental proxy → **tier-4 exploits** → ingest → matrix (tier-5 ecosystem **off** unless `RUN_TIER5_ECOSYSTEM=1`).
 
 **Agent-first:** Intelligence (explorer, PR review/alignment, numerics SOTA, plan gaps) = **[Cursor Automations](https://cursor.com/automations)** + web search. Scripts only **preflight** JSON: `./scripts/agent-preflight.sh` → [cursor-agent-architecture.md](docs/ecosystem/cursor-agent-architecture.md).
 

@@ -165,7 +165,7 @@ def lang_series(
 def http_lang_series(
     rows: list[dict], bench_id: str, metric: str, *, variant: str | None = None
 ) -> list[dict]:
-    """All webserver oracles for tier-5 charts (multiple li variants when present)."""
+    """All webserver oracles for tier-3 HTTP charts (multiple li variants when present)."""
     bench_rows = [
         r
         for r in rows

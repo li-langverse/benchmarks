@@ -9,6 +9,8 @@ RUNS="${BENCH_RUNS:-3}"
 SKIP_BUILD="${SKIP_BUILD:-0}"
 SKIP_TIER0="${SKIP_TIER0:-0}"
 SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}"
+# Tier 5 = ecosystem (compile/security/lip/lit) — deferred until harness is aligned with li-tests.
+RUN_TIER5_ECOSYSTEM="${RUN_TIER5_ECOSYSTEM:-0}"
 
 log() { echo "==> $*"; }
 
@@ -49,7 +51,7 @@ runs = int(sys.argv[1])
 lic = Path(sys.argv[2])
 os.chdir(lic)
 sys.path.insert(0, "benchmarks/harness")
-from bench import TIER1_BENCHES, TIER2_BENCHES, run_tier_benches, run_benchmark, read_csv, write_csv, merge_rows, RESULTS
+from bench import TIER1_BENCHES, TIER2_BENCHES, run_benchmark, read_csv, write_csv, merge_rows, RESULTS
 
 out = RESULTS / "latest.csv"
 merged = read_csv(out)
@@ -74,35 +76,41 @@ if failed:
 print(f"updated {out}")
 PY
 
-log "tier 3 — ecosystem (compile, security, async)"
-python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" || { echo "tier3 failed" >&2; exit 1; }
-
-log "tier 5 — HTTP multi-oracle (nginx, apache, lighttpd, node, bun, li)"
+log "tier 3 — HTTP multi-oracle (nginx, apache, lighttpd, node, bun, li)"
 export BENCH_HTTP_PROFILE="${BENCH_HTTP_PROFILE:-nightly}"
 export BENCH_HTTP_ORACLES="${BENCH_HTTP_ORACLES:-nginx,apache,lighttpd,node,bun,li}"
 if [[ -f "$ROOT/scripts/run-tier5-http-bench.sh" ]]; then
-  "$ROOT/scripts/run-tier5-http-bench.sh" || echo "WARN: multi-oracle tier5 failed" >&2
+  "$ROOT/scripts/run-tier5-http-bench.sh" || echo "WARN: tier3 HTTP multi-oracle failed" >&2
 else
   echo "WARN: missing run-tier5-http-bench.sh (sync vendor/lis-tier5)" >&2
 fi
 
-log "tier 5 — supplemental proxy_loopback (li_epoll + li c_epoll vs nginx)"
+log "tier 3 — supplemental proxy_loopback (li_epoll + li c_epoll vs nginx)"
 python3 "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "${HTTP_BENCH_RUNS:-5}" || {
-  echo "WARN: tier5 supplemental http failed" >&2
+  echo "WARN: tier3 supplemental http failed" >&2
 }
 
 if [[ "$SKIP_EXPLOITS" != "1" ]] && [[ -f "$ROOT/scripts/run-tier5-http-exploits.sh" ]]; then
-  log "tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
+  log "tier 4 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
   export TIER5_EXPLOIT_PROFILE="${TIER5_EXPLOIT_PROFILE:-pr}"
   export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,apache,li}"
   if ! "$ROOT/scripts/run-tier5-http-exploits.sh"; then
-    echo "WARN: tier5 HTTP exploits had failures (see exploit_report.csv)" >&2
+    echo "WARN: tier4 HTTP exploits had failures (see exploit_report.csv)" >&2
   fi
 else
-  log "tier 5 — HTTP exploits skipped (SKIP_EXPLOITS=1)"
+  log "tier 4 — HTTP exploits skipped (SKIP_EXPLOITS=1)"
 fi
 
-# Merge tier-5 CSV rows into lic latest.csv for ingest
+if [[ "$RUN_TIER5_ECOSYSTEM" == "1" ]]; then
+  log "tier 5 — ecosystem (compile, security, async) [optional]"
+  python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" || {
+    echo "WARN: tier5 ecosystem failed" >&2
+  }
+else
+  log "tier 5 — ecosystem skipped (set RUN_TIER5_ECOSYSTEM=1 when lip/lit/compile benches are ready)"
+fi
+
+# Merge tier-3 HTTP CSV rows into lic latest.csv for ingest
 python3 - <<'PY' "$ROOT" "$LIC_ROOT"
 import csv
 import sys
@@ -111,8 +119,8 @@ from pathlib import Path
 root = Path(sys.argv[1])
 lic = Path(sys.argv[2])
 latest = lic / "benchmarks/results/latest.csv"
-tier5_vendor = root / "vendor/lis-tier5/results/latest.csv"
-tier5_extra = lic / "benchmarks/results/http_tier5.csv"
+http_vendor = root / "vendor/lis-tier5/results/latest.csv"
+http_extra = lic / "benchmarks/results/http_tier5.csv"
 
 import tomllib
 
@@ -154,15 +162,15 @@ def extend_csv(path: Path, *, supplemental: bool = False) -> None:
             rows.append(row)
 
 seen_http: set[tuple[str, str, str, str]] = set()
-extend_csv(tier5_vendor)
-extend_csv(tier5_extra, supplemental=True)
+extend_csv(http_vendor)
+extend_csv(http_extra, supplemental=True)
 if not header:
     sys.exit(0)
 with latest.open("w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=header)
     w.writeheader()
     w.writerows(rows)
-print(f"merged tier5 ({tier5_vendor.name if tier5_vendor.is_file() else '—'} + extra) into {latest}")
+print(f"merged tier3 HTTP ({http_vendor.name if http_vendor.is_file() else '—'} + extra) into {latest}")
 PY
 
 cd "$ROOT"
