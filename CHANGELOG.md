@@ -50,3 +50,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Actions budget doc (`docs/ecosystem/actions-budget.md`).
 - Benchmark history snapshots (`data/history/`, `scripts/record-benchmark-history.py`) with ratio deltas between ingests.
 - Agent-kit sync and release-notes policy (roadmap v1.1.0).
+- **Li language guides (shareable):** [docs/language/README.md](docs/language/README.md) — real `lic` examples + `scripts/render-li-code-image.py` for **local** editor-style PNGs (`docs/language/assets/*.png` gitignored); handbook link from [docs/handbook/README.md](docs/handbook/README.md).

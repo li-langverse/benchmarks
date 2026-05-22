@@ -4,6 +4,9 @@ __pycache__/
 *.pyc
 dashboard/dist/
 data/visuals/latest/*.png
+# Generated locally — scripts/render-li-code-image.py --all (not committed)
+docs/language/assets/*.png
+!docs/language/assets/.gitkeep
 data/visuals/latest/*.gif
 data/visuals/latest/*.zip
 !data/visuals/latest/.gitkeep

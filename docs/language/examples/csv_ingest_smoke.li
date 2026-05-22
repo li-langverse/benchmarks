@@ -1,4 +1,3 @@
-# PH-IO-4 — Li ingest smoke: parse lic latest.csv shape via std/io + std/csv
 import std.io
 import std.csv
 

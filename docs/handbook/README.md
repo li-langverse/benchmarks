@@ -40,3 +40,7 @@ Dashboard rows are **measurements**, not proof certificates. Labels and threshol
 ## Agents
 
 [AGENTS.md](../../AGENTS.md) · [Release notes policy](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) · Preflight: `./scripts/agent-preflight.sh`
+
+## Li language (style + shareables)
+
+Short guides and **syntax-highlighted code PNGs** for posts: [`docs/language/README.md`](../language/README.md) — regenerate via `scripts/render-li-code-image.py --all`.
