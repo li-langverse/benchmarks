@@ -298,7 +298,7 @@ def render_http_rps_section(matrix: dict) -> list[str]:
     lines.append("## HTTP performance (RPS)")
     lines.append("")
     if not hp and not Path(HTTP_CSV).is_file():
-        lines.append("_No tier-5 HTTP CSV — run `./scripts/run-tier5-http-bench.sh`_")
+        lines.append("_No tier-3 HTTP CSV — run `./scripts/run-tier5-http-bench.sh`_")
         lines.append("")
         return lines
 
@@ -337,7 +337,7 @@ def render_http_rps_doc(matrix: dict) -> str:
     """Standalone doc for agents (also embedded in benchmark-matrix.md)."""
     lic = (matrix.get("sources") or {}).get("http_csv", str(HTTP_CSV))
     lines = [
-        "# HTTP webserver RPS matrix (tier 5)",
+        "# HTTP webserver RPS matrix (tier 3)",
         "",
         f"Generated: {matrix['generated_at']}",
         "",
@@ -367,7 +367,7 @@ def render_markdown(matrix: dict) -> str:
         "",
     ]
     ex = matrix.get("http_exploits", {})
-    lines.append("## HTTP exploits (tier 5)")
+    lines.append("## HTTP exploits (tier 4)")
     lines.append("")
     lines.append(f"Status: **{ex.get('status', 'unknown')}** — {ex.get('failures', 0)} failures / {ex.get('cells', 0)} cells")
     lines.append("")
