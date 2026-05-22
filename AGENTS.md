@@ -34,3 +34,34 @@
 Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/cursor-agent-run.sh` (→ **li-cursor-agents** + `@cursor/sdk`, `--mock` in CI), `./scripts/ecosystem-explorer.py`, `./scripts/plan-completion-audit.py`, `./scripts/run-pr-program.py`, `./scripts/pr-merge-gate.py`, … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
 
 Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, **`resolve-merge-conflicts`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).
+
+## Cursor Cloud specific instructions
+
+### Sibling repos
+
+All repos are checked out under `/agent/repos/`. The `lic` compiler binary is at `/agent/repos/lic/build/compiler/lic/lic`. Set `LIC_ROOT=../lic` when running benchmark scripts that need the compiler.
+
+### Dashboard
+
+```bash
+cd /agent/repos/benchmarks/dashboard && npm ci && npm run build
+```
+
+Dev server: `npm run dev` (Vite, port 5173).
+
+### Ecosystem audit
+
+```bash
+python3 scripts/ecosystem-audit.py
+```
+
+Requires `gh` CLI (pre-installed). Output: `data/latest/ecosystem-audit.json`.
+
+### Tier-0 benchmarks
+
+```bash
+cd /agent/repos/lic
+CC=clang-18 LI_REPO_ROOT=$PWD LIC=$PWD/build/compiler/lic/lic python3 benchmarks/harness/bench.py --tier 0
+```
+
+Tier-0 runs `li-tests/run_all.sh` internally. Some test failures on `main` are expected for in-development features and do not indicate a broken environment.
