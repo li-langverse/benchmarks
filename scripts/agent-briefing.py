@@ -39,10 +39,36 @@ PREFLIGHT_SCRIPTS = [
     ("workspace_dirty_sweep", ["python3", "scripts/workspace-dirty-sweep.py"]),
 ]
 
+def _normalize_agent_skills(row: dict) -> list[str]:
+    if row.get("skills"):
+        return list(row["skills"])
+    if row.get("skill"):
+        return [str(row["skill"])]
+    return []
+
+
+def _enrich_cursor_agents(agents_root: Path) -> list[dict]:
+    """Attach skill_paths under li-cursor-agents/.cursor/skills (SDK source of truth)."""
+    skill_root = agents_root / ".cursor" / "skills"
+    out: list[dict] = []
+    for row in CURSOR_AGENTS:
+        entry = dict(row)
+        skills = _normalize_agent_skills(entry)
+        if skills:
+            entry["skills"] = skills
+            entry.pop("skill", None)
+        entry["skill_paths"] = [
+            str(skill_root / sid / "SKILL.md") for sid in skills
+        ]
+        out.append(entry)
+    return out
+
+
 CURSOR_AGENTS = [
     {
         "id": "orchestrator",
         "prompt": ".cursor/automations/agent-orchestrator.md",
+        "skill": "explore-control-plane-db",
         "when": "Weekly — route work from briefing",
     },
     {
@@ -69,13 +95,14 @@ CURSOR_AGENTS = [
     {
         "id": "code_implementer",
         "prompt": "li-cursor-agents/prompts/code-implementer.md",
-        "skills": ["explore-li-ecosystem", "audit-plan-completion"],
+        "skills": ["explore-li-ecosystem", "audit-plan-completion", "push-li-github"],
         "when": "Implement gaps/queue items and open PRs",
         "preflight": ["plan_audit", "explorer", "ci_bug_triage"],
     },
     {
         "id": "bug_fixer",
         "prompt": "li-cursor-agents/prompts/bug-fixer.md",
+        "skills": ["explore-li-ecosystem", "agent-diagnose-fix-li", "push-li-github"],
         "when": "CI failures (local-ci/GHA) and bug issues",
         "preflight": ["ci_bug_triage", "pr_program"],
     },
@@ -544,10 +571,11 @@ def main() -> int:
         "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
         "workspace_dirty_sweep": load_json(LATEST / "workspace-dirty-sweep.json"),
         "local_ci_results": load_json(LATEST / "local-ci-results.json"),
-        "cursor_agents": CURSOR_AGENTS,
         "recommended_agents": [],
     }
     agents_root = Path(os.environ.get("LI_CURSOR_AGENTS_ROOT", ROOT.parent / "li-cursor-agents"))
+    data["agent_skill_root"] = str(agents_root / ".cursor" / "skills")
+    data["cursor_agents"] = _enrich_cursor_agents(agents_root)
     agents_enabled = os.environ.get("LI_CURSOR_AGENTS_ENABLED", "0") == "1"
     if (
         agents_enabled
