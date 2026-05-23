@@ -16,7 +16,7 @@ Adds `run-full-benchmark-suite.sh` so agents run tier-0 through tier-5 HTTP (mul
 | Area | Path | Evidence |
 |------|------|----------|
 | Full suite | `scripts/run-full-benchmark-suite.sh` | tier0 warn-continue; resilient tier1/2 loop; merge `http_tier5.csv` |
-| Bench env | `scripts/setup-lic-for-bench.sh` | LLVM 18, clang, libomp, wrk, nginx |
+| Bench env | `scripts/setup-lic-for-bench.sh` | LLVM 22, clang, libomp, wrk, nginx |
 | Multi-oracle HTTP | `vendor/lis-tier5/`, `run-tier5-http-bench.sh` | nginx, apache, lighttpd, node, bun, li per scenario |
 | Supplemental proxy | `scripts/tier5-http-bench.py` | `li_epoll` + `c_epoll` vs nginx on `proxy_loopback` |
 | Ingest | `scripts/ingest/build_summary.py` | `variant` filter for `li` rows (`proxy_loopback` → `li_epoll`) |

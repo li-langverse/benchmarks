@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T22:23Z",
+  "generated_at": "2026-05-23T01:08Z",
   "vision_order": "package CI / mirrors \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap",
   "ordering_rules": [
     "Repo tier: mirrors/httpd \u2192 benchmarks \u2192 lic \u2192 lip/lit/lis \u2192 roadmap (roadmap last)",
@@ -10,11 +10,11 @@
     "Supervisor: one merge per tick; re-run pr-merge-queue-plan.py after each merge"
   ],
   "summary": {
-    "open_prs": 16,
-    "merge_approved": 1,
+    "open_prs": 2,
+    "merge_approved": 0,
     "gate_ready": 0,
     "auto_merge_candidates": 0,
-    "redundant_pairs": 2,
+    "redundant_pairs": 0,
     "stacks": 0
   },
   "merge_first": null,
@@ -23,243 +23,32 @@
   "merge_order": [
     {
       "rank": 1,
-      "repo": "benchmarks",
-      "number": 33,
-      "url": "https://github.com/li-langverse/benchmarks/pull/33",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": true,
+      "repo": "lic",
+      "number": 175,
+      "url": "https://github.com/li-langverse/lic/pull/175",
+      "title": "feat(httpd): httpd plan loop \u2014 M1.5\u2013M3 optional gateway hooks",
+      "merge_approved": false,
       "gate_ready": false,
-      "priority_score": 230,
+      "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 1; priority_score=230; gate blocked: review_approved: reviewDecision is `REVIEW_REQUIRED` (need APPROVED), release_notes: no CHANGELOG.md or docs/release-notes/* in PR (required unless chore/deps)"
+      "order_reason": "rank 1; priority_score=280; awaiting merge-approved label"
     },
     {
       "rank": 2,
       "repo": "lic",
-      "number": 46,
-      "url": "https://github.com/li-langverse/lic/pull/46",
-      "title": "chore(security): downstream security-gate workflow template",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 230,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 2; priority_score=230; awaiting merge-approved label"
-    },
-    {
-      "rank": 3,
-      "repo": "lic",
-      "number": 45,
-      "url": "https://github.com/li-langverse/lic/pull/45",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 240,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 3; priority_score=240; awaiting merge-approved label"
-    },
-    {
-      "rank": 4,
-      "repo": "lic",
-      "number": 40,
-      "url": "https://github.com/li-langverse/lic/pull/40",
-      "title": "fix(codegen): '+' lexer and horner_pure_li benchmark (88\u00d7 \u2192 ~1.5\u00d7)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 245,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 4; priority_score=245; awaiting merge-approved label"
-    },
-    {
-      "rank": 5,
-      "repo": "lic",
-      "number": 48,
-      "url": "https://github.com/li-langverse/lic/pull/48",
-      "title": "chore(lic): Benchmark improver automated update",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 245,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 5; priority_score=245; awaiting merge-approved label"
-    },
-    {
-      "rank": 6,
-      "repo": "lip",
-      "number": 5,
-      "url": "https://github.com/li-langverse/lip/pull/5",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 250,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 6; priority_score=250; awaiting merge-approved label"
-    },
-    {
-      "rank": 7,
-      "repo": "lit",
-      "number": 5,
-      "url": "https://github.com/li-langverse/lit/pull/5",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 250,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 7; priority_score=250; awaiting merge-approved label"
-    },
-    {
-      "rank": 8,
-      "repo": "lis",
-      "number": 2,
-      "url": "https://github.com/li-langverse/lis/pull/2",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 255,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 8; priority_score=255; awaiting merge-approved label"
-    },
-    {
-      "rank": 9,
-      "repo": "benchmarks",
-      "number": 32,
-      "url": "https://github.com/li-langverse/benchmarks/pull/32",
-      "title": "feat(briefing): swarm scorecard enrich + audit-refresh dispatch",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 270,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 9; priority_score=270; awaiting merge-approved label"
-    },
-    {
-      "rank": 10,
-      "repo": "benchmarks",
-      "number": 34,
-      "url": "https://github.com/li-langverse/benchmarks/pull/34",
-      "title": "fix(security): security-cwe-audit preflight script",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 270,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 10; priority_score=270; awaiting merge-approved label"
-    },
-    {
-      "rank": 11,
-      "repo": "lic",
-      "number": 8,
-      "url": "https://github.com/li-langverse/lic/pull/8",
-      "title": "docs(vision): point agents at HPC, scientific computing, AI north star",
+      "number": 176,
+      "url": "https://github.com/li-langverse/lic/pull/176",
+      "title": "feat(wave-a): 2i explicit math, 7e verify, 7d @vectorized on def",
       "merge_approved": false,
       "gate_ready": false,
       "priority_score": 280,
       "auto_merge_ok": false,
       "blocked_reason": null,
-      "order_reason": "rank 11; priority_score=280; awaiting merge-approved label"
-    },
-    {
-      "rank": 12,
-      "repo": "lic",
-      "number": 37,
-      "url": "https://github.com/li-langverse/lic/pull/37",
-      "title": "chore(lic): Numerics researcher automated update",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 280,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 12; priority_score=280; awaiting merge-approved label"
-    },
-    {
-      "rank": 13,
-      "repo": "lic",
-      "number": 43,
-      "url": "https://github.com/li-langverse/lic/pull/43",
-      "title": "docs(numerics): red/near-limit SOTA map and bench repro (numerics_researcher)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 280,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 13; priority_score=280; awaiting merge-approved label"
-    },
-    {
-      "rank": 14,
-      "repo": "lic",
-      "number": 47,
-      "url": "https://github.com/li-langverse/lic/pull/47",
-      "title": "fix(lexer): '+' token fixes horner_pure_li pure_li red row (~72\u00d7 \u2192 ~0.3\u00d7)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 280,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 14; priority_score=280; awaiting merge-approved label"
-    },
-    {
-      "rank": 15,
-      "repo": "roadmap",
-      "number": 10,
-      "url": "https://github.com/li-langverse/roadmap/pull/10",
-      "title": "chore(agent-kit): sync roadmap cursor policy (sync)",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 300,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 15; priority_score=300; awaiting merge-approved label"
-    },
-    {
-      "rank": 16,
-      "repo": "roadmap",
-      "number": 11,
-      "url": "https://github.com/li-langverse/roadmap/pull/11",
-      "title": "chore(roadmap): workspace sweep fallback",
-      "merge_approved": false,
-      "gate_ready": false,
-      "priority_score": 340,
-      "auto_merge_ok": false,
-      "blocked_reason": null,
-      "order_reason": "rank 16; priority_score=340; awaiting merge-approved label"
+      "order_reason": "rank 2; priority_score=280; awaiting merge-approved label"
     }
   ],
   "stacks": [],
-  "redundant": [
-    {
-      "repo": "lic",
-      "pr_a": "lic#48",
-      "pr_b": "lic#40",
-      "url_a": "https://github.com/li-langverse/lic/pull/48",
-      "url_b": "https://github.com/li-langverse/lic/pull/40",
-      "overlap": 1.0,
-      "reasons": [
-        "100% file overlap"
-      ],
-      "suggested_action": "human: pick one PR or rebase the other"
-    },
-    {
-      "repo": "benchmarks",
-      "pr_a": "benchmarks#34",
-      "pr_b": "benchmarks#32",
-      "url_a": "https://github.com/li-langverse/benchmarks/pull/34",
-      "url_b": "https://github.com/li-langverse/benchmarks/pull/32",
-      "overlap": 1.0,
-      "reasons": [
-        "#34 branch includes all commits from #32",
-        "100% file overlap"
-      ],
-      "suggested_action": "close #32 after #34 merges"
-    }
-  ],
-  "warnings": [
-    "lic#48 vs lic#40: human: pick one PR or rebase the other",
-    "benchmarks#34 vs benchmarks#32: close #32 after #34 merges"
-  ]
+  "redundant": [],
+  "warnings": []
 }

@@ -1820,7 +1820,7 @@ note: install bun for tier-5 bun oracle (optional)
 ==> lic compiler
 -- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
 -- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
--- Found LLVM 18.1.3
+-- Found LLVM 22.1.3
 -- Building with -fPIC
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
@@ -2772,7 +2772,7 @@ note: install bun for tier-5 bun oracle (optional)
 ==> lic compiler
 -- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
 -- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
--- Found LLVM 18.1.3
+-- Found LLVM 22.1.3
 -- Building with -fPIC
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
@@ -3726,7 +3726,7 @@ note: install bun for tier-5 bun oracle (optional)
 ==> lic compiler
 -- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
 -- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
--- Found LLVM 18.1.3
+-- Found LLVM 22.1.3
 -- Building with -fPIC
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
@@ -4680,7 +4680,7 @@ note: install bun for tier-5 bun oracle (optional)
 ==> lic compiler
 -- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
 -- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
--- Found LLVM 18.1.3
+-- Found LLVM 22.1.3
 -- Building with -fPIC
 -- Configuring done (0.1s)
 -- Generating done (0.0s)
@@ -5652,7 +5652,7 @@ note: install bun for tier-5 bun oracle (optional)
 ==> lic compiler
 -- Could NOT find LibEdit (missing: LibEdit_INCLUDE_DIRS LibEdit_LIBRARIES) 
 -- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
--- Found LLVM 18.1.3
+-- Found LLVM 22.1.3
 -- Building with -fPIC
 -- Configuring done (0.1s)
 -- Generating done (0.0s)

@@ -1,16 +1,146 @@
 {
-  "generated_at": "2026-05-18T22:21Z",
+  "generated_at": "2026-05-23T01:07Z",
   "vision_url": "https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md",
   "skill": "plan-feature-from-issue (see .cursor/skills/)",
   "summary": {
     "repos_scanned": 6,
-    "needs_plan": 20,
+    "needs_plan": 26,
     "candidates": 0
   },
   "repos": [
     {
       "repo": "lic",
       "needs_plan": [
+        {
+          "number": 129,
+          "title": "[explorer-finding] OpenMP affinity + MPI\u00d7threads occupancy rubric for portable Li runtime (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/129",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:14:51Z"
+        },
+        {
+          "number": 128,
+          "title": "[explorer-finding] Kokkos 4.6+ std::mdspan View refactor \u2014 Li tier-2 strided buffer ABI rubric (PH-7e, G-par)",
+          "url": "https://github.com/li-langverse/lic/issues/128",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:14:36Z"
+        },
+        {
+          "number": 125,
+          "title": "[explorer-finding] C++26 std::execution sender/receiver rubric vs Li async tier-2 scheduling (G-par, G-ai)",
+          "url": "https://github.com/li-langverse/lic/issues/125",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:00:03Z"
+        },
+        {
+          "number": 124,
+          "title": "[explorer-finding] OpenMP prescriptive vs descriptive divergent-branch rubric for competitive portable codegen (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/124",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:59:59Z"
+        },
+        {
+          "number": 117,
+          "title": "[explorer-finding] PETSc 3.25 PCBJKOKKOS device-native Jacobi \u2014 implicit PDE preconditioner rubric (G-math)",
+          "url": "https://github.com/li-langverse/lic/issues/117",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:43:31Z"
+        },
+        {
+          "number": 116,
+          "title": "[explorer-finding] Kokkos OpenMPTarget backend checklist vs Li std/execution offload (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/116",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:43:27Z"
+        },
+        {
+          "number": 113,
+          "title": "[explorer-finding] Chapel 2.8 HPC portability rubric vs Li std/execution (G-par, G-ai)",
+          "url": "https://github.com/li-langverse/lic/issues/113",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:28:46Z"
+        },
+        {
+          "number": 112,
+          "title": "[explorer-finding] HPX-style async futures vs Li tier-2 game physics scheduling (G-par)",
+          "url": "https://github.com/li-langverse/lic/issues/112",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:28:36Z"
+        },
+        {
+          "number": 110,
+          "title": "[explorer-finding] Kokkos 4.6 Views + execution-space semantics for Li tier-2 memory model (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/110",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:11:53Z"
+        },
+        {
+          "number": 109,
+          "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/109",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:11:51Z"
+        },
+        {
+          "number": 108,
+          "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+          "url": "https://github.com/li-langverse/lic/issues/108",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:11:34Z"
+        },
+        {
+          "number": 50,
+          "title": "[Ecosystem gap] Publish li-std-physics-* org mirrors (12 packages)",
+          "url": "https://github.com/li-langverse/lic/issues/50",
+          "labels": [
+            "feature",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-18T22:30:04Z"
+        },
+        {
+          "number": 49,
+          "title": "master-plan-gap: provability-gaps summary table drifts from G-math register (PH-2i, PH-7e)",
+          "url": "https://github.com/li-langverse/lic/issues/49",
+          "labels": [
+            "master-plan-gap",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-18T22:30:04Z"
+        },
         {
           "number": 35,
           "title": "[explorer-finding] SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators (G-math, physics tier-2)",
@@ -40,116 +170,6 @@
             "plan-needed"
           ],
           "created_at": "2026-05-17T16:14:48Z"
-        },
-        {
-          "number": 28,
-          "title": "[explorer-finding] PETSc\u2013Kokkos exascale patterns vs Li parallel + memory model",
-          "url": "https://github.com/li-langverse/lic/issues/28",
-          "labels": [
-            "enhancement",
-            "explorer-finding"
-          ],
-          "created_at": "2026-05-17T15:53:55Z"
-        },
-        {
-          "number": 24,
-          "title": "[plan-needed] tier0_stability: benchmarks/tier0_correctness missing on lic main",
-          "url": "https://github.com/li-langverse/lic/issues/24",
-          "labels": [
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T15:22:15Z"
-        },
-        {
-          "number": 20,
-          "title": "plan-needed: Phase 2i / G-math \u2014 matrix `@` shape rules + lowering plan",
-          "url": "https://github.com/li-langverse/lic/issues/20",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:21:35Z"
-        },
-        {
-          "number": 19,
-          "title": "plan-needed: Vision-LLM \u2014 agent manifest CI + compact test export (beyond stub)",
-          "url": "https://github.com/li-langverse/lic/issues/19",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:09:09Z"
-        },
-        {
-          "number": 18,
-          "title": "plan-needed: Phase H M1 \u2014 li-httpd .li gateway after 2e\u20132f + P0 bytes/async",
-          "url": "https://github.com/li-langverse/lic/issues/18",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:09:07Z"
-        },
-        {
-          "number": 17,
-          "title": "master-plan-gap: Phase 2f / G-lean \u2014 close sqrt_open_bound; default Lean gate on lic build",
-          "url": "https://github.com/li-langverse/lic/issues/17",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:09:06Z"
-        },
-        {
-          "number": 16,
-          "title": "[Ecosystem gap] Reconcile master plan partial PH rows + G-* provability debt",
-          "url": "https://github.com/li-langverse/lic/issues/16",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:01:21Z"
-        },
-        {
-          "number": 15,
-          "title": "[Ecosystem gap] PH-7e/G-par: decorators \u2192 portable parallel lowering (Kokkos-class)",
-          "url": "https://github.com/li-langverse/lic/issues/15",
-          "labels": [
-            "feature",
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:01:17Z"
-        },
-        {
-          "number": 14,
-          "title": "[Ecosystem gap] Physics packages: scaffold lib.li \u2192 domain APIs",
-          "url": "https://github.com/li-langverse/lic/issues/14",
-          "labels": [
-            "feature",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:01:14Z"
-        },
-        {
-          "number": 13,
-          "title": "[Ecosystem gap] PH-IO-4/5/7: ship std.io, std.csv, std.summary, std.plot",
-          "url": "https://github.com/li-langverse/lic/issues/13",
-          "labels": [
-            "feature",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T13:01:09Z"
-        },
-        {
-          "number": 11,
-          "title": "plan-needed: PH-7e / G-math \u2014 pure-Li horner codegen (88\u00d7 vs C++)",
-          "url": "https://github.com/li-langverse/lic/issues/11",
-          "labels": [
-            "master-plan-gap",
-            "plan-needed"
-          ],
-          "created_at": "2026-05-17T12:58:01Z"
         }
       ],
       "planned": [],
@@ -177,6 +197,46 @@
     {
       "repo": "benchmarks",
       "needs_plan": [
+        {
+          "number": 54,
+          "title": "[explorer-finding] Gap-explorer: require LIC_ROOT lic checkout for accurate static scan in cloud agents (PH-IO)",
+          "url": "https://github.com/li-langverse/benchmarks/issues/54",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:14:52Z"
+        },
+        {
+          "number": 53,
+          "title": "[explorer-finding] PH-IO-7: Python build_summary.py parity gate until std.summary ships (PH-IO-7)",
+          "url": "https://github.com/li-langverse/benchmarks/issues/53",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T20:00:06Z"
+        },
+        {
+          "number": 52,
+          "title": "[explorer-finding] VkFFT + FFTW/cuFFT crossover rubric for tier-1 FFT catalog row (PH-5b, G-math)",
+          "url": "https://github.com/li-langverse/benchmarks/issues/52",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:43:22Z"
+        },
+        {
+          "number": 51,
+          "title": "[explorer-finding] gearshifft multi-vendor FFT tiers for catalog FFT row (PH-5b, G-math)",
+          "url": "https://github.com/li-langverse/benchmarks/issues/51",
+          "labels": [
+            "explorer-finding",
+            "plan-needed"
+          ],
+          "created_at": "2026-05-20T19:28:47Z"
+        },
         {
           "number": 29,
           "title": "[plan-needed] Align catalog.toml lic paths with plan-completion-audit LIC_ROOT layout",
@@ -250,7 +310,7 @@
     {
       "priority": "P1",
       "action": "Run issue-feature-planner automation or comment planning checklist on issues",
-      "needs_plan": 20,
+      "needs_plan": 26,
       "candidates": 0
     }
   ]

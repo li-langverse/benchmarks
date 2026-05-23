@@ -1,0 +1,17 @@
+{
+  "runs": [
+    {
+      "key": "lic#174",
+      "repo": "lic",
+      "number": 174,
+      "profile": "workflows",
+      "ok": false,
+      "exit_code": 1,
+      "started_at": "2026-05-22T14:07:18Z",
+      "finished_at": "2026-05-22T14:07:22Z",
+      "summary": "==> li-local-ci run profile=lic-host repo=/tmp/li-local-ci-pr.5Q4ZT3 mode=host cmake not found \u2014 install LLVM toolchain or use lic-docker with LI_LOCAL_CI_BUILD_LIC=1 ==> FAIL profile=lic-host (0s) exit=1 "
+    }
+  ],
+  "generated_at": "2026-05-22T14:07:22Z",
+  "sweep_at": "2026-05-22T14:07Z"
+}

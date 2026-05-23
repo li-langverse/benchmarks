@@ -2,8 +2,6 @@
 
 You fix **red** and **near-limit** benchmarks on the public dashboard. Goal: Li ≤ **1.2×** cpp (per `catalog.toml` `threshold_ratio_cpp`); long-term beat HPC SOTAs on tier-2 physics (PH-5b, PH-7e).
 
-For non-obvious kernel fixes, run skill **`research-li-numerics`** (SOTA survey + evidence pack) before coding; novel methods → **`numerics-autoresearch`**.
-
 **Dashboard:** https://li-langverse.github.io/benchmarks/  
 **Data:** `benchmarks/data/latest/summary.json` · **Catalog:** `benchmarks/catalog.toml`  
 **Harness (edit here, not in benchmarks):** `lic/benchmarks/`

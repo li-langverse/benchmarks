@@ -1,11 +1,11 @@
 # HTTP webserver RPS matrix (tier 5)
 
-Generated: 2026-05-21T18:20:19.675692+00:00
+Generated: 2026-05-22T15:56:49.752237+00:00
 
 **Mandatory after every li-httpd change:**
 `LIC_ROOT=… ./scripts/run-tier5-http-bench.sh` → `./scripts/benchmark-matrix-report.py`
 
-Source CSV: `/workspace/vendor/lis-tier5/results/latest.csv`
+Source CSV: `/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/vendor/lis-tier5/results/latest.csv`
 
 Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenarios bench **nginx + li**; static scenarios bench all oracles.
 
@@ -13,10 +13,10 @@ Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenar
 
 | scenario | li | nginx | apache | lighttpd | node | bun | li/nginx |
 |---|---|---|---|---|---|---|---|
-| static_small | 135,466 | 130,456 | — | — | — | — | 1.04× |
-| keepalive_pipelining | 235,097 | 144,627 | — | — | — | — | 1.63× |
+| static_small | 135,466 | — | — | — | — | — | — |
+| keepalive_pipelining | 235,097 | — | — | — | — | — | — |
 | static_large | FAIL | — | — | — | — | — | — |
-| proxy_loopback | 9,121 | 52,620 | — | — | — | — | 0.17× |
+| proxy_loopback | 9,121 | — | — | — | — | — | — |
 | lb_round_robin | 9,141 | — | — | — | — | — | — |
 | lb_least_conn | 11,405 | — | — | — | — | — | — |
 | lb_peer_down | 18,455 | — | — | — | — | — | — |

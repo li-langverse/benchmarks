@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T11:34Z",
+  "generated_at": "2026-05-23T01:08Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
   "repos_ok": [
@@ -14,7 +14,23 @@
     "lip",
     "lis",
     "lit",
-    "roadmap"
+    "mmo",
+    "net.httpd",
+    "physics.custom",
+    "physics.runtime",
+    "render",
+    "roadmap",
+    "sim",
+    "sim.additive",
+    "sim.automotive",
+    "sim.drug_design",
+    "sim.robotics",
+    "sim.scientific",
+    "store.realtime",
+    "studio",
+    "studio.ai",
+    "ui",
+    "world"
   ],
   "repos_missing_ci": [
     {
@@ -74,6 +90,7 @@
       "lean.yml",
       "memory.yml",
       "notify-downstream.yml",
+      "publish-docker-ci-image.yml",
       "release.yml",
       "ubsan-lic.yml"
     ],
@@ -93,10 +110,74 @@
       "issue-feature-planning.yml",
       "notify-downstream.yml"
     ],
+    "mmo": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "net.httpd": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "physics.custom": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "physics.runtime": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "render": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
     "roadmap": [
       "ci.yml",
       "issue-feature-planning.yml",
       "pages.yml"
+    ],
+    "sim": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.additive": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.automotive": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.drug_design": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.robotics": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.scientific": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "store.realtime": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "studio": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "studio.ai": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "ui": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "world": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
     ]
   },
   "policy": "docs/ecosystem/repo-ci-required.md",
