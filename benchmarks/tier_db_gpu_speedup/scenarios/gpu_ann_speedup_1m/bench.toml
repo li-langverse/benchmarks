@@ -1,0 +1,15 @@
+name = "gpu_ann_speedup_1m"
+
+[workload]
+kind = "vector_ann_gpu"
+corpus_size = 1000000
+dim = 128
+k = 10
+fixed_recall = 0.95
+profile = "nightly"
+
+[load]
+metric = "speedup_ratio"
+unit = "ratio"
+baseline = "lidb_cpu_hnsw"
+candidate = "lidb_gpu"

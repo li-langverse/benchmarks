@@ -1,0 +1,14 @@
+name = "ann_recall_at_10_10k"
+
+[workload]
+kind = "vector_ann"
+corpus_size = 10000
+dim = 128
+k = 10
+
+[verify]
+min_recall_vs_faiss = 0.95
+
+[load]
+metric = "recall_at_10"
+unit = "ratio"

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbGraphRegistryIngestManifest",
+  "description": "CI ingest artifact for tier_db_graph_registry graph benches.",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "compare_oracle", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_graph_registry" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["stub", "unknown", "pass", "fail"] },
+    "compare_oracle": { "const": "postgres_age" },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "const": "latency_p95" },
+          "unit": { "const": "ms" },
+          "status": { "enum": ["unknown", "green", "yellow", "red", "stub"] },
+          "ph_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "ci_ingest": { "type": "object" }
+  }
+}

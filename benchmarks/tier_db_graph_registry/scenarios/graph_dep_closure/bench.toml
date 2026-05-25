@@ -1,0 +1,14 @@
+name = "graph_dep_closure"
+
+[workload]
+kind = "graph_traversal"
+# Recursive CTE / native graph: all reachable deps from root package id.
+query = "dep_closure"
+oracle = ["lidb_cte", "postgres_age", "kuzu_optional"]
+
+[verify]
+min_reachable = 1
+
+[load]
+metric = "latency_p95"
+unit = "ms"

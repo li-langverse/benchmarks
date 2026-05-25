@@ -1,0 +1,19 @@
+[schema]
+migration = "schema/vector-ann-v1.sql"
+
+[engines]
+lidb = "lis db start --profile dev-full"
+faiss_cpu = "faiss-cpu"
+lidb_gpu = "lidb-gpu sidecar (optional)"
+
+[corpus]
+dim = 128
+sizes = [10000, 1000000]
+
+[targets]
+recall_at_k = 10
+min_recall_vs_faiss = 0.95
+
+[metrics]
+recall_metric = "recall_at_10"
+qps_metric = "queries_per_sec"

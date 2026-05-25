@@ -1,0 +1,12 @@
+[default]
+include = ["graph_dep_closure", "graph_cycle_detect"]
+timing = false
+
+[profiles.ci]
+include = ["graph_dep_closure", "graph_cycle_detect"]
+timing = false
+
+[profiles.nightly]
+include = ["graph_dep_closure", "graph_cycle_detect"]
+timing = true
+edges = 100000

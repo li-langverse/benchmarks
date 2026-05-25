@@ -32,6 +32,16 @@ Skeleton for **lidb vs Postgres 15+** registry publish/read P95 — see [tier-db
 ./scripts/run-db-registry-bench.sh
 ```
 
+## lidb research tiers (PH-DB-G0 stubs)
+
+| Tier | Doc | Run |
+|------|-----|-----|
+| `tier_db_graph_registry` | [tier-db-graph-registry.md](docs/ecosystem/tier-db-graph-registry.md) | `./scripts/run-db-graph-registry-bench.sh` |
+| `tier_db_vector_ann` | [tier-db-vector-ann.md](docs/ecosystem/tier-db-vector-ann.md) | `./scripts/run-db-vector-ann-bench.sh` |
+| `tier_db_gpu_speedup` | [tier-db-gpu-speedup.md](docs/ecosystem/tier-db-gpu-speedup.md) | `./scripts/run-db-gpu-speedup-bench.sh` |
+
+CI writes stub manifests under `data/latest/tier-db-*.json` (no GPU required on GHA).
+
 ## Agents
 
 PR-only workflow. Do **not** duplicate `lic` harness here. See [AGENTS.md](AGENTS.md).
