@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { MatrixCatalogTable } from "@/components/matrix-catalog-table";
+import { COVERAGE_GAP_DOC, coverageHonesty } from "@/lib/coverage";
 import { flattenMatrixSections, loadBenchmarkMatrix } from "@/lib/matrix";
+import { loadSummary } from "@/lib/summary";
 
 export default function MatrixPage() {
   const matrix = loadBenchmarkMatrix();
@@ -22,6 +24,9 @@ export default function MatrixPage() {
     );
   }
   const rows = flattenMatrixSections(matrix);
+  const summary = loadSummary();
+  const honesty = coverageHonesty(summary.rows);
+  const summaryById = Object.fromEntries(summary.rows.map((r) => [r.benchmark, r]));
   const exploitMatrix = matrix.http_exploits?.matrix;
   const exploitLangs = exploitMatrix
     ? [...new Set(Object.values(exploitMatrix).flatMap((r) => Object.keys(r)))].sort()
@@ -33,9 +38,19 @@ export default function MatrixPage() {
         <p className="mono" style={{ marginTop: "0.75rem" }}>
           Generated: {matrix.generated_at}
         </p>
+        <p className="coverage-honesty matrix-coverage-honesty">
+          <strong>
+            {honesty.measured} of {honesty.total}
+          </strong>{" "}
+          rows have wall-clock data; <strong>{honesty.pending}</strong> catalog pending until
+          harness CSV.{" "}
+          <a href={COVERAGE_GAP_DOC} target="_blank" rel="noopener noreferrer">
+            Coverage gaps
+          </a>
+        </p>
       </section>
       <Suspense fallback={<p className="mono">Loading matrix…</p>}>
-        <MatrixCatalogTable rows={rows} />
+        <MatrixCatalogTable rows={rows} summaryById={summaryById} />
       </Suspense>
       {exploitMatrix && exploitLangs.length > 0 ? (
         <section style={{ marginTop: "2rem" }}>
