@@ -35,7 +35,7 @@ CATEGORY_LABELS = {
     "micro": "Micro / SIMD & linear algebra",
     "physics": "Physics & simulations",
     "http": "HTTP / webserver (li-httpd · lis)",
-    "database": "Registry OLTP (lidb vs Postgres)",
+    "database": "Registry OLTP (lidb vs Postgres · tier_db_registry)",
     "tooling": "Ecosystem tooling (lip · lit · lic compile)",
     "security": "Security gates (CVE · webserver registry)",
     "correctness": "Correctness & stability",
@@ -335,6 +335,8 @@ def is_pending_catalog_row(bench_id: str, cfg: dict, by_bench: dict[str, list]) 
     if cfg.get("path") == "unknown" or bench_id.endswith("_stub"):
         return True
     category = cfg.get("category", "micro")
+    if category == "database" and bench_id not in by_bench:
+        return True
     return category in ("tooling",) and bench_id not in by_bench
 
 

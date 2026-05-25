@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbRegistryIngestManifest",
+  "description": "CI ingest artifact for tier_db_registry OLTP benches (dashboard + agents).",
+  "type": "object",
+  "required": [
+    "generated_at",
+    "tier",
+    "profile",
+    "status",
+    "compare_oracle",
+    "scenarios"
+  ],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_registry" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": {
+      "enum": ["stub", "unknown", "pass", "fail"],
+      "description": "stub = harness not run; unknown = no timing rows"
+    },
+    "compare_oracle": { "const": "postgres" },
+    "postgres_min_version": { "type": "string", "default": "15" },
+    "nightly_optional": { "type": "boolean", "default": true },
+    "sources": {
+      "type": "object",
+      "properties": {
+        "suite_toml": { "type": "string" },
+        "defaults_toml": { "type": "string" },
+        "schema_sql": { "type": "string" },
+        "results_csv": { "type": "string" },
+        "catalog_toml": { "type": "string" }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "const": "latency_p95" },
+          "unit": { "const": "ms" },
+          "lower_is_better": { "type": "boolean", "default": true },
+          "threshold_ratio_vs_postgres": { "type": "number" },
+          "status": {
+            "enum": ["unknown", "green", "yellow", "red", "stub"]
+          },
+          "engines": {
+            "type": "object",
+            "properties": {
+              "lidb": {
+                "type": ["object", "null"],
+                "properties": {
+                  "p50_ms": { "type": "number" },
+                  "p95_ms": { "type": "number" },
+                  "p99_ms": { "type": "number" }
+                }
+              },
+              "postgres": {
+                "type": ["object", "null"],
+                "properties": {
+                  "p50_ms": { "type": "number" },
+                  "p95_ms": { "type": "number" },
+                  "p99_ms": { "type": "number" }
+                }
+              }
+            }
+          },
+          "ratio_vs_postgres": { "type": ["number", "null"] },
+          "ph_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "ci_ingest": {
+      "type": "object",
+      "properties": {
+        "artifact_path": { "type": "string" },
+        "merge_into_summary": { "type": "boolean" },
+        "dashboard_section": { "type": "string" }
+      }
+    }
+  }
+}

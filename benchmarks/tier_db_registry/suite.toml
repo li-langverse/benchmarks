@@ -1,0 +1,11 @@
+[default]
+include = ["registry_publish", "registry_read_by_name", "registry_read_latest"]
+timing = false
+
+[profiles.ci]
+include = ["registry_publish", "registry_read_by_name", "registry_read_latest"]
+timing = false
+
+[profiles.nightly]
+include = ["registry_publish", "registry_read_by_name", "registry_read_latest"]
+timing = true

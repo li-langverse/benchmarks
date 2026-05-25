@@ -480,3 +480,38 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-7e"]
 
+[[benchmark]]
+id = "registry_publish"
+category = "database"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_publish"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-DB-5"]
+compare_oracle = "postgres"
+variant = "registry_oltp"
+
+[[benchmark]]
+id = "registry_read_by_name"
+category = "database"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_read_by_name"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-DB-5"]
+compare_oracle = "postgres"
+variant = "registry_oltp"
+
+[[benchmark]]
+id = "registry_read_latest"
+category = "database"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_read_latest"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-DB-5"]
+compare_oracle = "postgres"
+variant = "registry_oltp"

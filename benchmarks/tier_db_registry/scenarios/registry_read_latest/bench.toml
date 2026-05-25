@@ -1,0 +1,19 @@
+name = "registry_read_latest"
+
+[workload]
+kind = "oltp_read"
+statement = """
+SELECT pv.id, pv.version, pv.proof_digest, pv.published_at
+FROM package_versions pv
+JOIN packages p ON p.id = pv.package_id
+WHERE p.name = $1
+ORDER BY pv.published_at DESC
+LIMIT 1
+"""
+
+[verify]
+expect_rows = 1
+
+[load]
+metric = "latency_p95"
+unit = "ms"
