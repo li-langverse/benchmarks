@@ -7,6 +7,10 @@
     "benchmark": { "type": "string" },
     "lang": { "type": "string" },
     "variant": { "type": "string" },
+    "problem_size": {
+      "type": "string",
+      "description": "Canonical problem dimension or payload class for multi-size sweeps"
+    },
     "threads": { "type": "integer" },
     "metric": { "type": "string" },
     "value": { "type": "number" },
