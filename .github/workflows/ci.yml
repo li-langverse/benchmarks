@@ -69,8 +69,9 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
-  # Pages deploy uses dashboard-next (pages.yml). Legacy Vite dashboard/ kept for local dev.
+  # Pages deploy builds dashboard-next on push to main (pages.yml). PRs gate here only (WP-E1 dedupe).
   dashboard-build:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
