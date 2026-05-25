@@ -43,6 +43,8 @@ export type SummaryRow = {
   repo: string;
   tier: number;
   category?: string;
+  pillar?: string;
+  package?: string;
   metric: string;
   li_value: number | null;
   cpp_value: number | null;
