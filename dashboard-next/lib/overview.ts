@@ -1,5 +1,5 @@
 import type { ReleaseIndex } from "@/lib/release-index";
-import type { StatusCounts, Summary, SummaryRow } from "@/lib/summary";
+import type { StatusCounts, SummaryRow } from "@/lib/summary";
 
 const STATUS_KEYS = ["green", "yellow", "red", "unknown"] as const;
 
@@ -31,8 +31,8 @@ export function topBenchmarksByStatus(
     .slice(0, limit);
 }
 
-export function regressionRows(summary: Summary): SummaryRow[] {
-  return summary.rows.filter((r) => r.status === "red");
+export function regressionRows(rows: SummaryRow[]): SummaryRow[] {
+  return rows.filter((r) => r.status === "red");
 }
 
 export type FreshnessLevel = "fresh" | "warn" | "stale" | "missing";
