@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-25T14:15:41.717265+00:00",
+  "generated_at": "2026-05-25T15:47:18.834724+00:00",
   "sources": {
-    "lic_csv": "/Users/julian/Documents/coding-projects/lic/benchmarks/results/latest.csv",
-    "lis_csv": "/Users/julian/Documents/coding-projects/lis/results/latest.csv",
-    "stability_csv": "/Users/julian/Documents/coding-projects/lic/benchmarks/results/stability.csv",
-    "security_csv": "/Users/julian/Documents/coding-projects/lic/benchmarks/results/security.csv"
+    "lic_csv": "../lic/benchmarks/results/latest.csv",
+    "lis_csv": "../lis/results/latest.csv",
+    "stability_csv": "../lic/benchmarks/results/stability.csv",
+    "security_csv": "../lic/benchmarks/results/security.csv"
   },
   "reporting": {
     "sota_policy": "best_competitor_lang_excludes_li",
@@ -39,7 +39,7 @@
       "green": 0,
       "yellow": 0,
       "red": 0,
-      "unknown": 46
+      "unknown": 47
     },
     "2": {
       "green": 0,
@@ -296,6 +296,31 @@
           "package": "lic",
           "problem_size": null,
           "size_label": "harness pending",
+          "base_id": null
+        },
+        {
+          "id": "fft_1d_fixed",
+          "title": "fft 1d fixed",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "sota_lang": null,
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/fft_1d_fixed",
+          "status": "unknown",
+          "perf_status": "unknown",
+          "ratio_vs_reference": null,
+          "ratio_vs_sota": null,
+          "validity_status": "unknown",
+          "validity_source": "none",
+          "os": "unknown",
+          "pillar": "numerics",
+          "package": "lic",
+          "problem_size": null,
+          "size_label": null,
           "base_id": null
         },
         {
@@ -3034,8 +3059,8 @@
           "sota_lang": null,
           "series": [],
           "grouped": false,
-          "repo": "lic",
-          "path": "packages/li-httpd/examples/rate_limit_static.toml",
+          "repo": "benchmarks",
+          "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
           "status": "unknown",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
@@ -3044,7 +3069,7 @@
           "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
-          "package": "lic",
+          "package": "lis",
           "problem_size": null,
           "size_label": null,
           "base_id": null
@@ -3801,6 +3826,31 @@
           "base_id": null
         },
         {
+          "id": "fft_1d_fixed",
+          "title": "fft 1d fixed",
+          "metric": "wall_time",
+          "unit": "",
+          "lower_is_better": true,
+          "reference_lang": "cpp",
+          "sota_lang": null,
+          "series": [],
+          "grouped": false,
+          "repo": "lic",
+          "path": "benchmarks/tier1_micro/fft_1d_fixed",
+          "status": "unknown",
+          "perf_status": "unknown",
+          "ratio_vs_reference": null,
+          "ratio_vs_sota": null,
+          "validity_status": "unknown",
+          "validity_source": "none",
+          "os": "unknown",
+          "pillar": "numerics",
+          "package": "lic",
+          "problem_size": null,
+          "size_label": null,
+          "base_id": null
+        },
+        {
           "id": "matmul_blocked",
           "title": "matmul blocked (N=512 block=64)",
           "metric": "wall_time",
@@ -4531,8 +4581,8 @@
           "sota_lang": null,
           "series": [],
           "grouped": false,
-          "repo": "lic",
-          "path": "packages/li-httpd/examples/rate_limit_static.toml",
+          "repo": "benchmarks",
+          "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
           "status": "unknown",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
@@ -4541,7 +4591,7 @@
           "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
-          "package": "lic",
+          "package": "lis",
           "problem_size": null,
           "size_label": null,
           "base_id": null
@@ -7106,7 +7156,7 @@
       "ph_ids": [
         "PH-5b"
       ],
-      "path": "benchmarks/tier0_correctness",
+      "path": "li-tests/benchmarks/tier0_correctness",
       "threshold_ratio_cpp": 1.0,
       "compare_oracle": "cpp",
       "ci_url": "",
@@ -7483,6 +7533,39 @@
       "package": "lic",
       "problem_size": null,
       "size_label": "harness pending",
+      "base_id": null
+    },
+    {
+      "benchmark": "fft_1d_fixed",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "sota_lang": null,
+      "sota_value": null,
+      "ratio_vs_sota": null,
+      "unit": "",
+      "variant": "fftw_reference",
+      "status": "unknown",
+      "validity_status": "unknown",
+      "validity_source": "none",
+      "os": "unknown",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/tier1_micro/fft_1d_fixed",
+      "threshold_ratio_cpp": 1.2,
+      "compare_oracle": "cpp",
+      "ci_url": "",
+      "langs": [],
+      "pillar": "numerics",
+      "package": "lic",
+      "problem_size": null,
+      "size_label": null,
       "base_id": null
     },
     {
@@ -11934,7 +12017,7 @@
     },
     {
       "benchmark": "rate_limit_429",
-      "repo": "lic",
+      "repo": "benchmarks",
       "tier": 5,
       "category": "http",
       "metric": "verify_pass",
@@ -11953,13 +12036,13 @@
       "ph_ids": [
         "PH-H"
       ],
-      "path": "packages/li-httpd/examples/rate_limit_static.toml",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
       "threshold_ratio_cpp": 1.0,
       "compare_oracle": "li",
       "ci_url": "",
       "langs": [],
       "pillar": "server",
-      "package": "lic",
+      "package": "lis",
       "problem_size": null,
       "size_label": null,
       "base_id": null

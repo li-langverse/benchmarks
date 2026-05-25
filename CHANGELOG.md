@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **LIC_ROOT / catalog alignment:** tier0_stability, rate_limit_429, plan-audit, lic@dev CI — [2026-05-25-lic-root-catalog-alignment.md](docs/release-notes/2026-05-25-lic-root-catalog-alignment.md). Closes #17 #19 #20; #38 agent-kit doc.
+
+### Added
+
+- **FFT catalog (planned):** fft_1d_fixed for #18.
+
 ### Added
 
 - **Dashboard ship regression gates:** `docs/dashboard/ARCHITECTURE.md`, `INVARIANTS.md`, `check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`; CI steps on Benchmarks CI — [2026-05-26-benchmark-ship-integration.md](docs/release-notes/2026-05-26-benchmark-ship-integration.md).

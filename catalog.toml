@@ -2,6 +2,9 @@
 # category: micro | physics | http | database | tooling | security | correctness
 # pillar: compiler | numerics | physics | server | database | tooling | security | graphics | correctness
 # package: ecosystem id from ecosystem-packages.toml (defaults to repo when omitted)
+#
+# catalog_lifecycle — optional; "planned" skips plan-completion-audit path check.
+# path = "unknown" — algo_registry stub until lic harness exists (audit skip).
 
 [[benchmark]]
 id = "tier0_stability"
@@ -207,6 +210,21 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "pure_li"
 ph_ids = ["PH-5b", "PH-7e"]
+
+[[benchmark]]
+id = "fft_1d_fixed"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_micro/fft_1d_fixed"
+catalog_lifecycle = "planned"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-7e"]
+compare_oracle = "cpp"
+variant = "fftw_reference"
 
 [[benchmark]]
 id = "matmul_blocked"
