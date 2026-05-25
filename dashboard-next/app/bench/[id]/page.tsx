@@ -2,6 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HonestyCallout } from "@/components/bench/honesty-callout";
 import { LangsTable } from "@/components/bench/langs-table";
+import { OsTable } from "@/components/bench/os-table";
+import { PerfNotClaimable } from "@/components/bench/perf-not-claimable";
+import { ValidityPanel } from "@/components/bench/validity-panel";
+import { ValidityBadge } from "@/components/bench/validity-badge";
 import { Badge } from "@/components/ui/badge";
 import { getLangSeries } from "@/lib/bench-series";
 import { deltasForBenchmark, loadHistoryIndex } from "@/lib/history";
@@ -29,13 +33,22 @@ export default async function BenchPage({ params }: PageProps) {
       <section className="placeholder">
         <h2>
           {row.benchmark} <Badge status={row.status} />
+          {row.validity_status ? (
+            <ValidityBadge
+              status={row.validity_status}
+              source={row.validity_source}
+            />
+          ) : null}
         </h2>
         <p style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
           Tier {row.tier} · {row.metric}
           {row.variant ? ` · variant ${row.variant}` : ""}
+          {row.os ? ` · OS ${row.os}` : ""}
         </p>
 
         <HonestyCallout variant={row.variant} />
+        <PerfNotClaimable row={row} />
+        <ValidityPanel row={row} />
 
         <dl
           className="mono"
@@ -64,14 +77,43 @@ export default async function BenchPage({ params }: PageProps) {
               "—"
             )}
           </dd>
-          <dt>Li / C++</dt>
+          <dt>Li / catalog oracle</dt>
           <dd>
             {row.li_value ?? "—"} / {row.cpp_value ?? "—"}{" "}
             {row.unit ?? ""}
+            {row.compare_oracle ? (
+              <span className="mono"> ({row.compare_oracle})</span>
+            ) : null}
           </dd>
-          <dt>Ratio vs C++</dt>
+          <dt>Ratio vs catalog oracle</dt>
           <dd>
             {row.ratio_vs_cpp != null ? `${row.ratio_vs_cpp.toFixed(4)}×` : "—"}
+          </dd>
+          <dt>Best competitor</dt>
+          <dd>
+            {row.sota_lang ?? "—"}
+            {row.sota_value != null ? ` (${row.sota_value} ${row.unit ?? ""})` : ""}
+          </dd>
+          <dt>Ratio vs best competitor</dt>
+          <dd>
+            {row.ratio_vs_sota != null ? `${row.ratio_vs_sota.toFixed(4)}×` : "—"}
+            {row.sota_lang ? (
+              <span className="mono" style={{ color: "var(--muted)" }}>
+                {" "}
+                vs <code>{row.sota_lang}</code>
+              </span>
+            ) : null}
+          </dd>
+          <dt>Validity</dt>
+          <dd>
+            {row.validity_status ? (
+              <ValidityBadge
+                status={row.validity_status}
+                source={row.validity_source}
+              />
+            ) : (
+              "—"
+            )}
           </dd>
           <dt>Threshold</dt>
           <dd>{row.threshold_ratio_cpp}×</dd>
@@ -94,6 +136,7 @@ export default async function BenchPage({ params }: PageProps) {
           Language series
         </h3>
         <LangsTable series={series} metric={row.metric} />
+        <OsTable row={row} series={series} />
 
         {deltas.length > 0 ? (
           <section style={{ marginTop: "1.5rem" }}>

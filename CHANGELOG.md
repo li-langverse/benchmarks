@@ -6,10 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **Dashboard matrix tier filter:** `/matrix/?tier=N` from overview tier strip filters catalog rows; mobile header/main padding — [2026-05-25-dashboard-matrix-tier-filter.md](docs/release-notes/2026-05-25-dashboard-matrix-tier-filter.md).
+
 ### Added
 
-- **tier_db_registry skeleton:** OLTP registry publish/read scenarios vs Postgres — [2026-05-25-tier-db-registry-skeleton.md](docs/release-notes/2026-05-25-tier-db-registry-skeleton.md).
-- **PH-DB-G0 tier-6 stubs:** `tier_db_graph_registry`, `tier_db_vector_ann`, `tier_db_gpu_speedup` — docs, suites, CI manifest writers, catalog rows — [2026-05-25-tier-db-graph-vector-gpu-stubs.md](docs/release-notes/2026-05-25-tier-db-graph-vector-gpu-stubs.md).
+- **SOTA / validity / OS reporting:** `summary.json` adds `sota_lang`, `ratio_vs_sota`, validity gate, `os`; ingest never labels Li as best-in-series; dashboard-next honesty strip + bench drill-down — [2026-05-25-sota-validity-os-dashboard.md](docs/release-notes/2026-05-25-sota-validity-os-dashboard.md).
+
+- **Benchmark board ship:** dashboard-next nine-pillar bento, proof-posture ingest, release freshness banner, Pages copies `proof-posture.json` — [2026-05-25-benchmark-board-ship.md](docs/release-notes/2026-05-25-benchmark-board-ship.md).
+- **Demo video package:** `docs/dashboard/demo-video-script.md`, `demo-storyboard.html`, `scripts/record-dashboard-demo.sh` for recording the benchmarks portal walkthrough — [2026-05-25-demo-video-package.md](docs/release-notes/2026-05-25-demo-video-package.md).
+- **WP9 briefing deep links:** `agent-briefing.py` adds `benchmark_dashboard_base` and `/bench/{id}/` URLs for red rows — [2026-05-25-benchmark-deep-links-briefing.md](docs/release-notes/2026-05-25-benchmark-deep-links-briefing.md).
+
 - **Dashboard Next wave 1:** `dashboard-next/` static export (overview, pillar/bench routes); `catalog.toml` `pillar`/`package`; `ecosystem-packages.toml`; `summary.json` `pillars`; history hash gate — [2026-05-25-dashboard-next-wave1.md](docs/release-notes/2026-05-25-dashboard-next-wave1.md).
 - **WP3 release manifests:** `schema/release-manifest.json`, `scripts/ingest/ingest-release-manifests.py`, `data/incoming/manifests/`, `data/latest/release-index.json` ingest; `package-release` `repository_dispatch` on [ingest workflow](.github/workflows/ingest.yml); [docs/dashboard/release-manifest.md](docs/dashboard/release-manifest.md).
 

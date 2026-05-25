@@ -31,8 +31,21 @@ export function topBenchmarksByStatus(
     .slice(0, limit);
 }
 
-export function regressionRows(summary: Summary): SummaryRow[] {
-  return summary.rows.filter((r) => r.status === "red");
+export function regressionRows(rows: SummaryRow[]): SummaryRow[] {
+  return rows.filter((r) => r.status === "red");
+}
+
+export function countValidityUnknownByPillar(
+  rows: SummaryRow[],
+): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const row of rows) {
+    if (row.validity_status !== "unknown") continue;
+    const pillar = row.pillar;
+    if (!pillar) continue;
+    out[pillar] = (out[pillar] ?? 0) + 1;
+  }
+  return out;
 }
 
 export type FreshnessLevel = "fresh" | "warn" | "stale" | "missing";

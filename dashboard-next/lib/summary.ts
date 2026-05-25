@@ -8,6 +8,8 @@ export type StatusCounts = {
   unknown: number;
 };
 
+export type ValidityStatus = "pass" | "fail" | "unknown";
+
 export type LangPoint = {
   lang: string;
   value: number;
@@ -15,6 +17,7 @@ export type LangPoint = {
   variant?: string;
   label?: string;
   passed?: boolean;
+  os?: string;
 };
 
 export type ChartSpec = {
@@ -30,6 +33,11 @@ export type ChartSpec = {
   path: string;
   status: string;
   ratio_vs_reference?: number | null;
+  ratio_vs_sota?: number | null;
+  sota_lang?: string | null;
+  validity_status?: ValidityStatus;
+  validity_source?: string;
+  os?: string;
   pending?: boolean;
 };
 
@@ -54,9 +62,16 @@ export type SummaryRow = {
   li_value: number | null;
   cpp_value: number | null;
   ratio_vs_cpp: number | null;
+  ratio_vs_sota?: number | null;
+  sota_lang?: string | null;
+  sota_value?: number | null;
   unit: string | null;
   variant?: string | null;
   status: string;
+  validity_status?: ValidityStatus;
+  validity_source?: string;
+  os?: string;
+  compare_oracle?: string;
   ph_ids: string[];
   path: string;
   threshold_ratio_cpp: number;
@@ -64,9 +79,16 @@ export type SummaryRow = {
   langs?: LangPoint[];
 };
 
+export type SummaryReporting = {
+  sota_policy?: string;
+  validity_required_default?: boolean;
+  os_values?: string[];
+};
+
 export type Summary = {
   generated_at: string;
   sources: Record<string, string>;
+  reporting?: SummaryReporting;
   tier_counts: Record<string, StatusCounts>;
   categories: Record<string, CategoryBlock>;
   pillars?: Record<string, PillarBlock>;
@@ -81,13 +103,8 @@ const SUMMARY_PATH = path.join(
   "summary.json",
 );
 
-/** Public URL for deployed static assets (runtime / client). */
 export const SUMMARY_PUBLIC_URL = "/benchmarks/latest/summary.json";
 
-/**
- * Load summary.json at build time from ../data/latest/summary.json.
- * Used in server components and generateStaticParams.
- */
 export function loadSummary(): Summary {
   const raw = readFileSync(SUMMARY_PATH, "utf8");
   return JSON.parse(raw) as Summary;

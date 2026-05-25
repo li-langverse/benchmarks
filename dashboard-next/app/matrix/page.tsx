@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { Suspense } from "react";
+import { MatrixCatalogTable } from "@/components/matrix-catalog-table";
 import { flattenMatrixSections, loadBenchmarkMatrix } from "@/lib/matrix";
 
 export default function MatrixPage() {
@@ -33,47 +34,9 @@ export default function MatrixPage() {
           Generated: {matrix.generated_at}
         </p>
       </section>
-      <section>
-        <h3 className="section-heading">Catalog sections</h3>
-        <div className="table-wrap">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Tier</th>
-                <th>Category</th>
-                <th>Repo</th>
-                <th>Metric</th>
-                <th>Status</th>
-                <th>Ratio</th>
-                <th>PH ids</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={`${row.category}-${row.id}`}>
-                  <td>
-                    <Link href={`/bench/${row.id}/`}>{row.id}</Link>
-                  </td>
-                  <td>{row.tier}</td>
-                  <td>{row.category}</td>
-                  <td>{row.repo}</td>
-                  <td>{row.metric}</td>
-                  <td>
-                    <Badge status={row.status} />
-                  </td>
-                  <td className="mono">
-                    {row.ratio_vs_reference != null
-                      ? row.ratio_vs_reference.toFixed(4)
-                      : "—"}
-                  </td>
-                  <td className="mono">{row.ph_ids.join(", ") || "—"}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <Suspense fallback={<p className="mono">Loading matrix…</p>}>
+        <MatrixCatalogTable rows={rows} />
+      </Suspense>
       {exploitMatrix && exploitLangs.length > 0 ? (
         <section style={{ marginTop: "2rem" }}>
           <h3 className="section-heading">HTTP exploit matrix</h3>
