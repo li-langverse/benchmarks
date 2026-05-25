@@ -12,8 +12,10 @@ Parent: [issue-feature-planner.md](../issue-feature-planner.md)
 | Issue | Plan location |
 |-------|----------------|
 | New catalog row | `catalog.toml` + release notes; lic bench must exist first |
-| Dashboard chart | `dashboard/src/` |
+| Dashboard chart | `dashboard-next/app/`, `dashboard-next/components/` — routes `/`, `/bench/[id]`, `/pillar/[id]`, `/matrix`, `/history` (Pages base `/benchmarks/`) |
 | New automation | `.cursor/automations/` + `docs/ecosystem/agent-automations.md` |
+
+**Dashboard (deployed):** https://li-langverse.github.io/benchmarks/ — sitemap: `docs/dashboard/sitemap.md`
 
 ## Completion audit
 

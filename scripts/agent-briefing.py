@@ -20,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/agent-briefing.json"
 LATEST = ROOT / "data/latest"
+BENCHMARK_DASHBOARD_BASE = "https://li-langverse.github.io/benchmarks"
 LIC = Path(os.environ.get("LIC_ROOT", ROOT.parent / "lic"))
 ROADMAP = Path(os.environ.get("ROADMAP_ROOT", ROOT.parent / "roadmap"))
 
@@ -238,6 +239,47 @@ def load_json(path: Path) -> dict | list | None:
     except json.JSONDecodeError:
         return {"error": f"invalid json: {path.name}"}
 
+
+
+
+def _red_bench_id(row: object) -> str | None:
+    if isinstance(row, str):
+        return row or None
+    if isinstance(row, dict):
+        bid = row.get("id") or row.get("benchmark")
+        return str(bid) if bid else None
+    return None
+
+
+def bench_deep_link(bench_id: str) -> str:
+    return f"{BENCHMARK_DASHBOARD_BASE}/bench/{bench_id}/"
+
+
+def enrich_benchmark_deep_links(data: dict) -> None:
+    """Expose dashboard-next drill-down URLs for red benchmark rows (WP9)."""
+    data["benchmark_dashboard_base"] = BENCHMARK_DASHBOARD_BASE
+    audit = data.get("ecosystem_audit")
+    if not isinstance(audit, dict):
+        return
+    bench = audit.get("benchmarks")
+    if not isinstance(bench, dict):
+        return
+    reds = bench.get("red")
+    if not isinstance(reds, list) or not reds:
+        return
+    deep_links: list[dict[str, str]] = []
+    for row in reds:
+        bid = _red_bench_id(row)
+        if not bid:
+            continue
+        deep_links.append({"id": bid, "url": bench_deep_link(bid)})
+    if not deep_links:
+        return
+    bench["deep_links"] = deep_links
+    data["benchmarks"] = {
+        "dashboard_base": BENCHMARK_DASHBOARD_BASE,
+        "deep_links": deep_links,
+    }
 
 def _has_agent(rec: list[dict], agent_id: str) -> bool:
     return any(r.get("agent") == agent_id for r in rec)
@@ -627,6 +669,7 @@ def main() -> int:
     data["recommended_agents"] = recommend_agents(data)
     plan_audit = data.get("plan_completion_audit")
     data["org_roadmap"] = load_org_roadmap(plan_audit if isinstance(plan_audit, dict) else None)
+    enrich_benchmark_deep_links(data)
 
     sys.path.insert(0, str(ROOT / "scripts"))
     from heap_plan import build_heap_plan  # noqa: E402
