@@ -6,6 +6,8 @@
 
 **Implementation anchor:** tokens and class names today live in [`dashboard/src/style.css`](../../dashboard/src/style.css). New routes must not change that file until WP1; align new UI to these variables.
 
+**Architecture & regression gates:** [ARCHITECTURE.md](./ARCHITECTURE.md) (catalog → ingest → `dashboard-next` → Pages) · [INVARIANTS.md](./INVARIANTS.md) (`check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`).
+
 ---
 
 ## Design intent
@@ -113,6 +115,10 @@ Canonical paths for the SPA (or multi-page) portal. Base URL: `https://li-langve
 - External links (lic, lis, roadmap) open in new tab with visible affordance.
 
 See also [sitemap.md](./sitemap.md) for a route-only quick reference.
+
+### Diagram layout
+
+Facet-first IA for per-algorithm reporting (validity, perf vs SOTA, OS, memory stub, security): **one portal diagram**, **one drill-down composition**, overview as **Algorithm × Facet** matrix. Full spec, wireframes, JSON mapping, and scale notes: **[diagram-layout.md](./diagram-layout.md)**.
 
 ---
 

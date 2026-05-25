@@ -9,3 +9,5 @@ path = "benchmarks/tier1_micro/simd_dot"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b"]
+problem_size = "10000000"
+size_label = "N=10M"

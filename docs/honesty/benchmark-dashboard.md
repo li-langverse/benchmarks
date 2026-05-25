@@ -1,15 +1,45 @@
 # Benchmark dashboard honesty labels
 
-The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **wall-clock ratios vs a catalog reference** (usually C++ (`cpp`); tier-5 HTTP uses **nginx** where `compare_oracle` is set), not formal proof or correctness certificates.
+The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/latest/summary.json` report **two ratio axes** and a **validity gate**. Li is **never** labeled state-of-the-art (SOTA) in JSON or UI.
 
-## Status colors
+## Ratio axes
+
+| Field | Meaning |
+|-------|---------|
+| `ratio_vs_cpp` / `ratio_vs_reference` | Li vs catalog `compare_oracle` (usually `cpp`; tier-5 HTTP uses `nginx`; database uses `postgres`). Drives **green/yellow/red** against `threshold_ratio_cpp`. |
+| `ratio_vs_sota` | Li vs **best competitor** in the CSV series (`sota_lang`; Li excluded). Informational — not the threshold oracle. |
+| `sota_lang` | Competitor language with the best metric in the row set. **Never `li`.** |
+
+Ingest policy: `scripts/ingest/build_summary.py` — `reporting.sota_policy = best_competitor_lang_excludes_li`.
+
+## Validity gate
+
+| `validity_status` | Perf claim | Dashboard `status` |
+|-------------------|------------|---------------------|
+| **pass** | Allowed when ratio is within threshold | Normal green/yellow/red from `compare_oracle` ratio |
+| **fail** | **Not claimable** — speed without correctness is useless | Forced **red** even if wall time looks good |
+| **unknown** | **Not claimable** until producers export pass signals | Forced **unknown** |
+
+Sources (`validity_source`): `stability.csv`, `latest.csv:passed`, `metric:verify_pass`, `none`.
+
+Catalog default: `validity_required = true` in [`catalog.toml`](../../catalog.toml) (per-benchmark override supported).
+
+## Status colors (after validity gate)
 
 | Status | Meaning | Agent action |
 |--------|---------|--------------|
-| **green** | `ratio_vs_cpp` ≤ `threshold_ratio_cpp` in [`catalog.toml`](../../catalog.toml) | Maintain; investigate regressions |
-| **yellow** | Between threshold and org alert band (ingest policy) | Compiler/harness work in **lic** |
-| **red** | Above threshold | **lic** codegen or kernel — not threshold tweaks here |
-| **unknown** | Missing ingest, failed run, or smoke-only row | Fix harness path or ingest; do not publish perf claims |
+| **green** | Validity pass **and** `ratio_vs_cpp` ≤ `threshold_ratio_cpp` | Maintain; investigate regressions |
+| **yellow** | Validity pass; between threshold and org alert band | Compiler/harness work in **lic** |
+| **red** | Above threshold **or** validity fail | **lic** codegen, kernel, or correctness — not threshold tweaks here |
+| **unknown** | Missing ingest, failed run, smoke-only row, or **unknown validity** | Fix harness/CSV; do not publish perf claims |
+
+## Host OS
+
+| Field | Meaning |
+|-------|---------|
+| `os` on summary rows | Primary host OS for the benchmark (`linux`, `darwin`, `windows`, or `unknown`) |
+| `reporting.os_values` | Distinct OS tags in the current ingest (overview strip + search filter) |
+| `os` on series points | Per-language OS when CSV exports include an `os` column |
 
 ## Variants (catalog)
 
@@ -28,20 +58,33 @@ The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/lat
 
 ## Writing release notes / ADRs
 
-Use: “dashboard **green** at ratio *r* vs cpp on commit *sha*” — not “proved fast” or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)).
+Use: “dashboard **green** at ratio *r* vs `compare_oracle` on commit *sha*, validity **pass**, ratio vs SOTA *s* vs `{sota_lang}`” — not “proved fast”, “Li is SOTA”, or “beats SOTA” without study citations ([numerics methodology](../numerics/research-methodology.md)).
 
 ## HTTP tier-5 vs nginx (catalog)
 
-Tier-5 rows `static_small` and `keepalive_pipelining` use `compare_oracle = "nginx"` and metric **`rps`** in [`catalog.toml`](../../catalog.toml). `scripts/ingest/build_summary.py` treats **nginx** as the reference language for those charts (same ratio machinery as C++, with an inversion so higher Li RPS is “better” vs the threshold).
+Tier-5 throughput rows use `compare_oracle = "nginx"` and metric **`rps`**. SOTA among `{nginx, apache, lighttpd, …}` is computed separately; Li is never SOTA.
 
-**Today:** [`lis`](https://github.com/li-langverse/lis) `benchmarks/tier5_http/harness/bench_http.py` is still **TOML validation / stub** until `li-httpd` and the wrk/nginx baseline pipeline land; there is no checked-in `lis/results/latest.csv` producer yet. Dashboard **unknown** + empty `series` for `keepalive_pipelining` means **no measured RPS comparison** — not “Li is slower than nginx.” Product intent vs nginx (agent gateway, streaming, schema-driven config, proof-backed core) is described in **lis** `docs/plan.md`, separate from dashboard throughput rows.
+**Today:** [`lis`](https://github.com/li-langverse/lis) may still be stub for some scenarios; dashboard **unknown** + empty `series` means **no measured comparison** — not “Li is slower than nginx.”
 
 ## Local vs CI ingest
 
-- **Local:** Clone **lic** and **lis** as siblings of **benchmarks** (or set `LIC_ROOT` / `LIS_ROOT`), then run `./scripts/ingest/ingest-lic.sh` from the benchmarks repo. `build_summary.py` merges `lic/benchmarks/results/latest.csv` and `lis/results/latest.csv`.
-- **CI:** PR/push **Benchmarks CI** (`.github/workflows/ci.yml`) checks out `lic` + `lis`, builds `lic`, and runs the same ingest path so `build_summary.li` / Python fallback see a real `lis/` tree.
-- **Manual ingest workflow** (`.github/workflows/ingest.yml`): checks out `lic` + `lis`, copies dispatch artifact `artifacts/latest.csv` into `lic/benchmarks/results/latest.csv` when present, then runs `ingest-lic.sh`.
+- **Local:** Clone **lic** and **lis** as siblings of **benchmarks**, then `./scripts/ingest/ingest-lic.sh`.
+- **CI:** PR/push **Benchmarks CI** checks out `lic` + `lis` and runs the same ingest path.
+
+## Downstream CSV producers (lic / lis)
+
+Required for honest reporting (see `schema/bench-result.json`):
+
+| Column | Producer | Purpose |
+|--------|----------|---------|
+| `os` | `lic` / `lis` `latest.csv` | Per-row and per-language OS breakdown |
+| `passed` | `lic` harness / tier0 export | Validity gate (`true`/`false`) |
+| `benchmark`, `lang`, `metric`, `value` | Existing | Unchanged |
+
+**lic:** extend `benchmarks/results/latest.csv` writer and tier0 `stability.csv` (already has `passed`; add `os` on export).
+
+**lis:** tier-5 HTTP bench CSV should mirror columns when RPS pipeline lands.
 
 ## `li-local-ci` vs dashboard data
 
-**[`li-local-ci`](https://github.com/li-langverse/li-local-ci)** (driven from benchmarks via `scripts/local-ci-sweep.py`) records PR verification when **GitHub Actions** is missing, skipped, or red (minutes/quota). Results land in `data/latest/local-ci-results.json` and are read by `scripts/pr-merge-gate.py` as a **merge gate** signal — they **do not** replace `lis` CSV ingest or update `summary.json` / Pages. Use local-ci for “did this PR pass the same checks locally?”; use ingest + `lis` bench artifacts for “what does the public dashboard show?”
+**[`li-local-ci`](https://github.com/li-langverse/li-local-ci)** records PR verification when GitHub Actions is missing — it **does not** replace CSV ingest or update `summary.json`.
