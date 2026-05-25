@@ -11,18 +11,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 FIX = ROOT / "scripts/ingest/fixtures/summary"
 
-# Reuse build_summary helpers
 sys.path.insert(0, str(ROOT / "scripts/ingest"))
 import build_summary as bs  # noqa: E402
 
 
 def main() -> int:
-    catalog = {}
     import tomllib
 
+    catalog_defaults = bs.load_catalog_defaults()
+    catalog = {}
     for b in tomllib.loads((FIX / "catalog.toml").read_text()).get("benchmark", []):
         catalog[b["id"]] = b
     raw = bs.parse_csv(FIX / "lic.csv")
+    stability_index = bs.load_stability_index(FIX / "stability.csv")
     out = ROOT / "build/compare/summary_py.json"
     out.parent.mkdir(parents=True, exist_ok=True)
 
@@ -36,35 +37,34 @@ def main() -> int:
     for bench_id, cfg in catalog.items():
         category = cfg.get("category", "micro")
         meta = bs.row_meta(cfg)
-        chart = bs.build_perf_chart(bench_id, cfg, raw)
+        required = bs.validity_required_for(cfg, catalog_defaults)
+        validity_status, validity_source = bs.validity_for_benchmark(
+            bench_id, cfg, raw, stability_index, required=required
+        )
+        chart = bs.build_perf_chart(
+            bench_id,
+            cfg,
+            raw,
+            validity_status=validity_status,
+            validity_source=validity_source,
+        )
         charts_by_cat[category].append(chart)
         charts_by_pillar[meta["pillar"]].append(chart)
-        li_val = next((s["value"] for s in chart["series"] if s["lang"] == "li"), None)
-        ref = chart["reference_lang"]
-        ref_val = next((s["value"] for s in chart["series"] if s["lang"] == ref), None)
-        ratio = chart.get("ratio_vs_reference")
         st = chart["status"]
         tier = str(cfg.get("tier", 0))
         tier_counts[tier][st] += 1
         results.append(
-            {
-                "benchmark": bench_id,
-                "repo": cfg.get("repo", "lic"),
-                "tier": cfg.get("tier", 0),
-                "category": category,
-                "metric": cfg.get("metric", "wall_time"),
-                "li_value": li_val,
-                "cpp_value": ref_val if ref == "cpp" else None,
-                "ratio_vs_cpp": ratio,
-                "unit": chart.get("unit"),
-                "variant": None,
-                "status": st,
-                "ph_ids": cfg.get("ph_ids", []),
-                "path": cfg.get("path", ""),
-                "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
-                "ci_url": "",
-                **meta,
-            }
+            bs.make_summary_row(
+                bench_id=bench_id,
+                cfg=cfg,
+                chart=chart,
+                validity_status=validity_status,
+                validity_source=validity_source,
+                os_name=chart.get("os", "unknown"),
+                category=category,
+                metric=cfg.get("metric", "wall_time"),
+                status=st,
+            )
         )
 
     categories = {}
@@ -79,6 +79,13 @@ def main() -> int:
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": {"fixture": str(FIX)},
+        "reporting": {
+            "sota_policy": "best_competitor_lang_excludes_li",
+            "validity_required_default": bool(
+                catalog_defaults.get("validity_required", True)
+            ),
+            "os_values": sorted({r.get("os", "unknown") for r in results}),
+        },
         "tier_counts": dict(tier_counts),
         "categories": categories,
         "pillars": bs.build_pillars(charts_by_pillar),

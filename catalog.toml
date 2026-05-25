@@ -3,59 +3,197 @@
 # pillar: compiler | numerics | physics | server | database | tooling | security | graphics | correctness
 # package: ecosystem id from ecosystem-packages.toml (defaults to repo when omitted)
 
-
 [[benchmark]]
-id = "simd_dot"
-category = "micro"
-pillar = "numerics"
+id = "tier0_stability"
+category = "correctness"
+pillar = "proofs"
 package = "lic"
-tier = 1
+tier = 0
 repo = "lic"
-path = "benchmarks/tier1_micro/simd_dot"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-7e"]
-variant = "shared_c_kernel"
-
-
-[[benchmark]]
-id = "matmul_naive"
-category = "micro"
-pillar = "numerics"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_micro/matmul_naive"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-7e"]
-
-
-[[benchmark]]
-id = "matmul_blocked"
-category = "micro"
-pillar = "numerics"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_micro/matmul_blocked"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
+path = "li-tests/benchmarks/tier0_correctness"
+metric = "stability"
+threshold_ratio_cpp = 1.0
 ph_ids = ["PH-5b"]
 
-
 [[benchmark]]
-id = "reduce_sum"
+id = "cfd_fvm_face_flux"
 category = "micro"
 pillar = "numerics"
 package = "lic"
 tier = 1
 repo = "lic"
-path = "benchmarks/tier1_micro/reduce_sum"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
 
+[[benchmark]]
+id = "cfd_pimple"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "cfd_piso"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "cfd_simple"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "cfd_turbulence_k_epsilon"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "cfd_turbulence_k_omega_sst"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fea_gauss_quadrature"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fea_linear_elasticity"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fea_mesh_tri_tet"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fea_solver_direct"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fea_solver_iterative"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fea_stiffness_assembly"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "horner_pure_li"
@@ -67,100 +205,490 @@ repo = "lic"
 path = "benchmarks/tier1_micro/horner_pure_li"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b", "PH-7e"]
 variant = "pure_li"
-
-
-[[benchmark]]
-id = "md_lennard_jones"
-category = "physics"
-pillar = "physics"
-package = "lic"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/md_lennard_jones"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b"]
-
+ph_ids = ["PH-5b", "PH-7e"]
 
 [[benchmark]]
-id = "three_body"
-category = "physics"
-pillar = "physics"
+id = "matmul_blocked"
+category = "micro"
+pillar = "numerics"
 package = "lic"
-tier = 2
+tier = 1
 repo = "lic"
-path = "benchmarks/tier2_physics/three_body"
+path = "benchmarks/tier1_micro/matmul_blocked"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+problem_size = "512"
+size_label = "N=512 block=64"
 ph_ids = ["PH-5b"]
-
 
 [[benchmark]]
-id = "nbody_gravity"
-category = "physics"
-pillar = "physics"
+id = "matmul_blocked_N1024"
+base_id = "matmul_blocked"
+category = "micro"
+pillar = "numerics"
 package = "lic"
-tier = 2
+tier = 1
 repo = "lic"
-path = "benchmarks/tier2_physics/nbody_gravity"
+path = "benchmarks/tier1_micro/matmul_blocked"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+problem_size = "1024"
+size_label = "N=1024 block=64"
 ph_ids = ["PH-5b"]
-
 
 [[benchmark]]
-id = "harmonic_oscillator_chain"
-category = "physics"
-pillar = "physics"
+id = "matmul_naive"
+category = "micro"
+pillar = "numerics"
 package = "lic"
-tier = 2
+tier = 1
 repo = "lic"
-path = "benchmarks/tier2_physics/harmonic_oscillator_chain"
+path = "benchmarks/tier1_micro/matmul_naive"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b"]
-
+problem_size = "256"
+size_label = "N=256"
+ph_ids = ["PH-5b", "PH-7e"]
 
 [[benchmark]]
-id = "wave_equation_1d"
-category = "physics"
-pillar = "physics"
+id = "matmul_naive_N1024"
+base_id = "matmul_naive"
+category = "micro"
+pillar = "numerics"
 package = "lic"
-tier = 2
+tier = 1
 repo = "lic"
-path = "benchmarks/tier2_physics/wave_equation_1d"
+path = "benchmarks/tier1_micro/matmul_naive"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b"]
-
+problem_size = "1024"
+size_label = "N=1024"
+ph_ids = ["PH-5b", "PH-7e"]
 
 [[benchmark]]
-id = "heat_equation_2d"
-category = "physics"
-pillar = "physics"
-package = "lic"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/heat_equation_2d"
+id = "ml_conv2d_forward"
+category = "micro"
+pillar = "numerics"
+package = "li-math"
+tier = 1
+repo = "li-math"
+path = "benchmarks/ml/ml_conv2d_forward"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
 ph_ids = ["PH-5b"]
-
 
 [[benchmark]]
-id = "double_pendulum"
-category = "physics"
-pillar = "physics"
-package = "lic"
-tier = 2
-repo = "lic"
-path = "benchmarks/tier2_physics/double_pendulum"
+id = "ml_mlp_forward"
+category = "micro"
+pillar = "numerics"
+package = "li-math"
+tier = 1
+repo = "li-math"
+path = "benchmarks/ml/ml_mlp_forward"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
 ph_ids = ["PH-5b"]
 
+[[benchmark]]
+id = "ml_mlp_train_step"
+category = "micro"
+pillar = "numerics"
+package = "li-math"
+tier = 1
+repo = "li-math"
+path = "benchmarks/ml/ml_mlp_train_step"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "nbody_barnes_hut"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_cg"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_cholesky"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_eig_symmetric"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_fft_r2c"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_gmres"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_integ_euler"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_integ_rk4"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_integ_semi_implicit"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_integ_symplectic"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_integ_verlet"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_opt_bfgs"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_opt_line_search"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_quadrature_gauss"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_rng_pcg"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_root_newton"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "num_sparse_mv"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "reduce_sum"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_micro/reduce_sum"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "100_000_000"
+size_label = "N=100_000_000"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "simd_dot"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_micro/simd_dot"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "10_000_000"
+size_label = "N=10_000_000"
+ph_ids = ["PH-5b", "PH-7e"]
+
+[[benchmark]]
+id = "viz_colormap"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_colormap"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "viz_decimate"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_decimate"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "viz_inspector_panels"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_inspector_panels"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "viz_linked_views"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_linked_views"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "viz_marching_cubes"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_marching_cubes"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "viz_pipeline_graph"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_pipeline_graph"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "viz_resample"
+category = "micro"
+pillar = "graphics"
+package = "lig"
+tier = 1
+repo = "lig"
+path = "benchmarks/viewport/viz_resample"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+validity_required = true
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "advection_diffusion_2d"
@@ -172,93 +700,115 @@ repo = "lic"
 path = "benchmarks/tier2_physics/advection_diffusion_2d"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
-
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
-id = "wave_equation_2d"
+id = "auto_bicycle_model"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/tier2_physics/wave_equation_2d"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
-variant = "shared_c_kernel"
-
 
 [[benchmark]]
-id = "sph_dam_break_2d"
+id = "auto_dyn_rk4"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/tier2_physics/sph_dam_break_2d"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
-variant = "shared_c_kernel"
-
 
 [[benchmark]]
-id = "euler_fluid_2d"
+id = "auto_sensor_raycast"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/tier2_physics/euler_fluid_2d"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
-variant = "shared_c_kernel"
-
 
 [[benchmark]]
-id = "combustion_passive"
+id = "bio_proteinmpnn"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/tier2_physics/combustion_passive"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
-variant = "shared_c_kernel"
-
 
 [[benchmark]]
-id = "wind_field_bc"
+id = "bio_rfdiffusion"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/tier2_physics/wind_field_bc"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
-variant = "shared_c_kernel"
-
 
 [[benchmark]]
-id = "rigid_body_stack"
+id = "bio_rosetta_energy"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/tier2_physics/rigid_body_stack"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
 ph_ids = ["PH-5b"]
-variant = "shared_c_kernel"
 
+[[benchmark]]
+id = "bio_rotamer_packing"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cloth_swing"
@@ -270,164 +820,1368 @@ repo = "lic"
 path = "benchmarks/tier2_physics/cloth_swing"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-ph_ids = ["PH-5b"]
 variant = "shared_c_kernel"
-
-
-[[benchmark]]
-id = "tier0_stability"
-category = "correctness"
-pillar = "correctness"
-package = "lic"
-tier = 0
-repo = "lic"
-path = "benchmarks/tier0_correctness"
-metric = "stability"
-threshold_ratio_cpp = 1.0
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
 
-
 [[benchmark]]
-id = "static_small"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/static_small"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-
-
-[[benchmark]]
-id = "keepalive_pipelining"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/keepalive_pipelining"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-
-
-[[benchmark]]
-id = "proxy_loopback"
-category = "http"
-pillar = "server"
+id = "combustion_passive"
+category = "physics"
+pillar = "physics"
 package = "lic"
-tier = 5
+tier = 2
 repo = "lic"
-path = "packages/li-net-httpd"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-variant = "li_epoll"
-
-
-[[benchmark]]
-id = "static_large"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/static_large"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-
+path = "benchmarks/tier2_physics/combustion_passive"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
-id = "lb_round_robin"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/lb_round_robin"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-
-
-[[benchmark]]
-id = "lb_least_conn"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/lb_least_conn"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-
-
-[[benchmark]]
-id = "lb_peer_down"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/lb_peer_down"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "nginx"
-
-
-[[benchmark]]
-id = "rate_limit_429"
-category = "http"
-pillar = "server"
+id = "double_pendulum"
+category = "physics"
+pillar = "physics"
 package = "lic"
-tier = 5
+tier = 2
 repo = "lic"
-path = "packages/li-httpd/examples/rate_limit_static.toml"
-metric = "verify_pass"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "li"
-variant = "rate_limit"
-
-
-[[benchmark]]
-id = "https_static"
-category = "http"
-pillar = "server"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/scenarios/https_static"
-metric = "rps"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
-compare_oracle = "li"
-variant = "tls_m15_pending"
-
+path = "benchmarks/tier2_physics/double_pendulum"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
-id = "tier5_http_exploits"
-category = "security"
-pillar = "security"
-package = "lis"
-tier = 5
-repo = "lis"
-path = "benchmarks/tier5_http/harness/exploit_http.py"
-metric = "pass_rate"
-threshold_ratio_cpp = 1.0
-ph_ids = ["PH-H"]
+id = "drug_docking_diffusion"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
 
+[[benchmark]]
+id = "drug_docking_score_vina"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "drug_fep_alchemical"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "drug_litl_stages"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "drug_ml_retrain_loop"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "euler_fluid_2d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/euler_fluid_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "fdtd_waveguide_2d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/fdtd_waveguide_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "harmonic_oscillator_chain"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/harmonic_oscillator_chain"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "heat_equation_2d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/heat_equation_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_barostat_parrinello_rahman"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_constraints_rattle"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_constraints_shake"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_energy_drift"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_init_fcc_mb"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_integrator_leapfrog"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_integrator_verlet"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_lennard_jones"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/md_lennard_jones"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_longrange_ewald"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_longrange_pme"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_neighbor_cell_list"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_neighbor_verlet_skin"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_oracle_external"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_thermostat_berendsen"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "md_thermostat_nose_hoover"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "nbody_gravity"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/nbody_gravity"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "orbit_two_body"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/orbit_two_body"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "pde_cfl_timestep"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "pde_heat_implicit_jacobi"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_ase_calculator"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_ccsd"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_grid_becke"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_grid_lebedev"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_hybrid_exchange"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_scf_energy"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_xc_gga"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_xc_lda"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dft_xc_mgga"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_dispersion_d3"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_ecp"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_eri_density_fitting"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_eri_os"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_eri_screening"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_geom_opt_bfgs"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_geom_opt_internal"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_grad_analytical"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_gto_eval"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_hf_canonical_ortho"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_hf_diis"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_hf_fock_build"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_job_queue_io"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_kinetic_integrals"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_mp2"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_nuclear_attraction"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_overlap_integrals"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_property_dipole"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_property_freq"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_scf_solver"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_tddft_casida"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_tddft_rpa"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "qm_xtb_gfn"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "ragdoll_chain"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/ragdoll_chain"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "rigid_body_stack"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/rigid_body_stack"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "rigid_broadphase_bvh"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "rigid_broadphase_sap"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "rigid_constraints"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "rigid_contact_solver"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "rigid_semi_implicit"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "robo_ik_jacobian"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "robo_multibody_step"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "robo_plan_prm"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "robo_plan_rrt"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "robo_traj_opt"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "schrodinger_1d_barrier"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/schrodinger_1d_barrier"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "sph_dam_break_2d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/sph_dam_break_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "three_body"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/three_body"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "three_body_pure"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/three_body_pure"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "wave_equation_1d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wave_equation_1d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "wave_equation_2d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wave_equation_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "wind_field_bc"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/wind_field_bc"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "shared_c_kernel"
+problem_size = "tier2_default"
+size_label = "tier2 default grid"
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_export_gcode_3mf"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_infill_grid_lines"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_infill_gyroid"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_offset_perimeters"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_plane_mesh_intersect"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_polygon_clip"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_slice_layers"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_support_tree"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_thermal_warp"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
+
+[[benchmark]]
+id = "am_toolpath_arcs"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "algo_registry"
+size_label = "harness pending"
+validity_required = true
+ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "lip_smoke"
@@ -441,7 +2195,6 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-8b"]
 
-
 [[benchmark]]
 id = "lit_smoke"
 category = "tooling"
@@ -454,148 +2207,274 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-8e"]
 
-# Future: lig viewport frame time — no harness path or CSV wired to ingest yet.
 [[benchmark]]
-id = "lig_viewport_stub"
-category = "micro"
-pillar = "graphics"
-package = "lig"
-tier = 1
-repo = "lig"
-path = "unknown"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = []
-
-# Future: li-math GEMM microbench — oracle path and CSV export not defined yet.
-[[benchmark]]
-id = "li_math_gemm_stub"
-category = "micro"
-pillar = "numerics"
-package = "li-math"
-tier = 1
-repo = "li-math"
-path = "unknown"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-7e"]
-
-[[benchmark]]
-id = "registry_publish"
-category = "database"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_registry/scenarios/registry_publish"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-DB-5"]
-compare_oracle = "postgres"
-variant = "registry_oltp"
-
-[[benchmark]]
-id = "registry_read_by_name"
-category = "database"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_registry/scenarios/registry_read_by_name"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-DB-5"]
-compare_oracle = "postgres"
-variant = "registry_oltp"
-
-[[benchmark]]
-id = "registry_read_latest"
-category = "database"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_registry/scenarios/registry_read_latest"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-DB-5"]
-compare_oracle = "postgres"
-variant = "registry_oltp"
-
-[[benchmark]]
-id = "graph_dep_closure"
-category = "database"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_graph_registry/scenarios/graph_dep_closure"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-DB-G1"]
-compare_oracle = "postgres_age"
-variant = "registry_graph"
-
-[[benchmark]]
-id = "graph_cycle_detect"
-category = "database"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_graph_registry/scenarios/graph_cycle_detect"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-ph_ids = ["PH-DB-G1"]
-compare_oracle = "postgres_age"
-variant = "registry_graph"
-
-[[benchmark]]
-id = "ann_recall_at_10_10k"
-category = "database"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_vector_ann/scenarios/ann_recall_at_10_10k"
-metric = "recall_at_10"
+id = "https_static"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/https_static"
+metric = "rps"
 threshold_ratio_cpp = 1.0
-ph_ids = ["PH-DB-8", "PH-DB-G2"]
-compare_oracle = "faiss_cpu"
-variant = "vector_ann"
+compare_oracle = "li"
+variant = "tls_m15_pending"
+problem_size = "tls_static"
+size_label = "TLS static M15"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "keepalive_pipelining"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/keepalive_pipelining"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+problem_size = "pipeline_16"
+size_label = "16-pipeline keepalive"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "lb_least_conn"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_least_conn"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "lb_peer_down"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_peer_down"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "lb_round_robin"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/lb_round_robin"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "proxy_loopback"
+category = "http"
+pillar = "server"
+package = "lic"
+tier = 5
+repo = "lic"
+path = "packages/li-net-httpd"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+variant = "li_epoll"
+problem_size = "loopback_wrk"
+size_label = "loopback wrk"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "rate_limit_429"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "benchmarks"
+path = "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429"
+metric = "verify_pass"
+threshold_ratio_cpp = 1.0
+compare_oracle = "li"
+variant = "rate_limit"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "static_large"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/static_large"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+problem_size = "payload_1mib"
+size_label = "1 MiB file.bin"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "static_small"
+category = "http"
+pillar = "server"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/scenarios/static_small"
+metric = "rps"
+threshold_ratio_cpp = 1.0
+compare_oracle = "nginx"
+problem_size = "payload_1k"
+size_label = "1 KiB static /"
+ph_ids = ["PH-H"]
+
+[[benchmark]]
+id = "tier5_http_exploits"
+category = "security"
+pillar = "security"
+package = "lis"
+tier = 5
+repo = "lis"
+path = "benchmarks/tier5_http/harness/exploit_http.py"
+metric = "pass_rate"
+threshold_ratio_cpp = 1.0
+ph_ids = ["PH-H"]
 
 [[benchmark]]
 id = "ann_qps_10k"
 category = "database"
+package = "lidb"
 tier = 6
 repo = "lidb"
 path = "benchmarks/tier_db_vector_ann/scenarios/ann_qps_10k"
 metric = "queries_per_sec"
 threshold_ratio_cpp = 1.0
-ph_ids = ["PH-DB-8", "PH-DB-G2"]
 compare_oracle = "faiss_cpu"
 variant = "vector_ann"
+ph_ids = ["PH-DB-8", "PH-DB-G2"]
+
+[[benchmark]]
+id = "ann_recall_at_10_10k"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_vector_ann/scenarios/ann_recall_at_10_10k"
+metric = "recall_at_10"
+threshold_ratio_cpp = 1.0
+compare_oracle = "faiss_cpu"
+variant = "vector_ann"
+ph_ids = ["PH-DB-8", "PH-DB-G2"]
 
 [[benchmark]]
 id = "ann_recall_at_10_1m"
 category = "database"
+package = "lidb"
 tier = 6
 repo = "lidb"
 path = "benchmarks/tier_db_vector_ann/scenarios/ann_recall_at_10_1m"
 metric = "recall_at_10"
 threshold_ratio_cpp = 1.0
-ph_ids = ["PH-DB-8", "PH-DB-G2"]
 compare_oracle = "faiss_cpu"
 variant = "vector_ann_nightly"
+ph_ids = ["PH-DB-8", "PH-DB-G2"]
 
 [[benchmark]]
 id = "gpu_ann_speedup_10k"
 category = "database"
+package = "lidb"
 tier = 6
 repo = "lidb"
 path = "benchmarks/tier_db_gpu_speedup/scenarios/gpu_ann_speedup_10k"
 metric = "speedup_ratio"
 threshold_ratio_cpp = 1.5
-ph_ids = ["PH-DB-G2"]
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup"
+ph_ids = ["PH-DB-G2"]
 
 [[benchmark]]
 id = "gpu_ann_speedup_1m"
 category = "database"
+package = "lidb"
 tier = 6
 repo = "lidb"
 path = "benchmarks/tier_db_gpu_speedup/scenarios/gpu_ann_speedup_1m"
 metric = "speedup_ratio"
 threshold_ratio_cpp = 1.5
-ph_ids = ["PH-DB-G2"]
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup_nightly"
+ph_ids = ["PH-DB-G2"]
+
+[[benchmark]]
+id = "graph_cycle_detect"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_graph_registry/scenarios/graph_cycle_detect"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres_age"
+variant = "registry_graph"
+ph_ids = ["PH-DB-G1"]
+
+[[benchmark]]
+id = "graph_dep_closure"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_graph_registry/scenarios/graph_dep_closure"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres_age"
+variant = "registry_graph"
+ph_ids = ["PH-DB-G1"]
+
+[[benchmark]]
+id = "registry_publish"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_publish"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres"
+variant = "registry_oltp"
+ph_ids = ["PH-DB-5"]
+
+[[benchmark]]
+id = "registry_read_by_name"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_read_by_name"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres"
+variant = "registry_oltp"
+ph_ids = ["PH-DB-5"]
+
+[[benchmark]]
+id = "registry_read_latest"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_read_latest"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres"
+variant = "registry_oltp"
+ph_ids = ["PH-DB-5"]

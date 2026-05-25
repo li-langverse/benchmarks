@@ -180,6 +180,64 @@ main {
   margin-top: 0.75rem;
 }
 
+.perf-not-claimable {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--red);
+  background: rgba(248, 81, 73, 0.12);
+  font-size: 0.9rem;
+}
+
+.perf-not-claimable p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.validity-panel {
+  margin-top: 0.5rem;
+}
+
+.validity-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.validity-pass {
+  background: color-mix(in srgb, var(--green) 20%, transparent);
+  color: var(--green);
+  border: 1px solid color-mix(in srgb, var(--green) 40%, transparent);
+}
+
+.validity-fail {
+  background: color-mix(in srgb, var(--red) 20%, transparent);
+  color: var(--red);
+  border: 1px solid color-mix(in srgb, var(--red) 40%, transparent);
+}
+
+.validity-unknown {
+  background: color-mix(in srgb, var(--muted) 20%, transparent);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.pillar-perf-counts {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.perf-muted {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
 .regression-banner {
   background: rgba(248, 81, 73, 0.1);
   border: 1px solid var(--red);
@@ -246,6 +304,23 @@ main {
   color: var(--red);
 }
 
+.release-freshness-banner {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+}
+
+.release-freshness-banner.freshness-warn {
+  border-color: var(--yellow);
+}
+
+.release-freshness-banner.freshness-stale,
+.release-freshness-banner.freshness-missing {
+  border-color: var(--red);
+}
+
 .pillar-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -297,6 +372,12 @@ main {
 }
 
 @media (max-width: 767px) {
+  .site-header,
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .tier-strip {
     display: flex;
     overflow-x: auto;
@@ -306,6 +387,18 @@ main {
     flex: 0 0 140px;
     scroll-snap-align: start;
   }
+}
+
+.matrix-filter-meta {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.matrix-filter-meta {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .tier-card {

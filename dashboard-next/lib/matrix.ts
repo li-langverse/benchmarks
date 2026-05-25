@@ -10,6 +10,9 @@ export type MatrixRow = {
   status: string;
   ratio_vs_reference: number | null;
   ph_ids: string[];
+  problem_size?: string | null;
+  size_label?: string | null;
+  base_id?: string | null;
 };
 
 export type BenchmarkMatrix = {
