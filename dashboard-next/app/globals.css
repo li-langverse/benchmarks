@@ -61,6 +61,34 @@ a:hover {
   background: color-mix(in srgb, var(--muted) 25%, transparent);
   color: var(--muted);
 }
+.badge-pending {
+  border: 1px dashed var(--muted);
+  font-style: italic;
+}
+.badge-validity-fail {
+  background: color-mix(in srgb, var(--red) 20%, transparent);
+  color: var(--red);
+}
+.badge-validity-unknown {
+  background: color-mix(in srgb, var(--yellow) 18%, transparent);
+  color: var(--yellow);
+}
+
+.coverage-honesty {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+}
+.coverage-honesty-sub {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.matrix-coverage-honesty {
+  margin-top: 0.75rem;
+}
 
 .site-header {
   padding: 1.5rem 2rem;
@@ -445,6 +473,18 @@ main {
   color: var(--red);
 }
 .counts .u {
+  color: var(--muted);
+}
+.counts .p {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.tier-card-section-label {
+  margin: 0.35rem 0 0.15rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
   color: var(--muted);
 }
 
