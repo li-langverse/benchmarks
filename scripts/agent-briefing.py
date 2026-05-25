@@ -36,6 +36,7 @@ PREFLIGHT_SCRIPTS = [
     ("pr_branch_hygiene", ["python3", "scripts/pr-branch-hygiene.py"]),
     ("ci_bug_triage", ["python3", "scripts/ci-bug-triage.py"]),
     ("security_cwe_audit", ["python3", "scripts/security-cwe-audit.py"]),
+    ("cwe_feed_sync", ["python3", "scripts/security-cwe-feed-sync.py"]),
     ("workspace_dirty_sweep", ["python3", "scripts/workspace-dirty-sweep.py"]),
 ]
 
@@ -111,7 +112,7 @@ CURSOR_AGENTS = [
         "prompt": "li-cursor-agents/prompts/security-auditor.md",
         "skill": "li-ecosystem-discipline",
         "when": "CVE/CWE catalog gaps across org repos",
-        "preflight": ["security_cwe_audit"],
+        "preflight": ["security_cwe_audit", "cwe_feed_sync"],
     },
     {
         "id": "issue_planner",
@@ -382,14 +383,21 @@ def recommend_agents(data: dict) -> list[dict]:
             )
 
     sec = data.get("security_cwe_audit") or {}
+    feed = data.get("cwe_feed_delta") or {}
     if isinstance(sec, dict):
         gaps_n = int((sec.get("summary") or {}).get("catalog_gaps") or 0)
         wf_n = int((sec.get("summary") or {}).get("repos_without_security_workflow") or 0)
-        if (gaps_n > 0 or wf_n > 0) and not _has_agent(rec, "security_auditor"):
+        feed_missing = 0
+        if isinstance(feed, dict):
+            feed_missing = len(feed.get("missing_in_catalog") or [])
+        if (gaps_n > 0 or wf_n > 0 or feed_missing > 0) and not _has_agent(rec, "security_auditor"):
             rec.append(
                 {
                     "agent": "security_auditor",
-                    "reason": f"CWE/catalog gaps={gaps_n}, repos missing security workflow={wf_n}",
+                    "reason": (
+                        f"CWE/catalog gaps={gaps_n}, Top25 missing in catalog={feed_missing}, "
+                        f"repos missing security workflow={wf_n}"
+                    ),
                 }
             )
 
@@ -569,6 +577,7 @@ def main() -> int:
         "pr_branch_hygiene": load_json(LATEST / "pr-branch-hygiene.json"),
         "ci_bug_triage": load_json(LATEST / "ci-bug-triage.json"),
         "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
+        "cwe_feed_delta": load_json(LATEST / "security-cwe-feed-delta.json"),
         "workspace_dirty_sweep": load_json(LATEST / "workspace-dirty-sweep.json"),
         "local_ci_results": load_json(LATEST / "local-ci-results.json"),
         "recommended_agents": [],
