@@ -22,15 +22,72 @@ HTTP_LANG_ORDER = [
     "bun",
     "harness",
 ]
-CATEGORY_ORDER = ["micro", "physics", "http", "tooling", "security", "correctness"]
+CATEGORY_ORDER = [
+    "micro",
+    "physics",
+    "http",
+    "database",
+    "tooling",
+    "security",
+    "correctness",
+]
 CATEGORY_LABELS = {
     "micro": "Micro / SIMD & linear algebra",
     "physics": "Physics & simulations",
     "http": "HTTP / webserver (li-httpd · lis)",
+    "database": "Registry OLTP (lidb vs Postgres)",
     "tooling": "Ecosystem tooling (lip · lit · lic compile)",
     "security": "Security gates (CVE · webserver registry)",
     "correctness": "Correctness & stability",
 }
+PILLAR_ORDER = [
+    "compiler",
+    "numerics",
+    "physics",
+    "server",
+    "database",
+    "tooling",
+    "security",
+    "graphics",
+    "correctness",
+]
+PILLAR_LABELS = {
+    "compiler": "Compiler & codegen",
+    "numerics": "Numerics & SIMD / linear algebra",
+    "physics": "Physics & simulations",
+    "server": "HTTP / webserver",
+    "database": "Database & registry OLTP",
+    "tooling": "Ecosystem tooling",
+    "security": "Security gates",
+    "graphics": "Graphics & viewport",
+    "correctness": "Correctness & stability",
+}
+
+
+def benchmark_pillar(cfg: dict) -> str:
+    return str(cfg.get("pillar") or cfg.get("category", "micro"))
+
+
+def benchmark_package(cfg: dict) -> str:
+    if pkg := cfg.get("package"):
+        return str(pkg)
+    return str(cfg.get("repo", "lic"))
+
+
+def build_pillars(charts_by_pillar: dict[str, list[dict]]) -> dict[str, dict]:
+    pillars: dict[str, dict] = {}
+    for pillar in PILLAR_ORDER:
+        if pillar not in charts_by_pillar:
+            continue
+        pillars[pillar] = {
+            "label": PILLAR_LABELS.get(pillar, pillar),
+            "charts": sorted(charts_by_pillar[pillar], key=lambda c: c["id"]),
+        }
+    return pillars
+
+
+def row_meta(cfg: dict) -> dict[str, str]:
+    return {"pillar": benchmark_pillar(cfg), "package": benchmark_package(cfg)}
 
 
 def load_catalog() -> dict[str, dict]:
@@ -177,6 +234,8 @@ def build_security_chart(security_path: Path) -> dict | None:
         "repo": "lic",
         "path": "scripts/ci-security.sh",
         "status": "unknown",
+        "pillar": "security",
+        "package": "lic",
     }
 
 
@@ -217,6 +276,8 @@ def build_stability_chart(stability_path: Path) -> dict | None:
         "repo": "lic",
         "path": "benchmarks/tier0_correctness",
         "status": "unknown",
+        "pillar": "correctness",
+        "package": "lic",
     }
 
 
@@ -251,6 +312,7 @@ def build_perf_chart(
     if metric in ("rps", "throughput") and ratio is not None:
         ratio = 1.0 / ratio if ratio > 0 else None
     st = status_for_ratio(ratio, threshold)
+    meta = row_meta(cfg)
     return {
         "id": bench_id,
         "title": bench_id.replace("_", " "),
@@ -264,7 +326,69 @@ def build_perf_chart(
         "path": cfg.get("path", ""),
         "status": st,
         "ratio_vs_reference": round(ratio, 4) if ratio is not None else None,
+        "pillar": meta["pillar"],
+        "package": meta["package"],
     }
+
+
+def is_pending_catalog_row(bench_id: str, cfg: dict, by_bench: dict[str, list]) -> bool:
+    if cfg.get("path") == "unknown" or bench_id.endswith("_stub"):
+        return True
+    category = cfg.get("category", "micro")
+    return category in ("tooling",) and bench_id not in by_bench
+
+
+def append_pending_row(
+    *,
+    bench_id: str,
+    cfg: dict,
+    category: str,
+    metric: str,
+    charts_by_cat: dict[str, list[dict]],
+    charts_by_pillar: dict[str, list[dict]],
+    tier_counts: dict[str, dict[str, int]],
+    results: list[dict],
+) -> None:
+    meta = row_meta(cfg)
+    chart = {
+        "id": bench_id,
+        "title": bench_id,
+        "metric": metric,
+        "unit": "",
+        "lower_is_better": True,
+        "reference_lang": "cpp",
+        "series": [],
+        "grouped": False,
+        "repo": cfg.get("repo", "lic"),
+        "path": cfg.get("path", ""),
+        "status": "unknown",
+        "pending": True,
+        "pillar": meta["pillar"],
+        "package": meta["package"],
+    }
+    charts_by_cat[category].append(chart)
+    charts_by_pillar[meta["pillar"]].append(chart)
+    tier_counts[str(cfg.get("tier", 3))]["unknown"] += 1
+    results.append(
+        {
+            "benchmark": bench_id,
+            "repo": cfg.get("repo", "lic"),
+            "tier": cfg.get("tier", 0),
+            "category": category,
+            "metric": metric,
+            "li_value": None,
+            "cpp_value": None,
+            "ratio_vs_cpp": None,
+            "unit": None,
+            "variant": cfg.get("variant"),
+            "status": "unknown",
+            "ph_ids": cfg.get("ph_ids", []),
+            "path": cfg.get("path", ""),
+            "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+            "ci_url": "",
+            **meta,
+        }
+    )
 
 
 def main() -> int:
@@ -288,19 +412,23 @@ def main() -> int:
         lambda: {"green": 0, "yellow": 0, "red": 0, "unknown": 0}
     )
     charts_by_cat: dict[str, list[dict]] = defaultdict(list)
+    charts_by_pillar: dict[str, list[dict]] = defaultdict(list)
 
     sec_chart = build_security_chart(security_csv)
     if sec_chart:
         charts_by_cat["security"].append(sec_chart)
+        charts_by_pillar[sec_chart["pillar"]].append(sec_chart)
 
     for bench_id, cfg in catalog.items():
         category = cfg.get("category", "micro")
         metric = cfg.get("metric", "wall_time")
+        meta = row_meta(cfg)
 
         if category == "correctness" and bench_id == "tier0_stability":
             chart = build_stability_chart(stability_csv)
             if chart:
                 charts_by_cat["correctness"].append(chart)
+                charts_by_pillar[chart["pillar"]].append(chart)
             tier_counts[str(cfg.get("tier", 0))]["unknown"] += 1
             results.append(
                 {
@@ -319,51 +447,27 @@ def main() -> int:
                     "path": cfg.get("path", ""),
                     "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
                     "ci_url": "",
+                    **meta,
                 }
             )
             continue
 
-        if category in ("tooling",) and bench_id not in by_bench:
-            charts_by_cat[category].append(
-                {
-                    "id": bench_id,
-                    "title": bench_id,
-                    "metric": metric,
-                    "unit": "",
-                    "lower_is_better": True,
-                    "reference_lang": "cpp",
-                    "series": [],
-                    "grouped": False,
-                    "repo": cfg.get("repo", "lic"),
-                    "path": cfg.get("path", ""),
-                    "status": "unknown",
-                    "pending": True,
-                }
-            )
-            tier_counts[str(cfg.get("tier", 3))]["unknown"] += 1
-            results.append(
-                {
-                    "benchmark": bench_id,
-                    "repo": cfg.get("repo", "lic"),
-                    "tier": cfg.get("tier", 0),
-                    "category": category,
-                    "metric": metric,
-                    "li_value": None,
-                    "cpp_value": None,
-                    "ratio_vs_cpp": None,
-                    "unit": None,
-                    "variant": cfg.get("variant"),
-                    "status": "unknown",
-                    "ph_ids": cfg.get("ph_ids", []),
-                    "path": cfg.get("path", ""),
-                    "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
-                    "ci_url": "",
-                }
+        if is_pending_catalog_row(bench_id, cfg, by_bench):
+            append_pending_row(
+                bench_id=bench_id,
+                cfg=cfg,
+                category=category,
+                metric=metric,
+                charts_by_cat=charts_by_cat,
+                charts_by_pillar=charts_by_pillar,
+                tier_counts=tier_counts,
+                results=results,
             )
             continue
 
         chart = build_perf_chart(bench_id, cfg, raw)
         charts_by_cat[category].append(chart)
+        charts_by_pillar[meta["pillar"]].append(chart)
 
         li_val = next((s["value"] for s in chart["series"] if s["lang"] == "li"), None)
         ref = chart["reference_lang"]
@@ -391,6 +495,7 @@ def main() -> int:
                 "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
                 "ci_url": "",
                 "langs": chart["series"],
+                **meta,
             }
         )
 
@@ -403,16 +508,19 @@ def main() -> int:
             "charts": sorted(charts_by_cat[cat], key=lambda c: c["id"]),
         }
 
+    pillars = build_pillars(charts_by_pillar)
+
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": {
             "lic_csv": str(lic_csv),
             "lis_csv": str(lis_csv),
-         "stability_csv": str(stability_csv),
-         "security_csv": str(security_csv),
-         },
+            "stability_csv": str(stability_csv),
+            "security_csv": str(security_csv),
+        },
         "tier_counts": dict(tier_counts),
         "categories": categories,
+        "pillars": pillars,
         "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),
     }
 
@@ -421,7 +529,8 @@ def main() -> int:
     (out_dir / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(
         f"wrote {out_dir / 'summary.json'} "
-        f"({len(results)} rows, {sum(len(c['charts']) for c in categories.values())} charts)"
+        f"({len(results)} rows, {sum(len(c['charts']) for c in categories.values())} charts, "
+        f"{len(pillars)} pillars)"
     )
     return 0
 

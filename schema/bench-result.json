@@ -18,6 +18,9 @@
     "ratio_vs_cpp": { "type": ["number", "null"] },
     "repo": { "type": "string" },
     "tier": { "type": "integer" },
+    "pillar": { "type": "string" },
+    "package": { "type": "string" },
+    "tags": { "type": "array", "items": { "type": "string" } },
     "ph_ids": { "type": "array", "items": { "type": "string" } },
     "ci_url": { "type": "string" }
   }

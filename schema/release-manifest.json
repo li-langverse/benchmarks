@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://li-langverse.github.io/benchmarks/schema/release-manifest.json",
+  "title": "ReleaseManifest",
+  "description": "Per-package release metadata dispatched on tag v* from lic, lis, lip, lit, lidb, lig, li-math.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "package",
+    "version",
+    "git_sha",
+    "published_at",
+    "bench_required",
+    "artifacts"
+  ],
+  "properties": {
+    "package": {
+      "type": "string",
+      "description": "Ecosystem package id (lic, lis, lip, lit, lidb, lig, li-math)."
+    },
+    "version": {
+      "type": "string",
+      "description": "Semver or tag name (e.g. v0.4.0)."
+    },
+    "git_sha": {
+      "type": "string",
+      "minLength": 7,
+      "description": "Full or short commit SHA at publish time."
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when the release was published."
+    },
+    "bench_required": {
+      "type": "boolean",
+      "description": "When true, benchmarks repo should refresh CSV ingest for this package; never implies fabricated bench rows."
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "kind"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Repo-relative path under benchmarks (incoming dir or dispatch artifact)."
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["csv", "manifest", "other"]
+          }
+        }
+      }
+    }
+  }
+}

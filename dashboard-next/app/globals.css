@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --border: #30363d;
+  --text: #e6edf3;
+  --muted: #8b949e;
+  --green: #3fb950;
+  --yellow: #d29922;
+  --red: #f85149;
+  --accent: #58a6ff;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.9em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+.badge-green {
+  background: color-mix(in srgb, var(--green) 25%, transparent);
+  color: var(--green);
+}
+.badge-yellow {
+  background: color-mix(in srgb, var(--yellow) 25%, transparent);
+  color: var(--yellow);
+}
+.badge-red {
+  background: color-mix(in srgb, var(--red) 25%, transparent);
+  color: var(--red);
+}
+.badge-unknown {
+  background: color-mix(in srgb, var(--muted) 25%, transparent);
+  color: var(--muted);
+}
+
+.site-header {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.site-header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.site-header h1 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-header p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-nav,
+.pillar-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.site-nav a,
+.pillar-nav a {
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.pillar-nav a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+main {
+  padding: 1.5rem 2rem 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* WP5 bento overview */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.bento-full {
+  grid-column: 1 / -1;
+}
+
+.bento-regression {
+  grid-column: span 8;
+}
+
+.bento-freshness {
+  grid-column: span 4;
+}
+
+@media (max-width: 1023px) {
+  .bento-regression,
+  .bento-freshness {
+    grid-column: 1 / -1;
+  }
+}
+
+.ingest-meta {
+  grid-column: 1 / -1;
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.honesty-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.honesty-strip p {
+  margin: 0 0 0.5rem;
+}
+
+.honesty-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.honesty-links {
+  margin-top: 0.75rem;
+}
+
+.regression-banner {
+  background: rgba(248, 81, 73, 0.1);
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  min-height: 80px;
+}
+
+.regression-banner.regression-empty {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.regression-banner h2,
+.package-freshness h2,
+.bento-section-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.regression-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.regression-ratio {
+  color: var(--red);
+}
+
+.package-freshness {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  min-height: 80px;
+}
+
+.freshness-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.85rem;
+}
+
+.freshness-row {
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.freshness-warn .freshness-version,
+.freshness-warn .freshness-age {
+  color: var(--yellow);
+}
+
+.freshness-stale .freshness-version,
+.freshness-stale .freshness-age,
+.freshness-missing {
+  color: var(--red);
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.pillar-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  min-height: 160px;
+}
+
+.pillar-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+}
+
+.pillar-card h3 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.pillar-card-desc {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pillar-hotspots {
+  list-style: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.pillar-card-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.tier-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .tier-strip {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .tier-card {
+    flex: 0 0 140px;
+    scroll-snap-align: start;
+  }
+}
+
+.tier-card {
+  min-height: 120px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.tier-card:hover {
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+.tier-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.tier-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.counts {
+  display: flex;
+  gap: 0.75rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+}
+
+.counts .g {
+  color: var(--green);
+}
+.counts .y {
+  color: var(--yellow);
+}
+.counts .r {
+  color: var(--red);
+}
+.counts .u {
+  color: var(--muted);
+}
+
+.bench-search {
+  grid-column: 1 / -1;
+}

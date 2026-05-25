@@ -1,6 +1,8 @@
 [[benchmark]]
 id = "simd_dot"
 category = "micro"
+pillar = "numerics"
+package = "lic"
 tier = 1
 repo = "lic"
 path = "benchmarks/tier1_micro/simd_dot"
