@@ -14,8 +14,32 @@
     "git_sha": { "type": "string" },
     "cpu_model": { "type": "string" },
     "flags": { "type": "string" },
+    "os": {
+      "type": "string",
+      "description": "Host OS for this measurement (linux, darwin, windows, unknown)"
+    },
+    "passed": {
+      "type": "boolean",
+      "description": "Harness/tier0 correctness pass when exported by producer"
+    },
     "status": { "enum": ["green", "yellow", "red", "unknown"] },
     "ratio_vs_cpp": { "type": ["number", "null"] },
+    "ratio_vs_sota": {
+      "type": ["number", "null"],
+      "description": "Li value relative to best competitor in the series (Li is never SOTA)"
+    },
+    "sota_lang": {
+      "type": ["string", "null"],
+      "description": "Competitor language with best metric in the row set; never li"
+    },
+    "validity_status": {
+      "enum": ["pass", "fail", "unknown"],
+      "description": "Correctness/stability gate for perf claims"
+    },
+    "validity_source": {
+      "type": "string",
+      "description": "Provenance: stability.csv, latest.csv:passed, metric:verify_pass, none"
+    },
     "repo": { "type": "string" },
     "tier": { "type": "integer" },
     "pillar": { "type": "string" },

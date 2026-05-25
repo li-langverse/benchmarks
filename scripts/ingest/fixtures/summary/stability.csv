@@ -1,0 +1,3 @@
+test,lang,passed
+simd_dot,li,true
+simd_dot,cpp,true

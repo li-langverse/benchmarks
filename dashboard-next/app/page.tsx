@@ -1,15 +1,21 @@
 import Link from "next/link";
 import { BenchmarkSearch } from "@/components/benchmark-search";
 import { Badge } from "@/components/ui/badge";
-import { getPillar } from "@/lib/pillars";
+import { getPillar, PILLAR_IDS } from "@/lib/pillars";
 import {
   countStatusesByPillar,
+  countValidityUnknownByPillar,
   packageFreshnessRows,
   regressionRows,
   topBenchmarksByStatus,
 } from "@/lib/overview";
-import { hasIndexedReleases, loadReleaseIndex } from "@/lib/release-index";
+import {
+  hasIndexedReleases,
+  loadReleaseIndex,
+} from "@/lib/release-index";
+import { releaseFreshnessBanner } from "@/lib/release-freshness";
 import { loadSummary } from "@/lib/summary";
+import { pillarPerfCounts } from "@/lib/validity";
 
 const TIER_ORDER = ["0", "1", "2", "3", "5"];
 
@@ -27,9 +33,11 @@ export default function HomePage() {
   const summary = loadSummary();
   const releaseIndex = loadReleaseIndex();
   const pillarCounts = countStatusesByPillar(summary.rows);
-  const reds = regressionRows(summary);
+  const validityUnknownByPillar = countValidityUnknownByPillar(summary.rows);
+  const reds = regressionRows(summary.rows);
+  const osFilterValues = summary.reporting?.os_values?.filter((o) => o !== "unknown") ?? [];
   const freshness = packageFreshnessRows(releaseIndex, summary.generated_at);
-  const pillarIds = Object.keys(summary.pillars ?? {}).sort();
+  const releaseBanner = releaseFreshnessBanner(releaseIndex, summary.generated_at);
 
   return (
     <main className="bento">
@@ -43,11 +51,30 @@ export default function HomePage() {
         ) : null}
       </p>
 
+      {releaseBanner ? (
+        <section
+          className={`release-freshness-banner bento-full freshness-${releaseBanner.level}`}
+          role="status"
+          aria-label="Release index freshness"
+        >
+          <p>{releaseBanner.message}</p>
+        </section>
+      ) : null}
+
       <section className="honesty-strip bento-full" aria-label="Measurement honesty">
         <p>
-          <strong>Green rows are wall-clock ratios vs catalog reference</strong> — not formal
-          proof or correctness certificates.
+          <strong>Green perf requires validity pass</strong> — tier0/stability or CSV{" "}
+          <code>passed</code>. Ratios vs <strong>SOTA</strong> (best competitor; Li never SOTA)
+          and vs catalog <code>compare_oracle</code> are separate.
         </p>
+        <p>
+          Red or unknown perf when validity failed or is missing — even if wall time looks good.
+        </p>
+        {osFilterValues.length > 0 ? (
+          <p className="mono">
+            OS in this ingest: {osFilterValues.join(", ")}
+          </p>
+        ) : null}
         <p className="honesty-variants">
           <span className="honesty-variants-label">Variants:</span>
           {VARIANT_LEGEND.map((v) => (
@@ -157,8 +184,8 @@ export default function HomePage() {
       <section className="pillar-bento bento-full" aria-label="Pillar summaries">
         <h2 className="bento-section-title">Pillars</h2>
         <div className="pillar-grid">
-          {pillarIds.map((pillarId) => {
-            const block = summary.pillars![pillarId];
+          {PILLAR_IDS.map((pillarId) => {
+            const block = summary.pillars?.[pillarId];
             const counts = pillarCounts[pillarId] ?? {
               green: 0,
               yellow: 0,
@@ -166,13 +193,23 @@ export default function HomePage() {
               unknown: 0,
             };
             const nav = getPillar(pillarId);
+            const label = block?.label ?? nav?.label ?? pillarId;
+            const chartCount = block?.charts.length ?? 0;
+            const rowTotal =
+              counts.green + counts.yellow + counts.red + counts.unknown;
             const redIds = topBenchmarksByStatus(summary.rows, pillarId, "red");
-            const unknownIds = topBenchmarksByStatus(summary.rows, pillarId, "unknown");
+            const unknownIds = topBenchmarksByStatus(
+              summary.rows,
+              pillarId,
+              "unknown",
+            );
+            const validityUnknown = validityUnknownByPillar[pillarId] ?? 0;
+            const perf = pillarPerfCounts(summary.rows, pillarId);
 
             return (
               <article key={pillarId} className="pillar-card chart-card">
                 <h3>
-                  <Link href={`/pillar/${pillarId}/`}>{block.label}</Link>
+                  <Link href={`/pillar/${pillarId}/`}>{label}</Link>
                 </h3>
                 {nav ? (
                   <p className="pillar-card-desc">{nav.description}</p>
@@ -183,22 +220,34 @@ export default function HomePage() {
                   <span className="r">{counts.red} fail</span>
                   <span className="u">{counts.unknown} ?</span>
                 </div>
+                {rowTotal === 0 ? (
+                  <p className="pillar-card-meta mono">No catalog rows in this ingest</p>
+                ) : null}
                 {(redIds.length > 0 || unknownIds.length > 0) && (
                   <ul className="pillar-hotspots mono">
                     {redIds.map((id) => (
                       <li key={`r-${id}`}>
-                        <Link href={`/bench/${id}/`}>{id}</Link> <Badge status="red" />
+                        <Link href={`/bench/${id}/`}>{id}</Link>{" "}
+                        <Badge status="red" />
                       </li>
                     ))}
                     {unknownIds.map((id) => (
                       <li key={`u-${id}`}>
-                        <Link href={`/bench/${id}/`}>{id}</Link> <Badge status="unknown" />
+                        <Link href={`/bench/${id}/`}>{id}</Link>{" "}
+                        <Badge status="unknown" />
                       </li>
                     ))}
                   </ul>
                 )}
+                {validityUnknown > 0 ? (
+                  <p className="pillar-card-meta mono pillar-validity-unknown">
+                    {validityUnknown} row{validityUnknown === 1 ? "" : "s"} with unknown
+                    validity
+                  </p>
+                ) : null}
                 <p className="pillar-card-meta mono">
-                  {block.charts.length} chart{block.charts.length === 1 ? "" : "s"} in ingest
+                  {chartCount} chart{chartCount === 1 ? "" : "s"} · {rowTotal} row
+                  {rowTotal === 1 ? "" : "s"}
                 </p>
               </article>
             );

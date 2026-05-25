@@ -41,15 +41,15 @@ CATEGORY_LABELS = {
     "correctness": "Correctness & stability",
 }
 PILLAR_ORDER = [
-    "compiler",
     "numerics",
-    "physics",
+    "compiler",
     "server",
-    "database",
-    "tooling",
+    "physics",
+    "proofs",
     "security",
+    "database",
     "graphics",
-    "correctness",
+    "tooling",
 ]
 PILLAR_LABELS = {
     "compiler": "Compiler & codegen",
@@ -60,12 +60,16 @@ PILLAR_LABELS = {
     "tooling": "Ecosystem tooling",
     "security": "Security gates",
     "graphics": "Graphics & viewport",
+    "proofs": "Proofs & correctness gates",
     "correctness": "Correctness & stability",
 }
 
 
 def benchmark_pillar(cfg: dict) -> str:
-    return str(cfg.get("pillar") or cfg.get("category", "micro"))
+    pillar = str(cfg.get("pillar") or cfg.get("category", "micro"))
+    if pillar == "correctness":
+        return "proofs"
+    return pillar
 
 
 def benchmark_package(cfg: dict) -> str:
@@ -77,11 +81,10 @@ def benchmark_package(cfg: dict) -> str:
 def build_pillars(charts_by_pillar: dict[str, list[dict]]) -> dict[str, dict]:
     pillars: dict[str, dict] = {}
     for pillar in PILLAR_ORDER:
-        if pillar not in charts_by_pillar:
-            continue
+        charts = charts_by_pillar.get(pillar, [])
         pillars[pillar] = {
             "label": PILLAR_LABELS.get(pillar, pillar),
-            "charts": sorted(charts_by_pillar[pillar], key=lambda c: c["id"]),
+            "charts": sorted(charts, key=lambda c: c["id"]),
         }
     return pillars
 
@@ -124,6 +127,218 @@ def status_for_ratio(ratio: float | None, threshold: float) -> str:
     return "red"
 
 
+def is_sota_candidate(lang: str) -> bool:
+    """Li is never SOTA; harness rows are infra, not competitive oracles."""
+    return bool(lang) and lang not in ("li", "harness")
+
+
+def normalize_os(raw: str | None) -> str:
+    if not raw:
+        return "unknown"
+    os = raw.strip().lower()
+    if os in ("linux", "darwin", "windows"):
+        return os
+    if os in ("macos", "osx"):
+        return "darwin"
+    return os or "unknown"
+
+
+def csv_passed(row: dict) -> bool | None:
+    raw = row.get("passed")
+    if raw is None or raw == "":
+        return None
+    return str(raw).strip().lower() in ("true", "1", "yes", "pass")
+
+
+def bench_os(rows: list[dict], bench_id: str, *, variant: str | None = None) -> str:
+    """Primary OS tag for a benchmark row (Li row preferred)."""
+    bench_rows = [r for r in rows if r.get("benchmark") == bench_id]
+    if variant:
+        li_rows = [
+            r
+            for r in bench_rows
+            if r.get("lang") == "li" and (r.get("variant") or "") == variant
+        ]
+    else:
+        li_rows = [r for r in bench_rows if r.get("lang") == "li"]
+    for r in li_rows + bench_rows:
+        os = normalize_os(r.get("os") or r.get("OS"))
+        if os != "unknown":
+            return os
+    return "unknown"
+
+
+def metric_lower_is_better(metric: str) -> bool:
+    return metric in ("wall_time", "latency", "latency_p95")
+
+
+def compute_sota(
+    series: list[dict], *, lower_is_better: bool
+) -> tuple[str | None, float | None]:
+    competitors = [s for s in series if is_sota_candidate(s.get("lang", ""))]
+    if not competitors:
+        return None, None
+    pick = min if lower_is_better else max
+    best = pick(competitors, key=lambda s: s["value"])
+    return best["lang"], best["value"]
+
+
+def ratio_li_vs_ref(
+    li_val: float | None,
+    ref_val: float | None,
+    *,
+    metric: str,
+    lower_is_better: bool,
+) -> float | None:
+    if li_val is None or ref_val is None or ref_val <= 0:
+        return None
+    ratio = li_val / ref_val
+    if not lower_is_better and ratio > 0:
+        ratio = 1.0 / ratio
+    if metric in ("rps", "throughput", "queries_per_sec") and ratio > 0:
+        ratio = 1.0 / ratio
+    return ratio
+
+
+def load_stability_index(stability_path: Path) -> dict[str, dict[str, bool]]:
+    index: dict[str, dict[str, bool]] = defaultdict(dict)
+    for r in parse_csv(stability_path):
+        test = r.get("test") or ""
+        lang = r.get("lang") or ""
+        if not test or not lang:
+            continue
+        index[test][lang] = csv_passed(r) is True
+    return index
+
+
+def validity_required_for(cfg: dict, catalog_defaults: dict) -> bool:
+    if "validity_required" in cfg:
+        return bool(cfg["validity_required"])
+    return bool(catalog_defaults.get("validity_required", True))
+
+
+def validity_for_benchmark(
+    bench_id: str,
+    cfg: dict,
+    raw_rows: list[dict],
+    stability_index: dict[str, dict[str, bool]],
+    *,
+    required: bool,
+) -> tuple[str, str]:
+    """Return (validity_status, validity_source) — pass | fail | unknown."""
+    if not required:
+        return "pass", "validity_not_required"
+
+    metric = cfg.get("metric", "wall_time")
+    variant = cfg.get("variant")
+    bench_rows = [r for r in raw_rows if r.get("benchmark") == bench_id]
+    if variant:
+        li_rows = [
+            r
+            for r in bench_rows
+            if r.get("lang") == "li" and (r.get("variant") or "") == variant
+        ]
+    else:
+        li_rows = [r for r in bench_rows if r.get("lang") == "li"]
+
+    passed_flags = [csv_passed(r) for r in li_rows if csv_passed(r) is not None]
+    if passed_flags:
+        if all(passed_flags):
+            return "pass", "latest.csv:passed"
+        return "fail", "latest.csv:passed"
+
+    if metric in ("verify_pass", "pass_rate"):
+        for r in li_rows:
+            try:
+                val = float(r["value"])
+            except (TypeError, ValueError):
+                continue
+            if val >= 1.0:
+                return "pass", f"metric:{metric}"
+            return "fail", f"metric:{metric}"
+        return "unknown", "none"
+
+    if bench_id == "tier0_stability" or cfg.get("category") == "correctness":
+        li_stab = stability_index.get(bench_id, {}).get("li")
+        if li_stab is True:
+            return "pass", "stability.csv"
+        if li_stab is False:
+            return "fail", "stability.csv"
+        for test, langs in stability_index.items():
+            if bench_id in test or test in bench_id:
+                if langs.get("li") is True:
+                    return "pass", "stability.csv"
+                if langs.get("li") is False:
+                    return "fail", "stability.csv"
+        if stability_index:
+            return "unknown", "stability.csv"
+        return "unknown", "none"
+
+    if stability_index.get(bench_id, {}).get("li") is True:
+        return "pass", "stability.csv"
+    if stability_index.get(bench_id, {}).get("li") is False:
+        return "fail", "stability.csv"
+
+    if not bench_rows:
+        return "unknown", "none"
+    return "unknown", "none"
+
+
+def apply_validity_gate(perf_status: str, validity_status: str) -> str:
+    if validity_status == "pass":
+        return perf_status
+    if validity_status == "fail":
+        return "red"
+    return "unknown"
+
+
+def make_summary_row(
+    *,
+    bench_id: str,
+    cfg: dict,
+    chart: dict,
+    validity_status: str,
+    validity_source: str,
+    os_name: str,
+    category: str,
+    metric: str,
+    status: str,
+) -> dict:
+    meta = row_meta(cfg)
+    series = chart.get("series", [])
+    li_val = next((s["value"] for s in series if s["lang"] == "li"), None)
+    ref = chart.get("reference_lang", "cpp")
+    ref_val = next((s["value"] for s in series if s["lang"] == ref), None)
+    sota_lang = chart.get("sota_lang")
+    sota_val = next((s["value"] for s in series if s["lang"] == sota_lang), None) if sota_lang else None
+    return {
+        "benchmark": bench_id,
+        "repo": cfg.get("repo", "lic"),
+        "tier": cfg.get("tier", 0),
+        "category": category,
+        "metric": metric,
+        "li_value": li_val,
+        "cpp_value": ref_val if ref == "cpp" else None,
+        "ratio_vs_cpp": chart.get("ratio_vs_reference"),
+        "sota_lang": sota_lang,
+        "sota_value": sota_val,
+        "ratio_vs_sota": chart.get("ratio_vs_sota"),
+        "unit": chart.get("unit"),
+        "variant": cfg.get("variant"),
+        "status": status,
+        "validity_status": validity_status,
+        "validity_source": validity_source,
+        "os": os_name,
+        "ph_ids": cfg.get("ph_ids", []),
+        "path": cfg.get("path", ""),
+        "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+        "compare_oracle": ref,
+        "ci_url": "",
+        "langs": series,
+        **meta,
+    }
+
+
 def lang_series(
     rows: list[dict], bench_id: str, metric: str, *, variant: str | None = None
 ) -> list[dict]:
@@ -153,6 +368,7 @@ def lang_series(
                 "value": val,
                 "unit": r.get("unit") or "",
                 "variant": r.get("variant") or "",
+                "os": normalize_os(r.get("os") or r.get("OS")),
             }
         )
     return out
@@ -187,6 +403,7 @@ def http_lang_series(
                 "value": val,
                 "unit": r.get("unit") or "",
                 "variant": var,
+                "os": normalize_os(r.get("os") or r.get("OS")),
             }
         )
 
@@ -276,13 +493,20 @@ def build_stability_chart(stability_path: Path) -> dict | None:
         "repo": "lic",
         "path": "benchmarks/tier0_correctness",
         "status": "unknown",
-        "pillar": "correctness",
+        "pillar": "proofs",
         "package": "lic",
+        "validity_status": "unknown",
+        "validity_source": "stability.csv",
     }
 
 
 def build_perf_chart(
-    bench_id: str, cfg: dict, rows: list[dict]
+    bench_id: str,
+    cfg: dict,
+    rows: list[dict],
+    *,
+    validity_status: str,
+    validity_source: str,
 ) -> dict:
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
@@ -307,25 +531,33 @@ def build_perf_chart(
     cpp_val = next((s["value"] for s in series if s["lang"] == "cpp"), None)
     oracle = cfg.get("compare_oracle", "cpp")
     ref_val = next((s["value"] for s in series if s["lang"] == oracle), cpp_val)
-    ratio = (li_val / ref_val) if li_val and ref_val and ref_val > 0 else None
+    lower = metric_lower_is_better(metric)
+    ratio = ratio_li_vs_ref(li_val, ref_val, metric=metric, lower_is_better=lower)
+    sota_lang, sota_val = compute_sota(series, lower_is_better=lower)
+    ratio_sota = ratio_li_vs_ref(li_val, sota_val, metric=metric, lower_is_better=lower)
     threshold = float(cfg.get("threshold_ratio_cpp", 1.2))
-    if metric in ("rps", "throughput") and ratio is not None:
-        ratio = 1.0 / ratio if ratio > 0 else None
-    st = status_for_ratio(ratio, threshold)
+    perf_st = status_for_ratio(ratio, threshold)
+    st = apply_validity_gate(perf_st, validity_status)
     meta = row_meta(cfg)
     return {
         "id": bench_id,
         "title": bench_id.replace("_", " "),
         "metric": metric,
         "unit": series[0]["unit"] if series else "",
-        "lower_is_better": metric in ("wall_time", "latency"),
+        "lower_is_better": lower,
         "reference_lang": oracle,
+        "sota_lang": sota_lang,
         "series": series,
         "grouped": False,
         "repo": cfg.get("repo", "lic"),
         "path": cfg.get("path", ""),
         "status": st,
+        "perf_status": perf_st,
         "ratio_vs_reference": round(ratio, 4) if ratio is not None else None,
+        "ratio_vs_sota": round(ratio_sota, 4) if ratio_sota is not None else None,
+        "validity_status": validity_status,
+        "validity_source": validity_source,
+        "os": bench_os(rows, bench_id, variant=variant),
         "pillar": meta["pillar"],
         "package": meta["package"],
     }
@@ -335,7 +567,9 @@ def is_pending_catalog_row(bench_id: str, cfg: dict, by_bench: dict[str, list]) 
     if cfg.get("path") == "unknown" or bench_id.endswith("_stub"):
         return True
     category = cfg.get("category", "micro")
-    return category in ("tooling", "database") and bench_id not in by_bench
+    if category == "database" and bench_id not in by_bench:
+        return True
+    return category in ("tooling",) and bench_id not in by_bench
 
 
 def append_pending_row(
@@ -350,13 +584,14 @@ def append_pending_row(
     results: list[dict],
 ) -> None:
     meta = row_meta(cfg)
+    ref = cfg.get("compare_oracle") or ("postgres" if category == "database" else "cpp")
     chart = {
         "id": bench_id,
         "title": bench_id,
         "metric": metric,
-        "unit": "",
-        "lower_is_better": True,
-        "reference_lang": "cpp",
+        "unit": "ms" if category == "database" else "",
+        "lower_is_better": metric in ("wall_time", "latency", "latency_p95"),
+        "reference_lang": ref,
         "series": [],
         "grouped": False,
         "repo": cfg.get("repo", "lic"),
@@ -379,20 +614,34 @@ def append_pending_row(
             "li_value": None,
             "cpp_value": None,
             "ratio_vs_cpp": None,
-            "unit": None,
+            "sota_lang": None,
+            "sota_value": None,
+            "ratio_vs_sota": None,
+            "unit": "ms" if category == "database" else None,
             "variant": cfg.get("variant"),
             "status": "unknown",
+            "validity_status": "unknown",
+            "validity_source": "none",
+            "os": "unknown",
             "ph_ids": cfg.get("ph_ids", []),
             "path": cfg.get("path", ""),
             "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+            "compare_oracle": ref,
             "ci_url": "",
             **meta,
         }
     )
 
 
+def load_catalog_defaults() -> dict:
+    import tomllib
+
+    raw = tomllib.loads((ROOT / "catalog.toml").read_text())
+    return {k: v for k, v in raw.items() if k != "benchmark"}
+
+
 def main() -> int:
-    lic_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parent / "li"
+    lic_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parent / "lic"
     lis_root = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT.parent / "lis"
 
     lic_csv = lic_root / "benchmarks/results/latest.csv"
@@ -400,8 +649,10 @@ def main() -> int:
     stability_csv = lic_root / "benchmarks/results/stability.csv"
     security_csv = lic_root / "benchmarks/results/security.csv"
 
+    catalog_defaults = load_catalog_defaults()
     catalog = load_catalog()
     raw = merge_csv_rows([lic_csv, lis_csv])
+    stability_index = load_stability_index(stability_csv)
 
     by_bench: dict[str, list[dict]] = defaultdict(list)
     for row in raw:
@@ -429,7 +680,14 @@ def main() -> int:
             if chart:
                 charts_by_cat["correctness"].append(chart)
                 charts_by_pillar[chart["pillar"]].append(chart)
-            tier_counts[str(cfg.get("tier", 0))]["unknown"] += 1
+            required = validity_required_for(cfg, catalog_defaults)
+            validity_status, validity_source = validity_for_benchmark(
+                bench_id, cfg, raw, stability_index, required=required
+            )
+            st = "green" if validity_status == "pass" else (
+                "red" if validity_status == "fail" else "unknown"
+            )
+            tier_counts[str(cfg.get("tier", 0))][st] += 1
             results.append(
                 {
                     "benchmark": bench_id,
@@ -440,12 +698,19 @@ def main() -> int:
                     "li_value": None,
                     "cpp_value": None,
                     "ratio_vs_cpp": None,
+                    "sota_lang": None,
+                    "sota_value": None,
+                    "ratio_vs_sota": None,
                     "unit": None,
                     "variant": None,
-                    "status": "unknown",
+                    "status": st,
+                    "validity_status": validity_status,
+                    "validity_source": validity_source,
+                    "os": bench_os(raw, bench_id),
                     "ph_ids": cfg.get("ph_ids", []),
                     "path": cfg.get("path", ""),
                     "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+                    "compare_oracle": cfg.get("compare_oracle", "cpp"),
                     "ci_url": "",
                     **meta,
                 }
@@ -465,38 +730,36 @@ def main() -> int:
             )
             continue
 
-        chart = build_perf_chart(bench_id, cfg, raw)
+        required = validity_required_for(cfg, catalog_defaults)
+        validity_status, validity_source = validity_for_benchmark(
+            bench_id, cfg, raw, stability_index, required=required
+        )
+        chart = build_perf_chart(
+            bench_id,
+            cfg,
+            raw,
+            validity_status=validity_status,
+            validity_source=validity_source,
+        )
         charts_by_cat[category].append(chart)
         charts_by_pillar[meta["pillar"]].append(chart)
 
-        li_val = next((s["value"] for s in chart["series"] if s["lang"] == "li"), None)
-        ref = chart["reference_lang"]
-        ref_val = next((s["value"] for s in chart["series"] if s["lang"] == ref), None)
-        ratio = chart.get("ratio_vs_reference")
         st = chart["status"]
         tier = str(cfg.get("tier", 0))
         tier_counts[tier][st] += 1
 
         results.append(
-            {
-                "benchmark": bench_id,
-                "repo": cfg.get("repo", "lic"),
-                "tier": cfg.get("tier", 0),
-                "category": category,
-                "metric": metric,
-                "li_value": li_val,
-                "cpp_value": ref_val if ref == "cpp" else None,
-                "ratio_vs_cpp": ratio,
-                "unit": chart.get("unit"),
-                "variant": cfg.get("variant"),
-                "status": st,
-                "ph_ids": cfg.get("ph_ids", []),
-                "path": cfg.get("path", ""),
-                "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
-                "ci_url": "",
-                "langs": chart["series"],
-                **meta,
-            }
+            make_summary_row(
+                bench_id=bench_id,
+                cfg=cfg,
+                chart=chart,
+                validity_status=validity_status,
+                validity_source=validity_source,
+                os_name=chart.get("os", "unknown"),
+                category=category,
+                metric=chart.get("metric", metric),
+                status=st,
+            )
         )
 
     categories = {}
@@ -510,6 +773,8 @@ def main() -> int:
 
     pillars = build_pillars(charts_by_pillar)
 
+    os_values = sorted({r.get("os", "unknown") for r in results if r.get("os")})
+
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": {
@@ -517,6 +782,13 @@ def main() -> int:
             "lis_csv": str(lis_csv),
             "stability_csv": str(stability_csv),
             "security_csv": str(security_csv),
+        },
+        "reporting": {
+            "sota_policy": "best_competitor_lang_excludes_li",
+            "validity_required_default": bool(
+                catalog_defaults.get("validity_required", True)
+            ),
+            "os_values": os_values,
         },
         "tier_counts": dict(tier_counts),
         "categories": categories,
