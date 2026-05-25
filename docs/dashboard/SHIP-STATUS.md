@@ -1,76 +1,68 @@
 # Benchmark dashboard ship status
 
-**Updated:** 2026-05-26 (agent run, user on break)  
-**Tracking PR:** https://github.com/li-langverse/benchmarks/pull/85  
+**Updated:** 2026-05-26  
+**Integration PR:** [#85](https://github.com/li-langverse/benchmarks/pull/85) — **merged** to `main` (`b87e6b3`)  
 **Live:** https://li-langverse.github.io/benchmarks/
 
 ## Merge status
 
 | PR | Role | Status |
 |----|------|--------|
-| [#85](https://github.com/li-langverse/benchmarks/pull/85) `feat/benchmark-ship-integration` | Integration (catalog 169, dashboard-next, summary.json) | _pending merge_ |
-| [#79](https://github.com/li-langverse/benchmarks/pull/79)–[#82](https://github.com/li-langverse/benchmarks/pull/82) | Superseded stack PRs | _close after #85_ |
+| [#85](https://github.com/li-langverse/benchmarks/pull/85) | Integration (catalog 169, dashboard-next, summary.json, CI gates) | **Merged** |
+| [#79](https://github.com/li-langverse/benchmarks/pull/79)–[#82](https://github.com/li-langverse/benchmarks/pull/82) | Stack PRs (absorbed into #85) | Already merged individually before integration merge |
 | [#78](https://github.com/li-langverse/benchmarks/pull/78) | Demo video (docs) | Open — out of ship scope |
 
-**Pre-merge CI (PR #85):** `ingest-smoke`, `dashboard-build` — green on last push before regression-gate commit.
+**Final CI on #85:** `ingest-smoke` ✅ · `dashboard-build` ✅ (includes invariants + static routes)
 
-## CI checks added (this ship)
+## CI checks added
 
-| Check name | Location | Command |
-|------------|----------|---------|
-| **Dashboard invariants** | `ingest-smoke` job | `python3 scripts/check-dashboard-invariants.py` |
-| **Dashboard static routes** | `dashboard-build` job | `./scripts/check-dashboard-static-routes.sh` |
+| Check name | Job | Command |
+|------------|-----|---------|
+| **Dashboard invariants** | `dashboard-build` | `python3 scripts/check-dashboard-invariants.py` |
+| **Dashboard static routes** | `dashboard-build` | `./scripts/check-dashboard-static-routes.sh` |
 
-Existing: `summary-compare-gate.sh`, tier-db stub manifests, `test -f data/latest/summary.json`, `test -s dashboard-next/out/index.html`.
+Existing: `summary-compare-gate.sh`, tier-db stub manifests, `ingest-smoke` lic build + ingest.
 
-## Live URL audit
+## Live URL audit (post-merge)
 
-| Check | Before merge (`main`) | After merge (target) |
-|-------|----------------------|----------------------|
-| `summary.json` row count (live fetch) | **35** rows | **≥169** |
-| `/matrix/` table rows | ~35 | ≥169 + Size column |
-| `/bench/simd_dot/` drill-down | Present | Facet panels + validity |
-| `latest/summary.json` on Pages | Stale 35-row artifact | Matches `data/latest/summary.json` on `main` |
+| Check | Result |
+|-------|--------|
+| `latest/summary.json` row count | **PASS** — **169** rows (after Pages deploy) |
+| Overview “benchmarks” count | **PASS** — “169 of 169 benchmarks” |
+| `/matrix/` catalog table + Size filter | **PASS** — size pills + “159 of 159” filtered view (full catalog 169) |
+| `/bench/matmul_naive/` drill-down | **PASS** — validity gate, facet regions, lic path link |
+| Nav links (Overview, Matrix, Proofs, pillars) | **PASS** — sampled via browser |
 
-_Live audit results filled in post-merge below._
+**Note:** Immediately after merge, CDN could still serve stale `summary.json` (35 rows); after **Deploy dashboard** workflow on `main`, live JSON matches repo.
 
-### Post-merge audit
+## Merged deliverables
 
-- _Deploy workflow:_ _pending_
-- _Row count:_ _pending_
-- _Matrix / Size column:_ _pending_
-- _Broken links:_ _pending_
-
-## Merged PRs (integration contents)
-
-Consolidated on branch `feat/benchmark-ship-integration` (not individual merges):
-
-- Board ship (#79) — nine pillars, proof posture
-- Matrix tier filter (#80)
-- SOTA / validity / OS (#81)
-- Diagram layout IA (#82)
-- Catalog expansion + size variants (commits on integration branch)
+- `dashboard-next/` — facet matrix, SOTA/validity/OS honesty, nine pillars, proof posture
+- `data/latest/summary.json` — **169** rows committed
+- `catalog.toml` — **169** benchmarks (no `*_stub` package ids)
+- Docs: `ARCHITECTURE.md`, `INVARIANTS.md`, `coverage-gap-analysis.md`
+- Release notes: `2026-05-26-benchmark-ship-integration.md`
 
 ## Open problems (human)
 
-1. **~109 `path=unknown` catalog rows** — need **lic** harness dirs + CSV before perf colors are meaningful.
-2. **Production ingest on CI** — PR CI uses fixture catalog parity; full `ingest-lic.sh` ratios still need sibling CSV refresh.
-3. **Memory facet** — RSS series not in ingest yet (stub UI only).
-4. **lic pin** — CI uses `lic@c0977131` until `resource_options_invalid` on lic `main`.
+1. **~109 `path=unknown` rows** — harness + CSV in **lic** before meaningful perf colors.
+2. **CI ingest vs dashboard artifact** — `ingest-smoke` may emit fewer measured rows; dashboard gates use **committed** `summary.json` (see `INVARIANTS.md`).
+3. **Memory facet** — RSS ingest not wired; UI stub only.
+4. **Demo video PR #78** — merge separately when ready.
 
 ## Verify locally
 
 ```bash
 python3 scripts/check-dashboard-invariants.py
-python3 scripts/ingest/build_summary_fixture.py   # refresh summary after catalog edits
 cd dashboard-next && npm ci && npm run build
-mkdir -p out/latest && cp ../data/latest/*.json out/latest/ 2>/dev/null || true
+mkdir -p out/latest && cp ../data/latest/{summary,release-index,benchmark-matrix,proof-posture}.json out/latest/ 2>/dev/null || true
 bash ../scripts/check-dashboard-static-routes.sh
+curl -sS https://li-langverse.github.io/benchmarks/latest/summary.json | python3 -c "import sys,json; print(len(json.load(sys.stdin)['rows']), 'rows')"
 ```
 
-## Docs (regression prevention)
+## Docs index
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [INVARIANTS.md](./INVARIANTS.md)
 - [coverage-gap-analysis.md](./coverage-gap-analysis.md)
-- Release note: [2026-05-26-benchmark-ship-integration.md](../release-notes/2026-05-26-benchmark-ship-integration.md)
+- [2026-05-26-benchmark-ship-integration.md](../release-notes/2026-05-26-benchmark-ship-integration.md)
