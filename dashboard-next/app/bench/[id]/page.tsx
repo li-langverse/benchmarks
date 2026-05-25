@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { HonestyCallout } from "@/components/bench/honesty-callout";
+import { LangsTable } from "@/components/bench/langs-table";
 import { Badge } from "@/components/ui/badge";
+import { getLangSeries } from "@/lib/bench-series";
 import { deltasForBenchmark, loadHistoryIndex } from "@/lib/history";
+import { githubTreeUrl } from "@/lib/github";
 import { findRow, loadSummary } from "@/lib/summary";
 
 type PageProps = { params: Promise<{ id: string }> };
@@ -15,6 +19,9 @@ export default async function BenchPage({ params }: PageProps) {
   const summary = loadSummary();
   const row = findRow(summary, id);
   if (!row) notFound();
+  const series = getLangSeries(summary, row);
+  const sourceUrl = githubTreeUrl(row.repo, row.path);
+  const phText = row.ph_ids.length > 0 ? row.ph_ids.join(", ") : "—";
   const deltas = deltasForBenchmark(loadHistoryIndex(), id);
 
   return (
@@ -24,8 +31,12 @@ export default async function BenchPage({ params }: PageProps) {
           {row.benchmark} <Badge status={row.status} />
         </h2>
         <p style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-          Tier {row.tier} · {row.repo} · {row.metric}
+          Tier {row.tier} · {row.metric}
+          {row.variant ? ` · variant ${row.variant}` : ""}
         </p>
+
+        <HonestyCallout variant={row.variant} />
+
         <dl
           className="mono"
           style={{
@@ -35,8 +46,6 @@ export default async function BenchPage({ params }: PageProps) {
             gap: "0.35rem 1rem",
           }}
         >
-          <dt>Path</dt>
-          <dd>{row.path}</dd>
           <dt>Category</dt>
           <dd>{row.category ?? "—"}</dd>
           <dt>Pillar</dt>
@@ -48,7 +57,13 @@ export default async function BenchPage({ params }: PageProps) {
             )}
           </dd>
           <dt>Package</dt>
-          <dd>{row.package ?? "—"}</dd>
+          <dd>
+            {row.package ? (
+              <Link href={`/packages/${row.package}/`}>{row.package}</Link>
+            ) : (
+              "—"
+            )}
+          </dd>
           <dt>Li / C++</dt>
           <dd>
             {row.li_value ?? "—"} / {row.cpp_value ?? "—"}{" "}
@@ -58,9 +73,28 @@ export default async function BenchPage({ params }: PageProps) {
           <dd>
             {row.ratio_vs_cpp != null ? `${row.ratio_vs_cpp.toFixed(4)}×` : "—"}
           </dd>
-          <dt>PH ids</dt>
-          <dd>{row.ph_ids.join(", ") || "—"}</dd>
+          <dt>Threshold</dt>
+          <dd>{row.threshold_ratio_cpp}×</dd>
+          <dt>Source</dt>
+          <dd>
+            <a href={sourceUrl} target="_blank" rel="noopener noreferrer">
+              {row.repo}/{row.path}
+            </a>
+          </dd>
         </dl>
+
+        <p style={{ marginTop: "1rem" }}>
+          <span className="mono" style={{ color: "var(--muted)" }}>
+            PH ids:{" "}
+          </span>
+          {phText}
+        </p>
+
+        <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
+          Language series
+        </h3>
+        <LangsTable series={series} metric={row.metric} />
+
         {deltas.length > 0 ? (
           <section style={{ marginTop: "1.5rem" }}>
             <h3 style={{ fontSize: "1rem", margin: 0 }}>Latest history deltas</h3>
