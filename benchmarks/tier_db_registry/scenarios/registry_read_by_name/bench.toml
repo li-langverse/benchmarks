@@ -1,0 +1,12 @@
+name = "registry_read_by_name"
+
+[workload]
+kind = "oltp_read"
+statement = "SELECT id, name, publisher_id, created_at FROM packages WHERE name = $1 LIMIT 1"
+
+[verify]
+expect_rows = 1
+
+[load]
+metric = "latency_p95"
+unit = "ms"

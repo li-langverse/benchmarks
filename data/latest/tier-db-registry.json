@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-05-25T11:48:18.334294+00:00",
+  "tier": "tier_db_registry",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_registry/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_registry/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_registry/schema/registry-v1.sql",
+    "results_csv": "benchmarks/tier_db_registry/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "registry_publish",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "PH-DB-5"
+      ],
+      "notes": "P95 publish path: package + version + attestation insert"
+    },
+    {
+      "id": "registry_read_by_name",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "PH-DB-5"
+      ],
+      "notes": "P95 lookup by package name"
+    },
+    {
+      "id": "registry_read_latest",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "PH-DB-5"
+      ],
+      "notes": "P95 latest version for package name"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-registry.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}
