@@ -16,6 +16,8 @@ function rowMatchesQuery(row: SummaryRow, q: string): boolean {
   if (row.package?.toLowerCase().includes(needle)) return true;
   if (row.pillar?.toLowerCase().includes(needle)) return true;
   if (row.ph_ids.some((id) => id.toLowerCase().includes(needle))) return true;
+  if (row.os?.toLowerCase().includes(needle)) return true;
+  if (row.sota_lang?.toLowerCase().includes(needle)) return true;
   return false;
 }
 
@@ -30,7 +32,7 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
     <section id="search" className="bench-search">
       <h2>Benchmarks</h2>
       <p className="bench-search-hint">
-        Filter by id, PH id, package, or pillar (client-side over summary rows).
+        Filter by id, PH id, package, pillar, OS, or SOTA lang (client-side).
       </p>
       <label className="bench-search-label" htmlFor="bench-filter">
         Search
@@ -55,6 +57,9 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
               <th>Tier</th>
               <th>Pillar</th>
               <th>Package</th>
+              <th>OS</th>
+              <th>SOTA</th>
+              <th>Validity</th>
               <th>PH ids</th>
               <th>Status</th>
             </tr>
@@ -68,6 +73,9 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
                 <td>{row.tier}</td>
                 <td>{row.pillar ?? "—"}</td>
                 <td>{row.package ?? "—"}</td>
+                <td className="mono">{row.os ?? "—"}</td>
+                <td className="mono">{row.sota_lang ?? "—"}</td>
+                <td className="mono">{row.validity_status ?? "—"}</td>
                 <td className="mono">{row.ph_ids.join(", ") || "—"}</td>
                 <td>
                   <Badge status={row.status} />
