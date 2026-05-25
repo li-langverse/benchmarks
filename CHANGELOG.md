@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **CI `ingest-smoke`:** Install LLVM **22** via **lic** `ci-install-llvm.sh` (apt.llvm.org on Noble GHA); align `setup-lic-for-bench.sh` — fixes lic CMake pin vs LLVM 18.
+- **`plan-completion-audit.py`:** Parse only the master-plan phase tracker; suppress sub-plan `- [ ]` when tracker phases are `[x]`; dedupe master-plan rows from `plan_files_open`; tag phase-02 implementation task lists as `stale_spec_checklists` (exit gates stay actionable) — [2026-05-25-plan-completion-audit-filters.md](docs/release-notes/2026-05-25-plan-completion-audit-filters.md).
+
 ### Added
 
 - **lic merged (#153 proxy epoll + seam, #156 E0360 ptr ABI):** tier5 `proxy_loopback,li` ~9.1k req/s (quick wrk); matrix refreshed — [2026-05-21-bench-matrix-post-lic-merge.md](docs/release-notes/2026-05-21-bench-matrix-post-lic-merge.md).

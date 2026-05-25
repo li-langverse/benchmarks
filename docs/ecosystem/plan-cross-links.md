@@ -39,4 +39,4 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 
 ## Automation
 
-`python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic`; use `../li` if that is your clone name). Output: `data/latest/plan-completion-audit.json`.
+`python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic`; use `../li` if that is your clone name). Output: `data/latest/plan-completion-audit.json` (`master_plan_open` = tracker only; `stale_spec_checklists` = normative task bullets, not gates).

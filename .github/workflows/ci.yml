@@ -20,15 +20,16 @@ jobs:
           repository: li-langverse/lis
           path: lis
 
-      - name: Install LLVM 18
+      - name: Install LLVM 22
         run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build clang-18 llvm-18-dev zlib1g-dev libzstd-dev python3
+          chmod +x lic/scripts/ci-install-llvm.sh
+          sudo LI_LLVM_MAJOR=22 bash lic/scripts/ci-install-llvm.sh
 
       - name: Build lic
         env:
-          LLVM_DIR: /usr/lib/llvm-18/lib/cmake/llvm
-          CC: clang-18
+          LLVM_DIR: /usr/lib/llvm-22/lib/cmake/llvm
+          CC: clang-22
+          CXX: clang++-22
         run: cd lic && ./scripts/build.sh
 
       - name: Ingest (Li summary + Python fallback)
