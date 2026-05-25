@@ -44,6 +44,18 @@ Skeleton for **lidb vs Postgres 15+** registry publish/read P95 — see [tier-db
 
 CI writes stub manifests under `data/latest/tier-db-*.json` (no GPU required on GHA).
 
+## lidb full-spectrum audit (WP-N4 stubs)
+
+| Tier | Measures | Doc | Run |
+|------|----------|-----|-----|
+| `tier_db_security` | injection blocked, RLS bypass | [tier-db-security.md](docs/ecosystem/tier-db-security.md) | `./scripts/run-db-security-bench.sh` |
+| `tier_db_memory` | RSS idle, peak under load | [tier-db-memory.md](docs/ecosystem/tier-db-memory.md) | `./scripts/run-db-memory-bench.sh` |
+| `tier_db_parallel` | concurrent readers/writers | [tier-db-parallel.md](docs/ecosystem/tier-db-parallel.md) | `./scripts/run-db-parallel-bench.sh` |
+| `tier_db_audit` | query log, tamper evidence | [tier-db-audit.md](docs/ecosystem/tier-db-audit.md) | `./scripts/run-db-audit-bench.sh` |
+| `tier_db_realtime` | WS publish→client latency | [tier-db-realtime.md](docs/ecosystem/tier-db-realtime.md) | `./scripts/run-db-realtime-bench.sh` |
+
+All five: `./scripts/run-db-full-spectrum-bench.sh`
+
 ## Agents
 
 PR-only workflow. Do **not** duplicate `lic` harness here. See [AGENTS.md](AGENTS.md).

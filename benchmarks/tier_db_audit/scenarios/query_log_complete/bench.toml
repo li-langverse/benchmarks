@@ -1,0 +1,12 @@
+name = "query_log_complete"
+
+[workload]
+kind = "audit_verify"
+notes = "Every privileged query appears in audit log"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "completeness_ratio"
+unit = "ratio"

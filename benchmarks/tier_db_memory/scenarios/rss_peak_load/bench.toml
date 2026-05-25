@@ -1,0 +1,12 @@
+name = "rss_peak_load"
+
+[workload]
+kind = "memory_profile"
+notes = "Peak RSS under sustained read/write load"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "rss_mb"
+unit = "mb"

@@ -1,0 +1,12 @@
+name = "concurrent_readers"
+
+[workload]
+kind = "parallel_load"
+notes = "Scalable concurrent SELECT throughput"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "ops_per_sec"
+unit = "ops"

@@ -1,0 +1,11 @@
+[default]
+include = ["concurrent_readers", "concurrent_writers"]
+timing = false
+
+[profiles.ci]
+include = ["concurrent_readers", "concurrent_writers"]
+timing = false
+
+[profiles.nightly]
+include = ["concurrent_readers", "concurrent_writers"]
+timing = true

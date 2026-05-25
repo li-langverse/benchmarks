@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbAuditIngestManifest",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_audit" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["stub", "unknown", "pass", "fail"] },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "enum": ["completeness_ratio", "pass_rate"] },
+          "status": { "enum": ["unknown", "green", "yellow", "red", "stub"] }
+        }
+      }
+    }
+  }
+}

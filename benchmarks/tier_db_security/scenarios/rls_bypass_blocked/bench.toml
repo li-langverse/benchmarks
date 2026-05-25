@@ -1,0 +1,12 @@
+name = "rls_bypass_blocked"
+
+[workload]
+kind = "security_probe"
+notes = "RLS bypass / privilege escalation attempts blocked"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "pass_rate"
+unit = "ratio"

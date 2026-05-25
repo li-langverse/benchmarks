@@ -1,0 +1,11 @@
+[default]
+include = ["ws_publish_latency"]
+timing = false
+
+[profiles.ci]
+include = ["ws_publish_latency"]
+timing = false
+
+[profiles.nightly]
+include = ["ws_publish_latency"]
+timing = true

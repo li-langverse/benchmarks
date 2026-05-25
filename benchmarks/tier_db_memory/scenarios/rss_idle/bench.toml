@@ -1,0 +1,12 @@
+name = "rss_idle"
+
+[workload]
+kind = "memory_profile"
+notes = "Process RSS after cold start (idle)"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "rss_mb"
+unit = "mb"

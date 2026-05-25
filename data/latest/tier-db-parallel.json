@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-05-25T15:56:45.660773+00:00",
+  "tier": "tier_db_parallel",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_parallel/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_parallel/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_parallel/schema/parallel-load-v1.sql",
+    "results_csv": "benchmarks/tier_db_parallel/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "concurrent_readers",
+      "metric": "ops_per_sec",
+      "unit": "ops",
+      "lower_is_better": false,
+      "threshold_ratio_vs_postgres": 1.0,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-PAR"
+      ],
+      "notes": "Concurrent reader scalability"
+    },
+    {
+      "id": "concurrent_writers",
+      "metric": "ops_per_sec",
+      "unit": "ops",
+      "lower_is_better": false,
+      "threshold_ratio_vs_postgres": 1.0,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-PAR"
+      ],
+      "notes": "Concurrent writer scalability"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-parallel.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

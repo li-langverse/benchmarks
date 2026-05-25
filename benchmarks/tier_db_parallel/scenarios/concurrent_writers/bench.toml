@@ -1,0 +1,12 @@
+name = "concurrent_writers"
+
+[workload]
+kind = "parallel_load"
+notes = "Scalable concurrent INSERT/UPDATE throughput"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "ops_per_sec"
+unit = "ops"

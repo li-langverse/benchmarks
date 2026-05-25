@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbSecurityIngestManifest",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_security" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["stub", "unknown", "pass", "fail"] },
+    "compare_oracle": { "const": "postgres" },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "const": "pass_rate" },
+          "status": { "enum": ["unknown", "green", "yellow", "red", "stub"] }
+        }
+      }
+    }
+  }
+}
