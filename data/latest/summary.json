@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-25T17:26:28.135043+00:00",
+  "generated_at": "2026-05-25T17:28:15.659083+00:00",
   "sources": {
-    "lic_csv": "../lic/benchmarks/results/latest.csv",
-    "lis_csv": "../lis/results/latest.csv",
-    "stability_csv": "../lic/benchmarks/results/stability.csv",
-    "security_csv": "../lic/benchmarks/results/security.csv"
+    "lic_csv": "/Users/julian/Documents/coding-projects/lic/benchmarks/results/latest.csv",
+    "lis_csv": "/Users/julian/Documents/coding-projects/lis/results/latest.csv",
+    "stability_csv": "/Users/julian/Documents/coding-projects/lic/benchmarks/results/stability.csv",
+    "security_csv": "/Users/julian/Documents/coding-projects/lic/benchmarks/results/security.csv"
   },
   "reporting": {
     "sota_policy": "best_competitor_lang_excludes_li",
@@ -54,10 +54,10 @@
       "unknown": 2
     },
     "5": {
-      "green": 2,
+      "green": 0,
       "yellow": 0,
       "red": 0,
-      "unknown": 8
+      "unknown": 10
     },
     "6": {
       "green": 0,
@@ -7266,26 +7266,26 @@
         {
           "id": "https_static",
           "title": "https static (TLS static M15)",
-          "metric": "verify_skip",
-          "unit": "bool",
+          "metric": "rps",
+          "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "li",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 1.0,
-              "unit": "bool",
-              "variant": "ci",
+              "lang": "nginx",
+              "value": 582.8,
+              "unit": "req/s",
+              "variant": "release",
               "os": "unknown"
             }
           ],
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/tier5_http/scenarios/https_static",
-          "status": "green",
-          "perf_status": "green",
-          "ratio_vs_reference": 1.0,
+          "status": "unknown",
+          "perf_status": "unknown",
+          "ratio_vs_reference": null,
           "ratio_vs_sota": null,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
@@ -7303,11 +7303,18 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 235097.45,
+              "lang": "nginx",
+              "value": 22604.11,
+              "unit": "req/s",
+              "variant": "release",
+              "os": "unknown"
+            },
+            {
+              "lang": "node",
+              "value": 15816.79,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -7320,8 +7327,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -7336,11 +7343,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 11405.15,
+              "lang": "nginx",
+              "value": 24309.0,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -7353,8 +7360,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -7369,11 +7376,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 18454.74,
+              "lang": "nginx",
+              "value": 25179.37,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -7386,8 +7393,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -7402,11 +7409,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 9141.23,
+              "lang": "nginx",
+              "value": 24166.96,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -7419,8 +7426,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -7435,11 +7442,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 9120.95,
+              "lang": "nginx",
+              "value": 21414.67,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -7452,8 +7459,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lic",
@@ -7464,14 +7471,14 @@
         {
           "id": "rate_limit_429",
           "title": "rate limit 429",
-          "metric": "verify_pass",
+          "metric": "verify_only",
           "unit": "bool",
           "lower_is_better": false,
           "reference_lang": "li",
           "sota_lang": null,
           "series": [
             {
-              "lang": "li",
+              "lang": "harness",
               "value": 1.0,
               "unit": "bool",
               "variant": "ci",
@@ -7481,12 +7488,12 @@
           "grouped": false,
           "repo": "benchmarks",
           "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
-          "status": "green",
-          "perf_status": "green",
-          "ratio_vs_reference": 1.0,
+          "status": "unknown",
+          "perf_status": "unknown",
+          "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "metric:verify_pass",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -7497,17 +7504,24 @@
         {
           "id": "static_large",
           "title": "static large (1 MiB file.bin)",
-          "metric": "verify_only",
-          "unit": "bool",
+          "metric": "rps",
+          "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "harness",
-              "value": 1.0,
-              "unit": "bool",
-              "variant": "ci",
+              "lang": "nginx",
+              "value": 4148.74,
+              "unit": "req/s",
+              "variant": "release",
+              "os": "unknown"
+            },
+            {
+              "lang": "node",
+              "value": 1805.31,
+              "unit": "req/s",
+              "variant": "release",
               "os": "unknown"
             }
           ],
@@ -7534,11 +7548,18 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 135466.19,
+              "lang": "nginx",
+              "value": 12086.7,
+              "unit": "req/s",
+              "variant": "release",
+              "os": "unknown"
+            },
+            {
+              "lang": "node",
+              "value": 4625.98,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -7551,8 +7572,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -10780,26 +10801,26 @@
         {
           "id": "https_static",
           "title": "https static (TLS static M15)",
-          "metric": "verify_skip",
-          "unit": "bool",
+          "metric": "rps",
+          "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "li",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 1.0,
-              "unit": "bool",
-              "variant": "ci",
+              "lang": "nginx",
+              "value": 582.8,
+              "unit": "req/s",
+              "variant": "release",
               "os": "unknown"
             }
           ],
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/tier5_http/scenarios/https_static",
-          "status": "green",
-          "perf_status": "green",
-          "ratio_vs_reference": 1.0,
+          "status": "unknown",
+          "perf_status": "unknown",
+          "ratio_vs_reference": null,
           "ratio_vs_sota": null,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
@@ -10817,11 +10838,18 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 235097.45,
+              "lang": "nginx",
+              "value": 22604.11,
+              "unit": "req/s",
+              "variant": "release",
+              "os": "unknown"
+            },
+            {
+              "lang": "node",
+              "value": 15816.79,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -10834,8 +10862,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -10850,11 +10878,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 11405.15,
+              "lang": "nginx",
+              "value": 24309.0,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -10867,8 +10895,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -10883,11 +10911,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 18454.74,
+              "lang": "nginx",
+              "value": 25179.37,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -10900,8 +10928,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -10916,11 +10944,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 9141.23,
+              "lang": "nginx",
+              "value": 24166.96,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -10933,8 +10961,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -10949,11 +10977,11 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 9120.95,
+              "lang": "nginx",
+              "value": 21414.67,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -10966,8 +10994,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lic",
@@ -10978,14 +11006,14 @@
         {
           "id": "rate_limit_429",
           "title": "rate limit 429",
-          "metric": "verify_pass",
+          "metric": "verify_only",
           "unit": "bool",
           "lower_is_better": false,
           "reference_lang": "li",
           "sota_lang": null,
           "series": [
             {
-              "lang": "li",
+              "lang": "harness",
               "value": 1.0,
               "unit": "bool",
               "variant": "ci",
@@ -10995,12 +11023,12 @@
           "grouped": false,
           "repo": "benchmarks",
           "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
-          "status": "green",
-          "perf_status": "green",
-          "ratio_vs_reference": 1.0,
+          "status": "unknown",
+          "perf_status": "unknown",
+          "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "metric:verify_pass",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -11011,17 +11039,24 @@
         {
           "id": "static_large",
           "title": "static large (1 MiB file.bin)",
-          "metric": "verify_only",
-          "unit": "bool",
+          "metric": "rps",
+          "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "harness",
-              "value": 1.0,
-              "unit": "bool",
-              "variant": "ci",
+              "lang": "nginx",
+              "value": 4148.74,
+              "unit": "req/s",
+              "variant": "release",
+              "os": "unknown"
+            },
+            {
+              "lang": "node",
+              "value": 1805.31,
+              "unit": "req/s",
+              "variant": "release",
               "os": "unknown"
             }
           ],
@@ -11048,11 +11083,18 @@
           "unit": "req/s",
           "lower_is_better": false,
           "reference_lang": "nginx",
-          "sota_lang": null,
+          "sota_lang": "nginx",
           "series": [
             {
-              "lang": "li",
-              "value": 135466.19,
+              "lang": "nginx",
+              "value": 12086.7,
+              "unit": "req/s",
+              "variant": "release",
+              "os": "unknown"
+            },
+            {
+              "lang": "node",
+              "value": 4625.98,
               "unit": "req/s",
               "variant": "release",
               "os": "unknown"
@@ -11065,8 +11107,8 @@
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_status": "unknown",
+          "validity_source": "none",
           "os": "unknown",
           "pillar": "server",
           "package": "lis",
@@ -26153,16 +26195,16 @@
       "repo": "lis",
       "tier": 5,
       "category": "http",
-      "metric": "verify_skip",
-      "li_value": 1.0,
+      "metric": "rps",
+      "li_value": null,
       "cpp_value": null,
-      "ratio_vs_cpp": 1.0,
-      "sota_lang": null,
-      "sota_value": null,
+      "ratio_vs_cpp": null,
+      "sota_lang": "nginx",
+      "sota_value": 582.8,
       "ratio_vs_sota": null,
-      "unit": "bool",
+      "unit": "req/s",
       "variant": "tls_m15_pending",
-      "status": "green",
+      "status": "unknown",
       "validity_status": "pass",
       "validity_source": "latest.csv:perf_present",
       "os": "unknown",
@@ -26175,10 +26217,10 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 1.0,
-          "unit": "bool",
-          "variant": "ci",
+          "lang": "nginx",
+          "value": 582.8,
+          "unit": "req/s",
+          "variant": "release",
           "os": "unknown"
         }
       ],
@@ -26194,17 +26236,17 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 235097.45,
+      "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 22604.11,
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
       "status": "unknown",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26215,8 +26257,15 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 235097.45,
+          "lang": "nginx",
+          "value": 22604.11,
+          "unit": "req/s",
+          "variant": "release",
+          "os": "unknown"
+        },
+        {
+          "lang": "node",
+          "value": 15816.79,
           "unit": "req/s",
           "variant": "release",
           "os": "unknown"
@@ -26234,17 +26283,17 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 11405.15,
+      "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 24309.0,
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
       "status": "unknown",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26255,8 +26304,8 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 11405.15,
+          "lang": "nginx",
+          "value": 24309.0,
           "unit": "req/s",
           "variant": "release",
           "os": "unknown"
@@ -26274,17 +26323,17 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 18454.74,
+      "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 25179.37,
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
       "status": "unknown",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26295,8 +26344,8 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 18454.74,
+          "lang": "nginx",
+          "value": 25179.37,
           "unit": "req/s",
           "variant": "release",
           "os": "unknown"
@@ -26314,17 +26363,17 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 9141.23,
+      "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 24166.96,
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
       "status": "unknown",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26335,8 +26384,8 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 9141.23,
+          "lang": "nginx",
+          "value": 24166.96,
           "unit": "req/s",
           "variant": "release",
           "os": "unknown"
@@ -26354,17 +26403,17 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 9120.95,
+      "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 21414.67,
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": "li_epoll",
       "status": "unknown",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26375,8 +26424,8 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 9120.95,
+          "lang": "nginx",
+          "value": 21414.67,
           "unit": "req/s",
           "variant": "release",
           "os": "unknown"
@@ -26393,18 +26442,18 @@
       "repo": "benchmarks",
       "tier": 5,
       "category": "http",
-      "metric": "verify_pass",
-      "li_value": 1.0,
+      "metric": "verify_only",
+      "li_value": null,
       "cpp_value": null,
-      "ratio_vs_cpp": 1.0,
+      "ratio_vs_cpp": null,
       "sota_lang": null,
       "sota_value": null,
       "ratio_vs_sota": null,
       "unit": "bool",
       "variant": "rate_limit",
-      "status": "green",
-      "validity_status": "pass",
-      "validity_source": "metric:verify_pass",
+      "status": "unknown",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26415,7 +26464,7 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
+          "lang": "harness",
           "value": 1.0,
           "unit": "bool",
           "variant": "ci",
@@ -26433,14 +26482,14 @@
       "repo": "lis",
       "tier": 5,
       "category": "http",
-      "metric": "verify_only",
+      "metric": "rps",
       "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 4148.74,
       "ratio_vs_sota": null,
-      "unit": "bool",
+      "unit": "req/s",
       "variant": null,
       "status": "unknown",
       "validity_status": "unknown",
@@ -26455,10 +26504,17 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "harness",
-          "value": 1.0,
-          "unit": "bool",
-          "variant": "ci",
+          "lang": "nginx",
+          "value": 4148.74,
+          "unit": "req/s",
+          "variant": "release",
+          "os": "unknown"
+        },
+        {
+          "lang": "node",
+          "value": 1805.31,
+          "unit": "req/s",
+          "variant": "release",
           "os": "unknown"
         }
       ],
@@ -26474,17 +26530,17 @@
       "tier": 5,
       "category": "http",
       "metric": "rps",
-      "li_value": 135466.19,
+      "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
-      "sota_lang": null,
-      "sota_value": null,
+      "sota_lang": "nginx",
+      "sota_value": 12086.7,
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
       "status": "unknown",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_status": "unknown",
+      "validity_source": "none",
       "os": "unknown",
       "ph_ids": [
         "PH-H"
@@ -26495,8 +26551,15 @@
       "ci_url": "",
       "langs": [
         {
-          "lang": "li",
-          "value": 135466.19,
+          "lang": "nginx",
+          "value": 12086.7,
+          "unit": "req/s",
+          "variant": "release",
+          "os": "unknown"
+        },
+        {
+          "lang": "node",
+          "value": 4625.98,
           "unit": "req/s",
           "variant": "release",
           "os": "unknown"
