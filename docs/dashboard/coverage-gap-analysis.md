@@ -1,7 +1,8 @@
 # Benchmark dashboard coverage gap analysis
 
-**Date:** 2026-05-25 · **Branch:** `feat/benchmark-ship-integration`  
-**Live target:** https://li-langverse.github.io/benchmarks/
+**Date:** 2026-05-26 · **Branch:** `feat/benchmark-ship-integration` → `main` after PR #85  
+**Live target:** https://li-langverse.github.io/benchmarks/  
+**Regression gates:** [INVARIANTS.md](./INVARIANTS.md) · `scripts/check-dashboard-invariants.py`
 
 ## Current vs target
 
@@ -32,8 +33,17 @@
 - tier2 physics: need grid/cell count in harness metadata → `problem_size=tier2_*`.
 - HTTP: payload labels on `static_small` / `static_large` done; wrk concurrency variants TBD.
 
+## CI enforcement (2026-05-26)
+
+| Check | Script | Threshold |
+|-------|--------|-------------|
+| Summary/catalog parity | `check-dashboard-invariants.py` | rows ≥ 150, ids 1:1 |
+| No package stubs | same | ban `*_stub`, `lig_viewport_stub` |
+| Static routes | `check-dashboard-static-routes.sh` | index + matrix + ≥145 bench pages |
+
 ## Agent continuation
 
-1. Read `docs/dashboard/diagram-layout.md`, this file, integration PR body.
-2. Run `python3 scripts/ingest/build_summary_fixture.py` after catalog edits.
-3. Merge integration PR when CI green; verify live `/matrix` row count and Size column.
+1. Read [ARCHITECTURE.md](./ARCHITECTURE.md), [INVARIANTS.md](./INVARIANTS.md), [SHIP-STATUS.md](./SHIP-STATUS.md).
+2. Run `python3 scripts/check-dashboard-invariants.py` after catalog edits; `build_summary_fixture.py` to refresh `summary.json`.
+3. Verify live `/matrix` row count ≥169 and Size column after Pages deploy from `main`.
+4. **Blocked:** ~109 `path=unknown` until **lic** harness + CSV; memory facet ratios until RSS ingest.

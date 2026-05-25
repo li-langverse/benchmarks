@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lic
+          # Pin: lic main check_cmd uses resource_options_invalid() before symbol exists
+          ref: c0977131
           path: lic
 
       - uses: actions/checkout@v4
@@ -62,6 +64,9 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
+      - name: Dashboard invariants
+        run: python3 scripts/check-dashboard-invariants.py
+
   # Pages deploy uses dashboard-next (pages.yml). Legacy Vite dashboard/ kept for local dev.
   dashboard-build:
     runs-on: ubuntu-24.04
@@ -83,11 +88,9 @@ jobs:
               cp "../data/latest/$f" out/latest/
             fi
           done
-          mkdir -p out/latest
-          for f in summary.json release-index.json benchmark-matrix.json proof-posture.json; do
-            if [ -f "../data/latest/$f" ]; then
-              cp "../data/latest/$f" out/latest/
-            fi
-          done
+      - name: Dashboard static routes
+        run: |
+          chmod +x scripts/check-dashboard-static-routes.sh
+          ./scripts/check-dashboard-static-routes.sh
       - name: Verify Pages artifact path
         run: test -s dashboard-next/out/index.html

@@ -6,6 +6,8 @@
 
 **Implementation anchor:** tokens and class names today live in [`dashboard/src/style.css`](../../dashboard/src/style.css). New routes must not change that file until WP1; align new UI to these variables.
 
+**Architecture & regression gates:** [ARCHITECTURE.md](./ARCHITECTURE.md) (catalog → ingest → `dashboard-next` → Pages) · [INVARIANTS.md](./INVARIANTS.md) (`check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`).
+
 ---
 
 ## Design intent

@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Dashboard ship regression gates:** `docs/dashboard/ARCHITECTURE.md`, `INVARIANTS.md`, `check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`; CI steps on Benchmarks CI — [2026-05-26-benchmark-ship-integration.md](docs/release-notes/2026-05-26-benchmark-ship-integration.md).
+
 ### Fixed
 
 - **LIC_ROOT / catalog alignment:** `tier0_stability` → `li-tests/benchmarks/tier0_correctness`; `rate_limit_429` vendor path; plan-audit skips `unknown`/`planned` paths; CI checks out `lic@dev` with absolute `LIC_ROOT` — [2026-05-25-lic-root-catalog-alignment.md](docs/release-notes/2026-05-25-lic-root-catalog-alignment.md). Closes benchmarks **#17, #19, #20**; documents **#38** agent-kit sync.
