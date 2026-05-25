@@ -9,6 +9,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Fixed
 
 - **Harness-backed dashboard rows:** Refresh `data/latest/summary.json` from **lic** tier 1+2 CSV + ingest validity (`li_rows_for_validity`, tier-5 merge); 16 measured green/yellow/red rows — [2026-05-25-refresh-bench-csv.md](docs/release-notes/2026-05-25-refresh-bench-csv.md).
+- **Org CI audit (WP-A2):** `ensure-org-repo-ci.py` requires GitHub API on each repo default branch; gates `lidb` until WP-H0; local clone fallback only with `--allow-local-fallback` — [2026-05-25-ensure-org-repo-ci-lidb-gate.md](docs/release-notes/2026-05-25-ensure-org-repo-ci-lidb-gate.md).
+
+- **Summary validity gate:** `build_summary.py` infers `latest.csv:perf_present` when Li rows exist without `passed`; variant fallback matches `lang_series` — tier colors no longer all `unknown` on live dashboard — [2026-05-25-fix-summary-validity-gate.md](docs/release-notes/2026-05-25-fix-summary-validity-gate.md).
+
+### Fixed
+
+- **Dashboard measured vs pending:** tier strip and matrix distinguish CSV-measured rows from catalog-pending; `measurement_state` on summary rows — [2026-05-25-dashboard-measured-vs-pending.md](docs/release-notes/2026-05-25-dashboard-measured-vs-pending.md).
 
 ### Added
 
