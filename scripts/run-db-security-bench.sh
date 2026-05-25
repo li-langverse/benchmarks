@@ -18,5 +18,13 @@ if [[ "${BENCH_DB_SECURITY_RUN_HARNESS:-0}" != "1" ]]; then
   exit 0
 fi
 
-echo "run-db-security-bench: harness not implemented yet" >&2
+LIDB_ROOT="${LIDB_ROOT:-$(cd "$ROOT/../lidb" 2>/dev/null && pwd)}"
+HARNESS="${LIDB_ROOT}/scripts/bench/security_harness.sh"
+if [[ -x "$HARNESS" ]]; then
+  export BENCH_PROFILE="$PROFILE"
+  export BENCH_HARNESS_JSON=1
+  bash "$HARNESS"
+  exit 0
+fi
+echo "run-db-security-bench: lidb harness missing at $HARNESS" >&2
 exit 2
