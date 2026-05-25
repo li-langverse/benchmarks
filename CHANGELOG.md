@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- **Dashboard SOTA charts:** Relative perf bars on `/bench/[id]` (best competitor = 1.0, higher is better); ingest `ratio_vs_sota` + `series[].relative_perf` — [2026-05-25-sota-relative-charts.md](docs/release-notes/2026-05-25-sota-relative-charts.md).
+
+### Fixed
+
 - **Dashboard bench refresh:** Local tier 1+2 harness (LLVM clang) + tier5 HTTP CSV ingest — 140/179 colored rows — [2026-05-25-refresh-full-bench-run.md](docs/release-notes/2026-05-25-refresh-full-bench-run.md).
 
 - **Dashboard measured coverage:** Ingest expanded lic CSV + catalog path wire + tier-7 registry clone — 142/179 colored rows (79.3%) — [2026-05-25-bench-fill-all-measured.md](docs/release-notes/2026-05-25-bench-fill-all-measured.md).

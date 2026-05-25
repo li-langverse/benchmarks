@@ -18,6 +18,8 @@ export type LangPoint = {
   label?: string;
   passed?: boolean;
   os?: string;
+  /** Relative speed vs best competitor — SOTA lang = 1.0, higher is better. */
+  relative_perf?: number;
 };
 
 export type ChartSpec = {
@@ -80,14 +82,16 @@ export type SummaryRow = {
   compare_oracle?: string;
   ph_ids: string[];
   path: string;
-  pending?: boolean;
   threshold_ratio_cpp: number;
   ci_url?: string;
   langs?: LangPoint[];
+  pending?: boolean;
 };
 
 export type SummaryReporting = {
   sota_policy?: string;
+  /** Diagram axis: relative_perf where 1.0 = best competitor speed. */
+  relative_perf_higher_is_better?: boolean;
   validity_required_default?: boolean;
   os_values?: string[];
   size_labels?: string[];
