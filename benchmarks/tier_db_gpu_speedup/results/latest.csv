@@ -1,0 +1,3 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,passed,os
+gpu_ann_speedup_10k,lidb,ci,1,speedup_ratio,,ratio,6d2632d,arm,harness_blocked:gpu_harness_pending,false,darwin
+gpu_ann_speedup_1m,lidb,ci,1,speedup_ratio,,ratio,6d2632d,arm,harness_blocked:gpu_harness_nightly_pending,false,darwin

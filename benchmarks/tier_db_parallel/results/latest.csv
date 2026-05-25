@@ -1,0 +1,3 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,passed,os
+concurrent_readers,lidb,ci,1,ops_per_sec,239.0,ops,6d2632d,arm,lidb_embed_parallel,true,darwin
+concurrent_writers,lidb,ci,1,ops_per_sec,,ops,6d2632d,arm,harness_blocked:writer_scalability_pending,false,darwin

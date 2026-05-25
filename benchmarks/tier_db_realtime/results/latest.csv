@@ -1,0 +1,2 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,passed,os
+ws_publish_latency,lidb,ci,1,latency_p95,,ms,6d2632d,arm,harness_blocked:realtime_harness_pending,false,darwin

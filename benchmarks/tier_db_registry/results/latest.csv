@@ -1,0 +1,4 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,passed,os
+registry_read_by_name,lidb,ci,1,latency_p95,10.228167,ms,6d2632d,arm,lidb_embed_smoke,true,darwin
+registry_read_latest,lidb,ci,1,latency_p95,14.313,ms,6d2632d,arm,lidb_embed_smoke,true,darwin
+registry_publish,lidb,ci,1,latency_p95,15.075166,ms,6d2632d,arm,lidb_embed_smoke_insert,true,darwin

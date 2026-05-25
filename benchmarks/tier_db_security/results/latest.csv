@@ -1,0 +1,3 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,passed,os
+injection_blocked,lidb,ci,1,pass_rate,0.5,ratio,6d2632d,arm,probes_fail=2,false,darwin
+rls_bypass_blocked,lidb,ci,1,pass_rate,,ratio,6d2632d,arm,harness_blocked:rls_skipped=3,false,darwin

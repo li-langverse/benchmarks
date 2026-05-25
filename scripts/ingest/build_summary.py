@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 
 LANG_ORDER = ["li", "cpp", "rust", "julia", "nginx", "harness", "go", "python"]
+LIDB_LANG_ORDER = ["lidb", "postgres", "postgres_age", "faiss_cpu", "lidb_cpu_hnsw", "lidb_gpu", "lidb_cte", "harness"]
 HTTP_LANG_ORDER = [
     "li",
     "nginx",
@@ -164,6 +165,19 @@ def merge_csv_rows(paths: list[Path]) -> list[dict]:
     return rows
 
 
+def tier_db_csv_paths() -> list[Path]:
+    tier_root = ROOT / "benchmarks"
+    if not tier_root.is_dir():
+        return []
+    return sorted(p for p in tier_root.glob("tier_db_*/results/latest.csv") if p.is_file())
+
+
+def subject_lang_for(cfg: dict) -> str:
+    if benchmark_package(cfg) == "lidb":
+        return "lidb"
+    return "li"
+
+
 def status_for_ratio(ratio: float | None, threshold: float) -> str:
     if ratio is None:
         return "unknown"
@@ -176,7 +190,7 @@ def status_for_ratio(ratio: float | None, threshold: float) -> str:
 
 def is_sota_candidate(lang: str) -> bool:
     """Li is never SOTA; harness rows are infra, not competitive oracles."""
-    return bool(lang) and lang not in ("li", "harness")
+    return bool(lang) and lang not in ("li", "lidb", "harness")
 
 
 def normalize_os(raw: str | None) -> str:
@@ -219,7 +233,7 @@ def bench_os(
 
 
 def metric_lower_is_better(metric: str) -> bool:
-    return metric in ("wall_time", "latency", "latency_p95")
+    return metric in ("wall_time", "latency", "latency_p95", "rss_mb")
 
 
 def compute_sota(
@@ -269,6 +283,15 @@ def validity_required_for(cfg: dict, catalog_defaults: dict) -> bool:
 
 
 
+def subject_rows_for_validity(bench_rows, cfg, variant):
+    lang = subject_lang_for(cfg)
+    rows = [r for r in bench_rows if r.get("lang") == lang]
+    if not variant:
+        return rows
+    pref = [r for r in rows if (r.get("variant") or "") == variant]
+    return pref if pref else rows
+
+
 def li_rows_for_validity(bench_rows: list[dict], variant: str | None) -> list[dict]:
     """Li CSV rows for validity — align variant fallback with lang_series."""
     li = [r for r in bench_rows if r.get("lang") == "li"]
@@ -293,16 +316,17 @@ def validity_for_benchmark(
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
     bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
+    subject_rows = subject_rows_for_validity(bench_rows, cfg, variant)
     li_rows = li_rows_for_validity(bench_rows, variant)
 
-    passed_flags = [csv_passed(r) for r in li_rows if csv_passed(r) is not None]
+    passed_flags = [csv_passed(r) for r in subject_rows if csv_passed(r) is not None]
     if passed_flags:
         if all(passed_flags):
             return "pass", "latest.csv:passed"
         return "fail", "latest.csv:passed"
 
     if metric in ("verify_pass", "pass_rate"):
-        for r in li_rows:
+        for r in subject_rows:
             try:
                 val = float(r["value"])
             except (TypeError, ValueError):
@@ -336,7 +360,7 @@ def validity_for_benchmark(
     if not bench_rows:
         return "unknown", "none"
 
-    for r in li_rows:
+    for r in subject_rows:
         try:
             float(r["value"])
         except (TypeError, ValueError):
@@ -438,6 +462,29 @@ def lang_series(
                 "os": normalize_os(r.get("os") or r.get("OS")),
             }
         )
+    return out
+
+
+def lidb_lang_series(rows, bench_id, metric, cfg=None, *, variant=None):
+    scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
+    bench_rows = [r for r in scoped if r.get("metric") == metric]
+    out, seen = [], set()
+    def append_row(r):
+        lang = r.get("lang") or ""
+        if lang in seen: return
+        try: val = float(r["value"])
+        except (TypeError, ValueError): return
+        seen.add(lang)
+        out.append({"lang": lang, "value": val, "unit": r.get("unit") or "", "variant": r.get("variant") or "", "os": normalize_os(r.get("os") or r.get("OS"))})
+    for lang in LIDB_LANG_ORDER:
+        matches = [r for r in bench_rows if r.get("lang") == lang]
+        if not matches: continue
+        if lang == "lidb" and variant:
+            pref = [r for r in matches if (r.get("variant") or "") == variant]
+            if pref: matches = pref
+        append_row(matches[0])
+    for r in bench_rows:
+        if (r.get("lang") or "") not in seen: append_row(r)
     return out
 
 
@@ -580,7 +627,13 @@ def build_perf_chart(
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
     is_http = cfg.get("category") == "http"
-    series_fn = http_lang_series if is_http else lang_series
+    is_lidb = benchmark_package(cfg) == "lidb"
+    if is_http:
+        series_fn = http_lang_series
+    elif is_lidb:
+        series_fn = lidb_lang_series
+    else:
+        series_fn = lang_series
     series = series_fn(rows, bench_id, metric, cfg, variant=variant)
     if not series:
         bench_rows = rows_for_bench(rows, bench_id, cfg)
@@ -590,12 +643,15 @@ def build_perf_chart(
             if series:
                 metric = alt
                 break
+    subj = subject_lang_for(cfg)
     if variant:
         li_val = next(
-            (s["value"] for s in series if s["lang"] == "li" and s.get("variant") == variant),
-            next((s["value"] for s in series if s["lang"] == "li"), None),
+            (s["value"] for s in series if s["lang"] == subj and s.get("variant") == variant),
+            next((s["value"] for s in series if s["lang"] == subj), None),
         )
     else:
+        li_val = next((s["value"] for s in series if s["lang"] == subj), None)
+    if li_val is None and subj != "li":
         li_val = next((s["value"] for s in series if s["lang"] == "li"), None)
     cpp_val = next((s["value"] for s in series if s["lang"] == "cpp"), None)
     oracle = cfg.get("compare_oracle", "cpp")
@@ -605,7 +661,12 @@ def build_perf_chart(
     sota_lang, sota_val = compute_sota(series, lower_is_better=lower)
     ratio_sota = ratio_li_vs_ref(li_val, sota_val, metric=metric, lower_is_better=lower)
     threshold = float(cfg.get("threshold_ratio_cpp", 1.2))
-    perf_st = status_for_ratio(ratio, threshold)
+    if ratio is not None:
+        perf_st = status_for_ratio(ratio, threshold)
+    elif benchmark_package(cfg) == "lidb" and li_val is not None and validity_status == "pass":
+        perf_st = "green"
+    else:
+        perf_st = "unknown"
     st = apply_validity_gate(perf_st, validity_status)
     meta = row_meta(cfg)
     sizes = size_meta(cfg)
@@ -731,7 +792,8 @@ def main() -> int:
 
     catalog_defaults = load_catalog_defaults()
     catalog = load_catalog()
-    raw = merge_csv_rows([lic_csv, lis_csv])
+    tier_db_csvs = tier_db_csv_paths()
+    raw = merge_csv_rows([lic_csv, lis_csv, *tier_db_csvs])
     stability_index = load_stability_index(stability_csv)
 
     by_bench: dict[str, list[dict]] = defaultdict(list)
@@ -868,6 +930,7 @@ def main() -> int:
             "lic_csv": str(lic_csv),
             "lis_csv": str(lis_csv),
             "stability_csv": str(stability_csv),
+            "tier_db_csv": ", ".join(str(p) for p in tier_db_csvs) or "none",
             "security_csv": str(security_csv),
         },
         "reporting": {

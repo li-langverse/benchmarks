@@ -1,0 +1,4 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,passed,os
+ann_qps_10k,lidb,ci,1,queries_per_sec,,qps,6d2632d,arm,harness_blocked:vector_ann_harness_pending,false,darwin
+ann_recall_at_10_10k,lidb,ci,1,recall_at_10,,ratio,6d2632d,arm,harness_blocked:vector_ann_harness_pending,false,darwin
+ann_recall_at_10_1m,lidb,ci,1,recall_at_10,,ratio,6d2632d,arm,harness_blocked:vector_ann_nightly_pending,false,darwin
