@@ -27,8 +27,13 @@ fi
 
 export LIC="$LIC_ROOT/build/compiler/lic/lic"
 export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
-export CC="${CC:-clang-18}"
-export CXX="${CXX:-clang++-18}"
+if command -v clang-18 >/dev/null 2>&1; then
+  export CC="${CC:-clang-18}"
+  export CXX="${CXX:-clang++-18}"
+else
+  export CC="${CC:-clang}"
+  export CXX="${CXX:-clang++}"
+fi
 
 cd "$LIC_ROOT"
 mkdir -p benchmarks/results
@@ -40,7 +45,7 @@ if [[ "$SKIP_TIER0" != "1" ]]; then
   fi
 fi
 
-log "tier 1+2 — micro + physics (runs=$RUNS)"
+log "tier 1+2+7 — micro + physics + registry family aliases (runs=$RUNS)"
 python3 - <<'PY' "$RUNS" "$LIC_ROOT"
 import os, sys
 from pathlib import Path
@@ -73,6 +78,11 @@ if failed:
     print(f"tier12: {len(failed)} skipped: {', '.join(failed)}", file=sys.stderr)
 print(f"updated {out}")
 PY
+
+log "tier 7 — algo_registry family-template aliases"
+python3 benchmarks/harness/bench.py --tier 7 --runs "$RUNS" --skip-verify || {
+  echo "WARN: tier7 registry aliases failed — continuing" >&2
+}
 
 log "tier 3 — ecosystem (compile, security, async)"
 python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" || { echo "tier3 failed" >&2; exit 1; }

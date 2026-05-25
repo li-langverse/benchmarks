@@ -1,10 +1,46 @@
 benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags
-static_small,li,release,4,rps,135466.1900,req/s,0612e11,x86_64,wrk
-keepalive_pipelining,li,release,16,rps,235097.4500,req/s,0612e11,x86_64,wrk pipeline=8
-static_large,harness,ci,1,verify_only,1,bool,0612e11,x86_64,wrk_parse_fail_li
-proxy_loopback,li,release,8,rps,9120.9500,req/s,0612e11,x86_64,wrk proxy_loopback
-lb_round_robin,li,release,8,rps,9141.2300,req/s,0612e11,x86_64,wrk proxy_lb
-lb_least_conn,li,release,8,rps,11405.1500,req/s,0612e11,x86_64,wrk proxy_least_conn
-lb_peer_down,li,release,8,rps,18454.7400,req/s,0612e11,x86_64,wrk proxy_lb
-rate_limit_429,li,ci,1,verify_pass,1,bool,0612e11,x86_64,rate_limit rps=2 burst=1
-https_static,li,ci,1,verify_skip,1,bool,0612e11,x86_64,tls_m15_pending
+static_small,nginx,release,4,rps,12086.7000,req/s,409c3bd,arm,wrk
+static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_no_listen
+static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
+static_small,node,release,4,rps,4625.9800,req/s,409c3bd,arm,wrk v22.22.0
+static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_bun
+static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li
+keepalive_pipelining,nginx,release,16,rps,22604.1100,req/s,409c3bd,arm,wrk pipeline=8
+keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_no_listen
+keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
+keepalive_pipelining,node,release,16,rps,15816.7900,req/s,409c3bd,arm,wrk pipeline=8 v22.22.0
+keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_bun
+keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li
+static_large,nginx,release,8,rps,4148.7400,req/s,409c3bd,arm,wrk
+static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_no_listen
+static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
+static_large,node,release,8,rps,1805.3100,req/s,409c3bd,arm,wrk v22.22.0
+static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_bun
+static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li
+proxy_loopback,nginx,release,8,rps,21414.6700,req/s,409c3bd,arm,wrk proxy_loopback
+proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_proxy_start_fail
+proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
+proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_caddy
+proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li_httpd_bin
+lb_round_robin,nginx,release,8,rps,24166.9600,req/s,4a3a0e2,arm,wrk proxy_lb
+lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_proxy_start_fail
+lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
+lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_caddy
+lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
+lb_least_conn,nginx,release,8,rps,24309.0000,req/s,4a3a0e2,arm,wrk proxy_least_conn
+lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_proxy_start_fail
+lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
+lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_caddy
+lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
+lb_peer_down,nginx,release,8,rps,25179.3700,req/s,4a3a0e2,arm,wrk proxy_lb
+lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_proxy_start_fail
+lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
+lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_caddy
+lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
+rate_limit_429,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
+https_static,nginx,release,8,rps,582.8000,req/s,4a3a0e2,arm,openssl s_time https
+https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_tls_no_start
+https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
+https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_node_https
+https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_bun_https
+https_static,li,ci,1,verify_skip,1,bool,4a3a0e2,arm,tls_m15_pending

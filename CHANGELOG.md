@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **Dashboard bench refresh:** Local tier 1+2 harness (LLVM clang) + tier5 HTTP CSV ingest — 140/179 colored rows — [2026-05-25-refresh-full-bench-run.md](docs/release-notes/2026-05-25-refresh-full-bench-run.md).
+
+- **Dashboard measured coverage:** Ingest expanded lic CSV + catalog path wire + tier-7 registry clone — 142/179 colored rows (79.3%) — [2026-05-25-bench-fill-all-measured.md](docs/release-notes/2026-05-25-bench-fill-all-measured.md).
+
+### Added
+
+- **WP5 catalog path sync:** `scripts/catalog/sync-paths-from-lic-tree.py` wires 83 `catalog.toml` paths from the **lic** benchmarks tree; refreshes `summary.json` when CSV exists — [2026-05-25-catalog-sync-paths-lic-tree.md](docs/release-notes/2026-05-25-catalog-sync-paths-lic-tree.md).
+
 ### Added
 
 - **tier_db_memory / tier_db_parallel harness wire:** `run-db-*-bench.sh` invoke `lidb/scripts/bench/{memory_footprint,parallel_load}.sh` when `BENCH_DB_*_RUN_HARNESS=1`, with `scripts/lidb-bench-stub/` fallback — [2026-05-25-bench-memory-parallel-wire.md](docs/release-notes/2026-05-25-bench-memory-parallel-wire.md).
