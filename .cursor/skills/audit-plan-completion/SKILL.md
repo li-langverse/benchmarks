@@ -23,9 +23,7 @@ cat data/latest/plan-completion-audit.json
 | Source | Meaning |
 |--------|---------|
 | `master_plan_open` | PH phase tracker still unchecked — update plan or finish work |
-| `plan_files_open` | Actionable sub-plan gates (`kind: plan_gate`) — excludes tracker duplicates and phases already `[x]` |
-| `plan_files_suppressed` | `- [ ]` rows hidden (tracker duplicate or covered phase complete) |
-| `stale_spec_checklists` | Normative task bullets (e.g. phase-02 implementation list) — not completion gates |
+| `plan_files_open` | Sub-plan `- [ ]` items stale |
 | `provability_gaps` Partial/Missing | **G-*** not closed — handbook must not overclaim |
 | `catalog_gaps` | `catalog.toml` row without lic path — ingest will lie |
 | `implementation_signals` | Scaffold packages, unpublished branches |
