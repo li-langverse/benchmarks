@@ -114,6 +114,10 @@ Canonical paths for the SPA (or multi-page) portal. Base URL: `https://li-langve
 
 See also [sitemap.md](./sitemap.md) for a route-only quick reference.
 
+### Diagram layout
+
+Facet-first IA for per-algorithm reporting (validity, perf vs SOTA, OS, memory stub, security): **one portal diagram**, **one drill-down composition**, overview as **Algorithm × Facet** matrix. Full spec, wireframes, JSON mapping, and scale notes: **[diagram-layout.md](./diagram-layout.md)**.
+
 ---
 
 ## Components

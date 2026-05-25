@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+<<<<<<< Updated upstream
+=======
+### Added
+
+- **Dashboard diagram layout:** Algorithm×Facet IA doc, design-system link, `algorithm-facet-grid.tsx` types stub — [2026-05-25-dashboard-diagram-layout.md](docs/release-notes/2026-05-25-dashboard-diagram-layout.md).
+
+### Fixed
+
+- **Dashboard matrix tier filter:** `/matrix/?tier=N` from overview tier strip filters catalog rows; mobile header/main padding — [2026-05-25-dashboard-matrix-tier-filter.md](docs/release-notes/2026-05-25-dashboard-matrix-tier-filter.md).
+
+>>>>>>> Stashed changes
 ### Added
 
 - **tier_db_registry skeleton:** OLTP registry publish/read scenarios vs Postgres — [2026-05-25-tier-db-registry-skeleton.md](docs/release-notes/2026-05-25-tier-db-registry-skeleton.md).
