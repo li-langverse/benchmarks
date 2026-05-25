@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+      - name: Unit tests (ensure-org-repo-ci)
+        run: python3 tests/test_ensure_org_repo_ci.py -q
       - name: Verify all org repos have ci.yml
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
