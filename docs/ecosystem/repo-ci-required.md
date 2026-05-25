@@ -46,3 +46,7 @@ cd lic
 | `lit` | `test` |
 | `roadmap` | `verify-kit` |
 | Package mirrors | `check` |
+
+**Default branch:** workflows are read from each repo's **current default branch** (`gh repo view --json defaultBranchRef`), not from a local sibling checkout. Use `--allow-local-fallback` only for offline dev.
+
+**Non-main default (WP-H0):** `lidb` is listed in `repos_gated_non_main_default` until its default branch is `main`; it must not appear in `repos_ok` because a local clone has `ci.yml`.
