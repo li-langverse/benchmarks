@@ -4,7 +4,8 @@
 Writes data/latest/plan-completion-audit.json (benchmarks repo).
 
 Env:
-  LIC_ROOT      — path to lic checkout (default: ../lic)
+  LIC_ROOT      — path to lic checkout (default: ../lic; CI: ${{ github.workspace }}/lic)
+  LIS_ROOT      — path to lis checkout (default: ../lis; tier-5 uses vendor/lis-tier5 when present)
   ROADMAP_ROOT  — path to roadmap (default: ../roadmap)
 """
 from __future__ import annotations
@@ -16,8 +17,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-LIC = Path(__import__("os").environ.get("LIC_ROOT", ROOT.parent / "lic"))
-ROADMAP = Path(__import__("os").environ.get("ROADMAP_ROOT", ROOT.parent / "roadmap"))
+_OS = __import__("os")
+LIC = Path(_OS.environ.get("LIC_ROOT", ROOT.parent / "lic"))
+LIS = Path(_OS.environ.get("LIS_ROOT", ROOT.parent / "lis"))
+ROADMAP = Path(_OS.environ.get("ROADMAP_ROOT", ROOT.parent / "roadmap"))
 
 UNCHECKED = re.compile(r"^- \[ \]\s+(.+)$", re.MULTILINE)
 TRACKER_LINE = re.compile(r"^- \[(x| )\] (.+)$", re.MULTILINE)
@@ -217,7 +220,21 @@ def scan_physics_push() -> list[dict]:
     return out
 
 
-def catalog_without_lic_path() -> list[dict]:
+def _catalog_repo_root(repo: str) -> Path | None:
+    """Resolve checkout root for catalog path checks."""
+    if repo == "lic":
+        return LIC
+    if repo == "lis":
+        vendor = ROOT / "vendor/lis-tier5"
+        if vendor.is_dir():
+            return vendor
+        return LIS if LIS.is_dir() else None
+    if repo == "benchmarks":
+        return ROOT
+    return None
+
+
+def catalog_without_repo_path() -> list[dict]:
     import tomllib
 
     catalog = ROOT / "catalog.toml"
@@ -226,17 +243,27 @@ def catalog_without_lic_path() -> list[dict]:
     data = tomllib.loads(catalog.read_text(encoding="utf-8"))
     out: list[dict] = []
     for row in data.get("benchmark", []):
-        if row.get("repo") != "lic":
+        rel = str(row.get("path", "")).strip()
+        if not rel or rel == "unknown":
             continue
-        rel = row.get("path", "")
-        bench_path = LIC / rel
-        if not bench_path.is_dir():
-            out.append(
-                {
-                    "source": "benchmarks:catalog.toml",
-                    "item": f"catalog id={row.get('id')} path missing under LIC_ROOT: {rel}",
-                }
-            )
+        if row.get("catalog_lifecycle") == "planned":
+            continue
+        repo = str(row.get("repo", "lic"))
+        root = _catalog_repo_root(repo)
+        if root is None:
+            continue
+        bench_path = root / rel
+        if bench_path.is_dir() or bench_path.is_file():
+            continue
+        out.append(
+            {
+                "source": "benchmarks:catalog.toml",
+                "item": (
+                    f"catalog id={row.get('id')} path missing under {repo} root "
+                    f"({root.name}): {rel}"
+                ),
+            }
+        )
     return out
 
 
@@ -263,7 +290,7 @@ def main() -> int:
     tracker_open_keys = {normalize_item_key(i["item"]) for i in master}
     gaps = scan_provability_gaps()
     plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
-    catalog = catalog_without_lic_path()
+    catalog = catalog_without_repo_path()
     stubs = package_stubs()
     physics = scan_physics_push()
 
@@ -275,7 +302,12 @@ def main() -> int:
 
     report = {
         "generated_at": now,
-        "roots": {"lic": str(LIC), "benchmarks": str(ROOT), "roadmap": str(ROADMAP)},
+        "roots": {
+            "lic": str(LIC),
+            "lis": str(LIS),
+            "benchmarks": str(ROOT),
+            "roadmap": str(ROADMAP),
+        },
         "summary": {
             "open_tracker_items": len(master),
             "open_plan_checkboxes": len(plans),
