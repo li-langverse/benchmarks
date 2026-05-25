@@ -59,101 +59,163 @@
     {
       "at": "2026-05-21T12:19:31.845499+00:00",
       "path": "data/history/2026-05-21T121931Z.json"
+    },
+    {
+      "at": "2026-05-25T16:29:44.820114+00:00",
+      "path": "data/history/2026-05-25T162944Z.json"
     }
   ],
   "latest_deltas": [
     {
       "benchmark": "horner_pure_li",
-      "field": "ratio_vs_cpp",
-      "from": 0.3636,
-      "to": 0.4444,
-      "delta": 0.0808,
-      "improved": false
-    },
-    {
-      "benchmark": "matmul_naive",
-      "field": "ratio_vs_cpp",
-      "from": 1.36,
-      "to": 1.4,
-      "delta": 0.04,
-      "improved": false
-    },
-    {
-      "benchmark": "reduce_sum",
-      "field": "ratio_vs_cpp",
-      "from": 0.9893,
-      "to": 0.9776,
-      "delta": -0.0117,
-      "improved": true
-    },
-    {
-      "benchmark": "advection_diffusion_2d",
-      "field": "ratio_vs_cpp",
-      "from": 0.9919,
-      "to": 1.1109,
-      "delta": 0.119,
-      "improved": false
-    },
-    {
-      "benchmark": "harmonic_oscillator_chain",
       "field": "status",
       "from": "green",
-      "to": "yellow"
+      "to": "unknown"
     },
     {
-      "benchmark": "harmonic_oscillator_chain",
-      "field": "ratio_vs_cpp",
-      "from": 0.744,
-      "to": 1.2151,
-      "delta": 0.4711,
-      "improved": false
-    },
-    {
-      "benchmark": "heat_equation_2d",
-      "field": "ratio_vs_cpp",
-      "from": 1.0756,
-      "to": 0.9592,
-      "delta": -0.1164,
-      "improved": true
-    },
-    {
-      "benchmark": "wave_equation_2d",
-      "field": "ratio_vs_cpp",
-      "from": 1.0191,
-      "to": 0.9993,
-      "delta": -0.0198,
-      "improved": true
-    },
-    {
-      "benchmark": "keepalive_pipelining",
-      "field": "ratio_vs_cpp",
-      "from": 0.4028,
-      "to": 0.3897,
-      "delta": -0.0131,
-      "improved": true
-    },
-    {
-      "benchmark": "static_large",
+      "benchmark": "matmul_blocked",
       "field": "status",
       "from": "red",
       "to": "green"
     },
     {
-      "benchmark": "static_large",
+      "benchmark": "matmul_blocked",
       "field": "ratio_vs_cpp",
-      "from": 1.1337,
-      "to": 0.9476,
-      "delta": -0.1861,
+      "from": 1.5347,
+      "to": 1.1423,
+      "delta": -0.3924,
       "improved": true
     },
     {
-      "benchmark": "static_small",
+      "benchmark": "matmul_naive",
+      "field": "status",
+      "from": "red",
+      "to": "green"
+    },
+    {
+      "benchmark": "matmul_naive",
       "field": "ratio_vs_cpp",
-      "from": 0.6223,
-      "to": 0.5193,
-      "delta": -0.103,
+      "from": 1.4,
+      "to": 0.6429,
+      "delta": -0.7571,
       "improved": true
+    },
+    {
+      "benchmark": "reduce_sum",
+      "field": "ratio_vs_cpp",
+      "from": 0.9776,
+      "to": 0.5247,
+      "delta": -0.4529,
+      "improved": true
+    },
+    {
+      "benchmark": "simd_dot",
+      "field": "status",
+      "from": "green",
+      "to": "red"
+    },
+    {
+      "benchmark": "simd_dot",
+      "field": "ratio_vs_cpp",
+      "from": 0.0155,
+      "to": 1.4353,
+      "delta": 1.4198,
+      "improved": false
+    },
+    {
+      "benchmark": "advection_diffusion_2d",
+      "field": "ratio_vs_cpp",
+      "from": 1.1109,
+      "to": 1.0252,
+      "delta": -0.0857,
+      "improved": true
+    },
+    {
+      "benchmark": "double_pendulum",
+      "field": "ratio_vs_cpp",
+      "from": 0.9997,
+      "to": 0.7965,
+      "delta": -0.2032,
+      "improved": true
+    },
+    {
+      "benchmark": "harmonic_oscillator_chain",
+      "field": "status",
+      "from": "yellow",
+      "to": "green"
+    },
+    {
+      "benchmark": "harmonic_oscillator_chain",
+      "field": "ratio_vs_cpp",
+      "from": 1.2151,
+      "to": 1.0226,
+      "delta": -0.1925,
+      "improved": true
+    },
+    {
+      "benchmark": "heat_equation_2d",
+      "field": "ratio_vs_cpp",
+      "from": 0.9592,
+      "to": 1.0329,
+      "delta": 0.0737,
+      "improved": false
+    },
+    {
+      "benchmark": "nbody_gravity",
+      "field": "ratio_vs_cpp",
+      "from": 0.9995,
+      "to": 0.9769,
+      "delta": -0.0226,
+      "improved": true
+    },
+    {
+      "benchmark": "three_body",
+      "field": "ratio_vs_cpp",
+      "from": 0.998,
+      "to": 1.0094,
+      "delta": 0.0114,
+      "improved": false
+    },
+    {
+      "benchmark": "wave_equation_1d",
+      "field": "status",
+      "from": "green",
+      "to": "yellow"
+    },
+    {
+      "benchmark": "wave_equation_1d",
+      "field": "ratio_vs_cpp",
+      "from": 1.001,
+      "to": 1.2076,
+      "delta": 0.2066,
+      "improved": false
+    },
+    {
+      "benchmark": "wave_equation_2d",
+      "field": "ratio_vs_cpp",
+      "from": 0.9993,
+      "to": 0.2868,
+      "delta": -0.7125,
+      "improved": true
+    },
+    {
+      "benchmark": "keepalive_pipelining",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "static_large",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "static_small",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
     }
   ],
-  "updated_at": "2026-05-21T12:19:31.889626+00:00"
+  "updated_at": "2026-05-25T16:29:44.902312+00:00"
 }
