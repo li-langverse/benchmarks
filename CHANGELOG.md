@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **WP5 catalog path sync:** `scripts/catalog/sync-paths-from-lic-tree.py` wires 83 `catalog.toml` paths from the **lic** benchmarks tree; refreshes `summary.json` when CSV exists — [2026-05-25-catalog-sync-paths-lic-tree.md](docs/release-notes/2026-05-25-catalog-sync-paths-lic-tree.md).
+
+### Added
+
 - **tier_db_memory / tier_db_parallel harness wire:** `run-db-*-bench.sh` invoke `lidb/scripts/bench/{memory_footprint,parallel_load}.sh` when `BENCH_DB_*_RUN_HARNESS=1`, with `scripts/lidb-bench-stub/` fallback — [2026-05-25-bench-memory-parallel-wire.md](docs/release-notes/2026-05-25-bench-memory-parallel-wire.md).
 
 ### Fixed
