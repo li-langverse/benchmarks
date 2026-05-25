@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbRealtimeIngestManifest",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_realtime" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["stub", "unknown", "pass", "fail"] },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "const": "latency_p95" },
+          "status": { "enum": ["unknown", "green", "yellow", "red", "stub"] }
+        }
+      }
+    }
+  }
+}

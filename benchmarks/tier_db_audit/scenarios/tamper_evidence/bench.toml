@@ -1,0 +1,12 @@
+name = "tamper_evidence"
+
+[workload]
+kind = "audit_verify"
+notes = "Log chain / digest detects tamper"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "pass_rate"
+unit = "ratio"

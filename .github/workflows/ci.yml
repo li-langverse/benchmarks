@@ -50,15 +50,22 @@ jobs:
           chmod +x scripts/run-db-registry-bench.sh \
             scripts/run-db-graph-registry-bench.sh \
             scripts/run-db-vector-ann-bench.sh \
-            scripts/run-db-gpu-speedup-bench.sh
+            scripts/run-db-gpu-speedup-bench.sh \
+            scripts/run-db-full-spectrum-bench.sh
           ./scripts/run-db-registry-bench.sh
           ./scripts/run-db-graph-registry-bench.sh
           ./scripts/run-db-vector-ann-bench.sh
           ./scripts/run-db-gpu-speedup-bench.sh
+          ./scripts/run-db-full-spectrum-bench.sh
           test -f data/latest/tier-db-registry.json
           test -f data/latest/tier-db-graph-registry.json
           test -f data/latest/tier-db-vector-ann.json
           test -f data/latest/tier-db-gpu-speedup.json
+          test -f data/latest/tier-db-security.json
+          test -f data/latest/tier-db-memory.json
+          test -f data/latest/tier-db-parallel.json
+          test -f data/latest/tier-db-audit.json
+          test -f data/latest/tier-db-realtime.json
 
       - run: test -f data/latest/summary.json
 

@@ -1,0 +1,11 @@
+[default]
+include = ["rss_idle", "rss_peak_load"]
+timing = false
+
+[profiles.ci]
+include = ["rss_idle", "rss_peak_load"]
+timing = false
+
+[profiles.nightly]
+include = ["rss_idle", "rss_peak_load"]
+timing = true

@@ -1,0 +1,11 @@
+[default]
+include = ["injection_blocked", "rls_bypass_blocked"]
+timing = false
+
+[profiles.ci]
+include = ["injection_blocked", "rls_bypass_blocked"]
+timing = false
+
+[profiles.nightly]
+include = ["injection_blocked", "rls_bypass_blocked"]
+timing = true

@@ -1,0 +1,20 @@
+[schema]
+migration = "schema/security-audit-v1.sql"
+postgres_min_version = "15"
+
+[engines]
+lidb = "lis db start --profile audit-min"
+postgres = "psql"
+
+[load]
+warmup_iters = 50
+measure_iters = 500
+clients = 8
+
+[targets]
+threshold_ratio_vs_postgres = 1.0
+
+[metrics]
+primary = "pass_rate"
+unit = "ratio"
+lower_is_better = false

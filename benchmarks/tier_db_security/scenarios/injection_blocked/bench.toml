@@ -1,0 +1,12 @@
+name = "injection_blocked"
+
+[workload]
+kind = "security_probe"
+notes = "SQL injection attempts must fail closed"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "pass_rate"
+unit = "ratio"

@@ -1,0 +1,12 @@
+name = "ws_publish_latency"
+
+[workload]
+kind = "realtime_ws"
+notes = "WebSocket publish→client delivery P95"
+
+[verify]
+min_rows = 1
+
+[load]
+metric = "latency_p95"
+unit = "ms"

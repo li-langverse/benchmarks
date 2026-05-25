@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-05-25T15:56:45.249238+00:00",
+  "tier": "tier_db_memory",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_memory/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_memory/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_memory/schema/memory-baseline-v1.sql",
+    "results_csv": "benchmarks/tier_db_memory/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "rss_idle",
+      "metric": "rss_mb",
+      "unit": "mb",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.1,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-MEM"
+      ],
+      "notes": "RSS at idle after cold start"
+    },
+    {
+      "id": "rss_peak_load",
+      "metric": "rss_mb",
+      "unit": "mb",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.1,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-MEM"
+      ],
+      "notes": "Peak RSS under sustained load"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-memory.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

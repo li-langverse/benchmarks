@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-05-25T15:56:47.046070+00:00",
+  "tier": "tier_db_realtime",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_realtime/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_realtime/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_realtime/schema/realtime-channel-v1.sql",
+    "results_csv": "benchmarks/tier_db_realtime/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "ws_publish_latency",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-RT"
+      ],
+      "notes": "WebSocket publish\u2192client P95"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-realtime.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

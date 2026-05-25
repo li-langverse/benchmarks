@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-05-25T15:56:44.731946+00:00",
+  "tier": "tier_db_security",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_security/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_security/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_security/schema/security-audit-v1.sql",
+    "results_csv": "benchmarks/tier_db_security/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "injection_blocked",
+      "metric": "pass_rate",
+      "unit": "ratio",
+      "lower_is_better": false,
+      "threshold_pass_rate": 1.0,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "pass_rate": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-SEC"
+      ],
+      "notes": "SQL injection blocked"
+    },
+    {
+      "id": "rls_bypass_blocked",
+      "metric": "pass_rate",
+      "unit": "ratio",
+      "lower_is_better": false,
+      "threshold_pass_rate": 1.0,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "pass_rate": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-SEC"
+      ],
+      "notes": "RLS bypass attempts blocked"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-security.json",
+    "merge_into_summary": false,
+    "dashboard_section": "security"
+  }
+}

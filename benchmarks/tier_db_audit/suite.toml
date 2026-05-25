@@ -1,0 +1,11 @@
+[default]
+include = ["query_log_complete", "tamper_evidence"]
+timing = false
+
+[profiles.ci]
+include = ["query_log_complete", "tamper_evidence"]
+timing = false
+
+[profiles.nightly]
+include = ["query_log_complete", "tamper_evidence"]
+timing = true

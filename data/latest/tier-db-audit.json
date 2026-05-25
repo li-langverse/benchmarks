@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-05-25T15:56:46.381342+00:00",
+  "tier": "tier_db_audit",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_audit/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_audit/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_audit/schema/audit-log-v1.sql",
+    "results_csv": "benchmarks/tier_db_audit/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "query_log_complete",
+      "metric": "completeness_ratio",
+      "unit": "ratio",
+      "lower_is_better": false,
+      "threshold_pass_rate": null,
+      "threshold_completeness": 1.0,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "value": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-AUD"
+      ],
+      "notes": "Query log captures all privileged queries"
+    },
+    {
+      "id": "tamper_evidence",
+      "metric": "pass_rate",
+      "unit": "ratio",
+      "lower_is_better": false,
+      "threshold_pass_rate": 1.0,
+      "threshold_completeness": null,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "postgres": null
+      },
+      "value": null,
+      "ph_ids": [
+        "WP-N4",
+        "PH-DB-AUD"
+      ],
+      "notes": "Tamper-evident audit log chain"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-audit.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

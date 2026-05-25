@@ -16,6 +16,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **WP-N4 lidb full-spectrum audit tiers:** `tier_db_security`, `tier_db_memory`, `tier_db_parallel`, `tier_db_audit`, `tier_db_realtime` — docs, suite stubs, catalog rows, CI manifests under `data/latest/` — [2026-05-25-tier-db-full-spectrum.md](docs/release-notes/2026-05-25-tier-db-full-spectrum.md).
+
+### Added
+
 - **Dashboard ship regression gates:** `docs/dashboard/ARCHITECTURE.md`, `INVARIANTS.md`, `check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`; CI steps on Benchmarks CI — [2026-05-26-benchmark-ship-integration.md](docs/release-notes/2026-05-26-benchmark-ship-integration.md).
 
 ### Fixed
