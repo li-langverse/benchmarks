@@ -1,0 +1,19 @@
+# tier_db_token_efficiency — agent/LLM query surface token audit (not latency).
+id = "tier_db_token_efficiency"
+title = "DB query surface token efficiency"
+category = "database"
+tier = 6
+ph_ids = ["PH-DB-2", "PH-DB-5"]
+compare_baseline = "sql"
+optional_surfaces = ["prisma", "drizzle", "supabase_js", "postgrest", "graphql"]
+
+[paths]
+scenarios = "benchmarks/tier_db_token_efficiency/scenarios.json"
+compute = "benchmarks/tier_db_token_efficiency/compute_tokens.py"
+manifest = "data/latest/tier-db-token-efficiency.json"
+ecosystem_doc = "docs/ecosystem/tier-db-token-efficiency.md"
+lidb_audit = "../lidb/docs/liq-token-efficiency-audit.md"
+
+[ci]
+profile_default = "ci"
+# Token counts are deterministic from scenario strings; no live DB required.
