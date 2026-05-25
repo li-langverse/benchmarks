@@ -47,7 +47,7 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
-  # Pages deploy uses Vite (pages.yml) until lic main ships std/plot (PH-IO-5).
+  # Pages deploy uses dashboard-next (pages.yml). Legacy Vite dashboard/ kept for local dev.
   dashboard-build:
     runs-on: ubuntu-24.04
     steps:
@@ -56,11 +56,11 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: dashboard/package-lock.json
-      - name: Build Vite dashboard
-        working-directory: dashboard
+          cache-dependency-path: dashboard-next/package-lock.json
+      - name: Build Next dashboard
+        working-directory: dashboard-next
         run: |
           npm ci
           npm run build
       - name: Verify Pages artifact path
-        run: test -s dashboard/dist/index.html
+        run: test -s dashboard-next/out/index.html
