@@ -1,19 +1,37 @@
 import Link from "next/link";
+import { PILLARS } from "@/lib/pillars";
 
-export function Header({ subtitle }: { subtitle?: string }) {
+type HeaderProps = {
+  title?: string;
+  subtitle?: string;
+};
+
+export function Header({
+  title = "Li Benchmarks",
+  subtitle = "Performance, security, and correctness across the Li ecosystem",
+}: HeaderProps) {
   return (
-    <header className="border-b border-[var(--border)] bg-[var(--surface)] px-6 py-4">
-      <div className="mx-auto max-w-6xl">
-        <h1 className="m-0 text-xl font-semibold">
-          <Link href="/">Li benchmarks</Link>
-        </h1>
-        {subtitle ? (
-          <p className="mt-1 text-sm text-[var(--muted)]">{subtitle}</p>
-        ) : (
-          <p className="mt-1 text-sm text-[var(--muted)]">
-            HPC performance vs catalog thresholds — proof is separate from green rows.
-          </p>
-        )}
+    <header className="site-header">
+      <div className="site-header-inner">
+        <div>
+          <h1>
+            <Link href="/">{title}</Link>
+          </h1>
+          {subtitle ? <p>{subtitle}</p> : null}
+        </div>
+        <nav className="site-nav" aria-label="Site">
+          <Link href="/">Overview</Link>
+          <Link href="/#search">Search</Link>
+          <Link href="/matrix/">Matrix</Link>
+          <Link href="/history/">History</Link>
+        </nav>
+        <nav className="pillar-nav" aria-label="Pillars">
+          {PILLARS.map((p) => (
+            <Link key={p.id} href={`/pillar/${p.id}/`}>
+              {p.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );
