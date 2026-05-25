@@ -1,21 +1,17 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import {
-  flattenMatrixSections,
-  loadBenchmarkMatrix,
-} from "@/lib/matrix";
+import { flattenMatrixSections, loadBenchmarkMatrix } from "@/lib/matrix";
 
 export default function MatrixPage() {
   const matrix = loadBenchmarkMatrix();
-
   if (!matrix) {
     return (
       <main>
         <section className="placeholder">
           <h2>Benchmark matrix</h2>
           <p>
-            No <span className="mono">data/latest/benchmark-matrix.json</span>{" "}
-            found at build time. Run ingest to generate it.
+            No <span className="mono">data/latest/benchmark-matrix.json</span> at
+            build time.
           </p>
           <p style={{ marginTop: "1.25rem" }}>
             <Link href="/">← Overview</Link>
@@ -24,13 +20,11 @@ export default function MatrixPage() {
       </main>
     );
   }
-
   const rows = flattenMatrixSections(matrix);
   const exploitMatrix = matrix.http_exploits?.matrix;
   const exploitLangs = exploitMatrix
     ? [...new Set(Object.values(exploitMatrix).flatMap((r) => Object.keys(r)))].sort()
     : [];
-
   return (
     <main>
       <section className="placeholder" style={{ marginBottom: "1.5rem" }}>
@@ -39,7 +33,6 @@ export default function MatrixPage() {
           Generated: {matrix.generated_at}
         </p>
       </section>
-
       <section>
         <h3 className="section-heading">Catalog sections</h3>
         <div className="table-wrap">
@@ -81,10 +74,9 @@ export default function MatrixPage() {
           </table>
         </div>
       </section>
-
       {exploitMatrix && exploitLangs.length > 0 ? (
         <section style={{ marginTop: "2rem" }}>
-          <h3 className="section-heading">HTTP exploit matrix (tier 5)</h3>
+          <h3 className="section-heading">HTTP exploit matrix</h3>
           <div className="table-wrap">
             <table className="data-table">
               <thead>
@@ -109,7 +101,6 @@ export default function MatrixPage() {
           </div>
         </section>
       ) : null}
-
       <p style={{ marginTop: "1.5rem" }}>
         <Link href="/">← Overview</Link>
       </p>

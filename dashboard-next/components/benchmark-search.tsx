@@ -12,18 +12,15 @@ type BenchmarkSearchProps = {
 function rowMatchesQuery(row: SummaryRow, q: string): boolean {
   const needle = q.trim().toLowerCase();
   if (!needle) return true;
-
   if (row.benchmark.toLowerCase().includes(needle)) return true;
   if (row.package?.toLowerCase().includes(needle)) return true;
   if (row.pillar?.toLowerCase().includes(needle)) return true;
   if (row.ph_ids.some((id) => id.toLowerCase().includes(needle))) return true;
-
   return false;
 }
 
 export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
   const [query, setQuery] = useState("");
-
   const filtered = useMemo(
     () => rows.filter((row) => rowMatchesQuery(row, query)),
     [rows, query],
