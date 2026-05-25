@@ -343,6 +343,12 @@ main {
 }
 
 @media (max-width: 767px) {
+  .site-header,
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .tier-strip {
     display: flex;
     overflow-x: auto;
@@ -352,6 +358,12 @@ main {
     flex: 0 0 140px;
     scroll-snap-align: start;
   }
+}
+
+.matrix-filter-meta {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .tier-card {
