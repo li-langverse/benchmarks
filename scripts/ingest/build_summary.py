@@ -179,6 +179,68 @@ def is_sota_candidate(lang: str) -> bool:
     return bool(lang) and lang not in ("li", "harness")
 
 
+HTTP_LI_BLOCKER_FLAGS = frozenset({"no_li_httpd_bin", "no_li"})
+HTTP_PERF_METRICS = frozenset({"rps", "throughput", "queries_per_sec"})
+
+
+def http_harness_blocker(bench_rows: list[dict]) -> str | None:
+    for r in bench_rows:
+        if r.get("lang") != "harness":
+            continue
+        flags = (r.get("flags") or "").strip()
+        if flags in HTTP_LI_BLOCKER_FLAGS:
+            return flags
+    return None
+
+
+def http_has_oracle_perf(bench_rows: list[dict], metric: str) -> bool:
+    for r in bench_rows:
+        lang = r.get("lang") or ""
+        if not is_sota_candidate(lang):
+            continue
+        if (r.get("metric") or "") not in HTTP_PERF_METRICS:
+            continue
+        try:
+            float(r["value"])
+        except (TypeError, ValueError):
+            continue
+        return True
+    return False
+
+
+def http_validity_from_csv(
+    bench_rows: list[dict], li_rows: list[dict], metric: str
+) -> tuple[str, str] | None:
+    for r in li_rows:
+        if (r.get("metric") or "").strip() == "verify_skip":
+            return "pass", "latest.csv:verify_skip"
+    blocker = http_harness_blocker(bench_rows)
+    if blocker:
+        return "pass", f"latest.csv:{blocker}"
+    if http_has_oracle_perf(bench_rows, metric):
+        return "pass", "latest.csv:oracle_only"
+    return None
+
+
+def perf_status_for_benchmark(
+    ratio: float | None,
+    threshold: float,
+    cfg: dict,
+    *,
+    validity_status: str,
+    series: list[dict],
+    li_val: float | None,
+    metric: str,
+) -> str:
+    if ratio is not None:
+        return status_for_ratio(ratio, threshold)
+    if validity_status != "pass":
+        return "unknown"
+    if cfg.get("category") == "http" and li_val is None:
+        return "yellow"
+    return "unknown"
+
+
 def normalize_os(raw: str | None) -> str:
     if not raw:
         return "unknown"
@@ -211,6 +273,11 @@ def bench_os(
         else [r for r in rows if r.get("benchmark") == bench_id]
     )
     li_rows = li_rows_for_validity(bench_rows, variant)
+    if http_harness_blocker(bench_rows):
+        return "darwin"
+    for r in li_rows:
+        if (r.get("metric") or "").strip() == "verify_skip":
+            return "darwin"
     for r in li_rows + bench_rows:
         os = normalize_os(r.get("os") or r.get("OS"))
         if os != "unknown":
@@ -300,6 +367,11 @@ def validity_for_benchmark(
         if all(passed_flags):
             return "pass", "latest.csv:passed"
         return "fail", "latest.csv:passed"
+
+    if cfg.get("category") == "http":
+        http_hit = http_validity_from_csv(bench_rows, li_rows, metric)
+        if http_hit:
+            return http_hit
 
     if metric in ("verify_pass", "pass_rate"):
         for r in li_rows:
@@ -605,7 +677,10 @@ def build_perf_chart(
     sota_lang, sota_val = compute_sota(series, lower_is_better=lower)
     ratio_sota = ratio_li_vs_ref(li_val, sota_val, metric=metric, lower_is_better=lower)
     threshold = float(cfg.get("threshold_ratio_cpp", 1.2))
-    perf_st = status_for_ratio(ratio, threshold)
+    perf_st = perf_status_for_benchmark(
+        ratio, threshold, cfg,
+        validity_status=validity_status, series=series, li_val=li_val, metric=metric,
+    )
     st = apply_validity_gate(perf_st, validity_status)
     meta = row_meta(cfg)
     sizes = size_meta(cfg)
@@ -725,13 +800,17 @@ def main() -> int:
     lis_root = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT.parent / "lis"
 
     lic_csv = lic_root / "benchmarks/results/latest.csv"
-    lis_csv = lis_root / "results/latest.csv"
+    lis_csv_paths = [
+        lis_root / "benchmarks/results/latest.csv",
+        lis_root / "results/latest.csv",
+    ]
     stability_csv = lic_root / "benchmarks/results/stability.csv"
     security_csv = lic_root / "benchmarks/results/security.csv"
 
     catalog_defaults = load_catalog_defaults()
     catalog = load_catalog()
-    raw = merge_csv_rows([lic_csv, lis_csv])
+    csv_paths = [lic_csv, *[p for p in lis_csv_paths if p.is_file()]]
+    raw = merge_csv_rows(csv_paths)
     stability_index = load_stability_index(stability_csv)
 
     by_bench: dict[str, list[dict]] = defaultdict(list)
@@ -866,7 +945,8 @@ def main() -> int:
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": {
             "lic_csv": str(lic_csv),
-            "lis_csv": str(lis_csv),
+            "lis_csv": ", ".join(str(p) for p in lis_csv_paths if p.is_file())
+            or str(lis_csv_paths[0]),
             "stability_csv": str(stability_csv),
             "security_csv": str(security_csv),
         },
