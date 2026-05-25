@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Li benchmarks demo — storyboard</title>
+    <style>
+      :root {
+        --bg: #0d1117;
+        --surface: #161b22;
+        --border: #30363d;
+        --text: #e6edf3;
+        --muted: #8b949e;
+        --accent: #58a6ff;
+        --green: #3fb950;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+        padding: 1.5rem 2rem 3rem;
+        max-width: 960px;
+        margin-inline: auto;
+      }
+      h1 {
+        font-size: 1.35rem;
+        margin-bottom: 0.25rem;
+      }
+      .meta {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+      .meta a {
+        color: var(--accent);
+      }
+      .beats {
+        display: grid;
+        gap: 0.75rem;
+      }
+      .beat {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+      }
+      .beat header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .beat h2 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      .time {
+        font-family: "IBM Plex Mono", monospace;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .beat p {
+        margin: 0.5rem 0 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+      .beat a.route {
+        display: inline-block;
+        margin-top: 0.65rem;
+        font-family: "IBM Plex Mono", monospace;
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.9rem;
+      }
+      .beat a.route:hover {
+        text-decoration: underline;
+      }
+      .honesty {
+        border-color: var(--green);
+        background: rgba(63, 185, 80, 0.08);
+      }
+      footer {
+        margin-top: 2rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      code {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.88em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Li benchmarks dashboard — demo storyboard</h1>
+    <p class="meta">
+      Local static serve:
+      <a id="base-local" href="http://127.0.0.1:4321/benchmarks/">http://127.0.0.1:4321/benchmarks/</a>
+      · Dev:
+      <a href="http://localhost:3000/benchmarks/">localhost:3000</a>
+      · Pages:
+      <a href="https://li-langverse.github.io/benchmarks/">github.io</a>
+      · Script:
+      <a href="./demo-video-script.md">demo-video-script.md</a>
+    </p>
+
+    <div class="beats" id="beats"></div>
+
+    <footer>
+      Run <code>./scripts/record-dashboard-demo.sh</code> before recording. Set
+      <code>?port=4321</code> in this file’s query string to retarget links.
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(location.search);
+      const port = params.get("port") || "4321";
+      const host = params.get("host") || "127.0.0.1";
+      const base = `http://${host}:${port}/benchmarks`;
+
+      document.getElementById("base-local").href = base + "/";
+      document.getElementById("base-local").textContent = base + "/";
+
+      const beats = [
+        { t: "0:00", title: "Overview bento + tier strip", path: "/", note: "Ingest timestamp, tier 0–5 counts." },
+        { t: "0:25", title: "Honesty strip", path: "/", note: "proof ≠ green; variant legend.", cls: "honesty" },
+        { t: "0:45", title: "Pillar cards", path: "/", note: "numerics … tooling grid; click compiler." },
+        { t: "1:00", title: "Pillar: compiler", path: "/pillar/compiler/", note: "Optional montage: numerics, server, security." },
+        { t: "1:05", title: "Bench: horner_pure_li", path: "/bench/horner_pure_li/", note: "pure_li honesty callout." },
+        { t: "1:25", title: "Proofs G-* table", path: "/proofs/", note: "Gap register; not bench status." },
+        { t: "1:40", title: "Matrix + HTTP oracles", path: "/matrix/", note: "Catalog + tier-5 nginx rows; exploit grid." },
+        { t: "1:55", title: "History deltas", path: "/history/", note: "Snapshot index." },
+        { t: "2:05", title: "Package freshness", path: "/", note: "Tile on overview." },
+        { t: "2:10", title: "Package: lip", path: "/packages/lip/", note: "release-index driven." },
+        { t: "2:20", title: "Agent deep link", path: "/bench/horner_pure_li/", note: "Same URL as briefing deep_links." },
+        { t: "2:35", title: "Search + close", path: "/#search", note: "Reiterate honesty strip." },
+      ];
+
+      const root = document.getElementById("beats");
+      for (const b of beats) {
+        const el = document.createElement("article");
+        el.className = "beat" + (b.cls ? " " + b.cls : "");
+        const href = base + b.path;
+        el.innerHTML =
+          "<header><h2>" +
+          b.title +
+          '</h2><span class="time">' +
+          b.t +
+          "</span></header>" +
+          "<p>" +
+          b.note +
+          '</p><a class="route" href="' +
+          href +
+          '">' +
+          href +
+          "</a>";
+        root.appendChild(el);
+      }
+    </script>
+  </body>
+</html>
