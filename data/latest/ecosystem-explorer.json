@@ -1,10 +1,30 @@
 {
-  "generated_at": "2026-05-18T22:29Z",
-  "lic_root": "/Users/julian/Documents/coding-projects/benchmarks/../lic",
+  "generated_at": "2026-05-25T20:07Z",
+  "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/lic",
   "lic_present": true,
   "std_modules_on_disk": [
+    "std.binary.binary",
     "std.bytes.bytes",
-    "std.execution.decorators"
+    "std.csv.csv",
+    "std.execution.decorators",
+    "std.io.io",
+    "std.math.math",
+    "std.math.numerics",
+    "std.physics.aero",
+    "std.physics.chem",
+    "std.physics.core",
+    "std.physics.em",
+    "std.physics.fluids",
+    "std.physics.hep",
+    "std.physics.particles",
+    "std.physics.quantum",
+    "std.physics.relativity",
+    "std.physics.rigid",
+    "std.physics.runtime",
+    "std.physics.weather",
+    "std.runtime.seam",
+    "std.scene.scene",
+    "std.ui.ui"
   ],
   "missing_std_modules": [
     {
@@ -14,7 +34,7 @@
       "refs": [
         "scripts/ingest/csv_ingest_smoke.li"
       ],
-      "status": "missing"
+      "status": "present"
     },
     {
       "module": "std.csv",
@@ -23,7 +43,7 @@
       "refs": [
         "scripts/ingest/csv_ingest_smoke.li"
       ],
-      "status": "missing"
+      "status": "present"
     },
     {
       "module": "std.summary",
@@ -46,9 +66,11 @@
   ],
   "std_imports_in_benchmarks": {
     "std.csv": [
+      "docs/language/examples/csv_ingest_smoke.li",
       "scripts/ingest/csv_ingest_smoke.li"
     ],
     "std.io": [
+      "docs/language/examples/csv_ingest_smoke.li",
       "scripts/ingest/csv_ingest_smoke.li"
     ],
     "std.plot": [
@@ -60,38 +82,51 @@
     ]
   },
   "lic_packages": [
+    "li-acme",
+    "li-bytes",
+    "li-core",
+    "li-crypto",
     "li-demo",
-    "li-httpd",
+    "li-http",
+    "li-log",
+    "li-math",
+    "li-math-numerics",
     "li-net",
-    "li-std-core",
-    "li-std-math",
-    "li-std-numerics",
-    "li-std-physics-aero",
-    "li-std-physics-chem",
-    "li-std-physics-core",
-    "li-std-physics-em",
-    "li-std-physics-fluids",
-    "li-std-physics-hep",
-    "li-std-physics-particles",
-    "li-std-physics-quantum",
-    "li-std-physics-relativity",
-    "li-std-physics-rigid",
-    "li-std-physics-runtime",
-    "li-std-physics-weather"
+    "li-net-httpd",
+    "li-physics-aero",
+    "li-physics-chem",
+    "li-physics-core",
+    "li-physics-em",
+    "li-physics-fluids",
+    "li-physics-hep",
+    "li-physics-particles",
+    "li-physics-quantum",
+    "li-physics-relativity",
+    "li-physics-rigid",
+    "li-physics-runtime",
+    "li-physics-weather",
+    "li-prob",
+    "li-rng",
+    "li-scene",
+    "li-schema",
+    "li-sim",
+    "li-sim-scientific",
+    "li-tls",
+    "li-ui"
   ],
   "physics_packages": [
-    "li-std-physics-aero",
-    "li-std-physics-chem",
-    "li-std-physics-core",
-    "li-std-physics-em",
-    "li-std-physics-fluids",
-    "li-std-physics-hep",
-    "li-std-physics-particles",
-    "li-std-physics-quantum",
-    "li-std-physics-relativity",
-    "li-std-physics-rigid",
-    "li-std-physics-runtime",
-    "li-std-physics-weather"
+    "li-physics-aero",
+    "li-physics-chem",
+    "li-physics-core",
+    "li-physics-em",
+    "li-physics-fluids",
+    "li-physics-hep",
+    "li-physics-particles",
+    "li-physics-quantum",
+    "li-physics-relativity",
+    "li-physics-rigid",
+    "li-physics-runtime",
+    "li-physics-weather"
   ],
   "org_mirror_repos": [
     "li-net",
@@ -101,42 +136,60 @@
     "li-demo"
   ],
   "packages_without_org_mirror": [
-    "li-std-physics-aero",
-    "li-std-physics-chem",
-    "li-std-physics-core",
-    "li-std-physics-em",
-    "li-std-physics-fluids",
-    "li-std-physics-hep",
-    "li-std-physics-particles",
-    "li-std-physics-quantum",
-    "li-std-physics-relativity",
-    "li-std-physics-rigid",
-    "li-std-physics-runtime",
-    "li-std-physics-weather"
+    "li-physics-aero",
+    "li-physics-chem",
+    "li-physics-core",
+    "li-physics-em",
+    "li-physics-fluids",
+    "li-physics-hep",
+    "li-physics-particles",
+    "li-physics-quantum",
+    "li-physics-relativity",
+    "li-physics-rigid",
+    "li-physics-runtime",
+    "li-physics-weather"
   ],
   "catalog": {
-    "total": 25,
+    "total": 179,
     "by_category": {
-      "micro": 5,
-      "physics": 15,
       "correctness": 1,
-      "http": 2,
-      "tooling": 2
+      "micro": 47,
+      "physics": 90,
+      "tooling": 12,
+      "http": 9,
+      "security": 3,
+      "database": 17
     },
     "by_tier": {
-      "1": 5,
-      "2": 15,
       "0": 1,
-      "5": 2,
-      "3": 2
+      "1": 47,
+      "2": 90,
+      "3": 12,
+      "5": 10,
+      "6": 19
     },
     "variants": {
+      "default": 27,
+      "algo_registry": 119,
+      "pure_li": 1,
+      "fftw_reference": 1,
       "shared_c_kernel": 9,
-      "default": 15,
-      "pure_li": 1
+      "tls_m15_pending": 1,
+      "li_epoll": 1,
+      "rate_limit": 1,
+      "vector_ann": 2,
+      "vector_ann_nightly": 1,
+      "gpu_speedup": 1,
+      "gpu_speedup_nightly": 1,
+      "registry_graph": 2,
+      "registry_oltp": 3,
+      "db_security": 2,
+      "db_memory": 2,
+      "db_parallel": 2,
+      "db_audit": 2,
+      "db_realtime": 1
     },
     "suggested_catalog_gaps": [
-      "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",
       "Increase pure_li variant rows for PH-7e codegen proof"
     ]
   },
@@ -310,6 +363,12 @@
     },
     {
       "repo": "li-langverse/lic",
+      "number": 50,
+      "title": "[Ecosystem gap] Publish li-std-physics-* org mirrors (12 packages)",
+      "url": "https://github.com/li-langverse/lic/issues/50"
+    },
+    {
+      "repo": "li-langverse/lic",
       "number": 16,
       "title": "[Ecosystem gap] Reconcile master plan partial PH rows + G-* provability debt",
       "url": "https://github.com/li-langverse/lic/issues/16"
@@ -321,16 +380,40 @@
       "url": "https://github.com/li-langverse/lic/issues/15"
     },
     {
+      "repo": "li-langverse/benchmarks",
+      "number": 54,
+      "title": "[explorer-finding] Gap-explorer: require LIC_ROOT lic checkout for accurate static scan in cloud agents (PH-IO)",
+      "url": "https://github.com/li-langverse/benchmarks/issues/54"
+    },
+    {
       "repo": "li-langverse/lic",
       "number": 13,
       "title": "[Ecosystem gap] PH-IO-4/5/7: ship std.io, std.csv, std.summary, std.plot",
       "url": "https://github.com/li-langverse/lic/issues/13"
     },
     {
+      "repo": "li-langverse/lic",
+      "number": 112,
+      "title": "[explorer-finding] HPX-style async futures vs Li tier-2 game physics scheduling (G-par)",
+      "url": "https://github.com/li-langverse/lic/issues/112"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 65,
+      "title": "[explorer-finding] Carbon p4880 + Mojo 1.0b \u2014 competitive safety matrix vs lic build certificate (G-meta, provable)",
+      "url": "https://github.com/li-langverse/lic/issues/65"
+    },
+    {
       "repo": "li-langverse/benchmarks",
       "number": 26,
       "title": "[explorer-finding] Roofline + vendor FFT reference harness for catalog FFT row",
       "url": "https://github.com/li-langverse/benchmarks/issues/26"
+    },
+    {
+      "repo": "li-langverse/benchmarks",
+      "number": 52,
+      "title": "[explorer-finding] VkFFT + FFTW/cuFFT crossover rubric for tier-1 FFT catalog row (PH-5b, G-math)",
+      "url": "https://github.com/li-langverse/benchmarks/issues/52"
     },
     {
       "repo": "li-langverse/benchmarks",
@@ -352,46 +435,46 @@
     },
     {
       "repo": "li-langverse/lic",
+      "number": 109,
+      "title": "[explorer-finding] RAJA execution policies vs Li std/execution decorators \u2014 ICS 2025 portability rubric (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/109"
+    },
+    {
+      "repo": "li-langverse/lic",
+      "number": 117,
+      "title": "[explorer-finding] PETSc 3.25 PCBJKOKKOS device-native Jacobi \u2014 implicit PDE preconditioner rubric (G-math)",
+      "url": "https://github.com/li-langverse/lic/issues/117"
+    },
+    {
+      "repo": "li-langverse/lic",
       "number": 35,
       "title": "[explorer-finding] SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators (G-math, physics tier-2)",
       "url": "https://github.com/li-langverse/lic/issues/35"
     },
     {
       "repo": "li-langverse/lic",
-      "number": 34,
-      "title": "[explorer-finding] Map std/execution decorators to LLVM OpenMP IR / MLIR omp (G-par, PH-7e)",
-      "url": "https://github.com/li-langverse/lic/issues/34"
+      "number": 124,
+      "title": "[explorer-finding] OpenMP prescriptive vs descriptive divergent-branch rubric for competitive portable codegen (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/124"
     },
     {
       "repo": "li-langverse/lic",
-      "number": 30,
-      "title": "[PH-H][master-plan-gap] Phase H \u2014 li-httpd M1 `.li` blocked-by plan: align 2e/2f exit vs httpd prerequisites",
-      "url": "https://github.com/li-langverse/lic/issues/30"
+      "number": 108,
+      "title": "[explorer-finding] hypre BoomerAMG + PETSc GPU preconditioners for tier-2 implicit PDE (G-math)",
+      "url": "https://github.com/li-langverse/lic/issues/108"
     },
     {
-      "repo": "li-langverse/benchmarks",
-      "number": 28,
-      "title": "[PH-5b][plan-needed] Clarify LIC_ROOT vs sibling benchmarks for plan-completion-audit",
-      "url": "https://github.com/li-langverse/benchmarks/issues/28"
-    },
-    {
-      "repo": "li-langverse/benchmarks",
-      "number": 27,
-      "title": "[explorer-finding] Track Eigen / Kokkos / PETSc / Chapel release cadence in bench policy",
-      "url": "https://github.com/li-langverse/benchmarks/issues/27"
-    },
-    {
-      "repo": "li-langverse/benchmarks",
-      "number": 31,
-      "title": "Numerics researcher pass (2026-05-17): horner_pure_li red + near-limit greens \u2014 SOTA map & lic path",
-      "url": "https://github.com/li-langverse/benchmarks/issues/31"
+      "repo": "li-langverse/lic",
+      "number": 34,
+      "title": "[explorer-finding] Map std/execution decorators to LLVM OpenMP IR / MLIR omp (G-par, PH-7e)",
+      "url": "https://github.com/li-langverse/lic/issues/34"
     }
   ],
   "agent_kit": {
     "entries": [
       {
         "path": "scripts/expected-agent-kit-version",
-        "version": "1.1.0+5f476d66cf8d1b57"
+        "version": "1.3.3+12f1f4d190a4dd06"
       }
     ],
     "drift": false,
@@ -447,8 +530,6 @@
       "priority": "P1",
       "action": "Implement missing std modules in lic (PH-IO track)",
       "modules": [
-        "std.io",
-        "std.csv",
         "std.summary",
         "std.plot"
       ]
@@ -457,7 +538,6 @@
       "priority": "P2",
       "action": "Extend benchmarks catalog from HPC rubric",
       "gaps": [
-        "No FFT micro-bench \u2014 compare FFTW/FFmpeg signal path",
         "Increase pure_li variant rows for PH-7e codegen proof"
       ]
     },
