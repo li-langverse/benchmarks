@@ -24,6 +24,14 @@ cd dashboard && npm install && npm run dev
 2. Add a `[[benchmark]]` row to [`catalog.toml`](catalog.toml).
 3. Run ingest after CI produces CSV.
 
+## Registry DB OLTP (tier_db_registry)
+
+Skeleton for **lidb vs Postgres 15+** registry publish/read P95 — see [tier-db-registry-benchmark.md](docs/ecosystem/tier-db-registry-benchmark.md).
+
+```bash
+./scripts/run-db-registry-bench.sh
+```
+
 ## Agents
 
 PR-only workflow. Do **not** duplicate `lic` harness here. See [AGENTS.md](AGENTS.md).

@@ -1,0 +1,21 @@
+[schema]
+migration = "schema/registry-v1.sql"
+postgres_min_version = "15"
+
+[engines]
+lidb = "lis db start --profile registry-min"
+postgres = "psql"
+
+[load]
+warmup_iters = 100
+measure_iters = 1000
+clients = 4
+
+[targets]
+# P95 latency: lidb / postgres must be <= this ratio (1.2 = 20% slack vs oracle).
+threshold_ratio_vs_postgres = 1.2
+
+[metrics]
+primary = "latency_p95"
+unit = "ms"
+lower_is_better = true
