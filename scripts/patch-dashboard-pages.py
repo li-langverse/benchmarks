@@ -1,4 +1,100 @@
-import Link from "next/link";
+#!/usr/bin/env python3
+"""Patch bench/pillar pages for pillar-drilldown-charts (run from repo root)."""
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1] / "dashboard-next"
+
+BENCH = ROOT / "app/bench/[id]/page.tsx"
+PILLAR = ROOT / "app/pillar/[id]/page.tsx"
+
+
+def patch_bench() -> None:
+    text = BENCH.read_text()
+    if "BenchFacetComposition" in text:
+        print("bench: already patched")
+        return
+    text = text.replace(
+        "import { HonestyCallout } from \"@/components/bench/honesty-callout\";\n"
+        "import { LangsTable } from \"@/components/bench/langs-table\";\n"
+        "import { PerfRelativeBars } from \"@/components/bench/perf-relative-bars\";\n"
+        "import { OsTable } from \"@/components/bench/os-table\";\n"
+        "import { PerfNotClaimable } from \"@/components/bench/perf-not-claimable\";\n"
+        "import { ValidityPanel } from \"@/components/bench/validity-panel\";\n",
+        "import { BenchFacetComposition } from \"@/components/bench/bench-facet-composition\";\n",
+    )
+    text = text.replace(
+        "        <HonestyCallout variant={row.variant} />\n"
+        "        <PerfNotClaimable row={row} />\n"
+        "        <ValidityPanel row={row} />\n\n"
+        "        <dl",
+        "        <dl",
+        1,
+    )
+    block = (
+        "        <h3 style={{ fontSize: \"1rem\", marginTop: \"1.5rem\", color: \"var(--text)\" }}>\n"
+        "          Performance vs best competitor\n"
+        "        </h3>\n"
+        "        <PerfRelativeBars\n"
+        "          series={series}\n"
+        "          sotaLang={row.sota_lang}\n"
+        "          lowerIsBetter={lowerIsBetter}\n"
+        "          claimable={perfClaimable}\n"
+        "        />\n\n"
+        "        <h3 style={{ fontSize: \"1rem\", marginTop: \"1.5rem\", color: \"var(--text)\" }}>\n"
+        "          Absolute measurements\n"
+        "        </h3>\n"
+        "        <LangsTable series={series} metric={row.metric} />\n"
+        "        <OsTable row={row} series={series} />\n\n"
+        "        {deltas"
+    )
+    repl = (
+        "        <BenchFacetComposition\n"
+        "          row={row}\n"
+        "          series={series}\n"
+        "          lowerIsBetter={lowerIsBetter}\n"
+        "          perfClaimable={perfClaimable}\n"
+        "        />\n\n"
+        "        {deltas"
+    )
+    if block not in text:
+        raise SystemExit("bench: expected PerfRelativeBars block not found")
+    text = text.replace(block, repl, 1)
+    text = text.replace(
+        "          <dt>Validity</dt>\n"
+        "          <dd>\n"
+        "            {row.validity_status ? (\n"
+        "              <ValidityBadge\n"
+        "                status={row.validity_status}\n"
+        "                source={row.validity_source}\n"
+        "              />\n"
+        "            ) : (\n"
+        "              \"—\"\n"
+        "            )}\n"
+        "          </dd>\n",
+        "",
+        1,
+    )
+    text = text.replace(
+        '          <Link href="/">← Overview</Link>\n        </p>',
+        '          <Link href="/">← Overview</Link>\n'
+        "          {row.pillar ? (\n"
+        "            <>\n"
+        '              {" · "}\n'
+        "              <Link href={`/pillar/${row.pillar}/`}>Pillar {row.pillar}</Link>\n"
+        "            </>\n"
+        "          ) : null}\n"
+        "        </p>",
+        1,
+    )
+    BENCH.write_text(text)
+    print("bench: patched")
+
+
+def patch_pillar() -> None:
+    if "PillarSummaryStrip" in PILLAR.read_text():
+        print("pillar: already patched")
+        return
+    PILLAR.write_text("""import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BenchmarkRelativeBars } from "@/components/charts/benchmark-relative-bars";
 import { BenchRowList } from "@/components/drilldown/bench-row-list";
@@ -105,3 +201,14 @@ export default async function PillarPage({ params }: PageProps) {
     </main>
   );
 }
+""")
+    print("pillar: patched")
+
+
+def main() -> None:
+    patch_bench()
+    patch_pillar()
+
+
+if __name__ == "__main__":
+    main()

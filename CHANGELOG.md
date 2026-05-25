@@ -18,9 +18,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
+
 - **WP5 catalog path sync:** `scripts/catalog/sync-paths-from-lic-tree.py` wires 83 `catalog.toml` paths from the **lic** benchmarks tree; refreshes `summary.json` when CSV exists — [2026-05-25-catalog-sync-paths-lic-tree.md](docs/release-notes/2026-05-25-catalog-sync-paths-lic-tree.md).
 
 ### Added
+
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
 
 - **tier_db_memory / tier_db_parallel harness wire:** `run-db-*-bench.sh` invoke `lidb/scripts/bench/{memory_footprint,parallel_load}.sh` when `BENCH_DB_*_RUN_HARNESS=1`, with `scripts/lidb-bench-stub/` fallback — [2026-05-25-bench-memory-parallel-wire.md](docs/release-notes/2026-05-25-bench-memory-parallel-wire.md).
 
@@ -30,13 +34,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
+
 - **tier_db_token_efficiency:** Agent query-surface token audit (18 scenarios, SQL vs liq vs ORM/BaaS/GraphQL), `run-db-token-efficiency-bench.sh`, manifest `data/latest/tier-db-token-efficiency.json` — [2026-05-25-tier-db-token-efficiency.md](docs/release-notes/2026-05-25-tier-db-token-efficiency.md).
 
 ### Added
 
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
+
 - **WP-N4 lidb full-spectrum audit tiers:** `tier_db_security`, `tier_db_memory`, `tier_db_parallel`, `tier_db_audit`, `tier_db_realtime` — docs, suite stubs, catalog rows, CI manifests under `data/latest/` — [2026-05-25-tier-db-full-spectrum.md](docs/release-notes/2026-05-25-tier-db-full-spectrum.md).
 
 ### Added
+
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
 
 - **Dashboard ship regression gates:** `docs/dashboard/ARCHITECTURE.md`, `INVARIANTS.md`, `check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`; CI steps on Benchmarks CI — [2026-05-26-benchmark-ship-integration.md](docs/release-notes/2026-05-26-benchmark-ship-integration.md).
 
@@ -45,6 +55,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **LIC_ROOT / catalog alignment:** `tier0_stability` → `li-tests/benchmarks/tier0_correctness`; `rate_limit_429` vendor path; plan-audit skips `unknown`/`planned` paths; CI checks out `lic@dev` with absolute `LIC_ROOT` — [2026-05-25-lic-root-catalog-alignment.md](docs/release-notes/2026-05-25-lic-root-catalog-alignment.md). Closes benchmarks **#17, #19, #20**; documents **#38** agent-kit sync.
 
 ### Added
+
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
 
 - **FFT catalog (planned):** `fft_1d_fixed` row (`catalog_lifecycle=planned`) for benchmarks **#18** (harness in **lic**).
 
@@ -59,6 +71,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Dashboard matrix tier filter:** `/matrix/?tier=N` from overview tier strip filters catalog rows; mobile header/main padding — [2026-05-25-dashboard-matrix-tier-filter.md](docs/release-notes/2026-05-25-dashboard-matrix-tier-filter.md).
 
 ### Added
+
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
 
 - **SOTA / validity / OS reporting:** `summary.json` adds `sota_lang`, `ratio_vs_sota`, validity gate, `os`; ingest never labels Li as SOTA; dashboard-next honesty strip + bench drill-down — [2026-05-26-sota-validity-os-reporting.md](docs/release-notes/2026-05-26-sota-validity-os-reporting.md).
 
@@ -75,6 +89,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **`plan-completion-audit.py`:** Parse only the master-plan phase tracker; suppress sub-plan `- [ ]` when tracker phases are `[x]`; dedupe master-plan rows from `plan_files_open`; tag phase-02 implementation task lists as `stale_spec_checklists` (exit gates stay actionable) — [2026-05-25-plan-completion-audit-filters.md](docs/release-notes/2026-05-25-plan-completion-audit-filters.md).
 
 ### Added
+
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
 
 - **lic merged (#153 proxy epoll + seam, #156 E0360 ptr ABI):** tier5 `proxy_loopback,li` ~9.1k req/s (quick wrk); matrix refreshed — [2026-05-21-bench-matrix-post-lic-merge.md](docs/release-notes/2026-05-21-bench-matrix-post-lic-merge.md).
 
@@ -98,6 +114,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Pages 404:** `pages.yml` deploys the Vite `dashboard/dist` again; PH-IO-5 static render was uploading an empty `static-dashboard/` when `lic` lacks `std/plot`.
 
 ### Added
+
+- **Dashboard pillar/drilldown charts:** Aggregate SOTA-relative bars on `/pillar/[id]`; five-facet bench composition on `/bench/[id]` — [2026-05-25-pillar-drilldown-charts.md](docs/release-notes/2026-05-25-pillar-drilldown-charts.md).
 
 - **Issue hygiene agent:** `scripts/issue-backlog-hygiene.py`, `.cursor/automations/issue-hygiene-agent.md`, briefing recommendation for duplicate/stale/explorer-finding backlog (`docs/release-notes/2026-05-20-issue-hygiene-agent.md`)
 - **Docs maintainer:** [handbook](docs/handbook/README.md), [plan cross-links](docs/ecosystem/plan-cross-links.md), [benchmark honesty labels](docs/honesty/benchmark-dashboard.md); Pages 404 runbook in [SETUP_GITHUB.md](SETUP_GITHUB.md)

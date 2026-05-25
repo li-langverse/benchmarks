@@ -18,8 +18,8 @@ export function ValidityPanel({ row }: ValidityPanelProps) {
     validity === "pass" ? "green" : validity === "fail" ? "red" : "unknown";
 
   return (
-    <section className="validity-panel" aria-label="Validity gate">
-      <h3 style={{ fontSize: "1rem", margin: "1.5rem 0 0.5rem" }}>Validity gate</h3>
+    <section className="validity-panel" aria-label="① Validity gate">
+      <h3 style={{ fontSize: "1rem", margin: "1.5rem 0 0.5rem" }}>① Validity gate</h3>
       <p>
         <Badge status={badgeStatus}>{validity}</Badge>
         <span className="mono" style={{ marginLeft: "0.5rem", color: "var(--muted)" }}>

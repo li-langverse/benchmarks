@@ -1,11 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { HonestyCallout } from "@/components/bench/honesty-callout";
-import { LangsTable } from "@/components/bench/langs-table";
-import { PerfRelativeBars } from "@/components/bench/perf-relative-bars";
-import { OsTable } from "@/components/bench/os-table";
-import { PerfNotClaimable } from "@/components/bench/perf-not-claimable";
-import { ValidityPanel } from "@/components/bench/validity-panel";
+import { BenchFacetComposition } from "@/components/bench/bench-facet-composition";
 import { ValidityBadge } from "@/components/bench/validity-badge";
 import { Badge } from "@/components/ui/badge";
 import { getLangSeries } from "@/lib/bench-series";
@@ -53,10 +48,6 @@ export default async function BenchPage({ params }: PageProps) {
           {row.variant ? ` · variant ${row.variant}` : ""}
           {row.os ? ` · OS ${row.os}` : ""}
         </p>
-
-        <HonestyCallout variant={row.variant} />
-        <PerfNotClaimable row={row} />
-        <ValidityPanel row={row} />
 
         <dl
           className="mono"
@@ -125,17 +116,6 @@ export default async function BenchPage({ params }: PageProps) {
               "—"
             )}
           </dd>
-          <dt>Validity</dt>
-          <dd>
-            {row.validity_status ? (
-              <ValidityBadge
-                status={row.validity_status}
-                source={row.validity_source}
-              />
-            ) : (
-              "—"
-            )}
-          </dd>
           <dt>Threshold</dt>
           <dd>{row.threshold_ratio_cpp}×</dd>
           <dt>Source</dt>
@@ -153,21 +133,12 @@ export default async function BenchPage({ params }: PageProps) {
           {phText}
         </p>
 
-        <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
-          Performance vs best competitor
-        </h3>
-        <PerfRelativeBars
+        <BenchFacetComposition
+          row={row}
           series={series}
-          sotaLang={row.sota_lang}
           lowerIsBetter={lowerIsBetter}
-          claimable={perfClaimable}
+          perfClaimable={perfClaimable}
         />
-
-        <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
-          Absolute measurements
-        </h3>
-        <LangsTable series={series} metric={row.metric} />
-        <OsTable row={row} series={series} />
 
         {deltas.length > 0 ? (
           <section style={{ marginTop: "1.5rem" }}>
@@ -192,6 +163,12 @@ export default async function BenchPage({ params }: PageProps) {
         ) : null}
         <p style={{ marginTop: "1.25rem" }}>
           <Link href="/">← Overview</Link>
+          {row.pillar ? (
+            <>
+              {" · "}
+              <Link href={`/pillar/${row.pillar}/`}>Pillar {row.pillar}</Link>
+            </>
+          ) : null}
         </p>
       </section>
     </main>
