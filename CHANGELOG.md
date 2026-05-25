@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+
+- **Overview tier cards:** Measured ok/warn/fail from summary.rows; pending not gray **?** — [2026-05-25-fix-overview-tier-cards.md](docs/release-notes/2026-05-25-fix-overview-tier-cards.md).
 ### Fixed
 
 - **Dashboard bench refresh:** Local tier 1+2 harness (LLVM clang) + tier5 HTTP CSV ingest — 140/179 colored rows — [2026-05-25-refresh-full-bench-run.md](docs/release-notes/2026-05-25-refresh-full-bench-run.md).

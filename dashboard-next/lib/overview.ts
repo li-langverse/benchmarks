@@ -1,7 +1,83 @@
+import {
+  hasWallClock,
+  isCatalogPending,
+  rowCoverageKind,
+} from "@/lib/coverage";
 import type { ReleaseIndex } from "@/lib/release-index";
-import type { StatusCounts, Summary, SummaryRow } from "@/lib/summary";
+import type { StatusCounts, SummaryRow } from "@/lib/summary";
 
 const STATUS_KEYS = ["green", "yellow", "red", "unknown"] as const;
+
+export type TierCoverageSplit = {
+  measured: StatusCounts;
+  pending: number;
+};
+
+export function splitTierCounts(rows: SummaryRow[]): Record<string, TierCoverageSplit> {
+  const out: Record<string, TierCoverageSplit> = {};
+  for (const row of rows) {
+    const tier = String(row.tier);
+    if (!out[tier]) {
+      out[tier] = {
+        measured: { green: 0, yellow: 0, red: 0, unknown: 0 },
+        pending: 0,
+      };
+    }
+    if (isCatalogPending(row) || !hasWallClock(row)) {
+      out[tier].pending += 1;
+      continue;
+    }
+    const st = row.status;
+    if (st === "green" || st === "yellow" || st === "red") {
+      out[tier].measured[st] += 1;
+    } else {
+      out[tier].measured.unknown += 1;
+    }
+  }
+  return out;
+}
+
+export type PillarOverviewCounts = {
+  measured: StatusCounts;
+  pending: number;
+};
+
+export function countPillarOverview(
+  rows: SummaryRow[],
+): Record<string, PillarOverviewCounts> {
+  const out: Record<string, PillarOverviewCounts> = {};
+  for (const row of rows) {
+    const pillar = row.pillar;
+    if (!pillar) continue;
+    if (!out[pillar]) {
+      out[pillar] = { measured: emptyCounts(), pending: 0 };
+    }
+    if (rowCoverageKind(row) === "pending") {
+      out[pillar].pending += 1;
+      continue;
+    }
+    const st = row.status;
+    if (st === "green" || st === "yellow" || st === "red") {
+      out[pillar].measured[st] += 1;
+    } else if (hasWallClock(row)) {
+      out[pillar].measured.unknown += 1;
+    } else {
+      out[pillar].pending += 1;
+    }
+  }
+  return out;
+}
+
+export function topPendingBenchmarks(
+  rows: SummaryRow[],
+  pillarId: string,
+  limit = 3,
+): string[] {
+  return rows
+    .filter((r) => r.pillar === pillarId && rowCoverageKind(r) === "pending")
+    .map((r) => r.benchmark)
+    .slice(0, limit);
+}
 
 export function emptyCounts(): StatusCounts {
   return { green: 0, yellow: 0, red: 0, unknown: 0 };

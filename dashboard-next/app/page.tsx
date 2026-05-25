@@ -2,19 +2,21 @@ import Link from "next/link";
 import { BenchmarkSearch } from "@/components/benchmark-search";
 import { Badge } from "@/components/ui/badge";
 import { getPillar, PILLAR_IDS } from "@/lib/pillars";
+import { COVERAGE_GAP_DOC, coverageHonesty } from "@/lib/coverage";
 import {
-  countStatusesByPillar,
+  countPillarOverview,
   countValidityUnknownByPillar,
   packageFreshnessRows,
   regressionRows,
+  splitTierCounts,
   topBenchmarksByStatus,
+  topPendingBenchmarks,
 } from "@/lib/overview";
 import {
   hasIndexedReleases,
   loadReleaseIndex,
 } from "@/lib/release-index";
 import { releaseFreshnessBanner } from "@/lib/release-freshness";
-import { COVERAGE_GAP_DOC, coverageHonesty, splitTierCounts } from "@/lib/coverage";
 import { loadSummary } from "@/lib/summary";
 import { pillarPerfCounts } from "@/lib/validity";
 
@@ -35,7 +37,7 @@ export default function HomePage() {
   const tierSplit = splitTierCounts(summary.rows);
   const honesty = coverageHonesty(summary.rows);
   const releaseIndex = loadReleaseIndex();
-  const pillarCounts = countStatusesByPillar(summary.rows);
+  const pillarOverview = countPillarOverview(summary.rows);
   const validityUnknownByPillar = countValidityUnknownByPillar(summary.rows);
   const reds = regressionRows(summary.rows);
   const osFilterValues = summary.reporting?.os_values?.filter((o) => o !== "unknown") ?? [];
@@ -70,8 +72,8 @@ export default function HomePage() {
             {honesty.measured} of {honesty.total}
           </strong>{" "}
           catalog rows have wall-clock data in this ingest;{" "}
-          <strong>{honesty.pending}</strong> are catalog placeholders until harness runs
-          produce CSV.
+          <strong>{honesty.pending}</strong> are pending (catalog placeholders or harness without
+          wall-clock CSV in this ingest).
         </p>
         {honesty.validityFail + honesty.validityUnknown > 0 ? (
           <p className="mono coverage-honesty-sub">
@@ -130,7 +132,7 @@ export default function HomePage() {
               key={tier}
               href={`/matrix/?tier=${tier}`}
               className="tier-card"
-              aria-label={`Tier ${tier}: ${measuredTotal} measured (${m.green} ok, ${m.yellow} warn, ${m.red} fail), ${split.pending} catalog pending`}
+              aria-label={`Tier ${tier}: ${measuredTotal} measured (${m.green} ok, ${m.yellow} warn, ${m.red} fail), ${split.pending} pending`}
             >
               <h3>Tier {tier}</h3>
               <p className="tier-card-section-label">Measured</p>
@@ -138,7 +140,11 @@ export default function HomePage() {
                 <span className="g">{m.green} ok</span>
                 <span className="y">{m.yellow} warn</span>
                 <span className="r">{m.red} fail</span>
-                {m.unknown > 0 ? <span className="u">{m.unknown} ?</span> : null}
+                {m.unknown > 0 ? (
+                  <span className="u" title="Wall-clock present; validity or status unresolved">
+                    {m.unknown} validity ?
+                  </span>
+                ) : null}
               </div>
               {split.pending > 0 ? (
                 <>
@@ -220,23 +226,18 @@ export default function HomePage() {
         <div className="pillar-grid">
           {PILLAR_IDS.map((pillarId) => {
             const block = summary.pillars?.[pillarId];
-            const counts = pillarCounts[pillarId] ?? {
-              green: 0,
-              yellow: 0,
-              red: 0,
-              unknown: 0,
+            const overview = pillarOverview[pillarId] ?? {
+              measured: { green: 0, yellow: 0, red: 0, unknown: 0 },
+              pending: 0,
             };
+            const counts = overview.measured;
             const nav = getPillar(pillarId);
             const label = block?.label ?? nav?.label ?? pillarId;
             const chartCount = block?.charts.length ?? 0;
             const rowTotal =
-              counts.green + counts.yellow + counts.red + counts.unknown;
+              counts.green + counts.yellow + counts.red + counts.unknown + overview.pending;
             const redIds = topBenchmarksByStatus(summary.rows, pillarId, "red");
-            const unknownIds = topBenchmarksByStatus(
-              summary.rows,
-              pillarId,
-              "unknown",
-            );
+            const pendingIds = topPendingBenchmarks(summary.rows, pillarId);
             const validityUnknown = validityUnknownByPillar[pillarId] ?? 0;
             const perf = pillarPerfCounts(summary.rows, pillarId);
 
@@ -252,7 +253,12 @@ export default function HomePage() {
                   <span className="g">{counts.green} ok</span>
                   <span className="y">{counts.yellow} warn</span>
                   <span className="r">{counts.red} fail</span>
-                  <span className="u">{counts.unknown} ?</span>
+                  {counts.unknown > 0 ? (
+                    <span className="u">{counts.unknown} validity ?</span>
+                  ) : null}
+                  {overview.pending > 0 ? (
+                    <span className="p">{overview.pending} pending</span>
+                  ) : null}
                 </div>
                 {rowTotal > 0 ? (
                   <div className="counts pillar-perf-counts" aria-label="Perf claimability">
@@ -267,7 +273,7 @@ export default function HomePage() {
                 {rowTotal === 0 ? (
                   <p className="pillar-card-meta mono">No catalog rows in this ingest</p>
                 ) : null}
-                {(redIds.length > 0 || unknownIds.length > 0) && (
+                {(redIds.length > 0 || pendingIds.length > 0) && (
                   <ul className="pillar-hotspots mono">
                     {redIds.map((id) => (
                       <li key={`r-${id}`}>
@@ -275,10 +281,10 @@ export default function HomePage() {
                         <Badge status="red" />
                       </li>
                     ))}
-                    {unknownIds.map((id) => (
-                      <li key={`u-${id}`}>
+                    {pendingIds.map((id) => (
+                      <li key={`p-${id}`}>
                         <Link href={`/bench/${id}/`}>{id}</Link>{" "}
-                        <Badge status="unknown" />
+                        <span className="badge badge-unknown badge-pending">pending</span>
                       </li>
                     ))}
                   </ul>

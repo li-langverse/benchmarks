@@ -1,4 +1,4 @@
-import type { StatusCounts, SummaryRow } from "@/lib/summary";
+import type { SummaryRow } from "@/lib/summary";
 
 /** Mirrors `scripts/ingest/build_summary.py` `is_pending_catalog_row` without catalog.toml at runtime. */
 export function isCatalogPending(row: SummaryRow): boolean {
@@ -11,11 +11,17 @@ export function isCatalogPending(row: SummaryRow): boolean {
   return false;
 }
 
-export function isMeasured(row: SummaryRow): boolean {
+/** Row has wall-clock perf in this ingest (colored status or oracle values). */
+export function hasWallClock(row: SummaryRow): boolean {
   if (row.status === "green" || row.status === "yellow" || row.status === "red") {
     return true;
   }
   return row.li_value != null || row.cpp_value != null;
+}
+
+/** @deprecated Use {@link hasWallClock}. */
+export function isMeasured(row: SummaryRow): boolean {
+  return hasWallClock(row);
 }
 
 export function isValidityFailed(row: SummaryRow): boolean {
@@ -27,40 +33,10 @@ export type RowCoverageKind = "measured" | "pending" | "validity_fail" | "validi
 
 export function rowCoverageKind(row: SummaryRow): RowCoverageKind {
   if (isCatalogPending(row)) return "pending";
+  if (!hasWallClock(row)) return "pending";
   if (isValidityFailed(row)) return "validity_fail";
-  if (isMeasured(row) && row.validity_status !== "pass") return "validity_unknown";
+  if (row.validity_status !== "pass") return "validity_unknown";
   return "measured";
-}
-
-export type TierCoverageSplit = {
-  measured: StatusCounts;
-  pending: number;
-};
-
-export function splitTierCounts(rows: SummaryRow[]): Record<string, TierCoverageSplit> {
-  const out: Record<string, TierCoverageSplit> = {};
-  for (const row of rows) {
-    const tier = String(row.tier);
-    if (!out[tier]) {
-      out[tier] = {
-        measured: { green: 0, yellow: 0, red: 0, unknown: 0 },
-        pending: 0,
-      };
-    }
-    if (isCatalogPending(row)) {
-      out[tier].pending += 1;
-      continue;
-    }
-    const st = row.status;
-    if (st === "green" || st === "yellow" || st === "red") {
-      out[tier].measured[st] += 1;
-    } else if (isMeasured(row)) {
-      out[tier].measured.unknown += 1;
-    } else {
-      out[tier].pending += 1;
-    }
-  }
-  return out;
 }
 
 export type CoverageHonesty = {
