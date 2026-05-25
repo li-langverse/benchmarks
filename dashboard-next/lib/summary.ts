@@ -39,6 +39,9 @@ export type ChartSpec = {
   validity_source?: string;
   os?: string;
   pending?: boolean;
+  problem_size?: string | null;
+  size_label?: string | null;
+  base_id?: string | null;
 };
 
 export type CategoryBlock = {
@@ -67,6 +70,9 @@ export type SummaryRow = {
   sota_value?: number | null;
   unit: string | null;
   variant?: string | null;
+  problem_size?: string | null;
+  size_label?: string | null;
+  base_id?: string | null;
   status: string;
   validity_status?: ValidityStatus;
   validity_source?: string;
@@ -83,6 +89,7 @@ export type SummaryReporting = {
   sota_policy?: string;
   validity_required_default?: boolean;
   os_values?: string[];
+  size_labels?: string[];
 };
 
 export type Summary = {
@@ -113,3 +120,4 @@ export function loadSummary(): Summary {
 export function findRow(summary: Summary, benchmarkId: string): SummaryRow | undefined {
   return summary.rows.find((r) => r.benchmark === benchmarkId);
 }
+

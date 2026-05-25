@@ -10,72 +10,104 @@ type MatrixCatalogTableProps = {
   rows: MatrixRow[];
 };
 
-function parseTierFilter(raw: string | null): number | null {
-  if (raw == null || raw.trim() === "") return null;
-  const tier = Number(raw);
-  return Number.isFinite(tier) ? tier : null;
+function rowSizeLabel(row: MatrixRow): string {
+  return row.size_label ?? row.problem_size ?? "—";
 }
 
 export function MatrixCatalogTable({ rows }: MatrixCatalogTableProps) {
   const searchParams = useSearchParams();
-  const tierFilter = parseTierFilter(searchParams.get("tier"));
+  const tierFilter = searchParams.get("tier");
+  const sizeFilter = searchParams.get("size");
+
+  const sizeOptions = useMemo(() => {
+    const labels = new Set<string>();
+    for (const row of rows) {
+      const label = row.size_label ?? row.problem_size;
+      if (label) labels.add(label);
+    }
+    return [...labels].sort();
+  }, [rows]);
 
   const filtered = useMemo(() => {
-    if (tierFilter == null) return rows;
-    return rows.filter((row) => row.tier === tierFilter);
-  }, [rows, tierFilter]);
+    return rows.filter((row) => {
+      if (tierFilter && String(row.tier) !== tierFilter) return false;
+      if (!sizeFilter) return true;
+      const label = row.size_label ?? row.problem_size ?? "";
+      return label === sizeFilter;
+    });
+  }, [rows, tierFilter, sizeFilter]);
 
   return (
     <section>
-      <h3 className="section-heading">Catalog sections</h3>
-      {tierFilter != null ? (
-        <p className="mono matrix-filter-meta" role="status">
-          Tier {tierFilter} filter: {filtered.length} of {rows.length} rows.{" "}
-          <Link href="/matrix/">Show all tiers</Link>
+      {sizeOptions.length > 0 ? (
+        <p className="mono" style={{ marginBottom: "0.75rem" }}>
+          Size filter:{" "}
+          <Link href="/matrix/">all</Link>
+          {sizeOptions.map((label) => (
+            <span key={label}>
+              {" · "}
+              <Link
+                href={
+                  tierFilter
+                    ? `/matrix/?tier=${tierFilter}&size=${encodeURIComponent(label)}`
+                    : `/matrix/?size=${encodeURIComponent(label)}`
+                }
+              >
+                {label}
+              </Link>
+            </span>
+          ))}
+          {tierFilter ? (
+            <span style={{ color: "var(--muted)" }}> (tier {tierFilter})</span>
+          ) : null}
         </p>
       ) : null}
+      <p className="mono bench-search-count">
+        {filtered.length} of {rows.length} catalog rows
+      </p>
       <div className="table-wrap">
         <table className="data-table">
           <thead>
             <tr>
-              <th>Id</th>
+              <th>Benchmark</th>
+              <th>Size</th>
               <th>Tier</th>
               <th>Category</th>
-              <th>Repo</th>
               <th>Metric</th>
-              <th>Status</th>
               <th>Ratio</th>
-              <th>PH ids</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
             {filtered.map((row) => (
-              <tr key={`${row.category}-${row.id}`}>
+              <tr key={row.id}>
                 <td>
                   <Link href={`/bench/${row.id}/`}>{row.id}</Link>
+                  {row.base_id ? (
+                    <span className="mono" style={{ color: "var(--muted)" }}>
+                      {" "}
+                      ← {row.base_id}
+                    </span>
+                  ) : null}
                 </td>
+                <td className="mono">{rowSizeLabel(row)}</td>
                 <td>{row.tier}</td>
                 <td>{row.category}</td>
-                <td>{row.repo}</td>
                 <td>{row.metric}</td>
+                <td className="mono">
+                  {row.ratio_vs_reference != null
+                    ? `${row.ratio_vs_reference.toFixed(3)}×`
+                    : "—"}
+                </td>
                 <td>
                   <Badge status={row.status} />
                 </td>
-                <td className="mono">
-                  {row.ratio_vs_reference != null
-                    ? row.ratio_vs_reference.toFixed(4)
-                    : "—"}
-                </td>
-                <td className="mono">{row.ph_ids.join(", ") || "—"}</td>
               </tr>
             ))}
           </tbody>
         </table>
         {filtered.length === 0 ? (
-          <p className="bench-search-empty">
-            No matrix rows for tier {tierFilter}.{" "}
-            <Link href="/matrix/">Clear filter</Link>
-          </p>
+          <p className="bench-search-empty">No rows match tier/size filters.</p>
         ) : null}
       </div>
     </section>

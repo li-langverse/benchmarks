@@ -93,6 +93,53 @@ def row_meta(cfg: dict) -> dict[str, str]:
     return {"pillar": benchmark_pillar(cfg), "package": benchmark_package(cfg)}
 
 
+def size_meta(cfg: dict) -> dict[str, str | None]:
+    return {
+        "problem_size": cfg.get("problem_size"),
+        "size_label": cfg.get("size_label"),
+        "base_id": cfg.get("base_id"),
+    }
+
+
+def chart_title(bench_id: str, cfg: dict) -> str:
+    label = cfg.get("size_label") or cfg.get("problem_size")
+    base = str(cfg.get("base_id") or bench_id).replace("_", " ")
+    if label:
+        return f"{base} ({label})"
+    return bench_id.replace("_", " ")
+
+
+def row_problem_size(row: dict) -> str:
+    return str(row.get("problem_size") or "").strip()
+
+
+def row_matches_catalog(row: dict, bench_id: str, cfg: dict) -> bool:
+    """Match CSV rows to a catalog entry (benchmark id + optional problem_size)."""
+    csv_bench = row.get("benchmark") or ""
+    cat_ps = str(cfg.get("problem_size") or "").strip()
+    base_id = str(cfg.get("base_id") or "").strip()
+    csv_ps = row_problem_size(row)
+    direct = csv_bench == bench_id
+    via_base = bool(base_id and cat_ps and csv_bench == base_id)
+    if not (direct or via_base):
+        return False
+    if cat_ps:
+        if csv_ps:
+            return csv_ps == cat_ps
+        return direct and not (base_id and bench_id != base_id)
+    if csv_ps:
+        return False
+    return True
+
+
+def rows_for_bench(rows: list[dict], bench_id: str, cfg: dict) -> list[dict]:
+    return [r for r in rows if row_matches_catalog(r, bench_id, cfg)]
+
+
+def has_csv_rows(rows: list[dict], bench_id: str, cfg: dict) -> bool:
+    return bool(rows_for_bench(rows, bench_id, cfg))
+
+
 def load_catalog() -> dict[str, dict]:
     import tomllib
 
@@ -150,9 +197,19 @@ def csv_passed(row: dict) -> bool | None:
     return str(raw).strip().lower() in ("true", "1", "yes", "pass")
 
 
-def bench_os(rows: list[dict], bench_id: str, *, variant: str | None = None) -> str:
+def bench_os(
+    rows: list[dict],
+    bench_id: str,
+    cfg: dict | None = None,
+    *,
+    variant: str | None = None,
+) -> str:
     """Primary OS tag for a benchmark row (Li row preferred)."""
-    bench_rows = [r for r in rows if r.get("benchmark") == bench_id]
+    bench_rows = (
+        rows_for_bench(rows, bench_id, cfg)
+        if cfg is not None
+        else [r for r in rows if r.get("benchmark") == bench_id]
+    )
     if variant:
         li_rows = [
             r
@@ -231,7 +288,7 @@ def validity_for_benchmark(
 
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
-    bench_rows = [r for r in raw_rows if r.get("benchmark") == bench_id]
+    bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
     if variant:
         li_rows = [
             r
@@ -336,20 +393,25 @@ def make_summary_row(
         "ci_url": "",
         "langs": series,
         **meta,
+        **size_meta(cfg),
     }
 
 
 def lang_series(
-    rows: list[dict], bench_id: str, metric: str, *, variant: str | None = None
+    rows: list[dict],
+    bench_id: str,
+    metric: str,
+    cfg: dict | None = None,
+    *,
+    variant: str | None = None,
 ) -> list[dict]:
+    scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
     out = []
     for lang in LANG_ORDER:
         matches = [
             r
-            for r in rows
-            if r.get("benchmark") == bench_id
-            and r.get("lang") == lang
-            and r.get("metric") == metric
+            for r in scoped
+            if r.get("lang") == lang and r.get("metric") == metric
         ]
         if variant and lang == "li":
             preferred = [r for r in matches if (r.get("variant") or "") == variant]
@@ -375,14 +437,16 @@ def lang_series(
 
 
 def http_lang_series(
-    rows: list[dict], bench_id: str, metric: str, *, variant: str | None = None
+    rows: list[dict],
+    bench_id: str,
+    metric: str,
+    cfg: dict | None = None,
+    *,
+    variant: str | None = None,
 ) -> list[dict]:
     """All webserver oracles for tier-5 charts (multiple li variants when present)."""
-    bench_rows = [
-        r
-        for r in rows
-        if r.get("benchmark") == bench_id and r.get("metric") == metric
-    ]
+    scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
+    bench_rows = [r for r in scoped if r.get("metric") == metric]
     out: list[dict] = []
     seen: set[tuple[str, str]] = set()
 
@@ -512,12 +576,12 @@ def build_perf_chart(
     variant = cfg.get("variant")
     is_http = cfg.get("category") == "http"
     series_fn = http_lang_series if is_http else lang_series
-    series = series_fn(rows, bench_id, metric, variant=variant)
+    series = series_fn(rows, bench_id, metric, cfg, variant=variant)
     if not series:
-        bench_rows = [r for r in rows if r.get("benchmark") == bench_id]
+        bench_rows = rows_for_bench(rows, bench_id, cfg)
         metrics = {r.get("metric") for r in bench_rows if r.get("metric")}
         for alt in sorted(metrics):
-            series = series_fn(rows, bench_id, alt, variant=variant)
+            series = series_fn(rows, bench_id, alt, cfg, variant=variant)
             if series:
                 metric = alt
                 break
@@ -539,9 +603,10 @@ def build_perf_chart(
     perf_st = status_for_ratio(ratio, threshold)
     st = apply_validity_gate(perf_st, validity_status)
     meta = row_meta(cfg)
+    sizes = size_meta(cfg)
     return {
         "id": bench_id,
-        "title": bench_id.replace("_", " "),
+        "title": chart_title(bench_id, cfg),
         "metric": metric,
         "unit": series[0]["unit"] if series else "",
         "lower_is_better": lower,
@@ -557,13 +622,20 @@ def build_perf_chart(
         "ratio_vs_sota": round(ratio_sota, 4) if ratio_sota is not None else None,
         "validity_status": validity_status,
         "validity_source": validity_source,
-        "os": bench_os(rows, bench_id, variant=variant),
+        "os": bench_os(rows, bench_id, cfg, variant=variant),
         "pillar": meta["pillar"],
         "package": meta["package"],
+        **sizes,
     }
 
 
-def is_pending_catalog_row(bench_id: str, cfg: dict, by_bench: dict[str, list]) -> bool:
+def is_pending_catalog_row(
+    bench_id: str, cfg: dict, by_bench: dict[str, list], all_rows: list[dict]
+) -> bool:
+    if has_csv_rows(all_rows, bench_id, cfg):
+        return False
+    if cfg.get("base_id"):
+        return True
     if cfg.get("path") == "unknown" or bench_id.endswith("_stub"):
         return True
     category = cfg.get("category", "micro")
@@ -584,10 +656,11 @@ def append_pending_row(
     results: list[dict],
 ) -> None:
     meta = row_meta(cfg)
+    sizes = size_meta(cfg)
     ref = cfg.get("compare_oracle") or ("postgres" if category == "database" else "cpp")
     chart = {
         "id": bench_id,
-        "title": bench_id,
+        "title": chart_title(bench_id, cfg),
         "metric": metric,
         "unit": "ms" if category == "database" else "",
         "lower_is_better": metric in ("wall_time", "latency", "latency_p95"),
@@ -600,6 +673,7 @@ def append_pending_row(
         "pending": True,
         "pillar": meta["pillar"],
         "package": meta["package"],
+        **sizes,
     }
     charts_by_cat[category].append(chart)
     charts_by_pillar[meta["pillar"]].append(chart)
@@ -629,6 +703,7 @@ def append_pending_row(
             "compare_oracle": ref,
             "ci_url": "",
             **meta,
+            **sizes,
         }
     )
 
@@ -706,7 +781,7 @@ def main() -> int:
                     "status": st,
                     "validity_status": validity_status,
                     "validity_source": validity_source,
-                    "os": bench_os(raw, bench_id),
+                    "os": bench_os(raw, bench_id, cfg),
                     "ph_ids": cfg.get("ph_ids", []),
                     "path": cfg.get("path", ""),
                     "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
@@ -717,7 +792,7 @@ def main() -> int:
             )
             continue
 
-        if is_pending_catalog_row(bench_id, cfg, by_bench):
+        if is_pending_catalog_row(bench_id, cfg, by_bench, raw):
             append_pending_row(
                 bench_id=bench_id,
                 cfg=cfg,
@@ -774,6 +849,13 @@ def main() -> int:
     pillars = build_pillars(charts_by_pillar)
 
     os_values = sorted({r.get("os", "unknown") for r in results if r.get("os")})
+    size_labels = sorted(
+        {
+            str(r["size_label"])
+            for r in results
+            if r.get("size_label")
+        }
+    )
 
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -789,6 +871,7 @@ def main() -> int:
                 catalog_defaults.get("validity_required", True)
             ),
             "os_values": os_values,
+            "size_labels": size_labels,
         },
         "tier_counts": dict(tier_counts),
         "categories": categories,

@@ -42,6 +42,7 @@ export default async function BenchPage({ params }: PageProps) {
         </h2>
         <p style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
           Tier {row.tier} · {row.metric}
+          {row.size_label ? ` · ${row.size_label}` : row.problem_size ? ` · ${row.problem_size}` : ""}
           {row.variant ? ` · variant ${row.variant}` : ""}
           {row.os ? ` · OS ${row.os}` : ""}
         </p>
@@ -59,6 +60,16 @@ export default async function BenchPage({ params }: PageProps) {
             gap: "0.35rem 1rem",
           }}
         >
+          <dt>Problem size</dt>
+          <dd>
+            {row.size_label ?? row.problem_size ?? "—"}
+            {row.base_id ? (
+              <span className="mono" style={{ color: "var(--muted)" }}>
+                {" "}
+                (family <code>{row.base_id}</code>)
+              </span>
+            ) : null}
+          </dd>
           <dt>Category</dt>
           <dd>{row.category ?? "—"}</dd>
           <dt>Pillar</dt>

@@ -18,6 +18,7 @@ export function BenchRowList({ rows, emptyMessage }: BenchRowListProps) {
         <thead>
           <tr>
             <th>Benchmark</th>
+            <th>Size</th>
             <th>Tier</th>
             <th>Package</th>
             <th>Validity</th>
@@ -33,6 +34,9 @@ export function BenchRowList({ rows, emptyMessage }: BenchRowListProps) {
             <tr key={row.benchmark}>
               <td>
                 <Link href={`/bench/${row.benchmark}/`}>{row.benchmark}</Link>
+              </td>
+              <td className="mono">
+                {row.size_label ?? row.problem_size ?? "—"}
               </td>
               <td>{row.tier}</td>
               <td>{row.package ?? "—"}</td>
