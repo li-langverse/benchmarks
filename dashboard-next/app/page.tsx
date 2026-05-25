@@ -14,6 +14,7 @@ import {
   loadReleaseIndex,
 } from "@/lib/release-index";
 import { releaseFreshnessBanner } from "@/lib/release-freshness";
+import { COVERAGE_GAP_DOC, coverageHonesty, splitTierCounts } from "@/lib/coverage";
 import { loadSummary } from "@/lib/summary";
 import { pillarPerfCounts } from "@/lib/validity";
 
@@ -31,6 +32,8 @@ const VARIANT_LEGEND: { variant: string; label: string }[] = [
 
 export default function HomePage() {
   const summary = loadSummary();
+  const tierSplit = splitTierCounts(summary.rows);
+  const honesty = coverageHonesty(summary.rows);
   const releaseIndex = loadReleaseIndex();
   const pillarCounts = countStatusesByPillar(summary.rows);
   const validityUnknownByPillar = countValidityUnknownByPillar(summary.rows);
@@ -60,6 +63,28 @@ export default function HomePage() {
           <p>{releaseBanner.message}</p>
         </section>
       ) : null}
+
+      <section className="coverage-honesty bento-full" aria-label="Coverage honesty">
+        <p>
+          <strong>
+            {honesty.measured} of {honesty.total}
+          </strong>{" "}
+          catalog rows have wall-clock data in this ingest;{" "}
+          <strong>{honesty.pending}</strong> are catalog placeholders until harness runs
+          produce CSV.
+        </p>
+        {honesty.validityFail + honesty.validityUnknown > 0 ? (
+          <p className="mono coverage-honesty-sub">
+            Measured but not claimable: {honesty.validityFail} validity fail,{" "}
+            {honesty.validityUnknown} validity unknown (see matrix validity column).
+          </p>
+        ) : null}
+        <p className="honesty-links">
+          <a href={COVERAGE_GAP_DOC} target="_blank" rel="noopener noreferrer">
+            Coverage gap analysis
+          </a>
+        </p>
+      </section>
 
       <section className="honesty-strip bento-full" aria-label="Measurement honesty">
         <p>
@@ -94,26 +119,35 @@ export default function HomePage() {
 
       <section className="tier-strip bento-full" aria-label="Tier status counts">
         {TIER_ORDER.map((tier) => {
-          const c = summary.tier_counts[tier] ?? {
-            green: 0,
-            yellow: 0,
-            red: 0,
-            unknown: 0,
+          const split = tierSplit[tier] ?? {
+            measured: { green: 0, yellow: 0, red: 0, unknown: 0 },
+            pending: 0,
           };
+          const m = split.measured;
+          const measuredTotal = m.green + m.yellow + m.red + m.unknown;
           return (
             <Link
               key={tier}
               href={`/matrix/?tier=${tier}`}
               className="tier-card"
-              aria-label={`Tier ${tier}: ${c.green} ok, ${c.yellow} warn, ${c.red} fail, ${c.unknown} unknown`}
+              aria-label={`Tier ${tier}: ${measuredTotal} measured (${m.green} ok, ${m.yellow} warn, ${m.red} fail), ${split.pending} catalog pending`}
             >
               <h3>Tier {tier}</h3>
+              <p className="tier-card-section-label">Measured</p>
               <div className="counts">
-                <span className="g">{c.green} ok</span>
-                <span className="y">{c.yellow} warn</span>
-                <span className="r">{c.red} fail</span>
-                <span className="u">{c.unknown} ?</span>
+                <span className="g">{m.green} ok</span>
+                <span className="y">{m.yellow} warn</span>
+                <span className="r">{m.red} fail</span>
+                {m.unknown > 0 ? <span className="u">{m.unknown} ?</span> : null}
               </div>
+              {split.pending > 0 ? (
+                <>
+                  <p className="tier-card-section-label">Catalog pending</p>
+                  <div className="counts">
+                    <span className="p">{split.pending} pending</span>
+                  </div>
+                </>
+              ) : null}
             </Link>
           );
         })}

@@ -3,18 +3,20 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
+import { CoverageStatusBadge } from "@/components/coverage-status-badge";
 import type { MatrixRow } from "@/lib/matrix";
+import type { SummaryRow } from "@/lib/summary";
 
 type MatrixCatalogTableProps = {
   rows: MatrixRow[];
+  summaryById?: Record<string, SummaryRow>;
 };
 
 function rowSizeLabel(row: MatrixRow): string {
   return row.size_label ?? row.problem_size ?? "—";
 }
 
-export function MatrixCatalogTable({ rows }: MatrixCatalogTableProps) {
+export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTableProps) {
   const searchParams = useSearchParams();
   const tierFilter = searchParams.get("tier");
   const sizeFilter = searchParams.get("size");
@@ -66,7 +68,7 @@ export function MatrixCatalogTable({ rows }: MatrixCatalogTableProps) {
         {filtered.length} of {rows.length} catalog rows
       </p>
       <div className="table-wrap">
-        <table className="data-table">
+        <table className="data-table matrix-catalog-table">
           <thead>
             <tr>
               <th>Benchmark</th>
@@ -75,35 +77,50 @@ export function MatrixCatalogTable({ rows }: MatrixCatalogTableProps) {
               <th>Category</th>
               <th>Metric</th>
               <th>Ratio</th>
-              <th>Status</th>
+              <th>Perf</th>
+              <th>Validity</th>
             </tr>
           </thead>
           <tbody>
-            {filtered.map((row) => (
-              <tr key={row.id}>
-                <td>
-                  <Link href={`/bench/${row.id}/`}>{row.id}</Link>
-                  {row.base_id ? (
-                    <span className="mono" style={{ color: "var(--muted)" }}>
-                      {" "}
-                      ← {row.base_id}
-                    </span>
-                  ) : null}
-                </td>
-                <td className="mono">{rowSizeLabel(row)}</td>
-                <td>{row.tier}</td>
-                <td>{row.category}</td>
-                <td>{row.metric}</td>
-                <td className="mono">
-                  {row.ratio_vs_reference != null
-                    ? `${row.ratio_vs_reference.toFixed(3)}×`
-                    : "—"}
-                </td>
-                <td>
-                  <Badge status={row.status} />
-                </td>
-              </tr>
-            ))}
+            {filtered.map((row) => {
+              const summaryRow = summaryById[row.id];
+              return (
+                <tr key={row.id}>
+                  <td>
+                    <Link href={`/bench/${row.id}/`}>{row.id}</Link>
+                    {row.base_id ? (
+                      <span className="mono" style={{ color: "var(--muted)" }}>
+                        {" "}
+                        ← {row.base_id}
+                      </span>
+                    ) : null}
+                  </td>
+                  <td className="mono">{rowSizeLabel(row)}</td>
+                  <td>{row.tier}</td>
+                  <td>{row.category}</td>
+                  <td>{row.metric}</td>
+                  <td className="mono">
+                    {row.ratio_vs_reference != null
+                      ? `${row.ratio_vs_reference.toFixed(3)}×`
+                      : "—"}
+                  </td>
+                  <td>
+                    {summaryRow ? (
+                      <CoverageStatusBadge row={summaryRow} showPerfStatus />
+                    ) : (
+                      <span className="badge badge-unknown badge-pending">pending</span>
+                    )}
+                  </td>
+                  <td>
+                    {summaryRow ? (
+                      <CoverageStatusBadge row={summaryRow} showPerfStatus={false} />
+                    ) : (
+                      <span className="badge badge-unknown">—</span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         {filtered.length === 0 ? (

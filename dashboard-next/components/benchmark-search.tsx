@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { Badge } from "@/components/ui/badge";
+import { CoverageStatusBadge } from "@/components/coverage-status-badge";
 import type { SummaryRow } from "@/lib/summary";
 
 function uniqueSizeLabels(rows: SummaryRow[]): string[] {
@@ -122,10 +122,12 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
                 <td>{row.package ?? "—"}</td>
                 <td className="mono">{row.os ?? "—"}</td>
                 <td className="mono">{row.sota_lang ?? "—"}</td>
-                <td className="mono">{row.validity_status ?? "—"}</td>
+                <td>
+                  <CoverageStatusBadge row={row} showPerfStatus={false} />
+                </td>
                 <td className="mono">{row.ph_ids.join(", ") || "—"}</td>
                 <td>
-                  <Badge status={row.status} />
+                  <CoverageStatusBadge row={row} showPerfStatus />
                 </td>
               </tr>
             ))}
