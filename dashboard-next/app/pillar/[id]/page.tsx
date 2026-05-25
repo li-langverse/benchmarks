@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CATEGORY_TO_PILLAR, getPillar, PILLAR_IDS } from "@/lib/pillars";
+import { BenchRowList } from "@/components/drilldown/bench-row-list";
+import { getPillar, PILLAR_IDS } from "@/lib/pillars";
 import { loadSummary } from "@/lib/summary";
 
 type PageProps = {
@@ -17,31 +18,22 @@ export default async function PillarPage({ params }: PageProps) {
   if (!pillar) notFound();
 
   const summary = loadSummary();
-  const categories = Object.entries(CATEGORY_TO_PILLAR)
-    .filter(([, pillarId]) => pillarId === pillar.id)
-    .map(([cat]) => cat);
-
-  const rowCount = summary.rows.filter(
-    (r) => r.category && categories.includes(r.category),
-  ).length;
+  const rows = summary.rows.filter((r) => r.pillar === id);
 
   return (
     <main>
       <section className="placeholder">
         <h2>{pillar.label}</h2>
         <p>{pillar.description}</p>
-        <p style={{ marginTop: "1rem" }}>
-          Stub pillar view — charts and tables land in a later work package.
+        <p className="mono" style={{ marginTop: "0.75rem", color: "var(--muted)" }}>
+          {rows.length} benchmark row{rows.length === 1 ? "" : "s"} with pillar={id}
         </p>
-        {categories.length > 0 ? (
-          <p className="mono" style={{ marginTop: "0.75rem" }}>
-            Categories: {categories.join(", ")} · ~{rowCount} rows
-          </p>
-        ) : (
-          <p className="mono" style={{ marginTop: "0.75rem" }}>
-            Category mapping TBD for this pillar.
-          </p>
-        )}
+
+        <BenchRowList
+          rows={rows}
+          emptyMessage={`No rows tagged pillar="${id}" in summary.json.`}
+        />
+
         <p style={{ marginTop: "1.25rem" }}>
           <Link href="/">← Overview</Link>
         </p>
