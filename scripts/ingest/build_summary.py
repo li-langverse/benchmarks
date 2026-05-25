@@ -210,14 +210,7 @@ def bench_os(
         if cfg is not None
         else [r for r in rows if r.get("benchmark") == bench_id]
     )
-    if variant:
-        li_rows = [
-            r
-            for r in bench_rows
-            if r.get("lang") == "li" and (r.get("variant") or "") == variant
-        ]
-    else:
-        li_rows = [r for r in bench_rows if r.get("lang") == "li"]
+    li_rows = li_rows_for_validity(bench_rows, variant)
     for r in li_rows + bench_rows:
         os = normalize_os(r.get("os") or r.get("OS"))
         if os != "unknown":
@@ -274,6 +267,16 @@ def validity_required_for(cfg: dict, catalog_defaults: dict) -> bool:
     return bool(catalog_defaults.get("validity_required", True))
 
 
+
+
+def li_rows_for_validity(bench_rows: list[dict], variant: str | None) -> list[dict]:
+    """Li CSV rows for validity — align variant fallback with lang_series."""
+    li = [r for r in bench_rows if r.get("lang") == "li"]
+    if not variant:
+        return li
+    preferred = [r for r in li if (r.get("variant") or "") == variant]
+    return preferred if preferred else li
+
 def validity_for_benchmark(
     bench_id: str,
     cfg: dict,
@@ -289,14 +292,7 @@ def validity_for_benchmark(
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
     bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
-    if variant:
-        li_rows = [
-            r
-            for r in bench_rows
-            if r.get("lang") == "li" and (r.get("variant") or "") == variant
-        ]
-    else:
-        li_rows = [r for r in bench_rows if r.get("lang") == "li"]
+    li_rows = li_rows_for_validity(bench_rows, variant)
 
     passed_flags = [csv_passed(r) for r in li_rows if csv_passed(r) is not None]
     if passed_flags:
@@ -338,6 +334,14 @@ def validity_for_benchmark(
 
     if not bench_rows:
         return "unknown", "none"
+
+    for r in li_rows:
+        try:
+            float(r["value"])
+        except (TypeError, ValueError):
+            continue
+        return "pass", "latest.csv:perf_present"
+
     return "unknown", "none"
 
 

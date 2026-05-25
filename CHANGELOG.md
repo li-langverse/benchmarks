@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **Harness-backed dashboard rows:** Refresh `data/latest/summary.json` from **lic** tier 1+2 CSV + ingest validity; 16 measured green/yellow/red rows — [2026-05-25-refresh-bench-csv.md](docs/release-notes/2026-05-25-refresh-bench-csv.md).
+
 ### Added
 
 - **tier_db_token_efficiency:** Agent query-surface token audit (18 scenarios, SQL vs liq vs ORM/BaaS/GraphQL), `run-db-token-efficiency-bench.sh`, manifest `data/latest/tier-db-token-efficiency.json` — [2026-05-25-tier-db-token-efficiency.md](docs/release-notes/2026-05-25-tier-db-token-efficiency.md).
