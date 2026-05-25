@@ -19,6 +19,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Summary measurement coverage gate:** `scripts/check-summary-measurement-coverage.py`; CI after ingest-smoke and on committed `summary.json`; INVARIANTS #10–#12 — [2026-05-25-ensure-measured-rows.md](docs/release-notes/2026-05-25-ensure-measured-rows.md).
+
+### Fixed
+
+- **Summary validity + tier colors:** `build_summary.py` variant fallback + `latest.csv:perf_present`; refresh `data/latest/summary.json` from lic CSV ingest (16 green/yellow/red rows) — [2026-05-25-ensure-measured-rows.md](docs/release-notes/2026-05-25-ensure-measured-rows.md).
+
+### Fixed
+
+- **Org CI audit (WP-A2):** `ensure-org-repo-ci.py` requires GitHub API on each repo default branch; gates `lidb` until WP-H0; local clone fallback only with `--allow-local-fallback` — [2026-05-25-ensure-org-repo-ci-lidb-gate.md](docs/release-notes/2026-05-25-ensure-org-repo-ci-lidb-gate.md).
+
+### Added
+
 - **tier_db_token_efficiency:** Agent query-surface token audit (18 scenarios, SQL vs liq vs ORM/BaaS/GraphQL), `run-db-token-efficiency-bench.sh`, manifest `data/latest/tier-db-token-efficiency.json` — [2026-05-25-tier-db-token-efficiency.md](docs/release-notes/2026-05-25-tier-db-token-efficiency.md).
 
 ### Added
