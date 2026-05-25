@@ -277,6 +277,7 @@ def li_rows_for_validity(bench_rows: list[dict], variant: str | None) -> list[di
     preferred = [r for r in li if (r.get("variant") or "") == variant]
     return preferred if preferred else li
 
+
 def validity_for_benchmark(
     bench_id: str,
     cfg: dict,
