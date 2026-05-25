@@ -2,6 +2,7 @@
 """Append summary snapshot to data/history/ and compute deltas vs previous."""
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
 from datetime import datetime, timezone
@@ -11,7 +12,20 @@ ROOT = Path(__file__).resolve().parents[1]
 SUMMARY = ROOT / "data/latest/summary.json"
 HISTORY_DIR = ROOT / "data/history"
 INDEX = HISTORY_DIR / "index.json"
+HASH_FILE = ROOT / "data/latest/summary-content-hash.txt"
 
+
+
+def summary_content_hash(summary: dict) -> str:
+    payload = {
+        "rows": summary.get("rows", []),
+        "tier_counts": summary.get("tier_counts", {}),
+        "categories": summary.get("categories", {}),
+        "pillars": summary.get("pillars", {}),
+    }
+    import json as _json
+    blob = _json.dumps(payload, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(blob.encode()).hexdigest()
 
 def row_key(r: dict) -> str:
     return r["benchmark"]
@@ -23,6 +37,10 @@ def main() -> int:
         return 1
 
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    content_hash = summary_content_hash(summary)
+    if HASH_FILE.is_file() and HASH_FILE.read_text(encoding="utf-8").strip() == content_hash:
+        print("summary unchanged; skip history snapshot")
+        return 0
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H%M%SZ")
     snap_path = HISTORY_DIR / f"{ts}.json"
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
@@ -72,6 +90,7 @@ def main() -> int:
     index["latest_deltas"] = deltas
     index["updated_at"] = datetime.now(timezone.utc).isoformat()
     INDEX.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8")
+    HASH_FILE.write_text(content_hash + "\n", encoding="utf-8")
 
     print(f"recorded {snap_path.name} ({len(deltas)} deltas vs previous)")
     return 0

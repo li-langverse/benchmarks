@@ -1,41 +1,51 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Header } from "@/components/shell/header";
-import { StatusBadge } from "@/components/ui/badge";
+import { CATEGORY_TO_PILLAR, getPillar, PILLAR_IDS } from "@/lib/pillars";
 import { loadSummary } from "@/lib/summary";
-import { PILLAR_IDS, getPillar } from "@/lib/pillars";
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
 
 export function generateStaticParams() {
   return PILLAR_IDS.map((id) => ({ id }));
 }
 
-export default async function PillarPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function PillarPage({ params }: PageProps) {
   const { id } = await params;
   const pillar = getPillar(id);
   if (!pillar) notFound();
+
   const summary = loadSummary();
-  const rows = summary.rows;
+  const categories = Object.entries(CATEGORY_TO_PILLAR)
+    .filter(([, pillarId]) => pillarId === pillar.id)
+    .map(([cat]) => cat);
+
+  const rowCount = summary.rows.filter(
+    (r) => r.category && categories.includes(r.category),
+  ).length;
 
   return (
-    <>
-      <Header subtitle={pillar.label} />
-      <main className="mx-auto max-w-6xl px-6 py-8">
-        <p className="text-[var(--muted)]">{pillar.description}</p>
-        <ul className="mt-6 space-y-2">
-          {rows.map((r) => (
-            <li
-              key={r.benchmark}
-              className="flex flex-wrap items-center justify-between gap-2 rounded border border-[var(--border)] bg-[var(--surface)] px-3 py-2"
-            >
-              <Link href={`/bench/${r.benchmark}/`}>{r.benchmark}</Link>
-              <StatusBadge status={r.status}>{r.status}</StatusBadge>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-8">
+    <main>
+      <section className="placeholder">
+        <h2>{pillar.label}</h2>
+        <p>{pillar.description}</p>
+        <p style={{ marginTop: "1rem" }}>
+          Stub pillar view — charts and tables land in a later work package.
+        </p>
+        {categories.length > 0 ? (
+          <p className="mono" style={{ marginTop: "0.75rem" }}>
+            Categories: {categories.join(", ")} · ~{rowCount} rows
+          </p>
+        ) : (
+          <p className="mono" style={{ marginTop: "0.75rem" }}>
+            Category mapping TBD for this pillar.
+          </p>
+        )}
+        <p style={{ marginTop: "1.25rem" }}>
           <Link href="/">← Overview</Link>
         </p>
-      </main>
-    </>
+      </section>
+    </main>
   );
 }
