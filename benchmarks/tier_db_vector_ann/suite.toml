@@ -1,0 +1,11 @@
+[default]
+include = ["ann_recall_at_10_10k", "ann_qps_10k"]
+timing = false
+
+[profiles.ci]
+include = ["ann_recall_at_10_10k", "ann_qps_10k"]
+timing = false
+
+[profiles.nightly]
+include = ["ann_recall_at_10_10k", "ann_qps_10k", "ann_recall_at_10_1m"]
+timing = true

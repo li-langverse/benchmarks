@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-05-25T12:39:20.805177+00:00",
+  "tier": "tier_db_vector_ann",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "faiss_cpu",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_vector_ann/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_vector_ann/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_vector_ann/schema/vector-ann-v1.sql",
+    "results_csv": "benchmarks/tier_db_vector_ann/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "ann_recall_at_10_10k",
+      "metric": "recall_at_10",
+      "unit": "ratio",
+      "corpus_size": 10000,
+      "dim": 128,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "faiss_cpu": null,
+        "lidb_gpu": null
+      },
+      "recall_at_10": null,
+      "ph_ids": [
+        "PH-DB-8",
+        "PH-DB-G2"
+      ],
+      "notes": "ANN @ N=10000, k=10"
+    },
+    {
+      "id": "ann_qps_10k",
+      "metric": "queries_per_sec",
+      "unit": "qps",
+      "corpus_size": 10000,
+      "dim": 128,
+      "status": "stub",
+      "engines": {
+        "lidb": null,
+        "faiss_cpu": null,
+        "lidb_gpu": null
+      },
+      "recall_at_10": null,
+      "ph_ids": [
+        "PH-DB-8",
+        "PH-DB-G2"
+      ],
+      "notes": "ANN @ N=10000, k=10"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-vector-ann.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

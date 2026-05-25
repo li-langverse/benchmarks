@@ -1,0 +1,15 @@
+name = "ann_qps_10k"
+
+[workload]
+kind = "vector_ann"
+corpus_size = 10000
+dim = 128
+k = 10
+batch_queries = 1000
+
+[verify]
+min_recall_at_query = 0.95
+
+[load]
+metric = "queries_per_sec"
+unit = "qps"

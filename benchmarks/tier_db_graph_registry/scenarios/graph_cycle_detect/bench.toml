@@ -1,0 +1,14 @@
+name = "graph_cycle_detect"
+
+[workload]
+kind = "graph_analytics"
+query = "cycle_detect"
+oracle = ["lidb_cte", "postgres_age", "kuzu_optional"]
+
+[verify]
+# Harness seeds acyclic DAG for green path; inject one back-edge for negative test fixture.
+expect_acyclic = true
+
+[load]
+metric = "latency_p95"
+unit = "ms"

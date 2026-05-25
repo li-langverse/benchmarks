@@ -1,0 +1,60 @@
+{
+  "generated_at": "2026-05-25T12:39:15.944464+00:00",
+  "tier": "tier_db_graph_registry",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "postgres_age",
+  "postgres_min_version": "15",
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_graph_registry/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_graph_registry/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_graph_registry/schema/graph-registry-v1.sql",
+    "base_schema_sql": "benchmarks/tier_db_registry/schema/registry-v1.sql",
+    "results_csv": "benchmarks/tier_db_graph_registry/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "graph_dep_closure",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_oracle": 1.2,
+      "status": "stub",
+      "engines": {
+        "lidb_cte": null,
+        "postgres_age": null,
+        "kuzu": null
+      },
+      "ratio_vs_oracle": null,
+      "ph_ids": [
+        "PH-DB-G1"
+      ],
+      "notes": "Transitive package_deps closure from root package"
+    },
+    {
+      "id": "graph_cycle_detect",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_oracle": 1.2,
+      "status": "stub",
+      "engines": {
+        "lidb_cte": null,
+        "postgres_age": null,
+        "kuzu": null
+      },
+      "ratio_vs_oracle": null,
+      "ph_ids": [
+        "PH-DB-G1"
+      ],
+      "notes": "Cycle detection on synthetic registry dep DAG"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-graph-registry.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

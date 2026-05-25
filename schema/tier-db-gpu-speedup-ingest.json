@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbGpuSpeedupIngestManifest",
+  "description": "CI ingest artifact for tier_db_gpu_speedup GPU vs CPU ratio benches.",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "compare_oracle", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_gpu_speedup" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["stub", "unknown", "pass", "fail"] },
+    "compare_oracle": { "const": "lidb_cpu_hnsw" },
+    "gpu_required": { "type": "boolean", "default": false },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "const": "speedup_ratio" },
+          "status": { "enum": ["unknown", "green", "yellow", "red", "stub"] },
+          "ph_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "ci_ingest": { "type": "object" }
+  }
+}

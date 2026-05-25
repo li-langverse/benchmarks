@@ -37,6 +37,7 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | `2026-05-16-li-httpd-plan.md` | **lis** / httpd |
 | `2026-05-16-li-math-linalg-surface.md` | Math / **PH-7e** |
 | **lidb / registry DB** (proposal) | **PH-DB-*** · [tier-db-registry-benchmark.md](./tier-db-registry-benchmark.md) |
+| **lidb graph / vector / GPU** (PH-DB-G0) | [tier-db-graph-registry.md](./tier-db-graph-registry.md) · [tier-db-vector-ann.md](./tier-db-vector-ann.md) · [tier-db-gpu-speedup.md](./tier-db-gpu-speedup.md) |
 
 ## Automation
 

@@ -1,0 +1,23 @@
+[schema]
+migration = "schema/graph-registry-v1.sql"
+base_migration = "../tier_db_registry/schema/registry-v1.sql"
+postgres_min_version = "15"
+
+[engines]
+lidb = "lis db start --profile dev-full"
+postgres = "psql"
+postgres_age = "psql + AGE"
+kuzu_sidecar = "optional"
+
+[load]
+synthetic_edges = 100000
+warmup_iters = 10
+measure_iters = 100
+
+[targets]
+threshold_ratio_vs_oracle = 1.2
+
+[metrics]
+primary = "latency_p95"
+unit = "ms"
+lower_is_better = true

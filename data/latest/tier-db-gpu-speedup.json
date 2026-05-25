@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-05-25T12:39:23.971936+00:00",
+  "tier": "tier_db_gpu_speedup",
+  "profile": "ci",
+  "status": "stub",
+  "compare_oracle": "lidb_cpu_hnsw",
+  "gpu_required": false,
+  "nightly_optional": true,
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_gpu_speedup/suite.toml",
+    "defaults_toml": "benchmarks/tier_db_gpu_speedup/defaults.toml",
+    "schema_sql": "benchmarks/tier_db_vector_ann/schema/vector-ann-v1.sql",
+    "results_csv": "benchmarks/tier_db_gpu_speedup/results/latest.csv",
+    "catalog_toml": "catalog.toml"
+  },
+  "scenarios": [
+    {
+      "id": "gpu_ann_speedup_10k",
+      "metric": "speedup_ratio",
+      "unit": "ratio",
+      "corpus_size": 10000,
+      "fixed_recall_at_10": 0.95,
+      "status": "stub",
+      "engines": {
+        "lidb_cpu": null,
+        "lidb_gpu": null
+      },
+      "speedup_ratio": null,
+      "ph_ids": [
+        "PH-DB-G2"
+      ],
+      "notes": "GPU/CPU QPS ratio @ N=10000, recall@10 fixed"
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-gpu-speedup.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

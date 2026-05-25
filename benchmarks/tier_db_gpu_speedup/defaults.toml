@@ -1,0 +1,18 @@
+[schema]
+migration = "../tier_db_vector_ann/schema/vector-ann-v1.sql"
+
+[engines]
+lidb_cpu = "lidb HNSW"
+lidb_gpu = "lidb-gpu cuda|metal"
+
+[corpus]
+dim = 128
+recall_at_k = 10
+
+[targets]
+min_speedup_ratio = 1.5
+
+[metrics]
+primary = "speedup_ratio"
+unit = "ratio"
+lower_is_better = false

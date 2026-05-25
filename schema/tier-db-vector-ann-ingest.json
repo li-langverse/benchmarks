@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbVectorAnnIngestManifest",
+  "description": "CI ingest artifact for tier_db_vector_ann ANN benches.",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "compare_oracle", "scenarios"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_vector_ann" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["stub", "unknown", "pass", "fail"] },
+    "compare_oracle": { "const": "faiss_cpu" },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "metric", "status"],
+        "properties": {
+          "id": { "type": "string" },
+          "metric": { "enum": ["recall_at_10", "queries_per_sec"] },
+          "status": { "enum": ["unknown", "green", "yellow", "red", "stub"] },
+          "ph_ids": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "ci_ingest": { "type": "object" }
+  }
+}

@@ -45,6 +45,21 @@ jobs:
           LIC_ROOT: ${{ github.workspace }}/lic
         run: ./scripts/ingest/summary-compare-gate.sh
 
+      - name: Tier-6 database bench manifests (stub)
+        run: |
+          chmod +x scripts/run-db-registry-bench.sh \
+            scripts/run-db-graph-registry-bench.sh \
+            scripts/run-db-vector-ann-bench.sh \
+            scripts/run-db-gpu-speedup-bench.sh
+          ./scripts/run-db-registry-bench.sh
+          ./scripts/run-db-graph-registry-bench.sh
+          ./scripts/run-db-vector-ann-bench.sh
+          ./scripts/run-db-gpu-speedup-bench.sh
+          test -f data/latest/tier-db-registry.json
+          test -f data/latest/tier-db-graph-registry.json
+          test -f data/latest/tier-db-vector-ann.json
+          test -f data/latest/tier-db-gpu-speedup.json
+
       - run: test -f data/latest/summary.json
 
   # Pages deploy uses dashboard-next (pages.yml). Legacy Vite dashboard/ kept for local dev.

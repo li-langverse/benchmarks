@@ -1,0 +1,11 @@
+[default]
+include = ["gpu_ann_speedup_10k"]
+timing = false
+
+[profiles.ci]
+include = ["gpu_ann_speedup_10k"]
+timing = false
+
+[profiles.nightly]
+include = ["gpu_ann_speedup_10k", "gpu_ann_speedup_1m"]
+timing = true

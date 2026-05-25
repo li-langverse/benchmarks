@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **tier_db_registry skeleton:** OLTP registry publish/read scenarios vs Postgres — [2026-05-25-tier-db-registry-skeleton.md](docs/release-notes/2026-05-25-tier-db-registry-skeleton.md).
+- **PH-DB-G0 tier-6 stubs:** `tier_db_graph_registry`, `tier_db_vector_ann`, `tier_db_gpu_speedup` — docs, suites, CI manifest writers, catalog rows — [2026-05-25-tier-db-graph-vector-gpu-stubs.md](docs/release-notes/2026-05-25-tier-db-graph-vector-gpu-stubs.md).
 - **Dashboard Next wave 1:** `dashboard-next/` static export (overview, pillar/bench routes); `catalog.toml` `pillar`/`package`; `ecosystem-packages.toml`; `summary.json` `pillars`; history hash gate — [2026-05-25-dashboard-next-wave1.md](docs/release-notes/2026-05-25-dashboard-next-wave1.md).
 - **WP3 release manifests:** `schema/release-manifest.json`, `scripts/ingest/ingest-release-manifests.py`, `data/incoming/manifests/`, `data/latest/release-index.json` ingest; `package-release` `repository_dispatch` on [ingest workflow](.github/workflows/ingest.yml); [docs/dashboard/release-manifest.md](docs/dashboard/release-manifest.md).
 
