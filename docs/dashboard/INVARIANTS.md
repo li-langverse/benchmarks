@@ -1,6 +1,6 @@
 # Dashboard invariants (regression gates)
 
-These rules are enforced in CI via `scripts/check-dashboard-invariants.py` and `scripts/check-dashboard-static-routes.sh`. A PR that breaks any invariant must be fixed before merge — do not weaken checks without human approval.
+These rules are enforced in CI via `scripts/check-dashboard-invariants.py`, `scripts/check-summary-measurement-coverage.py`, and `scripts/check-dashboard-static-routes.sh`. A PR that breaks any invariant must be fixed before merge — do not weaken checks without human approval.
 
 ## Must never break
 
@@ -48,7 +48,7 @@ python3 scripts/check-dashboard-invariants.py
 ## CI wiring
 
 - **Job:** `dashboard-build` → `Dashboard invariants` + `Summary measurement coverage` on committed `summary.json`; then Next build; then static routes.
-- **Job:** `ingest-smoke` → ingest + compare gate + measurement coverage on ingest output (`LIC_ROOT` set).
+- **Job:** `ingest-smoke` → ingest + compare gate (fresh ingest may be mostly `unknown` until lic CSV expands; committed summary is gated separately).
 
 ## When an invariant fails
 
@@ -59,6 +59,7 @@ python3 scripts/check-dashboard-invariants.py
 | Banned stub id | Remove from `catalog.toml`; use real package harness ids (`viz_*`, `ml_*`) |
 | Missing pillars | Regenerate summary; check `build_pillars()` |
 | Static routes low | Rebuild after updating `summary.json`; check `generateStaticParams` |
+| All-unknown regression | Run `LIC_ROOT=../lic ./scripts/ingest/ingest-lic.sh`; commit `summary.json`; verify `check-summary-measurement-coverage.py` |
 
 ## Related
 
