@@ -3,6 +3,7 @@
  * IA: docs/dashboard/diagram-layout.md
  */
 
+import { isCatalogPending, isValidityFailed } from "@/lib/coverage";
 import type { LangPoint, SummaryRow, ValidityStatus } from "@/lib/summary";
 
 /** Fixed column order for overview matrix and detail panel sequence. */
@@ -16,7 +17,14 @@ export const FACET_ORDER = [
 
 export type FacetId = (typeof FACET_ORDER)[number];
 
-export type FacetCellTone = "green" | "yellow" | "red" | "unknown" | "neutral";
+export type FacetCellTone =
+  | "green"
+  | "yellow"
+  | "red"
+  | "unknown"
+  | "pending"
+  | "validity_fail"
+  | "neutral";
 
 /** One matrix cell — render layer maps to badges / mono / stub. */
 export type FacetCell = {
@@ -41,34 +49,56 @@ export type AlgorithmFacetGridProps = {
   onRowSelect?: (benchmark: string) => void;
 };
 
+function validityFacetTone(row: SummaryRow): FacetCellTone {
+  if (isCatalogPending(row)) return "pending";
+  if (isValidityFailed(row)) return "validity_fail";
+  if (row.validity_status === "pass") return "green";
+  if (row.validity_status === "fail") return "red";
+  return "unknown";
+}
+
+function validityFacetLabel(row: SummaryRow): string {
+  if (isCatalogPending(row)) return "pending";
+  if (isValidityFailed(row)) return "fail";
+  return row.validity_status ?? "unknown";
+}
+
 /** Build facet cells from a summary row (ingest-shaped). */
 export function facetCellsFromSummaryRow(row: SummaryRow): Record<FacetId, FacetCell> {
-  const claimable = row.validity_status === "pass";
+  const pending = isCatalogPending(row);
+  const claimable = row.validity_status === "pass" && !pending;
   const perfLabel =
     row.ratio_vs_sota != null && row.sota_lang
       ? `${row.ratio_vs_sota} vs ${row.sota_lang}`
       : row.ratio_vs_cpp != null
         ? `${row.ratio_vs_cpp} vs ${row.compare_oracle ?? "oracle"}`
-        : "—";
+        : pending
+          ? "catalog pending"
+          : "—";
 
   return {
     validity: {
       facet: "validity",
-      label: row.validity_status ?? "unknown",
-      detail: row.validity_source,
-      tone:
-        row.validity_status === "pass"
-          ? "green"
-          : row.validity_status === "fail"
-            ? "red"
-            : "unknown",
+      label: validityFacetLabel(row),
+      detail: pending
+        ? "harness / CSV not run"
+        : row.validity_source,
+      tone: validityFacetTone(row),
       claimable,
     },
     perf: {
       facet: "perf",
       label: perfLabel,
-      detail: claimable ? row.status : "not claimable",
-      tone: claimable ? (row.status as FacetCellTone) : "unknown",
+      detail: pending
+        ? "awaiting harness"
+        : claimable
+          ? row.status
+          : "not claimable",
+      tone: pending
+        ? "pending"
+        : claimable
+          ? (row.status as FacetCellTone)
+          : "unknown",
       claimable,
     },
     os: {

@@ -15,12 +15,16 @@ These rules are enforced in CI via `scripts/check-dashboard-invariants.py` and `
 | 7 | **Pillars present** | `summary.json` `pillars` includes all nine: numerics, compiler, server, physics, proofs, security, database, graphics, tooling |
 | 8 | **SOTA fields on branch** | Each row has `validity_status`, `ratio_vs_sota` keys (value may be null until measured) |
 | 9 | **Pages artifact** | After build: `out/index.html`, `out/matrix/index.html`, bench pages ≥ row count − 5 |
+| 10 | **Measured tier colors** | At least **5** rows (or **10%** of `measurement_state=measured` when present) have `status` ∈ `green` \| `yellow` \| `red` |
+| 11 | **tier_counts colored** | Global sum of `tier_counts[*].green+yellow+red` ≥ **1** |
+| 12 | **Harness CSV → status** | When `lic` `latest.csv` has rows for `simd_dot`, `matmul_naive`, or `horner_pure_li`, matching summary rows must not be `unknown` |
 
 ## Verify locally
 
 ```bash
 # From repo root — fast invariant gate (no lic build)
 python3 scripts/check-dashboard-invariants.py
+python3 scripts/check-summary-measurement-coverage.py
 
 # After dashboard-next build
 cd dashboard-next && npm ci && npm run build
@@ -34,6 +38,7 @@ bash ../scripts/check-dashboard-static-routes.sh
 # Full ingest + invariants (siblings lic/lis)
 LIC_ROOT=../lic LIS_ROOT=../lis ./scripts/ingest/ingest-lic.sh
 python3 scripts/check-dashboard-invariants.py
+python3 scripts/check-summary-measurement-coverage.py
 
 # Fixture refresh (CI parity)
 python3 scripts/ingest/build_summary_fixture.py
@@ -42,8 +47,8 @@ python3 scripts/check-dashboard-invariants.py
 
 ## CI wiring
 
-- **Job:** `dashboard-build` → `Dashboard invariants` on **committed** `data/latest/summary.json` (catalog parity); then Next build; then `Dashboard static routes`.
-- **Job:** `ingest-smoke` → ingest + compare gate only (measured CSV may be fewer rows than catalog).
+- **Job:** `dashboard-build` → `Dashboard invariants` + `Summary measurement coverage` on committed `summary.json`; then Next build; then static routes.
+- **Job:** `ingest-smoke` → ingest + compare gate + measurement coverage on ingest output (`LIC_ROOT` set).
 
 ## When an invariant fails
 

@@ -80,6 +80,7 @@ export type SummaryRow = {
   compare_oracle?: string;
   ph_ids: string[];
   path: string;
+  pending?: boolean;
   threshold_ratio_cpp: number;
   ci_url?: string;
   langs?: LangPoint[];

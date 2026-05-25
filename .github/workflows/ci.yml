@@ -69,6 +69,11 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
+      - name: Summary measurement coverage (ingest output)
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: python3 scripts/check-summary-measurement-coverage.py
+
   # Pages deploy uses dashboard-next (pages.yml). Legacy Vite dashboard/ kept for local dev.
   dashboard-build:
     runs-on: ubuntu-24.04
@@ -77,6 +82,9 @@ jobs:
 
       - name: Dashboard invariants
         run: python3 scripts/check-dashboard-invariants.py
+
+      - name: Summary measurement coverage (committed summary)
+        run: python3 scripts/check-summary-measurement-coverage.py
 
       - uses: actions/setup-node@v4
         with:
