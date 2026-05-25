@@ -64,17 +64,15 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
-      - name: Dashboard catalog summary (fixture)
-        run: python3 scripts/ingest/build_summary_fixture.py
-
-      - name: Dashboard invariants
-        run: python3 scripts/check-dashboard-invariants.py
-
   # Pages deploy uses dashboard-next (pages.yml). Legacy Vite dashboard/ kept for local dev.
   dashboard-build:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Dashboard invariants
+        run: python3 scripts/check-dashboard-invariants.py
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
