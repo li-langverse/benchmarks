@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **Dashboard measured coverage:** Ingest expanded lic CSV + catalog path wire + tier-7 registry clone — 142/179 colored rows (79.3%) — [2026-05-25-bench-fill-all-measured.md](docs/release-notes/2026-05-25-bench-fill-all-measured.md).
+
 ### Added
 
 - **WP5 catalog path sync:** `scripts/catalog/sync-paths-from-lic-tree.py` wires 83 `catalog.toml` paths from the **lic** benchmarks tree; refreshes `summary.json` when CSV exists — [2026-05-25-catalog-sync-paths-lic-tree.md](docs/release-notes/2026-05-25-catalog-sync-paths-lic-tree.md).
