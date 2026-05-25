@@ -31,10 +31,12 @@ On each ecosystem repo, when a maintainer tags `v*`:
 
 | Package | Typical bench owner | CSV / notes |
 |---------|---------------------|-------------|
-| **lic** | lic CI → `benchmark-csv` | `lic/benchmarks/results/latest.csv` |
+| **lic** | [`.github/workflows/benchmark-release.yml`](https://github.com/li-langverse/lic/blob/main/.github/workflows/benchmark-release.yml) on tag `v*` → `benchmark-csv` | `lic/benchmarks/results/latest.csv`; rebuilds when `benchmarks/**` changed since previous tag |
 | **lis** | lis tier harness | `lis/results/latest.csv` (when present) |
 | **lip**, **lit** | tooling smoke / catalog | often `bench_required: false` |
 | **lidb**, **lig**, **li-math** | package-specific | set `bench_required` only when a CSV path is published |
+
+**lic wired CI:** push tag `v*` runs [lic `benchmark-release`](https://github.com/li-langverse/lic/blob/main/.github/workflows/benchmark-release.yml) — conditional `ci-bench.sh`, always uploads `benchmark-csv` (`latest.csv`), dispatches `package-release` with `bench_required` from CSV presence.
 
 Example-only file (not wired to CI): [`data/incoming/manifests/example-lic.json`](../../data/incoming/manifests/example-lic.json).
 
