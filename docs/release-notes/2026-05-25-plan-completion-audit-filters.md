@@ -13,6 +13,7 @@
 
 ## Changed
 
+- `.github/workflows/ci.yml`, `scripts/setup-lic-for-bench.sh` — LLVM **22** (align with lic `scripts/ci-install-llvm.sh` pin; fixes `ingest-smoke` lic build on PR CI)
 - `scripts/plan-completion-audit.py` — tracker section parse, `PLAN_FILE_COVERED_PHASES`, dedupe, `stale_spec_checklists`, `plan_files_suppressed`
 - `data/latest/plan-completion-audit.json` — additive `summary` keys (`plan_checkboxes_suppressed`, `stale_spec_checklists`, `tracker_phases_complete`)
 - `.cursor/skills/audit-plan-completion/SKILL.md` — interpret new fields
