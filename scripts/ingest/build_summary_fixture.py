@@ -30,12 +30,15 @@ def main() -> int:
         lambda: {"green": 0, "yellow": 0, "red": 0, "unknown": 0}
     )
     charts_by_cat: dict[str, list] = defaultdict(list)
+    charts_by_pillar: dict[str, list] = defaultdict(list)
     results = []
 
     for bench_id, cfg in catalog.items():
         category = cfg.get("category", "micro")
+        meta = bs.row_meta(cfg)
         chart = bs.build_perf_chart(bench_id, cfg, raw)
         charts_by_cat[category].append(chart)
+        charts_by_pillar[meta["pillar"]].append(chart)
         li_val = next((s["value"] for s in chart["series"] if s["lang"] == "li"), None)
         ref = chart["reference_lang"]
         ref_val = next((s["value"] for s in chart["series"] if s["lang"] == ref), None)
@@ -60,6 +63,7 @@ def main() -> int:
                 "path": cfg.get("path", ""),
                 "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
                 "ci_url": "",
+                **meta,
             }
         )
 
@@ -77,6 +81,7 @@ def main() -> int:
         "sources": {"fixture": str(FIX)},
         "tier_counts": dict(tier_counts),
         "categories": categories,
+        "pillars": bs.build_pillars(charts_by_pillar),
         "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),
     }
     out.write_text(json.dumps(summary, indent=2) + "\n")

@@ -1,0 +1,52 @@
+# Li ecosystem package registry — ingest paths and default benchmark pillars.
+# bench_required=false: package may ship before catalog rows are gate-blocking.
+
+[[package]]
+id = "lic"
+repo = "lic"
+pillar_defaults = ["compiler", "numerics", "physics", "correctness"]
+csv_paths = [
+  "benchmarks/results/latest.csv",
+  "benchmarks/results/stability.csv",
+  "benchmarks/results/security.csv",
+]
+dispatch_event = "workflow_dispatch"
+
+[[package]]
+id = "lis"
+repo = "lis"
+pillar_defaults = ["server", "security"]
+csv_paths = ["results/latest.csv"]
+dispatch_event = "workflow_dispatch"
+
+[[package]]
+id = "lip"
+repo = "lip"
+pillar_defaults = ["tooling"]
+csv_paths = []
+
+[[package]]
+id = "lit"
+repo = "lit"
+pillar_defaults = ["tooling"]
+csv_paths = []
+
+[[package]]
+id = "lidb"
+repo = "lidb"
+pillar_defaults = ["database"]
+csv_paths = ["benchmarks/tier_db_registry/results/latest.csv"]
+
+[[package]]
+id = "lig"
+repo = "lig"
+bench_required = false
+pillar_defaults = ["graphics"]
+csv_paths = []
+
+[[package]]
+id = "li-math"
+repo = "li-math"
+bench_required = false
+pillar_defaults = ["numerics"]
+csv_paths = []
