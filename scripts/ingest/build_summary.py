@@ -261,6 +261,31 @@ def load_stability_index(stability_path: Path) -> dict[str, dict[str, bool]]:
     return index
 
 
+# Align with lic/benchmarks/harness/stability.py STRICT_TESTS (tier0 gate).
+TIER0_STRICT_STABILITY_TESTS = frozenset({"harmonic_energy", "momentum_drift"})
+
+
+def tier0_li_validity_from_stability(
+    stability_index: dict[str, dict[str, bool]],
+) -> bool | None:
+    """Map lic stability.csv rows to tier0_stability li pass/fail/unknown."""
+    direct = stability_index.get("tier0_stability", {}).get("li")
+    if direct is not None:
+        return direct
+    if not stability_index:
+        return None
+    strict: list[bool | None] = []
+    for test in TIER0_STRICT_STABILITY_TESTS:
+        if test not in stability_index:
+            return None
+        strict.append(stability_index[test].get("li"))
+    if any(v is None for v in strict):
+        return None
+    if all(strict):
+        return True
+    return False
+
+
 def validity_required_for(cfg: dict, catalog_defaults: dict) -> bool:
     if "validity_required" in cfg:
         return bool(cfg["validity_required"])
@@ -312,18 +337,22 @@ def validity_for_benchmark(
             return "fail", f"metric:{metric}"
         return "unknown", "none"
 
-    if bench_id == "tier0_stability" or cfg.get("category") == "correctness":
+    if bench_id == "tier0_stability":
+        li_stab = tier0_li_validity_from_stability(stability_index)
+        if li_stab is True:
+            return "pass", "stability.csv"
+        if li_stab is False:
+            return "fail", "stability.csv"
+        if stability_index:
+            return "unknown", "stability.csv"
+        return "unknown", "none"
+
+    if cfg.get("category") == "correctness":
         li_stab = stability_index.get(bench_id, {}).get("li")
         if li_stab is True:
             return "pass", "stability.csv"
         if li_stab is False:
             return "fail", "stability.csv"
-        for test, langs in stability_index.items():
-            if bench_id in test or test in bench_id:
-                if langs.get("li") is True:
-                    return "pass", "stability.csv"
-                if langs.get("li") is False:
-                    return "fail", "stability.csv"
         if stability_index:
             return "unknown", "stability.csv"
         return "unknown", "none"
@@ -560,7 +589,7 @@ def build_stability_chart(stability_path: Path) -> dict | None:
         "series": series_flat,
         "grouped": True,
         "repo": "lic",
-        "path": "benchmarks/tier0_correctness",
+        "path": "li-tests/benchmarks/tier0_correctness",
         "status": "unknown",
         "pillar": "proofs",
         "package": "lic",
@@ -767,6 +796,10 @@ def main() -> int:
             st = "green" if validity_status == "pass" else (
                 "red" if validity_status == "fail" else "unknown"
             )
+            if chart:
+                chart["status"] = st
+                chart["validity_status"] = validity_status
+                chart["validity_source"] = validity_source
             tier_counts[str(cfg.get("tier", 0))][st] += 1
             results.append(
                 {
