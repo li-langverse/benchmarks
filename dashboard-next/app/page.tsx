@@ -11,7 +11,7 @@ import {
 import { hasIndexedReleases, loadReleaseIndex } from "@/lib/release-index";
 import { loadSummary } from "@/lib/summary";
 
-const TIER_ORDER = ["0", "1", "2", "3", "5"];
+const TIER_ORDER = ["0", "1", "2", "3", "5", "6"];
 
 const HONESTY_DOC_URL =
   "https://github.com/li-langverse/benchmarks/blob/main/docs/honesty/benchmark-dashboard.md";

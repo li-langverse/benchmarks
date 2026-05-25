@@ -599,3 +599,1737 @@ threshold_ratio_cpp = 1.5
 ph_ids = ["PH-DB-G2"]
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup_nightly"
+
+# --- algo_registry sync (2026-05-25) — stubs from lic/benchmarks/competitive/algo_registry.json; path unknown until harness wired
+
+[[benchmark]]
+id = "num_sparse_mv"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_cg"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_gmres"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_cholesky"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_eig_symmetric"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_fft_r2c"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_rng_pcg"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_integ_euler"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_integ_rk4"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_integ_verlet"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_integ_symplectic"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_integ_semi_implicit"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_root_newton"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_opt_bfgs"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_opt_line_search"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "num_quadrature_gauss"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_integrator_verlet"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_energy_drift"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_oracle_external"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_neighbor_cell_list"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_neighbor_verlet_skin"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_integrator_leapfrog"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_thermostat_nose_hoover"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_thermostat_berendsen"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_barostat_parrinello_rahman"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_constraints_shake"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_constraints_rattle"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_longrange_ewald"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_longrange_pme"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "md_init_fcc_mb"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "nbody_barnes_hut"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "pde_cfl_timestep"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "pde_heat_implicit_jacobi"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "cfd_fvm_face_flux"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "cfd_simple"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "cfd_piso"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "cfd_pimple"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "cfd_turbulence_k_epsilon"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "cfd_turbulence_k_omega_sst"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "fea_mesh_tri_tet"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "fea_stiffness_assembly"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "fea_gauss_quadrature"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "fea_linear_elasticity"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "fea_solver_direct"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "fea_solver_iterative"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "rigid_semi_implicit"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "rigid_broadphase_sap"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "rigid_broadphase_bvh"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "rigid_contact_solver"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "rigid_constraints"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_gto_eval"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_overlap_integrals"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_kinetic_integrals"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_nuclear_attraction"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_eri_os"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_eri_screening"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_eri_density_fitting"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_hf_fock_build"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_hf_diis"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_hf_canonical_ortho"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_scf_solver"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_xc_lda"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_xc_gga"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_xc_mgga"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_grid_becke"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_grid_lebedev"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_hybrid_exchange"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dft_scf_energy"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_grad_analytical"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_geom_opt_internal"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_geom_opt_bfgs"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_mp2"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_ccsd"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_tddft_casida"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_tddft_rpa"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_xtb_gfn"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_dispersion_d3"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_ecp"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_ase_calculator"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_property_dipole"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_property_freq"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "qm_job_queue_io"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "drug_litl_stages"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "drug_docking_score_vina"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "drug_docking_diffusion"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "drug_ml_retrain_loop"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "drug_fep_alchemical"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "bio_rosetta_energy"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "bio_rotamer_packing"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "bio_proteinmpnn"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "bio_rfdiffusion"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "ml_mlp_forward"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "ml_mlp_train_step"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "ml_conv2d_forward"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_plane_mesh_intersect"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_polygon_clip"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_slice_layers"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_offset_perimeters"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_infill_grid_lines"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_infill_gyroid"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_support_tree"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_toolpath_arcs"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_thermal_warp"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "am_export_gcode_3mf"
+category = "tooling"
+pillar = "tooling"
+package = "lic"
+tier = 3
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_colormap"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_marching_cubes"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_resample"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_decimate"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_pipeline_graph"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_inspector_panels"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "viz_linked_views"
+category = "micro"
+pillar = "graphics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "robo_multibody_step"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "robo_ik_jacobian"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "robo_plan_rrt"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "robo_plan_prm"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "robo_traj_opt"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "auto_bicycle_model"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "auto_dyn_rk4"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "auto_sensor_raycast"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "unknown"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+variant = "algo_registry"
+
+[[benchmark]]
+id = "three_body_pure"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/three_body_pure"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+
+[[benchmark]]
+id = "schrodinger_1d_barrier"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/schrodinger_1d_barrier"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+
+[[benchmark]]
+id = "ragdoll_chain"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/ragdoll_chain"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+
+[[benchmark]]
+id = "orbit_two_body"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/orbit_two_body"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+
+[[benchmark]]
+id = "fdtd_waveguide_2d"
+category = "physics"
+pillar = "physics"
+package = "lic"
+tier = 2
+repo = "lic"
+path = "benchmarks/tier2_physics/fdtd_waveguide_2d"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b"]
+validity_required = true
+# --- end algo_registry sync
