@@ -15,8 +15,8 @@
 
 | Workflow | Trigger | ~Minutes/run | Est. monthly (assumption) |
 |----------|---------|--------------|---------------------------|
-| **Benchmarks CI** | PR + push `main` | 1–2 (2 jobs) | ~30 PRs → **30–60 min** |
-| **Deploy dashboard** | push `main` (paths) | 2–3 | ~10 data publishes → **20–30 min** |
+| **Benchmarks CI** | PR + push `main` | PR: 2 jobs; push `main`: 1 job (`ingest-smoke` only) | ~30 PRs → **25–50 min** |
+| **Deploy dashboard** | push `main` (paths) | 2–3 | ~10 data publishes → **20–30 min** (sole `dashboard-next` build on `main`) |
 | **Ingest benchmarks** | `repository_dispatch` / manual | 1–2 | ~20 lic bench events → **20–40 min** |
 | ~~Ecosystem audit cron~~ | **Removed** — use Cursor | — | — |
 
