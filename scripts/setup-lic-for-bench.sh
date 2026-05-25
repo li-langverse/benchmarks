@@ -9,15 +9,28 @@ if [[ ! -d "$LIC_ROOT" ]]; then
 fi
 
 export DEBIAN_FRONTEND=noninteractive
+if [[ -x "$LIC_ROOT/scripts/ci-install-llvm.sh" ]]; then
+  sudo LI_LLVM_MAJOR=22 bash "$LIC_ROOT/scripts/ci-install-llvm.sh"
+else
+  need_apt=0
+  for pkg in ninja-build cmake llvm-22-dev libzstd-dev clang-22 g++-13 wrk nginx \
+    apache2 lighttpd nodejs; do
+    dpkg -s "$pkg" >/dev/null 2>&1 || need_apt=1
+  done
+  if [[ "$need_apt" == "1" ]]; then
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq build-essential g++-13 gcc-13 clang-22 \
+      ninja-build cmake llvm-22-dev libzstd-dev libstdc++-13-dev libomp-22-dev \
+      wrk nginx apache2 lighttpd nodejs
+  fi
+fi
 need_apt=0
-for pkg in ninja-build cmake llvm-22-dev libzstd-dev clang-22 g++-13 wrk nginx \
-  apache2 lighttpd nodejs; do
+for pkg in g++-13 wrk nginx apache2 lighttpd nodejs; do
   dpkg -s "$pkg" >/dev/null 2>&1 || need_apt=1
 done
 if [[ "$need_apt" == "1" ]]; then
   sudo apt-get update -qq
-  sudo apt-get install -y -qq build-essential g++-13 gcc-13 clang-22 \
-    ninja-build cmake llvm-22-dev libzstd-dev libstdc++-13-dev libomp-22-dev \
+  sudo apt-get install -y -qq build-essential g++-13 gcc-13 libstdc++-13-dev \
     wrk nginx apache2 lighttpd nodejs
 fi
 # Bun is optional (not in Debian main); tier-5 skips when `bun` is missing.
