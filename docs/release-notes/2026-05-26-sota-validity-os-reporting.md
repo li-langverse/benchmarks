@@ -1,50 +1,47 @@
-# SOTA-relative ratios, validity gate, and per-OS reporting
+# SOTA / validity / OS reporting in summary ingest and dashboard
 
 ## Summary
 
-`summary.json` and dashboard-next now report Li vs best competitor (SOTA, never Li), gate perf status on validity (tier0/stability/CSV `passed`), and surface host `os` per row with overview OS breakdown.
+`summary.json` ingest adds best-competitor SOTA fields (Li never SOTA), a correctness validity gate before perf colors, and host `os` tags; dashboard-next surfaces them on overview, search, and bench drilldown.
 
 ## Agent continuation
 
-1. **Read:** `docs/honesty/benchmark-dashboard.md`, `schema/bench-result.json`, `catalog.toml` oracle comments, `scripts/ingest/build_summary.py`.
-2. **Run:** `python3 scripts/ingest/build_summary_fixture.py`; `python3 scripts/ingest/compare_summary_outputs.py build/compare/summary_li.json build/compare/summary_py.json` (after Li gate); `cd dashboard-next && npm ci && npm run build`; `LIC_ROOT=../lic python3 scripts/ingest/build_summary.py ../lic ../lis` when lic sibling exists.
-3. **Then (lic/lis):** add `os` + `passed` to `latest.csv` writers; document machine matrix in bench README; re-run full ingest so validity unknown count drops.
-4. **Blocked on:** Per-OS duplicate summary rows when one benchmark runs on linux+darwin in the same CSV — ingest currently picks primary OS (Li row preferred); multi-OS split rows are a follow-up.
+1. **Read:** `docs/honesty/benchmark-dashboard.md`, `scripts/ingest/build_summary.py`, `schema/bench-result.json`, `dashboard-next/lib/validity.ts`.
+2. **Run:** `python3 scripts/ingest/build_summary_fixture.py`; `python3 -m py_compile scripts/ingest/build_summary.py`; `cd dashboard-next && npm run build`.
+3. **Then:** Extend **lic** / **lis** CSV writers with `os` + `passed` on all tier exports; re-run `ingest-lic.sh` so `data/latest/summary.json` picks up production rows.
+4. **Blocked on:** Full **lis** tier-5 RPS CSV with `os`/`passed` — HTTP rows may stay unknown until harness ships.
 
 ## Changed
 
-| Area | Paths |
-|------|--------|
-| Schema | `schema/bench-result.json` — `sota_lang`, `ratio_vs_sota`, `validity_status`, `validity_source`, `os`, `passed` |
-| Ingest | `scripts/ingest/build_summary.py` — SOTA pick (excludes `li`), validity merge, `apply_validity_gate`, `reporting` block |
-| Fixture gate | `scripts/ingest/build_summary_fixture.py`, `scripts/ingest/fixtures/summary/*` |
-| Catalog | `catalog.toml` — `validity_required`, compare_oracle vs SOTA policy comments |
-| Dashboard | `dashboard-next/lib/summary.ts`, `lib/validity.ts`, `lib/overview.ts`, bench/overview components |
-| Honesty | `docs/honesty/benchmark-dashboard.md` |
+| Area | Paths / ids |
+|------|-------------|
+| Ingest | `scripts/ingest/build_summary.py` — `is_sota_candidate`, `compute_sota`, `validity_for_benchmark`, `apply_validity_gate`, `make_summary_row`, `reporting.os_values` |
+| Fixture gate | `scripts/ingest/build_summary_fixture.py`, `scripts/ingest/fixtures/summary/lic.csv`, `stability.csv` |
+| Schema | `schema/bench-result.json` — `os`, `passed`, `ratio_vs_sota`, `sota_lang`, `validity_*` |
+| Catalog | `catalog.toml` — `validity_required` default + oracle policy comments |
+| Dashboard | `dashboard-next/lib/validity.ts`, `lib/summary.ts`, `lib/overview.ts`, `components/bench/validity-*.tsx`, `perf-not-claimable.tsx`, `os-table.tsx`, `benchmark-search.tsx`, `app/page.tsx`, `app/bench/[id]/page.tsx`, `globals.css` |
+| Docs | `docs/honesty/benchmark-dashboard.md`, `CHANGELOG.md` |
 
 ## Not changed
 
-- Catalog **threshold_ratio_cpp** values (no greenwash).
-- **lic/lis** harness measurements (only ingest interpretation + doc’d CSV gaps).
-- GitHub Pages cutover (still Vite until WP8).
-- Agent control plane UI in **li-cursor-agents**.
+- Bench **threshold_ratio_cpp** values and harness measurement code in **lic** / **lis**.
+- GitHub Pages cutover (still **dashboard-next** build artifact path).
+- Agent control plane (**li-cursor-agents**).
+- Proof closure in **lic** Lean (`provability-gaps.md`).
 
 ## Breaking
 
-N/A for consumers that ignored new fields. Agents/scripts that assumed `status` reflected raw wall time only must treat **validity fail** as non-claimable perf (forced red).
+N/A — additive JSON fields; consumers ignoring new keys behave as before.
 
 ## Security
 
-N/A — reporting only; no trusted creep.
+N/A — static ingest and dashboard; no new secrets or trusted surface.
 
 ## Performance
 
-N/A — no new harness runs in this PR; evidence is fixture ingest + optional local `build_summary.py` when lic CSV present.
+N/A — ingest CPU only; no harness runs in this PR.
 
 ## Downstream
 
-| Repo | Need |
-|------|------|
-| **lic** | Export `os`, `passed` on `benchmarks/results/latest.csv`; keep `stability.csv` tier0 passes |
-| **lis** | Same columns on `results/latest.csv` when tier-5 RPS pipeline is live |
-| **benchmarks** | Re-ingest after producer CSVs land to shrink validity-unknown pillar counts |
+- **lic** / **lis:** export `os` and `passed` on `latest.csv` and stability exports.
+- **agent-briefing.py:** may cite `validity_status` and `sota_lang` in red-row deep links (follow-up).

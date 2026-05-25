@@ -63,9 +63,9 @@ export default function HomePage() {
 
       <section className="honesty-strip bento-full" aria-label="Measurement honesty">
         <p>
-          <strong>Green perf requires validity pass</strong> — tier0/stability or CSV{" "}
-          <code>passed</code>. Ratios vs <strong>SOTA</strong> (best competitor; Li never SOTA)
-          and vs catalog <code>compare_oracle</code> are separate.
+          <strong>Li never SOTA; green perf requires validity</strong> — tier-0 stability or
+          harness <code>passed</code> before wall-clock green is claimable. Best-competitor
+          ratios use <code>sota_lang</code> (never <code>li</code>).
         </p>
         <p>
           Red or unknown perf when validity failed or is missing — even if wall time looks good.
@@ -220,6 +220,16 @@ export default function HomePage() {
                   <span className="r">{counts.red} fail</span>
                   <span className="u">{counts.unknown} ?</span>
                 </div>
+                {rowTotal > 0 ? (
+                  <div className="counts pillar-perf-counts" aria-label="Perf claimability">
+                    <span className="g">{perf.claimable} claimable</span>
+                    <span className="r">{perf.invalid} invalid</span>
+                    <span className="u">{perf.unknown} unknown</span>
+                    {perf.threshold > 0 ? (
+                      <span className="y">{perf.threshold} over threshold</span>
+                    ) : null}
+                  </div>
+                ) : null}
                 {rowTotal === 0 ? (
                   <p className="pillar-card-meta mono">No catalog rows in this ingest</p>
                 ) : null}

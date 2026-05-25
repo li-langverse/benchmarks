@@ -198,6 +198,35 @@ main {
   margin-top: 0.5rem;
 }
 
+.validity-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.validity-pass {
+  background: color-mix(in srgb, var(--green) 20%, transparent);
+  color: var(--green);
+  border: 1px solid color-mix(in srgb, var(--green) 40%, transparent);
+}
+
+.validity-fail {
+  background: color-mix(in srgb, var(--red) 20%, transparent);
+  color: var(--red);
+  border: 1px solid color-mix(in srgb, var(--red) 40%, transparent);
+}
+
+.validity-unknown {
+  background: color-mix(in srgb, var(--muted) 20%, transparent);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
 .pillar-perf-counts {
   margin-top: 0.5rem;
   font-size: 0.8rem;
@@ -358,6 +387,12 @@ main {
     flex: 0 0 140px;
     scroll-snap-align: start;
   }
+}
+
+.matrix-filter-meta {
+  margin: 0 0 0.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
 }
 
 .matrix-filter-meta {

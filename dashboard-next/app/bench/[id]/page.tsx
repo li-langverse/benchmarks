@@ -89,18 +89,20 @@ export default async function BenchPage({ params }: PageProps) {
           <dd>
             {row.ratio_vs_cpp != null ? `${row.ratio_vs_cpp.toFixed(4)}×` : "—"}
           </dd>
-          <dt>SOTA reference</dt>
+          <dt>Best competitor</dt>
           <dd>
             {row.sota_lang ?? "—"}
             {row.sota_value != null ? ` (${row.sota_value} ${row.unit ?? ""})` : ""}
           </dd>
-          <dt>Ratio vs SOTA</dt>
+          <dt>Ratio vs best competitor</dt>
           <dd>
             {row.ratio_vs_sota != null ? `${row.ratio_vs_sota.toFixed(4)}×` : "—"}
-            <span className="mono" style={{ color: "var(--muted)" }}>
-              {" "}
-              (Li is never labeled SOTA)
-            </span>
+            {row.sota_lang ? (
+              <span className="mono" style={{ color: "var(--muted)" }}>
+                {" "}
+                vs <code>{row.sota_lang}</code>
+              </span>
+            ) : null}
           </dd>
           <dt>Validity</dt>
           <dd>

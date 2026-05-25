@@ -81,7 +81,9 @@ def main() -> int:
         "sources": {"fixture": str(FIX)},
         "reporting": {
             "sota_policy": "best_competitor_lang_excludes_li",
-            "validity_required_default": True,
+            "validity_required_default": bool(
+                catalog_defaults.get("validity_required", True)
+            ),
             "os_values": sorted({r.get("os", "unknown") for r in results}),
         },
         "tier_counts": dict(tier_counts),

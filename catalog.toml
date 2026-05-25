@@ -10,6 +10,13 @@
 #                    series (Li excluded). ratio_vs_sota is always Li ÷ SOTA (inverted for rps).
 #   validity_required — default true when omitted; perf status is honest only when validity passes.
 #                    Producers: lic/lis latest.csv `passed`, `os`; tier0 stability.csv.
+#
+# Problem size (optional per [[benchmark]]):
+#   problem_size — canonical size key for ingest + optional CSV `problem_size` column match
+#   size_label   — human label on dashboard (e.g. "N=256", "1 MiB payload")
+#   base_id      — algorithm family when id is suffixed (e.g. matmul_naive_N1024 → matmul_naive)
+# Multiple sizes: duplicate rows with distinct id (recommended suffix: _N256) OR CSV problem_size
+# with the same benchmark id. See docs/ecosystem/benchmark-size-survey.md.
 
 validity_required = true
 

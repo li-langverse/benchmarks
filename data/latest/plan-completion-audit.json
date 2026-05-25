@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T08:53Z",
+  "generated_at": "2026-05-25T14:09Z",
   "roots": {
     "lic": "/Users/julian/Documents/coding-projects/lic",
     "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
@@ -7,13 +7,13 @@
   },
   "summary": {
     "open_tracker_items": 5,
-    "open_plan_checkboxes": 26,
-    "plan_checkboxes_suppressed": 20,
-    "stale_spec_checklists": 9,
-    "provability_partial": 12,
+    "open_plan_checkboxes": 8,
+    "plan_checkboxes_suppressed": 10,
+    "stale_spec_checklists": 0,
+    "provability_partial": 14,
     "provability_missing": 4,
-    "catalog_gaps": 2,
-    "total_findings": 50,
+    "catalog_gaps": 3,
+    "total_findings": 35,
     "tracker_phases_complete": 31
   },
   "master_plan_open": [
@@ -34,7 +34,7 @@
     },
     {
       "source": "lic:master_plan",
-      "item": "Phase 8p \u2014 Parallel compile + CI throughput \u2014 **partial:** Ninja `-j` for C++ only; `lic --jobs` reserved not wired; `run_all.sh` / workspace sequential ([\u00a7 8p](#phase-8p--parallel-compile--ci-throughput))",
+      "item": "Phase 8p \u2014 Parallel compile + CI throughput \u2014 **partial (8p-a/b/c/d):** 8p-a parallel `run_all` + isolated `LI_BUILD_DIR` ([#186](https://github.com/li-langverse/lic/pull/186), [#200](https://github.com/li-langverse/lic/pull/200)); 8p-c/...",
       "phase_id": "8p"
     },
     {
@@ -45,28 +45,8 @@
   ],
   "plan_files_open": [
     {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`fib.li` typechecks",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "All `bad_*.li` fail with expected errors",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Borrow double-mut test fails cleanly",
-      "kind": "plan_gate"
-    },
-    {
       "source": "lic:plans/2026-05-14-phase-07-native-hpc.md",
       "item": "Tier 2 MD example uses `@cpu` `@parallel` `@vectorized` on `def` (elaborates to same MIR as keywords)",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-07-native-hpc.md",
-      "item": "Fuzz corpus includes `@` decorator stacks and reserved-name parse seeds",
       "kind": "plan_gate"
     },
     {
@@ -96,82 +76,12 @@
     },
     {
       "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
-      "item": "Confirm org access: `gh api orgs/li-langverse` (or org owner invites bot/users)",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
-      "item": "`docs/ecosystem/official-packages.md` with `PKG-` table (all repos under `li-langverse`)",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
       "item": "On execute: align `mkdocs.yml` `repo_url` / GitHub Pages with `li-langverse/li-language` when repo home moves",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
-      "item": "`docs/ecosystem/governance.md` user-facing summary (links here)",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
-      "item": "`scripts/templates/github-repo/` + `scripts/check-traceability.sh`",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
-      "item": "`create-li-package` skill: `--official` \u2192 org checklist",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-ecosystem-governance.md",
-      "item": "At least one example package `PUBLISH.md` with full traceability block in monorepo",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-math-linalg-surface.md",
-      "item": "**P-linalg** loop implementation \u2261 closed-form `ensures` in Lean (**G-lean**)",
       "kind": "plan_gate"
     },
     {
       "source": "lic:plans/2026-05-16-li-math-linalg-surface.md",
       "item": "Tier 1 perf \u22641.2\u00d7 C++ (benchmarks dashboard)",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "`li-new-package` emits li.toml valid against lip \u00a7 A3",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "`create-li-package` skill committed (incl. `--official` + org checklist)",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "Guide + ecosystem overview + governance summary in mkdocs",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "`scripts/templates/github-repo/` for org repos",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "`docs/ecosystem/official-packages.md` stub with `PKG-li-language`",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "Smoke test in `scripts/ci.sh`",
-      "kind": "plan_gate"
-    },
-    {
-      "source": "lic:plans/2026-05-16-li-package-scaffold.md",
-      "item": "lip + governance + master plan cross-linked",
       "kind": "plan_gate"
     }
   ],
@@ -204,141 +114,6 @@
       ]
     },
     {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "Li reference passes `verify.py` and **`lic build`**",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "5b"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-benchmarks-and-simulations.md",
-      "item": "Timing runs separated from verification runs",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "5b"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
-      "item": "`cmake --build build` succeeds",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "0"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
-      "item": "`./build/compiler/lic/lic smoke-llvm` succeeds",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "0"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-00-bootstrap.md",
-      "item": "Master plan Phase 0 checkbox checked",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "0"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`lower_module(TypedModule) -> MirModule`",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "One basic block per stmt chain; if/while create CFG edges",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Map MIR types to LLVM types (`array` \u2192 struct or stack array)",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Emit `main` calling user `main` if present",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Debug: `li_bounds_fail` call on dynamic index",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`lic build input.li -o out [--release]`",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Pipeline: parse \u2192 check \u2192 mir \u2192 llvm bitcode \u2192 `clang -o out`",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Link `runtime/li_rt.c`",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "Deferred until Phase 4 provides `echo` \u2014 for Phase 3 use:",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`lic build examples/hello.li -o hello && ./hello; echo $?` \u2192 0",
-      "reason": "tracker_phase_complete",
-      "kind": "suppressed",
-      "phases": [
-        "3"
-      ]
-    },
-    {
       "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
       "item": "insta snapshot of LLVM IR for `return 0` program",
       "reason": "tracker_phase_complete",
@@ -348,71 +123,61 @@
       ]
     },
     {
-      "source": "lic:plans/2026-05-14-phase-03-mir-codegen.md",
-      "item": "`-O2` flag forwarded to clang in `--release`",
+      "source": "lic:plans/2026-05-14-phase-05-tetris.md",
+      "item": "`new_board() -> Board` all Empty",
       "reason": "tracker_phase_complete",
       "kind": "suppressed",
       "phases": [
-        "3"
+        "5"
+      ]
+    },
+    {
+      "source": "lic:plans/2026-05-14-phase-05-tetris.md",
+      "item": "Tetromino shapes as `array[4, array[2, int]]` offsets per rotation",
+      "reason": "tracker_phase_complete",
+      "kind": "suppressed",
+      "phases": [
+        "5"
+      ]
+    },
+    {
+      "source": "lic:plans/2026-05-14-phase-05-tetris.md",
+      "item": "`can_place(board, piece, ox, oy) -> bool`",
+      "reason": "tracker_phase_complete",
+      "kind": "suppressed",
+      "phases": [
+        "5"
+      ]
+    },
+    {
+      "source": "lic:plans/2026-05-14-phase-05-tetris.md",
+      "item": "`lock_piece(board, piece, ox, oy)` mutates board",
+      "reason": "tracker_phase_complete",
+      "kind": "suppressed",
+      "phases": [
+        "5"
+      ]
+    },
+    {
+      "source": "lic:plans/2026-05-14-phase-05-tetris.md",
+      "item": "Left/Right/Down arrows, Up rotates, Space hard drop (L/R/Down in `main.li`; rotate + hard-drop not wired)",
+      "reason": "tracker_phase_complete",
+      "kind": "suppressed",
+      "phases": [
+        "5"
+      ]
+    },
+    {
+      "source": "lic:plans/2026-05-14-phase-05-tetris.md",
+      "item": "No leaks/crashes over 10-minute play session",
+      "reason": "tracker_phase_complete",
+      "kind": "suppressed",
+      "phases": [
+        "5"
       ]
     }
   ],
-  "stale_spec_checklists": [
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`enum Type { Int, Uint, WrappingInt, Float64, Bool, Unit, String, Array { len: u64, elem: Box<Type> }, Option(Box<Type>), Enum(EnumId), Object(ObjectId), Proc { .. } }`",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`TypeCtx::define_type`, `lookup`, `define_proc`",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`check_module(&Module) -> Result<TypedModule, Vec<TypeError>>`",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Return typed wrapper nodes or side table `node_id \u2192 Type`",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Track `Owned | BorrowImm | BorrowMut` per local",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Reject: use after move, two `mut` borrows, mut while imm borrow live",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "v1: no references in struct fields yet",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "Tests assert compile error messages mention dimension / type mismatch",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    },
-    {
-      "source": "lic:plans/2026-05-14-phase-02-typechecker.md",
-      "item": "`lic check file.li` \u2014 parse + typecheck, exit 1 on errors",
-      "reason": "normative_implementation_checklist",
-      "kind": "stale_spec"
-    }
-  ],
+  "stale_spec_checklists": [],
   "provability_gaps": {
     "partial": [
       "**G-lean**",
@@ -426,7 +191,9 @@
       "**G-math-syn**",
       "**G-async**",
       "**G-net**",
-      "**G-narrow**"
+      "**G-narrow**",
+      "**G-proof-db**",
+      "**G-physics**"
     ],
     "missing": [
       "**G-ann**",
@@ -436,6 +203,10 @@
     ]
   },
   "catalog_gaps": [
+    {
+      "source": "benchmarks:catalog.toml",
+      "item": "catalog id=lic_compile_smoke path missing under LIC_ROOT: unknown"
+    },
     {
       "source": "benchmarks:catalog.toml",
       "item": "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
@@ -458,23 +229,16 @@
       "count": 5
     },
     {
-      "priority": "P3",
-      "action": "Archive or check off stale implementation task lists in sub-plans (normative spec, not gates)",
-      "count": 9,
-      "files": [
-        "lic:plans/2026-05-14-phase-02-typechecker.md"
-      ]
-    },
-    {
       "priority": "P1",
       "action": "Update provability-gaps.md when closing compiler work",
-      "partial": 12,
+      "partial": 14,
       "missing": 4
     },
     {
       "priority": "P2",
       "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
       "benchmarks": [
+        "catalog id=lic_compile_smoke path missing under LIC_ROOT: unknown",
         "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness",
         "catalog id=rate_limit_429 path missing under LIC_ROOT: packages/li-httpd/examples/rate_limit_static.toml"
       ]

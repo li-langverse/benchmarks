@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-25T13:49:29.476358+00:00",
+  "generated_at": "2026-05-25T14:01:38.621270+00:00",
   "sources": {
-    "lic_csv": "benchmarks/results/latest.csv",
-    "lis_csv": "results/latest.csv",
-    "stability_csv": "benchmarks/results/stability.csv",
-    "security_csv": "benchmarks/results/security.csv"
+    "lic_csv": "../lic/benchmarks/results/latest.csv",
+    "lis_csv": "../lis/results/latest.csv",
+    "stability_csv": "../lic/benchmarks/results/stability.csv",
+    "security_csv": "../lic/benchmarks/results/security.csv"
   },
   "reporting": {
     "sota_policy": "best_competitor_lang_excludes_li",
@@ -716,12 +716,20 @@
         {
           "id": "static_small",
           "title": "static small",
-          "metric": "rps",
-          "unit": "",
+          "metric": "verify_only",
+          "unit": "bool",
           "lower_is_better": false,
           "reference_lang": "nginx",
           "sota_lang": null,
-          "series": [],
+          "series": [
+            {
+              "lang": "harness",
+              "value": 1.0,
+              "unit": "bool",
+              "variant": "ci",
+              "os": "unknown"
+            }
+          ],
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/tier5_http/scenarios/static_small",
@@ -1206,12 +1214,20 @@
         {
           "id": "static_small",
           "title": "static small",
-          "metric": "rps",
-          "unit": "",
+          "metric": "verify_only",
+          "unit": "bool",
           "lower_is_better": false,
           "reference_lang": "nginx",
           "sota_lang": null,
-          "series": [],
+          "series": [
+            {
+              "lang": "harness",
+              "value": 1.0,
+              "unit": "bool",
+              "variant": "ci",
+              "os": "unknown"
+            }
+          ],
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/tier5_http/scenarios/static_small",
@@ -2692,14 +2708,14 @@
       "repo": "lis",
       "tier": 5,
       "category": "http",
-      "metric": "rps",
+      "metric": "verify_only",
       "li_value": null,
       "cpp_value": null,
       "ratio_vs_cpp": null,
       "sota_lang": null,
       "sota_value": null,
       "ratio_vs_sota": null,
-      "unit": "",
+      "unit": "bool",
       "variant": null,
       "status": "unknown",
       "validity_status": "unknown",
@@ -2712,7 +2728,15 @@
       "threshold_ratio_cpp": 1.0,
       "compare_oracle": "nginx",
       "ci_url": "",
-      "langs": [],
+      "langs": [
+        {
+          "lang": "harness",
+          "value": 1.0,
+          "unit": "bool",
+          "variant": "ci",
+          "os": "unknown"
+        }
+      ],
       "pillar": "server",
       "package": "lis"
     },

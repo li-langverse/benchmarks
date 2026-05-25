@@ -46,7 +46,7 @@ export function ValidityPanel({ row }: ValidityPanelProps) {
           {row.sota_lang ? (
             <span style={{ color: "var(--muted)" }}>
               {" "}
-              (best in series: <code>{row.sota_lang}</code> — Li is never SOTA)
+              (best in series: <code>{row.sota_lang}</code> — Li is never labeled best)
             </span>
           ) : null}
         </dd>
