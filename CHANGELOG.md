@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+
+- **LIC_ROOT / catalog alignment:** tier0_stability, rate_limit_429, plan-audit, lic@dev CI — [2026-05-25-lic-root-catalog-alignment.md](docs/release-notes/2026-05-25-lic-root-catalog-alignment.md). Closes #17 #19 #20; #38 agent-kit doc.
+
+### Added
+
+- **FFT catalog (planned):** fft_1d_fixed for #18.
+
 ### Added
 
 - **tier_db_registry skeleton:** OLTP registry publish/read scenarios vs Postgres — [2026-05-25-tier-db-registry-skeleton.md](docs/release-notes/2026-05-25-tier-db-registry-skeleton.md).

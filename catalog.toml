@@ -2,6 +2,9 @@
 # category: micro | physics | http | database | tooling | security | correctness
 # pillar: compiler | numerics | physics | server | database | tooling | security | graphics | correctness
 # package: ecosystem id from ecosystem-packages.toml (defaults to repo when omitted)
+#
+# catalog_lifecycle — optional; "planned" skips plan-completion-audit path check.
+# path = "unknown" — algo_registry stub until lic harness exists (audit skip).
 
 
 [[benchmark]]
@@ -69,6 +72,21 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 ph_ids = ["PH-5b", "PH-7e"]
 variant = "pure_li"
+
+[[benchmark]]
+id = "fft_1d_fixed"
+category = "micro"
+pillar = "numerics"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_micro/fft_1d_fixed"
+catalog_lifecycle = "planned"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+ph_ids = ["PH-5b", "PH-7e"]
+compare_oracle = "cpp"
+variant = "fftw_reference"
 
 
 [[benchmark]]
@@ -277,11 +295,11 @@ variant = "shared_c_kernel"
 [[benchmark]]
 id = "tier0_stability"
 category = "correctness"
-pillar = "correctness"
+pillar = "proofs"
 package = "lic"
 tier = 0
 repo = "lic"
-path = "benchmarks/tier0_correctness"
+path = "li-tests/benchmarks/tier0_correctness"
 metric = "stability"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-5b"]
@@ -390,10 +408,10 @@ compare_oracle = "nginx"
 id = "rate_limit_429"
 category = "http"
 pillar = "server"
-package = "lic"
+package = "lis"
 tier = 5
-repo = "lic"
-path = "packages/li-httpd/examples/rate_limit_static.toml"
+repo = "benchmarks"
+path = "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429"
 metric = "verify_pass"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-H"]

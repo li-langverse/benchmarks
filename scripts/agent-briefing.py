@@ -555,7 +555,12 @@ def main() -> int:
     data = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ"),
         "role": "preflight_for_cursor_agents",
-        "note": "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file.",
+        "note": (
+            "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file. "
+            "plan_audit needs LIC_ROOT (sibling ../lic or CI lic@dev checkout); "
+            "catalog path gaps skip path=unknown and catalog_lifecycle=planned."
+        ),
+        "lic_root": str(LIC) if LIC.is_dir() else None,
         "preflight_runs": runs,
         "issue_triage": load_json(LATEST / "issue-feature-triage.json"),
         "issue_backlog_hygiene": load_json(LATEST / "issue-backlog-hygiene.json"),
