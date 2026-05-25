@@ -210,14 +210,7 @@ def bench_os(
         if cfg is not None
         else [r for r in rows if r.get("benchmark") == bench_id]
     )
-    if variant:
-        li_rows = [
-            r
-            for r in bench_rows
-            if r.get("lang") == "li" and (r.get("variant") or "") == variant
-        ]
-    else:
-        li_rows = [r for r in bench_rows if r.get("lang") == "li"]
+    li_rows = li_rows_for_validity(bench_rows, variant)
     for r in li_rows + bench_rows:
         os = normalize_os(r.get("os") or r.get("OS"))
         if os != "unknown":
@@ -272,6 +265,8 @@ def validity_required_for(cfg: dict, catalog_defaults: dict) -> bool:
     if "validity_required" in cfg:
         return bool(cfg["validity_required"])
     return bool(catalog_defaults.get("validity_required", True))
+
+
 
 
 def li_rows_for_validity(bench_rows: list[dict], variant: str | None) -> list[dict]:
