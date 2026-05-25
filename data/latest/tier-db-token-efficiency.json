@@ -1,0 +1,1291 @@
+{
+  "generated_at": "2026-05-25T16:04:17.476358+00:00",
+  "tier": "tier_db_token_efficiency",
+  "profile": "ci",
+  "status": "measured",
+  "metric": "tokens",
+  "encoder": "tiktoken_cl100k_base",
+  "baseline_surface": "sql",
+  "sources": {
+    "suite_toml": "benchmarks/tier_db_token_efficiency/suite.toml",
+    "scenarios_json": "benchmarks/tier_db_token_efficiency/scenarios.json",
+    "compute_script": "benchmarks/tier_db_token_efficiency/compute_tokens.py",
+    "ecosystem_doc": "docs/ecosystem/tier-db-token-efficiency.md",
+    "lidb_audit": "lidb/docs/liq-token-efficiency-audit.md"
+  },
+  "summary": {
+    "scenario_count": 18,
+    "sql_tokens_total": 629,
+    "liq_tokens_total": 405,
+    "liq_vs_sql_delta_pct_total": -35.6,
+    "liq_vs_sql_compression_total": 1.553,
+    "median_tokens_by_surface": {
+      "drizzle": 43,
+      "graphql": 33,
+      "liq": 24,
+      "liq_2step": 34,
+      "postgrest": 23,
+      "prisma": 35,
+      "sql": 32,
+      "supabase_js": 35
+    }
+  },
+  "scenarios": [
+    {
+      "id": "list_packages_limit_20",
+      "domain": "registry",
+      "intent": "List packages, limit 20, stable order",
+      "safety_note": "All surfaces parameterized or builder-typed; raw SQL needs allowlist validator.",
+      "surfaces": {
+        "sql": {
+          "chars": 88,
+          "tokens": 20,
+          "text_preview": "SELECT id, name, description, created_at FROM public.packages ORDER BY name ASC LIMIT 20"
+        },
+        "liq": {
+          "chars": 75,
+          "tokens": 18,
+          "text_preview": "read packages { id, name, description, created_at } order name asc limit 20"
+        },
+        "prisma": {
+          "chars": 140,
+          "tokens": 42,
+          "text_preview": "await prisma.packages.findMany({ take: 20, orderBy: { name: 'asc' }, select: { id: true, name: true, description: true, \u2026"
+        },
+        "drizzle": {
+          "chars": 170,
+          "tokens": 38,
+          "text_preview": "db.select({ id: packages.id, name: packages.name, description: packages.description, createdAt: packages.createdAt }).fr\u2026"
+        },
+        "supabase_js": {
+          "chars": 113,
+          "tokens": 31,
+          "text_preview": "const { data } = await supabase.from('packages').select('id,name,description,created_at').order('name').limit(20)"
+        },
+        "postgrest": {
+          "chars": 79,
+          "tokens": 21,
+          "text_preview": "/rest/v1/packages?select=id,name,description,created_at&order=name.asc&limit=20"
+        },
+        "graphql": {
+          "chars": 89,
+          "tokens": 24,
+          "text_preview": "query { packages(limit: 20, order_by: { name: asc }) { id name description created_at } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -10.0,
+          "compression_ratio": 1.111
+        },
+        "prisma": {
+          "delta_pct": 110.0,
+          "compression_ratio": 0.476
+        },
+        "drizzle": {
+          "delta_pct": 90.0,
+          "compression_ratio": 0.526
+        },
+        "supabase_js": {
+          "delta_pct": 55.0,
+          "compression_ratio": 0.645
+        },
+        "postgrest": {
+          "delta_pct": 5.0,
+          "compression_ratio": 0.952
+        },
+        "graphql": {
+          "delta_pct": 20.0,
+          "compression_ratio": 0.833
+        }
+      }
+    },
+    {
+      "id": "get_package_version_by_name_version",
+      "domain": "registry",
+      "intent": "Resolve package by name + semver version (single row)",
+      "safety_note": "Name/version must be bound params, not interpolated.",
+      "surfaces": {
+        "sql": {
+          "chars": 205,
+          "tokens": 53,
+          "text_preview": "SELECT pv.id, pv.version, pv.tree_digest, pv.proof_digest, pv.coverage_pct FROM public.package_versions pv INNER JOIN pu\u2026"
+        },
+        "liq": {
+          "chars": 129,
+          "tokens": 31,
+          "text_preview": "read package_versions { id, version, tree_digest, proof_digest, coverage_pct } where package_id = $pkg and version = $ve\u2026"
+        },
+        "prisma": {
+          "chars": 187,
+          "tokens": 52,
+          "text_preview": "await prisma.packageVersion.findFirst({ where: { version: ver, package: { name: pkgName } }, select: { id: true, version\u2026"
+        },
+        "drizzle": {
+          "chars": 279,
+          "tokens": 63,
+          "text_preview": "db.select({ id: packageVersions.id, version: packageVersions.version, treeDigest: packageVersions.treeDigest }).from(pac\u2026"
+        },
+        "supabase_js": {
+          "chars": 207,
+          "tokens": 55,
+          "text_preview": "const { data } = await supabase.from('package_versions').select('id,version,tree_digest,proof_digest,coverage_pct,packag\u2026"
+        },
+        "postgrest": {
+          "chars": 154,
+          "tokens": 42,
+          "text_preview": "/rest/v1/package_versions?select=id,version,tree_digest,proof_digest,coverage_pct,packages!inner(name)&packages.name=eq.\u2026"
+        },
+        "graphql": {
+          "chars": 158,
+          "tokens": 44,
+          "text_preview": "query($n:String!,$v:String!){ package_versions(where:{package:{name:{_eq:$n}},version:{_eq:$v}},limit:1){ id version tre\u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -41.5,
+          "compression_ratio": 1.71
+        },
+        "prisma": {
+          "delta_pct": -1.9,
+          "compression_ratio": 1.019
+        },
+        "drizzle": {
+          "delta_pct": 18.9,
+          "compression_ratio": 0.841
+        },
+        "supabase_js": {
+          "delta_pct": 3.8,
+          "compression_ratio": 0.964
+        },
+        "postgrest": {
+          "delta_pct": -20.8,
+          "compression_ratio": 1.262
+        },
+        "graphql": {
+          "delta_pct": -17.0,
+          "compression_ratio": 1.205
+        }
+      }
+    },
+    {
+      "id": "insert_publish_with_attestation",
+      "domain": "registry",
+      "intent": "Insert package_version + attestation row (publish gate fields)",
+      "safety_note": "liq/ORM bind values; SQL uses $n placeholders only.",
+      "surfaces": {
+        "sql": {
+          "chars": 288,
+          "tokens": 78,
+          "text_preview": "WITH ins AS (INSERT INTO public.package_versions (package_id, version, tree_digest, proof_digest, coverage_pct, publishe\u2026"
+        },
+        "liq": {
+          "chars": 141,
+          "tokens": 39,
+          "text_preview": "insert package_versions { package_id: $pkg, version: $ver, tree_digest: $tree, proof_digest: $proof, coverage_pct: $cov,\u2026"
+        },
+        "prisma": {
+          "chars": 226,
+          "tokens": 55,
+          "text_preview": "await prisma.$transaction([prisma.packageVersion.create({ data: { packageId, version, treeDigest, proofDigest, coverageP\u2026"
+        },
+        "drizzle": {
+          "chars": 292,
+          "tokens": 71,
+          "text_preview": "db.transaction(async (tx) => { const [pv] = await tx.insert(packageVersions).values({ packageId, version, treeDigest, pr\u2026"
+        },
+        "supabase_js": {
+          "chars": 269,
+          "tokens": 66,
+          "text_preview": "const { data: pv } = await supabase.from('package_versions').insert({ package_id, version, tree_digest, proof_digest, co\u2026"
+        },
+        "postgrest": {
+          "chars": 90,
+          "tokens": 26,
+          "text_preview": "POST /rest/v1/package_versions + POST /rest/v1/attestations (two round-trips; bodies JSON)"
+        },
+        "graphql": {
+          "chars": 162,
+          "tokens": 41,
+          "text_preview": "mutation($v:package_versions_insert_input!,$a:attestations_insert_input!){ insert_package_versions_one(object:$v){ id } \u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -50.0,
+          "compression_ratio": 2.0
+        },
+        "prisma": {
+          "delta_pct": -29.5,
+          "compression_ratio": 1.418
+        },
+        "drizzle": {
+          "delta_pct": -9.0,
+          "compression_ratio": 1.099
+        },
+        "supabase_js": {
+          "delta_pct": -15.4,
+          "compression_ratio": 1.182
+        },
+        "postgrest": {
+          "delta_pct": -66.7,
+          "compression_ratio": 3.0
+        },
+        "graphql": {
+          "delta_pct": -47.4,
+          "compression_ratio": 1.902
+        }
+      }
+    },
+    {
+      "id": "join_publisher_package",
+      "domain": "registry",
+      "intent": "Multi-table join publisher + package by package name",
+      "safety_note": "liq v0: no JOIN \u2014 liq_2step is honest agent workaround.",
+      "surfaces": {
+        "sql": {
+          "chars": 190,
+          "tokens": 45,
+          "text_preview": "SELECT pkg.id, pkg.name, pub.id AS publisher_id, pub.name AS publisher_name FROM public.packages pkg INNER JOIN public.p\u2026"
+        },
+        "liq": {
+          "chars": 66,
+          "tokens": 18,
+          "text_preview": "read packages { id, name, publisher_id } where name = $pkg limit 1"
+        },
+        "liq_2step": {
+          "chars": 121,
+          "tokens": 34,
+          "text_preview": "read packages { id, name, publisher_id } where name = $pkg limit 1 | read publishers { id, name } where id = $pub limit \u2026"
+        },
+        "prisma": {
+          "chars": 122,
+          "tokens": 35,
+          "text_preview": "await prisma.package.findFirst({ where: { name: pkgName }, include: { publisher: { select: { id: true, name: true } } } \u2026"
+        },
+        "drizzle": {
+          "chars": 218,
+          "tokens": 53,
+          "text_preview": "db.select({ packageId: packages.id, packageName: packages.name, publisherName: publishers.name }).from(packages).innerJo\u2026"
+        },
+        "supabase_js": {
+          "chars": 125,
+          "tokens": 35,
+          "text_preview": "await supabase.from('packages').select('id,name,publisher_id,publishers(id,name)').eq('name', pkgName).limit(1).maybeSin\u2026"
+        },
+        "postgrest": {
+          "chars": 91,
+          "tokens": 27,
+          "text_preview": "/rest/v1/packages?select=id,name,publisher_id,publishers(id,name)&name=eq.{pkgName}&limit=1"
+        },
+        "graphql": {
+          "chars": 93,
+          "tokens": 29,
+          "text_preview": "query($n:String!){ packages(where:{name:{_eq:$n}},limit:1){ id name publisher { id name } } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -60.0,
+          "compression_ratio": 2.5
+        },
+        "prisma": {
+          "delta_pct": -22.2,
+          "compression_ratio": 1.286
+        },
+        "drizzle": {
+          "delta_pct": 17.8,
+          "compression_ratio": 0.849
+        },
+        "supabase_js": {
+          "delta_pct": -22.2,
+          "compression_ratio": 1.286
+        },
+        "postgrest": {
+          "delta_pct": -40.0,
+          "compression_ratio": 1.667
+        },
+        "graphql": {
+          "delta_pct": -35.6,
+          "compression_ratio": 1.552
+        },
+        "liq_2step": {
+          "delta_pct": -24.4,
+          "compression_ratio": 1.324
+        }
+      }
+    },
+    {
+      "id": "filter_tenant_publisher_rls",
+      "domain": "registry",
+      "intent": "Tenant-scoped read under RLS (JWT publisher claim)",
+      "safety_note": "RLS enforced server-side; client must not bypass with raw SQL strings.",
+      "surfaces": {
+        "sql": {
+          "chars": 157,
+          "tokens": 35,
+          "text_preview": "SELECT id, name, created_at FROM public.publishers WHERE id = current_setting('request.jwt.claim.publisher_id', true)::u\u2026"
+        },
+        "liq": {
+          "chars": 96,
+          "tokens": 23,
+          "text_preview": "read publishers { id, name, created_at } where id = $publisher_id order created_at desc limit 20"
+        },
+        "prisma": {
+          "chars": 164,
+          "tokens": 46,
+          "text_preview": "await prisma.publisher.findMany({ where: { id: session.publisherId }, orderBy: { createdAt: 'desc' }, take: 20, select: \u2026"
+        },
+        "drizzle": {
+          "chars": 189,
+          "tokens": 44,
+          "text_preview": "db.select({ id: publishers.id, name: publishers.name, createdAt: publishers.createdAt }).from(publishers).where(eq(publi\u2026"
+        },
+        "supabase_js": {
+          "chars": 131,
+          "tokens": 36,
+          "text_preview": "const { data } = await supabase.from('publishers').select('id,name,created_at').order('created_at', { ascending: false }\u2026"
+        },
+        "postgrest": {
+          "chars": 76,
+          "tokens": 23,
+          "text_preview": "/rest/v1/publishers?select=id,name,created_at&order=created_at.desc&limit=20"
+        },
+        "graphql": {
+          "chars": 86,
+          "tokens": 24,
+          "text_preview": "query { publishers(limit: 20, order_by: { created_at: desc }) { id name created_at } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -34.3,
+          "compression_ratio": 1.522
+        },
+        "prisma": {
+          "delta_pct": 31.4,
+          "compression_ratio": 0.761
+        },
+        "drizzle": {
+          "delta_pct": 25.7,
+          "compression_ratio": 0.795
+        },
+        "supabase_js": {
+          "delta_pct": 2.9,
+          "compression_ratio": 0.972
+        },
+        "postgrest": {
+          "delta_pct": -34.3,
+          "compression_ratio": 1.522
+        },
+        "graphql": {
+          "delta_pct": -31.4,
+          "compression_ratio": 1.458
+        }
+      }
+    },
+    {
+      "id": "agent_runs_order_started_at",
+      "domain": "control_plane",
+      "intent": "List agent_runs ordered by started_at (agent dashboard)",
+      "safety_note": "Prefer liq MCP allowlist over free-form SQL for agents.",
+      "surfaces": {
+        "sql": {
+          "chars": 126,
+          "tokens": 29,
+          "text_preview": "SELECT run_id, agent_id, status, started_at, briefing_hash FROM public.agent_runs ORDER BY started_at DESC NULLS LAST LI\u2026"
+        },
+        "liq": {
+          "chars": 102,
+          "tokens": 25,
+          "text_preview": "read agent_runs { run_id, agent_id, status, started_at, briefing_hash } order started_at desc limit 20"
+        },
+        "prisma": {
+          "chars": 167,
+          "tokens": 51,
+          "text_preview": "await prisma.agentRun.findMany({ orderBy: { startedAt: 'desc' }, take: 20, select: { runId: true, agentId: true, status:\u2026"
+        },
+        "drizzle": {
+          "chars": 184,
+          "tokens": 48,
+          "text_preview": "db.select({ runId: agentRuns.runId, agentId: agentRuns.agentId, status: agentRuns.status, startedAt: agentRuns.startedAt\u2026"
+        },
+        "supabase_js": {
+          "chars": 179,
+          "tokens": 50,
+          "text_preview": "const { data } = await supabase.from('agent_runs').select('run_id,agent_id,status,started_at,briefing_hash').order('star\u2026"
+        },
+        "postgrest": {
+          "chars": 115,
+          "tokens": 35,
+          "text_preview": "/rest/v1/agent_runs?select=run_id,agent_id,status,started_at,briefing_hash&order=started_at.desc.nullslast&limit=20"
+        },
+        "graphql": {
+          "chars": 126,
+          "tokens": 33,
+          "text_preview": "query { agent_runs(limit: 20, order_by: { started_at: desc_nulls_last }) { run_id agent_id status started_at briefing_ha\u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -13.8,
+          "compression_ratio": 1.16
+        },
+        "prisma": {
+          "delta_pct": 75.9,
+          "compression_ratio": 0.569
+        },
+        "drizzle": {
+          "delta_pct": 65.5,
+          "compression_ratio": 0.604
+        },
+        "supabase_js": {
+          "delta_pct": 72.4,
+          "compression_ratio": 0.58
+        },
+        "postgrest": {
+          "delta_pct": 20.7,
+          "compression_ratio": 0.829
+        },
+        "graphql": {
+          "delta_pct": 13.8,
+          "compression_ratio": 0.879
+        }
+      }
+    },
+    {
+      "id": "vector_search_stub",
+      "domain": "vector",
+      "intent": "Top-K ANN on embedding column (registry artifact index stub)",
+      "safety_note": "Vector literal must be param/array bind; never string-concat SQL.",
+      "surfaces": {
+        "sql": {
+          "chars": 103,
+          "tokens": 24,
+          "text_preview": "SELECT id, package_version_id, kind FROM public.attestations ORDER BY embedding <=> $1::vector LIMIT 10"
+        },
+        "liq": {
+          "chars": 72,
+          "tokens": 18,
+          "text_preview": "read attestations { id, package_version_id, kind } similar $vec limit 10"
+        },
+        "prisma": {
+          "chars": 124,
+          "tokens": 31,
+          "text_preview": "await prisma.$queryRaw`SELECT id, package_version_id, kind FROM attestations ORDER BY embedding <=> ${vec}::vector LIMIT\u2026"
+        },
+        "drizzle": {
+          "chars": 105,
+          "tokens": 26,
+          "text_preview": "sql`SELECT id, package_version_id, kind FROM attestations ORDER BY embedding <=> ${vec}::vector LIMIT 10`"
+        },
+        "supabase_js": {
+          "chars": 83,
+          "tokens": 23,
+          "text_preview": "await supabase.rpc('match_attestations', { query_embedding: vec, match_count: 10 })"
+        },
+        "postgrest": {
+          "chars": 36,
+          "tokens": 12,
+          "text_preview": "POST /rest/v1/rpc/match_attestations"
+        },
+        "graphql": {
+          "chars": 104,
+          "tokens": 31,
+          "text_preview": "query($v:[Float!]!){ match_attestations(args:{vec:$v,limit:10}){ id package_version_id kind distance } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -25.0,
+          "compression_ratio": 1.333
+        },
+        "prisma": {
+          "delta_pct": 29.2,
+          "compression_ratio": 0.774
+        },
+        "drizzle": {
+          "delta_pct": 8.3,
+          "compression_ratio": 0.923
+        },
+        "supabase_js": {
+          "delta_pct": -4.2,
+          "compression_ratio": 1.043
+        },
+        "postgrest": {
+          "delta_pct": -50.0,
+          "compression_ratio": 2.0
+        },
+        "graphql": {
+          "delta_pct": 29.2,
+          "compression_ratio": 0.774
+        }
+      }
+    },
+    {
+      "id": "yank_package",
+      "domain": "registry",
+      "intent": "Record yank for a package version",
+      "safety_note": "Mutations require capability token in lidb; agents use liq insert not raw SQL.",
+      "surfaces": {
+        "sql": {
+          "chars": 188,
+          "tokens": 52,
+          "text_preview": "INSERT INTO public.yanks (package_version_id, reason, yanked_by) VALUES ($1, $2, $3) ON CONFLICT (package_version_id) DO\u2026"
+        },
+        "liq": {
+          "chars": 76,
+          "tokens": 24,
+          "text_preview": "insert yanks { package_version_id: $pvid, reason: $reason, yanked_by: $pub }"
+        },
+        "prisma": {
+          "chars": 125,
+          "tokens": 34,
+          "text_preview": "await prisma.yank.upsert({ where: { packageVersionId }, create: { packageVersionId, reason, yankedBy }, update: { reason\u2026"
+        },
+        "drizzle": {
+          "chars": 163,
+          "tokens": 45,
+          "text_preview": "db.insert(yanks).values({ packageVersionId, reason, yankedBy }).onConflictDoUpdate({ target: yanks.packageVersionId, set\u2026"
+        },
+        "supabase_js": {
+          "chars": 78,
+          "tokens": 22,
+          "text_preview": "await supabase.from('yanks').upsert({ package_version_id, reason, yanked_by })"
+        },
+        "postgrest": {
+          "chars": 50,
+          "tokens": 15,
+          "text_preview": "POST /rest/v1/yanks?on_conflict=package_version_id"
+        },
+        "graphql": {
+          "chars": 152,
+          "tokens": 39,
+          "text_preview": "mutation($row:yanks_insert_input!){ insert_yanks_one(object:$row, on_conflict:{constraint:yanks_package_version_id_key,u\u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -53.8,
+          "compression_ratio": 2.167
+        },
+        "prisma": {
+          "delta_pct": -34.6,
+          "compression_ratio": 1.529
+        },
+        "drizzle": {
+          "delta_pct": -13.5,
+          "compression_ratio": 1.156
+        },
+        "supabase_js": {
+          "delta_pct": -57.7,
+          "compression_ratio": 2.364
+        },
+        "postgrest": {
+          "delta_pct": -71.2,
+          "compression_ratio": 3.467
+        },
+        "graphql": {
+          "delta_pct": -25.0,
+          "compression_ratio": 1.333
+        }
+      }
+    },
+    {
+      "id": "schema_introspection_mcp",
+      "domain": "mcp",
+      "intent": "Agent schema snapshot for tool planning (compact catalog)",
+      "safety_note": "MCP returns fixed markdown/JSON; not user-composed SQL.",
+      "surfaces": {
+        "sql": {
+          "chars": 166,
+          "tokens": 35,
+          "text_preview": "SELECT table_name, column_name, data_type FROM information_schema.columns WHERE table_schema = 'public' AND table_name =\u2026"
+        },
+        "liq": {
+          "chars": 59,
+          "tokens": 11,
+          "text_preview": "schema_snapshot tables=agent_runs,packages,package_versions"
+        },
+        "prisma": {
+          "chars": 126,
+          "tokens": 27,
+          "text_preview": "const cols = await prisma.$queryRaw`SELECT column_name, data_type FROM information_schema.columns WHERE table_name = ${t\u2026"
+        },
+        "drizzle": {
+          "chars": 73,
+          "tokens": 19,
+          "text_preview": "import { getTableColumns } from 'drizzle-orm'; getTableColumns(agentRuns)"
+        },
+        "supabase_js": {
+          "chars": 71,
+          "tokens": 21,
+          "text_preview": "const { data } = await supabase.from('agent_runs').select('*').limit(0)"
+        },
+        "postgrest": {
+          "chars": 66,
+          "tokens": 23,
+          "text_preview": "GET /rest/v1/?apikey=... (OpenAPI root) + HEAD /rest/v1/agent_runs"
+        },
+        "graphql": {
+          "chars": 75,
+          "tokens": 22,
+          "text_preview": "query { __type(name: \"agent_runs\") { fields { name type { name kind } } } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -68.6,
+          "compression_ratio": 3.182
+        },
+        "prisma": {
+          "delta_pct": -22.9,
+          "compression_ratio": 1.296
+        },
+        "drizzle": {
+          "delta_pct": -45.7,
+          "compression_ratio": 1.842
+        },
+        "supabase_js": {
+          "delta_pct": -40.0,
+          "compression_ratio": 1.667
+        },
+        "postgrest": {
+          "delta_pct": -34.3,
+          "compression_ratio": 1.522
+        },
+        "graphql": {
+          "delta_pct": -37.1,
+          "compression_ratio": 1.591
+        }
+      }
+    },
+    {
+      "id": "bulk_read_pagination_cursor",
+      "domain": "registry",
+      "intent": "Keyset pagination on package_versions by (published_at, id)",
+      "safety_note": "Cursor values must be bound; opaque cursor encoding recommended.",
+      "surfaces": {
+        "sql": {
+          "chars": 154,
+          "tokens": 39,
+          "text_preview": "SELECT id, package_id, version, published_at FROM public.package_versions WHERE (published_at, id) < ($1, $2) ORDER BY p\u2026"
+        },
+        "liq": {
+          "chars": 148,
+          "tokens": 34,
+          "text_preview": "read package_versions { id, package_id, version, published_at } where published_at < $cursor_ts and id < $cursor_id orde\u2026"
+        },
+        "prisma": {
+          "chars": 137,
+          "tokens": 44,
+          "text_preview": "await prisma.packageVersion.findMany({ take: 50, cursor: { id: cursorId }, skip: 1, orderBy: [{ publishedAt: 'desc' }, {\u2026"
+        },
+        "drizzle": {
+          "chars": 203,
+          "tokens": 46,
+          "text_preview": "db.select().from(packageVersions).where(or(lt(packageVersions.publishedAt, ts), and(eq(packageVersions.publishedAt, ts),\u2026"
+        },
+        "supabase_js": {
+          "chars": 167,
+          "tokens": 43,
+          "text_preview": "await supabase.from('package_versions').select('id,package_id,version,published_at').lt('published_at', cursorTs).order(\u2026"
+        },
+        "postgrest": {
+          "chars": 135,
+          "tokens": 36,
+          "text_preview": "/rest/v1/package_versions?select=id,package_id,version,published_at&published_at=lt.{cursorTs}&order=published_at.desc,i\u2026"
+        },
+        "graphql": {
+          "chars": 219,
+          "tokens": 73,
+          "text_preview": "query($ts:timestamptz!,$id:uuid!){ package_versions(where:{_or:[{published_at:{_lt:$ts}},{published_at:{_eq:$ts},id:{_lt\u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -12.8,
+          "compression_ratio": 1.147
+        },
+        "prisma": {
+          "delta_pct": 12.8,
+          "compression_ratio": 0.886
+        },
+        "drizzle": {
+          "delta_pct": 17.9,
+          "compression_ratio": 0.848
+        },
+        "supabase_js": {
+          "delta_pct": 10.3,
+          "compression_ratio": 0.907
+        },
+        "postgrest": {
+          "delta_pct": -7.7,
+          "compression_ratio": 1.083
+        },
+        "graphql": {
+          "delta_pct": 87.2,
+          "compression_ratio": 0.534
+        }
+      }
+    },
+    {
+      "id": "list_package_versions_for_package",
+      "domain": "registry",
+      "intent": "All versions for one package id",
+      "safety_note": "package_id UUID param only.",
+      "surfaces": {
+        "sql": {
+          "chars": 128,
+          "tokens": 28,
+          "text_preview": "SELECT id, version, published_at, yanked FROM public.package_versions WHERE package_id = $1 ORDER BY published_at DESC L\u2026"
+        },
+        "liq": {
+          "chars": 117,
+          "tokens": 27,
+          "text_preview": "read package_versions { id, version, published_at, yanked } where package_id = $pkg order published_at desc limit 100"
+        },
+        "prisma": {
+          "chars": 107,
+          "tokens": 29,
+          "text_preview": "await prisma.packageVersion.findMany({ where: { packageId }, orderBy: { publishedAt: 'desc' }, take: 100 })"
+        },
+        "drizzle": {
+          "chars": 135,
+          "tokens": 28,
+          "text_preview": "db.select().from(packageVersions).where(eq(packageVersions.packageId, packageId)).orderBy(desc(packageVersions.published\u2026"
+        },
+        "supabase_js": {
+          "chars": 163,
+          "tokens": 42,
+          "text_preview": "await supabase.from('package_versions').select('id,version,published_at,yanked').eq('package_id', packageId).order('publ\u2026"
+        },
+        "postgrest": {
+          "chars": 123,
+          "tokens": 33,
+          "text_preview": "/rest/v1/package_versions?select=id,version,published_at,yanked&package_id=eq.{packageId}&order=published_at.desc&limit=\u2026"
+        },
+        "graphql": {
+          "chars": 141,
+          "tokens": 39,
+          "text_preview": "query($pid:uuid!){ package_versions(where:{package_id:{_eq:$pid}},order_by:{published_at:desc},limit:100){ id version pu\u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -3.6,
+          "compression_ratio": 1.037
+        },
+        "prisma": {
+          "delta_pct": 3.6,
+          "compression_ratio": 0.966
+        },
+        "drizzle": {
+          "delta_pct": 0.0,
+          "compression_ratio": 1.0
+        },
+        "supabase_js": {
+          "delta_pct": 50.0,
+          "compression_ratio": 0.667
+        },
+        "postgrest": {
+          "delta_pct": 17.9,
+          "compression_ratio": 0.848
+        },
+        "graphql": {
+          "delta_pct": 39.3,
+          "compression_ratio": 0.718
+        }
+      }
+    },
+    {
+      "id": "update_publisher_display_name",
+      "domain": "registry",
+      "intent": "Update publisher row with returning",
+      "safety_note": "liq update requires filter; prevents table-wide updates.",
+      "surfaces": {
+        "sql": {
+          "chars": 87,
+          "tokens": 21,
+          "text_preview": "UPDATE public.publishers SET display_name = $1 WHERE id = $2 RETURNING id, display_name"
+        },
+        "liq": {
+          "chars": 84,
+          "tokens": 18,
+          "text_preview": "update publishers set display_name = $name where id = $id returning id, display_name"
+        },
+        "prisma": {
+          "chars": 118,
+          "tokens": 30,
+          "text_preview": "await prisma.publisher.update({ where: { id }, data: { displayName: name }, select: { id: true, displayName: true } })"
+        },
+        "drizzle": {
+          "chars": 147,
+          "tokens": 34,
+          "text_preview": "db.update(publishers).set({ displayName: name }).where(eq(publishers.id, id)).returning({ id: publishers.id, displayName\u2026"
+        },
+        "supabase_js": {
+          "chars": 112,
+          "tokens": 31,
+          "text_preview": "await supabase.from('publishers').update({ display_name: name }).eq('id', id).select('id,display_name').single()"
+        },
+        "postgrest": {
+          "chars": 36,
+          "tokens": 14,
+          "text_preview": "PATCH /rest/v1/publishers?id=eq.{id}"
+        },
+        "graphql": {
+          "chars": 120,
+          "tokens": 37,
+          "text_preview": "mutation($id:uuid!,$n:String!){ update_publishers_by_pk(pk_columns:{id:$id},_set:{display_name:$n}){ id display_name } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -14.3,
+          "compression_ratio": 1.167
+        },
+        "prisma": {
+          "delta_pct": 42.9,
+          "compression_ratio": 0.7
+        },
+        "drizzle": {
+          "delta_pct": 61.9,
+          "compression_ratio": 0.618
+        },
+        "supabase_js": {
+          "delta_pct": 47.6,
+          "compression_ratio": 0.677
+        },
+        "postgrest": {
+          "delta_pct": -33.3,
+          "compression_ratio": 1.5
+        },
+        "graphql": {
+          "delta_pct": 76.2,
+          "compression_ratio": 0.568
+        }
+      }
+    },
+    {
+      "id": "blocklist_lookup_by_name",
+      "domain": "registry",
+      "intent": "Check blocklist for package name",
+      "safety_note": "Pattern must not be built from unescaped user regex.",
+      "surfaces": {
+        "sql": {
+          "chars": 98,
+          "tokens": 23,
+          "text_preview": "SELECT id, package_name, tree_digest, reason FROM public.blocklist WHERE package_name = $1 LIMIT 5"
+        },
+        "liq": {
+          "chars": 91,
+          "tokens": 23,
+          "text_preview": "read blocklist { id, package_name, tree_digest, reason } where package_name = $name limit 5"
+        },
+        "prisma": {
+          "chars": 74,
+          "tokens": 20,
+          "text_preview": "await prisma.blocklist.findMany({ where: { packageName: name }, take: 5 })"
+        },
+        "drizzle": {
+          "chars": 75,
+          "tokens": 20,
+          "text_preview": "db.select().from(blocklist).where(eq(blocklist.packageName, name)).limit(5)"
+        },
+        "supabase_js": {
+          "chars": 111,
+          "tokens": 32,
+          "text_preview": "await supabase.from('blocklist').select('id,package_name,tree_digest,reason').eq('package_name', name).limit(5)"
+        },
+        "postgrest": {
+          "chars": 91,
+          "tokens": 27,
+          "text_preview": "/rest/v1/blocklist?select=id,package_name,tree_digest,reason&package_name=eq.{name}&limit=5"
+        },
+        "graphql": {
+          "chars": 107,
+          "tokens": 30,
+          "text_preview": "query($n:String!){ blocklist(where:{package_name:{_eq:$n}},limit:5){ id package_name tree_digest reason } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": 0.0,
+          "compression_ratio": 1.0
+        },
+        "prisma": {
+          "delta_pct": -13.0,
+          "compression_ratio": 1.15
+        },
+        "drizzle": {
+          "delta_pct": -13.0,
+          "compression_ratio": 1.15
+        },
+        "supabase_js": {
+          "delta_pct": 39.1,
+          "compression_ratio": 0.719
+        },
+        "postgrest": {
+          "delta_pct": 17.4,
+          "compression_ratio": 0.852
+        },
+        "graphql": {
+          "delta_pct": 30.4,
+          "compression_ratio": 0.767
+        }
+      }
+    },
+    {
+      "id": "count_agent_runs_by_status",
+      "domain": "control_plane",
+      "intent": "Aggregate count grouped by status",
+      "safety_note": "liq v0 lacks GROUP BY \u2014 agents use SQL capability or MCP aggregate tool.",
+      "surfaces": {
+        "sql": {
+          "chars": 91,
+          "tokens": 20,
+          "text_preview": "SELECT status, count(*)::bigint AS n FROM public.agent_runs GROUP BY status ORDER BY n DESC"
+        },
+        "liq": {
+          "chars": 36,
+          "tokens": 9,
+          "text_preview": "read agent_runs { status } limit 500"
+        },
+        "prisma": {
+          "chars": 112,
+          "tokens": 38,
+          "text_preview": "await prisma.agentRun.groupBy({ by: ['status'], _count: { _all: true }, orderBy: { _count: { _all: 'desc' } } })"
+        },
+        "drizzle": {
+          "chars": 136,
+          "tokens": 36,
+          "text_preview": "db.select({ status: agentRuns.status, n: sql`count(*)::bigint` }).from(agentRuns).groupBy(agentRuns.status).orderBy(desc\u2026"
+        },
+        "supabase_js": {
+          "chars": 59,
+          "tokens": 17,
+          "text_preview": "await supabase.from('agent_runs').select('status').limit(0)"
+        },
+        "postgrest": {
+          "chars": 33,
+          "tokens": 9,
+          "text_preview": "/rest/v1/agent_runs?select=status"
+        },
+        "graphql": {
+          "chars": 74,
+          "tokens": 18,
+          "text_preview": "query { agent_runs_aggregate { group_by { status } aggregate { count } } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -55.0,
+          "compression_ratio": 2.222
+        },
+        "prisma": {
+          "delta_pct": 90.0,
+          "compression_ratio": 0.526
+        },
+        "drizzle": {
+          "delta_pct": 80.0,
+          "compression_ratio": 0.556
+        },
+        "supabase_js": {
+          "delta_pct": -15.0,
+          "compression_ratio": 1.176
+        },
+        "postgrest": {
+          "delta_pct": -55.0,
+          "compression_ratio": 2.222
+        },
+        "graphql": {
+          "delta_pct": -10.0,
+          "compression_ratio": 1.111
+        }
+      }
+    },
+    {
+      "id": "insert_agent_run_stub",
+      "domain": "control_plane",
+      "intent": "Insert new agent_run row at start of run",
+      "safety_note": "Control-plane writes via service role only in production.",
+      "surfaces": {
+        "sql": {
+          "chars": 135,
+          "tokens": 41,
+          "text_preview": "INSERT INTO public.agent_runs (run_id, agent_id, status, started_at, briefing_hash) VALUES ($1, $2, $3, now(), $4) RETUR\u2026"
+        },
+        "liq": {
+          "chars": 97,
+          "tokens": 29,
+          "text_preview": "insert agent_runs { run_id: $run_id, agent_id: $agent_id, status: $status, briefing_hash: $hash }"
+        },
+        "prisma": {
+          "chars": 138,
+          "tokens": 41,
+          "text_preview": "await prisma.agentRun.create({ data: { runId, agentId, status, briefingHash, startedAt: new Date() }, select: { id: true\u2026"
+        },
+        "drizzle": {
+          "chars": 148,
+          "tokens": 43,
+          "text_preview": "db.insert(agentRuns).values({ runId, agentId, status, briefingHash, startedAt: sql`now()` }).returning({ id: agentRuns.i\u2026"
+        },
+        "supabase_js": {
+          "chars": 114,
+          "tokens": 31,
+          "text_preview": "await supabase.from('agent_runs').insert({ run_id, agent_id, status, briefing_hash }).select('id,run_id').single()"
+        },
+        "postgrest": {
+          "chars": 24,
+          "tokens": 8,
+          "text_preview": "POST /rest/v1/agent_runs"
+        },
+        "graphql": {
+          "chars": 90,
+          "tokens": 23,
+          "text_preview": "mutation($row:agent_runs_insert_input!){ insert_agent_runs_one(object:$row){ id run_id } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -29.3,
+          "compression_ratio": 1.414
+        },
+        "prisma": {
+          "delta_pct": 0.0,
+          "compression_ratio": 1.0
+        },
+        "drizzle": {
+          "delta_pct": 4.9,
+          "compression_ratio": 0.953
+        },
+        "supabase_js": {
+          "delta_pct": -24.4,
+          "compression_ratio": 1.323
+        },
+        "postgrest": {
+          "delta_pct": -80.5,
+          "compression_ratio": 5.125
+        },
+        "graphql": {
+          "delta_pct": -43.9,
+          "compression_ratio": 1.783
+        }
+      }
+    },
+    {
+      "id": "read_attestations_for_version",
+      "domain": "registry",
+      "intent": "List attestations for a package_version_id",
+      "safety_note": "FK filter via param only.",
+      "surfaces": {
+        "sql": {
+          "chars": 114,
+          "tokens": 26,
+          "text_preview": "SELECT id, kind, digest, created_at FROM public.attestations WHERE package_version_id = $1 ORDER BY created_at ASC"
+        },
+        "liq": {
+          "chars": 104,
+          "tokens": 25,
+          "text_preview": "read attestations { id, kind, digest, created_at } where package_version_id = $pvid order created_at asc"
+        },
+        "prisma": {
+          "chars": 97,
+          "tokens": 25,
+          "text_preview": "await prisma.attestation.findMany({ where: { packageVersionId }, orderBy: { createdAt: 'asc' } })"
+        },
+        "drizzle": {
+          "chars": 114,
+          "tokens": 28,
+          "text_preview": "db.select().from(attestations).where(eq(attestations.packageVersionId, pvid)).orderBy(asc(attestations.createdAt))"
+        },
+        "supabase_js": {
+          "chars": 122,
+          "tokens": 35,
+          "text_preview": "await supabase.from('attestations').select('id,kind,digest,created_at').eq('package_version_id', pvid).order('created_at\u2026"
+        },
+        "postgrest": {
+          "chars": 104,
+          "tokens": 32,
+          "text_preview": "/rest/v1/attestations?select=id,kind,digest,created_at&package_version_id=eq.{pvid}&order=created_at.asc"
+        },
+        "graphql": {
+          "chars": 129,
+          "tokens": 38,
+          "text_preview": "query($pvid:uuid!){ attestations(where:{package_version_id:{_eq:$pvid}},order_by:{created_at:asc}){ id kind digest creat\u2026"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -3.8,
+          "compression_ratio": 1.04
+        },
+        "prisma": {
+          "delta_pct": -3.8,
+          "compression_ratio": 1.04
+        },
+        "drizzle": {
+          "delta_pct": 7.7,
+          "compression_ratio": 0.929
+        },
+        "supabase_js": {
+          "delta_pct": 34.6,
+          "compression_ratio": 0.743
+        },
+        "postgrest": {
+          "delta_pct": 23.1,
+          "compression_ratio": 0.812
+        },
+        "graphql": {
+          "delta_pct": 46.2,
+          "compression_ratio": 0.684
+        }
+      }
+    },
+    {
+      "id": "delete_yanked_flag_update",
+      "domain": "registry",
+      "intent": "Soft yank via boolean on package_versions (alternative to yanks table)",
+      "safety_note": "Prefer dedicated yanks table + liq insert for audit trail.",
+      "surfaces": {
+        "sql": {
+          "chars": 114,
+          "tokens": 28,
+          "text_preview": "UPDATE public.package_versions SET yanked = true WHERE id = $1 AND publisher_id = $2 RETURNING id, version, yanked"
+        },
+        "liq": {
+          "chars": 112,
+          "tokens": 27,
+          "text_preview": "update package_versions set yanked = true where id = $pvid and publisher_id = $pub returning id, version, yanked"
+        },
+        "prisma": {
+          "chars": 90,
+          "tokens": 24,
+          "text_preview": "await prisma.packageVersion.update({ where: { id, publisherId }, data: { yanked: true } })"
+        },
+        "drizzle": {
+          "chars": 231,
+          "tokens": 53,
+          "text_preview": "db.update(packageVersions).set({ yanked: true }).where(and(eq(packageVersions.id, pvid), eq(packageVersions.publisherId,\u2026"
+        },
+        "supabase_js": {
+          "chars": 140,
+          "tokens": 38,
+          "text_preview": "await supabase.from('package_versions').update({ yanked: true }).match({ id: pvid, publisher_id: pub }).select('id,versi\u2026"
+        },
+        "postgrest": {
+          "chars": 66,
+          "tokens": 21,
+          "text_preview": "PATCH /rest/v1/package_versions?id=eq.{pvid}&publisher_id=eq.{pub}"
+        },
+        "graphql": {
+          "chars": 113,
+          "tokens": 33,
+          "text_preview": "mutation($id:uuid!){ update_package_versions_by_pk(pk_columns:{id:$id},_set:{yanked:true}){ id version yanked } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -3.6,
+          "compression_ratio": 1.037
+        },
+        "prisma": {
+          "delta_pct": -14.3,
+          "compression_ratio": 1.167
+        },
+        "drizzle": {
+          "delta_pct": 89.3,
+          "compression_ratio": 0.528
+        },
+        "supabase_js": {
+          "delta_pct": 35.7,
+          "compression_ratio": 0.737
+        },
+        "postgrest": {
+          "delta_pct": -25.0,
+          "compression_ratio": 1.333
+        },
+        "graphql": {
+          "delta_pct": 17.9,
+          "compression_ratio": 0.848
+        }
+      }
+    },
+    {
+      "id": "describe_table_agent_runs_mcp",
+      "domain": "mcp",
+      "intent": "Single-table column listing for agent tool",
+      "safety_note": "Table name from allowlist enum, not free string.",
+      "surfaces": {
+        "sql": {
+          "chars": 160,
+          "tokens": 32,
+          "text_preview": "SELECT column_name, data_type, is_nullable FROM information_schema.columns WHERE table_schema = 'public' AND table_name \u2026"
+        },
+        "liq": {
+          "chars": 29,
+          "tokens": 6,
+          "text_preview": "describe_table_liq agent_runs"
+        },
+        "prisma": {
+          "chars": 69,
+          "tokens": 16,
+          "text_preview": "DMMF model AgentRun fields (generated client metadata, ~compact JSON)"
+        },
+        "drizzle": {
+          "chars": 49,
+          "tokens": 10,
+          "text_preview": "getTableConfig(agentRuns) // column names + types"
+        },
+        "supabase_js": {
+          "chars": 54,
+          "tokens": 16,
+          "text_preview": "await supabase.from('agent_runs').select('*').limit(1)"
+        },
+        "postgrest": {
+          "chars": 40,
+          "tokens": 15,
+          "text_preview": "GET /rest/v1/agent_runs?limit=1&select=*"
+        },
+        "graphql": {
+          "chars": 70,
+          "tokens": 21,
+          "text_preview": "query { __type(name: \"agent_runs\") { fields { name type { name } } } }"
+        }
+      },
+      "vs_sql": {
+        "liq": {
+          "delta_pct": -81.2,
+          "compression_ratio": 5.333
+        },
+        "prisma": {
+          "delta_pct": -50.0,
+          "compression_ratio": 2.0
+        },
+        "drizzle": {
+          "delta_pct": -68.8,
+          "compression_ratio": 3.2
+        },
+        "supabase_js": {
+          "delta_pct": -50.0,
+          "compression_ratio": 2.0
+        },
+        "postgrest": {
+          "delta_pct": -53.1,
+          "compression_ratio": 2.133
+        },
+        "graphql": {
+          "delta_pct": -34.4,
+          "compression_ratio": 1.524
+        }
+      }
+    }
+  ],
+  "ci_ingest": {
+    "artifact_path": "data/latest/tier-db-token-efficiency.json",
+    "merge_into_summary": false,
+    "dashboard_section": "database"
+  }
+}

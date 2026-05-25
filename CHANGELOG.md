@@ -6,13 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Fixed
-
-- **LIC_ROOT / catalog alignment:** tier0_stability, rate_limit_429, plan-audit, lic@dev CI — [2026-05-25-lic-root-catalog-alignment.md](docs/release-notes/2026-05-25-lic-root-catalog-alignment.md). Closes #17 #19 #20; #38 agent-kit doc.
-
 ### Added
 
-- **FFT catalog (planned):** fft_1d_fixed for #18.
+- **tier_db_token_efficiency:** Agent query-surface token audit (18 scenarios, SQL vs liq vs ORM/BaaS/GraphQL), `run-db-token-efficiency-bench.sh`, manifest `data/latest/tier-db-token-efficiency.json` — [2026-05-25-tier-db-token-efficiency.md](docs/release-notes/2026-05-25-tier-db-token-efficiency.md).
 
 ### Added
 

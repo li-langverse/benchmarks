@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TierDbTokenEfficiencyIngestManifest",
+  "description": "CI ingest artifact for tier_db_token_efficiency (LLM query surface token counts).",
+  "type": "object",
+  "required": ["generated_at", "tier", "profile", "status", "encoder", "scenarios", "summary"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "tier": { "const": "tier_db_token_efficiency" },
+    "profile": { "enum": ["ci", "nightly"] },
+    "status": { "enum": ["measured", "stub", "unknown"] },
+    "metric": { "const": "tokens" },
+    "encoder": {
+      "type": "string",
+      "description": "tiktoken_cl100k_base or heuristic_words_x_1.3"
+    },
+    "baseline_surface": { "const": "sql" },
+    "sources": { "type": "object" },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "scenario_count": { "type": "integer" },
+        "sql_tokens_total": { "type": "integer" },
+        "liq_tokens_total": { "type": "integer" },
+        "liq_vs_sql_delta_pct_total": { "type": "number" },
+        "liq_vs_sql_compression_total": { "type": "number" },
+        "median_tokens_by_surface": { "type": "object" }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "surfaces"],
+        "properties": {
+          "id": { "type": "string" },
+          "domain": { "type": "string" },
+          "intent": { "type": "string" },
+          "safety_note": { "type": "string" },
+          "surfaces": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["chars", "tokens"],
+              "properties": {
+                "chars": { "type": "integer" },
+                "tokens": { "type": "integer" },
+                "text_preview": { "type": "string" }
+              }
+            }
+          },
+          "vs_sql": { "type": "object" }
+        }
+      }
+    },
+    "ci_ingest": { "type": "object" }
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "version": "1",
+  "schema": "registry-v1 + control-plane (lidb 001/002)",
+  "surfaces": ["sql", "liq", "prisma", "drizzle", "supabase_js", "postgrest", "graphql"],
+  "notes": {
+    "normalization": "Single-line strings; no trailing semicolon unless idiomatic for SQL.",
+    "liq_join": "v0 liq has no JOIN; liq_2step counts two compile units (documented in scenario notes).",
+    "vector": "Stub — pgvector SQL vs proposed liq extension (PH-DB-7)."
+  },
+  "scenarios": [
+    {
+      "id": "list_packages_limit_20",
+      "domain": "registry",
+      "intent": "List packages, limit 20, stable order",
+      "safety_note": "All surfaces parameterized or builder-typed; raw SQL needs allowlist validator.",
+      "queries": {
+        "sql": "SELECT id, name, description, created_at FROM public.packages ORDER BY name ASC LIMIT 20",
+        "liq": "read packages { id, name, description, created_at } order name asc limit 20",
+        "prisma": "await prisma.packages.findMany({ take: 20, orderBy: { name: 'asc' }, select: { id: true, name: true, description: true, createdAt: true } })",
+        "drizzle": "db.select({ id: packages.id, name: packages.name, description: packages.description, createdAt: packages.createdAt }).from(packages).orderBy(asc(packages.name)).limit(20)",
+        "supabase_js": "const { data } = await supabase.from('packages').select('id,name,description,created_at').order('name').limit(20)",
+        "postgrest": "/rest/v1/packages?select=id,name,description,created_at&order=name.asc&limit=20",
+        "graphql": "query { packages(limit: 20, order_by: { name: asc }) { id name description created_at } }"
+      }
+    },
+    {
+      "id": "get_package_version_by_name_version",
+      "domain": "registry",
+      "intent": "Resolve package by name + semver version (single row)",
+      "safety_note": "Name/version must be bound params, not interpolated.",
+      "queries": {
+        "sql": "SELECT pv.id, pv.version, pv.tree_digest, pv.proof_digest, pv.coverage_pct FROM public.package_versions pv INNER JOIN public.packages p ON p.id = pv.package_id WHERE p.name = $1 AND pv.version = $2 LIMIT 1",
+        "liq": "read package_versions { id, version, tree_digest, proof_digest, coverage_pct } where package_id = $pkg and version = $ver limit 1",
+        "prisma": "await prisma.packageVersion.findFirst({ where: { version: ver, package: { name: pkgName } }, select: { id: true, version: true, treeDigest: true, proofDigest: true, coveragePct: true } })",
+        "drizzle": "db.select({ id: packageVersions.id, version: packageVersions.version, treeDigest: packageVersions.treeDigest }).from(packageVersions).innerJoin(packages, eq(packages.id, packageVersions.packageId)).where(and(eq(packages.name, pkgName), eq(packageVersions.version, ver))).limit(1)",
+        "supabase_js": "const { data } = await supabase.from('package_versions').select('id,version,tree_digest,proof_digest,coverage_pct,packages!inner(name)').eq('packages.name', pkgName).eq('version', ver).limit(1).maybeSingle()",
+        "postgrest": "/rest/v1/package_versions?select=id,version,tree_digest,proof_digest,coverage_pct,packages!inner(name)&packages.name=eq.{pkgName}&version=eq.{ver}&limit=1",
+        "graphql": "query($n:String!,$v:String!){ package_versions(where:{package:{name:{_eq:$n}},version:{_eq:$v}},limit:1){ id version tree_digest proof_digest coverage_pct } }"
+      }
+    },
+    {
+      "id": "insert_publish_with_attestation",
+      "domain": "registry",
+      "intent": "Insert package_version + attestation row (publish gate fields)",
+      "safety_note": "liq/ORM bind values; SQL uses $n placeholders only.",
+      "queries": {
+        "sql": "WITH ins AS (INSERT INTO public.package_versions (package_id, version, tree_digest, proof_digest, coverage_pct, publisher_id) VALUES ($1,$2,$3,$4,$5,$6) RETURNING id) INSERT INTO public.attestations (package_version_id, kind, digest, signature) SELECT id, $7, $8, $9 FROM ins RETURNING id",
+        "liq": "insert package_versions { package_id: $pkg, version: $ver, tree_digest: $tree, proof_digest: $proof, coverage_pct: $cov, publisher_id: $pub }",
+        "prisma": "await prisma.$transaction([prisma.packageVersion.create({ data: { packageId, version, treeDigest, proofDigest, coveragePct, publisherId } }), prisma.attestation.create({ data: { packageVersionId, kind, digest, signature } })])",
+        "drizzle": "db.transaction(async (tx) => { const [pv] = await tx.insert(packageVersions).values({ packageId, version, treeDigest, proofDigest, coveragePct, publisherId }).returning({ id: packageVersions.id }); await tx.insert(attestations).values({ packageVersionId: pv.id, kind, digest, signature }); })",
+        "supabase_js": "const { data: pv } = await supabase.from('package_versions').insert({ package_id, version, tree_digest, proof_digest, coverage_pct, publisher_id }).select('id').single(); await supabase.from('attestations').insert({ package_version_id: pv.id, kind, digest, signature })",
+        "postgrest": "POST /rest/v1/package_versions + POST /rest/v1/attestations (two round-trips; bodies JSON)",
+        "graphql": "mutation($v:package_versions_insert_input!,$a:attestations_insert_input!){ insert_package_versions_one(object:$v){ id } insert_attestations_one(object:$a){ id } }"
+      }
+    },
+    {
+      "id": "join_publisher_package",
+      "domain": "registry",
+      "intent": "Multi-table join publisher + package by package name",
+      "safety_note": "liq v0: no JOIN — liq_2step is honest agent workaround.",
+      "queries": {
+        "sql": "SELECT pkg.id, pkg.name, pub.id AS publisher_id, pub.name AS publisher_name FROM public.packages pkg INNER JOIN public.publishers pub ON pub.id = pkg.publisher_id WHERE pkg.name = $1 LIMIT 1",
+        "liq": "read packages { id, name, publisher_id } where name = $pkg limit 1",
+        "liq_2step": "read packages { id, name, publisher_id } where name = $pkg limit 1 | read publishers { id, name } where id = $pub limit 1",
+        "prisma": "await prisma.package.findFirst({ where: { name: pkgName }, include: { publisher: { select: { id: true, name: true } } } })",
+        "drizzle": "db.select({ packageId: packages.id, packageName: packages.name, publisherName: publishers.name }).from(packages).innerJoin(publishers, eq(publishers.id, packages.publisherId)).where(eq(packages.name, pkgName)).limit(1)",
+        "supabase_js": "await supabase.from('packages').select('id,name,publisher_id,publishers(id,name)').eq('name', pkgName).limit(1).maybeSingle()",
+        "postgrest": "/rest/v1/packages?select=id,name,publisher_id,publishers(id,name)&name=eq.{pkgName}&limit=1",
+        "graphql": "query($n:String!){ packages(where:{name:{_eq:$n}},limit:1){ id name publisher { id name } } }"
+      }
+    },
+    {
+      "id": "filter_tenant_publisher_rls",
+      "domain": "registry",
+      "intent": "Tenant-scoped read under RLS (JWT publisher claim)",
+      "safety_note": "RLS enforced server-side; client must not bypass with raw SQL strings.",
+      "queries": {
+        "sql": "SELECT id, name, created_at FROM public.publishers WHERE id = current_setting('request.jwt.claim.publisher_id', true)::uuid ORDER BY created_at DESC LIMIT 20",
+        "liq": "read publishers { id, name, created_at } where id = $publisher_id order created_at desc limit 20",
+        "prisma": "await prisma.publisher.findMany({ where: { id: session.publisherId }, orderBy: { createdAt: 'desc' }, take: 20, select: { id: true, name: true, createdAt: true } })",
+        "drizzle": "db.select({ id: publishers.id, name: publishers.name, createdAt: publishers.createdAt }).from(publishers).where(eq(publishers.id, publisherId)).orderBy(desc(publishers.createdAt)).limit(20)",
+        "supabase_js": "const { data } = await supabase.from('publishers').select('id,name,created_at').order('created_at', { ascending: false }).limit(20)",
+        "postgrest": "/rest/v1/publishers?select=id,name,created_at&order=created_at.desc&limit=20",
+        "graphql": "query { publishers(limit: 20, order_by: { created_at: desc }) { id name created_at } }"
+      }
+    },
+    {
+      "id": "agent_runs_order_started_at",
+      "domain": "control_plane",
+      "intent": "List agent_runs ordered by started_at (agent dashboard)",
+      "safety_note": "Prefer liq MCP allowlist over free-form SQL for agents.",
+      "queries": {
+        "sql": "SELECT run_id, agent_id, status, started_at, briefing_hash FROM public.agent_runs ORDER BY started_at DESC NULLS LAST LIMIT 20",
+        "liq": "read agent_runs { run_id, agent_id, status, started_at, briefing_hash } order started_at desc limit 20",
+        "prisma": "await prisma.agentRun.findMany({ orderBy: { startedAt: 'desc' }, take: 20, select: { runId: true, agentId: true, status: true, startedAt: true, briefingHash: true } })",
+        "drizzle": "db.select({ runId: agentRuns.runId, agentId: agentRuns.agentId, status: agentRuns.status, startedAt: agentRuns.startedAt }).from(agentRuns).orderBy(desc(agentRuns.startedAt)).limit(20)",
+        "supabase_js": "const { data } = await supabase.from('agent_runs').select('run_id,agent_id,status,started_at,briefing_hash').order('started_at', { ascending: false, nullsFirst: false }).limit(20)",
+        "postgrest": "/rest/v1/agent_runs?select=run_id,agent_id,status,started_at,briefing_hash&order=started_at.desc.nullslast&limit=20",
+        "graphql": "query { agent_runs(limit: 20, order_by: { started_at: desc_nulls_last }) { run_id agent_id status started_at briefing_hash } }"
+      }
+    },
+    {
+      "id": "vector_search_stub",
+      "domain": "vector",
+      "intent": "Top-K ANN on embedding column (registry artifact index stub)",
+      "safety_note": "Vector literal must be param/array bind; never string-concat SQL.",
+      "queries": {
+        "sql": "SELECT id, package_version_id, kind FROM public.attestations ORDER BY embedding <=> $1::vector LIMIT 10",
+        "liq": "read attestations { id, package_version_id, kind } similar $vec limit 10",
+        "prisma": "await prisma.$queryRaw`SELECT id, package_version_id, kind FROM attestations ORDER BY embedding <=> ${vec}::vector LIMIT 10`",
+        "drizzle": "sql`SELECT id, package_version_id, kind FROM attestations ORDER BY embedding <=> ${vec}::vector LIMIT 10`",
+        "supabase_js": "await supabase.rpc('match_attestations', { query_embedding: vec, match_count: 10 })",
+        "postgrest": "POST /rest/v1/rpc/match_attestations",
+        "graphql": "query($v:[Float!]!){ match_attestations(args:{vec:$v,limit:10}){ id package_version_id kind distance } }"
+      }
+    },
+    {
+      "id": "yank_package",
+      "domain": "registry",
+      "intent": "Record yank for a package version",
+      "safety_note": "Mutations require capability token in lidb; agents use liq insert not raw SQL.",
+      "queries": {
+        "sql": "INSERT INTO public.yanks (package_version_id, reason, yanked_by) VALUES ($1, $2, $3) ON CONFLICT (package_version_id) DO UPDATE SET reason = EXCLUDED.reason, yanked_at = now() RETURNING id",
+        "liq": "insert yanks { package_version_id: $pvid, reason: $reason, yanked_by: $pub }",
+        "prisma": "await prisma.yank.upsert({ where: { packageVersionId }, create: { packageVersionId, reason, yankedBy }, update: { reason } })",
+        "drizzle": "db.insert(yanks).values({ packageVersionId, reason, yankedBy }).onConflictDoUpdate({ target: yanks.packageVersionId, set: { reason } }).returning({ id: yanks.id })",
+        "supabase_js": "await supabase.from('yanks').upsert({ package_version_id, reason, yanked_by })",
+        "postgrest": "POST /rest/v1/yanks?on_conflict=package_version_id",
+        "graphql": "mutation($row:yanks_insert_input!){ insert_yanks_one(object:$row, on_conflict:{constraint:yanks_package_version_id_key,update_columns:[reason]}){ id } }"
+      }
+    },
+    {
+      "id": "schema_introspection_mcp",
+      "domain": "mcp",
+      "intent": "Agent schema snapshot for tool planning (compact catalog)",
+      "safety_note": "MCP returns fixed markdown/JSON; not user-composed SQL.",
+      "queries": {
+        "sql": "SELECT table_name, column_name, data_type FROM information_schema.columns WHERE table_schema = 'public' AND table_name = ANY($1) ORDER BY table_name, ordinal_position",
+        "liq": "schema_snapshot tables=agent_runs,packages,package_versions",
+        "prisma": "const cols = await prisma.$queryRaw`SELECT column_name, data_type FROM information_schema.columns WHERE table_name = ${table}`",
+        "drizzle": "import { getTableColumns } from 'drizzle-orm'; getTableColumns(agentRuns)",
+        "supabase_js": "const { data } = await supabase.from('agent_runs').select('*').limit(0)",
+        "postgrest": "GET /rest/v1/?apikey=... (OpenAPI root) + HEAD /rest/v1/agent_runs",
+        "graphql": "query { __type(name: \"agent_runs\") { fields { name type { name kind } } } }"
+      }
+    },
+    {
+      "id": "bulk_read_pagination_cursor",
+      "domain": "registry",
+      "intent": "Keyset pagination on package_versions by (published_at, id)",
+      "safety_note": "Cursor values must be bound; opaque cursor encoding recommended.",
+      "queries": {
+        "sql": "SELECT id, package_id, version, published_at FROM public.package_versions WHERE (published_at, id) < ($1, $2) ORDER BY published_at DESC, id DESC LIMIT 50",
+        "liq": "read package_versions { id, package_id, version, published_at } where published_at < $cursor_ts and id < $cursor_id order published_at desc limit 50",
+        "prisma": "await prisma.packageVersion.findMany({ take: 50, cursor: { id: cursorId }, skip: 1, orderBy: [{ publishedAt: 'desc' }, { id: 'desc' }] })",
+        "drizzle": "db.select().from(packageVersions).where(or(lt(packageVersions.publishedAt, ts), and(eq(packageVersions.publishedAt, ts), lt(packageVersions.id, id)))).orderBy(desc(packageVersions.publishedAt)).limit(50)",
+        "supabase_js": "await supabase.from('package_versions').select('id,package_id,version,published_at').lt('published_at', cursorTs).order('published_at', { ascending: false }).limit(50)",
+        "postgrest": "/rest/v1/package_versions?select=id,package_id,version,published_at&published_at=lt.{cursorTs}&order=published_at.desc,id.desc&limit=50",
+        "graphql": "query($ts:timestamptz!,$id:uuid!){ package_versions(where:{_or:[{published_at:{_lt:$ts}},{published_at:{_eq:$ts},id:{_lt:$id}}]},order_by:[{published_at:desc},{id:desc}],limit:50){ id package_id version published_at } }"
+      }
+    },
+    {
+      "id": "list_package_versions_for_package",
+      "domain": "registry",
+      "intent": "All versions for one package id",
+      "safety_note": "package_id UUID param only.",
+      "queries": {
+        "sql": "SELECT id, version, published_at, yanked FROM public.package_versions WHERE package_id = $1 ORDER BY published_at DESC LIMIT 100",
+        "liq": "read package_versions { id, version, published_at, yanked } where package_id = $pkg order published_at desc limit 100",
+        "prisma": "await prisma.packageVersion.findMany({ where: { packageId }, orderBy: { publishedAt: 'desc' }, take: 100 })",
+        "drizzle": "db.select().from(packageVersions).where(eq(packageVersions.packageId, packageId)).orderBy(desc(packageVersions.publishedAt)).limit(100)",
+        "supabase_js": "await supabase.from('package_versions').select('id,version,published_at,yanked').eq('package_id', packageId).order('published_at', { ascending: false }).limit(100)",
+        "postgrest": "/rest/v1/package_versions?select=id,version,published_at,yanked&package_id=eq.{packageId}&order=published_at.desc&limit=100",
+        "graphql": "query($pid:uuid!){ package_versions(where:{package_id:{_eq:$pid}},order_by:{published_at:desc},limit:100){ id version published_at yanked } }"
+      }
+    },
+    {
+      "id": "update_publisher_display_name",
+      "domain": "registry",
+      "intent": "Update publisher row with returning",
+      "safety_note": "liq update requires filter; prevents table-wide updates.",
+      "queries": {
+        "sql": "UPDATE public.publishers SET display_name = $1 WHERE id = $2 RETURNING id, display_name",
+        "liq": "update publishers set display_name = $name where id = $id returning id, display_name",
+        "prisma": "await prisma.publisher.update({ where: { id }, data: { displayName: name }, select: { id: true, displayName: true } })",
+        "drizzle": "db.update(publishers).set({ displayName: name }).where(eq(publishers.id, id)).returning({ id: publishers.id, displayName: publishers.displayName })",
+        "supabase_js": "await supabase.from('publishers').update({ display_name: name }).eq('id', id).select('id,display_name').single()",
+        "postgrest": "PATCH /rest/v1/publishers?id=eq.{id}",
+        "graphql": "mutation($id:uuid!,$n:String!){ update_publishers_by_pk(pk_columns:{id:$id},_set:{display_name:$n}){ id display_name } }"
+      }
+    },
+    {
+      "id": "blocklist_lookup_by_name",
+      "domain": "registry",
+      "intent": "Check blocklist for package name",
+      "safety_note": "Pattern must not be built from unescaped user regex.",
+      "queries": {
+        "sql": "SELECT id, package_name, tree_digest, reason FROM public.blocklist WHERE package_name = $1 LIMIT 5",
+        "liq": "read blocklist { id, package_name, tree_digest, reason } where package_name = $name limit 5",
+        "prisma": "await prisma.blocklist.findMany({ where: { packageName: name }, take: 5 })",
+        "drizzle": "db.select().from(blocklist).where(eq(blocklist.packageName, name)).limit(5)",
+        "supabase_js": "await supabase.from('blocklist').select('id,package_name,tree_digest,reason').eq('package_name', name).limit(5)",
+        "postgrest": "/rest/v1/blocklist?select=id,package_name,tree_digest,reason&package_name=eq.{name}&limit=5",
+        "graphql": "query($n:String!){ blocklist(where:{package_name:{_eq:$n}},limit:5){ id package_name tree_digest reason } }"
+      }
+    },
+    {
+      "id": "count_agent_runs_by_status",
+      "domain": "control_plane",
+      "intent": "Aggregate count grouped by status",
+      "safety_note": "liq v0 lacks GROUP BY — agents use SQL capability or MCP aggregate tool.",
+      "queries": {
+        "sql": "SELECT status, count(*)::bigint AS n FROM public.agent_runs GROUP BY status ORDER BY n DESC",
+        "liq": "read agent_runs { status } limit 500",
+        "prisma": "await prisma.agentRun.groupBy({ by: ['status'], _count: { _all: true }, orderBy: { _count: { _all: 'desc' } } })",
+        "drizzle": "db.select({ status: agentRuns.status, n: sql`count(*)::bigint` }).from(agentRuns).groupBy(agentRuns.status).orderBy(desc(sql`count(*)`))",
+        "supabase_js": "await supabase.from('agent_runs').select('status').limit(0)",
+        "postgrest": "/rest/v1/agent_runs?select=status",
+        "graphql": "query { agent_runs_aggregate { group_by { status } aggregate { count } } }"
+      }
+    },
+    {
+      "id": "insert_agent_run_stub",
+      "domain": "control_plane",
+      "intent": "Insert new agent_run row at start of run",
+      "safety_note": "Control-plane writes via service role only in production.",
+      "queries": {
+        "sql": "INSERT INTO public.agent_runs (run_id, agent_id, status, started_at, briefing_hash) VALUES ($1, $2, $3, now(), $4) RETURNING id, run_id",
+        "liq": "insert agent_runs { run_id: $run_id, agent_id: $agent_id, status: $status, briefing_hash: $hash }",
+        "prisma": "await prisma.agentRun.create({ data: { runId, agentId, status, briefingHash, startedAt: new Date() }, select: { id: true, runId: true } })",
+        "drizzle": "db.insert(agentRuns).values({ runId, agentId, status, briefingHash, startedAt: sql`now()` }).returning({ id: agentRuns.id, runId: agentRuns.runId })",
+        "supabase_js": "await supabase.from('agent_runs').insert({ run_id, agent_id, status, briefing_hash }).select('id,run_id').single()",
+        "postgrest": "POST /rest/v1/agent_runs",
+        "graphql": "mutation($row:agent_runs_insert_input!){ insert_agent_runs_one(object:$row){ id run_id } }"
+      }
+    },
+    {
+      "id": "read_attestations_for_version",
+      "domain": "registry",
+      "intent": "List attestations for a package_version_id",
+      "safety_note": "FK filter via param only.",
+      "queries": {
+        "sql": "SELECT id, kind, digest, created_at FROM public.attestations WHERE package_version_id = $1 ORDER BY created_at ASC",
+        "liq": "read attestations { id, kind, digest, created_at } where package_version_id = $pvid order created_at asc",
+        "prisma": "await prisma.attestation.findMany({ where: { packageVersionId }, orderBy: { createdAt: 'asc' } })",
+        "drizzle": "db.select().from(attestations).where(eq(attestations.packageVersionId, pvid)).orderBy(asc(attestations.createdAt))",
+        "supabase_js": "await supabase.from('attestations').select('id,kind,digest,created_at').eq('package_version_id', pvid).order('created_at')",
+        "postgrest": "/rest/v1/attestations?select=id,kind,digest,created_at&package_version_id=eq.{pvid}&order=created_at.asc",
+        "graphql": "query($pvid:uuid!){ attestations(where:{package_version_id:{_eq:$pvid}},order_by:{created_at:asc}){ id kind digest created_at } }"
+      }
+    },
+    {
+      "id": "delete_yanked_flag_update",
+      "domain": "registry",
+      "intent": "Soft yank via boolean on package_versions (alternative to yanks table)",
+      "safety_note": "Prefer dedicated yanks table + liq insert for audit trail.",
+      "queries": {
+        "sql": "UPDATE public.package_versions SET yanked = true WHERE id = $1 AND publisher_id = $2 RETURNING id, version, yanked",
+        "liq": "update package_versions set yanked = true where id = $pvid and publisher_id = $pub returning id, version, yanked",
+        "prisma": "await prisma.packageVersion.update({ where: { id, publisherId }, data: { yanked: true } })",
+        "drizzle": "db.update(packageVersions).set({ yanked: true }).where(and(eq(packageVersions.id, pvid), eq(packageVersions.publisherId, pub))).returning({ id: packageVersions.id, version: packageVersions.version, yanked: packageVersions.yanked })",
+        "supabase_js": "await supabase.from('package_versions').update({ yanked: true }).match({ id: pvid, publisher_id: pub }).select('id,version,yanked').single()",
+        "postgrest": "PATCH /rest/v1/package_versions?id=eq.{pvid}&publisher_id=eq.{pub}",
+        "graphql": "mutation($id:uuid!){ update_package_versions_by_pk(pk_columns:{id:$id},_set:{yanked:true}){ id version yanked } }"
+      }
+    },
+    {
+      "id": "describe_table_agent_runs_mcp",
+      "domain": "mcp",
+      "intent": "Single-table column listing for agent tool",
+      "safety_note": "Table name from allowlist enum, not free string.",
+      "queries": {
+        "sql": "SELECT column_name, data_type, is_nullable FROM information_schema.columns WHERE table_schema = 'public' AND table_name = 'agent_runs' ORDER BY ordinal_position",
+        "liq": "describe_table_liq agent_runs",
+        "prisma": "DMMF model AgentRun fields (generated client metadata, ~compact JSON)",
+        "drizzle": "getTableConfig(agentRuns) // column names + types",
+        "supabase_js": "await supabase.from('agent_runs').select('*').limit(1)",
+        "postgrest": "GET /rest/v1/agent_runs?limit=1&select=*",
+        "graphql": "query { __type(name: \"agent_runs\") { fields { name type { name } } } }"
+      }
+    }
+  ]
+}
