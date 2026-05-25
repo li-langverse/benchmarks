@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **Catalog expansion (algo_registry):** `scripts/catalog/sync-from-algo-registry.py`; catalog **45 → 169** rows; `summary.json` **35 → 169** rows; tier-2 harness gaps + dashboard tier **6** strip — [2026-05-26-expand-catalog-algorithms.md](docs/release-notes/2026-05-26-expand-catalog-algorithms.md).
+
+- **Dashboard diagram layout:** Algorithm×Facet IA doc, design-system link, `algorithm-facet-grid.tsx` types stub — [2026-05-25-dashboard-diagram-layout.md](docs/release-notes/2026-05-25-dashboard-diagram-layout.md).
+
+### Fixed
+
+- **Dashboard matrix tier filter:** `/matrix/?tier=N` from overview tier strip filters catalog rows; mobile header/main padding — [2026-05-25-dashboard-matrix-tier-filter.md](docs/release-notes/2026-05-25-dashboard-matrix-tier-filter.md).
+
+### Added
+
 - **SOTA / validity / OS reporting:** `summary.json` adds `sota_lang`, `ratio_vs_sota`, validity gate, `os`; ingest never labels Li as SOTA; dashboard-next honesty strip + bench drill-down — [2026-05-26-sota-validity-os-reporting.md](docs/release-notes/2026-05-26-sota-validity-os-reporting.md).
 
 - **Benchmark board ship:** dashboard-next nine-pillar bento, proof-posture ingest, release freshness banner, Pages copies `proof-posture.json` — [2026-05-25-benchmark-board-ship.md](docs/release-notes/2026-05-25-benchmark-board-ship.md).
