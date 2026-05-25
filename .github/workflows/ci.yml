@@ -13,8 +13,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lic
-          # Pin: lic main check_cmd uses resource_options_invalid() before symbol exists
-          ref: c0977131
           path: lic
 
       - uses: actions/checkout@v4

@@ -42,8 +42,8 @@ python3 scripts/check-dashboard-invariants.py
 
 ## CI wiring
 
-- **Job:** `ingest-smoke` → step `Dashboard invariants` runs after `summary.json` exists.
-- **Job:** `dashboard-build` → step `Dashboard static routes` runs after Next build + JSON copy.
+- **Job:** `dashboard-build` → `Dashboard invariants` on **committed** `data/latest/summary.json` (catalog parity); then Next build; then `Dashboard static routes`.
+- **Job:** `ingest-smoke` → ingest + compare gate only (measured CSV may be fewer rows than catalog).
 
 ## When an invariant fails
 
