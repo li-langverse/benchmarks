@@ -1,7 +1,8 @@
 {
-  "generated_at": "2026-05-25T14:09Z",
+  "generated_at": "2026-05-25T14:21Z",
   "roots": {
     "lic": "/Users/julian/Documents/coding-projects/lic",
+    "lis": "/Users/julian/Documents/coding-projects/lis",
     "benchmarks": "/Users/julian/Documents/coding-projects/benchmarks",
     "roadmap": "/Users/julian/Documents/coding-projects/roadmap"
   },
@@ -12,8 +13,8 @@
     "stale_spec_checklists": 0,
     "provability_partial": 14,
     "provability_missing": 4,
-    "catalog_gaps": 3,
-    "total_findings": 35,
+    "catalog_gaps": 0,
+    "total_findings": 32,
     "tracker_phases_complete": 31
   },
   "master_plan_open": [
@@ -202,20 +203,7 @@
       "**G-authz**"
     ]
   },
-  "catalog_gaps": [
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=lic_compile_smoke path missing under LIC_ROOT: unknown"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness"
-    },
-    {
-      "source": "benchmarks:catalog.toml",
-      "item": "catalog id=rate_limit_429 path missing under LIC_ROOT: packages/li-httpd/examples/rate_limit_static.toml"
-    }
-  ],
+  "catalog_gaps": [],
   "implementation_signals": [
     {
       "source": "lic:physics",
@@ -233,15 +221,6 @@
       "action": "Update provability-gaps.md when closing compiler work",
       "partial": 14,
       "missing": 4
-    },
-    {
-      "priority": "P2",
-      "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
-      "benchmarks": [
-        "catalog id=lic_compile_smoke path missing under LIC_ROOT: unknown",
-        "catalog id=tier0_stability path missing under LIC_ROOT: benchmarks/tier0_correctness",
-        "catalog id=rate_limit_429 path missing under LIC_ROOT: packages/li-httpd/examples/rate_limit_static.toml"
-      ]
     }
   ]
 }

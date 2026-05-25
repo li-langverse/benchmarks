@@ -6,11 +6,11 @@
 [[benchmark]]
 id = "tier0_stability"
 category = "correctness"
-pillar = "correctness"
+pillar = "proofs"
 package = "lic"
 tier = 0
 repo = "lic"
-path = "benchmarks/tier0_correctness"
+path = "li-tests/benchmarks/tier0_correctness"
 metric = "stability"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-5b"]
@@ -2297,10 +2297,10 @@ ph_ids = ["PH-H"]
 id = "rate_limit_429"
 category = "http"
 pillar = "server"
-package = "lic"
+package = "lis"
 tier = 5
-repo = "lic"
-path = "packages/li-httpd/examples/rate_limit_static.toml"
+repo = "benchmarks"
+path = "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429"
 metric = "verify_pass"
 threshold_ratio_cpp = 1.0
 compare_oracle = "li"
