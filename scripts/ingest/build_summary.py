@@ -250,6 +250,40 @@ def ratio_li_vs_ref(
     return ratio
 
 
+def relative_perf_vs_sota(
+    value: float | None,
+    sota_val: float | None,
+    *,
+    lower_is_better: bool,
+) -> float | None:
+    """Relative speed vs best competitor — SOTA = 1.0, higher is better."""
+    if value is None or sota_val is None or value <= 0 or sota_val <= 0:
+        return None
+    if lower_is_better:
+        return sota_val / value
+    return value / sota_val
+
+
+def enrich_series_relative_perf(
+    series: list[dict],
+    sota_lang: str | None,
+    sota_val: float | None,
+    *,
+    lower_is_better: bool,
+) -> None:
+    """Attach relative_perf to each series point (SOTA lang pinned at 1.0)."""
+    for s in series:
+        rel = relative_perf_vs_sota(
+            s.get("value"),
+            sota_val,
+            lower_is_better=lower_is_better,
+        )
+        if rel is not None:
+            s["relative_perf"] = round(rel, 4)
+        if sota_lang and s.get("lang") == sota_lang:
+            s["relative_perf"] = 1.0
+
+
 def load_stability_index(stability_path: Path) -> dict[str, dict[str, bool]]:
     index: dict[str, dict[str, bool]] = defaultdict(dict)
     for r in parse_csv(stability_path):
@@ -276,7 +310,6 @@ def li_rows_for_validity(bench_rows: list[dict], variant: str | None) -> list[di
         return li
     preferred = [r for r in li if (r.get("variant") or "") == variant]
     return preferred if preferred else li
-
 
 def validity_for_benchmark(
     bench_id: str,
@@ -603,7 +636,12 @@ def build_perf_chart(
     lower = metric_lower_is_better(metric)
     ratio = ratio_li_vs_ref(li_val, ref_val, metric=metric, lower_is_better=lower)
     sota_lang, sota_val = compute_sota(series, lower_is_better=lower)
-    ratio_sota = ratio_li_vs_ref(li_val, sota_val, metric=metric, lower_is_better=lower)
+    enrich_series_relative_perf(
+        series, sota_lang, sota_val, lower_is_better=lower
+    )
+    ratio_sota = relative_perf_vs_sota(
+        li_val, sota_val, lower_is_better=lower
+    )
     threshold = float(cfg.get("threshold_ratio_cpp", 1.2))
     perf_st = status_for_ratio(ratio, threshold)
     st = apply_validity_gate(perf_st, validity_status)
@@ -872,6 +910,7 @@ def main() -> int:
         },
         "reporting": {
             "sota_policy": "best_competitor_lang_excludes_li",
+            "relative_perf_higher_is_better": True,
             "validity_required_default": bool(
                 catalog_defaults.get("validity_required", True)
             ),

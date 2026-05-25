@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { HonestyCallout } from "@/components/bench/honesty-callout";
 import { LangsTable } from "@/components/bench/langs-table";
+import { PerfRelativeBars } from "@/components/bench/perf-relative-bars";
 import { OsTable } from "@/components/bench/os-table";
 import { PerfNotClaimable } from "@/components/bench/perf-not-claimable";
 import { ValidityPanel } from "@/components/bench/validity-panel";
@@ -10,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { getLangSeries } from "@/lib/bench-series";
 import { deltasForBenchmark, loadHistoryIndex } from "@/lib/history";
 import { githubTreeUrl } from "@/lib/github";
+import { isPerfClaimable } from "@/lib/validity";
 import { findRow, loadSummary } from "@/lib/summary";
 
 type PageProps = { params: Promise<{ id: string }> };
@@ -27,6 +29,11 @@ export default async function BenchPage({ params }: PageProps) {
   const sourceUrl = githubTreeUrl(row.repo, row.path);
   const phText = row.ph_ids.length > 0 ? row.ph_ids.join(", ") : "—";
   const deltas = deltasForBenchmark(loadHistoryIndex(), id);
+  const lowerIsBetter =
+    row.metric === "wall_time" ||
+    row.metric === "latency" ||
+    row.metric === "latency_p95";
+  const perfClaimable = isPerfClaimable(row);
 
   return (
     <main>
@@ -105,15 +112,18 @@ export default async function BenchPage({ params }: PageProps) {
             {row.sota_lang ?? "—"}
             {row.sota_value != null ? ` (${row.sota_value} ${row.unit ?? ""})` : ""}
           </dd>
-          <dt>Ratio vs best competitor</dt>
+          <dt>Li relative speed vs SOTA</dt>
           <dd>
-            {row.ratio_vs_sota != null ? `${row.ratio_vs_sota.toFixed(4)}×` : "—"}
-            {row.sota_lang ? (
-              <span className="mono" style={{ color: "var(--muted)" }}>
-                {" "}
-                vs <code>{row.sota_lang}</code>
-              </span>
-            ) : null}
+            {row.ratio_vs_sota != null ? (
+              <>
+                {row.ratio_vs_sota.toFixed(3)}{" "}
+                <span className="mono" style={{ color: "var(--muted)" }}>
+                  (1.0 = <code>{row.sota_lang ?? "best competitor"}</code> speed)
+                </span>
+              </>
+            ) : (
+              "—"
+            )}
           </dd>
           <dt>Validity</dt>
           <dd>
@@ -144,7 +154,17 @@ export default async function BenchPage({ params }: PageProps) {
         </p>
 
         <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
-          Language series
+          Performance vs best competitor
+        </h3>
+        <PerfRelativeBars
+          series={series}
+          sotaLang={row.sota_lang}
+          lowerIsBetter={lowerIsBetter}
+          claimable={perfClaimable}
+        />
+
+        <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
+          Absolute measurements
         </h3>
         <LangsTable series={series} metric={row.metric} />
         <OsTable row={row} series={series} />

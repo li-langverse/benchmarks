@@ -31,7 +31,8 @@ export function perfNotClaimableReason(row: SummaryRow): string | null {
 export function formatRatioVsSota(row: SummaryRow): string {
   if (row.ratio_vs_sota == null) return "—";
   const ref = row.sota_lang ?? "competitor";
-  return `${row.ratio_vs_sota.toFixed(4)}× vs ${ref}`;
+  const pct = (row.ratio_vs_sota * 100).toFixed(1);
+  return `${row.ratio_vs_sota.toFixed(3)} (${pct}% of ${ref} speed)`;
 }
 
 export type PillarPerfCounts = {

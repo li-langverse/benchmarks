@@ -7,8 +7,9 @@ The [public dashboard](https://li-langverse.github.io/benchmarks/) and `data/lat
 | Field | Meaning |
 |-------|---------|
 | `ratio_vs_cpp` / `ratio_vs_reference` | Li vs catalog `compare_oracle` (usually `cpp`; tier-5 HTTP uses `nginx`; database uses `postgres`). Drives **green/yellow/red** against `threshold_ratio_cpp`. |
-| `ratio_vs_sota` | Li vs **best competitor** in the CSV series (`sota_lang`; Li excluded). Informational — not the threshold oracle. |
-| `sota_lang` | Competitor language with the best metric in the row set. **Never `li`.** |
+| `ratio_vs_sota` | Li **relative speed** vs best competitor (`sota_lang`): **1.0 = SOTA speed**, higher is better (e.g. `0.85` = 85% of SOTA). Diagram bars use the same scale; not the threshold oracle. |
+| `sota_lang` | Competitor language with the best metric in the row set. **Never `li`.** Diagram pins this lang at **1.0**. |
+| `series[].relative_perf` | Per-language relative speed vs `sota_lang` (SOTA point = 1.0). |
 
 Ingest policy: `scripts/ingest/build_summary.py` — `reporting.sota_policy = best_competitor_lang_excludes_li`.
 
