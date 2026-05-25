@@ -1,7 +1,7 @@
 # Benchmark dashboard ship status
 
-**Updated:** 2026-05-26  
-**Integration PR:** [#85](https://github.com/li-langverse/benchmarks/pull/85) — **merged** to `main` (`b87e6b3`)  
+**Updated:** 2026-05-26 (post conflict resolution)  
+**Integration PR:** [#85](https://github.com/li-langverse/benchmarks/pull/85) — **merged** to `main` (`185e8e7` after [#87](https://github.com/li-langverse/benchmarks/pull/87) SHIP-STATUS doc)  
 **Live:** https://li-langverse.github.io/benchmarks/
 
 ## Merge status
@@ -9,55 +9,54 @@
 | PR | Role | Status |
 |----|------|--------|
 | [#85](https://github.com/li-langverse/benchmarks/pull/85) | Integration (catalog 169, dashboard-next, summary.json, CI gates) | **Merged** |
-| [#79](https://github.com/li-langverse/benchmarks/pull/79)–[#82](https://github.com/li-langverse/benchmarks/pull/82) | Stack PRs (absorbed into #85) | Already merged individually before integration merge |
-| [#78](https://github.com/li-langverse/benchmarks/pull/78) | Demo video (docs) | Open — out of ship scope |
+| [#83](https://github.com/li-langverse/benchmarks/pull/83)–[#84](https://github.com/li-langverse/benchmarks/pull/84), [#81](https://github.com/li-langverse/benchmarks/pull/81), [#79](https://github.com/li-langverse/benchmarks/pull/79)–[#82](https://github.com/li-langverse/benchmarks/pull/82) | Catalog expand, size variants, SOTA, board stack | **Merged** (absorbed into #85 / main) |
+| [#86](https://github.com/li-langverse/benchmarks/pull/86) | LIC_ROOT + `fft_1d_fixed` planned row (WP-G) | **Open** — conflicts resolved 2026-05-26; CI pending |
+| [#78](https://github.com/li-langverse/benchmarks/pull/78) | Demo video (docs + `record-dashboard-demo.sh`) | **Open** — conflicts resolved 2026-05-26; CI pending |
 
-**Final CI on #85:** `ingest-smoke` ✅ · `dashboard-build` ✅ (includes invariants + static routes)
+**li-cursor-agents [#18](https://github.com/li-langverse/li-cursor-agents/pull/18):** CLEAN (no merge conflicts).
 
-## CI checks added
+## Conflicts resolved (2026-05-26)
 
-| Check name | Job | Command |
-|------------|-----|---------|
-| **Dashboard invariants** | `dashboard-build` | `python3 scripts/check-dashboard-invariants.py` |
-| **Dashboard static routes** | `dashboard-build` | `./scripts/check-dashboard-static-routes.sh` |
+| PR | Branch | Files | Resolution |
+|----|--------|-------|------------|
+| [#86](https://github.com/li-langverse/benchmarks/pull/86) | `chore/benchmarks-lic-root-catalog` | `catalog.toml`, `data/latest/plan-completion-audit.json`, `data/latest/summary.json` | **Union:** main’s 169-row ship catalog + size/SOTA fields; branch-only `fft_1d_fixed` (`catalog_lifecycle=planned`); regenerated `summary.json` (**170** rows) and plan audit |
+| [#78](https://github.com/li-langverse/benchmarks/pull/78) | `feat/demo-video` | `CHANGELOG.md` | **Union:** main CHANGELOG (already lists demo package); branch keeps demo docs/scripts |
 
-Existing: `summary-compare-gate.sh`, tier-db stub manifests, `ingest-smoke` lic build + ingest.
+Pushed with `--force-with-lease` after `git merge origin/main` (not rebase — preserves branch commits).
 
-## Live URL audit (post-merge)
+## CI checks
+
+| Check | Command |
+|-------|---------|
+| Dashboard invariants | `python3 scripts/check-dashboard-invariants.py` |
+| Dashboard static routes | `./scripts/check-dashboard-static-routes.sh` |
+| Dashboard build | `cd dashboard-next && npm ci && npm run build` |
+| Ingest smoke | Benchmarks CI `ingest-smoke` (lic build + ingest) |
+
+## Live URL audit (post-#85)
 
 | Check | Result |
 |-------|--------|
-| `latest/summary.json` row count | **PASS** — **169** rows (after Pages deploy) |
-| Overview “benchmarks” count | **PASS** — “169 of 169 benchmarks” |
-| `/matrix/` catalog table + Size filter | **PASS** — size pills + “159 of 159” filtered view (full catalog 169) |
-| `/bench/matmul_naive/` drill-down | **PASS** — validity gate, facet regions, lic path link |
-| Nav links (Overview, Matrix, Proofs, pillars) | **PASS** — sampled via browser |
+| `latest/summary.json` row count | **169** on Pages until #86 merges (**170** with `fft_1d_fixed` in repo) |
+| Overview “benchmarks” count | Matches committed `summary.json` |
+| `/matrix/` size filter | Size pills from `problem_size` / `size_label` / `base_id` |
+| `/bench/matmul_naive/` | Validity gate, facets, lic path when known |
 
-**Note:** Immediately after merge, CDN could still serve stale `summary.json` (35 rows); after **Deploy dashboard** workflow on `main`, live JSON matches repo.
+## Remaining gaps
 
-## Merged deliverables
-
-- `dashboard-next/` — facet matrix, SOTA/validity/OS honesty, nine pillars, proof posture
-- `data/latest/summary.json` — **169** rows committed
-- `catalog.toml` — **169** benchmarks (no `*_stub` package ids)
-- Docs: `ARCHITECTURE.md`, `INVARIANTS.md`, `coverage-gap-analysis.md`
-- Release notes: `2026-05-26-benchmark-ship-integration.md`
-
-## Open problems (human)
-
-1. **~109 `path=unknown` rows** — harness + CSV in **lic** before meaningful perf colors.
-2. **CI ingest vs dashboard artifact** — `ingest-smoke` may emit fewer measured rows; dashboard gates use **committed** `summary.json` (see `INVARIANTS.md`).
-3. **Memory facet** — RSS ingest not wired; UI stub only.
-4. **Demo video PR #78** — merge separately when ready.
+1. **~109 `path=unknown` rows** — algo_registry stubs; need **lic** harness + CSV before perf colors.
+2. **CI ingest vs dashboard artifact** — `ingest-smoke` may emit fewer measured rows; gates use **committed** `summary.json` ([INVARIANTS.md](./INVARIANTS.md)).
+3. **Memory facet** — RSS ingest not wired; dashboard UI stub only.
+4. **`fft_1d_fixed` harness** — catalog row planned in #86; implementation in **lic** (benchmarks #18).
+5. **PR #78** — docs/recording helper; merge after green CI (not ship-blocking).
+6. **PR #86** — merge after green CI; adds 170th catalog row + LIC_ROOT audit already on main.
 
 ## Verify locally
 
 ```bash
 python3 scripts/check-dashboard-invariants.py
+LIC_ROOT=../lic python3 scripts/plan-completion-audit.py
 cd dashboard-next && npm ci && npm run build
-mkdir -p out/latest && cp ../data/latest/{summary,release-index,benchmark-matrix,proof-posture}.json out/latest/ 2>/dev/null || true
-bash ../scripts/check-dashboard-static-routes.sh
-curl -sS https://li-langverse.github.io/benchmarks/latest/summary.json | python3 -c "import sys,json; print(len(json.load(sys.stdin)['rows']), 'rows')"
 ```
 
 ## Docs index
@@ -65,4 +64,3 @@ curl -sS https://li-langverse.github.io/benchmarks/latest/summary.json | python3
 - [ARCHITECTURE.md](./ARCHITECTURE.md)
 - [INVARIANTS.md](./INVARIANTS.md)
 - [coverage-gap-analysis.md](./coverage-gap-analysis.md)
-- [2026-05-26-benchmark-ship-integration.md](../release-notes/2026-05-26-benchmark-ship-integration.md)
