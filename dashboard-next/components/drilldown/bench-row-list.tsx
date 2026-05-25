@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { SummaryRow } from "@/lib/summary";
+import { isPerfClaimable, rowValidityStatus } from "@/lib/validity";
 
 type BenchRowListProps = {
   rows: SummaryRow[];
@@ -17,24 +18,43 @@ export function BenchRowList({ rows, emptyMessage }: BenchRowListProps) {
         <thead>
           <tr>
             <th>Benchmark</th>
+            <th>Size</th>
             <th>Tier</th>
             <th>Package</th>
+            <th>Validity</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
+          {rows.map((row) => {
+            const validity = rowValidityStatus(row);
+            const validityBadge =
+              validity === "pass" ? "green" : validity === "fail" ? "red" : "unknown";
+            return (
             <tr key={row.benchmark}>
               <td>
                 <Link href={`/bench/${row.benchmark}/`}>{row.benchmark}</Link>
               </td>
+              <td className="mono">
+                {row.size_label ?? row.problem_size ?? "—"}
+              </td>
               <td>{row.tier}</td>
               <td>{row.package ?? "—"}</td>
               <td>
+                <Badge status={validityBadge}>{validity}</Badge>
+              </td>
+              <td>
                 <Badge status={row.status} />
+                {!isPerfClaimable(row) && row.status === "green" ? (
+                  <span className="mono perf-muted" title="Green ratio but validity blocks claim">
+                    {" "}
+                    (unclaimable)
+                  </span>
+                ) : null}
               </td>
             </tr>
-          ))}
+          );
+          })}
         </tbody>
       </table>
     </div>

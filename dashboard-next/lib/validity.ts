@@ -1,0 +1,66 @@
+import type { SummaryRow } from "@/lib/summary";
+
+export type ValidityStatus = "pass" | "fail" | "unknown";
+
+export function rowValidityStatus(row: SummaryRow): ValidityStatus {
+  const v = row.validity_status;
+  if (v === "pass" || v === "fail" || v === "unknown") return v;
+  return "unknown";
+}
+
+/** Green wall-clock status is only claimable when the validity gate passes. */
+export function isPerfClaimable(row: SummaryRow): boolean {
+  return row.status === "green" && rowValidityStatus(row) === "pass";
+}
+
+export function perfNotClaimableReason(row: SummaryRow): string | null {
+  if (isPerfClaimable(row)) return null;
+  const v = rowValidityStatus(row);
+  if (v === "fail") {
+    return "Correctness/stability gate failed — throughput is not claimable.";
+  }
+  if (v === "unknown") {
+    return "Validity unknown — missing stability or harness pass signal.";
+  }
+  if (row.status !== "green") {
+    return `Perf status is ${row.status} — green ratio requires passing validity first.`;
+  }
+  return "Perf not claimable for this row.";
+}
+
+export function formatRatioVsSota(row: SummaryRow): string {
+  if (row.ratio_vs_sota == null) return "—";
+  const ref = row.sota_lang ?? "competitor";
+  return `${row.ratio_vs_sota.toFixed(4)}× vs ${ref}`;
+}
+
+export type PillarPerfCounts = {
+  claimable: number;
+  invalid: number;
+  unknown: number;
+  threshold: number;
+};
+
+export function pillarPerfCounts(rows: SummaryRow[], pillarId: string): PillarPerfCounts {
+  const out: PillarPerfCounts = { claimable: 0, invalid: 0, unknown: 0, threshold: 0 };
+  for (const row of rows) {
+    if (row.pillar !== pillarId) continue;
+    const v = rowValidityStatus(row);
+    if (v === "fail") {
+      out.invalid += 1;
+      continue;
+    }
+    if (v === "unknown") {
+      out.unknown += 1;
+      continue;
+    }
+    if (isPerfClaimable(row)) {
+      out.claimable += 1;
+    } else if (row.status === "red" || row.status === "yellow") {
+      out.threshold += 1;
+    } else {
+      out.unknown += 1;
+    }
+  }
+  return out;
+}

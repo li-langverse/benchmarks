@@ -6,6 +6,8 @@ Aggregated **benchmark status** for the Li org. Harnesses and sources stay in ea
 
 **Handbook:** [docs/handbook/README.md](docs/handbook/README.md) · [plan cross-links](docs/ecosystem/plan-cross-links.md) · [benchmark honesty](docs/honesty/benchmark-dashboard.md)
 
+**Dashboard architecture:** [docs/dashboard/ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md) · [invariants (CI)](docs/dashboard/INVARIANTS.md) · [coverage gaps](docs/dashboard/coverage-gap-analysis.md) · [design system](docs/dashboard/design-system.md)
+
 ## Quick start
 
 ```bash

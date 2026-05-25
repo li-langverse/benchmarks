@@ -23,6 +23,7 @@ export function LangsTable({ series, metric }: LangsTableProps) {
           <th scope="col">Value</th>
           <th scope="col">Unit</th>
           <th scope="col">Variant</th>
+          <th scope="col">OS</th>
         </tr>
       </thead>
       <tbody>
@@ -34,13 +35,14 @@ export function LangsTable({ series, metric }: LangsTableProps) {
             <td className="mono">{pt.value}</td>
             <td className="mono">{pt.unit || "—"}</td>
             <td className="mono">{pt.variant ?? "—"}</td>
+            <td className="mono">{pt.os ?? "—"}</td>
           </tr>
         ))}
       </tbody>
       {metric ? (
         <tfoot>
           <tr>
-            <td colSpan={4} className="mono" style={{ color: "var(--muted)" }}>
+            <td colSpan={5} className="mono" style={{ color: "var(--muted)" }}>
               Metric: {metric}
             </td>
           </tr>

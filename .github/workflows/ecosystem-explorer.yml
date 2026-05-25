@@ -22,11 +22,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lic
+          ref: dev
           path: lic
 
       - name: Run ecosystem explorer
         env:
-          LIC_ROOT: lic
+          LIC_ROOT: ${{ github.workspace }}/lic
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ARGS=()

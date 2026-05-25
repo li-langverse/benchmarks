@@ -214,6 +214,9 @@ def build_matrix(summary: dict, catalog: dict[str, dict]) -> dict:
             "reference_lang": cfg.get("compare_oracle", "cpp"),
             "li_value": row.get("li_value"),
             "ph_ids": cfg.get("ph_ids", []),
+            "problem_size": row.get("problem_size") or cfg.get("problem_size"),
+            "size_label": row.get("size_label") or cfg.get("size_label"),
+            "base_id": cfg.get("base_id"),
         }
         if cat == "http" and bid in http_perf:
             entry["rps_by_lang"] = {

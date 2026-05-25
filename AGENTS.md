@@ -7,7 +7,7 @@
 3. **PR-only** — branch + PR; **normal push only** ([git-workflow](docs/ecosystem/git-workflow.md)); CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
 4. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
 5. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
-6. Dashboard: https://li-langverse.github.io/benchmarks/ — perf labels: [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md)
+6. Dashboard: https://li-langverse.github.io/benchmarks/ — perf labels: [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md); architecture [ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md); CI invariants [INVARIANTS.md](docs/dashboard/INVARIANTS.md); ship status [SHIP-STATUS.md](docs/dashboard/SHIP-STATUS.md)
 7. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
 8. **lic httpd:** tier-5 HTTP RPS needs epoll `build/li-httpd` — [lic-httpd-bench-compat.md](docs/ecosystem/lic-httpd-bench-compat.md); `lic` `main` may be routing-oracle-only until the httpd perf branch merges.
 
@@ -34,3 +34,10 @@
 Scripts (preflight for agents): `./scripts/agent-preflight.sh`, `./scripts/cursor-agent-run.sh` (→ **li-cursor-agents** + `@cursor/sdk`, `--mock` in CI), `./scripts/ecosystem-explorer.py`, `./scripts/plan-completion-audit.py`, `./scripts/run-pr-program.py`, `./scripts/pr-merge-gate.py`, … Actions budget: `docs/ecosystem/actions-budget.md` (CI/Pages only).
 
 Skills: **`ecosystem-first`**, `plan-feature-from-issue`, `audit-plan-completion`, **`plan-merge-queue`**, **`resolve-merge-conflicts`**, `merge-approved-pr`, `write-li-release-notes`, `li-ecosystem-discipline`, **`research-li-numerics`**, **`numerics-autoresearch`** (novel algorithms). Methodology: [docs/numerics/research-methodology.md](docs/numerics/research-methodology.md).
+
+## Agent continuation (dashboard ship)
+
+1. **Read:** [docs/dashboard/SHIP-STATUS.md](docs/dashboard/SHIP-STATUS.md), [INVARIANTS.md](docs/dashboard/INVARIANTS.md), [coverage-gap-analysis.md](docs/dashboard/coverage-gap-analysis.md).
+2. **Run:** `python3 scripts/check-dashboard-invariants.py`; `cd dashboard-next && npm run build && bash ../scripts/check-dashboard-static-routes.sh`.
+3. **Next:** After catalog edits, `python3 scripts/ingest/build_summary_fixture.py` and commit `data/latest/summary.json`; verify live `/matrix` row count matches catalog.
+4. **Blocked:** ~109 `path=unknown` rows until **lic** harness + CSV; do not weaken invariant scripts without human approval.

@@ -8,8 +8,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **tier_db_registry skeleton:** OLTP registry publish/read scenarios vs Postgres — [2026-05-25-tier-db-registry-skeleton.md](docs/release-notes/2026-05-25-tier-db-registry-skeleton.md).
-- **PH-DB-G0 tier-6 stubs:** `tier_db_graph_registry`, `tier_db_vector_ann`, `tier_db_gpu_speedup` — docs, suites, CI manifest writers, catalog rows — [2026-05-25-tier-db-graph-vector-gpu-stubs.md](docs/release-notes/2026-05-25-tier-db-graph-vector-gpu-stubs.md).
+- **Dashboard ship regression gates:** `docs/dashboard/ARCHITECTURE.md`, `INVARIANTS.md`, `check-dashboard-invariants.py`, `check-dashboard-static-routes.sh`; CI steps on Benchmarks CI — [2026-05-26-benchmark-ship-integration.md](docs/release-notes/2026-05-26-benchmark-ship-integration.md).
+
+### Fixed
+
+- **LIC_ROOT / catalog alignment:** `tier0_stability` → `li-tests/benchmarks/tier0_correctness`; `rate_limit_429` vendor path; plan-audit skips `unknown`/`planned` paths; CI checks out `lic@dev` with absolute `LIC_ROOT` — [2026-05-25-lic-root-catalog-alignment.md](docs/release-notes/2026-05-25-lic-root-catalog-alignment.md). Closes benchmarks **#17, #19, #20**; documents **#38** agent-kit sync.
+
+### Added
+
+- **FFT catalog (planned):** `fft_1d_fixed` row (`catalog_lifecycle=planned`) for benchmarks **#18** (harness in **lic**).
+
+- **Benchmark size variants:** `problem_size` / `size_label` / `base_id` in `catalog.toml` and `summary.json`; dashboard size filters; survey doc — [2026-05-26-benchmark-size-variants.md](docs/release-notes/2026-05-26-benchmark-size-variants.md).
+
+- **Catalog expansion (algo_registry):** `scripts/catalog/sync-from-algo-registry.py`; catalog **45 → 169** rows; `summary.json` **35 → 169** rows; tier-2 harness gaps + dashboard tier **6** strip — [2026-05-26-expand-catalog-algorithms.md](docs/release-notes/2026-05-26-expand-catalog-algorithms.md).
+
+- **Dashboard diagram layout:** Algorithm×Facet IA doc, design-system link, `algorithm-facet-grid.tsx` types stub — [2026-05-25-dashboard-diagram-layout.md](docs/release-notes/2026-05-25-dashboard-diagram-layout.md).
+
+### Fixed
+
+- **Dashboard matrix tier filter:** `/matrix/?tier=N` from overview tier strip filters catalog rows; mobile header/main padding — [2026-05-25-dashboard-matrix-tier-filter.md](docs/release-notes/2026-05-25-dashboard-matrix-tier-filter.md).
+
+### Added
+
+- **SOTA / validity / OS reporting:** `summary.json` adds `sota_lang`, `ratio_vs_sota`, validity gate, `os`; ingest never labels Li as SOTA; dashboard-next honesty strip + bench drill-down — [2026-05-26-sota-validity-os-reporting.md](docs/release-notes/2026-05-26-sota-validity-os-reporting.md).
+
+- **Benchmark board ship:** dashboard-next nine-pillar bento, proof-posture ingest, release freshness banner, Pages copies `proof-posture.json` — [2026-05-25-benchmark-board-ship.md](docs/release-notes/2026-05-25-benchmark-board-ship.md).
+- **Demo video package:** `docs/dashboard/demo-video-script.md`, `demo-storyboard.html`, `scripts/record-dashboard-demo.sh` for recording the benchmarks portal walkthrough — [2026-05-25-demo-video-package.md](docs/release-notes/2026-05-25-demo-video-package.md).
+- **WP9 briefing deep links:** `agent-briefing.py` adds `benchmark_dashboard_base` and `/bench/{id}/` URLs for red rows — [2026-05-25-benchmark-deep-links-briefing.md](docs/release-notes/2026-05-25-benchmark-deep-links-briefing.md).
+
 - **Dashboard Next wave 1:** `dashboard-next/` static export (overview, pillar/bench routes); `catalog.toml` `pillar`/`package`; `ecosystem-packages.toml`; `summary.json` `pillars`; history hash gate — [2026-05-25-dashboard-next-wave1.md](docs/release-notes/2026-05-25-dashboard-next-wave1.md).
 - **WP3 release manifests:** `schema/release-manifest.json`, `scripts/ingest/ingest-release-manifests.py`, `data/incoming/manifests/`, `data/latest/release-index.json` ingest; `package-release` `repository_dispatch` on [ingest workflow](.github/workflows/ingest.yml); [docs/dashboard/release-manifest.md](docs/dashboard/release-manifest.md).
 
