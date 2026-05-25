@@ -9,15 +9,16 @@ Full-spectrum **lidb** audit benchmark tier (WP-N4 stub). Harness compares **lid
 | `concurrent_readers` | Scalable concurrent SELECT throughput | `ops_per_sec` (ops) |
 | `concurrent_writers` | Scalable concurrent INSERT/UPDATE throughput | `ops_per_sec` (ops) |
 
-## Run (stub)
+## Run
 
 ```bash
 cd benchmarks
 ./scripts/run-db-parallel-bench.sh
+BENCH_DB_PARALLEL_RUN_HARNESS=1 ./scripts/run-db-parallel-bench.sh
 cat data/latest/tier-db-parallel.json
 ```
 
-Env: `BENCH_DB_PARALLEL_PROFILE=ci|nightly`, `POSTGRES_URL`, `LIDB_URL`.
+Env: `BENCH_DB_PARALLEL_PROFILE=ci|nightly`, `BENCH_DB_PARALLEL_RUN_HARNESS`, `LIDB_ROOT`, `POSTGRES_URL`, `LIDB_URL`.
 
 ## CI ingest
 
