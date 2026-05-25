@@ -27,7 +27,7 @@ export default function HomePage() {
   const summary = loadSummary();
   const releaseIndex = loadReleaseIndex();
   const pillarCounts = countStatusesByPillar(summary.rows);
-  const reds = regressionRows(summary);
+  const reds = regressionRows(summary.rows);
   const freshness = packageFreshnessRows(releaseIndex, summary.generated_at);
   const pillarIds = Object.keys(summary.pillars ?? {}).sort();
 

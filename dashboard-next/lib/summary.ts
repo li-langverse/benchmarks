@@ -38,6 +38,11 @@ export type CategoryBlock = {
   charts: ChartSpec[];
 };
 
+export type PillarBlock = {
+  label: string;
+  charts: ChartSpec[];
+};
+
 export type SummaryRow = {
   benchmark: string;
   repo: string;
@@ -64,6 +69,7 @@ export type Summary = {
   sources: Record<string, string>;
   tier_counts: Record<string, StatusCounts>;
   categories: Record<string, CategoryBlock>;
+  pillars?: Record<string, PillarBlock>;
   rows: SummaryRow[];
 };
 
