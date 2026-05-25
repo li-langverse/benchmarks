@@ -1,0 +1,22 @@
+{
+  "updated_at": "2026-05-25T12:20:50+00:00",
+  "packages": {
+    "lic": {
+      "version": "v0.0.0-example",
+      "git_sha": "0000000000000000000000000000000000000000",
+      "published_at": "2026-05-25T00:00:00Z",
+      "bench_required": true,
+      "artifacts": [
+        {
+          "path": "data/incoming/manifests/example-lic.json",
+          "kind": "manifest"
+        },
+        {
+          "path": "lic/benchmarks/results/latest.csv",
+          "kind": "csv"
+        }
+      ],
+      "manifest_source": "data/incoming/manifests/example-lic.json"
+    }
+  }
+}

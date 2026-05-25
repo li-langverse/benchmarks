@@ -8,13 +8,47 @@ on:
         required: false
         default: main
   repository_dispatch:
-    types: [lic-bench-complete]
+    types: [lic-bench-complete, package-release]
 
 jobs:
   ingest-lic:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
+
+      - name: Stage release manifest (package-release)
+        if: github.event.action == 'package-release'
+        env:
+          CLIENT_PAYLOAD: ${{ toJson(github.event.client_payload) }}
+        run: |
+          python3 <<'PY'
+          import json, os, re
+          from pathlib import Path
+          payload = json.loads(os.environ.get("CLIENT_PAYLOAD") or "{}")
+          manifest = payload.get("manifest")
+          if manifest is None and payload.get("package"):
+              manifest = {
+                  "package": payload["package"],
+                  "version": payload.get("version", ""),
+                  "git_sha": payload.get("git_sha", ""),
+                  "published_at": payload.get("published_at", ""),
+                  "bench_required": bool(payload.get("bench_required", False)),
+                  "artifacts": payload.get("artifacts") or [],
+              }
+          if not manifest:
+              print("package-release: no manifest in client_payload; skipping stage")
+              raise SystemExit(0)
+          pkg = manifest.get("package", "unknown")
+          ver = manifest.get("version", "unknown")
+          safe = re.sub(r"[^A-Za-z0-9._-]+", "-", f"{pkg}-{ver}")[:120]
+          out = Path("data/incoming/manifests") / f"{safe}.json"
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_text(json.dumps(manifest, indent=2) + "\n")
+          print(f"staged {out}")
+          PY
+
+      - name: Ingest release manifests
+        run: python3 scripts/ingest/ingest-release-manifests.py
 
       - name: Checkout lic
         uses: actions/checkout@v4
@@ -58,6 +92,6 @@ jobs:
         run: |
           git config user.name "benchmarks-ingest"
           git config user.email "benchmarks-ingest@users.noreply.github.com"
-          git add data/latest/summary.json
-          git diff --staged --quiet || git commit -m "chore: ingest benchmark summary"
+          git add data/latest/summary.json data/latest/release-index.json
+          git diff --staged --quiet || git commit -m "chore: ingest benchmark summary and release index"
           git push

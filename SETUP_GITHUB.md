@@ -5,7 +5,7 @@
 3. Secret `BENCHMARKS_INGEST_TOKEN` (optional): PAT with `contents:write` for ingest bot commits.
 4. On **lic**: secret `LI_BENCHMARKS_DISPATCH_TOKEN` to call `repository_dispatch` on ingest workflow.
 
-Ingest triggers: `workflow_dispatch`, `repository_dispatch` (`lic-bench-complete`), push to `data/**` on PRs.
+Ingest triggers: `workflow_dispatch`, `repository_dispatch` (`lic-bench-complete`, `package-release`), push to `data/**` on PRs. Release manifests: [docs/dashboard/release-manifest.md](docs/dashboard/release-manifest.md).
 
 ## Fix dashboard 404 (`live_docs_down`)
 
