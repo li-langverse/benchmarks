@@ -1,0 +1,168 @@
+# WP-K: nightly tier_db_registry — Postgres 16 service + lidb compare harness.
+# PR CI (ci.yml) stays validate-only stub; this workflow measures honest P95 ratios.
+name: Tier DB registry nightly
+
+on:
+  workflow_dispatch:
+    inputs:
+      engine:
+        description: Harness engine mode
+        required: false
+        default: compare
+        type: choice
+        options:
+          - compare
+          - postgres_only
+  schedule:
+    # Weekly Monday 06:00 UTC — aligns with lic benchmarks.yml cadence.
+    - cron: "0 6 * * 1"
+
+concurrency:
+  group: tier-db-registry-nightly
+  cancel-in-progress: true
+
+jobs:
+  registry-compare:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: registry_bench
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      POSTGRES_URL: postgresql://postgres:postgres@localhost:5432/registry_bench
+      BENCH_DB_REGISTRY_RUN_HARNESS: "1"
+      BENCH_DB_REGISTRY_PROFILE: nightly
+      BENCH_DB_REGISTRY_ENGINE: ${{ github.event.inputs.engine || 'compare' }}
+      LIDB_ROOT: ${{ github.workspace }}/lidb
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lidb
+          path: lidb
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install harness deps
+        run: pip install -r benchmarks/tier_db_registry/harness/requirements-registry.txt
+
+      - name: Install cmake
+        run: sudo apt-get update && sudo apt-get install -y cmake
+
+      - name: Build lidb_embed
+        if: env.BENCH_DB_REGISTRY_ENGINE == 'compare'
+        run: bash scripts/smoke.sh
+        working-directory: lidb
+
+      - name: Wait for Postgres
+        run: |
+          python3 - <<'PY'
+          import os, sys, time
+          url = os.environ["POSTGRES_URL"]
+          deadline = time.time() + 120
+          last_err = None
+          while time.time() < deadline:
+              try:
+                  import psycopg
+                  with psycopg.connect(url) as conn:
+                      with conn.cursor() as cur:
+                          cur.execute("SELECT 1")
+                  print("Postgres ready")
+                  sys.exit(0)
+              except Exception as exc:
+                  last_err = exc
+                  time.sleep(2)
+          print(f"Postgres not ready: {last_err}", file=sys.stderr)
+          sys.exit(1)
+          PY
+
+      - name: Run registry OLTP harness
+        run: |
+          chmod +x scripts/run-db-registry-bench.sh
+          ./scripts/run-db-registry-bench.sh
+
+      - name: Fail closed — measured ratios required
+        if: env.BENCH_DB_REGISTRY_ENGINE == 'compare'
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          manifest = json.loads(Path("data/latest/tier-db-registry.json").read_text())
+          engine = manifest.get("engine_mode")
+          status = manifest.get("status")
+          if engine != "compare":
+              print(f"expected engine_mode=compare, got {engine!r}", file=sys.stderr)
+              sys.exit(1)
+          missing = []
+          for sc in manifest.get("scenarios", []):
+              sid = sc.get("id")
+              if sc.get("ratio_vs_postgres") is None:
+                  missing.append(f"{sid}: ratio_vs_postgres")
+              pg = (sc.get("engines") or {}).get("postgres")
+              if not pg or pg.get("p95_ms") is None:
+                  missing.append(f"{sid}: postgres p95_ms")
+              lidb = (sc.get("engines") or {}).get("lidb")
+              if not lidb or lidb.get("p95_ms") is None:
+                  missing.append(f"{sid}: lidb p95_ms")
+          if missing:
+              print("Postgres up but compare measurements incomplete:", file=sys.stderr)
+              for line in missing:
+                  print(f"  - {line}", file=sys.stderr)
+              sys.exit(1)
+          print(f"tier_db_registry nightly: status={status} engine_mode={engine}")
+          for sc in manifest["scenarios"]:
+              print(
+                  f"  {sc['id']}: ratio={sc['ratio_vs_postgres']} "
+                  f"status={sc['status']}"
+              )
+          PY
+
+      - name: Fail closed — postgres oracle timings (postgres_only)
+        if: env.BENCH_DB_REGISTRY_ENGINE == 'postgres_only'
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+          from pathlib import Path
+
+          manifest = json.loads(Path("data/latest/tier-db-registry.json").read_text())
+          if manifest.get("engine_mode") != "postgres_only":
+              print(
+                  f"expected engine_mode=postgres_only, got {manifest.get('engine_mode')!r}",
+                  file=sys.stderr,
+              )
+              sys.exit(1)
+          for sc in manifest.get("scenarios", []):
+              pg = (sc.get("engines") or {}).get("postgres")
+              if not pg or pg.get("p95_ms") is None:
+                  print(f"missing postgres p95 for {sc.get('id')}", file=sys.stderr)
+                  sys.exit(1)
+          print(f"tier_db_registry nightly: status={manifest.get('status')} (postgres_only)")
+          PY
+
+      - name: Upload tier-db-registry manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: tier-db-registry-nightly
+          path: |
+            data/latest/tier-db-registry.json
+            data/latest/tier-db-registry-harness.json
+            benchmarks/tier_db_registry/results/latest.csv
+          if-no-files-found: warn

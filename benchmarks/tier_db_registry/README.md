@@ -84,10 +84,30 @@ bash scripts/bench/registry_oltp.sh
 
 Manifest `status: pass` only when **all three** scenarios have measured `ratio_vs_postgres` ≤ `BENCH_DB_REGISTRY_THRESHOLD`. Otherwise manifest is `unknown` (partial engines) or `fail` (over threshold) — never fake green.
 
+## CI
+
+| Workflow | Trigger | Harness | Manifest `status` |
+|----------|---------|---------|-------------------|
+| [`ci.yml`](../../.github/workflows/ci.yml) | PR / push `main` | validate-only stub | `stub` |
+| [`tier-db-registry-nightly.yml`](../../.github/workflows/tier-db-registry-nightly.yml) | `workflow_dispatch` + weekly cron (Mon 06:00 UTC) | Postgres 16 service + `compare` | `pass` / `fail` / `unknown` |
+
+**PR path:** unchanged — `./scripts/run-db-registry-bench.sh` with default env (no `POSTGRES_URL`, no lidb build).
+
+**Nightly path (WP-K):** GHA job `registry-compare` provisions `postgres:16`, checks out sibling **lidb**, builds `lidb_embed`, sets:
+
+```bash
+POSTGRES_URL=postgresql://postgres:postgres@localhost:5432/registry_bench
+BENCH_DB_REGISTRY_RUN_HARNESS=1
+BENCH_DB_REGISTRY_PROFILE=nightly
+BENCH_DB_REGISTRY_ENGINE=compare   # or postgres_only via workflow_dispatch input
+```
+
+Uploads artifact `tier-db-registry-nightly` (`tier-db-registry.json`, harness JSON, CSV). **Fail closed:** when `engine=compare`, job fails if Postgres is up but any scenario lacks numeric `ratio_vs_postgres` or engine P95 timings.
+
+Manual dispatch accepts `engine=postgres_only` for oracle-only smoke (manifest stays `unknown` — honest, not green).
+
 ## CI ingest
 
 Manifest: `data/latest/tier-db-registry.json` (schema: [`schema/tier-db-registry-ingest.json`](../../schema/tier-db-registry-ingest.json)).
 
-PR CI runs validate + **stub** only. Nightly/org runners may set `BENCH_DB_REGISTRY_RUN_HARNESS=1` with engines.
-
-See [tier-db-registry-benchmark.md](../../docs/ecosystem/tier-db-registry-benchmark.md).
+See [tier-db-registry-benchmark.md](../../docs/ecosystem/tier-db-registry-benchmark.md) · [ph-db-ci-hosting-plan WP-K](https://github.com/li-langverse/lic/blob/cursor/ph-db-ci-hosting-plan/docs/superpowers/plans/ph-db-ci-hosting-plan.md).
