@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T20:28Z",
+  "generated_at": "2026-05-25T23:56Z",
   "org": "li-langverse",
   "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
   "roadmap_kit": "/home/s4il0r/Documents/Cursor/li-langverse/roadmap/agent-kit",
@@ -25,6 +25,19 @@
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/benchmarks && ../roadmap/scripts/install-agent-kit.sh benchmarks"
     },
     {
+      "repo": "li-cursor-agents",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents",
+      "status": "drift",
+      "cursor_stamp": "1.3.3+12f1f4d190a4dd06",
+      "expected_stamp": "1.3.3+12f1f4d190a4dd06",
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents && ../roadmap/scripts/install-agent-kit.sh li-cursor-agents"
+    },
+    {
       "repo": "li-demo",
       "present_locally": true,
       "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/li-demo",
@@ -74,6 +87,23 @@
       "has_sync_script": false,
       "has_agents_md": false,
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-language && ../roadmap/scripts/install-agent-kit.sh li-language"
+    },
+    {
+      "repo": "li-local-ci",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/li-local-ci",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-local-ci && ../roadmap/scripts/install-agent-kit.sh li-local-ci"
     },
     {
       "repo": "li-net",
@@ -179,6 +209,108 @@
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/lit && ../roadmap/scripts/install-agent-kit.sh lit"
     },
     {
+      "repo": "mmo",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/mmo",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/mmo && ../roadmap/scripts/install-agent-kit.sh mmo"
+    },
+    {
+      "repo": "net.httpd",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/net.httpd",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/net.httpd && ../roadmap/scripts/install-agent-kit.sh net.httpd"
+    },
+    {
+      "repo": "physics.custom",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/physics.custom",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/physics.custom && ../roadmap/scripts/install-agent-kit.sh physics.custom"
+    },
+    {
+      "repo": "physics.runtime",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/physics.runtime",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/physics.runtime && ../roadmap/scripts/install-agent-kit.sh physics.runtime"
+    },
+    {
+      "repo": "render",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/render",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/render && ../roadmap/scripts/install-agent-kit.sh render"
+    },
+    {
+      "repo": "research-findings",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/research-findings",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/research-findings && ../roadmap/scripts/install-agent-kit.sh research-findings"
+    },
+    {
       "repo": "roadmap",
       "present_locally": true,
       "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/roadmap",
@@ -190,6 +322,193 @@
       "has_sync_script": true,
       "has_agents_md": true,
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/roadmap && ../roadmap/scripts/install-agent-kit.sh roadmap"
+    },
+    {
+      "repo": "sim",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim && ../roadmap/scripts/install-agent-kit.sh sim"
+    },
+    {
+      "repo": "sim.additive",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.additive",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.additive && ../roadmap/scripts/install-agent-kit.sh sim.additive"
+    },
+    {
+      "repo": "sim.automotive",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.automotive",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.automotive && ../roadmap/scripts/install-agent-kit.sh sim.automotive"
+    },
+    {
+      "repo": "sim.drug_design",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.drug_design",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.drug_design && ../roadmap/scripts/install-agent-kit.sh sim.drug_design"
+    },
+    {
+      "repo": "sim.robotics",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.robotics",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.robotics && ../roadmap/scripts/install-agent-kit.sh sim.robotics"
+    },
+    {
+      "repo": "sim.scientific",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.scientific",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.scientific && ../roadmap/scripts/install-agent-kit.sh sim.scientific"
+    },
+    {
+      "repo": "store.realtime",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/store.realtime",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/store.realtime && ../roadmap/scripts/install-agent-kit.sh store.realtime"
+    },
+    {
+      "repo": "studio",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/studio",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/studio && ../roadmap/scripts/install-agent-kit.sh studio"
+    },
+    {
+      "repo": "studio.ai",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/studio.ai",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/studio.ai && ../roadmap/scripts/install-agent-kit.sh studio.ai"
+    },
+    {
+      "repo": "ui",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/ui",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/ui && ../roadmap/scripts/install-agent-kit.sh ui"
+    },
+    {
+      "repo": "world",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/world",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/world && ../roadmap/scripts/install-agent-kit.sh world"
     }
   ],
   "entries": [
@@ -207,6 +526,19 @@
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/benchmarks && ../roadmap/scripts/install-agent-kit.sh benchmarks"
     },
     {
+      "repo": "li-cursor-agents",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents",
+      "status": "drift",
+      "cursor_stamp": "1.3.3+12f1f4d190a4dd06",
+      "expected_stamp": "1.3.3+12f1f4d190a4dd06",
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [],
+      "has_sync_script": true,
+      "has_agents_md": true,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents && ../roadmap/scripts/install-agent-kit.sh li-cursor-agents"
+    },
+    {
       "repo": "li-demo",
       "present_locally": true,
       "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/li-demo",
@@ -222,6 +554,11 @@
       "has_sync_script": false,
       "has_agents_md": false,
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-demo && ../roadmap/scripts/install-agent-kit.sh li-demo"
+    },
+    {
+      "repo": "li-gui",
+      "present_locally": false,
+      "status": "missing_local_clone"
     },
     {
       "repo": "li-httpd",
@@ -256,6 +593,23 @@
       "has_sync_script": false,
       "has_agents_md": false,
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-language && ../roadmap/scripts/install-agent-kit.sh li-language"
+    },
+    {
+      "repo": "li-local-ci",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/li-local-ci",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/li-local-ci && ../roadmap/scripts/install-agent-kit.sh li-local-ci"
     },
     {
       "repo": "li-net",
@@ -322,6 +676,11 @@
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/lic && ../roadmap/scripts/install-agent-kit.sh lic"
     },
     {
+      "repo": "lidb",
+      "present_locally": false,
+      "status": "missing_local_clone"
+    },
+    {
       "repo": "lip",
       "present_locally": true,
       "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/lip",
@@ -361,6 +720,108 @@
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/lit && ../roadmap/scripts/install-agent-kit.sh lit"
     },
     {
+      "repo": "mmo",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/mmo",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/mmo && ../roadmap/scripts/install-agent-kit.sh mmo"
+    },
+    {
+      "repo": "net.httpd",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/net.httpd",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/net.httpd && ../roadmap/scripts/install-agent-kit.sh net.httpd"
+    },
+    {
+      "repo": "physics.custom",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/physics.custom",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/physics.custom && ../roadmap/scripts/install-agent-kit.sh physics.custom"
+    },
+    {
+      "repo": "physics.runtime",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/physics.runtime",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/physics.runtime && ../roadmap/scripts/install-agent-kit.sh physics.runtime"
+    },
+    {
+      "repo": "render",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/render",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/render && ../roadmap/scripts/install-agent-kit.sh render"
+    },
+    {
+      "repo": "research-findings",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/research-findings",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/research-findings && ../roadmap/scripts/install-agent-kit.sh research-findings"
+    },
+    {
       "repo": "roadmap",
       "present_locally": true,
       "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/roadmap",
@@ -372,6 +833,193 @@
       "has_sync_script": true,
       "has_agents_md": true,
       "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/roadmap && ../roadmap/scripts/install-agent-kit.sh roadmap"
+    },
+    {
+      "repo": "sim",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim && ../roadmap/scripts/install-agent-kit.sh sim"
+    },
+    {
+      "repo": "sim.additive",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.additive",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.additive && ../roadmap/scripts/install-agent-kit.sh sim.additive"
+    },
+    {
+      "repo": "sim.automotive",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.automotive",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.automotive && ../roadmap/scripts/install-agent-kit.sh sim.automotive"
+    },
+    {
+      "repo": "sim.drug_design",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.drug_design",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.drug_design && ../roadmap/scripts/install-agent-kit.sh sim.drug_design"
+    },
+    {
+      "repo": "sim.robotics",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.robotics",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.robotics && ../roadmap/scripts/install-agent-kit.sh sim.robotics"
+    },
+    {
+      "repo": "sim.scientific",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/sim.scientific",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/sim.scientific && ../roadmap/scripts/install-agent-kit.sh sim.scientific"
+    },
+    {
+      "repo": "store.realtime",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/store.realtime",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/store.realtime && ../roadmap/scripts/install-agent-kit.sh store.realtime"
+    },
+    {
+      "repo": "studio",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/studio",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/studio && ../roadmap/scripts/install-agent-kit.sh studio"
+    },
+    {
+      "repo": "studio.ai",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/studio.ai",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/studio.ai && ../roadmap/scripts/install-agent-kit.sh studio.ai"
+    },
+    {
+      "repo": "ui",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/ui",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/ui && ../roadmap/scripts/install-agent-kit.sh ui"
+    },
+    {
+      "repo": "world",
+      "present_locally": true,
+      "local_path": "/home/s4il0r/Documents/Cursor/li-langverse/world",
+      "status": "missing_kit",
+      "cursor_stamp": null,
+      "expected_stamp": null,
+      "canonical_stamp": "1.3.4+d3e4e0900240e8fc",
+      "missing_rules": [
+        ".cursor/rules/li-pr-only.mdc",
+        ".cursor/rules/li-ecosystem-gates.mdc",
+        ".cursor/rules/li-release-notes.mdc"
+      ],
+      "has_sync_script": false,
+      "has_agents_md": false,
+      "fix": "cd /home/s4il0r/Documents/Cursor/li-langverse/world && ../roadmap/scripts/install-agent-kit.sh world"
     }
   ]
 }

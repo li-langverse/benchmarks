@@ -1,14 +1,593 @@
 {
-  "generated_at": "2026-05-25T20:28Z",
+  "generated_at": "2026-05-25T23:56Z",
   "org": "li-langverse",
   "required_workflow": "ci.yml",
   "default_branch_policy": "main",
-  "repos_ok": [],
+  "repos_ok": [
+    "benchmarks",
+    "li-demo",
+    "li-gui",
+    "li-httpd",
+    "li-language",
+    "li-local-ci",
+    "li-net",
+    "li-std-core",
+    "li-std-math",
+    "lic",
+    "lip",
+    "lis",
+    "lit",
+    "mmo",
+    "net.httpd",
+    "physics.custom",
+    "physics.runtime",
+    "render",
+    "roadmap",
+    "sim",
+    "sim.additive",
+    "sim.automotive",
+    "sim.drug_design",
+    "sim.robotics",
+    "sim.scientific",
+    "store.realtime",
+    "studio",
+    "studio.ai",
+    "ui",
+    "world"
+  ],
   "repos_missing_ci": [],
-  "repos_gated_non_main_default": [],
-  "repos_audit_incomplete": [],
-  "workflows": {},
-  "per_repo": {},
+  "repos_gated_non_main_default": [
+    {
+      "repo": "lidb",
+      "default_branch": "feat/ph-db-2-liorm-liq",
+      "workflows": [
+        "ci.yml"
+      ],
+      "workflow_source": "github",
+      "gated": "WP-H0: set default branch to main before requiring ci.yml on default",
+      "status": "gated_non_main_default",
+      "fix": "WP-H0: set default branch to main before requiring ci.yml on default"
+    }
+  ],
+  "repos_audit_incomplete": [
+    {
+      "repo": "research-findings",
+      "default_branch": "main",
+      "workflows": [],
+      "workflow_source": "none",
+      "gated": null,
+      "github_error": "gh: Not Found (HTTP 404)",
+      "status": "audit_incomplete"
+    }
+  ],
+  "workflows": {
+    "benchmarks": [
+      "ci.yml",
+      "ecosystem-audit.yml",
+      "ecosystem-explorer.yml",
+      "ingest.yml",
+      "issue-feature-planning.yml",
+      "org-repo-ci-audit.yml",
+      "pages.yml",
+      "plan-completion-audit.yml",
+      "pr-auto-merge.yml"
+    ],
+    "li-demo": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "security-gate.yml"
+    ],
+    "li-gui": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-httpd": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-language": [
+      "benchmarks.yml",
+      "ci.yml",
+      "docs.yml",
+      "release.yml"
+    ],
+    "li-local-ci": [
+      "ci.yml"
+    ],
+    "li-net": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-std-core": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "li-std-math": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "lic": [
+      "benchmarks.yml",
+      "ci.yml",
+      "cve-catalog.yml",
+      "docs.yml",
+      "fuzz.yml",
+      "hpc-competitive.yml",
+      "httpd-tier5-regression.yml",
+      "lean.yml",
+      "memory.yml",
+      "notify-downstream.yml",
+      "publish-docker-ci-image.yml",
+      "release.yml",
+      "rng-exploit-suite.yml",
+      "ubsan-lic.yml"
+    ],
+    "lidb": [
+      "ci.yml"
+    ],
+    "lip": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml"
+    ],
+    "lis": [
+      "branch-sync.yml",
+      "ci.yml",
+      "issue-feature-planning.yml"
+    ],
+    "lit": [
+      "ci.yml",
+      "ecosystem-upstream.yml",
+      "issue-feature-planning.yml",
+      "notify-downstream.yml"
+    ],
+    "mmo": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "net.httpd": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "physics.custom": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "physics.runtime": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "render": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "research-findings": [],
+    "roadmap": [
+      "ci.yml",
+      "issue-feature-planning.yml",
+      "pages.yml"
+    ],
+    "sim": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.additive": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.automotive": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.drug_design": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.robotics": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "sim.scientific": [
+      "ci.yml"
+    ],
+    "store.realtime": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "studio": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "studio.ai": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "ui": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ],
+    "world": [
+      "ci.yml",
+      "ecosystem-upstream.yml"
+    ]
+  },
+  "per_repo": {
+    "benchmarks": {
+      "repo": "benchmarks",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-audit.yml",
+        "ecosystem-explorer.yml",
+        "ingest.yml",
+        "issue-feature-planning.yml",
+        "org-repo-ci-audit.yml",
+        "pages.yml",
+        "plan-completion-audit.yml",
+        "pr-auto-merge.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-demo": {
+      "repo": "li-demo",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml",
+        "security-gate.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-gui": {
+      "repo": "li-gui",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-httpd": {
+      "repo": "li-httpd",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-language": {
+      "repo": "li-language",
+      "default_branch": "main",
+      "workflows": [
+        "benchmarks.yml",
+        "ci.yml",
+        "docs.yml",
+        "release.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-local-ci": {
+      "repo": "li-local-ci",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-net": {
+      "repo": "li-net",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-std-core": {
+      "repo": "li-std-core",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "li-std-math": {
+      "repo": "li-std-math",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "lic": {
+      "repo": "lic",
+      "default_branch": "main",
+      "workflows": [
+        "benchmarks.yml",
+        "ci.yml",
+        "cve-catalog.yml",
+        "docs.yml",
+        "fuzz.yml",
+        "hpc-competitive.yml",
+        "httpd-tier5-regression.yml",
+        "lean.yml",
+        "memory.yml",
+        "notify-downstream.yml",
+        "publish-docker-ci-image.yml",
+        "release.yml",
+        "rng-exploit-suite.yml",
+        "ubsan-lic.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "lidb": {
+      "repo": "lidb",
+      "default_branch": "feat/ph-db-2-liorm-liq",
+      "workflows": [
+        "ci.yml"
+      ],
+      "workflow_source": "github",
+      "gated": "WP-H0: set default branch to main before requiring ci.yml on default",
+      "status": "gated_non_main_default",
+      "fix": "WP-H0: set default branch to main before requiring ci.yml on default"
+    },
+    "lip": {
+      "repo": "lip",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml",
+        "issue-feature-planning.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "lis": {
+      "repo": "lis",
+      "default_branch": "main",
+      "workflows": [
+        "branch-sync.yml",
+        "ci.yml",
+        "issue-feature-planning.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "lit": {
+      "repo": "lit",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml",
+        "issue-feature-planning.yml",
+        "notify-downstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "mmo": {
+      "repo": "mmo",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "net.httpd": {
+      "repo": "net.httpd",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "physics.custom": {
+      "repo": "physics.custom",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "physics.runtime": {
+      "repo": "physics.runtime",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "render": {
+      "repo": "render",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "research-findings": {
+      "repo": "research-findings",
+      "default_branch": "main",
+      "workflows": [],
+      "workflow_source": "none",
+      "gated": null,
+      "github_error": "gh: Not Found (HTTP 404)",
+      "status": "audit_incomplete"
+    },
+    "roadmap": {
+      "repo": "roadmap",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "issue-feature-planning.yml",
+        "pages.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "sim": {
+      "repo": "sim",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "sim.additive": {
+      "repo": "sim.additive",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "sim.automotive": {
+      "repo": "sim.automotive",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "sim.drug_design": {
+      "repo": "sim.drug_design",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "sim.robotics": {
+      "repo": "sim.robotics",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "sim.scientific": {
+      "repo": "sim.scientific",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "store.realtime": {
+      "repo": "store.realtime",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "studio": {
+      "repo": "studio",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "studio.ai": {
+      "repo": "studio.ai",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "ui": {
+      "repo": "ui",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    },
+    "world": {
+      "repo": "world",
+      "default_branch": "main",
+      "workflows": [
+        "ci.yml",
+        "ecosystem-upstream.yml"
+      ],
+      "workflow_source": "github",
+      "gated": null,
+      "status": "ok"
+    }
+  },
   "policy": "docs/ecosystem/repo-ci-required.md",
   "non_main_default_gates": {
     "lidb": "WP-H0: set default branch to main before requiring ci.yml on default"

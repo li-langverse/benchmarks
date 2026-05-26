@@ -1,0 +1,358 @@
+{
+  "generated_at": "2026-05-25T20:34Z",
+  "summary": {
+    "local_ci_failures": 0,
+    "bug_issues": 1,
+    "gha_failing_prs": 20,
+    "work_queue_size": 21
+  },
+  "local_ci_failures": [],
+  "bug_issues": [
+    {
+      "kind": "issue",
+      "repo": "lic",
+      "number": 120,
+      "url": "https://github.com/li-langverse/lic/issues/120",
+      "title": "bug(cloud-agent): ManagePullRequest false 'no commits on remote' after successful push",
+      "labels": [
+        "bug"
+      ],
+      "reason": "open issue with bug/ci label"
+    }
+  ],
+  "gha_failing_prs": [
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 309,
+      "url": "https://github.com/li-langverse/lic/pull/309",
+      "title": "fix(bench): tier-2 physics Li builds (WP-T2)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 308,
+      "url": "https://github.com/li-langverse/lic/pull/308",
+      "title": "feat(bench): registry family harness fill + tier-7 CSV aliases",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 307,
+      "url": "https://github.com/li-langverse/lic/pull/307",
+      "title": "feat(bench): WP2 tier2 md_* catalog harness fill (PH-5b)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 306,
+      "url": "https://github.com/li-langverse/lic/pull/306",
+      "title": "feat(bench): tier1 num_* + fft_1d_fixed harnesses (WP1)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 305,
+      "url": "https://github.com/li-langverse/lic/pull/305",
+      "title": "feat(bench): WP3 tier-2 harnesses (pde, robo, drug, bio, am, fluid)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 304,
+      "url": "https://github.com/li-langverse/lic/pull/304",
+      "title": "feat(bench): WP4 compile smokes for qm, auto, ml, viz",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 299,
+      "url": "https://github.com/li-langverse/lic/pull/299",
+      "title": "fix(check): wire resource_options_invalid exit (main CI)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 298,
+      "url": "https://github.com/li-langverse/lic/pull/298",
+      "title": "feat(wgpu): phase B readback scaffold (after #288)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 297,
+      "url": "https://github.com/li-langverse/lic/pull/297",
+      "title": "feat(PH-AM): sim.export.print temp G-code/3MF pipeline",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 295,
+      "url": "https://github.com/li-langverse/lic/pull/295",
+      "title": "chore(gates): align master-plan verticals with honest CI evidence",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 294,
+      "url": "https://github.com/li-langverse/lic/pull/294",
+      "title": "feat(2f): P-float corpus gate + dedupe #185 (gap2-proof)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 292,
+      "url": "https://github.com/li-langverse/lic/pull/292",
+      "title": "chore(studio-ux): Wave 2 plan loop state + UX assessment",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 291,
+      "url": "https://github.com/li-langverse/lic/pull/291",
+      "title": "feat(PH-HW WP2): LKIR matmul CPU oracle + md_force_short placeholder",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lis",
+      "number": 12,
+      "url": "https://github.com/li-langverse/lis/pull/12",
+      "title": "feat(tier5): real HTTP bench CSV (WP6 fill-all)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-net",
+      "number": 6,
+      "url": "https://github.com/li-langverse/li-net/pull/6",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-httpd",
+      "number": 10,
+      "url": "https://github.com/li-langverse/li-httpd/pull/10",
+      "title": "feat(li-net-httpd): plan-loop split from lic/cursor/httpd-plan-continue",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-httpd",
+      "number": 7,
+      "url": "https://github.com/li-langverse/li-httpd/pull/7",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-std-core",
+      "number": 6,
+      "url": "https://github.com/li-langverse/li-std-core/pull/6",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-std-math",
+      "number": 7,
+      "url": "https://github.com/li-langverse/li-std-math/pull/7",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-demo",
+      "number": 10,
+      "url": "https://github.com/li-langverse/li-demo/pull/10",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    }
+  ],
+  "work_queue": [
+    {
+      "kind": "issue",
+      "repo": "lic",
+      "number": 120,
+      "url": "https://github.com/li-langverse/lic/issues/120",
+      "title": "bug(cloud-agent): ManagePullRequest false 'no commits on remote' after successful push",
+      "labels": [
+        "bug"
+      ],
+      "reason": "open issue with bug/ci label"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 309,
+      "url": "https://github.com/li-langverse/lic/pull/309",
+      "title": "fix(bench): tier-2 physics Li builds (WP-T2)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 308,
+      "url": "https://github.com/li-langverse/lic/pull/308",
+      "title": "feat(bench): registry family harness fill + tier-7 CSV aliases",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 307,
+      "url": "https://github.com/li-langverse/lic/pull/307",
+      "title": "feat(bench): WP2 tier2 md_* catalog harness fill (PH-5b)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 306,
+      "url": "https://github.com/li-langverse/lic/pull/306",
+      "title": "feat(bench): tier1 num_* + fft_1d_fixed harnesses (WP1)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 305,
+      "url": "https://github.com/li-langverse/lic/pull/305",
+      "title": "feat(bench): WP3 tier-2 harnesses (pde, robo, drug, bio, am, fluid)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 304,
+      "url": "https://github.com/li-langverse/lic/pull/304",
+      "title": "feat(bench): WP4 compile smokes for qm, auto, ml, viz",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 299,
+      "url": "https://github.com/li-langverse/lic/pull/299",
+      "title": "fix(check): wire resource_options_invalid exit (main CI)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 298,
+      "url": "https://github.com/li-langverse/lic/pull/298",
+      "title": "feat(wgpu): phase B readback scaffold (after #288)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 297,
+      "url": "https://github.com/li-langverse/lic/pull/297",
+      "title": "feat(PH-AM): sim.export.print temp G-code/3MF pipeline",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 295,
+      "url": "https://github.com/li-langverse/lic/pull/295",
+      "title": "chore(gates): align master-plan verticals with honest CI evidence",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 294,
+      "url": "https://github.com/li-langverse/lic/pull/294",
+      "title": "feat(2f): P-float corpus gate + dedupe #185 (gap2-proof)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 292,
+      "url": "https://github.com/li-langverse/lic/pull/292",
+      "title": "chore(studio-ux): Wave 2 plan loop state + UX assessment",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lic",
+      "number": 291,
+      "url": "https://github.com/li-langverse/lic/pull/291",
+      "title": "feat(PH-HW WP2): LKIR matmul CPU oracle + md_force_short placeholder",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "lis",
+      "number": 12,
+      "url": "https://github.com/li-langverse/lis/pull/12",
+      "title": "feat(tier5): real HTTP bench CSV (WP6 fill-all)",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-net",
+      "number": 6,
+      "url": "https://github.com/li-langverse/li-net/pull/6",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-httpd",
+      "number": 10,
+      "url": "https://github.com/li-langverse/li-httpd/pull/10",
+      "title": "feat(li-net-httpd): plan-loop split from lic/cursor/httpd-plan-continue",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-httpd",
+      "number": 7,
+      "url": "https://github.com/li-langverse/li-httpd/pull/7",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-std-core",
+      "number": 6,
+      "url": "https://github.com/li-langverse/li-std-core/pull/6",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-std-math",
+      "number": 7,
+      "url": "https://github.com/li-langverse/li-std-math/pull/7",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    },
+    {
+      "kind": "pr_ci",
+      "repo": "li-demo",
+      "number": 10,
+      "url": "https://github.com/li-langverse/li-demo/pull/10",
+      "title": "chore(deps): bump actions/checkout from 4 to 6",
+      "reason": "GitHub Actions checks failing"
+    }
+  ]
+}

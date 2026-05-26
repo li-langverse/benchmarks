@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T20:28Z",
+  "generated_at": "2026-05-26T00:28Z",
   "ecosystem_root": "/home/s4il0r/Documents/Cursor/li-langverse",
   "dirty_count": 3,
   "dirty_repos": [
@@ -8,15 +8,10 @@
       "repo": "lic",
       "org": "li-langverse",
       "branch": "cursor/swarm-observer-plan-loop",
-      "changed_files": 7,
+      "changed_files": 2,
       "safe_files": [
         "ata/goal-directed-agents/snapshot.json",
-        "data/goal-directed-agents/watch.log",
-        "data/swarm-gap-registry/registry.yaml",
-        "data/swarm-observer-plan-loop/runner-20260525-184836.log",
-        "data/swarm-observer-plan-loop/DISABLE_AUTOSTART",
-        "data/swarm-observer-plan-loop/goal-20260525-193501.md",
-        "data/swarm-observer-plan-loop/iter-20260525-193501.log"
+        "data/goal-directed-agents/watch.log"
       ],
       "test_commands": [
         "./li-tests/run_all.sh"
@@ -27,22 +22,24 @@
       "repo": "benchmarks",
       "org": "li-langverse",
       "branch": "merge/cherry-pick-queue",
-      "changed_files": 14,
+      "changed_files": 16,
       "safe_files": [
         "ata/latest/agent-briefing.json",
         "data/latest/ecosystem-audit.json",
         "data/latest/ecosystem-explorer.json",
+        "data/latest/issue-backlog-hygiene.json",
         "data/latest/issue-feature-triage.json",
         "data/latest/org-agent-kit-audit.json",
         "data/latest/org-repo-ci-audit.json",
         "data/latest/plan-completion-audit.json",
+        "data/latest/pr-branch-hygiene.json",
         "data/latest/pr-merge-queue-plan.json",
+        "data/latest/pr-program-run.json",
         "data/latest/security-cwe-feed-delta.json",
+        "data/latest/security-cwe-feed-prev.json",
         "data/latest/security-cwe-feed.json",
         "data/latest/workspace-dirty-sweep.json",
-        "data/latest/issue-backlog-hygiene.json",
-        "data/latest/security-cwe-feed-prev.json",
-        "data/latest/swarm-gap-actions.json"
+        "data/latest/ci-bug-triage.json"
       ],
       "test_commands": []
     },
