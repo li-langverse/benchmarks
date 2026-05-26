@@ -5,6 +5,7 @@ import { LangsTable } from "@/components/bench/langs-table";
 import { PerfRelativeBars } from "@/components/bench/perf-relative-bars";
 import { OsTable } from "@/components/bench/os-table";
 import { PerfNotClaimable } from "@/components/bench/perf-not-claimable";
+import { NumericValidityPanel } from "@/components/bench/numeric-validity-panel";
 import { ValidityPanel } from "@/components/bench/validity-panel";
 import { ValidityBadge } from "@/components/bench/validity-badge";
 import { Badge } from "@/components/ui/badge";
@@ -57,6 +58,7 @@ export default async function BenchPage({ params }: PageProps) {
         <HonestyCallout variant={row.variant} />
         <PerfNotClaimable row={row} />
         <ValidityPanel row={row} />
+        <NumericValidityPanel row={row} />
 
         <dl
           className="mono"

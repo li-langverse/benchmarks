@@ -1,4 +1,8 @@
-benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,os,passed
-simd_dot,li,release,1,wall_time,0.02,s,abc,cpu,flags,linux,true
-simd_dot,cpp,release,1,wall_time,0.03,s,abc,cpu,flags,linux,true
-simd_dot,rust,release,1,wall_time,0.025,s,abc,cpu,flags,linux,true
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,os,passed,oracle_kind,verify_abs_err,verify_rel_err,verify_ulps,verify_within_1ulp
+simd_dot,li,release,1,wall_time,0.02,s,abc,cpu,flags,linux,true,,,,,
+simd_dot,cpp,release,1,wall_time,0.03,s,abc,cpu,flags,linux,true,,,,,
+simd_dot,rust,release,1,wall_time,0.025,s,abc,cpu,flags,linux,true,,,,,
+horner_pure_li,li,release,1,verify_ulps,0.5,ulp,abc,cpu,flags,linux,true,analytical,9e-09,9e-15,0.5,1
+horner_pure_li,li,release,1,verify_analytical,993262.0698,f64,abc,cpu,flags,linux,true,analytical,9e-09,9e-15,0.5,1
+horner_pure_li,li,release,1,wall_time,0.0005,s,abc,cpu,flags,linux,true,analytical,,,,,
+horner_pure_li,cpp,release,1,wall_time,0.0005,s,abc,cpu,flags,linux,true,analytical,,,,,

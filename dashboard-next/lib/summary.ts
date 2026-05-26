@@ -10,6 +10,16 @@ export type StatusCounts = {
 
 export type ValidityStatus = "pass" | "fail" | "unknown";
 
+export type NumericValidity = {
+  oracle: string;
+  analytical_value?: number | null;
+  checksum_value?: number | null;
+  abs_error?: number | null;
+  rel_error?: number | null;
+  ulps?: number | null;
+  within_1ulp?: boolean;
+};
+
 export type LangPoint = {
   lang: string;
   value: number;
@@ -78,6 +88,7 @@ export type SummaryRow = {
   status: string;
   validity_status?: ValidityStatus;
   validity_source?: string;
+  numeric_validity?: NumericValidity | null;
   os?: string;
   compare_oracle?: string;
   ph_ids: string[];

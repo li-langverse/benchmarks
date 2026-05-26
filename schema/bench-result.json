@@ -44,6 +44,19 @@
       "type": "string",
       "description": "Provenance: stability.csv, latest.csv:passed, metric:verify_pass, none"
     },
+    "numeric_validity": {
+      "type": "object",
+      "description": "Analytical-oracle deviation for Li (from verify_* CSV metrics)",
+      "properties": {
+        "oracle": { "type": "string" },
+        "analytical_value": { "type": ["number", "null"] },
+        "checksum_value": { "type": ["number", "null"] },
+        "abs_error": { "type": ["number", "null"] },
+        "rel_error": { "type": ["number", "null"] },
+        "ulps": { "type": ["number", "null"] },
+        "within_1ulp": { "type": "boolean" }
+      }
+    },
     "repo": { "type": "string" },
     "tier": { "type": "integer" },
     "pillar": { "type": "string" },

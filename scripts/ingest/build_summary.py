@@ -199,6 +199,34 @@ def csv_passed(row: dict) -> bool | None:
     return str(raw).strip().lower() in ("true", "1", "yes", "pass")
 
 
+def metric_value(li_rows: list[dict], metric: str) -> float | None:
+    for r in li_rows:
+        if r.get("metric") == metric:
+            try:
+                return float(r["value"])
+            except (TypeError, ValueError):
+                return None
+    return None
+
+
+def extract_numeric_validity(bench_rows: list[dict], variant: str | None) -> dict | None:
+    """Analytical-oracle deviation exported by lic harness verify (Li rows)."""
+    li_rows = li_rows_for_validity(bench_rows, variant)
+    ulps = metric_value(li_rows, "verify_ulps")
+    if ulps is None:
+        return None
+    within = metric_value(li_rows, "verify_within_1ulp")
+    return {
+        "oracle": (li_rows[0].get("oracle_kind") or "unknown") if li_rows else "unknown",
+        "analytical_value": metric_value(li_rows, "verify_analytical"),
+        "checksum_value": metric_value(li_rows, "verify_checksum"),
+        "abs_error": metric_value(li_rows, "verify_abs_err"),
+        "rel_error": metric_value(li_rows, "verify_rel_err"),
+        "ulps": ulps,
+        "within_1ulp": bool(within is not None and within >= 1.0),
+    }
+
+
 def bench_os(
     rows: list[dict],
     bench_id: str,
@@ -336,6 +364,17 @@ def validity_for_benchmark(
             return "pass", "latest.csv:passed"
         return "fail", "latest.csv:passed"
 
+    within_1ulp = metric_value(li_rows, "verify_within_1ulp")
+    verify_ulps = metric_value(li_rows, "verify_ulps")
+    if within_1ulp is not None:
+        if within_1ulp >= 1.0:
+            return "pass", "latest.csv:verify_within_1ulp"
+        return "fail", "latest.csv:verify_within_1ulp"
+    if verify_ulps is not None:
+        if verify_ulps <= 1.0:
+            return "pass", "latest.csv:verify_ulps"
+        return "fail", "latest.csv:verify_ulps"
+
     if metric in ("verify_pass", "pass_rate"):
         for r in li_rows:
             try:
@@ -400,6 +439,7 @@ def make_summary_row(
     category: str,
     metric: str,
     status: str,
+    raw_rows: list[dict],
 ) -> dict:
     meta = row_meta(cfg)
     series = chart.get("series", [])
@@ -408,7 +448,9 @@ def make_summary_row(
     ref_val = next((s["value"] for s in series if s["lang"] == ref), None)
     sota_lang = chart.get("sota_lang")
     sota_val = next((s["value"] for s in series if s["lang"] == sota_lang), None) if sota_lang else None
-    return {
+    bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
+    numeric_validity = extract_numeric_validity(bench_rows, cfg.get("variant"))
+    row = {
         "benchmark": bench_id,
         "repo": cfg.get("repo", "lic"),
         "tier": cfg.get("tier", 0),
@@ -435,6 +477,9 @@ def make_summary_row(
         **meta,
         **size_meta(cfg),
     }
+    if numeric_validity is not None:
+        row["numeric_validity"] = numeric_validity
+    return row
 
 
 def lang_series(
@@ -879,6 +924,7 @@ def main() -> int:
                 category=category,
                 metric=chart.get("metric", metric),
                 status=st,
+                raw_rows=raw,
             )
         )
 
