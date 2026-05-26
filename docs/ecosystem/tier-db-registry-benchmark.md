@@ -56,6 +56,8 @@ Env:
 | PR `ci.yml` | `0` | none | `stub` |
 | Nightly (optional) | `1` | `postgres_only` or `compare` | `unknown` / `pass` / `fail` |
 
+**Cross-repo embed gate (WP-G):** PR CI for **lidb** + **lis** builds `lidb_embed` and runs registry-min smoke; does **not** run this tier's compare harness. Use `LIDB_ROOT` / `LIDB_CI_REF` as documented in [lidb/docs/ci-ph-db-gate.md](https://github.com/li-langverse/lidb/blob/main/docs/ci-ph-db-gate.md). Postgres compare remains **WP-K** (dispatch/nightly).
+
 **Honesty:** `pass` only with measured lidb vs Postgres ratios on all three scenarios. SQLite stub → `unknown`. No fake green P95.
 
 ## CI ingest
