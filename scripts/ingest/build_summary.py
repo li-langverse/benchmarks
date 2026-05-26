@@ -209,6 +209,14 @@ def metric_value(li_rows: list[dict], metric: str) -> float | None:
     return None
 
 
+def oracle_kind_from_rows(rows: list[dict]) -> str:
+    for r in rows:
+        kind = (r.get("oracle_kind") or "").strip()
+        if kind:
+            return kind
+    return "unknown"
+
+
 def extract_numeric_validity(bench_rows: list[dict], variant: str | None) -> dict | None:
     """Analytical-oracle deviation exported by lic harness verify (Li rows)."""
     li_rows = li_rows_for_validity(bench_rows, variant)
@@ -217,7 +225,7 @@ def extract_numeric_validity(bench_rows: list[dict], variant: str | None) -> dic
         return None
     within = metric_value(li_rows, "verify_within_1ulp")
     return {
-        "oracle": (li_rows[0].get("oracle_kind") or "unknown") if li_rows else "unknown",
+        "oracle": oracle_kind_from_rows(li_rows),
         "analytical_value": metric_value(li_rows, "verify_analytical"),
         "checksum_value": metric_value(li_rows, "verify_checksum"),
         "abs_error": metric_value(li_rows, "verify_abs_err"),
