@@ -80,6 +80,9 @@ Required for honest reporting (see `schema/bench-result.json`):
 |--------|----------|---------|
 | `os` | `lic` / `lis` `latest.csv` | Per-row and per-language OS breakdown |
 | `passed` | `lic` harness / tier0 export | Validity gate (`true`/`false`) |
+| `verify_ulps`, `verify_within_1ulp` | `lic` harness after `--verify` | Analytical-oracle deviation; `within_1ulp=1` ⇒ ≤1 float64 ULP |
+| `verify_analytical`, `verify_checksum` | same | Closed-form reference vs measured checksum |
+| `oracle_kind` | same | `analytical` or `iterative` |
 | `benchmark`, `lang`, `metric`, `value` | Existing | Unchanged |
 
 **lic:** extend `benchmarks/results/latest.csv` writer and tier0 `stability.csv` (already has `passed`; add `os` on export).

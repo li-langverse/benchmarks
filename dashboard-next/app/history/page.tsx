@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { loadHistoryIndex } from "@/lib/history";
+import { loadSummary } from "@/lib/summary";
 
 function formatDelta(d: {
   from?: number | string;
@@ -30,6 +31,10 @@ export default function HistoryPage() {
       </main>
     );
   }
+
+  const summary = loadSummary();
+  const summaryById = Object.fromEntries(summary.rows.map((r) => [r.benchmark, r]));
+
   return (
     <main>
       <section className="placeholder" style={{ marginBottom: "1.5rem" }}>
@@ -40,6 +45,10 @@ export default function HistoryPage() {
           </p>
         ) : null}
         <p className="mono">{index.snapshots.length} snapshots</p>
+        <p className="history-ulp-hint">
+          Numeric context column shows current ingest ULPs — compare with Δ fields when
+          history tracks <code>verify_ulps</code>.
+        </p>
       </section>
       <section>
         <h3 className="section-heading">Latest deltas</h3>
@@ -50,22 +59,38 @@ export default function HistoryPage() {
                 <th>Benchmark</th>
                 <th>Field</th>
                 <th>Change</th>
+                <th>Current ULPs</th>
                 <th>Improved</th>
               </tr>
             </thead>
             <tbody>
-              {index.latest_deltas.map((d, i) => (
-                <tr key={`${d.benchmark}-${d.field}-${i}`}>
-                  <td>
-                    <Link href={`/bench/${d.benchmark}/`}>{d.benchmark}</Link>
-                  </td>
-                  <td className="mono">{d.field}</td>
-                  <td className="mono">{formatDelta(d)}</td>
-                  <td>
-                    {d.improved === undefined ? "—" : d.improved ? "yes" : "no"}
-                  </td>
-                </tr>
-              ))}
+              {index.latest_deltas.map((d, i) => {
+                const row = summaryById[d.benchmark];
+                const ulps = row?.numeric_validity?.ulps;
+                const within = row?.numeric_validity?.within_1ulp;
+                return (
+                  <tr key={`${d.benchmark}-${d.field}-${i}`}>
+                    <td>
+                      <Link href={`/bench/${d.benchmark}/`}>{d.benchmark}</Link>
+                    </td>
+                    <td className="mono">{d.field}</td>
+                    <td className="mono">{formatDelta(d)}</td>
+                    <td className="mono">
+                      {ulps != null ? (
+                        <>
+                          {ulps}
+                          {within === true ? " ≤1" : within === false ? " >1" : ""}
+                        </>
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+                    <td>
+                      {d.improved === undefined ? "—" : d.improved ? "yes" : "no"}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

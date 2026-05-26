@@ -5,6 +5,7 @@ import { LangsTable } from "@/components/bench/langs-table";
 import { PerfRelativeBars } from "@/components/bench/perf-relative-bars";
 import { OsTable } from "@/components/bench/os-table";
 import { PerfNotClaimable } from "@/components/bench/perf-not-claimable";
+import { NumericValidityPanel } from "@/components/bench/numeric-validity-panel";
 import { ValidityPanel } from "@/components/bench/validity-panel";
 import { ValidityBadge } from "@/components/bench/validity-badge";
 import { Badge } from "@/components/ui/badge";
@@ -38,8 +39,9 @@ export default async function BenchPage({ params }: PageProps) {
   return (
     <main>
       <section className="placeholder">
-        <h2>
-          {row.benchmark} <Badge status={row.status} />
+        <h2 className="bench-page-title">
+          <span title={row.benchmark}>{row.benchmark}</span>{" "}
+          <Badge status={row.status} />
           {row.validity_status ? (
             <ValidityBadge
               status={row.validity_status}
@@ -57,6 +59,7 @@ export default async function BenchPage({ params }: PageProps) {
         <HonestyCallout variant={row.variant} />
         <PerfNotClaimable row={row} />
         <ValidityPanel row={row} />
+        <NumericValidityPanel row={row} />
 
         <dl
           className="mono"
@@ -153,14 +156,18 @@ export default async function BenchPage({ params }: PageProps) {
           {phText}
         </p>
 
-        <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
-          Performance vs best competitor
-        </h3>
+        <h3 className="bench-panel-heading">Performance vs best competitor</h3>
+        {row.compare_oracle ? (
+          <p className="mono bench-compare-oracle">
+            Compare oracle: <code>{row.compare_oracle}</code>
+          </p>
+        ) : null}
         <PerfRelativeBars
           series={series}
           sotaLang={row.sota_lang}
           lowerIsBetter={lowerIsBetter}
           claimable={perfClaimable}
+          pending={row.pending}
         />
 
         <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
@@ -169,23 +176,40 @@ export default async function BenchPage({ params }: PageProps) {
         <LangsTable series={series} metric={row.metric} />
         <OsTable row={row} series={series} />
 
-        {deltas.length > 0 ? (
-          <section style={{ marginTop: "1.5rem" }}>
-            <h3 style={{ fontSize: "1rem", margin: 0 }}>Latest history deltas</h3>
-            <ul style={{ paddingLeft: "1.25rem", margin: "0.75rem 0 0" }}>
-              {deltas.map((d, i) => (
-                <li key={`${d.field}-${i}`} className="mono">
-                  <strong>{d.field}</strong>:{" "}
-                  {d.from !== undefined ? String(d.from) : "—"}
-                  {d.to !== undefined ? ` → ${d.to}` : ""}
-                  {d.delta !== undefined ? ` (Δ ${d.delta})` : ""}
-                  {d.improved !== undefined
-                    ? ` · ${d.improved ? "improved" : "regressed"}`
-                    : ""}
-                </li>
-              ))}
-            </ul>
-            <p style={{ marginTop: "0.75rem" }}>
+        {deltas.length > 0 || row.numeric_validity?.ulps != null ? (
+          <section className="bench-history-section" aria-labelledby="bench-history-heading">
+            <h3 id="bench-history-heading" className="bench-panel-heading">
+              Latest history deltas
+            </h3>
+            {row.numeric_validity?.ulps != null ? (
+              <p className="mono bench-history-ulp">
+                Current analytical deviation: <strong>{row.numeric_validity.ulps}</strong>{" "}
+                ULP{row.numeric_validity.ulps === 1 ? "" : "s"}
+                {row.numeric_validity.within_1ulp === true
+                  ? " (within 1 ULP — oracle agreement)"
+                  : row.numeric_validity.within_1ulp === false
+                    ? " (over 1 ULP — investigate codegen / fast-math)"
+                    : null}
+              </p>
+            ) : null}
+            {deltas.length > 0 ? (
+              <ul className="bench-history-list mono">
+                {deltas.map((d, i) => (
+                  <li key={`${d.field}-${i}`}>
+                    <strong>{d.field}</strong>:{" "}
+                    {d.from !== undefined ? String(d.from) : "—"}
+                    {d.to !== undefined ? ` → ${d.to}` : ""}
+                    {d.delta !== undefined ? ` (Δ ${d.delta})` : ""}
+                    {d.improved !== undefined
+                      ? ` · ${d.improved ? "improved" : "regressed"}`
+                      : ""}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mono bench-history-empty">No snapshot deltas for this benchmark.</p>
+            )}
+            <p className="bench-history-link">
               <Link href="/history/">All latest deltas →</Link>
             </p>
           </section>

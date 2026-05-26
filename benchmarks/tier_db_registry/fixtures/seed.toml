@@ -1,0 +1,17 @@
+# Reproducible registry OLTP seed for sqlite stub harness.
+[publisher]
+name = "li-langverse"
+
+[package]
+name = "demo-pkg"
+
+[versions]
+# version, proof_digest, coverage_pct, tree_digest
+rows = [
+  ["1.0.0", "sha256:deadbeef", 92.5, "sha256:tree001"],
+  ["1.0.1", "sha256:cafebabe", 94.0, "sha256:tree002"],
+]
+
+[attestation]
+kind = "sbom"
+payload_json = '{"format":"spdx","version":"2.3"}'

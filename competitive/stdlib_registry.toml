@@ -1,0 +1,115 @@
+# Stdlib ADT tier-1 competitive registry (WP0-C).
+# Plan: lic/docs/ecosystem/stdlib-collections-algorithms-plan.md (AL-15)
+# Harness: lic/benchmarks/tier1_stdlib/* (Li column empty until WP1)
+# Python reference.py: correctness only (reference_only), not perf oracle.
+
+[meta]
+version = 1
+pillar = "stdlib"
+updated = "2026-05-26"
+registry_review_days_warn = 90
+plan_doc = "lic/docs/ecosystem/stdlib-collections-algorithms-plan.md"
+
+# kernel_honesty: reference_native | reference_only | harness_pending
+# oracle_pin: path under lic repo root for C++ driver + core
+# status: oracle_ready | harness_pending
+
+[[benchmark]]
+id = "stdlib_sort_int"
+kernel_honesty = "reference_native"
+python_oracle_honesty = "reference_only"
+oracle_pin = "benchmarks/tier1_stdlib/stdlib_sort_int/cpp/main.c"
+reference_py = "benchmarks/tier1_stdlib/stdlib_sort_int/reference.py"
+core_pin = "benchmarks/tier1_stdlib/stdlib_sort_int/common/sort_core.c"
+compare = ["cpp"]
+csv_lang = "cpp"
+li_csv_lang = ""
+workload_class = "stub"
+status = "oracle_ready"
+last_reviewed = "2026-05-26"
+notes = "qsort int64 N=1e6; WP1 adds Li list.sort parity."
+
+[[benchmark]]
+id = "stdlib_dict_insert_lookup"
+kernel_honesty = "reference_native"
+python_oracle_honesty = "reference_only"
+oracle_pin = "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup/cpp/main.c"
+reference_py = "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup/reference.py"
+core_pin = "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup/common/dict_core.c"
+compare = ["cpp"]
+csv_lang = "cpp"
+li_csv_lang = ""
+workload_class = "stub"
+status = "oracle_ready"
+last_reviewed = "2026-05-26"
+notes = "open addressing 500k ops; WP1 Li dict runtime."
+
+[[benchmark]]
+id = "stdlib_binary_search"
+kernel_honesty = "reference_native"
+python_oracle_honesty = "reference_only"
+oracle_pin = "benchmarks/tier1_stdlib/stdlib_binary_search/cpp/main.c"
+reference_py = "benchmarks/tier1_stdlib/stdlib_binary_search/reference.py"
+core_pin = "benchmarks/tier1_stdlib/stdlib_binary_search/common/search_core.c"
+compare = ["cpp"]
+csv_lang = "cpp"
+li_csv_lang = ""
+workload_class = "stub"
+status = "oracle_ready"
+last_reviewed = "2026-05-26"
+notes = "sorted array binary search; WP1 bisect parity."
+
+[[benchmark]]
+id = "stdlib_list_push_pop"
+kernel_honesty = "harness_pending"
+python_oracle_honesty = "reference_only"
+oracle_pin = ""
+reference_py = ""
+workload_class = "stub"
+status = "harness_pending"
+last_reviewed = "2026-05-26"
+notes = "catalog row only until WP1."
+
+[[benchmark]]
+id = "stdlib_set_ops"
+kernel_honesty = "harness_pending"
+python_oracle_honesty = "reference_only"
+oracle_pin = ""
+reference_py = ""
+workload_class = "stub"
+status = "harness_pending"
+last_reviewed = "2026-05-26"
+notes = "catalog row only until WP1."
+
+[[benchmark]]
+id = "stdlib_heap_push_pop"
+kernel_honesty = "harness_pending"
+python_oracle_honesty = "reference_only"
+oracle_pin = ""
+reference_py = ""
+workload_class = "stub"
+status = "harness_pending"
+last_reviewed = "2026-05-26"
+notes = "catalog row only until WP1."
+
+[[benchmark]]
+id = "stdlib_deque_rotate"
+kernel_honesty = "harness_pending"
+python_oracle_honesty = "reference_only"
+oracle_pin = ""
+reference_py = ""
+workload_class = "stub"
+status = "harness_pending"
+last_reviewed = "2026-05-26"
+notes = "catalog row only until WP1."
+
+[[benchmark]]
+id = "stdlib_hash_flood"
+kernel_honesty = "harness_pending"
+python_oracle_honesty = "reference_only"
+oracle_pin = ""
+reference_py = ""
+workload_class = "stub"
+status = "harness_pending"
+last_reviewed = "2026-05-26"
+notes = "adversarial keys; ties WP0-E abuse suite."

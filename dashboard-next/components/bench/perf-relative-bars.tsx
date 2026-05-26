@@ -9,6 +9,8 @@ type PerfRelativeBarsProps = {
   sotaLang?: string | null;
   lowerIsBetter: boolean;
   claimable: boolean;
+  /** Catalog row with no wall-clock ingest yet (UX-B06). */
+  pending?: boolean;
 };
 
 export function PerfRelativeBars({
@@ -16,7 +18,24 @@ export function PerfRelativeBars({
   sotaLang,
   lowerIsBetter,
   claimable,
+  pending = false,
 }: PerfRelativeBarsProps) {
+  if (pending) {
+    return (
+      <figure className="perf-relative-chart perf-relative-pending">
+        <figcaption className="mono perf-relative-caption">
+          Not measured — this catalog row has no wall-clock data in the current ingest.
+          Bars below are placeholders only.
+        </figcaption>
+        <div
+          className="perf-bar-fill-pending"
+          role="img"
+          aria-label="Performance not measured"
+        />
+      </figure>
+    );
+  }
+
   const bars = buildRelativePerfBars(series, sotaLang, lowerIsBetter);
 
   if (bars.length === 0) {
@@ -82,14 +101,16 @@ export function PerfRelativeBars({
               >
                 <div
                   role="presentation"
+                  className={
+                    bar.isSota
+                      ? "perf-bar-fill-sota"
+                      : bar.lang === "li"
+                        ? "perf-bar-fill-li"
+                        : "perf-bar-fill-other"
+                  }
                   style={{
                     width: `${widthPct}%`,
                     height: "100%",
-                    background: bar.isSota
-                      ? "var(--accent)"
-                      : bar.lang === "li"
-                        ? "var(--green)"
-                        : "color-mix(in srgb, var(--muted) 70%, var(--text))",
                     borderRadius: "4px",
                     minWidth: bar.relative > 0 ? "2px" : 0,
                   }}

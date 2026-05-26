@@ -610,6 +610,123 @@ problem_size = "10_000_000"
 size_label = "N=10_000_000"
 ph_ids = ["PH-5b", "PH-7e"]
 
+# --- stdlib ADT tier-1 (WP0-C; workload_class stub until WP1 Li drivers) ---
+
+[[benchmark]]
+id = "stdlib_list_push_pop"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_list_push_pop"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+size_label = "harness pending"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_dict_insert_lookup"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+problem_size = "500_000_ops"
+size_label = "500k insert+lookup"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_set_ops"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_set_ops"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+size_label = "harness pending"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_sort_int"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_sort_int"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+problem_size = "1_000_000"
+size_label = "N=1_000_000 int sort"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_binary_search"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_binary_search"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+problem_size = "200_000_queries"
+size_label = "1M sorted / 200k queries"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_heap_push_pop"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_heap_push_pop"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+size_label = "harness pending"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_deque_rotate"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_deque_rotate"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+size_label = "harness pending"
+ph_ids = ["AL-15"]
+
+[[benchmark]]
+id = "stdlib_hash_flood"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_hash_flood"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+workload_class = "stub"
+size_label = "harness pending"
+ph_ids = ["AL-15"]
+
 [[benchmark]]
 id = "viz_colormap"
 category = "micro"

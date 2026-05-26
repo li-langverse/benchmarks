@@ -22,6 +22,7 @@ REQUIRED_PILLARS = frozenset(
         "database",
         "graphics",
         "tooling",
+        "stdlib",
     }
 )
 REQUIRED_ROW_KEYS = ("validity_status", "ratio_vs_sota")

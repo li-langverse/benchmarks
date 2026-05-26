@@ -22,12 +22,24 @@
     "compare_oracle": { "const": "postgres" },
     "postgres_min_version": { "type": "string", "default": "15" },
     "nightly_optional": { "type": "boolean", "default": true },
+    "engine_mode": {
+      "type": ["string", "null"],
+      "description": "sqlite_local_stub until lidb vs postgres harness runs"
+    },
+    "ph_plan": {
+      "type": "object",
+      "description": "PH-DB phase labels for agents and dashboard copy",
+      "additionalProperties": { "type": "string" }
+    },
     "sources": {
       "type": "object",
       "properties": {
         "suite_toml": { "type": "string" },
         "defaults_toml": { "type": "string" },
         "schema_sql": { "type": "string" },
+        "schema_sqlite_stub": { "type": "string" },
+        "fixtures_seed": { "type": "string" },
+        "harness_py": { "type": "string" },
         "results_csv": { "type": "string" },
         "catalog_toml": { "type": "string" }
       }
@@ -71,6 +83,11 @@
           "ph_ids": {
             "type": "array",
             "items": { "type": "string" }
+          },
+          "ph_dependencies": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Upstream PH-DB phases (e.g. PH-DB-1 schema, PH-DB-4 registry API)"
           },
           "notes": { "type": "string" }
         }

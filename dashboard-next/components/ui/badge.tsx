@@ -9,6 +9,14 @@ const STATUS_CLASS: Record<string, string> = {
   unknown: "badge-unknown",
 };
 
+/** Non-color status cue (UX-A01). */
+const STATUS_ICON: Record<string, string> = {
+  green: "✓",
+  yellow: "~",
+  red: "✗",
+  unknown: "?",
+};
+
 type BadgeProps = {
   status: BenchStatus;
   children?: ReactNode;
@@ -17,9 +25,14 @@ type BadgeProps = {
 
 export function Badge({ status, children, className = "" }: BadgeProps) {
   const key = status in STATUS_CLASS ? status : "unknown";
+  const icon = STATUS_ICON[key] ?? "?";
+  const label = children ?? status;
   return (
     <span className={`badge ${STATUS_CLASS[key]} ${className}`.trim()}>
-      {children ?? status}
+      <span className="badge-icon" aria-hidden="true">
+        {icon}
+      </span>{" "}
+      {label}
     </span>
   );
 }

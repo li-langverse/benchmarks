@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { BenchmarkSearch } from "@/components/benchmark-search";
+import { IngestSourcesStrip } from "@/components/overview/ingest-sources-strip";
+import { Tier1VerifyStrip } from "@/components/overview/tier1-verify-strip";
 import { Badge } from "@/components/ui/badge";
 import { getPillar, PILLAR_IDS } from "@/lib/pillars";
 import {
@@ -16,6 +18,7 @@ import {
 import { releaseFreshnessBanner } from "@/lib/release-freshness";
 import { COVERAGE_GAP_DOC, coverageHonesty, splitTierCounts } from "@/lib/coverage";
 import { loadSummary } from "@/lib/summary";
+import { tier1VerifyStats } from "@/lib/tier1-verify";
 import { pillarPerfCounts } from "@/lib/validity";
 
 const TIER_ORDER = ["0", "1", "2", "3", "5", "6"];
@@ -41,6 +44,7 @@ export default function HomePage() {
   const osFilterValues = summary.reporting?.os_values?.filter((o) => o !== "unknown") ?? [];
   const freshness = packageFreshnessRows(releaseIndex, summary.generated_at);
   const releaseBanner = releaseFreshnessBanner(releaseIndex, summary.generated_at);
+  const tier1Stats = tier1VerifyStats(summary.rows);
 
   return (
     <main className="bento">
@@ -116,6 +120,9 @@ export default function HomePage() {
           </a>
         </p>
       </section>
+
+      <Tier1VerifyStrip stats={tier1Stats} />
+      <IngestSourcesStrip summary={summary} />
 
       <section className="tier-strip bento-full" aria-label="Tier status counts">
         {TIER_ORDER.map((tier) => {

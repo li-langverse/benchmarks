@@ -64,6 +64,7 @@ def main() -> int:
                 category=category,
                 metric=cfg.get("metric", "wall_time"),
                 status=st,
+                raw_rows=raw,
             )
         )
 

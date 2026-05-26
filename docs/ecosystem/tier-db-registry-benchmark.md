@@ -6,8 +6,11 @@ Benchmark tier for **package registry** hot paths: **lidb** (embedded via **lis*
 
 | Path | Role |
 |------|------|
-| `benchmarks/tier_db_registry/` | Suite config, scenarios, shared schema |
-| `scripts/run-db-registry-bench.sh` | Entry stub (writes CI manifest) |
+| `benchmarks/tier_db_registry/` | Suite config, scenarios, shared schema, SQLite stub harness |
+| `benchmarks/tier_db_registry/fixtures/seed.toml` | Reproducible OLTP seed |
+| `benchmarks/tier_db_registry/harness/registry_oltp_stub.py` | Validate + optional SQLite timing |
+| `scripts/run-db-registry-bench.sh` | CI validate + manifest; harness when `RUN_HARNESS=1` |
+| `scripts/lidb-bench-stub/registry_oltp.sh` | Fallback when `../lidb` bench absent |
 | `data/latest/tier-db-registry.json` | CI ingest artifact |
 | `schema/tier-db-registry-ingest.json` | Manifest JSON Schema |
 | [`catalog.toml`](../../catalog.toml) | Dashboard rows (`category = database`, `tier = 6`) |
@@ -26,9 +29,11 @@ DDL: `benchmarks/tier_db_registry/schema/registry-v1.sql` — keep in sync with 
 
 ```bash
 cd benchmarks
+# Default (CI): validate tier layout + stub manifest — no lidb/postgres
 ./scripts/run-db-registry-bench.sh
-# Optional timed run (when harness exists):
-# BENCH_DB_REGISTRY_PROFILE=nightly BENCH_DB_REGISTRY_RUN_HARNESS=1 ./scripts/run-db-registry-bench.sh
+
+# SQLite stub timing (harness plumbing; status unknown in manifest)
+BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_PROFILE=nightly ./scripts/run-db-registry-bench.sh
 ```
 
 Env:

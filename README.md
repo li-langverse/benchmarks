@@ -10,6 +10,8 @@ Aggregated **benchmark status** for the Li org. Harnesses and sources stay in ea
 
 ## Quick start
 
+**`data/latest/`:** `summary.json`, `benchmark-matrix.json`, and `tier-db-*.json` stay in git (dashboard + CI stubs). Agent preflight / ecosystem audit JSON under `data/latest/` is regenerated locally (`scripts/agent-preflight.sh`, `ecosystem-audit.py`, …) and is gitignored — do not commit.
+
 ```bash
 # Refresh summary from sibling lic checkout
 ./scripts/ingest/ingest-lic.sh

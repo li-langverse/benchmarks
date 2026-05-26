@@ -1,0 +1,223 @@
+{
+  "generated_at": "2026-05-25T19:35:01.550127+00:00",
+  "dry_run": false,
+  "open_gaps": 27,
+  "by_kind": {
+    "missing_package": 5,
+    "plan_debt": 22
+  },
+  "actions": [
+    {
+      "gap_id": "gap-line-profiler-001",
+      "gap_kind": "missing_package",
+      "title": "li-line-profiler \u2014 line-level profiling package (seed)",
+      "at": "2026-05-25T19:35:01.547579+00:00",
+      "patch": "patched pkg-line-profiler \u2192 pending in ecosystem-package-backlog.md"
+    },
+    {
+      "gap_id": "gap-missing-std-std-io",
+      "gap_kind": "missing_package",
+      "title": "Missing std module std.io",
+      "at": "2026-05-25T19:35:01.547853+00:00",
+      "patch": "patched pkg-std-io \u2192 pending in ecosystem-package-backlog.md"
+    },
+    {
+      "gap_id": "gap-missing-std-std-csv",
+      "gap_kind": "missing_package",
+      "title": "Missing std module std.csv",
+      "at": "2026-05-25T19:35:01.548028+00:00",
+      "patch": "patched pkg-std-csv \u2192 pending in ecosystem-package-backlog.md"
+    },
+    {
+      "gap_id": "gap-missing-std-std-summary",
+      "gap_kind": "missing_package",
+      "title": "Missing std module std.summary",
+      "at": "2026-05-25T19:35:01.548185+00:00",
+      "patch": "patched pkg-std-summary \u2192 pending in ecosystem-package-backlog.md"
+    },
+    {
+      "gap_id": "gap-missing-std-std-plot",
+      "gap_kind": "missing_package",
+      "title": "Missing std module std.plot",
+      "at": "2026-05-25T19:35:01.548348+00:00",
+      "patch": "patched pkg-std-plot \u2192 pending in ecosystem-package-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-doc-c-phase-plan-files-02-03-07-",
+      "gap_kind": "plan_debt",
+      "title": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates",
+      "at": "2026-05-25T19:35:01.548501+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-2i-math-linalg-surface-par",
+      "gap_kind": "plan_debt",
+      "title": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred",
+      "at": "2026-05-25T19:35:01.548504+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-2e-contracts-refinements-p",
+      "gap_kind": "plan_debt",
+      "title": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_r",
+      "at": "2026-05-25T19:35:01.548506+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-2f-lean-4-verify-partial-a",
+      "gap_kind": "plan_debt",
+      "title": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contr",
+      "at": "2026-05-25T19:35:01.548508+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-7d-execution-decorators-pa",
+      "gap_kind": "plan_debt",
+      "title": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristic",
+      "at": "2026-05-25T19:35:01.548509+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-7e-math-simd-parallel-lowe",
+      "gap_kind": "plan_debt",
+      "title": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred",
+      "at": "2026-05-25T19:35:01.548510+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-h-li-httpd-m1-li-after-2e-",
+      "gap_kind": "plan_debt",
+      "title": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))",
+      "at": "2026-05-25T19:35:01.548511+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-vision-llm-llm-first-agent-json-",
+      "gap_kind": "plan_debt",
+      "title": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnosti",
+      "at": "2026-05-25T19:35:01.548512+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-sim-p1-num-dot-axpy",
+      "gap_kind": "plan_debt",
+      "title": "sim: pending plan todo sim-p1-num-dot-axpy",
+      "at": "2026-05-25T19:35:01.548513+00:00",
+      "patch": "patched sim-p1-num-dot-axpy \u2192 pending in sim-algorithm-backlog.md",
+      "suggest_systemd_loop": "sim"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-sim-p1-md-neighbor-cell",
+      "gap_kind": "plan_debt",
+      "title": "sim: pending plan todo sim-p1-md-neighbor-cell",
+      "at": "2026-05-25T19:35:01.548681+00:00",
+      "patch": "patched sim-p1-md-neighbor-cell \u2192 pending in sim-algorithm-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-sim-p2-qm-dft-scf",
+      "gap_kind": "plan_debt",
+      "title": "sim: pending plan todo sim-p2-qm-dft-scf",
+      "at": "2026-05-25T19:35:01.548847+00:00",
+      "patch": "patched sim-p2-qm-dft-scf \u2192 pending in sim-algorithm-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-md-research-md-r2-neighbor-list-gap",
+      "gap_kind": "plan_debt",
+      "title": "sim-md-research: pending plan todo md-r2-neighbor-list-gap",
+      "at": "2026-05-25T19:35:01.549004+00:00",
+      "patch": "patched md-r2-neighbor-list-gap \u2192 pending in sim-md-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-md-research-md-r3-oracle-plan",
+      "gap_kind": "plan_debt",
+      "title": "sim-md-research: pending plan todo md-r3-oracle-plan",
+      "at": "2026-05-25T19:35:01.549173+00:00",
+      "patch": "patched md-r3-oracle-plan \u2192 pending in sim-md-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-chem-research-chem-r2-dft-scf-gap",
+      "gap_kind": "plan_debt",
+      "title": "sim-chem-research: pending plan todo chem-r2-dft-scf-gap",
+      "at": "2026-05-25T19:35:01.549330+00:00",
+      "patch": "patched chem-r2-dft-scf-gap \u2192 pending in sim-chem-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-sim-chem-research-chem-r3-package-placement",
+      "gap_kind": "plan_debt",
+      "title": "sim-chem-research: pending plan todo chem-r3-package-placement",
+      "at": "2026-05-25T19:35:01.549489+00:00",
+      "patch": "patched chem-r3-package-placement \u2192 pending in sim-chem-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-swarm-observer-orch-r2-competitor-stubs",
+      "gap_kind": "plan_debt",
+      "title": "swarm-observer: pending plan todo orch-r2-competitor-stubs",
+      "at": "2026-05-25T19:35:01.549657+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-pending-swarm-observer-orch-r3-missing-package-sweep",
+      "gap_kind": "plan_debt",
+      "title": "swarm-observer: pending plan todo orch-r3-missing-package-sweep",
+      "at": "2026-05-25T19:35:01.549661+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-pending-swarm-observer-orch-r4-ui-ux-signals",
+      "gap_kind": "plan_debt",
+      "title": "swarm-observer: pending plan todo orch-r4-ui-ux-signals",
+      "at": "2026-05-25T19:35:01.549662+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    },
+    {
+      "gap_id": "gap-plan-pending-security-research-sec-r1-httpd-fuzz-smoke",
+      "gap_kind": "plan_debt",
+      "title": "security-research: pending plan todo sec-r1-httpd-fuzz-smoke",
+      "at": "2026-05-25T19:35:01.549663+00:00",
+      "patch": "patched sec-r1-httpd-fuzz-smoke \u2192 pending in security-research-backlog.md",
+      "suggest_systemd_loop": "security-research"
+    },
+    {
+      "gap_id": "gap-plan-pending-security-research-sec-r2-tier5-gap-exploit",
+      "gap_kind": "plan_debt",
+      "title": "security-research: pending plan todo sec-r2-tier5-gap-exploit",
+      "at": "2026-05-25T19:35:01.549817+00:00",
+      "patch": "patched sec-r2-tier5-gap-exploit \u2192 pending in security-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-security-research-sec-r3-runtime-surface",
+      "gap_kind": "plan_debt",
+      "title": "security-research: pending plan todo sec-r3-runtime-surface",
+      "at": "2026-05-25T19:35:01.549969+00:00",
+      "patch": "patched sec-r3-runtime-surface \u2192 pending in security-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-debt-lic-master-plan-phase-8p-parallel-compile-ci-thr",
+      "gap_kind": "plan_debt",
+      "title": "Phase 8p \u2014 Parallel compile + CI throughput \u2014 **partial (8p-a/b/c/d):** 8p-a parallel `run_all` + isolated `LI_BUILD_DIR",
+      "at": "2026-05-25T19:35:01.550124+00:00",
+      "patch": "deferred (no runner backlog mapping)"
+    }
+  ],
+  "suggested_new_loops": [
+    "sim",
+    "security-research"
+  ],
+  "patches": [
+    "patched pkg-line-profiler \u2192 pending in ecosystem-package-backlog.md",
+    "patched pkg-std-io \u2192 pending in ecosystem-package-backlog.md",
+    "patched pkg-std-csv \u2192 pending in ecosystem-package-backlog.md",
+    "patched pkg-std-summary \u2192 pending in ecosystem-package-backlog.md",
+    "patched pkg-std-plot \u2192 pending in ecosystem-package-backlog.md",
+    "patched sim-p1-num-dot-axpy \u2192 pending in sim-algorithm-backlog.md",
+    "patched sim-p1-md-neighbor-cell \u2192 pending in sim-algorithm-backlog.md",
+    "patched sim-p2-qm-dft-scf \u2192 pending in sim-algorithm-backlog.md",
+    "patched md-r2-neighbor-list-gap \u2192 pending in sim-md-research-backlog.md",
+    "patched md-r3-oracle-plan \u2192 pending in sim-md-research-backlog.md",
+    "patched chem-r2-dft-scf-gap \u2192 pending in sim-chem-research-backlog.md",
+    "patched chem-r3-package-placement \u2192 pending in sim-chem-research-backlog.md",
+    "patched sec-r1-httpd-fuzz-smoke \u2192 pending in security-research-backlog.md",
+    "patched sec-r2-tier5-gap-exploit \u2192 pending in security-research-backlog.md",
+    "patched sec-r3-runtime-surface \u2192 pending in security-research-backlog.md"
+  ]
+}
