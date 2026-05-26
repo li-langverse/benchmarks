@@ -42,6 +42,7 @@ CATEGORY_LABELS = {
 }
 PILLAR_ORDER = [
     "numerics",
+    "stdlib",
     "compiler",
     "server",
     "physics",
@@ -54,6 +55,7 @@ PILLAR_ORDER = [
 PILLAR_LABELS = {
     "compiler": "Compiler & codegen",
     "numerics": "Numerics & SIMD / linear algebra",
+    "stdlib": "Stdlib collections & algorithms",
     "physics": "Physics & simulations",
     "server": "HTTP / webserver",
     "database": "Database & registry OLTP",
