@@ -21,6 +21,8 @@ data/latest/security-cwe-feed.json
 data/latest/security-cwe-feed-delta.json
 data/latest/security-cwe-feed-prev.json
 data/latest/workspace-dirty-sweep.json
+data/latest/tier-db-registry-harness.json
+benchmarks/tier_db_registry/results/latest.csv
 
 data/visuals/latest/*.png
 # Generated locally — scripts/render-li-code-image.py --all (not committed)

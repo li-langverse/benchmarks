@@ -21,15 +21,30 @@ Compare **lidb** (via **lis** `registry-min` profile) against **PostgreSQL 15+**
 
 Shared DDL: [`schema/registry-v1.sql`](schema/registry-v1.sql) — aligned with **lip** `registry/schema/registry-v1.sql` and **lidb** `migrations/001_registry.sql` (WP1).
 
-## Run (stub)
+## Run
 
 ```bash
 cd benchmarks
+# CI dry-run: validate suite/scenarios/schema + stub manifest (default)
 ./scripts/run-db-registry-bench.sh
+
+# SQLite stub timing (plumbing only — not lidb/postgres P95 evidence)
+BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_PROFILE=nightly ./scripts/run-db-registry-bench.sh
+
+# Validate harness only
+python3 benchmarks/tier_db_registry/harness/registry_oltp_stub.py --validate-only
+
 cat data/latest/tier-db-registry.json
 ```
 
-Env: `BENCH_DB_REGISTRY_PROFILE=ci|nightly`, `POSTGRES_URL`, `LIDB_URL` / `lis db start`.
+| Path | Role |
+|------|------|
+| `fixtures/seed.toml` | Reproducible publisher/package seed |
+| `schema/registry-sqlite-v1.sql` | SQLite subset for local stub |
+| `harness/registry_oltp_stub.py` | Validate + optional `--run-timing` |
+| `results/latest.csv` | Emitted when harness timing runs |
+
+Env: `BENCH_DB_REGISTRY_PROFILE=ci|nightly`, `BENCH_DB_REGISTRY_RUN_HARNESS=1`, `POSTGRES_URL`, `LIDB_URL` / `lis db start` (real P95 runs).
 
 ## CI ingest
 
