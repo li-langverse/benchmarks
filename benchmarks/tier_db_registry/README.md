@@ -1,6 +1,6 @@
 # tier_db_registry — registry OLTP benchmarks
 
-Compare **lidb** (via **lis** `registry-min` profile) against **PostgreSQL 15+** on the same schema for package-registry hot paths.
+Compare **lidb** (`lidb_embed` + `001_registry.sql`) against **PostgreSQL 15+** (`registry-v1.sql`) on package-registry hot paths.
 
 ## Scenarios
 
@@ -15,43 +15,79 @@ Compare **lidb** (via **lis** `registry-min` profile) against **PostgreSQL 15+**
 | Profile | Timing | When |
 |---------|--------|------|
 | `ci` | off (config validation only) | PR smoke |
-| `nightly` | on (P95 vs Postgres) | Scheduled / manual |
+| `nightly` | on (reduced iters when profile=ci inside harness) | Scheduled / manual |
 
 ## Schema
 
-Shared DDL: [`schema/registry-v1.sql`](schema/registry-v1.sql) — aligned with **lip** `registry/schema/registry-v1.sql` and **lidb** `migrations/001_registry.sql` (WP1).
+| File | Engine |
+|------|--------|
+| [`schema/registry-v1.sql`](schema/registry-v1.sql) | Postgres 15+ oracle (canonical for ratio) |
+| `lidb/migrations/001_registry.sql` | lidb_embed migrate (UUID schema; workload-equivalent paths) |
+| [`schema/registry-sqlite-v1.sql`](schema/registry-sqlite-v1.sql) | CI plumbing stub only |
 
 ## Run
 
 ```bash
 cd benchmarks
-# CI dry-run: validate suite/scenarios/schema + stub manifest (default)
+
+# CI (default): validate layout + stub manifest — no engines
 ./scripts/run-db-registry-bench.sh
 
-# SQLite stub timing (plumbing only — not lidb/postgres P95 evidence)
-BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_PROFILE=nightly ./scripts/run-db-registry-bench.sh
+# SQLite stub plumbing (status unknown — not PH-DB-5 evidence)
+BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_ALLOW_SQLITE_STUB=1 \
+  BENCH_DB_REGISTRY_ENGINE=sqlite_stub ./scripts/run-db-registry-bench.sh
 
-# Validate harness only
-python3 benchmarks/tier_db_registry/harness/registry_oltp_stub.py --validate-only
+# lidb timings only (no Postgres yet)
+export LIDB_ROOT=../lidb
+BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_ENGINE=lidb_only ./scripts/run-db-registry-bench.sh
+
+# Real PH-DB-5 compare (lidb P95 / Postgres P95 ≤ threshold)
+pip install -r benchmarks/tier_db_registry/harness/requirements-registry.txt
+export POSTGRES_URL='postgresql://localhost/registry_bench'
+export LIDB_ROOT=../lidb
+BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_PROFILE=nightly \
+  BENCH_DB_REGISTRY_ENGINE=compare ./scripts/run-db-registry-bench.sh
 
 cat data/latest/tier-db-registry.json
 ```
 
+From **lidb** repo (builds embed, delegates to benchmarks harness):
+
+```bash
+cd lidb
+export BENCHMARKS_ROOT=../benchmarks
+export POSTGRES_URL=...   # optional for compare
+bash scripts/bench/registry_oltp.sh
+```
+
 | Path | Role |
 |------|------|
+| `harness/registry_oltp.py` | Real lidb + Postgres / postgres_only / lidb_only |
+| `harness/registry_oltp_stub.py` | Validate + SQLite stub (`--run-timing`) |
+| `harness/requirements-registry.txt` | Optional `psycopg` for Postgres oracle |
 | `fixtures/seed.toml` | Reproducible publisher/package seed |
-| `schema/registry-sqlite-v1.sql` | SQLite subset for local stub |
-| `harness/registry_oltp_stub.py` | Validate + optional `--run-timing` |
 | `results/latest.csv` | Emitted when harness timing runs |
 
-Env: `BENCH_DB_REGISTRY_PROFILE=ci|nightly`, `BENCH_DB_REGISTRY_RUN_HARNESS=1`, `POSTGRES_URL`, `LIDB_URL` / `lis db start` (real P95 runs).
+### Env
+
+| Variable | Default | Notes |
+|----------|---------|-------|
+| `BENCH_DB_REGISTRY_PROFILE` | `ci` | `nightly` for full measure_iters |
+| `BENCH_DB_REGISTRY_RUN_HARNESS` | `0` | `1` to run timings |
+| `BENCH_DB_REGISTRY_ENGINE` | `auto` | `compare`, `postgres_only`, `lidb_only`, `sqlite_stub` |
+| `BENCH_DB_REGISTRY_THRESHOLD` | `1.2` | Max lidb/postgres P95 ratio for **pass** |
+| `POSTGRES_URL` | — | Postgres 15+ (psycopg required for real bench) |
+| `LIDB_ROOT` / `LIDB_EMBED` | auto `../lidb` | Native embed binary |
+| `LIDB_DATA_DIR` | temp | Persistent lidb data dir (optional) |
+
+## PH-DB-5 exit gate
+
+Manifest `status: pass` only when **all three** scenarios have measured `ratio_vs_postgres` ≤ `BENCH_DB_REGISTRY_THRESHOLD`. Otherwise manifest is `unknown` (partial engines) or `fail` (over threshold) — never fake green.
 
 ## CI ingest
 
 Manifest: `data/latest/tier-db-registry.json` (schema: [`schema/tier-db-registry-ingest.json`](../../schema/tier-db-registry-ingest.json)).
 
-CSV rows (future): `benchmarks/tier_db_registry/results/latest.csv` with columns `benchmark,lang,metric,value,unit,variant`.
+PR CI runs validate + **stub** only. Nightly/org runners may set `BENCH_DB_REGISTRY_RUN_HARNESS=1` with engines.
 
-## Plan
-
-**PH-DB-5** — document P95 vs Postgres; dashboard **unknown** until harness produces CSV. See [tier-db-registry-benchmark.md](../../docs/ecosystem/tier-db-registry-benchmark.md).
+See [tier-db-registry-benchmark.md](../../docs/ecosystem/tier-db-registry-benchmark.md).

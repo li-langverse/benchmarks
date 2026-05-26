@@ -42,7 +42,40 @@ def scenario_stub(sid: str, *, status: str = "stub") -> dict:
     }
 
 
-def scenario_from_harness_row(sid: str, row: dict) -> dict:
+def scenario_from_harness(sid: str, harness_scenario: dict) -> dict:
+    """Map harness scenario object → ingest manifest scenario."""
+    engines = harness_scenario.get("engines", {})
+    out_engines: dict = {"lidb": engines.get("lidb"), "postgres": engines.get("postgres")}
+    if engines.get("sqlite_stub"):
+        out_engines["sqlite_stub"] = engines["sqlite_stub"]
+    status = harness_scenario.get("status", "unknown")
+    ratio = harness_scenario.get("ratio_vs_postgres")
+    note = NOTES.get(sid, "")
+    extra = harness_scenario.get("notes") or ""
+    if status == "unknown" and engines.get("sqlite_stub"):
+        note = f"{note} — sqlite_stub timing only; awaiting lidb vs Postgres P95".strip()
+    elif status in ("green", "red") and ratio is not None:
+        note = f"{note} — measured ratio {ratio} vs postgres oracle".strip()
+    elif engines.get("postgres") and not engines.get("lidb"):
+        note = f"{note} — postgres oracle only; lidb compare pending".strip()
+    return {
+        "id": sid,
+        "metric": "latency_p95",
+        "unit": "ms",
+        "lower_is_better": True,
+        "threshold_ratio_vs_postgres": harness_scenario.get(
+            "threshold_ratio_vs_postgres", THRESHOLD
+        ),
+        "status": status,
+        "engines": out_engines,
+        "ratio_vs_postgres": ratio,
+        "ph_ids": harness_scenario.get("ph_ids", [PH_GATE]),
+        "ph_dependencies": harness_scenario.get("ph_dependencies", PH_DEPENDENCIES),
+        "notes": note or extra,
+    }
+
+
+def scenario_from_legacy_row(sid: str, row: dict) -> dict:
     p95 = row.get("value")
     return {
         "id": sid,
@@ -74,10 +107,24 @@ def build_manifest(
 ) -> dict:
     scenarios: list[dict]
     engine_mode = None
-    if harness and harness.get("rows"):
+    threshold = THRESHOLD
+
+    if harness and harness.get("scenarios"):
+        by_id = {s["id"]: s for s in harness["scenarios"]}
+        scenarios = [
+            scenario_from_harness(sid, by_id[sid])
+            if sid in by_id
+            else scenario_stub(sid, status="unknown")
+            for sid in SCENARIO_IDS
+        ]
+        engine_mode = harness.get("engine_mode")
+        threshold = harness.get("threshold_ratio_vs_postgres", THRESHOLD)
+        if harness.get("status"):
+            status = harness["status"]
+    elif harness and harness.get("rows"):
         by_id = {r["benchmark"]: r for r in harness["rows"]}
         scenarios = [
-            scenario_from_harness_row(sid, by_id[sid])
+            scenario_from_legacy_row(sid, by_id[sid])
             if sid in by_id
             else scenario_stub(sid, status="unknown")
             for sid in SCENARIO_IDS
@@ -85,6 +132,8 @@ def build_manifest(
         engine_mode = harness.get("engine_mode", "sqlite_local_stub")
     else:
         scenarios = [scenario_stub(s) for s in SCENARIO_IDS]
+
+    harness_py = "benchmarks/tier_db_registry/harness/registry_oltp.py"
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -95,6 +144,7 @@ def build_manifest(
         "postgres_min_version": "15",
         "nightly_optional": True,
         "engine_mode": engine_mode,
+        "threshold_ratio_vs_postgres": threshold,
         "ph_plan": {
             "PH-DB-1": "lidb engine + 001_registry.sql (schema parity)",
             "PH-DB-4": "lip registry API + central registry DB",
@@ -106,7 +156,7 @@ def build_manifest(
             "schema_sql": "benchmarks/tier_db_registry/schema/registry-v1.sql",
             "schema_sqlite_stub": "benchmarks/tier_db_registry/schema/registry-sqlite-v1.sql",
             "fixtures_seed": "benchmarks/tier_db_registry/fixtures/seed.toml",
-            "harness_py": "benchmarks/tier_db_registry/harness/registry_oltp_stub.py",
+            "harness_py": harness_py,
             "results_csv": "benchmarks/tier_db_registry/results/latest.csv",
             "catalog_toml": "catalog.toml",
         },
@@ -127,7 +177,7 @@ def main() -> int:
     ap.add_argument(
         "--from-harness",
         type=Path,
-        help="Harness JSON from registry_oltp_stub.py (--run-timing)",
+        help="Harness JSON from registry_oltp.py",
     )
     args = ap.parse_args()
 
@@ -139,6 +189,8 @@ def main() -> int:
         status = args.status
     elif args.stub or harness is None:
         status = "stub"
+    elif harness.get("status"):
+        status = harness["status"]
     else:
         status = "unknown"
 

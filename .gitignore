@@ -22,6 +22,7 @@ data/latest/security-cwe-feed-delta.json
 data/latest/security-cwe-feed-prev.json
 data/latest/workspace-dirty-sweep.json
 data/latest/tier-db-registry-harness.json
+data/latest/tier-db-registry-harness-test.json
 benchmarks/tier_db_registry/results/latest.csv
 
 data/visuals/latest/*.png

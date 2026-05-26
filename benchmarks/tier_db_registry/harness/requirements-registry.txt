@@ -1,0 +1,3 @@
+# Optional deps for real tier_db_registry bench (Postgres oracle).
+#   pip install -r benchmarks/tier_db_registry/harness/requirements-registry.txt
+psycopg[binary]>=3.1

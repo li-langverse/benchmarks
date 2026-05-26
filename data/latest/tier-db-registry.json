@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T18:48:44.360508+00:00",
+  "generated_at": "2026-05-26T20:31:31.883684+00:00",
   "tier": "tier_db_registry",
   "profile": "ci",
   "status": "stub",
@@ -7,6 +7,7 @@
   "postgres_min_version": "15",
   "nightly_optional": true,
   "engine_mode": null,
+  "threshold_ratio_vs_postgres": 1.2,
   "ph_plan": {
     "PH-DB-1": "lidb engine + 001_registry.sql (schema parity)",
     "PH-DB-4": "lip registry API + central registry DB",
@@ -18,7 +19,7 @@
     "schema_sql": "benchmarks/tier_db_registry/schema/registry-v1.sql",
     "schema_sqlite_stub": "benchmarks/tier_db_registry/schema/registry-sqlite-v1.sql",
     "fixtures_seed": "benchmarks/tier_db_registry/fixtures/seed.toml",
-    "harness_py": "benchmarks/tier_db_registry/harness/registry_oltp_stub.py",
+    "harness_py": "benchmarks/tier_db_registry/harness/registry_oltp.py",
     "results_csv": "benchmarks/tier_db_registry/results/latest.csv",
     "catalog_toml": "catalog.toml"
   },

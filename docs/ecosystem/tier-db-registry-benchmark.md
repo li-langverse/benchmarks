@@ -1,18 +1,17 @@
 # tier_db_registry — registry OLTP vs PostgreSQL
 
-Benchmark tier for **package registry** hot paths: **lidb** (embedded via **lis** `registry-min`) vs **PostgreSQL 15+** on identical DDL.
+Benchmark tier for **package registry** hot paths: **lidb** (`lidb_embed`) vs **PostgreSQL 15+** on registry OLTP workloads.
 
 ## Layout
 
 | Path | Role |
 |------|------|
-| `benchmarks/tier_db_registry/` | Suite config, scenarios, shared schema, SQLite stub harness |
-| `benchmarks/tier_db_registry/fixtures/seed.toml` | Reproducible OLTP seed |
-| `benchmarks/tier_db_registry/harness/registry_oltp_stub.py` | Validate + optional SQLite timing |
-| `scripts/run-db-registry-bench.sh` | CI validate + manifest; harness when `RUN_HARNESS=1` |
-| `scripts/lidb-bench-stub/registry_oltp.sh` | Fallback when `../lidb` bench absent |
+| `benchmarks/tier_db_registry/` | Suite config, scenarios, shared schema, harness |
+| `benchmarks/tier_db_registry/harness/registry_oltp.py` | Real lidb + Postgres compare |
+| `benchmarks/tier_db_registry/harness/registry_oltp_stub.py` | Validate + SQLite stub |
+| `scripts/run-db-registry-bench.sh` | CI validate + optional harness |
+| `lidb/scripts/bench/registry_oltp.sh` | Build embed + invoke benchmarks harness |
 | `data/latest/tier-db-registry.json` | CI ingest artifact |
-| `schema/tier-db-registry-ingest.json` | Manifest JSON Schema |
 | [`catalog.toml`](../../catalog.toml) | Dashboard rows (`category = database`, `tier = 6`) |
 
 ## Scenarios
@@ -23,7 +22,7 @@ Benchmark tier for **package registry** hot paths: **lidb** (embedded via **lis*
 | `registry_read_by_name` | `SELECT` package by name | P95 latency (ms) |
 | `registry_read_latest` | Latest version for package | P95 latency (ms) |
 
-DDL: `benchmarks/tier_db_registry/schema/registry-v1.sql` — keep in sync with **lip** / **lidb** registry migrations.
+DDL: `benchmarks/tier_db_registry/schema/registry-v1.sql` (Postgres oracle). **lidb** uses `migrations/001_registry.sql` (UUID schema; equivalent hot paths).
 
 ## Run
 
@@ -32,26 +31,38 @@ cd benchmarks
 # Default (CI): validate tier layout + stub manifest — no lidb/postgres
 ./scripts/run-db-registry-bench.sh
 
-# SQLite stub timing (harness plumbing; status unknown in manifest)
-BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_PROFILE=nightly ./scripts/run-db-registry-bench.sh
+# Real compare (local / nightly)
+export LIDB_ROOT=../lidb POSTGRES_URL='postgresql://...'
+pip install -r benchmarks/tier_db_registry/harness/requirements-registry.txt
+BENCH_DB_REGISTRY_RUN_HARNESS=1 BENCH_DB_REGISTRY_PROFILE=nightly \
+  BENCH_DB_REGISTRY_ENGINE=compare ./scripts/run-db-registry-bench.sh
 ```
 
 Env:
 
 | Variable | Default | Notes |
 |----------|---------|-------|
-| `BENCH_DB_REGISTRY_PROFILE` | `ci` | `ci` = config-only; `nightly` = P95 timing |
-| `POSTGRES_URL` | — | Postgres 15+ with `registry-v1` schema applied |
-| `LIDB_URL` / `lis db start` | — | **lis** registry-min profile (WP5) |
-| `BENCH_DB_REGISTRY_THRESHOLD` | `1.2` | Max lidb/postgres P95 ratio for green |
+| `BENCH_DB_REGISTRY_PROFILE` | `ci` | `ci` = validate-only in PR; `nightly` = full measure_iters |
+| `BENCH_DB_REGISTRY_RUN_HARNESS` | `0` | `1` enables timing harness |
+| `BENCH_DB_REGISTRY_ENGINE` | `auto` | `compare` \| `postgres_only` \| `lidb_only` \| `sqlite_stub` |
+| `POSTGRES_URL` | — | Postgres 15+ (`psycopg` for real bench) |
+| `LIDB_ROOT` / `LIDB_EMBED` | — | **lidb** native embed |
+| `BENCH_DB_REGISTRY_THRESHOLD` | `1.2` | PH-DB-5 pass: lidb P95 / postgres P95 ≤ threshold |
+
+## CI behavior
+
+| Job | `RUN_HARNESS` | Engines | Manifest `status` |
+|-----|---------------|---------|-------------------|
+| PR `ci.yml` | `0` | none | `stub` |
+| Nightly (optional) | `1` | `postgres_only` or `compare` | `unknown` / `pass` / `fail` |
+
+**Honesty:** `pass` only with measured lidb vs Postgres ratios on all three scenarios. SQLite stub → `unknown`. No fake green P95.
 
 ## CI ingest
 
-1. `run-db-registry-bench.sh` calls `scripts/ingest/write-tier-db-registry-manifest.py`.
-2. Artifact: `data/latest/tier-db-registry.json` (see schema).
-3. Future: `benchmarks/tier_db_registry/results/latest.csv` merged into `summary.json` like HTTP CSV rows.
-
-**Honesty:** Until CSV exists, dashboard shows **unknown** for tier-6 database rows — not “lidb slower than Postgres.”
+1. `run-db-registry-bench.sh` → `write-tier-db-registry-manifest.py`
+2. Artifact: `data/latest/tier-db-registry.json`
+3. CSV: `benchmarks/tier_db_registry/results/latest.csv` when harness runs
 
 ## Plan linkage
 
@@ -59,10 +70,10 @@ Env:
 |----|-------------|
 | **PH-DB-1** | `lidb` + `001_registry.sql` |
 | **PH-DB-4** | lip registry API + schema |
-| **PH-DB-5** | This tier — P95 parity evidence for registry release |
+| **PH-DB-5** | This tier — P95 parity evidence |
 
-Nightly runs are **optional** (org schedule); PR **ci** profile validates TOML + schema paths only.
+## Blockers
 
-## Full suite
-
-Not yet in `run-full-benchmark-suite.sh`. Add when `BENCH_DB_REGISTRY_RUN_HARNESS=1` is stable.
+- **Postgres in CI:** not provisioned on default PR runners — use `postgres_only` / `compare` on nightly with service container or skip (`stub`).
+- **Schema drift:** lip `registry-v1` vs lidb `001_registry` — workloads aligned; DDL differs (BIGSERIAL vs UUID).
+- **PH-DB-5 exit:** requires green ratios on all scenarios; until then dashboard stays `unknown`/`fail`.

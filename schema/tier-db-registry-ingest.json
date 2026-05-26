@@ -24,7 +24,12 @@
     "nightly_optional": { "type": "boolean", "default": true },
     "engine_mode": {
       "type": ["string", "null"],
-      "description": "sqlite_local_stub until lidb vs postgres harness runs"
+      "description": "compare | postgres_only | lidb_only | sqlite_stub | null (CI stub)"
+    },
+    "threshold_ratio_vs_postgres": {
+      "type": "number",
+      "default": 1.2,
+      "description": "PH-DB-5 pass gate (lidb P95 / postgres P95)"
     },
     "ph_plan": {
       "type": "object",
