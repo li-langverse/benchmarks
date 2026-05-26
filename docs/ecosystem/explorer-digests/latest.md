@@ -1,148 +1,142 @@
 # Gap explorer digest — HPC, simulations, AI-first tooling
 
-**Generated:** 2026-05-26T05:36Z  
+**Generated:** 2026-05-26T06:17Z  
 **Agent:** `gap_explorer`  
-**Preflight:** `ecosystem-explorer.py` (LIC_ROOT=../lic), briefing `agent-briefing.json` @ 2026-05-26T05:36Z  
-**Quality scorecard:** `benchmarks/data/latest/ecosystem-quality-report.json` — grade **D** (62.4), `gap_pressure` 72.0 (45 open gaps), `ecosystem_posture` 25.0 (8 red benchmark rows in briefing audit)
+**Preflight:** `benchmarks/scripts/ecosystem-explorer.py` (LIC_ROOT=../lic), briefing `agent-briefing.json` @ 2026-05-26T06:16Z  
+**Quality scorecard:** `benchmarks/data/latest/ecosystem-quality-report.json` — grade **D** (62.4), `gap_pressure` **72.0** (45 open gaps), `ecosystem_posture` **25.0** (bias `benchmark-red-rows`, `swarm-gap-backlog`)
 
 ---
 
 ## Executive summary
 
-- **Static scan (lic present):** Only **2** std modules still **missing** on disk — `std.summary`, `std.plot`; `std.io` / `std.csv` are **present** but registry rows remain open (reconcile below).
-- **HPC library rubric:** Kokkos, PETSc, FFTW, hypre, HPX, RAJA marked **missing** in `ecosystem-explorer.json`; Eigen/OpenMP/SUNDIALS **partial** — Li’s proof-first `std/execution` decorators are the Kokkos-class gap (lic #15).
-- **Benchmark pressure (scorecard `benchmark-red-rows`):** **8** tier-1/2 red rows vs C++ (`matmul_naive` 1.73×, `num_gmres` 1.68×, integrators, cloth, orbit, Schrödinger) — bias `numerics_researcher` / `bench_improver`, not new GitHub spam.
-- **Competitive honesty:** `competitive/verticals.toml` exists in compiler-studio worktree but **not** on benchmarks `main` checkout — `swarm-gap-ingest.py` vertical stub ingest is a no-op until file is mirrored (orch-r2).
-- **Catalog:** `suggested_catalog_gaps` — increase **pure_li** variant rows for PH-7e codegen proof; FFT micro-bench still tracked (benchmarks #18, #26, #52).
-- **Web/Reddit (≥7 queries):** PETSc–Kokkos device stack, Eigen 5.0 + BLAS policy, Kokkos 5.x / Chapel 2.8 HPSF releases, FFT roofline vs cuFFT, Kokkos vs OpenMP portability studies; `site:reddit.com` queries returned no indexed snippets — community signal cited via arXiv/plasma portability papers and r/HPC forum index.
-- **Swarm registry:** **12** new `competitor_feature` rows + **2** `missing_package` confirmations ingested; prefer `swarm_coverage` / `numerics_researcher` over new issues (existing lic/benchmarks ecosystem issues cover most themes).
-- **North star fit:** Scientific/HPC pillar — PH-2i (linalg partial), PH-5b (tier-1 numerics), PH-7e (SIMD/parallel lowering), PH-IO (agent ingest/dashboard).
+- **Static scan:** `std.summary` and `std.plot` remain **missing** on disk; `std.io` / `std.csv` are **present** — close/reconcile registry rows `gap-missing-std-std-io` / `std-csv` (already `closed` in registry).
+- **HPC rubric:** Kokkos, PETSc, FFTW, hypre, HPX, RAJA **missing**; Eigen, OpenMP, SUNDIALS **partial** — Li `std/execution` decorators are the Kokkos-class portability gap (lic #15, registry `gap-hpc-kokkos-execution-memory-spaces`).
+- **Benchmark pressure:** **8** red tier-1/2 rows vs C++ in `ecosystem-audit.json` — six new registry `competitor_feature` rows added this pass; route to `numerics_researcher` / `bench_improver` (PH-5b, PH-7e).
+- **Catalog:** `suggested_catalog_gaps` — increase **pure_li** variant rows for PH-7e codegen proof (`gap-competitor-pure-li-ph7e-catalog`).
+- **Competitive honesty:** `competitive/verticals.toml` exists in `lic-worktrees/compiler-studio` but **not** on benchmarks `main` — vertical stub ingest is a no-op (`gap-infra-verticals-toml-missing-benchmarks-main`).
+- **Web/Reddit (≥7 queries):** PETSc 3.25 Kokkos views, Eigen 5.0 semver, Kokkos 4.5–5.x + Chapel 2.8 HPSF, FFT roofline vs cuFFT, Kokkos vs OpenMP portability papers; `site:reddit.com` index returned no thread snippets — cite arXiv/OSTI + https://www.reddit.com/r/HPC/ for manual follow-up.
+- **Swarm registry:** **9** new `competitor_feature` rows appended; **0** new GitHub issues (existing lic/benchmarks ecosystem issues + swarm goals cover themes).
+- **North star fit:** Scientific computing / HPC — PH-2i (linalg partial), PH-5b (tier-1 numerics), PH-7e (SIMD/parallel), PH-IO (agent ingest/dashboard); proof → easy → fast.
 
 ---
 
 ## Deliverable / findings
 
-### 1. Quality scorecard bias (read before prioritization)
+### 1. Quality scorecard bias
 
 | Signal | Value | Evidence |
 |--------|------:|----------|
-| `gap_pressure` | 72.0 | 45 open gaps (`swarm-gap-backlog` finding) |
-| `ecosystem_posture` | 25.0 | 61 failed PRs, 33 repos missing CI on main |
-| `benchmark-red-rows` | high | 8 red rows in `ecosystem-audit.json` |
-| `swarm-gap-backlog` | medium | `data/latest/swarm-gap-actions.json` |
+| `gap_pressure` | 72.0 | 45 open gaps; finding `swarm-gap-backlog` |
+| `ecosystem_posture` | 25.0 | 61 failed PRs (briefing), 1 repo missing CI on main |
+| `benchmark-red-rows` | high | 8 rows in `ecosystem-audit.json` → `benchmarks.red` |
+| `swarm-gap-backlog` | medium | `benchmarks/data/latest/swarm-gap-actions.json` |
+
+Paths: `benchmarks/data/latest/ecosystem-quality-report.json`, `benchmarks/data/latest/agent-briefing.json`.
 
 ### 2. Missing std modules (`data/latest/ecosystem-explorer.json`)
 
 | Module | Status | PH | Why |
 |--------|--------|-----|-----|
-| `std.io` | **present** | PH-IO-4 | Close registry `gap-missing-std-std-io` |
-| `std.csv` | **present** | PH-IO-4 | Close registry `gap-missing-std-std-csv` |
-| `std.summary` | **missing** | PH-IO-7 | `scripts/ingest/build_summary.li` |
-| `std.plot` | **missing** | PH-IO-5 | `scripts/dashboard/render_dashboard.li` |
+| `std.io` | **present** | PH-IO-4 | Registry `gap-missing-std-std-io` → **closed** |
+| `std.csv` | **present** | PH-IO-4 | Registry `gap-missing-std-std-csv` → **closed** |
+| `std.summary` | **missing** | PH-IO-7 | `benchmarks/scripts/ingest/build_summary.li` |
+| `std.plot` | **missing** | PH-IO-5 | `benchmarks/scripts/dashboard/render_dashboard.li` |
 
-Refs: `lic/std/`, `benchmarks/scripts/ingest/`, `li-tests/` ingest smokes when wired.
+Registry: `gap-missing-std-std-summary`, `gap-missing-std-std-plot` (`missing_package`). Target: `lic/docs/ecosystem/ecosystem-package-backlog.md`, lic #13.
 
 ### 3. HPC libraries (explorer rubric)
 
-| Library | Li status | Gap hint | Li analog / evidence |
-|---------|-----------|----------|---------------------|
-| Eigen | partial | SIMD matmul, sparse | `li-std-math`, red `matmul_naive` — [Eigen 5.0](https://libeigen.gitlab.io/releases/5.0/), [BLAS guide](https://libeigen.gitlab.io/eigen/docs-5.0/TopicUsingBlasLapack.html) |
-| Kokkos | missing | Memory spaces, GPU backends | `std/execution/decorators.li` — [Kokkos 5.x](https://github.com/kokkos/kokkos), [release briefings](https://kokkos.org/community/release-briefings/) |
-| PETSc | missing | KSP/SNES/DM, distributed | Physics stubs — [PETSc Kokkos](https://petsc.org/release/manualpages/Vec/VecGetKokkosView/), [PCBJKOKKOS](https://petsc.gitlab.io/petsc/main/manualpages/PC/PCBJKOKKOS/) |
-| FFTW | missing | Catalog FFT row | benchmarks #18 — [FFTW GPU gap (arXiv)](https://arxiv.org/html/2506.08653v1) |
-| OpenMP | partial | Lowering docs | lic #124, #34 |
-| hypre | missing | AMG at scale | lic #108 |
-| SUNDIALS | partial | Stiff ODE | `li-tests` tier-2 integrators, lic #35 |
-| RAJA/HPX | missing | Policies / async | lic #109, #112 |
+| Library | Li status | Gap hint | Evidence URLs |
+|---------|-----------|----------|---------------|
+| Eigen | partial | SIMD matmul, sparse | https://libeigen.gitlab.io/releases/5.0/, https://libeigen.gitlab.io/eigen/docs-5.0/TopicUsingBlasLapack.html |
+| Kokkos | missing | Views, GPU backends | https://github.com/kokkos/kokkos, https://kokkos.org/blog/blog-post-09/ |
+| PETSc | missing | KSP/SNES on device | https://petsc.org/release/changes/325/, https://petsc.org/main/src/mat/impls/aij/seq/kokkos/aijkok.kokkos.cxx.html |
+| FFTW | missing | Catalog FFT row | https://github.com/project-gemmi/benchmarking-fft, benchmarks #18 |
+| OpenMP | partial | Lowering vs Kokkos GPU | https://www.osti.gov/servlets/purl/2224192 |
+| hypre | missing | BoomerAMG | lic #108 |
+| SUNDIALS | partial | Stiff ODE | lic #35, `gap-hpc-sundials-stiff-ode-sensitivity` |
+| RAJA | missing | Policy loops | https://arxiv.org/html/2402.08950v1, lic #109 |
+| Chapel | competitor | HPSF productivity | https://chapel-lang.org/blog/posts/announcing-chapel-2.0/, https://github.com/chapel-lang/chapel/releases/tag/2.8.0 |
+
+Li analogs: `lic/std/execution/decorators.li`, `li-math-numerics`, `li-tests/` tier-1 harness, `docs/numerics/`.
 
 ### 4. Red benchmark rows (numerics path)
 
-From `benchmarks/data/latest/ecosystem-audit.json` → `li-tests/` + `benchmarks/competitive/`:
+From `benchmarks/data/latest/ecosystem-audit.json` → `lic/li-tests/`, `benchmarks/competitive/`:
 
-| Bench ID | ratio_vs_cpp | PH |
-|----------|-------------:|-----|
-| `matmul_naive` | 1.73 | PH-5b, PH-7e |
-| `num_gmres` | 1.68 | PH-5b |
-| `num_integ_euler` | 1.40 | PH-5b |
-| `num_integ_verlet` | 1.35 | PH-5b |
-| `num_opt_line_search` | 2.00 | PH-5b |
-| `cloth_swing` | 1.37 | PH-5b |
-| `orbit_two_body` | 1.69 | PH-5b |
-| `schrodinger_1d_barrier` | 1.77 | PH-5b |
+| Bench ID | ratio_vs_cpp | PH | Registry id (new this pass) |
+|----------|-------------:|-----|------------------------------|
+| `matmul_naive` | 1.73 | PH-5b, PH-7e | `gap-benchmark-red-matmul-naive-tier1` |
+| `num_gmres` | 1.68 | PH-5b | `gap-benchmark-red-num-gmres-tier1` |
+| `num_integ_euler` | 1.40 | PH-5b | `gap-benchmark-red-num-integ-euler-tier1` **new** |
+| `num_integ_verlet` | 1.35 | PH-5b | `gap-benchmark-red-num-integ-verlet-tier1` **new** |
+| `num_opt_line_search` | 2.00 | PH-5b | `gap-benchmark-red-num-opt-line-search-tier1` **new** |
+| `cloth_swing` | 1.37 | PH-5b | `gap-benchmark-red-cloth-swing-tier1` **new** |
+| `orbit_two_body` | 1.69 | PH-5b | `gap-benchmark-red-orbit-two-body-tier1` **new** |
+| `schrodinger_1d_barrier` | 1.77 | PH-5b | `gap-benchmark-red-schrodinger-1d-barrier-tier1` **new** |
 
-**Action:** `coord_numerics` heap (`numerics_researcher`, `bench_improver`) — proof-before-perf; no threshold-only catalog tweaks.
+**Action:** `coord_numerics` heap — proof-before-perf; no catalog threshold-only tweaks.
 
 ### 5. Competitive verticals (stub / honesty)
 
-Source: `lic-worktrees/compiler-studio/benchmarks/competitive/verticals.toml` (not on benchmarks `main`).
+Source: `lic-worktrees/compiler-studio/benchmarks/competitive/verticals.toml` (15 `workload_class = stub` rows).
 
-| Vertical ID | Incumbent | workload_class |
-|-------------|-----------|----------------|
-| `md_lennard_jones` | LAMMPS / GROMACS | stub |
-| `pde_heat_2d` | OpenFOAM / PETSc | stub |
-| `fea_linear_elasticity` | CalculiX / ANSYS | stub |
-| `cfd_lid_driven_cavity` | OpenFOAM / COMSOL | stub |
+| Vertical ID | Incumbent | Notes |
+|-------------|-----------|-------|
+| `md_lennard_jones` | LAMMPS / GROMACS | Not parity — oracle stub |
+| `pde_heat_2d` | OpenFOAM / PETSc | heat_equation_2d in verify.py |
+| `fea_linear_elasticity` | CalculiX / ANSYS | No bench oracle |
+| `cfd_lid_driven_cavity` | OpenFOAM / COMSOL | PH-CAE CFD track |
 
-Notes explicitly disclaim LAMMPS/PETSc/OpenFOAM parity — register as `competitor_feature` for Studio/RFC honesty.
+Registry rows: `gap-vertical-stub-*` (four simulation verticals ingested prior pass).
 
 ### 6. Web + Reddit research (URLs)
 
-| Query channel | Summary | URLs |
-|---------------|---------|------|
-| Reddit (required) | `site:reddit.com r/HPC Kokkos OR OpenMP` — no indexed hits in tool run; use forum + papers | https://www.reddit.com/r/HPC/ |
-| Kokkos vs OpenMP | Kokkos/RAJA often more portable than directive-only OpenMP on complex kernels | https://arxiv.org/html/2411.05009v1, https://www.arxiv.org/pdf/2402.08950v1, https://www.osti.gov/servlets/purl/2224192 |
-| PETSc + Kokkos | Native `aijkokkos` / `VecGetKokkosView`; device-resident PCBJKOKKOS | https://lists.mcs.anl.gov/pipermail/petsc-users/2022-February/045657.html, https://www.alcf.anl.gov/news/optimizing-petsc-exascale |
-| Eigen SOTA | Eigen **5.0.0** (2025-09-30), semantic versioning; BLAS via `EIGEN_USE_BLAS` | https://libeigen.gitlab.io/releases/5.0/, https://gitlab.com/libeigen/eigen/-/releases/5.0.0 |
-| Kokkos releases | **5.0** briefing (2025-11), **5.1** (2026-03); SYCL production in 4.5+ | https://kokkos.org/community/release-briefings/, https://github.com/kokkos/kokkos |
-| Chapel | **2.0** stable (2024); **2.8** (2026-03); HPSF project | https://chapel-lang.org/blog/posts/announcing-chapel-2.0/, https://github.com/chapel-lang/chapel/releases/tag/2.8.0, https://hpsf.io/blog/2025/hpsf-welcomes-chapel/ |
-| FFT roofline | FFTW CPU-only; GPU via cuFFT/VkFFT/heFFTe; roofline for kernel fusion | https://arxiv.org/html/2506.08653v1, https://www.netlib.org/utk/people/JackDongarra/PAPERS/Performance_Analysis-fft-ipdps22.pdf |
-| Language trends | Carbon/Mojo/Rust safety narrative vs C++26 hardened mode | https://docs.carbon-lang.dev/, https://github.com/carbon-language/carbon-lang |
+| Query | Summary | URLs |
+|-------|---------|------|
+| `site:reddit.com r/HPC Kokkos OR OpenMP` | No indexed snippets; manual r/HPC follow-up | https://www.reddit.com/r/HPC/ |
+| Kokkos vs OpenMP portability | Kokkos/RAJA outperform directive-only OpenMP on complex GPU kernels | https://arxiv.org/html/2402.08950v1, https://arxiv.org/html/2411.05009v1, https://www.osti.gov/servlets/purl/2224192 |
+| PETSc + Kokkos 3.25 | `VecKokkosPlaceArray`, `MatCreateSeqAIJKokkosWithKokkosViews`, PCBJKOKKOS | https://petsc.org/release/changes/323/, https://petsc.org/ |
+| Eigen 5.0 SOTA | Released 2025-09-30; semantic versioning; `EIGEN_USE_BLAS` | https://libeigen.gitlab.io/releases/5.0/, https://gitlab.com/libeigen/eigen/-/releases/5.0.0 |
+| Kokkos 4.5–5.x | SYCL production; auto-tuning; Kokkos 5.0 on master | https://github.com/kokkos/kokkos/issues/7183, https://www.olcf.ornl.gov/calendar/kokkos-4-5-release-briefing/ |
+| Chapel 2.8 | HPSF project; ROCm 7, LLVM 21 | https://github.com/chapel-lang/chapel/releases/tag/2.8.0, https://hpsf.io/blog/2025/hpsf-welcomes-chapel/ |
+| FFT roofline | FFTW CPU reference; cuFFT GPU crossover ~2^16 | https://github.com/project-gemmi/benchmarking-fft, https://github.com/faliszewskii/fourier_transform_benchmark |
 
-### 7. Existing ecosystem issues (no new issues filed)
+### 7. Swarm goals vs new GitHub issues
 
-Swarm goals cover: PH-IO (#13), Kokkos-class execution (#15), FFT catalog (#18, #26, #52), PETSc/hypre (#108, #117), Eigen policy (#33), physics scaffolds (#14, #50).
+Existing coverage: PH-IO (#13), Kokkos (#15), FFT (#18, #26, #52), PETSc/hypre (#108, #117), Eigen (#33), physics (#14, #50). **No new issues filed** — prefer `swarm_coverage` / `numerics_researcher` goal apply in `li-cursor-agents`.
 
 ---
 
 ## Recommended issues/PRs
 
-**Prefer registry + swarm goals** — do not open duplicate explorer issues.
-
 | Title | Repo | Labels / agent |
 |-------|------|----------------|
-| Mirror `competitive/verticals.toml` onto benchmarks `main` for ingest | benchmarks | `ecosystem`, `gap_explorer` |
-| Close/reconcile `gap-missing-std-std-io` / `std-csv` after explorer `present` | lic | `swarm_coverage` |
-| Tier-1 matmul / GMRES red row evidence bundle | lic | `numerics`, PH-5b, PH-7e → `numerics_researcher` |
+| Mirror `competitive/verticals.toml` onto benchmarks `main` | benchmarks | `ecosystem` → unblocks `swarm-gap-ingest` vertical sweep |
+| Ship `std.summary` / `std.plot` (PH-IO) | lic | `missing_package`, `package_architect` |
+| Tier-1 red-row evidence bundle (matmul + GMRES + integrators) | lic | `numerics`, PH-5b → `numerics_researcher` |
 
 ---
 
 ## Deferred
 
-- **Chapel / Carbon competitive matrices** — track via lic #65; no new registry row this pass.
-- **Full verticals.toml stub sweep (15 rows)** — blocked until benchmarks hosts `competitive/verticals.toml`; orch-r2.
-- **Reddit deep dive** — re-run manual r/HPC search when indexers return threads; no unofficial APIs used.
-- **GPU FFT vendor harness** — benchmarks #52 / #26 own scope; defer to `bench_improver` after tier-1 matmul.
-- **Physics org mirrors (12 packages)** — lic #50; package_architect handoff.
+- **Chapel / Carbon competitive matrices** — lic #65; registry `gap-competitor-chapel-hpsf-productivity` tracks Chapel only.
+- **Full 15-row verticals stub sweep** — blocked until benchmarks hosts `verticals.toml`.
+- **Reddit deep dive** — re-run manual r/HPC when indexers return threads; no unofficial APIs.
+- **GPU FFT vendor harness** — benchmarks #52 / #26; after tier-1 matmul green.
+- **Physics org mirrors (12 packages)** — lic #50.
 
 ---
 
-## Appendix A — Swarm gap registry rows (ingest-ready)
+## Appendix A — Swarm gap registry (ingest-ready)
 
-Written to `lic/data/swarm-gap-registry/registry.yaml` and `benchmarks/data/latest/gap-explorer-ingest-2026-05-26.json`. Run:
+Machine-readable: `benchmarks/data/latest/gap-explorer-ingest-2026-05-26.json`
 
 ```bash
 cd /path/to/lic && python3 scripts/swarm-gap-ingest.py
 python3 scripts/swarm-gap-apply-actions.py --dry-run
 ```
 
-See JSON appendix for machine-readable list.
+**New rows this pass (9):** six tier-1 red benches, `gap-hpc-raja-execution-policies`, `gap-hpc-sundials-stiff-ode-sensitivity`, `gap-hpc-openmp-llvm-lowering-rubric`, `gap-competitor-chapel-hpsf-productivity`.
 
----
-
-## Appendix B — Registry reconciliation notes
-
-- Close `gap-missing-std-std-io`, `gap-missing-std-std-csv` (explorer status `present`).
-- Keep `gap-missing-std-std-summary`, `gap-missing-std-std-plot`, `gap-line-profiler-001` open.
-- New `competitor_feature` rows: pure_li PH-7e, Kokkos/PETSc/FFTW/hypre stack, tier-1 red benches, four simulation vertical stubs.
-
-**North star fit:** Domain scientific computing + HPC; PH-2i, PH-5b, PH-7e, PH-IO; proof → easy → fast.
+**North star fit:** Scientific computing + HPC; PH-2i, PH-5b, PH-7e, PH-IO; proof → easy → fast.
