@@ -3,6 +3,25 @@ dashboard/node_modules/
 __pycache__/
 *.pyc
 dashboard/dist/
+# Regenerated locally by agent preflight / audit scripts (not committed)
+data/latest/agent-briefing.json
+data/latest/ci-bug-triage.json
+data/latest/ecosystem-audit.json
+data/latest/ecosystem-explorer.json
+data/latest/gap-explorer-ingest-*.json
+data/latest/issue-backlog-hygiene.json
+data/latest/issue-feature-triage.json
+data/latest/org-agent-kit-audit.json
+data/latest/org-repo-ci-audit.json
+data/latest/plan-completion-audit.json
+data/latest/pr-branch-hygiene.json
+data/latest/pr-merge-queue-plan.json
+data/latest/pr-program-run.json
+data/latest/security-cwe-feed.json
+data/latest/security-cwe-feed-delta.json
+data/latest/security-cwe-feed-prev.json
+data/latest/workspace-dirty-sweep.json
+
 data/visuals/latest/*.png
 # Generated locally — scripts/render-li-code-image.py --all (not committed)
 docs/language/assets/*.png
