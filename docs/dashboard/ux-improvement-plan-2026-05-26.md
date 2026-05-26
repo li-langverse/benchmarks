@@ -80,26 +80,26 @@ The dashboard is **honest and information-dense** but optimized for agents who a
 - [x] UI: `NumericValidityPanel` on `/bench/[id]`
 - [x] Docs: this plan + updated `benchmark-dashboard.md` honesty section
 
-### Wave 2 (1–2 weeks — scanability)
+### Wave 2 (1–2 weeks — scanability) — shipped 2026-05-26
 
-1. Overview tier-1 verify strip (UX-B04)
-2. Matrix filters: validity, oracle, `within_1ulp` (UX-B05, UX-B03)
-3. Pending vs measured visual language (UX-B06)
-4. `ValidityPanel` plain-language sources (UX-B02)
+- [x] Overview tier-1 verify strip (UX-B04) — `Tier1VerifyStrip`
+- [x] Matrix filters: validity, oracle, `within_1ulp` (UX-B05, UX-B03)
+- [x] Pending vs measured visual language (UX-B06) — hatched `perf-bar-fill-pending`
+- [x] `ValidityPanel` plain-language sources (UX-B02) — `lib/validity-labels.ts`
 
-### Wave 3 (2–4 weeks — accessibility & trust)
+### Wave 3 (2–4 weeks — accessibility & trust) — shipped 2026-05-26
 
-1. Badge icons + non-color cues (UX-A01)
-2. Focus-visible pass on all routes (UX-A02)
-3. Contrast token tweak (UX-A03)
-4. Ingest metadata strip (UX-T01)
-5. History ΔULP (UX-T03)
+- [x] Badge icons + non-color cues (UX-A01)
+- [x] Focus-visible pass on all routes (UX-A02)
+- [x] Contrast token tweak (UX-A03) — `--muted` → `#9ba3af`
+- [x] Ingest metadata strip (UX-T01) — `IngestSourcesStrip`
+- [x] History ΔULP context (UX-T03) — current ULP column + bench history section
 
-### Wave 4 (backlog — design system)
+### Wave 4 (backlog — design system) — partial 2026-05-26
 
-1. Tailwind migration for bench components (UX-V01)
-2. Responsive matrix (UX-V03)
-3. Optional: light theme for presentations (not default — dark is brand)
+- [x] Bench panel CSS classes (UX-V01 partial) — `bench-panel-heading`, bar fill tokens
+- [x] Responsive matrix sticky first column (UX-V03)
+- [ ] Optional: light theme for presentations (not default — dark is brand)
 
 ---
 

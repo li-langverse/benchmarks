@@ -1,4 +1,5 @@
 import type { SummaryRow } from "@/lib/summary";
+import { plainValiditySource } from "@/lib/validity-labels";
 import { formatRatioVsSota, rowValidityStatus } from "@/lib/validity";
 import { Badge } from "@/components/ui/badge";
 
@@ -17,19 +18,24 @@ export function ValidityPanel({ row }: ValidityPanelProps) {
   const badgeStatus =
     validity === "pass" ? "green" : validity === "fail" ? "red" : "unknown";
 
+  const headingId = "validity-gate-heading";
+
   return (
-    <section className="validity-panel" aria-label="Validity gate">
-      <h3 style={{ fontSize: "1rem", margin: "1.5rem 0 0.5rem" }}>Validity gate</h3>
+    <section className="validity-panel" aria-labelledby={headingId}>
+      <h3 id={headingId} className="bench-panel-heading">
+        Validity gate
+      </h3>
       <p>
         <Badge status={badgeStatus}>{validity}</Badge>
-        <span className="mono" style={{ marginLeft: "0.5rem", color: "var(--muted)" }}>
-          {VALIDITY_LABEL[validity]}
-        </span>
+        <span className="validity-panel-hint mono">{VALIDITY_LABEL[validity]}</span>
       </p>
       {row.validity_source ? (
-        <p className="mono" style={{ fontSize: "0.85rem", color: "var(--muted)" }}>
-          Source: {row.validity_source}
-        </p>
+        <>
+          <p className="mono validity-panel-source-code">
+            Source: <code>{row.validity_source}</code>
+          </p>
+          <p className="validity-panel-plain">{plainValiditySource(row.validity_source)}</p>
+        </>
       ) : null}
       <dl
         className="mono"
