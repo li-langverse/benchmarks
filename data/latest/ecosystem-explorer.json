@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-25T21:00Z",
-  "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/lic",
+  "generated_at": "2026-05-26T05:36Z",
+  "lic_root": "../lic",
   "lic_present": true,
   "std_modules_on_disk": [
     "std.binary.binary",
