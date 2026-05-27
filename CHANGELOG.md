@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Benchmark nightly GHA:** daily `benchmark-nightly.yml` (Linux full suite, macOS/Windows core) commits `data/latest/summary.json` — [2026-05-27-benchmark-nightly-gha.md](docs/release-notes/2026-05-27-benchmark-nightly-gha.md).
+
 ### Changed
 
 - **CI (WP-E1):** Run `dashboard-build` on pull requests only; `pages.yml` builds `dashboard-next` on `main` — [2026-05-25-wp-e1-ci-dedupe.md](docs/release-notes/2026-05-25-wp-e1-ci-dedupe.md).
