@@ -18,6 +18,7 @@
 | **Benchmarks CI** | PR + push `main` | PR: 2 jobs; push `main`: 1 job (`ingest-smoke` only) | ~30 PRs → **25–50 min** |
 | **Deploy dashboard** | push `main` (paths) | 2–3 | ~10 data publishes → **20–30 min** (sole `dashboard-next` build on `main`) |
 | **Ingest benchmarks** | `repository_dispatch` / manual | 1–2 | ~20 lic bench events → **20–40 min** |
+| **Benchmark nightly** | `cron: 0 4 * * *` + manual | Linux ~90–120 min; macOS/Win best-effort | **~1×/day** — dashboard `summary.json` (product path) |
 | ~~Ecosystem audit cron~~ | **Removed** — use Cursor | — | — |
 
 **Rough total (event-driven only):** ~70–130 min/month if private; **$0 marginal** if public.
@@ -34,6 +35,7 @@
 1. **PR CI** — `ci.yml`: ingest smoke + dashboard build (must pass before merge).
 2. **Pages** — `pages.yml`: publish https://li-langverse.github.io/benchmarks/
 3. **Ingest** — `ingest.yml`: update `data/latest/summary.json` when lic finishes benches (dispatch only).
+4. **Nightly** — `benchmark-nightly.yml`: full suite on Linux + core tiers on macOS/Windows → commit `data/latest/*` (triggers Pages).
 
 ## Optional manual Actions
 

@@ -22,6 +22,8 @@
 
 **Full suite** (`LIC_ROOT=../lic`): tier-0 → tier-1/2 → tier-3 → tier-5 HTTP multi-oracle + supplemental proxy → **tier-5 exploits** → ingest → failures report → **`benchmark-matrix-report.py`** (always).
 
+**Nightly dashboard refresh (GHA):** `.github/workflows/benchmark-nightly.yml` runs daily at 04:00 UTC on Linux (full suite) plus best-effort macOS/Windows core tiers, merges CSVs, ingests `catalog.toml`, commits `data/latest/*`, and triggers Pages. Manual: `gh workflow run benchmark-nightly.yml`.
+
 **Agent-first:** Intelligence (explorer, PR review/alignment, numerics SOTA, plan gaps) = **[Cursor Automations](https://cursor.com/automations)** + web search. Scripts only **preflight** JSON: `./scripts/agent-preflight.sh` → [cursor-agent-architecture.md](docs/ecosystem/cursor-agent-architecture.md).
 
 **Cursor Automations** (not Actions cron): see `.cursor/automations/` and [docs/ecosystem/agent-automations.md](docs/ecosystem/agent-automations.md):

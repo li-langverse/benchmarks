@@ -27,7 +27,10 @@ fi
 
 export LIC="$LIC_ROOT/build/compiler/lic/lic"
 export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
-if command -v clang-18 >/dev/null 2>&1; then
+if command -v clang-22 >/dev/null 2>&1; then
+  export CC="${CC:-clang-22}"
+  export CXX="${CXX:-clang++-22}"
+elif command -v clang-18 >/dev/null 2>&1; then
   export CC="${CC:-clang-18}"
   export CXX="${CXX:-clang++-18}"
 else
@@ -87,6 +90,9 @@ python3 benchmarks/harness/bench.py --tier 7 --runs "$RUNS" --skip-verify || {
 log "tier 3 — ecosystem (compile, security, async)"
 python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" || { echo "tier3 failed" >&2; exit 1; }
 
+if [[ "${SKIP_TIER5_HTTP:-0}" == "1" ]]; then
+  log "tier 5 — HTTP multi-oracle skipped (SKIP_TIER5_HTTP=1)"
+else
 log "tier 5 — HTTP multi-oracle (nginx, apache, lighttpd, node, bun, li)"
 export BENCH_HTTP_PROFILE="${BENCH_HTTP_PROFILE:-nightly}"
 export BENCH_HTTP_ORACLES="${BENCH_HTTP_ORACLES:-nginx,apache,lighttpd,node,bun,li}"
@@ -100,6 +106,7 @@ log "tier 5 — supplemental proxy_loopback (li_epoll + li c_epoll vs nginx)"
 python3 "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "${HTTP_BENCH_RUNS:-5}" || {
   echo "WARN: tier5 supplemental http failed" >&2
 }
+fi
 
 if [[ "$SKIP_EXPLOITS" != "1" ]] && [[ -f "$ROOT/scripts/run-tier5-http-exploits.sh" ]]; then
   log "tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
