@@ -8,6 +8,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Bench suite / ingest:** export `BENCH_MIN_RUNS=20` for full suite; relative paths in `summary.json` sources; refresh `ecosystem-audit.json` — [2026-05-27-bench-ingest-audit-refresh.md](docs/release-notes/2026-05-27-bench-ingest-audit-refresh.md).
+
+### Changed
+
 - **CI (WP-E1):** Run `dashboard-build` on pull requests only; `pages.yml` builds `dashboard-next` on `main` — [2026-05-25-wp-e1-ci-dedupe.md](docs/release-notes/2026-05-25-wp-e1-ci-dedupe.md).
 
 - **Wave2 ingest:** Refresh `summary.json` after local tier 1+2 harness + partial tier-5 nginx/li — ingest unknown 39→34; tier-2 unknown 5→0 — [2026-05-25-wave2-ingest-unknowns.md](docs/release-notes/2026-05-25-wave2-ingest-unknowns.md).
