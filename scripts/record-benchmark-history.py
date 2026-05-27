@@ -51,6 +51,10 @@ def main() -> int:
         index = json.loads(INDEX.read_text(encoding="utf-8"))
 
     prev_path = index["snapshots"][-1]["path"] if index.get("snapshots") else None
+    while prev_path and not (ROOT / prev_path).is_file():
+        print(f"WARN: missing history snapshot {prev_path}; skipping", file=sys.stderr)
+        index["snapshots"] = index["snapshots"][:-1]
+        prev_path = index["snapshots"][-1]["path"] if index.get("snapshots") else None
     deltas: list[dict] = []
     if prev_path:
         prev = json.loads((ROOT / prev_path).read_text(encoding="utf-8"))
