@@ -806,6 +806,13 @@ def append_pending_row(
     )
 
 
+def source_ref(path: Path, root: Path) -> str:
+    try:
+        return str(path.relative_to(root))
+    except ValueError:
+        return str(path)
+
+
 def load_catalog_defaults() -> dict:
     import tomllib
 
@@ -959,10 +966,12 @@ def main() -> int:
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "sources": {
-            "lic_csv": str(lic_csv),
-            "lis_csv": str(lis_csv),
-            "stability_csv": str(stability_csv),
-            "security_csv": str(security_csv),
+            "lic_root": str(lic_root.resolve()),
+            "lis_root": str(lis_root.resolve()),
+            "lic_csv": source_ref(lic_csv, lic_root),
+            "lis_csv": source_ref(lis_csv, lis_root),
+            "stability_csv": source_ref(stability_csv, lic_root),
+            "security_csv": source_ref(security_csv, lic_root),
         },
         "reporting": {
             "sota_policy": "best_competitor_lang_excludes_li",
