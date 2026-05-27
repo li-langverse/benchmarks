@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-25T18:50:12Z",
+  "generated_at": "2026-05-27T12:58:53Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 62.4,
+  "overall_score": 67.9,
   "grade": "D",
   "unattended_safe": false,
   "dimensions": {
@@ -12,7 +12,7 @@
         "briefing_present": true,
         "preflight_failed": 2,
         "preflight_skipped": 8,
-        "recommended_agent_count": 13
+        "recommended_agent_count": 15
       },
       "finding_count": 2
     },
@@ -21,9 +21,9 @@
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 64,
-        "failed_prs": 40,
-        "repos_missing_ci_main": 32,
+        "open_prs": 80,
+        "failed_prs": 56,
+        "repos_missing_ci_main": 33,
         "benchmark_red_count": 2
       },
       "finding_count": 4
@@ -35,44 +35,39 @@
         "snapshot_present": true,
         "runner_count": 8,
         "runners_stopped": 0,
-        "plan_todos_pending": 39,
-        "plan_todos_total": 96,
+        "plan_todos_pending": 38,
+        "plan_todos_total": 99,
         "agents_live": 7
       },
       "finding_count": 0
     },
     "swarm_execution": {
-      "score": 60.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 40,
-        "error_count": 4,
-        "incomplete_count": 31,
-        "running_count": 80,
-        "error_rate": 0.1,
-        "incomplete_rate": 0.775,
-        "top_error_agents": [
-          {
-            "agent": "code_implementer",
-            "count": 4
-          }
-        ]
+        "terminal_runs": 15,
+        "error_count": 0,
+        "incomplete_count": 6,
+        "running_count": 105,
+        "error_rate": 0.0,
+        "incomplete_rate": 0.4,
+        "top_error_agents": []
       },
       "finding_count": 2
     },
     "gap_pressure": {
-      "score": 72.0,
+      "score": 92.0,
       "weight": 0.15,
       "signals": {
         "gap_report_present": true,
-        "open_gaps": 45,
+        "open_gaps": 27,
         "by_kind": {
           "missing_package": 5,
-          "plan_debt": 40
+          "plan_debt": 22
         }
       },
-      "finding_count": 2
+      "finding_count": 1
     }
   },
   "findings": [
@@ -85,13 +80,13 @@
     {
       "id": "failed-pr-ci",
       "severity": "high",
-      "message": "40 open PR(s) with failing CI",
+      "message": "56 open PR(s) with failing CI",
       "evidence": "ecosystem-audit.metrics.failed_prs"
     },
     {
       "id": "repos-missing-ci",
       "severity": "high",
-      "message": "32 repos missing CI on main",
+      "message": "33 repos missing CI on main",
       "evidence": "ecosystem-audit.metrics.repos_missing_ci_main"
     },
     {
@@ -109,42 +104,32 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 78%",
+      "message": "Incomplete rate 40%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "80 runs still marked running (possible stuck SDK)",
+      "message": "105 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
-      "id": "swarm-gap-backlog",
-      "severity": "medium",
-      "message": "45 open gap(s) in registry apply pipeline",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
-    },
-    {
-      "id": "plan-debt-gaps",
-      "severity": "medium",
-      "message": "40 plan_debt gap rows",
-      "evidence": "swarm-gap-actions.by_kind.plan_debt"
     },
     {
       "id": "repos-missing-live-docs",
       "severity": "low",
       "message": "10 repos without live docs pages",
       "evidence": "ecosystem-audit.metrics.repos_without_live_pages"
+    },
+    {
+      "id": "swarm-gap-backlog",
+      "severity": "low",
+      "message": "27 open gap(s) in registry apply pipeline",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     }
   ],
   "recommended_agents": [
     {
       "agent": "swarm_observer",
       "reason": "swarm_execution dimension below 75 \u2014 meta audit runs/errors"
-    },
-    {
-      "agent": "gap_explorer",
-      "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
     {
       "agent": "ecosystem_grader",
