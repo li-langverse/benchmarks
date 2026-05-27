@@ -59,6 +59,10 @@
     {
       "at": "2026-05-21T12:19:31.845499+00:00",
       "path": "data/history/2026-05-21T121931Z.json"
+    },
+    {
+      "at": "2026-05-27T11:07:38.075704+00:00",
+      "path": "data/history/2026-05-27T110738Z.json"
     }
   ],
   "latest_deltas": [
@@ -66,7 +70,15 @@
       "benchmark": "horner_pure_li",
       "field": "status",
       "from": "green",
-      "to": "unknown"
+      "to": "red"
+    },
+    {
+      "benchmark": "horner_pure_li",
+      "field": "ratio_vs_cpp",
+      "from": 0.4444,
+      "to": 2.4444,
+      "delta": 2.0,
+      "improved": false
     },
     {
       "benchmark": "matmul_blocked",
@@ -78,8 +90,8 @@
       "benchmark": "matmul_blocked",
       "field": "ratio_vs_cpp",
       "from": 1.5347,
-      "to": 1.1423,
-      "delta": -0.3924,
+      "to": 1.1602,
+      "delta": -0.3745,
       "improved": true
     },
     {
@@ -92,46 +104,32 @@
       "benchmark": "matmul_naive",
       "field": "ratio_vs_cpp",
       "from": 1.4,
-      "to": 0.6429,
-      "delta": -0.7571,
+      "to": 1.0488,
+      "delta": -0.3512,
       "improved": true
     },
     {
       "benchmark": "reduce_sum",
       "field": "ratio_vs_cpp",
       "from": 0.9776,
-      "to": 0.5247,
-      "delta": -0.4529,
-      "improved": true
-    },
-    {
-      "benchmark": "simd_dot",
-      "field": "status",
-      "from": "green",
-      "to": "red"
+      "to": 0.9968,
+      "delta": 0.0192,
+      "improved": false
     },
     {
       "benchmark": "simd_dot",
       "field": "ratio_vs_cpp",
       "from": 0.0155,
-      "to": 1.4353,
-      "delta": 1.4198,
+      "to": 0.9851,
+      "delta": 0.9696,
       "improved": false
     },
     {
       "benchmark": "advection_diffusion_2d",
       "field": "ratio_vs_cpp",
       "from": 1.1109,
-      "to": 1.0252,
-      "delta": -0.0857,
-      "improved": true
-    },
-    {
-      "benchmark": "double_pendulum",
-      "field": "ratio_vs_cpp",
-      "from": 0.9997,
-      "to": 0.7965,
-      "delta": -0.2032,
+      "to": 0.9832,
+      "delta": -0.1277,
       "improved": true
     },
     {
@@ -144,58 +142,56 @@
       "benchmark": "harmonic_oscillator_chain",
       "field": "ratio_vs_cpp",
       "from": 1.2151,
-      "to": 1.0226,
-      "delta": -0.1925,
+      "to": 0.9132,
+      "delta": -0.3019,
       "improved": true
     },
     {
       "benchmark": "heat_equation_2d",
       "field": "ratio_vs_cpp",
       "from": 0.9592,
-      "to": 1.0329,
-      "delta": 0.0737,
+      "to": 1.0104,
+      "delta": 0.0512,
       "improved": false
     },
     {
-      "benchmark": "nbody_gravity",
+      "benchmark": "md_lennard_jones",
       "field": "ratio_vs_cpp",
-      "from": 0.9995,
-      "to": 0.9769,
-      "delta": -0.0226,
-      "improved": true
-    },
-    {
-      "benchmark": "three_body",
-      "field": "ratio_vs_cpp",
-      "from": 0.998,
-      "to": 1.0094,
-      "delta": 0.0114,
+      "from": 0.001,
+      "to": 1.0151,
+      "delta": 1.0141,
       "improved": false
-    },
-    {
-      "benchmark": "wave_equation_1d",
-      "field": "status",
-      "from": "green",
-      "to": "yellow"
     },
     {
       "benchmark": "wave_equation_1d",
       "field": "ratio_vs_cpp",
       "from": 1.001,
-      "to": 1.2076,
-      "delta": 0.2066,
+      "to": 1.0954,
+      "delta": 0.0944,
       "improved": false
     },
     {
       "benchmark": "wave_equation_2d",
       "field": "ratio_vs_cpp",
       "from": 0.9993,
-      "to": 0.2868,
-      "delta": -0.7125,
+      "to": 0.8091,
+      "delta": -0.1902,
       "improved": true
     },
     {
+      "benchmark": "https_static",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
       "benchmark": "keepalive_pipelining",
+      "field": "status",
+      "from": "green",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rate_limit_429",
       "field": "status",
       "from": "green",
       "to": "unknown"
@@ -213,5 +209,5 @@
       "to": "unknown"
     }
   ],
-  "updated_at": "2026-05-25T16:29:44.902312+00:00"
+  "updated_at": "2026-05-27T11:07:38.135752+00:00"
 }
