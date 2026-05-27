@@ -11,6 +11,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - **Nightly publish:** `publish-dashboard` depends on Linux bench success only (not macOS/Windows) — [2026-05-27-publish-dashboard-linux-only.md](docs/release-notes/2026-05-27-publish-dashboard-linux-only.md).
 
 ### Changed
+
+- **Dashboard ingest:** refreshed `summary.json` / matrix after `lic` harness merges — [2026-05-27-ingest-post-lic-harness.md](docs/release-notes/2026-05-27-ingest-post-lic-harness.md).
+
 - **Nightly GHA:** full suite on Linux (tier 0–5 + exploits, no `SKIP_*` workarounds); requires `lic` httpd E0303 whitelist + Lean on runner.
 
 ### Added

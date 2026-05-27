@@ -1,11 +1,11 @@
 # HTTP webserver RPS matrix (tier 5)
 
-Generated: 2026-05-25T16:29:45.204343+00:00
+Generated: 2026-05-27T19:03:31.596375+00:00
 
 **Mandatory after every li-httpd change:**
 `LIC_ROOT=… ./scripts/run-tier5-http-bench.sh` → `./scripts/benchmark-matrix-report.py`
 
-Source CSV: `/Users/julian/Documents/coding-projects/benchmarks/vendor/lis-tier5/results/latest.csv`
+Source CSV: `/agent/repos/benchmarks/vendor/lis-tier5/results/latest.csv`
 
 Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenarios bench **nginx + li**; static scenarios bench all oracles.
 
@@ -13,21 +13,21 @@ Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenar
 
 | scenario | li | nginx | apache | lighttpd | node | bun | li/nginx |
 |---|---|---|---|---|---|---|---|
-| static_small | 135,466 | — | — | — | — | — | — |
-| keepalive_pipelining | 235,097 | — | — | — | — | — | — |
-| static_large | FAIL | — | — | — | — | — | — |
-| proxy_loopback | 9,121 | — | — | — | — | — | — |
-| lb_round_robin | 9,141 | — | — | — | — | — | — |
-| lb_least_conn | 11,405 | — | — | — | — | — | — |
-| lb_peer_down | 18,455 | — | — | — | — | — | — |
+| static_small | — | 12,087 | — | — | 4,626 | — | — |
+| keepalive_pipelining | — | 22,604 | — | — | 15,817 | — | — |
+| static_large | — | 4,149 | — | — | 1,805 | — | — |
+| proxy_loopback | no bin | 21,415 | — | — | — | — | — |
+| lb_round_robin | no bin | 24,167 | — | — | — | — | — |
+| lb_least_conn | no bin | 24,309 | — | — | — | — | — |
+| lb_peer_down | no bin | 25,179 | — | — | — | — | — |
 
-**Li notes:** `static_large`: wrk_parse_fail_li
+**Li notes:** `lb_least_conn`: no_li_httpd_bin; `lb_peer_down`: no_li_httpd_bin; `lb_round_robin`: no_li_httpd_bin; `proxy_loopback`: no_li_httpd_bin
 
 ## HTTP verify / feature gates (non-RPS)
 
 | scenario | li | other oracles |
 |---|---|---|
-| rate_limit_429 | pass | other oracles N/A |
-| https_static | skip | other oracles N/A |
+| rate_limit_429 | no_li_httpd_bin | other oracles N/A |
+| https_static | skip | nginx=583 |
 
 See also: [http-server-benchmark-growth.md](http-server-benchmark-growth.md), [lic-httpd-bench-compat.md](lic-httpd-bench-compat.md).
