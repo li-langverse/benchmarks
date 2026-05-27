@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-05-25T16:29:45.204343+00:00
+Generated: 2026-05-27T19:03:31.596375+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -27,22 +27,22 @@ Status: **green** — 0 failures / 36 cells
 
 | scenario | li | nginx | apache | lighttpd | node | bun | li/nginx |
 |---|---|---|---|---|---|---|---|
-| static_small | 135,466 | — | — | — | — | — | — |
-| keepalive_pipelining | 235,097 | — | — | — | — | — | — |
-| static_large | FAIL | — | — | — | — | — | — |
-| proxy_loopback | 9,121 | — | — | — | — | — | — |
-| lb_round_robin | 9,141 | — | — | — | — | — | — |
-| lb_least_conn | 11,405 | — | — | — | — | — | — |
-| lb_peer_down | 18,455 | — | — | — | — | — | — |
+| static_small | — | 12,087 | — | — | 4,626 | — | — |
+| keepalive_pipelining | — | 22,604 | — | — | 15,817 | — | — |
+| static_large | — | 4,149 | — | — | 1,805 | — | — |
+| proxy_loopback | no bin | 21,415 | — | — | — | — | — |
+| lb_round_robin | no bin | 24,167 | — | — | — | — | — |
+| lb_least_conn | no bin | 24,309 | — | — | — | — | — |
+| lb_peer_down | no bin | 25,179 | — | — | — | — | — |
 
-**Li notes:** `static_large`: wrk_parse_fail_li
+**Li notes:** `lb_least_conn`: no_li_httpd_bin; `lb_peer_down`: no_li_httpd_bin; `lb_round_robin`: no_li_httpd_bin; `proxy_loopback`: no_li_httpd_bin
 
 ## HTTP verify / feature gates (non-RPS)
 
 | scenario | li | other oracles |
 |---|---|---|
-| rate_limit_429 | pass | other oracles N/A |
-| https_static | skip | other oracles N/A |
+| rate_limit_429 | no_li_httpd_bin | other oracles N/A |
+| https_static | skip | nginx=583 |
 
 ## Correctness
 
@@ -67,10 +67,10 @@ Status: **green** — 0 failures / 36 cells
 | fea_solver_iterative | 1 | unknown | — | lic |
 | fea_stiffness_assembly | 1 | unknown | — | lic |
 | fft_1d_fixed | 1 | unknown | — | lic |
-| horner_pure_li | 1 | unknown | — | lic |
-| matmul_blocked | 1 | green | 1.142× | lic |
+| horner_pure_li | 1 | red | 0.667× | lic |
+| matmul_blocked | 1 | green | 0.876× | lic |
 | matmul_blocked_N1024 | 1 | unknown | — | lic |
-| matmul_naive | 1 | green | 0.643× | lic |
+| matmul_naive | 1 | green | 1.056× | lic |
 | matmul_naive_N1024 | 1 | unknown | — | lic |
 | ml_conv2d_forward | 1 | unknown | — | li-math |
 | ml_mlp_forward | 1 | unknown | — | li-math |
@@ -92,8 +92,16 @@ Status: **green** — 0 failures / 36 cells
 | num_rng_pcg | 1 | unknown | — | lic |
 | num_root_newton | 1 | unknown | — | lic |
 | num_sparse_mv | 1 | unknown | — | lic |
-| reduce_sum | 1 | green | 0.525× | lic |
-| simd_dot | 1 | red | 1.435× | lic |
+| reduce_sum | 1 | red | 0.926× | lic |
+| simd_dot | 1 | green | 1.077× | lic |
+| stdlib_binary_search | 1 | unknown | — | lic |
+| stdlib_deque_rotate | 1 | unknown | — | lic |
+| stdlib_dict_insert_lookup | 1 | unknown | — | lic |
+| stdlib_hash_flood | 1 | unknown | — | lic |
+| stdlib_heap_push_pop | 1 | unknown | — | lic |
+| stdlib_list_push_pop | 1 | unknown | — | lic |
+| stdlib_set_ops | 1 | unknown | — | lic |
+| stdlib_sort_int | 1 | unknown | — | lic |
 | viz_colormap | 1 | unknown | — | lig |
 | viz_decimate | 1 | unknown | — | lig |
 | viz_inspector_panels | 1 | unknown | — | lig |
@@ -106,7 +114,7 @@ Status: **green** — 0 failures / 36 cells
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| advection_diffusion_2d | 2 | green | 1.025× | lic |
+| advection_diffusion_2d | 2 | unknown | — | lic |
 | auto_bicycle_model | 2 | unknown | — | lic |
 | auto_dyn_rk4 | 2 | unknown | — | lic |
 | auto_sensor_raycast | 2 | unknown | — | lic |
@@ -116,7 +124,7 @@ Status: **green** — 0 failures / 36 cells
 | bio_rotamer_packing | 2 | unknown | — | lic |
 | cloth_swing | 2 | unknown | — | lic |
 | combustion_passive | 2 | unknown | — | lic |
-| double_pendulum | 2 | green | 0.796× | lic |
+| double_pendulum | 2 | unknown | — | lic |
 | drug_docking_diffusion | 2 | unknown | — | lic |
 | drug_docking_score_vina | 2 | unknown | — | lic |
 | drug_fep_alchemical | 2 | unknown | — | lic |
@@ -124,8 +132,8 @@ Status: **green** — 0 failures / 36 cells
 | drug_ml_retrain_loop | 2 | unknown | — | lic |
 | euler_fluid_2d | 2 | unknown | — | lic |
 | fdtd_waveguide_2d | 2 | unknown | — | lic |
-| harmonic_oscillator_chain | 2 | green | 1.023× | lic |
-| heat_equation_2d | 2 | green | 1.033× | lic |
+| harmonic_oscillator_chain | 2 | unknown | — | lic |
+| heat_equation_2d | 2 | unknown | — | lic |
 | md_barostat_parrinello_rahman | 2 | unknown | — | lic |
 | md_constraints_rattle | 2 | unknown | — | lic |
 | md_constraints_shake | 2 | unknown | — | lic |
@@ -133,7 +141,7 @@ Status: **green** — 0 failures / 36 cells
 | md_init_fcc_mb | 2 | unknown | — | lic |
 | md_integrator_leapfrog | 2 | unknown | — | lic |
 | md_integrator_verlet | 2 | unknown | — | lic |
-| md_lennard_jones | 2 | green | 0.002× | lic |
+| md_lennard_jones | 2 | unknown | — | lic |
 | md_longrange_ewald | 2 | unknown | — | lic |
 | md_longrange_pme | 2 | unknown | — | lic |
 | md_neighbor_cell_list | 2 | unknown | — | lic |
@@ -141,7 +149,7 @@ Status: **green** — 0 failures / 36 cells
 | md_oracle_external | 2 | unknown | — | lic |
 | md_thermostat_berendsen | 2 | unknown | — | lic |
 | md_thermostat_nose_hoover | 2 | unknown | — | lic |
-| nbody_gravity | 2 | green | 0.977× | lic |
+| nbody_gravity | 2 | unknown | — | lic |
 | orbit_two_body | 2 | unknown | — | lic |
 | pde_cfl_timestep | 2 | unknown | — | lic |
 | pde_heat_implicit_jacobi | 2 | unknown | — | lic |
@@ -190,24 +198,24 @@ Status: **green** — 0 failures / 36 cells
 | robo_plan_rrt | 2 | unknown | — | lic |
 | robo_traj_opt | 2 | unknown | — | lic |
 | schrodinger_1d_barrier | 2 | unknown | — | lic |
-| sph_dam_break_2d | 2 | green | 0.988× | lic |
-| three_body | 2 | green | 1.009× | lic |
+| sph_dam_break_2d | 2 | unknown | — | lic |
+| three_body | 2 | unknown | — | lic |
 | three_body_pure | 2 | unknown | — | lic |
-| wave_equation_1d | 2 | yellow | 1.208× | lic |
-| wave_equation_2d | 2 | green | 0.287× | lic |
+| wave_equation_1d | 2 | unknown | — | lic |
+| wave_equation_2d | 2 | unknown | — | lic |
 | wind_field_bc | 2 | unknown | — | lic |
 
 ## HTTP catalog gates
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| https_static | 5 | green | 1.000× | lis |
+| https_static | 5 | unknown | — | lis |
 | keepalive_pipelining | 5 | unknown | — | lis |
 | lb_least_conn | 5 | unknown | — | lis |
 | lb_peer_down | 5 | unknown | — | lis |
 | lb_round_robin | 5 | unknown | — | lis |
 | proxy_loopback | 5 | unknown | — | lic |
-| rate_limit_429 | 5 | green | 1.000× | benchmarks |
+| rate_limit_429 | 5 | unknown | — | benchmarks |
 | static_large | 5 | unknown | — | lis |
 | static_small | 5 | unknown | — | lis |
 
