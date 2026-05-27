@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
   group: benchmark-nightly
@@ -196,12 +197,26 @@ jobs:
           python3 scripts/check-summary-measurement-coverage.py || true
 
       - name: Commit dashboard data
+        id: commit
         run: |
           git config user.name "benchmarks-nightly"
           git config user.email "benchmarks-nightly@users.noreply.github.com"
           git add data/latest/summary.json data/latest/benchmark-matrix.md \
-            data/latest/release-index.json data/history/ || true
-          git diff --staged --quiet || git commit -m "chore(nightly): refresh benchmark summary from multi-OS run"
+            data/latest/release-index.json data/history/ data/latest/summary-content-hash.txt || true
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "chore(nightly): refresh benchmark summary from multi-OS run"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
 
-      - name: Push to main
-        run: git push
+      - name: Push nightly data PR
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="bot/nightly-summary-${{ github.run_id }}"
+          git push origin "HEAD:refs/heads/${BRANCH}"
+          gh pr create --base main --head "$BRANCH" \
+            --title "chore(nightly): refresh benchmark summary" \
+            --body "Automated nightly ingest from run ${{ github.run_id }}. Merge to refresh https://li-langverse.github.io/benchmarks/ (Pages deploys on \`data/latest/**\` push to main)."
