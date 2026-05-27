@@ -32,7 +32,7 @@ if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
 from org_repos import IGNORE_REPOS, filter_repos  # noqa: E402
 
-EXEMPT_REPOS: set[str] = set(IGNORE_REPOS)
+EXEMPT_REPOS: set[str] = set(IGNORE_REPOS) | {"research-findings"}
 
 # Non-main default branches: gated until human WP-H0 (lidb → main).
 # See li-cursor-agents docs/plans/2026-05-25-org-hygiene-multi-agent-plan.md
