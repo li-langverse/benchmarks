@@ -93,7 +93,14 @@ python3 benchmarks/harness/bench.py --tier 7 --runs "$RUNS" --skip-verify || {
 }
 
 log "tier 3 — ecosystem (compile, security, async)"
-python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" || { echo "tier3 failed" >&2; exit 1; }
+if ! python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS"; then
+  if [[ "${BENCH_ALLOW_TIER3_FAIL:-0}" == "1" ]]; then
+    echo "WARN: tier3 failed — continuing (BENCH_ALLOW_TIER3_FAIL=1)" >&2
+  else
+    echo "tier3 failed" >&2
+    exit 1
+  fi
+fi
 
 if [[ "${SKIP_TIER5_HTTP:-0}" == "1" ]]; then
   log "tier 5 — HTTP multi-oracle skipped (SKIP_TIER5_HTTP=1)"
