@@ -129,7 +129,7 @@ jobs:
           if-no-files-found: warn
 
   publish-dashboard:
-    needs: [bench-linux, bench-macos, bench-windows]
+    needs: [bench-linux]
     if: github.ref == 'refs/heads/main' && needs.bench-linux.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
