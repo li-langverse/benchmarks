@@ -6,8 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Fixed
-- **Nightly GHA:** skip broken `li-httpd` build on `lic` main (E0303) so tier 1–3 ingest still refreshes `data/latest/summary.json`; tier-5 HTTP until httpd contracts fixed.
+### Changed
+- **Nightly GHA:** full suite on Linux (tier 0–5 + exploits, no `SKIP_*` workarounds); requires `lic` httpd E0303 whitelist + Lean on runner.
 
 ### Added
 

@@ -6,11 +6,6 @@ on:
   schedule:
     - cron: "0 4 * * *"
   workflow_dispatch:
-    inputs:
-      skip_exploits:
-        description: Skip tier-5 HTTP exploit harness
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -41,18 +36,15 @@ jobs:
 
       - name: Install LLVM 22 and bench deps
         run: |
-          chmod +x lic/scripts/ci-install-llvm.sh
+          chmod +x lic/scripts/ci-install-llvm.sh lic/scripts/ci-install-lean.sh
           sudo LI_LLVM_MAJOR=22 bash lic/scripts/ci-install-llvm.sh
+          bash lic/scripts/ci-install-lean.sh
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Run full benchmark suite (Linux)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
-          # li-net-httpd on lic main fails E0303 (`ensures true` on value returns) until httpd contracts land.
-          SKIP_HTTPD_BUILD: "1"
-          SKIP_TIER5_HTTP: "1"
-          BENCH_ALLOW_TIER3_FAIL: "1"
-          SKIP_EXPLOITS: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_exploits == true && '1' || '0' }}
         run: |
           chmod +x scripts/*.sh scripts/ingest/*.sh
           ./scripts/run-benchmark-ci-nightly.sh
@@ -67,7 +59,6 @@ jobs:
   bench-macos:
     runs-on: macos-14
     timeout-minutes: 120
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -105,7 +96,6 @@ jobs:
   bench-windows:
     runs-on: windows-latest
     timeout-minutes: 120
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -128,7 +118,7 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/*.sh
-          ./scripts/run-benchmark-ci-nightly.sh || true
+          ./scripts/run-benchmark-ci-nightly.sh
 
       - name: Upload Windows CSV
         if: always()
