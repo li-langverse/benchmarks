@@ -19,7 +19,7 @@ Point the Cursor Cloud **install / update** script at:
 bash /agent/repos/benchmarks/scripts/update-cloud-agent-env.sh
 ```
 
-It pulls org repos, builds **lic** via `scripts/llvm-env.sh` (LLVM 22), runs `npm ci` in **dashboard-next**, and installs pytest. Skips `checkout main` when a repo has uncommitted work.
+It pulls **all non-archived `li-langverse` repos** (GitHub `gh repo list` ∪ checkouts under `/agent/repos`, typically ~30+), builds **lic** with **LLVM 22** (`LI_LLVM_MAJOR=22`, `scripts/llvm-env.sh`), runs `npm ci` in **dashboard-next**, and installs pytest. Uses each repo’s default branch (`main` / `master` / `origin/HEAD`). Skips branch switch when a repo has uncommitted work. Set `CLONE_MISSING=1` to shallow-clone missing org repos.
 
 ## Standing ops (every session)
 

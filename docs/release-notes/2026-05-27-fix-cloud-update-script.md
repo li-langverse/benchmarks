@@ -8,7 +8,7 @@
 
 ## Summary
 
-Adds `scripts/update-cloud-agent-env.sh` to replace the broken Cloud VM install snippet (`LLVM_DIR` unbound under `set -u`, wrong dashboard path, cmake cwd).
+Adds `scripts/update-cloud-agent-env.sh` to replace the broken Cloud VM install snippet (`LLVM_DIR` unbound under `set -u`, wrong dashboard path, cmake cwd). Discovers all ~30+ org repos via `gh repo list` plus local checkouts; pins **LLVM 22** for `lic` build.
 
 ## Agent continuation
 

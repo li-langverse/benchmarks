@@ -29,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
-- **Cloud VM update script:** `scripts/update-cloud-agent-env.sh` — LLVM via lic `llvm-env.sh`, `dashboard-next`, safe git pull — [2026-05-27-fix-cloud-update-script.md](docs/release-notes/2026-05-27-fix-cloud-update-script.md).
+- **Cloud VM update script:** `scripts/update-cloud-agent-env.sh` — LLVM **22**, all org repos via `gh`, `dashboard-next`, safe git pull — [2026-05-27-fix-cloud-update-script.md](docs/release-notes/2026-05-27-fix-cloud-update-script.md).
 
 - **Overview tier cards:** Measured ok/warn/fail derived from `summary.rows`; pending rows labeled **pending** instead of ingest `tier_counts.unknown` gray **?** — [2026-05-25-fix-overview-tier-cards.md](docs/release-notes/2026-05-25-fix-overview-tier-cards.md).
 
