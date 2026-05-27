@@ -11,6 +11,16 @@
 7. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
 8. **lic httpd:** tier-5 HTTP RPS needs epoll `build/li-httpd` — [lic-httpd-bench-compat.md](docs/ecosystem/lic-httpd-bench-compat.md); `lic` `main` may be routing-oracle-only until the httpd perf branch merges.
 
+## Cloud Agent VM setup
+
+Point the Cursor Cloud **install / update** script at:
+
+```bash
+bash /agent/repos/benchmarks/scripts/update-cloud-agent-env.sh
+```
+
+It pulls **all non-archived `li-langverse` repos** (GitHub `gh repo list` ∪ checkouts under `/agent/repos`, typically ~30+), builds **lic** with **LLVM 22** (`LI_LLVM_MAJOR=22`, `scripts/llvm-env.sh`), runs `npm ci` in **dashboard-next**, and installs pytest. Uses each repo’s default branch (`main` / `master` / `origin/HEAD`). Skips branch switch when a repo has uncommitted work. Set `CLONE_MISSING=1` to shallow-clone missing org repos.
+
 ## Standing ops (every session)
 
 1. After **any implementation** that touches perf, httpd, compiler, or physics kernels: run **`./scripts/run-full-benchmark-suite.sh`** (or `SKIP_BUILD=1` if already built); read **`data/latest/benchmark-matrix.md`** (full matrix), **`./scripts/benchmark-failures-report.sh`**, and `data/latest/summary.json`. For **httpd** changes: do **not** set `SKIP_EXPLOITS=1` on merge-worthy work — see [http-server-benchmark-growth.md](docs/ecosystem/http-server-benchmark-growth.md).
