@@ -22,11 +22,16 @@ export PATH="$LIC_ROOT/build/compiler/lic:$PATH"
 
 if [[ "$SKIP_BUILD" != "1" ]]; then
   log "setup lic + li-httpd"
+  export SKIP_HTTPD_BUILD_ON_FAIL="${SKIP_HTTPD_BUILD_ON_FAIL:-1}"
   "$ROOT/scripts/setup-lic-for-bench.sh"
 fi
 
 export LIC="$LIC_ROOT/build/compiler/lic/lic"
 export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
+if [[ ! -x "$LI_HTTPD_BIN" ]]; then
+  export SKIP_TIER5_HTTP="${SKIP_TIER5_HTTP:-1}"
+  log "no li-httpd binary — SKIP_TIER5_HTTP=1"
+fi
 if command -v clang-22 >/dev/null 2>&1; then
   export CC="${CC:-clang-22}"
   export CXX="${CXX:-clang++-22}"

@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Fixed
+- **Nightly GHA:** skip broken `li-httpd` build on `lic` main (E0303) so tier 1–3 ingest still refreshes `data/latest/summary.json`; tier-5 HTTP until httpd contracts fixed.
+
 ### Added
 
 - **Benchmark nightly GHA:** daily `benchmark-nightly.yml` (Linux full suite, macOS/Windows core) commits `data/latest/summary.json` — [2026-05-27-benchmark-nightly-gha.md](docs/release-notes/2026-05-27-benchmark-nightly-gha.md).
