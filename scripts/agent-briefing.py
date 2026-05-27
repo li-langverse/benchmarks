@@ -366,19 +366,29 @@ def recommend_agents(data: dict) -> list[dict]:
 
     ci_bug = data.get("ci_bug_triage") or {}
     if isinstance(ci_bug, dict):
-        q = int((ci_bug.get("summary") or {}).get("work_queue_size") or 0)
-        if q > 0 and not _has_agent(rec, "bug_fixer"):
-            rec.append(
-                {
-                    "agent": "bug_fixer",
-                    "reason": f"{q} CI/bug item(s) in work queue (local-ci + issues + GHA red)",
-                }
-            )
-        if q > 0 and not _has_agent(rec, "code_implementer"):
+        summary = ci_bug.get("summary") or {}
+        swarm_q = int(summary.get("swarm_work_queue_size") or 0)
+        org_q = int(summary.get("org_work_queue_size") or summary.get("work_queue_size") or 0)
+        work_q = int(summary.get("work_queue_size") or 0)
+        org_queue = ci_bug.get("org_work_queue") or ci_bug.get("work_queue") or []
+        bug_fixer_n = swarm_q if swarm_q > 0 else work_q
+        if bug_fixer_n > 0 and not _has_agent(rec, "bug_fixer"):
+            if swarm_q > 0:
+                reason = f"{swarm_q} swarm agent PR CI item(s) in swarm_work_queue"
+            else:
+                reason = f"{bug_fixer_n} CI/bug item(s) in work queue (swarm empty — fallback)"
+            rec.append({"agent": "bug_fixer", "reason": reason})
+        non_pr_ci = [
+            r for r in org_queue if isinstance(r, dict) and r.get("kind") in ("issue", "local_ci")
+        ]
+        if non_pr_ci and not _has_agent(rec, "code_implementer"):
             rec.append(
                 {
                     "agent": "code_implementer",
-                    "reason": "implement fixes from ci-bug-triage work queue",
+                    "reason": (
+                        f"implement fixes from ci-bug-triage ({len(non_pr_ci)} issue/local_ci — "
+                        "pr_ci deferred to bug_fixer)"
+                    ),
                 }
             )
 
