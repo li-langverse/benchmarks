@@ -9,7 +9,7 @@
 
 ## Summary
 
-Refreshes dashboard `summary.json` and matrix artifacts after `lic` bench harness merges (#304–#309, #329) via `ingest-lic.sh`.
+Regenerates benchmark matrix artifacts after `lic` bench harness merges (#304–#309, #329); keeps committed `summary.json` measurement colors (full CSV ingest blocked until `lic` `latest.csv` lands).
 
 ## Agent continuation
 
