@@ -260,6 +260,24 @@ def metric_lower_is_better(metric: str) -> bool:
     return metric in ("wall_time", "latency", "latency_p95")
 
 
+def timing_fields_from_row(r: dict) -> dict:
+    """Optional mean/stddev/sample_runs from harness CSV (value column = mean)."""
+    out: dict = {}
+    std = r.get("stddev", "")
+    if std not in ("", None):
+        try:
+            out["stddev"] = float(std)
+        except (TypeError, ValueError):
+            pass
+    runs = r.get("sample_runs", "")
+    if runs not in ("", None):
+        try:
+            out["sample_runs"] = int(float(runs))
+        except (TypeError, ValueError):
+            pass
+    return out
+
+
 def compute_sota(
     series: list[dict], *, lower_is_better: bool
 ) -> tuple[str | None, float | None]:
@@ -451,9 +469,11 @@ def make_summary_row(
 ) -> dict:
     meta = row_meta(cfg)
     series = chart.get("series", [])
-    li_val = next((s["value"] for s in series if s["lang"] == "li"), None)
+    li_pt = next((s for s in series if s["lang"] == "li"), None)
+    li_val = li_pt["value"] if li_pt else None
     ref = chart.get("reference_lang", "cpp")
-    ref_val = next((s["value"] for s in series if s["lang"] == ref), None)
+    ref_pt = next((s for s in series if s["lang"] == ref), None)
+    ref_val = ref_pt["value"] if ref_pt else None
     sota_lang = chart.get("sota_lang")
     sota_val = next((s["value"] for s in series if s["lang"] == sota_lang), None) if sota_lang else None
     bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
@@ -465,7 +485,11 @@ def make_summary_row(
         "category": category,
         "metric": metric,
         "li_value": li_val,
+        "li_stddev": li_pt.get("stddev") if li_pt else None,
+        "li_sample_runs": li_pt.get("sample_runs") if li_pt else None,
         "cpp_value": ref_val if ref == "cpp" else None,
+        "cpp_stddev": ref_pt.get("stddev") if ref_pt and ref == "cpp" else None,
+        "cpp_sample_runs": ref_pt.get("sample_runs") if ref_pt and ref == "cpp" else None,
         "ratio_vs_cpp": chart.get("ratio_vs_reference"),
         "sota_lang": sota_lang,
         "sota_value": sota_val,
@@ -524,6 +548,7 @@ def lang_series(
                 "unit": r.get("unit") or "",
                 "variant": r.get("variant") or "",
                 "os": normalize_os(r.get("os") or r.get("OS")),
+                **timing_fields_from_row(r),
             }
         )
     return out
@@ -561,6 +586,7 @@ def http_lang_series(
                 "unit": r.get("unit") or "",
                 "variant": var,
                 "os": normalize_os(r.get("os") or r.get("OS")),
+                **timing_fields_from_row(r),
             }
         )
 
@@ -974,6 +1000,7 @@ def main() -> int:
             "security_csv": source_ref(security_csv, lic_root),
         },
         "reporting": {
+            "value_stat": "mean",
             "sota_policy": "best_competitor_lang_excludes_li",
             "relative_perf_higher_is_better": True,
             "validity_required_default": bool(

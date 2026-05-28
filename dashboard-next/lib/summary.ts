@@ -22,7 +22,12 @@ export type NumericValidity = {
 
 export type LangPoint = {
   lang: string;
+  /** Wall-clock or metric mean (harness no longer uses median). */
   value: number;
+  /** Sample standard deviation (same unit as value). */
+  stddev?: number | null;
+  /** Number of timed repetitions aggregated into value/stddev. */
+  sample_runs?: number | null;
   unit: string;
   variant?: string;
   label?: string;
@@ -75,7 +80,11 @@ export type SummaryRow = {
   package?: string;
   metric: string;
   li_value: number | null;
+  li_stddev?: number | null;
+  li_sample_runs?: number | null;
   cpp_value: number | null;
+  cpp_stddev?: number | null;
+  cpp_sample_runs?: number | null;
   ratio_vs_cpp: number | null;
   ratio_vs_sota?: number | null;
   sota_lang?: string | null;
@@ -101,6 +110,8 @@ export type SummaryRow = {
 
 export type SummaryReporting = {
   sota_policy?: string;
+  /** Primary aggregate for timed metrics in latest.csv (mean of repetitions). */
+  value_stat?: "mean";
   /** Diagram axis: relative_perf where 1.0 = best competitor speed. */
   relative_perf_higher_is_better?: boolean;
   validity_required_default?: boolean;

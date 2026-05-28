@@ -13,6 +13,7 @@ import { getLangSeries } from "@/lib/bench-series";
 import { deltasForBenchmark, loadHistoryIndex } from "@/lib/history";
 import { githubTreeUrl } from "@/lib/github";
 import { isPerfClaimable } from "@/lib/validity";
+import { formatMeanStd } from "@/lib/format-measurement";
 import { findRow, loadSummary } from "@/lib/summary";
 
 type PageProps = { params: Promise<{ id: string }> };
@@ -98,10 +99,21 @@ export default async function BenchPage({ params }: PageProps) {
               "—"
             )}
           </dd>
-          <dt>Li / catalog oracle</dt>
+          <dt>Li / catalog oracle (mean ± σ)</dt>
           <dd>
-            {row.li_value ?? "—"} / {row.cpp_value ?? "—"}{" "}
-            {row.unit ?? ""}
+            {formatMeanStd(
+              row.li_value,
+              row.li_stddev,
+              row.unit,
+              row.li_sample_runs,
+            )}{" "}
+            /{" "}
+            {formatMeanStd(
+              row.cpp_value,
+              row.cpp_stddev,
+              row.unit,
+              row.cpp_sample_runs,
+            )}
             {row.compare_oracle ? (
               <span className="mono"> ({row.compare_oracle})</span>
             ) : null}

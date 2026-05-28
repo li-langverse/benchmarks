@@ -1,4 +1,5 @@
 import type { LangPoint } from "@/lib/summary";
+import { formatMeanStd } from "@/lib/format-measurement";
 
 type LangsTableProps = {
   series: LangPoint[];
@@ -20,7 +21,8 @@ export function LangsTable({ series, metric }: LangsTableProps) {
       <thead>
         <tr>
           <th scope="col">Lang</th>
-          <th scope="col">Value</th>
+          <th scope="col">Mean ± σ</th>
+          <th scope="col">Runs</th>
           <th scope="col">Unit</th>
           <th scope="col">Variant</th>
           <th scope="col">OS</th>
@@ -32,7 +34,10 @@ export function LangsTable({ series, metric }: LangsTableProps) {
             <td>
               <span className={`lang-chip lang-${pt.lang}`}>{pt.lang}</span>
             </td>
-            <td className="mono">{pt.value}</td>
+            <td className="mono">
+              {formatMeanStd(pt.value, pt.stddev, null, null)}
+            </td>
+            <td className="mono">{pt.sample_runs ?? "—"}</td>
             <td className="mono">{pt.unit || "—"}</td>
             <td className="mono">{pt.variant ?? "—"}</td>
             <td className="mono">{pt.os ?? "—"}</td>
@@ -42,8 +47,8 @@ export function LangsTable({ series, metric }: LangsTableProps) {
       {metric ? (
         <tfoot>
           <tr>
-            <td colSpan={5} className="mono" style={{ color: "var(--muted)" }}>
-              Metric: {metric}
+            <td colSpan={6} className="mono" style={{ color: "var(--muted)" }}>
+              Metric: {metric} (value = mean of timed runs)
             </td>
           </tr>
         </tfoot>

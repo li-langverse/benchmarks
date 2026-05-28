@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Dashboard timing:** mean ± σ and `sample_runs` in langs table and bench pages (`value_stat: mean`) — [2026-05-28-bench-mean-std-dashboard.md](docs/release-notes/2026-05-28-bench-mean-std-dashboard.md).
+- **Full suite defaults:** `BENCH_RUNS=6`, `BENCH_MIN_RUNS=6`, `BENCH_SUBSEC_MIN_RUNS=20` in `run-full-benchmark-suite.sh`.
 - **Dashboard ingest:** refreshed `summary.json` / matrix after `lic` harness merges — [2026-05-27-ingest-post-lic-harness.md](docs/release-notes/2026-05-27-ingest-post-lic-harness.md).
 
 - **Nightly GHA:** full suite on Linux (tier 0–5 + exploits, no `SKIP_*` workarounds); requires `lic` httpd E0303 whitelist + Lean on runner.
