@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Parallel tier-1/2 benches:** `BENCH_JOBS` + `scripts/run-lic-tier-benches.py` for full-suite throughput — [2026-05-27-bench-parallel-tier12.md](docs/release-notes/2026-05-27-bench-parallel-tier12.md).
+
 ### Fixed
 
 - **Nightly publish:** `publish-dashboard` depends on Linux bench success only (not macOS/Windows) — [2026-05-27-publish-dashboard-linux-only.md](docs/release-notes/2026-05-27-publish-dashboard-linux-only.md).

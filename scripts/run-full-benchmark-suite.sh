@@ -6,6 +6,7 @@ LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
 LIS_ROOT="${LIS_ROOT:-$ROOT/../lis}"
 PROFILE="${BENCH_PROFILE:-full}"
 RUNS="${BENCH_RUNS:-3}"
+BENCH_JOBS="${BENCH_JOBS:-}"
 export BENCH_ADAPTIVE_RUNS="${BENCH_ADAPTIVE_RUNS:-1}"
 export BENCH_MIN_RUNS="${BENCH_MIN_RUNS:-20}"
 export BENCH_TARGET_SAMPLE_SEC="${BENCH_TARGET_SAMPLE_SEC:-1.0}"
@@ -52,39 +53,10 @@ if [[ "$SKIP_TIER0" != "1" ]]; then
   fi
 fi
 
-log "tier 1+2+7 — micro + physics + registry family aliases (runs=$RUNS)"
-python3 - <<'PY' "$RUNS" "$LIC_ROOT"
-import os, sys
-from pathlib import Path
-
-runs = int(sys.argv[1])
-lic = Path(sys.argv[2])
-os.chdir(lic)
-sys.path.insert(0, "benchmarks/harness")
-from bench import TIER1_BENCHES, TIER2_BENCHES, run_tier_benches, run_benchmark, read_csv, write_csv, merge_rows, RESULTS
-
-out = RESULTS / "latest.csv"
-merged = read_csv(out)
-failed: list[str] = []
-
-def run_specs(label: str, specs):
-    global merged
-    for spec in specs:
-        try:
-            rows = run_benchmark(spec, runs=runs)
-            merged = merge_rows(merged, rows, benchmark=spec.name)
-            write_csv(out, merged)
-            print(f"ok {spec.name}", flush=True)
-        except Exception as exc:
-            failed.append(spec.name)
-            print(f"WARN skip {spec.name}: {exc}", file=sys.stderr, flush=True)
-
-run_specs("tier-1", TIER1_BENCHES)
-run_specs("tier-2", TIER2_BENCHES)
-if failed:
-    print(f"tier12: {len(failed)} skipped: {', '.join(failed)}", file=sys.stderr)
-print(f"updated {out}")
-PY
+log "tier 1+2 — micro + physics (runs=$RUNS jobs=${BENCH_JOBS:-auto})"
+python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" ${BENCH_JOBS:+--jobs "$BENCH_JOBS"} || {
+  echo "WARN: tier 1+2 had failures — continuing" >&2
+}
 
 log "tier 7 — algo_registry family-template aliases"
 python3 benchmarks/harness/bench.py --tier 7 --runs "$RUNS" --skip-verify || {
