@@ -814,16 +814,8 @@ def build_perf_chart(
 def is_pending_catalog_row(
     bench_id: str, cfg: dict, by_bench: dict[str, list], all_rows: list[dict]
 ) -> bool:
-    if has_csv_rows(all_rows, bench_id, cfg):
-        return False
-    if cfg.get("base_id"):
-        return True
-    if cfg.get("path") == "unknown" or bench_id.endswith("_stub"):
-        return True
-    category = cfg.get("category", "micro")
-    if category == "database" and bench_id not in by_bench:
-        return True
-    return category in ("tooling",) and bench_id not in by_bench
+    """Catalog rows without harness CSV measurements become pending placeholders."""
+    return not has_csv_rows(all_rows, bench_id, cfg)
 
 
 def append_pending_row(
