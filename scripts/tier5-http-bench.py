@@ -13,8 +13,6 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from statistics import mean
-
 CSV_HEADER = [
     "benchmark",
     "lang",
@@ -22,6 +20,8 @@ CSV_HEADER = [
     "threads",
     "metric",
     "value",
+    "stddev",
+    "sample_runs",
     "unit",
     "git_sha",
     "cpu_model",
@@ -98,14 +98,35 @@ def wrk_rps(url: str, *, threads: int, conn: int, duration: str, pipeline: int) 
     raise RuntimeError(f"wrk parse failed: {out[:400]}")
 
 
+def _harness_timing(lic_root: Path):
+    lic = lic_root.resolve()
+    harness = lic / "benchmarks" / "harness"
+    if str(harness) not in sys.path:
+        sys.path.insert(0, str(harness))
+    from timing_stats import measure_repeated, resolve_timing_runs, stats_from_samples
+
+    return measure_repeated, resolve_timing_runs, stats_from_samples
+
+
 def bench_runs(
-    url: str, *, runs: int, threads: int, conn: int, duration: str, pipeline: int
-) -> float:
-    samples = [
-        wrk_rps(url, threads=threads, conn=conn, duration=duration, pipeline=pipeline)
-        for _ in range(runs)
-    ]
-    return mean(samples)
+    url: str,
+    *,
+    lic_root: Path,
+    runs: int,
+    threads: int,
+    conn: int,
+    duration: str,
+    pipeline: int,
+) -> tuple[float, float, int]:
+    measure_repeated, resolve_timing_runs, _stats_from_samples = _harness_timing(lic_root)
+    dur_sec = float(duration.rstrip("s") or "10")
+    n = resolve_timing_runs(runs, dur_sec)
+
+    def one() -> float:
+        return wrk_rps(url, threads=threads, conn=conn, duration=duration, pipeline=pipeline)
+
+    stats = measure_repeated(one, runs=n)
+    return stats.mean, stats.stddev, stats.sample_runs
 
 
 def row(
@@ -118,6 +139,8 @@ def row(
     flags: str,
     variant: str = "ci",
     threads: int = 8,
+    stddev: float = 0.0,
+    sample_runs: int = 1,
 ) -> dict[str, object]:
     return {
         "benchmark": benchmark,
@@ -126,6 +149,8 @@ def row(
         "threads": threads,
         "metric": "rps",
         "value": round(value, 2),
+        "stddev": round(stddev, 4),
+        "sample_runs": sample_runs,
         "unit": "req/s",
         "git_sha": sha,
         "cpu_model": cpu,
@@ -218,7 +243,7 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--lic-root", type=Path, default=Path(os.environ.get("LIC_ROOT", "/workspace/lic")))
     p.add_argument("--out", type=Path, default=None)
-    p.add_argument("--runs", type=int, default=int(os.environ.get("HTTP_BENCH_RUNS", "5")))
+    p.add_argument("--runs", type=int, default=int(os.environ.get("HTTP_BENCH_RUNS", "6")))
     p.add_argument("--threads", type=int, default=8)
     p.add_argument("--connections", type=int, default=200)
     p.add_argument("--duration", default="10s")
@@ -262,8 +287,9 @@ def main() -> int:
         stderr=subprocess.DEVNULL,
     )
     time.sleep(0.4)
-    li_static = bench_runs(
+    li_static_mean, li_static_std, li_static_n = bench_runs(
         f"http://127.0.0.1:{static_port}/file.bin",
+        lic_root=lic,
         runs=args.runs,
         threads=args.threads,
         conn=args.connections,
@@ -275,17 +301,20 @@ def main() -> int:
         row(
             benchmark="static_small",
             lang="li",
-            value=li_static,
+            value=li_static_mean,
+            stddev=li_static_std,
+            sample_runs=li_static_n,
             sha=sha,
             cpu=cpu,
-            flags=f"wrk static_small",
+            flags="wrk static_small",
             threads=args.threads,
         )
     )
     conf = write_nginx_static(nginx_static, static_root)
     start_nginx(conf, nginx_static)
-    ng_static = bench_runs(
+    ng_static_mean, ng_static_std, ng_static_n = bench_runs(
         f"http://127.0.0.1:{nginx_static}/file.bin",
+        lic_root=lic,
         runs=args.runs,
         threads=args.threads,
         conn=args.connections,
@@ -297,14 +326,16 @@ def main() -> int:
         row(
             benchmark="static_small",
             lang="nginx",
-            value=ng_static,
+            value=ng_static_mean,
+            stddev=ng_static_std,
+            sample_runs=ng_static_n,
             sha=sha,
             cpu=cpu,
             flags="wrk static_small",
             threads=args.threads,
         )
     )
-    print(f"static_small li={li_static:.0f} nginx={ng_static:.0f}")
+    print(f"static_small li={li_static_mean:.0f} nginx={ng_static_mean:.0f}")
 
     # --- keepalive_pipelining ---
     kill_port(static_port)
@@ -314,8 +345,9 @@ def main() -> int:
         stderr=subprocess.DEVNULL,
     )
     time.sleep(0.4)
-    li_ka = bench_runs(
+    li_ka_mean, li_ka_std, li_ka_n = bench_runs(
         f"http://127.0.0.1:{static_port}/file.bin",
+        lic_root=lic,
         runs=args.runs,
         threads=args.threads,
         conn=args.connections,
@@ -327,7 +359,9 @@ def main() -> int:
         row(
             benchmark="keepalive_pipelining",
             lang="li",
-            value=li_ka,
+            value=li_ka_mean,
+            stddev=li_ka_std,
+            sample_runs=li_ka_n,
             sha=sha,
             cpu=cpu,
             flags="wrk pipeline=8",
@@ -335,8 +369,9 @@ def main() -> int:
         )
     )
     start_nginx(conf, nginx_static)
-    ng_ka = bench_runs(
+    ng_ka_mean, ng_ka_std, ng_ka_n = bench_runs(
         f"http://127.0.0.1:{nginx_static}/file.bin",
+        lic_root=lic,
         runs=args.runs,
         threads=args.threads,
         conn=args.connections,
@@ -348,14 +383,16 @@ def main() -> int:
         row(
             benchmark="keepalive_pipelining",
             lang="nginx",
-            value=ng_ka,
+            value=ng_ka_mean,
+            stddev=ng_ka_std,
+            sample_runs=ng_ka_n,
             sha=sha,
             cpu=cpu,
             flags="wrk pipeline=8",
             threads=args.threads,
         )
     )
-    print(f"keepalive_pipelining li={li_ka:.0f} nginx={ng_ka:.0f}")
+    print(f"keepalive_pipelining li={li_ka_mean:.0f} nginx={ng_ka_mean:.0f}")
 
     # --- proxy_loopback ---
     kill_port(proxy_back)
@@ -366,7 +403,7 @@ def main() -> int:
     )
     time.sleep(0.3)
 
-    def proxy_bench(use_c: bool) -> float:
+    def proxy_bench(use_c: bool) -> tuple[float, float, int]:
         kill_port(proxy_front)
         env = os.environ.copy()
         if use_c:
@@ -382,6 +419,7 @@ def main() -> int:
         time.sleep(0.5)
         return bench_runs(
             f"http://127.0.0.1:{proxy_front}/",
+            lic_root=lic,
             runs=args.runs,
             threads=args.threads,
             conn=args.connections,
@@ -389,12 +427,14 @@ def main() -> int:
             pipeline=1,
         )
 
-    li_proxy = proxy_bench(False)
+    li_proxy_mean, li_proxy_std, li_proxy_n = proxy_bench(False)
     rows.append(
         row(
             benchmark="proxy_loopback",
             lang="li",
-            value=li_proxy,
+            value=li_proxy_mean,
+            stddev=li_proxy_std,
+            sample_runs=li_proxy_n,
             sha=sha,
             cpu=cpu,
             flags="wrk proxy_loopback li_epoll",
@@ -403,12 +443,14 @@ def main() -> int:
         )
     )
     kill_port(proxy_front)
-    li_proxy_c = proxy_bench(True)
+    li_proxy_c_mean, li_proxy_c_std, li_proxy_c_n = proxy_bench(True)
     rows.append(
         row(
             benchmark="proxy_loopback",
             lang="li",
-            value=li_proxy_c,
+            value=li_proxy_c_mean,
+            stddev=li_proxy_c_std,
+            sample_runs=li_proxy_c_n,
             sha=sha,
             cpu=cpu,
             flags="wrk proxy_loopback LI_HTTPD_PROXY_C=1",
@@ -428,8 +470,9 @@ def main() -> int:
     )
     time.sleep(0.3)
     start_nginx(pconf, nginx_proxy)
-    ng_proxy = bench_runs(
+    ng_proxy_mean, ng_proxy_std, ng_proxy_n = bench_runs(
         f"http://127.0.0.1:{nginx_proxy}/",
+        lic_root=lic,
         runs=args.runs,
         threads=args.threads,
         conn=args.connections,
@@ -442,14 +485,18 @@ def main() -> int:
         row(
             benchmark="proxy_loopback",
             lang="nginx",
-            value=ng_proxy,
+            value=ng_proxy_mean,
+            stddev=ng_proxy_std,
+            sample_runs=ng_proxy_n,
             sha=sha,
             cpu=cpu,
             flags="wrk proxy_loopback",
             threads=args.threads,
         )
     )
-    print(f"proxy_loopback li={li_proxy:.0f} li_c={li_proxy_c:.0f} nginx={ng_proxy:.0f}")
+    print(
+        f"proxy_loopback li={li_proxy_mean:.0f} li_c={li_proxy_c_mean:.0f} nginx={ng_proxy_mean:.0f}"
+    )
 
     with out.open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=CSV_HEADER)
