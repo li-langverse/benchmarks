@@ -8,4 +8,4 @@
 
 **Key finding:** Dense LA is in the **compiler prelude**, not `lic/std/math`. Missing `packages/linalg`, `std.tensor`, LAPACK-class APIs; `simd_dot` bench still uses extern C kernel; strict tier-1 perf incomplete.
 
-**Next queue step:** `synthesize_step` (cycle summary).
+**Next:** cycle 1 complete — see `stdlib_researcher-cee09172-synthesize.md`.
