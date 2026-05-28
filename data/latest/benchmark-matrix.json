@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-27T19:03:31.596375+00:00",
+  "generated_at": "2026-05-28T03:51:28.551784+00:00",
   "sources": {
     "summary_json": "/agent/repos/benchmarks/data/latest/summary.json",
     "catalog_toml": "/agent/repos/benchmarks/catalog.toml",
@@ -14,34 +14,28 @@
       "unknown": 1
     },
     "1": {
-      "green": 3,
+      "green": 39,
       "yellow": 0,
-      "red": 2,
-      "unknown": 50
+      "red": 6,
+      "unknown": 2
     },
     "2": {
-      "green": 0,
-      "yellow": 0,
+      "green": 88,
+      "yellow": 2,
       "red": 0,
-      "unknown": 90
+      "unknown": 0
     },
     "3": {
-      "green": 0,
+      "green": 10,
       "yellow": 0,
       "red": 0,
-      "unknown": 12
-    },
-    "5": {
-      "green": 0,
-      "yellow": 0,
-      "red": 0,
-      "unknown": 10
+      "unknown": 2
     },
     "6": {
       "green": 0,
       "yellow": 0,
       "red": 0,
-      "unknown": 19
+      "unknown": 17
     }
   },
   "sections": {
@@ -71,10 +65,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -88,10 +82,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -105,10 +99,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -122,10 +116,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -139,10 +133,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -156,10 +150,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -173,10 +167,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -190,10 +184,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -207,10 +201,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -224,10 +218,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -241,10 +235,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -258,10 +252,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -275,10 +269,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0058,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0172,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -293,10 +287,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "red",
-        "ratio_vs_reference": 0.6667,
+        "status": "green",
+        "ratio_vs_reference": 0.75,
         "reference_lang": "cpp",
-        "li_value": 0.0004,
+        "li_value": 0.0006,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -311,10 +305,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "green",
-        "ratio_vs_reference": 0.8765,
+        "status": "red",
+        "ratio_vs_reference": 1.549,
         "reference_lang": "cpp",
-        "li_value": 0.0071,
+        "li_value": 0.0158,
         "ph_ids": [
           "PH-5b"
         ],
@@ -345,10 +339,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "green",
-        "ratio_vs_reference": 1.0556,
+        "status": "red",
+        "ratio_vs_reference": 1.3333,
         "reference_lang": "cpp",
-        "li_value": 0.0019,
+        "li_value": 0.0036,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -381,10 +375,10 @@
         "repo": "li-math",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "red",
+        "ratio_vs_reference": 1.3333,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0036,
         "ph_ids": [
           "PH-5b"
         ],
@@ -398,10 +392,10 @@
         "repo": "li-math",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "red",
+        "ratio_vs_reference": 1.3333,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0036,
         "ph_ids": [
           "PH-5b"
         ],
@@ -415,10 +409,10 @@
         "repo": "li-math",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "red",
+        "ratio_vs_reference": 1.3333,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0036,
         "ph_ids": [
           "PH-5b"
         ],
@@ -432,10 +426,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9805,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6037,
         "ph_ids": [
           "PH-5b"
         ],
@@ -449,10 +443,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -466,10 +460,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1667,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0007,
         "ph_ids": [
           "PH-5b"
         ],
@@ -483,10 +477,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.8,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -500,10 +494,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0098,
         "ph_ids": [
           "PH-5b"
         ],
@@ -517,10 +511,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "red",
+        "ratio_vs_reference": 1.4,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0007,
         "ph_ids": [
           "PH-5b"
         ],
@@ -534,10 +528,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0018,
         "ph_ids": [
           "PH-5b"
         ],
@@ -551,10 +545,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9091,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.002,
         "ph_ids": [
           "PH-5b"
         ],
@@ -568,10 +562,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0018,
         "ph_ids": [
           "PH-5b"
         ],
@@ -585,10 +579,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0018,
         "ph_ids": [
           "PH-5b"
         ],
@@ -602,10 +596,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.963,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0026,
         "ph_ids": [
           "PH-5b"
         ],
@@ -619,10 +613,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -636,10 +630,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0263,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0039,
         "ph_ids": [
           "PH-5b"
         ],
@@ -653,10 +647,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -670,10 +664,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0114,
         "ph_ids": [
           "PH-5b"
         ],
@@ -687,10 +681,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -704,10 +698,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9855,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0068,
         "ph_ids": [
           "PH-5b"
         ],
@@ -721,10 +715,10 @@
         "repo": "lic",
         "category": "micro",
         "metric": "wall_time",
-        "status": "red",
-        "ratio_vs_reference": 0.9258,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": 0.0686,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -739,9 +733,9 @@
         "category": "micro",
         "metric": "wall_time",
         "status": "green",
-        "ratio_vs_reference": 1.0769,
+        "ratio_vs_reference": 0.8807,
         "reference_lang": "cpp",
-        "li_value": 0.0196,
+        "li_value": 0.0524,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
@@ -892,10 +886,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -909,10 +903,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -926,10 +920,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -943,10 +937,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -960,10 +954,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -977,10 +971,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -994,10 +988,10 @@
         "repo": "lig",
         "category": "micro",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0234,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2889,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1013,10 +1007,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1030,10 +1024,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1047,10 +1041,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1064,10 +1058,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1081,10 +1075,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1098,10 +1092,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1115,10 +1109,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1132,10 +1126,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1149,10 +1143,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1538,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0015,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1166,10 +1160,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1183,10 +1177,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0544,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.3257,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1200,10 +1194,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1217,10 +1211,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1234,10 +1228,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1251,10 +1245,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1268,10 +1262,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1285,10 +1279,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0005,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1302,10 +1296,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0005,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1319,10 +1313,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.8594,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1131,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1336,10 +1330,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1353,10 +1347,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9876,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6467,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1370,10 +1364,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0048,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6568,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1387,10 +1381,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.982,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6294,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1404,10 +1398,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0117,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.618,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1421,10 +1415,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0091,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6254,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1438,10 +1432,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0275,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.671,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1455,10 +1449,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9685,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6425,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1472,10 +1466,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9805,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6037,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1489,10 +1483,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9856,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6789,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1506,10 +1500,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0126,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6765,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1523,10 +1517,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0074,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.6854,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1540,10 +1534,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9943,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.5865,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1557,10 +1551,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9916,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 2.5885,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1574,10 +1568,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "yellow",
+        "ratio_vs_reference": 1.3032,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 3.4496,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1591,10 +1585,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "yellow",
+        "ratio_vs_reference": 1.2912,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 3.3603,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1608,10 +1602,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.9218,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 1.1731,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1625,10 +1619,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0013,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1642,10 +1636,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1659,10 +1653,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1676,10 +1670,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1693,10 +1687,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1710,10 +1704,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1727,10 +1721,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1744,10 +1738,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1761,10 +1755,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1778,10 +1772,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1795,10 +1789,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1812,10 +1806,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1829,10 +1823,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1846,10 +1840,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1863,10 +1857,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1880,10 +1874,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1897,10 +1891,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1914,10 +1908,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1931,10 +1925,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1948,10 +1942,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1965,10 +1959,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1982,10 +1976,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -1999,10 +1993,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2016,10 +2010,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2033,10 +2027,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2050,10 +2044,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2067,10 +2061,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2084,10 +2078,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2101,10 +2095,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2118,10 +2112,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2135,10 +2129,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2152,10 +2146,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2169,10 +2163,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2186,10 +2180,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2203,10 +2197,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2220,10 +2214,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0006,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2237,10 +2231,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0004,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2254,10 +2248,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2271,10 +2265,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2288,10 +2282,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2305,10 +2299,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2322,10 +2316,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0247,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.1326,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2339,10 +2333,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1053,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.42,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2356,10 +2350,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1053,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.42,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2373,10 +2367,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1053,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.42,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2390,10 +2384,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1053,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.42,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2407,10 +2401,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1053,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.42,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2424,10 +2418,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0008,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2441,10 +2435,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0714,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 1.5,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2458,10 +2452,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.1053,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.42,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2475,10 +2469,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0144,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.2321,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2492,10 +2486,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0879,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 1.8107,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2509,10 +2503,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0588,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.9,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2526,10 +2520,10 @@
         "repo": "lic",
         "category": "physics",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.0005,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2556,7 +2550,8 @@
         "size_label": "TLS static M15",
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 582.8
+          "apache": 808.7,
+          "lighttpd": 912.2
         }
       },
       {
@@ -2576,8 +2571,10 @@
         "size_label": "16-pipeline keepalive",
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 22604.11,
-          "node": 15816.79
+          "nginx": 78445.36,
+          "apache": 53785.44,
+          "lighttpd": 213372.51,
+          "node": 25332.39
         }
       },
       {
@@ -2597,7 +2594,9 @@
         "size_label": null,
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 24309.0
+          "nginx": 66914.71,
+          "apache": 51482.89,
+          "lighttpd": 32256.73
         }
       },
       {
@@ -2617,7 +2616,9 @@
         "size_label": null,
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 25179.37
+          "nginx": 68638.87,
+          "apache": 49754.66,
+          "lighttpd": 29894.9
         }
       },
       {
@@ -2637,7 +2638,9 @@
         "size_label": null,
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 24166.96
+          "nginx": 68216.58,
+          "apache": 51807.88,
+          "lighttpd": 32447.51
         }
       },
       {
@@ -2657,7 +2660,9 @@
         "size_label": "loopback wrk",
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 21414.67
+          "nginx": 75111.76,
+          "apache": 45640.25,
+          "lighttpd": 17811.48
         }
       },
       {
@@ -2694,8 +2699,10 @@
         "size_label": "1 MiB file.bin",
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 4148.74,
-          "node": 1805.31
+          "nginx": 8847.81,
+          "apache": 7377.63,
+          "lighttpd": 4858.69,
+          "node": 2872.13
         }
       },
       {
@@ -2715,8 +2722,10 @@
         "size_label": "1 KiB static /",
         "base_id": null,
         "rps_by_lang": {
-          "nginx": 12086.7,
-          "node": 4625.98
+          "nginx": 72590.02,
+          "apache": 26438.74,
+          "lighttpd": 165642.94,
+          "node": 25771.92
         }
       }
     ],
@@ -2782,10 +2791,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2799,10 +2808,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2816,10 +2825,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2833,10 +2842,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2850,10 +2859,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2867,10 +2876,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2884,10 +2893,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2901,10 +2910,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2918,10 +2927,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2935,10 +2944,10 @@
         "repo": "lic",
         "category": "tooling",
         "metric": "wall_time",
-        "status": "unknown",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0833,
         "reference_lang": "cpp",
-        "li_value": null,
+        "li_value": 0.65,
         "ph_ids": [
           "PH-5b"
         ],
@@ -2984,31 +2993,46 @@
   },
   "http_performance": {
     "static_small": {
-      "nginx": 12086.7,
-      "node": 4625.98
+      "nginx": 72590.02,
+      "apache": 26438.74,
+      "lighttpd": 165642.94,
+      "node": 25771.92
     },
     "keepalive_pipelining": {
-      "nginx": 22604.11,
-      "node": 15816.79
+      "nginx": 78445.36,
+      "apache": 53785.44,
+      "lighttpd": 213372.51,
+      "node": 25332.39
     },
     "static_large": {
-      "nginx": 4148.74,
-      "node": 1805.31
+      "nginx": 8847.81,
+      "apache": 7377.63,
+      "lighttpd": 4858.69,
+      "node": 2872.13
     },
     "proxy_loopback": {
-      "nginx": 21414.67
+      "nginx": 75111.76,
+      "apache": 45640.25,
+      "lighttpd": 17811.48
     },
     "lb_round_robin": {
-      "nginx": 24166.96
+      "nginx": 68216.58,
+      "apache": 51807.88,
+      "lighttpd": 32447.51
     },
     "lb_least_conn": {
-      "nginx": 24309.0
+      "nginx": 66914.71,
+      "apache": 51482.89,
+      "lighttpd": 32256.73
     },
     "lb_peer_down": {
-      "nginx": 25179.37
+      "nginx": 68638.87,
+      "apache": 49754.66,
+      "lighttpd": 29894.9
     },
     "https_static": {
-      "nginx": 582.8
+      "apache": 808.7,
+      "lighttpd": 912.2
     }
   },
   "http_performance_order": [
@@ -3030,11 +3054,6 @@
     "https_static"
   ],
   "http_li_status": {
-    "proxy_loopback": "no_li_httpd_bin",
-    "lb_round_robin": "no_li_httpd_bin",
-    "lb_least_conn": "no_li_httpd_bin",
-    "lb_peer_down": "no_li_httpd_bin",
-    "rate_limit_429": "no_li_httpd_bin",
     "https_static": "verify_skip"
   },
   "http_bench_langs": [
@@ -3051,66 +3070,66 @@
       "slowloris": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "oversized_request_line": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "path_traversal": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "duplicate_content_length": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "connection_flood": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "bad_method": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "sensitive_file_read": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "reverse_shell_canary": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "shellshock_user_agent": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "privilege_path_escalation": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "command_injection_path": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       },
       "host_header_ssrf": {
         "nginx": "pass",
         "apache": "pass",
-        "li": "pass"
+        "li": "FAIL(no_li)"
       }
     },
-    "failures": 0,
+    "failures": 12,
     "cells": 36,
-    "status": "green"
+    "status": "red"
   }
 }

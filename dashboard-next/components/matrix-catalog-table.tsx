@@ -43,6 +43,7 @@ function matrixHref(params: Record<string, string | undefined>): string {
 export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTableProps) {
   const searchParams = useSearchParams();
   const tierFilter = searchParams.get("tier");
+  const osFilter = searchParams.get("os");
   const sizeFilter = searchParams.get("size");
   const validityFilter = searchParams.get("validity");
   const oracleFilter = searchParams.get("oracle");
@@ -59,6 +60,7 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
 
   const baseParams = {
     tier: tierFilter ?? undefined,
+    os: osFilter ?? undefined,
     size: sizeFilter ?? undefined,
     validity: validityFilter ?? undefined,
     oracle: oracleFilter ?? undefined,
@@ -72,7 +74,10 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
         const label = row.size_label ?? row.problem_size ?? "";
         if (label !== sizeFilter) return false;
       }
-      const summaryRow = summaryById[row.id];
+      const summaryRow =
+        (osFilter ? summaryById[`${row.id}@${osFilter}`] : undefined) ??
+        summaryById[row.id];
+      if (osFilter && summaryRow?.os && summaryRow.os !== osFilter) return false;
       if (!rowMatchesValidityFilter(summaryRow, validityFilter)) return false;
       if (!rowMatchesOracleFilter(summaryRow, oracleFilter)) return false;
       if (!rowMatchesWithin1UlpFilter(summaryRow, withinFilter)) return false;
@@ -81,6 +86,7 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
   }, [
     rows,
     tierFilter,
+    osFilter,
     sizeFilter,
     validityFilter,
     oracleFilter,
@@ -90,6 +96,7 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
 
   const activeFilters = [
     tierFilter ? `tier ${tierFilter}` : null,
+    osFilter ? `os ${osFilter}` : null,
     sizeFilter ? `size ${sizeFilter}` : null,
     validityFilter ? `validity ${validityFilter}` : null,
     oracleFilter ? `oracle ${oracleFilter}` : null,
@@ -149,6 +156,7 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
                   "Benchmark",
                   "Size",
                   "Tier",
+                  "OS",
                   "Category",
                   "Metric",
                   "Ratio",
@@ -166,7 +174,9 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
           </thead>
           <tbody>
             {filtered.map((row) => {
-              const summaryRow = summaryById[row.id];
+              const summaryRow =
+                (osFilter ? summaryById[`${row.id}@${osFilter}`] : undefined) ??
+                summaryById[row.id];
               const oracleKind = summaryRow ? rowOracleKind(summaryRow) : "pending";
               const ulp = summaryRow?.numeric_validity?.ulps;
               const within = summaryRow ? rowWithin1Ulp(summaryRow) : null;
@@ -182,6 +192,7 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
                   </td>
                   <td className="mono">{rowSizeLabel(row)}</td>
                   <td>{row.tier}</td>
+                  <td className="mono">{summaryRow?.os ?? "—"}</td>
                   <td>{row.category}</td>
                   <td>{row.metric}</td>
                   <td className="mono">

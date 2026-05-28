@@ -243,17 +243,56 @@ def bench_os(
     variant: str | None = None,
 ) -> str:
     """Primary OS tag for a benchmark row (Li row preferred)."""
-    bench_rows = (
-        rows_for_bench(rows, bench_id, cfg)
-        if cfg is not None
-        else [r for r in rows if r.get("benchmark") == bench_id]
-    )
-    li_rows = li_rows_for_validity(bench_rows, variant)
-    for r in li_rows + bench_rows:
-        os = normalize_os(r.get("os") or r.get("OS"))
-        if os != "unknown":
-            return os
-    return "unknown"
+    tags = os_tags_for_bench(rows, bench_id, cfg, variant=variant)
+    if tags == ["unknown"]:
+        return "unknown"
+    for preferred in ("linux", "darwin", "windows"):
+        if preferred in tags:
+            return preferred
+    return tags[0]
+
+
+def os_tags_for_bench(
+    rows: list[dict],
+    bench_id: str,
+    cfg: dict,
+    *,
+    variant: str | None = None,
+) -> list[str]:
+    """Distinct normalized OS tags present in CSV for this catalog benchmark."""
+    bench_rows = rows_for_bench(rows, bench_id, cfg)
+    tags: set[str] = set()
+    for r in bench_rows:
+        tags.add(normalize_os(r.get("os") or r.get("OS")))
+    if variant:
+        li_rows = [r for r in bench_rows if r.get("lang") == "li"]
+        li_tags = {normalize_os(r.get("os") or r.get("OS")) for r in li_rows}
+        if li_tags:
+            tags &= li_tags or tags
+    ordered = [t for t in ("linux", "darwin", "windows") if t in tags]
+    rest = sorted(t for t in tags if t not in ordered and t != "unknown")
+    if ordered or rest:
+        return ordered + rest
+    return ["unknown"]
+
+
+def rows_for_bench_os(
+    rows: list[dict], bench_id: str, cfg: dict, os_tag: str
+) -> list[dict]:
+    bench_rows = rows_for_bench(rows, bench_id, cfg)
+    if os_tag == "unknown":
+        return [r for r in bench_rows if normalize_os(r.get("os") or r.get("OS")) == "unknown"]
+    return [
+        r
+        for r in bench_rows
+        if normalize_os(r.get("os") or r.get("OS")) == os_tag
+    ]
+
+
+def chart_id_for_os(bench_id: str, os_tag: str, *, multi: bool) -> str:
+    if not multi or os_tag == "unknown":
+        return bench_id
+    return f"{bench_id}@{os_tag}"
 
 
 def metric_lower_is_better(metric: str) -> bool:
@@ -521,8 +560,12 @@ def lang_series(
     cfg: dict | None = None,
     *,
     variant: str | None = None,
+    os_tag: str | None = None,
 ) -> list[dict]:
-    scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
+    if cfg and os_tag:
+        scoped = rows_for_bench_os(rows, bench_id, cfg, os_tag)
+    else:
+        scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
     out = []
     for lang in LANG_ORDER:
         matches = [
@@ -561,9 +604,13 @@ def http_lang_series(
     cfg: dict | None = None,
     *,
     variant: str | None = None,
+    os_tag: str | None = None,
 ) -> list[dict]:
     """All webserver oracles for tier-5 charts (multiple li variants when present)."""
-    scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
+    if cfg and os_tag:
+        scoped = rows_for_bench_os(rows, bench_id, cfg, os_tag)
+    else:
+        scoped = rows_for_bench(rows, bench_id, cfg) if cfg else rows
     bench_rows = [r for r in scoped if r.get("metric") == metric]
     out: list[dict] = []
     seen: set[tuple[str, str]] = set()
@@ -690,17 +737,23 @@ def build_perf_chart(
     *,
     validity_status: str,
     validity_source: str,
+    os_tag: str | None = None,
+    chart_id: str | None = None,
 ) -> dict:
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
     is_http = cfg.get("category") == "http"
     series_fn = http_lang_series if is_http else lang_series
-    series = series_fn(rows, bench_id, metric, cfg, variant=variant)
+    series = series_fn(rows, bench_id, metric, cfg, variant=variant, os_tag=os_tag)
     if not series:
-        bench_rows = rows_for_bench(rows, bench_id, cfg)
+        bench_rows = (
+            rows_for_bench_os(rows, bench_id, cfg, os_tag)
+            if os_tag
+            else rows_for_bench(rows, bench_id, cfg)
+        )
         metrics = {r.get("metric") for r in bench_rows if r.get("metric")}
         for alt in sorted(metrics):
-            series = series_fn(rows, bench_id, alt, cfg, variant=variant)
+            series = series_fn(rows, bench_id, alt, cfg, variant=variant, os_tag=os_tag)
             if series:
                 metric = alt
                 break
@@ -728,9 +781,14 @@ def build_perf_chart(
     st = apply_validity_gate(perf_st, validity_status)
     meta = row_meta(cfg)
     sizes = size_meta(cfg)
+    os_name = os_tag or bench_os(rows, bench_id, cfg, variant=variant)
+    cid = chart_id or bench_id
+    title = chart_title(bench_id, cfg)
+    if os_tag and os_tag != "unknown":
+        title = f"{title} ({os_tag})"
     return {
-        "id": bench_id,
-        "title": chart_title(bench_id, cfg),
+        "id": cid,
+        "title": title,
         "metric": metric,
         "unit": series[0]["unit"] if series else "",
         "lower_is_better": lower,
@@ -746,7 +804,7 @@ def build_perf_chart(
         "ratio_vs_sota": round(ratio_sota, 4) if ratio_sota is not None else None,
         "validity_status": validity_status,
         "validity_source": validity_source,
-        "os": bench_os(rows, bench_id, cfg, variant=variant),
+        "os": os_name,
         "pillar": meta["pillar"],
         "package": meta["package"],
         **sizes,
@@ -940,34 +998,44 @@ def main() -> int:
         validity_status, validity_source = validity_for_benchmark(
             bench_id, cfg, raw, stability_index, required=required
         )
-        chart = build_perf_chart(
-            bench_id,
-            cfg,
-            raw,
-            validity_status=validity_status,
-            validity_source=validity_source,
-        )
-        charts_by_cat[category].append(chart)
-        charts_by_pillar[meta["pillar"]].append(chart)
-
-        st = chart["status"]
-        tier = str(cfg.get("tier", 0))
-        tier_counts[tier][st] += 1
-
-        results.append(
-            make_summary_row(
-                bench_id=bench_id,
-                cfg=cfg,
-                chart=chart,
+        os_tags = os_tags_for_bench(raw, bench_id, cfg, variant=cfg.get("variant"))
+        multi_os = len([t for t in os_tags if t != "unknown"]) > 1
+        for os_tag in os_tags:
+            scoped = rows_for_bench_os(raw, bench_id, cfg, os_tag)
+            if not scoped and os_tag != "unknown":
+                continue
+            chart = build_perf_chart(
+                bench_id,
+                cfg,
+                raw,
                 validity_status=validity_status,
                 validity_source=validity_source,
-                os_name=chart.get("os", "unknown"),
-                category=category,
-                metric=chart.get("metric", metric),
-                status=st,
-                raw_rows=raw,
+                os_tag=os_tag,
+                chart_id=chart_id_for_os(bench_id, os_tag, multi=multi_os),
             )
-        )
+            if not chart.get("series") and os_tag == "unknown":
+                continue
+            charts_by_cat[category].append(chart)
+            charts_by_pillar[meta["pillar"]].append(chart)
+
+            st = chart["status"]
+            tier = str(cfg.get("tier", 0))
+            tier_counts[tier][st] += 1
+
+            results.append(
+                make_summary_row(
+                    bench_id=bench_id,
+                    cfg=cfg,
+                    chart=chart,
+                    validity_status=validity_status,
+                    validity_source=validity_source,
+                    os_name=chart.get("os", "unknown"),
+                    category=category,
+                    metric=chart.get("metric", metric),
+                    status=st,
+                    raw_rows=scoped or raw,
+                )
+            )
 
     categories = {}
     for cat in CATEGORY_ORDER:
