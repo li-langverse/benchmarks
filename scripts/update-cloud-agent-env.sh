@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Cloud Agent VM: fetch/pull all li-langverse org repos, build lic (LLVM 22), dashboard-next.
 # Use as the Cursor Cloud "install / update" script:
-#   bash /agent/repos/benchmarks/scripts/update-cloud-agent-env.sh
+#   bash /agent/repos/benchmarks/scripts/cloud-agent-install.sh
 set -euo pipefail
 
 AGENT_ROOT="${AGENT_ROOT:-/agent}"
@@ -45,6 +45,11 @@ if proc.returncode == 0 and proc.stdout.strip():
     for row in json.loads(proc.stdout):
         if not row.get("isArchived"):
             names.add(row["name"])
+elif proc.returncode != 0:
+    print(
+        f"WARN: gh repo list failed ({proc.returncode}) — using {len(names)} local checkouts only",
+        file=sys.stderr,
+    )
 
 for name in sorted(names):
     print(name)
@@ -122,28 +127,17 @@ pull_repos() {
   done
 }
 
-build_lic() {
+bootstrap_lic() {
   local lic="$REPOS_ROOT/lic"
-  [[ -f "$lic/scripts/llvm-env.sh" ]] || {
-    echo "missing $lic/scripts/llvm-env.sh" >&2
+  local bootstrap="$lic/scripts/cloud-vm-bootstrap.sh"
+  [[ -f "$bootstrap" ]] || {
+    echo "missing $bootstrap — run from a synced lic checkout" >&2
     return 1
   }
-  # shellcheck source=/dev/null
-  source "$lic/scripts/llvm-env.sh"
-  if ! li_detect_llvm_dir; then
-    log "LLVM ${LI_LLVM_MAJOR} not found — installing (sudo)"
-    if [[ -f "$lic/scripts/ci-install-llvm.sh" ]] && command -v sudo >/dev/null 2>&1; then
-      sudo LI_LLVM_MAJOR="$LI_LLVM_MAJOR" bash "$lic/scripts/ci-install-llvm.sh"
-    fi
-    li_detect_llvm_dir || {
-      li_llvm_install_hint
-      return 1
-    }
-  fi
-  li_detect_compilers
-  export CC CXX LLVM_DIR LI_LLVM_MAJOR
-  log "build lic (LLVM ${LI_LLVM_MAJOR} LLVM_DIR=$LLVM_DIR CC=$CC)"
-  (cd "$lic" && ./scripts/build.sh)
+  export LIC_ROOT="$lic" BENCHMARKS_ROOT="$REPOS_ROOT/benchmarks"
+  LI_CLOUD_SKIP_BENCHMARKS=1 LI_CLOUD_SKIP_PYTEST=1 \
+    LI_CLOUD_SKIP_BUILD="$([[ "$SKIP_LIC_BUILD" == "1" ]] && echo 1 || echo 0)" \
+    bash "$bootstrap"
 }
 
 build_li_language_optional() {
@@ -155,15 +149,16 @@ build_li_language_optional() {
       return 0
     fi
   fi
+  local lic="$REPOS_ROOT/lic"
   # shellcheck source=/dev/null
-  source "$REPOS_ROOT/lic/scripts/llvm-env.sh"
+  source "$lic/scripts/llvm-env.sh"
   li_detect_llvm_dir || return 0
   li_detect_compilers
   export CC CXX LLVM_DIR
   log "build li-language (optional mirror)"
   (
     cd "$ll"
-    cmake -B build -G Ninja -DLLVM_DIR="$LLVM_DIR"
+    cmake -B build -G Ninja "-DLLVM_DIR=${LLVM_DIR}"
     cmake --build build -j "$(nproc)"
   ) || echo "WARN: li-language build failed (non-fatal)" >&2
 }
@@ -178,6 +173,10 @@ dashboard_deps() {
     echo "no dashboard-next or dashboard package.json under $bench" >&2
     return 1
   }
+  if ! command -v npm >/dev/null 2>&1; then
+    echo "WARN: npm not found — skip dashboard" >&2
+    return 0
+  fi
   log "npm ci ($dash)"
   (cd "$dash" && npm ci)
 }
@@ -194,13 +193,12 @@ install_python_tools() {
 
 main() {
   [[ "$SKIP_PULL" == "1" ]] || pull_repos
-  if [[ "$SKIP_LIC_BUILD" != "1" ]]; then
-    build_lic
-    build_li_language_optional
-  fi
+  bootstrap_lic
+  build_li_language_optional
   [[ "$SKIP_DASHBOARD" == "1" ]] || dashboard_deps
   install_python_tools
   log "update-cloud-agent-env complete (LLVM ${LI_LLVM_MAJOR}, org=${ORG})"
+  log "Cloud install script: bash $REPOS_ROOT/benchmarks/scripts/cloud-agent-install.sh"
 }
 
 main "$@"

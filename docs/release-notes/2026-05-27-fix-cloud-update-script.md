@@ -8,21 +8,23 @@
 
 ## Summary
 
-Adds `scripts/update-cloud-agent-env.sh` to replace the broken Cloud VM install snippet (`LLVM_DIR` unbound under `set -u`, wrong dashboard path, cmake cwd). Discovers all ~30+ org repos via `gh repo list` plus local checkouts; pins **LLVM 22** for `lic` build.
+Hardens Cloud VM setup: `cloud-agent-install.sh` entrypoint delegates to `update-cloud-agent-env.sh`, which calls `lic/scripts/cloud-vm-bootstrap.sh` (LLVM **22**, `~/.config/environment.d/99-li-cloud.conf`, `dashboard-next`) instead of the broken inline `LLVM_DIR="$LLVM_DIR"` snippet.
 
 ## Agent continuation
 
-1. Read: `AGENTS.md` § Cloud Agent VM setup.
-2. Run: `bash scripts/update-cloud-agent-env.sh` (or `SKIP_PULL=1` after first success).
-3. Then: Point Cursor Cloud environment install script at this path.
+1. Read: `AGENTS.md` § Cloud Agent VM setup; `lic/docs/ecosystem/cloud-agent-vm.md`.
+2. Run: `bash scripts/cloud-agent-install.sh` (or `SKIP_PULL=1` after first success).
+3. Then: Set Cursor Cloud **install script** to `bash /agent/repos/benchmarks/scripts/cloud-agent-install.sh`.
 4. Blocked on: none.
 
 ## Changed
 
 | Area | What | Evidence |
 |------|------|----------|
-| Script | `update-cloud-agent-env.sh` | `scripts/update-cloud-agent-env.sh` |
-| Docs | AGENTS install pointer | `AGENTS.md` |
+| Entry | `scripts/cloud-agent-install.sh` | exec-safe under `set -u` |
+| Update | `update-cloud-agent-env.sh` → `cloud-vm-bootstrap.sh` | no duplicate cmake/llvm logic |
+| lic | `cloud-vm-bootstrap.sh` sudo LLVM install, `dashboard-next`, `LI_CLOUD_SKIP_PYTEST` | `lic` PR companion |
+| Docs | AGENTS + `cloud-agent-vm.md` | install path + anti-pattern note |
 
 ## Not changed
 
