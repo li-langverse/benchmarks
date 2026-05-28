@@ -16,12 +16,10 @@ import {
   loadReleaseIndex,
 } from "@/lib/release-index";
 import { releaseFreshnessBanner } from "@/lib/release-freshness";
-import { COVERAGE_GAP_DOC, coverageHonesty, splitTierCounts } from "@/lib/coverage";
+import { COVERAGE_GAP_DOC, coverageHonesty } from "@/lib/coverage";
 import { loadSummary } from "@/lib/summary";
 import { tier1VerifyStats } from "@/lib/tier1-verify";
 import { pillarPerfCounts } from "@/lib/validity";
-
-const TIER_ORDER = ["0", "1", "2", "3", "5", "6"];
 
 const HONESTY_DOC_URL =
   "https://github.com/li-langverse/benchmarks/blob/main/docs/honesty/benchmark-dashboard.md";
@@ -35,7 +33,6 @@ const VARIANT_LEGEND: { variant: string; label: string }[] = [
 
 export default function HomePage() {
   const summary = loadSummary();
-  const tierSplit = splitTierCounts(summary.rows);
   const honesty = coverageHonesty(summary.rows);
   const releaseIndex = loadReleaseIndex();
   const pillarCounts = countStatusesByPillar(summary.rows);
@@ -130,42 +127,6 @@ export default function HomePage() {
       <Tier1VerifyStrip stats={tier1Stats} />
       <IngestSourcesStrip summary={summary} />
 
-      <section className="tier-strip bento-full" aria-label="Tier status counts">
-        {TIER_ORDER.map((tier) => {
-          const split = tierSplit[tier] ?? {
-            measured: { green: 0, yellow: 0, red: 0, unknown: 0 },
-            pending: 0,
-          };
-          const m = split.measured;
-          const measuredTotal = m.green + m.yellow + m.red + m.unknown;
-          return (
-            <Link
-              key={tier}
-              href={`/matrix/?tier=${tier}`}
-              className="tier-card"
-              aria-label={`Tier ${tier}: ${measuredTotal} measured (${m.green} ok, ${m.yellow} warn, ${m.red} fail), ${split.pending} catalog pending`}
-            >
-              <h3>Tier {tier}</h3>
-              <p className="tier-card-section-label">Measured</p>
-              <div className="counts">
-                <span className="g">{m.green} ok</span>
-                <span className="y">{m.yellow} warn</span>
-                <span className="r">{m.red} fail</span>
-                {m.unknown > 0 ? <span className="u">{m.unknown} ?</span> : null}
-              </div>
-              {split.pending > 0 ? (
-                <>
-                  <p className="tier-card-section-label">Catalog pending</p>
-                  <div className="counts">
-                    <span className="p">{split.pending} pending</span>
-                  </div>
-                </>
-              ) : null}
-            </Link>
-          );
-        })}
-      </section>
-
       <section
         className={`regression-banner bento-regression ${reds.length === 0 ? "regression-empty" : ""}`}
         role="alert"
@@ -228,8 +189,8 @@ export default function HomePage() {
         )}
       </section>
 
-      <section className="pillar-bento bento-full" aria-label="Pillar summaries">
-        <h2 className="bento-section-title">Pillars</h2>
+      <section className="pillar-bento bento-full" aria-label="Benchmark categories">
+        <h2 className="bento-section-title">Benchmarks</h2>
         <div className="pillar-grid">
           {PILLAR_IDS.map((pillarId) => {
             const block = summary.pillars?.[pillarId];
