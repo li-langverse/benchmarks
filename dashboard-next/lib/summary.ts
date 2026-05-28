@@ -144,7 +144,40 @@ export function loadSummary(): Summary {
   return JSON.parse(raw) as Summary;
 }
 
-export function findRow(summary: Summary, benchmarkId: string): SummaryRow | undefined {
+export function findRow(
+  summary: Summary,
+  benchmarkId: string,
+  os?: string | null,
+): SummaryRow | undefined {
+  if (os) {
+    const exact = summary.rows.find(
+      (r) => r.benchmark === benchmarkId && r.os === os,
+    );
+    if (exact) return exact;
+  }
   return summary.rows.find((r) => r.benchmark === benchmarkId);
+}
+
+/** All ingest rows for a catalog benchmark (one per measured OS). */
+export function rowsForBenchmark(summary: Summary, benchmarkId: string): SummaryRow[] {
+  return summary.rows.filter((r) => r.benchmark === benchmarkId);
+}
+
+export function summaryLookupKey(row: SummaryRow): string {
+  if (row.os && row.os !== "unknown") {
+    return `${row.benchmark}@${row.os}`;
+  }
+  return row.benchmark;
+}
+
+export function buildSummaryById(rows: SummaryRow[]): Record<string, SummaryRow> {
+  const out: Record<string, SummaryRow> = {};
+  for (const row of rows) {
+    out[summaryLookupKey(row)] = row;
+    if (!out[row.benchmark]) {
+      out[row.benchmark] = row;
+    }
+  }
+  return out;
 }
 

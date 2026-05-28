@@ -14,18 +14,26 @@ import { deltasForBenchmark, loadHistoryIndex } from "@/lib/history";
 import { githubTreeUrl } from "@/lib/github";
 import { isPerfClaimable } from "@/lib/validity";
 import { formatMeanStd } from "@/lib/format-measurement";
-import { findRow, loadSummary } from "@/lib/summary";
+import { findRow, loadSummary, rowsForBenchmark } from "@/lib/summary";
 
 type PageProps = { params: Promise<{ id: string }> };
 
 export function generateStaticParams() {
-  return loadSummary().rows.map((row) => ({ id: row.benchmark }));
+  const seen = new Set<string>();
+  const params: { id: string }[] = [];
+  for (const row of loadSummary().rows) {
+    if (seen.has(row.benchmark)) continue;
+    seen.add(row.benchmark);
+    params.push({ id: row.benchmark });
+  }
+  return params;
 }
 
 export default async function BenchPage({ params }: PageProps) {
   const { id } = await params;
   const summary = loadSummary();
-  const row = findRow(summary, id);
+  const variants = rowsForBenchmark(summary, id);
+  const row = findRow(summary, id) ?? variants[0];
   if (!row) notFound();
   const series = getLangSeries(summary, row);
   const sourceUrl = githubTreeUrl(row.repo, row.path);
@@ -56,6 +64,21 @@ export default async function BenchPage({ params }: PageProps) {
           {row.variant ? ` · variant ${row.variant}` : ""}
           {row.os ? ` · OS ${row.os}` : ""}
         </p>
+
+        {variants.length > 1 ? (
+          <p className="mono" style={{ marginTop: "0.75rem" }}>
+            Measured on:{" "}
+            {variants.map((v, i) => (
+              <span key={v.os ?? i}>
+                {i > 0 ? ", " : ""}
+                <Link href={`/matrix/?tier=${v.tier}&os=${v.os ?? "unknown"}`}>
+                  {v.os ?? "unknown"}
+                </Link>
+                {v.li_value != null ? ` (${formatMeanStd(v.li_value, v.li_stddev)} ${v.unit ?? ""})` : ""}
+              </span>
+            ))}
+          </p>
+        ) : null}
 
         <HonestyCallout variant={row.variant} />
         <PerfNotClaimable row={row} />

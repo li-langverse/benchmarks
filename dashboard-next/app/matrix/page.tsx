@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { MatrixCatalogTable } from "@/components/matrix-catalog-table";
 import { COVERAGE_GAP_DOC, coverageHonesty } from "@/lib/coverage";
 import { flattenMatrixSections, loadBenchmarkMatrix } from "@/lib/matrix";
-import { loadSummary } from "@/lib/summary";
+import { buildSummaryById, loadSummary } from "@/lib/summary";
 
 export default function MatrixPage() {
   const matrix = loadBenchmarkMatrix();
@@ -26,7 +26,9 @@ export default function MatrixPage() {
   const rows = flattenMatrixSections(matrix);
   const summary = loadSummary();
   const honesty = coverageHonesty(summary.rows);
-  const summaryById = Object.fromEntries(summary.rows.map((r) => [r.benchmark, r]));
+  const summaryById = buildSummaryById(summary.rows);
+  const osValues =
+    summary.reporting?.os_values?.filter((o) => o && o !== "unknown") ?? [];
   const exploitMatrix = matrix.http_exploits?.matrix;
   const exploitLangs = exploitMatrix
     ? [...new Set(Object.values(exploitMatrix).flatMap((r) => Object.keys(r)))].sort()
@@ -48,6 +50,12 @@ export default function MatrixPage() {
             Coverage gaps
           </a>
         </p>
+        {osValues.length > 0 ? (
+          <p className="mono" style={{ marginTop: "0.75rem" }}>
+            OS in ingest: {osValues.join(", ")} — filter below or use{" "}
+            <code>?os=linux</code> on this page.
+          </p>
+        ) : null}
       </section>
       <Suspense fallback={<p className="mono">Loading matrix…</p>}>
         <MatrixCatalogTable rows={rows} summaryById={summaryById} />

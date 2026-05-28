@@ -101,7 +101,13 @@ export default function HomePage() {
         </p>
         {osFilterValues.length > 0 ? (
           <p className="mono">
-            OS in this ingest: {osFilterValues.join(", ")}
+            OS in this ingest:{" "}
+            {osFilterValues.map((os, i) => (
+              <span key={os}>
+                {i > 0 ? ", " : ""}
+                <Link href={`/matrix/?os=${os}`}>{os}</Link>
+              </span>
+            ))}
           </p>
         ) : null}
         <p className="honesty-variants">
