@@ -8,6 +8,25 @@ if [[ ! -d "$LIC_ROOT" ]]; then
   exit 1
 fi
 
+case "$(uname -s)" in
+  Darwin*)
+    export LI_REPO_ROOT="$LIC_ROOT"
+    export CC="${CC:-clang}"
+    export CXX="${CXX:-clang++}"
+    echo "==> lic compiler (macOS — skip apt)"
+    (cd "$LIC_ROOT" && ./scripts/build.sh)
+    echo "OK LIC_ROOT=$LIC_ROOT"
+    exit 0
+    ;;
+  MINGW*|MSYS*|CYGWIN*|Windows*)
+    export LI_REPO_ROOT="$LIC_ROOT"
+    echo "==> lic compiler (Windows — skip apt)"
+    (cd "$LIC_ROOT" && ./scripts/build.sh)
+    echo "OK LIC_ROOT=$LIC_ROOT"
+    exit 0
+    ;;
+esac
+
 export DEBIAN_FRONTEND=noninteractive
 if [[ -x "$LIC_ROOT/scripts/ci-install-llvm.sh" ]]; then
   sudo LI_LLVM_MAJOR=22 bash "$LIC_ROOT/scripts/ci-install-llvm.sh"
