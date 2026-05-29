@@ -1,16 +1,16 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · briefing `2026-05-29T12:56Z` (`5e33136ea5a928e8`) · discovery refreshed `2026-05-29T15:53Z`
+**Source:** proactive sweep · briefing `2026-05-29T12:56Z` · discovery `2026-05-29T15:53Z` · CI audit `2026-05-29T17:46Z` · agent-kit audit `2026-05-29T17:46Z`
 
 ## Executive summary
 
-- **Discovery:** `github=33` `known=33` **`new=0`** **`stale=0`** — GitHub org list matches briefing/catalog known set.
+- **Discovery:** `github=33` `known=33` **`new=0`** **`stale=0`** — GitHub org list matches briefing/catalog known set (`gh repo list` verified).
 - **No net-new onboarding handoffs** — do not add catalog rows without CI + agent-kit path.
 - **No unclassified *new* repos** — `package_architect` activates only when `new_repos` is non-empty.
 - **Highest platform risk (existing repos):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **28** repos missing/drifted agent-kit (canonical `1.3.5+6018e18bf2ed91f4`); **10** without live docs.
-- **CI posture (`org-repo-ci-audit.json` `15:42Z`):** **31** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`), **1** exempt (`research-findings`); `li-cursor-agents` excluded from org CI sweep per policy.
-- **Agent-kit (`org-agent-kit-audit.json` `15:51Z`):** **4** OK, **28** need sync (25 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`); `li-gui` = `missing_local_clone`.
-- **Control plane:** heap + `queued_agent_tasks` already fan out `agent_kit_maintainer`, `ci_maintainer`, `docs_maintainer` — no `org_repo_onboarding` rows (empty `new_repo_entries`).
+- **CI posture (`org-repo-ci-audit.json`):** **31** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`); `li-cursor-agents` excluded from org CI sweep per policy.
+- **Agent-kit (`org-agent-kit-audit.json`):** **4** OK, **28** need sync (25 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`); `li-gui` = `missing_local_clone`.
+- **Control plane:** heap recommends `agent_kit_maintainer`, `ci_maintainer`, `docs_maintainer` — no `org_repo_onboarding` rows (`new_repo_entries` empty).
 - **North star:** platform hygiene supports **provable** (`lic`/`lit`), **secure** (`li-httpd`/`li-net`), **easy** (docs/handbook) — defer perf work until proof gates pass.
 
 ## Deliverable / findings
@@ -40,7 +40,7 @@ Preflight artifacts: `data/latest/org-new-repos-discovery.json`, `org-repo-ci-au
 
 ### Catalog sync (all GitHub repos — reference classification)
 
-Per `classify_new_repo()` in `scripts/discover-new-org-repos.py` (applies when a repo appears in `new_repos`):
+Per `classify_new_repo()` in discovery policy (applies when a repo appears in `new_repos`):
 
 | Bucket | Repos |
 |--------|-------|
@@ -65,7 +65,7 @@ Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edi
 
 **New-repo onboarding (`org_repo_onboarding`):** *empty* — `new_repo_entries` is `[]`.
 
-**Explicit rows to enqueue (onboarder recommendation — briefing `5e33136ea5a928e8`):**
+**Explicit rows to enqueue (onboarder recommendation):**
 
 | agent_id | repo | action | north_star_fit |
 |----------|------|--------|----------------|
@@ -140,8 +140,8 @@ Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edi
 - **New repo catalog registration:** blocked until a repo appears in `new_repos` with CI + kit path complete.
 - **Explorer / plan_audit / ci_bug_triage:** skipped in preflight (`--skip-slow`).
 - **Merge program:** 95 open PRs / 35 failed CI — out of onboarder scope.
-- **`discover-new-org-repos.py`:** missing from this benchmarks checkout — restore script on `benchmarks` main (see Error).
+- **`discover-new-org-repos.py`:** missing from this benchmarks checkout — restore on `benchmarks` main if preflight should be self-contained (see Error).
 
 ## Error
 
-**Discovery script missing (non-blocking):** `python3 scripts/discover-new-org-repos.py` failed with `No such file or directory` in this workspace. Discovery JSON was regenerated manually via `gh repo list` vs briefing `known_repos` (same result: `new=0`, `stale=0`). Prior commit `c4f1e01` included the script output on branch history — restore on `benchmarks` if preflight should be self-contained.
+**Discovery script missing (non-blocking):** `python3 scripts/discover-new-org-repos.py` failed with `No such file or directory`. Preflight JSON `org-new-repos-discovery.json` (`2026-05-29T15:53Z`) and live `gh repo list li-langverse` both confirm **`new=0`**, **`stale=0`**. Restore `scripts/discover-new-org-repos.py` on `benchmarks` for automated refresh.
