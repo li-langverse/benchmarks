@@ -1,16 +1,16 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · discovery `2026-05-29T21:15Z` · CI audit `2026-05-29T21:02Z` · agent-kit audit `2026-05-29T21:15Z` · briefing `2026-05-29T19:05Z`
+**Source:** proactive sweep · discovery `2026-05-29T21:57Z` · CI audit `2026-05-29T21:54Z` · agent-kit audit `2026-05-29T21:57Z` · briefing `2026-05-29T19:05Z`
 
 ## Executive summary
 
 - **Discovery (refreshed):** `github=34` `known=34` **`new=0`** **`stale=0`** — GitHub org list matches catalog/briefing known set (`gh repo list` → `org-new-repos-discovery.json`).
 - **No net-new onboarding** — empty `new_repo_entries`; do not add catalog rows without CI + agent-kit path.
 - **No unclassified *new* repos** — `package_architect` activates only when `new_repos` is non-empty.
-- **Highest platform risk (existing):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **29** repos missing/drifted agent-kit (canonical `1.3.5+6018e18bf2ed91f4`); **`li-gui`** = `missing_local_clone`.
-- **CI posture:** **31** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`); `research-findings` CI-exempt; `li-cursor-agents` excluded from org CI sweep per policy.
-- **Agent-kit:** **4** OK (`benchmarks`, `li-cursor-agents`, `lip`, `lit`), **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`); control plane already enqueues `agent_kit_maintainer` + open PR alignment for several kit rollouts.
-- **Control plane:** heap routes `agent_kit_maintainer` (28-repo summary); **no** `org_repo_onboarding` rows — `new_repos` is empty.
+- **Highest platform risk (existing):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **29** repos missing/drifted agent-kit; **`li-gui`** = `missing_local_clone` (not in `repos_needing_sync` until workspace clone exists).
+- **CI posture:** **32** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`); `research-findings` CI-exempt; `li-cursor-agents` excluded from org CI sweep per policy.
+- **Agent-kit:** **4** OK (`benchmarks`, `li-cursor-agents`, `lip`, `lit`), **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`); canonical stamp `1.3.5+6018e18bf2ed91f4`.
+- **Control plane:** heap routes `agent_kit_maintainer`; **no** `org_repo_onboarding` rows — `new_repos` is empty; per-repo kit sync tasks already partially enqueued.
 - **North star:** platform hygiene supports **provable** (`lic`/`lit`/`proof-library`), **secure** (`li-httpd`/`li-net`), **easy** (docs) — defer perf until proof gates pass.
 
 ## Deliverable / findings
