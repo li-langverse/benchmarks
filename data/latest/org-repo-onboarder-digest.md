@@ -1,6 +1,6 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · briefing `2026-05-29T12:56Z` (`5e33136ea5a928e8`) · discovery refreshed `2026-05-29T14:07Z`
+**Source:** proactive sweep · briefing `2026-05-29T12:56Z` (`5e33136ea5a928e8`) · discovery refreshed `2026-05-29T15:14Z`
 
 ## Executive summary
 
@@ -9,9 +9,9 @@
 - **33 / 33** non-archived org repos aligned between `gh repo list` and audit-derived `known_repos`.
 - **No net-new onboarding handoffs** — do not add catalog rows without CI + agent-kit path.
 - **Highest platform risk (existing repos):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **28** repos missing/drifted agent-kit (canonical `1.3.5+6018e18bf2ed91f4`); **10** without live docs.
-- **CI audit degraded:** GitHub API rate limit at preflight (`12:48Z`) — **30** repos `audit_incomplete`, only `research-findings` confirmed OK; re-run `ensure-org-repo-ci.py` after limit reset before trusting missing-CI counts.
-- **No unclassified *new* repos** — highest-risk bucket activates only when `new_repos` is non-empty (enqueue `package_architect` for `unclassified` / `candidate_official`).
-- **Control plane:** no `queued_agent_tasks` rows for briefing `5e33136ea5a928e8`; heap still recommends `agent_kit_maintainer`, `ci_maintainer`, `docs_maintainer`.
+- **CI posture (refreshed audit `14:34Z`):** **31** repos OK on `main`, **1** gated (`lidb`), **1** exempt (`li-cursor-agents` per org policy); `research-findings` CI-exempt by design.
+- **No unclassified *new* repos** — `package_architect` activates only when `new_repos` is non-empty.
+- **Control plane:** no `queued_agent_tasks` for briefing `5e33136ea5a928e8`; heap recommends `agent_kit_maintainer`, `ci_maintainer`, `docs_maintainer`.
 
 ## Deliverable / findings
 
@@ -131,7 +131,6 @@ Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edi
 | `sim` | chore(agent-kit): install canonical cursor rules | `agent-kit`, `chore` |
 | `lic` | chore(agent-kit): align cursor stamp to canonical | `agent-kit`, `drift` |
 | `roadmap` | docs: enable GitHub Pages / live handbook smoke | `docs`, `platform` |
-| `benchmarks` | chore(ci): re-audit org workflows after gh rate-limit reset | `platform`, `ci` |
 
 *(Open agent-kit PRs with failing CI — route to `bug_fixer` / `ci_maintainer`, not onboarder self-merge.)*
 
@@ -139,10 +138,10 @@ Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edi
 
 - **Catalog pruning:** no stale entries; no archive/delete without human sign-off.
 - **New repo catalog registration:** blocked until a repo appears in `new_repos` with CI + kit path complete.
-- **Org CI audit refresh:** deferred until GitHub API rate limit clears (`org-repo-ci-audit.json` mostly `audit_incomplete`).
+- **Briefing preflight CI audit (`12:48Z`):** hit GitHub API rate limit; on-disk `org-repo-ci-audit.json` (`14:34Z`) is complete — re-run `ensure-org-repo-ci.py` on next briefing if stale.
 - **Explorer / plan_audit / ci_bug_triage:** skipped in preflight (`--skip-slow`).
 - **Merge program:** 95 open PRs / 35 failed CI — out of onboarder scope.
 
 ## Error
 
-**Partial preflight — CI audit unreliable this cycle.** `ensure-org-repo-ci.py` hit GitHub API rate limit (`HTTP 403`) for 30/33 repos; `repos_missing_ci` is empty because audits did not complete, not because CI is green org-wide. Discovery and agent-kit audit (local-only) succeeded.
+**None blocking this cycle.** Discovery and agent-kit audit succeeded. Briefing-time CI preflight (`12:48Z`) reported GitHub API rate limit; subsequent on-disk CI audit (`14:34Z`) shows 31 OK / 0 missing / 0 incomplete.
