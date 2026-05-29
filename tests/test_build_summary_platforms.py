@@ -16,6 +16,7 @@ from build_summary import (  # noqa: E402
     build_platform_skip_chart,
     catalog_platforms,
     effective_size_meta,
+    load_catalog_defaults,
     main,
     normalize_os,
 )
@@ -30,6 +31,11 @@ class BuildSummaryPlatformTests(unittest.TestCase):
     def test_catalog_platforms_defaults(self):
         defaults = {"platforms": ["linux", "macos", "windows"]}
         self.assertEqual(catalog_platforms({}, defaults), list(PLATFORM_ORDER))
+
+    def test_load_catalog_defaults_merges_reporting_section(self):
+        defaults = load_catalog_defaults()
+        self.assertEqual(defaults.get("platforms"), ["linux", "macos", "windows"])
+        self.assertEqual(defaults.get("sota_policy"), "best_competitor_lang_excludes_li")
 
     def test_effective_size_meta_algo_registry_stub(self):
         cfg = {"size_label": "harness pending", "variant": "algo_registry"}

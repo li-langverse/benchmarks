@@ -6,10 +6,6 @@
 # catalog_lifecycle — optional; "planned" skips plan-completion-audit path check.
 # path = "unknown" — algo_registry stub until lic harness exists (audit skip).
 
-[defaults]
-platforms = ["linux", "macos", "windows"]
-validity_required = true
-
 [[benchmark]]
 id = "tier0_stability"
 category = "correctness"

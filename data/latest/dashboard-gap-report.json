@@ -1,215 +1,771 @@
 {
-  "generated_at": "2026-05-29T16:22:25.882638+00:00",
+  "generated_at": "2026-05-29T18:06:48.665122+00:00",
   "summary_path": "data\\latest\\summary.json",
-  "benchmark_bases": 33,
-  "chart_rows": 33,
-  "table_rows": 33,
-  "p0_count": 132,
-  "p1_count": 35,
+  "benchmark_bases": 185,
+  "chart_rows": 187,
+  "table_rows": 187,
+  "p0_count": 422,
+  "p1_count": 194,
   "issue_counts": {
-    "missing_os": 33,
-    "bad_size_label": 33,
-    "problem_size_null": 33,
-    "validity_unknown": 33,
-    "sota_empty": 20,
-    "status_unknown": 13,
-    "chart_pending": 2
+    "missing_os": 185,
+    "bad_size_label": 153,
+    "problem_size_null": 153,
+    "validity_unknown": 42,
+    "status_unknown": 42,
+    "chart_pending": 41
   },
   "p0": [
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "advection_diffusion_2d",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "advection_diffusion_2d",
-      "detail": "size_label=None",
-      "chart_id": "advection_diffusion_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "advection_diffusion_2d",
-      "detail": "validity_status=None",
-      "chart_id": "advection_diffusion_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "advection_diffusion_2d",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "advection_diffusion_2d"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "cloth_swing",
+      "base_id": "am_export_gcode_3mf",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_export_gcode_3mf",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_export_gcode_3mf"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_infill_grid_lines",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_infill_grid_lines",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_infill_grid_lines"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_infill_gyroid",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_infill_gyroid",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_infill_gyroid"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_offset_perimeters",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_offset_perimeters",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_offset_perimeters"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_plane_mesh_intersect",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_plane_mesh_intersect",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_plane_mesh_intersect"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_polygon_clip",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_polygon_clip",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_polygon_clip"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_slice_layers",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_slice_layers",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_slice_layers"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_support_tree",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_support_tree",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_support_tree"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_thermal_warp",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_thermal_warp",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_thermal_warp"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_toolpath_arcs",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "am_toolpath_arcs",
+      "detail": "size_label='harness pending'",
+      "chart_id": "am_toolpath_arcs"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ann_qps_10k",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "cloth_swing",
+      "base_id": "ann_qps_10k",
       "detail": "size_label=None",
-      "chart_id": "cloth_swing"
+      "chart_id": "ann_qps_10k"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "cloth_swing",
+      "base_id": "ann_qps_10k",
       "detail": "validity_status=None",
-      "chart_id": "cloth_swing"
+      "chart_id": "ann_qps_10k"
     },
     {
       "severity": "P0",
       "code": "status_unknown",
+      "base_id": "ann_qps_10k",
+      "detail": "status='unknown'",
+      "chart_id": "ann_qps_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "size_label=None",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "validity_status=None",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "status='unknown'",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "size_label=None",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "validity_status=None",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "status='unknown'",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "auto_bicycle_model",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "auto_bicycle_model",
+      "detail": "size_label='harness pending'",
+      "chart_id": "auto_bicycle_model"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "auto_dyn_rk4",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "auto_dyn_rk4",
+      "detail": "size_label='harness pending'",
+      "chart_id": "auto_dyn_rk4"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "auto_sensor_raycast",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "auto_sensor_raycast",
+      "detail": "size_label='harness pending'",
+      "chart_id": "auto_sensor_raycast"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_proteinmpnn",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "bio_proteinmpnn",
+      "detail": "size_label='harness pending'",
+      "chart_id": "bio_proteinmpnn"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_rfdiffusion",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "bio_rfdiffusion",
+      "detail": "size_label='harness pending'",
+      "chart_id": "bio_rfdiffusion"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_rosetta_energy",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "bio_rosetta_energy",
+      "detail": "size_label='harness pending'",
+      "chart_id": "bio_rosetta_energy"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_rotamer_packing",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "bio_rotamer_packing",
+      "detail": "size_label='harness pending'",
+      "chart_id": "bio_rotamer_packing"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "size_label='harness pending'",
+      "chart_id": "cfd_fvm_face_flux"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_pimple",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cfd_pimple",
+      "detail": "size_label='harness pending'",
+      "chart_id": "cfd_pimple"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_piso",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cfd_piso",
+      "detail": "size_label='harness pending'",
+      "chart_id": "cfd_piso"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_simple",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cfd_simple",
+      "detail": "size_label='harness pending'",
+      "chart_id": "cfd_simple"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "size_label='harness pending'",
+      "chart_id": "cfd_turbulence_k_epsilon"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "size_label='harness pending'",
+      "chart_id": "cfd_turbulence_k_omega_sst"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
       "base_id": "cloth_swing",
-      "detail": "status='unknown'",
-      "chart_id": "cloth_swing"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "combustion_passive",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "concurrent_readers",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "combustion_passive",
+      "base_id": "concurrent_readers",
       "detail": "size_label=None",
-      "chart_id": "combustion_passive"
+      "chart_id": "concurrent_readers"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "combustion_passive",
+      "base_id": "concurrent_readers",
       "detail": "validity_status=None",
-      "chart_id": "combustion_passive"
+      "chart_id": "concurrent_readers"
     },
     {
       "severity": "P0",
       "code": "status_unknown",
-      "base_id": "combustion_passive",
+      "base_id": "concurrent_readers",
       "detail": "status='unknown'",
-      "chart_id": "combustion_passive"
+      "chart_id": "concurrent_readers"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "double_pendulum",
+      "base_id": "concurrent_writers",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "double_pendulum",
+      "base_id": "concurrent_writers",
       "detail": "size_label=None",
-      "chart_id": "double_pendulum"
+      "chart_id": "concurrent_writers"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "double_pendulum",
+      "base_id": "concurrent_writers",
       "detail": "validity_status=None",
-      "chart_id": "double_pendulum"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "double_pendulum",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "double_pendulum"
-    },
-    {
-      "severity": "P0",
-      "code": "missing_os",
-      "base_id": "euler_fluid_2d",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "euler_fluid_2d",
-      "detail": "size_label=None",
-      "chart_id": "euler_fluid_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "euler_fluid_2d",
-      "detail": "validity_status=None",
-      "chart_id": "euler_fluid_2d"
+      "chart_id": "concurrent_writers"
     },
     {
       "severity": "P0",
       "code": "status_unknown",
-      "base_id": "euler_fluid_2d",
+      "base_id": "concurrent_writers",
       "detail": "status='unknown'",
-      "chart_id": "euler_fluid_2d"
+      "chart_id": "concurrent_writers"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "harmonic_oscillator_chain",
+      "base_id": "double_pendulum",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_docking_diffusion",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "drug_docking_diffusion",
+      "detail": "size_label='harness pending'",
+      "chart_id": "drug_docking_diffusion"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_docking_score_vina",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "drug_docking_score_vina",
+      "detail": "size_label='harness pending'",
+      "chart_id": "drug_docking_score_vina"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_fep_alchemical",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "drug_fep_alchemical",
+      "detail": "size_label='harness pending'",
+      "chart_id": "drug_fep_alchemical"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_litl_stages",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "drug_litl_stages",
+      "detail": "size_label='harness pending'",
+      "chart_id": "drug_litl_stages"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "size_label='harness pending'",
+      "chart_id": "drug_ml_retrain_loop"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "euler_fluid_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fdtd_waveguide_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "size_label='harness pending'",
+      "chart_id": "fea_gauss_quadrature"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_linear_elasticity",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fea_linear_elasticity",
+      "detail": "size_label='harness pending'",
+      "chart_id": "fea_linear_elasticity"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "size_label='harness pending'",
+      "chart_id": "fea_mesh_tri_tet"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_solver_direct",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fea_solver_direct",
+      "detail": "size_label='harness pending'",
+      "chart_id": "fea_solver_direct"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_solver_iterative",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fea_solver_iterative",
+      "detail": "size_label='harness pending'",
+      "chart_id": "fea_solver_iterative"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "size_label='harness pending'",
+      "chart_id": "fea_stiffness_assembly"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fft_1d_fixed",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "fft_1d_fixed",
+      "detail": "size_label=None",
+      "chart_id": "fft_1d_fixed"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "gpu_ann_speedup_10k",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "harmonic_oscillator_chain",
+      "base_id": "gpu_ann_speedup_10k",
       "detail": "size_label=None",
-      "chart_id": "harmonic_oscillator_chain"
+      "chart_id": "gpu_ann_speedup_10k"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "harmonic_oscillator_chain",
+      "base_id": "gpu_ann_speedup_10k",
       "detail": "validity_status=None",
-      "chart_id": "harmonic_oscillator_chain"
+      "chart_id": "gpu_ann_speedup_10k"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "harmonic_oscillator_chain",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "harmonic_oscillator_chain"
+      "code": "status_unknown",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "status='unknown'",
+      "chart_id": "gpu_ann_speedup_10k"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "heat_equation_2d",
+      "base_id": "gpu_ann_speedup_1m",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "heat_equation_2d",
+      "base_id": "gpu_ann_speedup_1m",
       "detail": "size_label=None",
-      "chart_id": "heat_equation_2d"
+      "chart_id": "gpu_ann_speedup_1m"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "heat_equation_2d",
+      "base_id": "gpu_ann_speedup_1m",
       "detail": "validity_status=None",
-      "chart_id": "heat_equation_2d"
+      "chart_id": "gpu_ann_speedup_1m"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "status='unknown'",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "graph_cycle_detect",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "graph_cycle_detect",
+      "detail": "size_label=None",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "graph_cycle_detect",
+      "detail": "validity_status=None",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "graph_cycle_detect",
+      "detail": "status='unknown'",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "graph_dep_closure",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "graph_dep_closure",
+      "detail": "size_label=None",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "graph_dep_closure",
+      "detail": "validity_status=None",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "graph_dep_closure",
+      "detail": "status='unknown'",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
       "base_id": "heat_equation_2d",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "heat_equation_2d"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "horner_pure_li",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
@@ -220,33 +776,12 @@
     },
     {
       "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "horner_pure_li",
-      "detail": "validity_status=None",
-      "chart_id": "horner_pure_li"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "horner_pure_li",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "horner_pure_li"
-    },
-    {
-      "severity": "P0",
       "code": "missing_os",
       "base_id": "https_static",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "https_static",
-      "detail": "size_label=None",
-      "chart_id": "https_static"
-    },
-    {
-      "severity": "P0",
       "code": "validity_unknown",
       "base_id": "https_static",
       "detail": "validity_status=None",
@@ -254,10 +789,37 @@
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
       "base_id": "https_static",
-      "detail": "no sota_lang/sota_value",
+      "detail": "status='unknown'",
       "chart_id": "https_static"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "injection_blocked",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "injection_blocked",
+      "detail": "size_label=None",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "injection_blocked",
+      "detail": "validity_status=None",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "injection_blocked",
+      "detail": "status='unknown'",
+      "chart_id": "injection_blocked"
     },
     {
       "severity": "P0",
@@ -267,23 +829,16 @@
     },
     {
       "severity": "P0",
-      "code": "bad_size_label",
+      "code": "validity_unknown",
       "base_id": "keepalive_pipelining",
-      "detail": "size_label=None",
+      "detail": "validity_status=None",
       "chart_id": "keepalive_pipelining"
     },
     {
       "severity": "P0",
-      "code": "validity_unknown",
+      "code": "status_unknown",
       "base_id": "keepalive_pipelining",
-      "detail": "validity_status=None",
-      "chart_id": "keepalive_pipelining"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "keepalive_pipelining",
-      "detail": "no sota_lang/sota_value",
+      "detail": "status='unknown'",
       "chart_id": "keepalive_pipelining"
     },
     {
@@ -425,122 +980,533 @@
       "severity": "P0",
       "code": "missing_os",
       "base_id": "matmul_blocked",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "matmul_blocked",
-      "detail": "size_label=None",
-      "chart_id": "matmul_blocked"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
       "base_id": "matmul_blocked",
       "detail": "validity_status=None",
-      "chart_id": "matmul_blocked"
+      "chart_id": "matmul_blocked_N1024"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
       "base_id": "matmul_blocked",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "matmul_blocked"
+      "detail": "status='unknown'",
+      "chart_id": "matmul_blocked_N1024"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "matmul_naive",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "matmul_naive",
-      "detail": "size_label=None",
-      "chart_id": "matmul_naive"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
       "base_id": "matmul_naive",
       "detail": "validity_status=None",
-      "chart_id": "matmul_naive"
+      "chart_id": "matmul_naive_N1024"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
       "base_id": "matmul_naive",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "matmul_naive"
+      "detail": "status='unknown'",
+      "chart_id": "matmul_naive_N1024"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_barostat_parrinello_rahman",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_barostat_parrinello_rahman",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_barostat_parrinello_rahman"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_constraints_rattle",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_constraints_rattle",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_constraints_rattle"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_constraints_shake",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_constraints_shake",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_constraints_shake"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_energy_drift",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_energy_drift",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_energy_drift"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_init_fcc_mb",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_init_fcc_mb",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_init_fcc_mb"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_integrator_leapfrog",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_integrator_leapfrog",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_integrator_leapfrog"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_integrator_verlet",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_integrator_verlet",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_integrator_verlet"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "md_lennard_jones",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_longrange_ewald",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "md_lennard_jones",
+      "base_id": "md_longrange_ewald",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_longrange_ewald"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_longrange_pme",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_longrange_pme",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_longrange_pme"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_neighbor_cell_list",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_neighbor_cell_list",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_neighbor_cell_list"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_neighbor_verlet_skin",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_neighbor_verlet_skin",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_neighbor_verlet_skin"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_oracle_external",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_oracle_external",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_oracle_external"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_thermostat_berendsen",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_thermostat_berendsen",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_thermostat_berendsen"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_thermostat_nose_hoover",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_thermostat_nose_hoover",
+      "detail": "size_label='harness pending'",
+      "chart_id": "md_thermostat_nose_hoover"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ml_conv2d_forward",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ml_conv2d_forward",
       "detail": "size_label=None",
-      "chart_id": "md_lennard_jones"
+      "chart_id": "ml_conv2d_forward"
     },
     {
       "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "md_lennard_jones",
-      "detail": "validity_status=None",
-      "chart_id": "md_lennard_jones"
+      "code": "missing_os",
+      "base_id": "ml_mlp_forward",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "md_lennard_jones",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "md_lennard_jones"
+      "code": "bad_size_label",
+      "base_id": "ml_mlp_forward",
+      "detail": "size_label=None",
+      "chart_id": "ml_mlp_forward"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ml_mlp_train_step",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ml_mlp_train_step",
+      "detail": "size_label=None",
+      "chart_id": "ml_mlp_train_step"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "nbody_barnes_hut",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "nbody_barnes_hut",
+      "detail": "size_label='harness pending'",
+      "chart_id": "nbody_barnes_hut"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "nbody_gravity",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_cg",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "nbody_gravity",
-      "detail": "size_label=None",
-      "chart_id": "nbody_gravity"
+      "base_id": "num_cg",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_cg"
     },
     {
       "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "nbody_gravity",
-      "detail": "validity_status=None",
-      "chart_id": "nbody_gravity"
+      "code": "missing_os",
+      "base_id": "num_cholesky",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "nbody_gravity",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "nbody_gravity"
+      "code": "bad_size_label",
+      "base_id": "num_cholesky",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_cholesky"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_eig_symmetric",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_eig_symmetric",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_eig_symmetric"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_fft_r2c",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_fft_r2c",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_fft_r2c"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_gmres",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_gmres",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_gmres"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_euler",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_integ_euler",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_integ_euler"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_rk4",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_integ_rk4",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_integ_rk4"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_semi_implicit",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_integ_semi_implicit",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_integ_semi_implicit"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_symplectic",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_integ_symplectic",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_integ_symplectic"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_verlet",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_integ_verlet",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_integ_verlet"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_opt_bfgs",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_opt_bfgs",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_opt_bfgs"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_opt_line_search",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_opt_line_search",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_opt_line_search"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_quadrature_gauss",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_quadrature_gauss",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_quadrature_gauss"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_rng_pcg",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_rng_pcg",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_rng_pcg"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_root_newton",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_root_newton",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_root_newton"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_sparse_mv",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "num_sparse_mv",
+      "detail": "size_label='harness pending'",
+      "chart_id": "num_sparse_mv"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "orbit_two_body",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "pde_cfl_timestep",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "pde_cfl_timestep",
+      "detail": "size_label='harness pending'",
+      "chart_id": "pde_cfl_timestep"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "size_label='harness pending'",
+      "chart_id": "pde_heat_implicit_jacobi"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "proxy_loopback",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "proxy_loopback",
-      "detail": "size_label=None",
-      "chart_id": "proxy_loopback"
     },
     {
       "severity": "P0",
@@ -559,83 +1525,788 @@
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "rate_limit_429",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+      "base_id": "qm_ase_calculator",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "rate_limit_429",
-      "detail": "size_label=None",
-      "chart_id": "rate_limit_429"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "rate_limit_429",
-      "detail": "validity_status=None",
-      "chart_id": "rate_limit_429"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "rate_limit_429",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "rate_limit_429"
+      "base_id": "qm_ase_calculator",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_ase_calculator"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "reduce_sum",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+      "base_id": "qm_ccsd",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "reduce_sum",
-      "detail": "size_label=None",
-      "chart_id": "reduce_sum"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "reduce_sum",
-      "detail": "validity_status=None",
-      "chart_id": "reduce_sum"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "reduce_sum",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "reduce_sum"
+      "base_id": "qm_ccsd",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_ccsd"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "rigid_body_stack",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_grid_becke"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_grid_lebedev"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_hybrid_exchange"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_scf_energy"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_xc_gga"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_xc_lda"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dft_xc_mgga"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dispersion_d3",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_dispersion_d3",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_dispersion_d3"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_ecp",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_ecp",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_ecp"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_eri_density_fitting"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_eri_os",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_eri_os",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_eri_os"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_eri_screening",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_eri_screening",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_eri_screening"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_geom_opt_bfgs"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_geom_opt_internal"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_grad_analytical",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_grad_analytical",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_grad_analytical"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_gto_eval",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_gto_eval",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_gto_eval"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_hf_canonical_ortho"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_hf_diis",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_hf_diis",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_hf_diis"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_hf_fock_build",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_hf_fock_build",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_hf_fock_build"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_job_queue_io",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_job_queue_io",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_job_queue_io"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_kinetic_integrals"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_mp2",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_mp2",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_mp2"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_nuclear_attraction"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_overlap_integrals",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_overlap_integrals",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_overlap_integrals"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_property_dipole",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_property_dipole",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_property_dipole"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_property_freq",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_property_freq",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_property_freq"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_scf_solver",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_scf_solver",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_scf_solver"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_tddft_casida",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_tddft_casida",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_tddft_casida"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_tddft_rpa",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_tddft_rpa",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_tddft_rpa"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_xtb_gfn",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "qm_xtb_gfn",
+      "detail": "size_label='harness pending'",
+      "chart_id": "qm_xtb_gfn"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "query_log_complete",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "rigid_body_stack",
+      "base_id": "query_log_complete",
       "detail": "size_label=None",
-      "chart_id": "rigid_body_stack"
+      "chart_id": "query_log_complete"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "rigid_body_stack",
+      "base_id": "query_log_complete",
       "detail": "validity_status=None",
-      "chart_id": "rigid_body_stack"
+      "chart_id": "query_log_complete"
     },
     {
       "severity": "P0",
       "code": "status_unknown",
-      "base_id": "rigid_body_stack",
+      "base_id": "query_log_complete",
       "detail": "status='unknown'",
-      "chart_id": "rigid_body_stack"
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ragdoll_chain",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rate_limit_429",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rate_limit_429",
+      "detail": "size_label=None",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rate_limit_429",
+      "detail": "validity_status=None",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rate_limit_429",
+      "detail": "status='unknown'",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "reduce_sum",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "registry_publish",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "registry_publish",
+      "detail": "size_label=None",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "registry_publish",
+      "detail": "validity_status=None",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "registry_publish",
+      "detail": "status='unknown'",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "registry_read_by_name",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "registry_read_by_name",
+      "detail": "size_label=None",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "registry_read_by_name",
+      "detail": "validity_status=None",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "registry_read_by_name",
+      "detail": "status='unknown'",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "registry_read_latest",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "registry_read_latest",
+      "detail": "size_label=None",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "registry_read_latest",
+      "detail": "validity_status=None",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "registry_read_latest",
+      "detail": "status='unknown'",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_body_stack",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "size_label='harness pending'",
+      "chart_id": "rigid_broadphase_bvh"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "size_label='harness pending'",
+      "chart_id": "rigid_broadphase_sap"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_constraints",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rigid_constraints",
+      "detail": "size_label='harness pending'",
+      "chart_id": "rigid_constraints"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_contact_solver",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rigid_contact_solver",
+      "detail": "size_label='harness pending'",
+      "chart_id": "rigid_contact_solver"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_semi_implicit",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rigid_semi_implicit",
+      "detail": "size_label='harness pending'",
+      "chart_id": "rigid_semi_implicit"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rls_bypass_blocked",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rls_bypass_blocked",
+      "detail": "size_label=None",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rls_bypass_blocked",
+      "detail": "validity_status=None",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rls_bypass_blocked",
+      "detail": "status='unknown'",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_ik_jacobian",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "robo_ik_jacobian",
+      "detail": "size_label='harness pending'",
+      "chart_id": "robo_ik_jacobian"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_multibody_step",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "robo_multibody_step",
+      "detail": "size_label='harness pending'",
+      "chart_id": "robo_multibody_step"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_plan_prm",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "robo_plan_prm",
+      "detail": "size_label='harness pending'",
+      "chart_id": "robo_plan_prm"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_plan_rrt",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "robo_plan_rrt",
+      "detail": "size_label='harness pending'",
+      "chart_id": "robo_plan_rrt"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_traj_opt",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "robo_traj_opt",
+      "detail": "size_label='harness pending'",
+      "chart_id": "robo_traj_opt"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rss_idle",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rss_idle",
+      "detail": "size_label=None",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rss_idle",
+      "detail": "validity_status=None",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rss_idle",
+      "detail": "status='unknown'",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rss_peak_load",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rss_peak_load",
+      "detail": "size_label=None",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rss_peak_load",
+      "detail": "validity_status=None",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rss_peak_load",
+      "detail": "status='unknown'",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "schrodinger_1d_barrier",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
@@ -668,68 +2339,19 @@
       "severity": "P0",
       "code": "missing_os",
       "base_id": "simd_dot",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "simd_dot",
-      "detail": "size_label=None",
-      "chart_id": "simd_dot"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "simd_dot",
-      "detail": "validity_status=None",
-      "chart_id": "simd_dot"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "simd_dot",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "simd_dot"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "sph_dam_break_2d",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "sph_dam_break_2d",
-      "detail": "size_label=None",
-      "chart_id": "sph_dam_break_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "sph_dam_break_2d",
-      "detail": "validity_status=None",
-      "chart_id": "sph_dam_break_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "sph_dam_break_2d",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "sph_dam_break_2d"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "static_large",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "static_large",
-      "detail": "size_label=None",
-      "chart_id": "static_large"
     },
     {
       "severity": "P0",
@@ -740,9 +2362,9 @@
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
       "base_id": "static_large",
-      "detail": "no sota_lang/sota_value",
+      "detail": "status='unknown'",
       "chart_id": "static_large"
     },
     {
@@ -753,13 +2375,6 @@
     },
     {
       "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "static_small",
-      "detail": "size_label=None",
-      "chart_id": "static_small"
-    },
-    {
-      "severity": "P0",
       "code": "validity_unknown",
       "base_id": "static_small",
       "detail": "validity_status=None",
@@ -767,37 +2382,244 @@
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
       "base_id": "static_small",
-      "detail": "no sota_lang/sota_value",
+      "detail": "status='unknown'",
       "chart_id": "static_small"
     },
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "three_body",
+      "base_id": "stdlib_binary_search",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_binary_search",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_binary_search"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_binary_search",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_binary_search"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_deque_rotate",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "three_body",
-      "detail": "size_label=None",
-      "chart_id": "three_body"
+      "base_id": "stdlib_deque_rotate",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_deque_rotate"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "three_body",
+      "base_id": "stdlib_deque_rotate",
       "detail": "validity_status=None",
-      "chart_id": "three_body"
+      "chart_id": "stdlib_deque_rotate"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "status_unknown",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_dict_insert_lookup"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_dict_insert_lookup"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_hash_flood",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_hash_flood",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_hash_flood",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_hash_flood",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_set_ops",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_set_ops",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_set_ops",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_set_ops",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_sort_int",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_sort_int",
+      "detail": "validity_status=None",
+      "chart_id": "stdlib_sort_int"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_sort_int",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_sort_int"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "tamper_evidence",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "tamper_evidence",
+      "detail": "size_label=None",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "tamper_evidence",
+      "detail": "validity_status=None",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "tamper_evidence",
+      "detail": "status='unknown'",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
       "base_id": "three_body",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "three_body"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "three_body_pure",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
@@ -829,134 +2651,511 @@
     {
       "severity": "P0",
       "code": "missing_os",
-      "base_id": "wave_equation_1d",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+      "base_id": "viz_colormap",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "wave_equation_1d",
+      "base_id": "viz_colormap",
       "detail": "size_label=None",
-      "chart_id": "wave_equation_1d"
+      "chart_id": "viz_colormap"
     },
     {
       "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "wave_equation_1d",
-      "detail": "validity_status=None",
-      "chart_id": "wave_equation_1d"
+      "code": "missing_os",
+      "base_id": "viz_decimate",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
-      "code": "sota_empty",
+      "code": "bad_size_label",
+      "base_id": "viz_decimate",
+      "detail": "size_label=None",
+      "chart_id": "viz_decimate"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_inspector_panels",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "viz_inspector_panels",
+      "detail": "size_label=None",
+      "chart_id": "viz_inspector_panels"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_linked_views",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "viz_linked_views",
+      "detail": "size_label=None",
+      "chart_id": "viz_linked_views"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_marching_cubes",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "viz_marching_cubes",
+      "detail": "size_label=None",
+      "chart_id": "viz_marching_cubes"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_pipeline_graph",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "viz_pipeline_graph",
+      "detail": "size_label=None",
+      "chart_id": "viz_pipeline_graph"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_resample",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "viz_resample",
+      "detail": "size_label=None",
+      "chart_id": "viz_resample"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
       "base_id": "wave_equation_1d",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "wave_equation_1d"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "wave_equation_2d",
-      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
-    },
-    {
-      "severity": "P0",
-      "code": "bad_size_label",
-      "base_id": "wave_equation_2d",
-      "detail": "size_label=None",
-      "chart_id": "wave_equation_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "validity_unknown",
-      "base_id": "wave_equation_2d",
-      "detail": "validity_status=None",
-      "chart_id": "wave_equation_2d"
-    },
-    {
-      "severity": "P0",
-      "code": "sota_empty",
-      "base_id": "wave_equation_2d",
-      "detail": "no sota_lang/sota_value",
-      "chart_id": "wave_equation_2d"
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
       "severity": "P0",
       "code": "missing_os",
       "base_id": "wind_field_bc",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ws_publish_latency",
       "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
     },
     {
       "severity": "P0",
       "code": "bad_size_label",
-      "base_id": "wind_field_bc",
+      "base_id": "ws_publish_latency",
       "detail": "size_label=None",
-      "chart_id": "wind_field_bc"
+      "chart_id": "ws_publish_latency"
     },
     {
       "severity": "P0",
       "code": "validity_unknown",
-      "base_id": "wind_field_bc",
+      "base_id": "ws_publish_latency",
       "detail": "validity_status=None",
-      "chart_id": "wind_field_bc"
+      "chart_id": "ws_publish_latency"
     },
     {
       "severity": "P0",
       "code": "status_unknown",
-      "base_id": "wind_field_bc",
+      "base_id": "ws_publish_latency",
       "detail": "status='unknown'",
-      "chart_id": "wind_field_bc"
+      "chart_id": "ws_publish_latency"
     }
   ],
   "p1": [
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "advection_diffusion_2d",
+      "base_id": "am_export_gcode_3mf",
       "detail": "problem_size is null",
-      "chart_id": "advection_diffusion_2d"
+      "chart_id": "am_export_gcode_3mf"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "cloth_swing",
+      "base_id": "am_infill_grid_lines",
       "detail": "problem_size is null",
-      "chart_id": "cloth_swing"
+      "chart_id": "am_infill_grid_lines"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "combustion_passive",
+      "base_id": "am_infill_gyroid",
       "detail": "problem_size is null",
-      "chart_id": "combustion_passive"
+      "chart_id": "am_infill_gyroid"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "double_pendulum",
+      "base_id": "am_offset_perimeters",
       "detail": "problem_size is null",
-      "chart_id": "double_pendulum"
+      "chart_id": "am_offset_perimeters"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "euler_fluid_2d",
+      "base_id": "am_plane_mesh_intersect",
       "detail": "problem_size is null",
-      "chart_id": "euler_fluid_2d"
+      "chart_id": "am_plane_mesh_intersect"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "harmonic_oscillator_chain",
+      "base_id": "am_polygon_clip",
       "detail": "problem_size is null",
-      "chart_id": "harmonic_oscillator_chain"
+      "chart_id": "am_polygon_clip"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "heat_equation_2d",
+      "base_id": "am_slice_layers",
       "detail": "problem_size is null",
-      "chart_id": "heat_equation_2d"
+      "chart_id": "am_slice_layers"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "am_support_tree",
+      "detail": "problem_size is null",
+      "chart_id": "am_support_tree"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "am_thermal_warp",
+      "detail": "problem_size is null",
+      "chart_id": "am_thermal_warp"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "am_toolpath_arcs",
+      "detail": "problem_size is null",
+      "chart_id": "am_toolpath_arcs"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ann_qps_10k",
+      "detail": "problem_size is null",
+      "chart_id": "ann_qps_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ann_qps_10k",
+      "detail": "chart marked pending",
+      "chart_id": "ann_qps_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "problem_size is null",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "chart marked pending",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "problem_size is null",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "chart marked pending",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "auto_bicycle_model",
+      "detail": "problem_size is null",
+      "chart_id": "auto_bicycle_model"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "auto_dyn_rk4",
+      "detail": "problem_size is null",
+      "chart_id": "auto_dyn_rk4"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "auto_sensor_raycast",
+      "detail": "problem_size is null",
+      "chart_id": "auto_sensor_raycast"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "bio_proteinmpnn",
+      "detail": "problem_size is null",
+      "chart_id": "bio_proteinmpnn"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "bio_rfdiffusion",
+      "detail": "problem_size is null",
+      "chart_id": "bio_rfdiffusion"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "bio_rosetta_energy",
+      "detail": "problem_size is null",
+      "chart_id": "bio_rosetta_energy"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "bio_rotamer_packing",
+      "detail": "problem_size is null",
+      "chart_id": "bio_rotamer_packing"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "problem_size is null",
+      "chart_id": "cfd_fvm_face_flux"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cfd_pimple",
+      "detail": "problem_size is null",
+      "chart_id": "cfd_pimple"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cfd_piso",
+      "detail": "problem_size is null",
+      "chart_id": "cfd_piso"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cfd_simple",
+      "detail": "problem_size is null",
+      "chart_id": "cfd_simple"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "problem_size is null",
+      "chart_id": "cfd_turbulence_k_epsilon"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "problem_size is null",
+      "chart_id": "cfd_turbulence_k_omega_sst"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "concurrent_readers",
+      "detail": "problem_size is null",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "concurrent_readers",
+      "detail": "chart marked pending",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "concurrent_writers",
+      "detail": "problem_size is null",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "concurrent_writers",
+      "detail": "chart marked pending",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "drug_docking_diffusion",
+      "detail": "problem_size is null",
+      "chart_id": "drug_docking_diffusion"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "drug_docking_score_vina",
+      "detail": "problem_size is null",
+      "chart_id": "drug_docking_score_vina"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "drug_fep_alchemical",
+      "detail": "problem_size is null",
+      "chart_id": "drug_fep_alchemical"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "drug_litl_stages",
+      "detail": "problem_size is null",
+      "chart_id": "drug_litl_stages"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "problem_size is null",
+      "chart_id": "drug_ml_retrain_loop"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "problem_size is null",
+      "chart_id": "fea_gauss_quadrature"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fea_linear_elasticity",
+      "detail": "problem_size is null",
+      "chart_id": "fea_linear_elasticity"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "problem_size is null",
+      "chart_id": "fea_mesh_tri_tet"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fea_solver_direct",
+      "detail": "problem_size is null",
+      "chart_id": "fea_solver_direct"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fea_solver_iterative",
+      "detail": "problem_size is null",
+      "chart_id": "fea_solver_iterative"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "problem_size is null",
+      "chart_id": "fea_stiffness_assembly"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "fft_1d_fixed",
+      "detail": "problem_size is null",
+      "chart_id": "fft_1d_fixed"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "problem_size is null",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "chart marked pending",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "problem_size is null",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "chart marked pending",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "graph_cycle_detect",
+      "detail": "problem_size is null",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "graph_cycle_detect",
+      "detail": "chart marked pending",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "graph_dep_closure",
+      "detail": "problem_size is null",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "graph_dep_closure",
+      "detail": "chart marked pending",
+      "chart_id": "graph_dep_closure"
     },
     {
       "severity": "P1",
@@ -967,16 +3166,30 @@
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
+      "code": "chart_pending",
       "base_id": "https_static",
-      "detail": "problem_size is null",
+      "detail": "chart marked pending",
       "chart_id": "https_static"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "keepalive_pipelining",
+      "base_id": "injection_blocked",
       "detail": "problem_size is null",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "injection_blocked",
+      "detail": "chart marked pending",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "keepalive_pipelining",
+      "detail": "chart marked pending",
       "chart_id": "keepalive_pipelining"
     },
     {
@@ -988,6 +3201,13 @@
     },
     {
       "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lb_least_conn",
+      "detail": "chart marked pending",
+      "chart_id": "lb_least_conn"
+    },
+    {
+      "severity": "P1",
       "code": "problem_size_null",
       "base_id": "lb_peer_down",
       "detail": "problem_size is null",
@@ -995,9 +3215,23 @@
     },
     {
       "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lb_peer_down",
+      "detail": "chart marked pending",
+      "chart_id": "lb_peer_down"
+    },
+    {
+      "severity": "P1",
       "code": "problem_size_null",
       "base_id": "lb_round_robin",
       "detail": "problem_size is null",
+      "chart_id": "lb_round_robin"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lb_round_robin",
+      "detail": "chart marked pending",
       "chart_id": "lb_round_robin"
     },
     {
@@ -1030,38 +3264,514 @@
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
+      "code": "chart_pending",
       "base_id": "matmul_blocked",
-      "detail": "problem_size is null",
-      "chart_id": "matmul_blocked"
+      "detail": "chart marked pending",
+      "chart_id": "matmul_blocked_N1024"
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
+      "code": "chart_pending",
       "base_id": "matmul_naive",
-      "detail": "problem_size is null",
-      "chart_id": "matmul_naive"
+      "detail": "chart marked pending",
+      "chart_id": "matmul_naive_N1024"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "md_lennard_jones",
+      "base_id": "md_barostat_parrinello_rahman",
       "detail": "problem_size is null",
-      "chart_id": "md_lennard_jones"
+      "chart_id": "md_barostat_parrinello_rahman"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "nbody_gravity",
+      "base_id": "md_constraints_rattle",
       "detail": "problem_size is null",
-      "chart_id": "nbody_gravity"
+      "chart_id": "md_constraints_rattle"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
+      "base_id": "md_constraints_shake",
+      "detail": "problem_size is null",
+      "chart_id": "md_constraints_shake"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_energy_drift",
+      "detail": "problem_size is null",
+      "chart_id": "md_energy_drift"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_init_fcc_mb",
+      "detail": "problem_size is null",
+      "chart_id": "md_init_fcc_mb"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_integrator_leapfrog",
+      "detail": "problem_size is null",
+      "chart_id": "md_integrator_leapfrog"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_integrator_verlet",
+      "detail": "problem_size is null",
+      "chart_id": "md_integrator_verlet"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_longrange_ewald",
+      "detail": "problem_size is null",
+      "chart_id": "md_longrange_ewald"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_longrange_pme",
+      "detail": "problem_size is null",
+      "chart_id": "md_longrange_pme"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_neighbor_cell_list",
+      "detail": "problem_size is null",
+      "chart_id": "md_neighbor_cell_list"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_neighbor_verlet_skin",
+      "detail": "problem_size is null",
+      "chart_id": "md_neighbor_verlet_skin"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_oracle_external",
+      "detail": "problem_size is null",
+      "chart_id": "md_oracle_external"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_thermostat_berendsen",
+      "detail": "problem_size is null",
+      "chart_id": "md_thermostat_berendsen"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_thermostat_nose_hoover",
+      "detail": "problem_size is null",
+      "chart_id": "md_thermostat_nose_hoover"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ml_conv2d_forward",
+      "detail": "problem_size is null",
+      "chart_id": "ml_conv2d_forward"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ml_mlp_forward",
+      "detail": "problem_size is null",
+      "chart_id": "ml_mlp_forward"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ml_mlp_train_step",
+      "detail": "problem_size is null",
+      "chart_id": "ml_mlp_train_step"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "nbody_barnes_hut",
+      "detail": "problem_size is null",
+      "chart_id": "nbody_barnes_hut"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_cg",
+      "detail": "problem_size is null",
+      "chart_id": "num_cg"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_cholesky",
+      "detail": "problem_size is null",
+      "chart_id": "num_cholesky"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_eig_symmetric",
+      "detail": "problem_size is null",
+      "chart_id": "num_eig_symmetric"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_fft_r2c",
+      "detail": "problem_size is null",
+      "chart_id": "num_fft_r2c"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_gmres",
+      "detail": "problem_size is null",
+      "chart_id": "num_gmres"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_integ_euler",
+      "detail": "problem_size is null",
+      "chart_id": "num_integ_euler"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_integ_rk4",
+      "detail": "problem_size is null",
+      "chart_id": "num_integ_rk4"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_integ_semi_implicit",
+      "detail": "problem_size is null",
+      "chart_id": "num_integ_semi_implicit"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_integ_symplectic",
+      "detail": "problem_size is null",
+      "chart_id": "num_integ_symplectic"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_integ_verlet",
+      "detail": "problem_size is null",
+      "chart_id": "num_integ_verlet"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_opt_bfgs",
+      "detail": "problem_size is null",
+      "chart_id": "num_opt_bfgs"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_opt_line_search",
+      "detail": "problem_size is null",
+      "chart_id": "num_opt_line_search"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_quadrature_gauss",
+      "detail": "problem_size is null",
+      "chart_id": "num_quadrature_gauss"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_rng_pcg",
+      "detail": "problem_size is null",
+      "chart_id": "num_rng_pcg"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_root_newton",
+      "detail": "problem_size is null",
+      "chart_id": "num_root_newton"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "num_sparse_mv",
+      "detail": "problem_size is null",
+      "chart_id": "num_sparse_mv"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "pde_cfl_timestep",
+      "detail": "problem_size is null",
+      "chart_id": "pde_cfl_timestep"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "problem_size is null",
+      "chart_id": "pde_heat_implicit_jacobi"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
       "base_id": "proxy_loopback",
-      "detail": "problem_size is null",
+      "detail": "chart marked pending",
       "chart_id": "proxy_loopback"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_ase_calculator",
+      "detail": "problem_size is null",
+      "chart_id": "qm_ase_calculator"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_ccsd",
+      "detail": "problem_size is null",
+      "chart_id": "qm_ccsd"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_grid_becke"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_grid_lebedev"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_hybrid_exchange"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_scf_energy"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_xc_gga"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_xc_lda"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dft_xc_mgga"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_dispersion_d3",
+      "detail": "problem_size is null",
+      "chart_id": "qm_dispersion_d3"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_ecp",
+      "detail": "problem_size is null",
+      "chart_id": "qm_ecp"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "problem_size is null",
+      "chart_id": "qm_eri_density_fitting"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_eri_os",
+      "detail": "problem_size is null",
+      "chart_id": "qm_eri_os"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_eri_screening",
+      "detail": "problem_size is null",
+      "chart_id": "qm_eri_screening"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "problem_size is null",
+      "chart_id": "qm_geom_opt_bfgs"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "problem_size is null",
+      "chart_id": "qm_geom_opt_internal"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_grad_analytical",
+      "detail": "problem_size is null",
+      "chart_id": "qm_grad_analytical"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_gto_eval",
+      "detail": "problem_size is null",
+      "chart_id": "qm_gto_eval"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "problem_size is null",
+      "chart_id": "qm_hf_canonical_ortho"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_hf_diis",
+      "detail": "problem_size is null",
+      "chart_id": "qm_hf_diis"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_hf_fock_build",
+      "detail": "problem_size is null",
+      "chart_id": "qm_hf_fock_build"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_job_queue_io",
+      "detail": "problem_size is null",
+      "chart_id": "qm_job_queue_io"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "problem_size is null",
+      "chart_id": "qm_kinetic_integrals"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_mp2",
+      "detail": "problem_size is null",
+      "chart_id": "qm_mp2"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "problem_size is null",
+      "chart_id": "qm_nuclear_attraction"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_overlap_integrals",
+      "detail": "problem_size is null",
+      "chart_id": "qm_overlap_integrals"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_property_dipole",
+      "detail": "problem_size is null",
+      "chart_id": "qm_property_dipole"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_property_freq",
+      "detail": "problem_size is null",
+      "chart_id": "qm_property_freq"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_scf_solver",
+      "detail": "problem_size is null",
+      "chart_id": "qm_scf_solver"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_tddft_casida",
+      "detail": "problem_size is null",
+      "chart_id": "qm_tddft_casida"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_tddft_rpa",
+      "detail": "problem_size is null",
+      "chart_id": "qm_tddft_rpa"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "qm_xtb_gfn",
+      "detail": "problem_size is null",
+      "chart_id": "qm_xtb_gfn"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "query_log_complete",
+      "detail": "problem_size is null",
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "query_log_complete",
+      "detail": "chart marked pending",
+      "chart_id": "query_log_complete"
     },
     {
       "severity": "P1",
@@ -1072,17 +3782,164 @@
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
-      "base_id": "reduce_sum",
-      "detail": "problem_size is null",
-      "chart_id": "reduce_sum"
+      "code": "chart_pending",
+      "base_id": "rate_limit_429",
+      "detail": "chart marked pending",
+      "chart_id": "rate_limit_429"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "rigid_body_stack",
+      "base_id": "registry_publish",
       "detail": "problem_size is null",
-      "chart_id": "rigid_body_stack"
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "registry_publish",
+      "detail": "chart marked pending",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "registry_read_by_name",
+      "detail": "problem_size is null",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "registry_read_by_name",
+      "detail": "chart marked pending",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "registry_read_latest",
+      "detail": "problem_size is null",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "registry_read_latest",
+      "detail": "chart marked pending",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "problem_size is null",
+      "chart_id": "rigid_broadphase_bvh"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "problem_size is null",
+      "chart_id": "rigid_broadphase_sap"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rigid_constraints",
+      "detail": "problem_size is null",
+      "chart_id": "rigid_constraints"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rigid_contact_solver",
+      "detail": "problem_size is null",
+      "chart_id": "rigid_contact_solver"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rigid_semi_implicit",
+      "detail": "problem_size is null",
+      "chart_id": "rigid_semi_implicit"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rls_bypass_blocked",
+      "detail": "problem_size is null",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rls_bypass_blocked",
+      "detail": "chart marked pending",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "robo_ik_jacobian",
+      "detail": "problem_size is null",
+      "chart_id": "robo_ik_jacobian"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "robo_multibody_step",
+      "detail": "problem_size is null",
+      "chart_id": "robo_multibody_step"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "robo_plan_prm",
+      "detail": "problem_size is null",
+      "chart_id": "robo_plan_prm"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "robo_plan_rrt",
+      "detail": "problem_size is null",
+      "chart_id": "robo_plan_rrt"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "robo_traj_opt",
+      "detail": "problem_size is null",
+      "chart_id": "robo_traj_opt"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rss_idle",
+      "detail": "problem_size is null",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rss_idle",
+      "detail": "chart marked pending",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rss_peak_load",
+      "detail": "problem_size is null",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rss_peak_load",
+      "detail": "chart marked pending",
+      "chart_id": "rss_peak_load"
     },
     {
       "severity": "P1",
@@ -1093,38 +3950,122 @@
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
-      "base_id": "simd_dot",
-      "detail": "problem_size is null",
-      "chart_id": "simd_dot"
-    },
-    {
-      "severity": "P1",
-      "code": "problem_size_null",
-      "base_id": "sph_dam_break_2d",
-      "detail": "problem_size is null",
-      "chart_id": "sph_dam_break_2d"
-    },
-    {
-      "severity": "P1",
-      "code": "problem_size_null",
+      "code": "chart_pending",
       "base_id": "static_large",
-      "detail": "problem_size is null",
+      "detail": "chart marked pending",
       "chart_id": "static_large"
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
+      "code": "chart_pending",
       "base_id": "static_small",
-      "detail": "problem_size is null",
+      "detail": "chart marked pending",
       "chart_id": "static_small"
     },
     {
       "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_binary_search",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_binary_search"
+    },
+    {
+      "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "three_body",
+      "base_id": "stdlib_deque_rotate",
       "detail": "problem_size is null",
-      "chart_id": "three_body"
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_dict_insert_lookup"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_hash_flood",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_hash_flood",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_set_ops",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_set_ops",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_sort_int",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_sort_int"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "tamper_evidence",
+      "detail": "problem_size is null",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "tamper_evidence",
+      "detail": "chart marked pending",
+      "chart_id": "tamper_evidence"
     },
     {
       "severity": "P1",
@@ -1135,24 +4076,73 @@
     },
     {
       "severity": "P1",
-      "code": "problem_size_null",
-      "base_id": "wave_equation_1d",
-      "detail": "problem_size is null",
-      "chart_id": "wave_equation_1d"
+      "code": "chart_pending",
+      "base_id": "tier5_http_exploits",
+      "detail": "chart marked pending",
+      "chart_id": "tier5_http_exploits"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "wave_equation_2d",
+      "base_id": "viz_colormap",
       "detail": "problem_size is null",
-      "chart_id": "wave_equation_2d"
+      "chart_id": "viz_colormap"
     },
     {
       "severity": "P1",
       "code": "problem_size_null",
-      "base_id": "wind_field_bc",
+      "base_id": "viz_decimate",
       "detail": "problem_size is null",
-      "chart_id": "wind_field_bc"
+      "chart_id": "viz_decimate"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "viz_inspector_panels",
+      "detail": "problem_size is null",
+      "chart_id": "viz_inspector_panels"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "viz_linked_views",
+      "detail": "problem_size is null",
+      "chart_id": "viz_linked_views"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "viz_marching_cubes",
+      "detail": "problem_size is null",
+      "chart_id": "viz_marching_cubes"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "viz_pipeline_graph",
+      "detail": "problem_size is null",
+      "chart_id": "viz_pipeline_graph"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "viz_resample",
+      "detail": "problem_size is null",
+      "chart_id": "viz_resample"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ws_publish_latency",
+      "detail": "problem_size is null",
+      "chart_id": "ws_publish_latency"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ws_publish_latency",
+      "detail": "chart marked pending",
+      "chart_id": "ws_publish_latency"
     }
   ]
 }

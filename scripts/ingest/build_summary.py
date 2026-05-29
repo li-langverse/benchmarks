@@ -1016,7 +1016,12 @@ def load_catalog_defaults() -> dict:
     import tomllib
 
     raw = tomllib.loads((ROOT / "catalog.toml").read_text())
-    return {k: v for k, v in raw.items() if k != "benchmark"}
+    merged: dict = {}
+    for key in ("defaults", "reporting"):
+        section = raw.get(key)
+        if isinstance(section, dict):
+            merged.update(section)
+    return merged
 
 
 def main() -> int:
@@ -1062,9 +1067,6 @@ def main() -> int:
 
         if category == "correctness" and bench_id == "tier0_stability":
             chart = build_stability_chart(stability_csv)
-            if chart:
-                charts_by_cat["correctness"].append(chart)
-                charts_by_pillar[chart["pillar"]].append(chart)
             required = validity_required_for(cfg, catalog_defaults)
             validity_status, validity_source = validity_for_benchmark(
                 bench_id, cfg, raw, stability_index, required=required
@@ -1072,7 +1074,36 @@ def main() -> int:
             st = "green" if validity_status == "pass" else (
                 "red" if validity_status == "fail" else "unknown"
             )
-            tier_counts[str(cfg.get("tier", 0))][st] += 1
+            platforms = catalog_platforms(cfg, catalog_defaults)
+            multi = len(platforms) > 1
+            tier0_charts: list[dict] = []
+            for os_tag in platforms:
+                if os_tag == "linux" and chart:
+                    tier0_charts.append(
+                        {
+                            **chart,
+                            "base_id": chart_base_id(bench_id, cfg),
+                            "os": "linux",
+                            "id": chart_id_for_os(bench_id, "linux", multi=multi),
+                        }
+                    )
+                else:
+                    tier0_charts.append(
+                        build_platform_skip_chart(
+                            bench_id,
+                            cfg,
+                            os_tag,
+                            chart_id=chart_id_for_os(bench_id, os_tag, multi=multi),
+                            multi=multi,
+                            validity_source="platform_not_measured",
+                        )
+                    )
+            for ch in tier0_charts:
+                charts_by_cat["correctness"].append(ch)
+                charts_by_pillar[ch["pillar"]].append(ch)
+            bucket = st if st in ("green", "yellow", "red") else "unknown"
+            tier_counts[str(cfg.get("tier", 0))][bucket] += 1
+            primary = tier0_charts[0] if tier0_charts else chart
             results.append(
                 {
                     "benchmark": bench_id,
@@ -1091,7 +1122,7 @@ def main() -> int:
                     "status": st,
                     "validity_status": validity_status,
                     "validity_source": validity_source,
-                    "os": bench_os(raw, bench_id, cfg),
+                    "os": primary.get("os", "linux") if primary else "linux",
                     "ph_ids": cfg.get("ph_ids", []),
                     "path": cfg.get("path", ""),
                     "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
