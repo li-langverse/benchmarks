@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T12:10:20Z",
+  "generated_at": "2026-05-29T12:17:06Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 64.0,
   "grade": "D",
@@ -46,12 +46,12 @@
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 15,
+        "terminal_runs": 16,
         "error_count": 5,
         "incomplete_count": 1,
-        "running_count": 105,
-        "error_rate": 0.3333,
-        "incomplete_rate": 0.0667,
+        "running_count": 104,
+        "error_rate": 0.3125,
+        "incomplete_rate": 0.0625,
         "top_error_agents": [
           {
             "agent": "implementation_gaps",
@@ -88,7 +88,7 @@
     {
       "id": "swarm-error-rate",
       "severity": "critical",
-      "message": "Error rate 33% over last 15 terminal runs",
+      "message": "Error rate 31% over last 16 terminal runs",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -130,7 +130,7 @@
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "105 runs still marked running (possible stuck SDK)",
+      "message": "104 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
