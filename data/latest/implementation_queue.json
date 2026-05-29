@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T20:22:04+00:00",
+  "generated_at": "2026-05-29T22:48:00+00:00",
   "source": "tui_ux_tester",
   "items": [
     {
@@ -7,21 +7,21 @@
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "tui-app-fixture: non-interactive harness timeout on read"
+      "summary": "tui-demo.sh: non-interactive harness timeout on read; catch TimeoutExpired in adapter"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/33",
-      "summary": "TUI UX adapter: run key_nav_help journey with scripted input"
+      "summary": "TUI UX adapter: run key_nav_help journey with scripted stdin (h, q)"
     },
     {
       "priority": "P2",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/34",
-      "summary": "TUI fixtures: error surface + LI_TUI_EXPORT_A11Y plain text"
+      "summary": "TUI fixtures: error surface + LI_TUI_EXPORT_A11Y plain-text export"
     }
   ]
 }

@@ -1,13 +1,46 @@
 {
-  "generated_at": "2026-05-29T20:36:22.458392+00:00",
+  "generated_at": "2026-05-29T22:47:30.000000+00:00",
   "platform": "Linux",
   "summary": {
-    "total": 1,
-    "failing": 0,
+    "total": 2,
+    "failing": 1,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "status": "fail",
+      "journeys": [],
+      "friction_points": [
+        {
+          "issue": "fixture blocks on read without stdin; harness subprocess.TimeoutExpired after 30s"
+        },
+        {
+          "issue": "key_nav_help journey defined but not executed by adapters/tui.py"
+        },
+        {
+          "issue": "h/q keys advertised in banner but fixture uses two read lines, not key dispatch"
+        }
+      ],
+      "sota_refs": ["textual", "bubbletea"],
+      "rubric_scores": {
+        "nav_clarity": 0.5,
+        "task_efficiency": 0.5,
+        "empty_states": 0.9,
+        "error_handling": 0.4,
+        "cognitive_load": 0.6
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": ["help_overlay", "error_display", "a11y_plain_export"],
+      "artifacts": [
+        "benchmarks/data/latest-tui-ux-run/captures/tui-app-fixture.txt"
+      ],
+      "mode": "fixture"
+    },
     {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
@@ -15,10 +48,15 @@
       "surface_class": "tui_gen",
       "status": "pass",
       "journeys": [],
-      "friction_points": [],
-      "sota_refs": [
-        "textual"
+      "friction_points": [
+        {
+          "issue": "cli_to_tui journey defined but not executed; rubric scores are fixture-default, not evidence-based"
+        },
+        {
+          "issue": "always Status: ok — no error path or LI_TUI_EXPORT_A11Y export"
+        }
       ],
+      "sota_refs": ["textual", "bubbletea"],
       "rubric_scores": {
         "nav_clarity": 0.85,
         "task_efficiency": 0.8,
@@ -27,8 +65,10 @@
         "cognitive_load": 0.7
       },
       "rubric_threshold": 0.6,
-      "missing_states": [],
-      "artifacts": [],
+      "missing_states": ["error_display", "a11y_plain_export"],
+      "artifacts": [
+        "benchmarks/data/latest-tui-ux-run/captures/tui-gen-fixture.txt"
+      ],
       "mode": "fixture"
     }
   ]
