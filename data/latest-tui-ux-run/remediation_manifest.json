@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-05-29T22:18:00+00:00",
+  "agent": "tui_ux_tester",
+  "surface": "tui",
+  "audit_kind": "ux",
+  "issues": [
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "target_id": "tui-app-fixture"
+    },
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/33",
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "target_id": "tui-app-fixture"
+    },
+    {
+      "priority": "P2",
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/34",
+      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
+      "target_id": "tui-app-fixture"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "summary": "Inject stdin or PTY in tui adapter; catch TimeoutExpired; set LANG=C.UTF-8 for capture"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/33",
+      "summary": "Execute key_nav_help and cli_to_tui journey steps; populate journeys[] in ux-audit output"
+    },
+    {
+      "priority": "P2",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/34",
+      "summary": "Add LI_TUI_ERROR=1 and LI_TUI_EXPORT_A11Y=1 branches to fixtures; structured plain export"
+    }
+  ],
+  "deferred": [
+    {
+      "item": "VHS / PTY visual regression",
+      "reason": "adapters/tui.py PTY reserved; depends on #30"
+    },
+    {
+      "item": "Production lic / lis TUI targets",
+      "reason": "No shipped interactive terminal app; JSON diagnostics first (Vision-LLM)"
+    },
+    {
+      "item": "Merge TUI rows into global data/latest/ux-audit.json preflight",
+      "reason": "Benchmarks ui-ux-audit orchestration is docs-only today"
+    }
+  ]
+}
