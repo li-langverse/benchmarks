@@ -120,7 +120,7 @@ export default function HomePage() {
           ))}
         </p>
         <p className="honesty-links">
-          <Link href="/proofs/">Proof coverage map</Link>
+          <Link href="/proofs/">Proof library</Link>
           {" · "}
           <a href={HONESTY_DOC_URL} target="_blank" rel="noopener noreferrer">
             Benchmark honesty policy

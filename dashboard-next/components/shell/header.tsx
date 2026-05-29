@@ -31,7 +31,7 @@ export function Header({
               {p.label}
             </Link>
           ))}
-          <Link href="/proofs/">Proofs ≠ bench</Link>
+          <Link href="/proofs/">Proof library</Link>
         </nav>
       </div>
     </header>

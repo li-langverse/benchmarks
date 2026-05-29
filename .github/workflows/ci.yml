@@ -94,7 +94,7 @@ jobs:
           npm ci
           npm run build
           mkdir -p out/latest
-          for f in summary.json release-index.json benchmark-matrix.json proof-posture.json; do
+          for f in summary.json release-index.json benchmark-matrix.json proof-posture.json proof-library.json; do
             if [ -f "../data/latest/$f" ]; then
               cp "../data/latest/$f" out/latest/
             fi
