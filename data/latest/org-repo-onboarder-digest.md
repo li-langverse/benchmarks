@@ -1,6 +1,6 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · discovery `2026-05-29T20:47Z` · CI audit `2026-05-29T20:37Z` · agent-kit audit `2026-05-29T20:46Z` · briefing `2026-05-29T19:05Z`
+**Source:** proactive sweep · discovery `2026-05-29T21:15Z` · CI audit `2026-05-29T21:02Z` · agent-kit audit `2026-05-29T21:15Z` · briefing `2026-05-29T19:05Z`
 
 ## Executive summary
 
