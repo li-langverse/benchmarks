@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-05-29T23:51:39+00:00",
+  "platform": "Linux",
+  "agent": "gui_ui_tester",
+  "source": "proactive",
+  "summary": {
+    "total": 6,
+    "failing": 0,
+    "passing": 3,
+    "skipped": 3,
+    "manual_review": 1
+  },
+  "targets": [
+    {
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "GUI not reachable at http://127.0.0.1:3000 (start dashboard for extended audit)",
+      "mode": "http_probe",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "Playwright CI uses LI_PLAYWRIGHT_UI_PORT=3099; harness probes 3000 — li-cursor-agents#38"
+    },
+    {
+      "target_id": "lic-tetris",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "native capture exit 4: native-sdl-build: install SDL2 (libsdl2-dev or brew install sdl2)",
+      "mode": "native_gui",
+      "native_pixels": false,
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "scripts/studio-ui-ux-capture-native.sh present on lic; blocked by missing SDL2 dev libs"
+    },
+    {
+      "target_id": "world-studio-demo",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "mode": "http_probe",
+      "fixture": "li-cursor-agents/ux-harness/fixtures/world-studio-workspace.html",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": [
+        "fixture uses system-ui stack; production dashboard uses IBM Plex Sans"
+      ],
+      "note": "Fixture existence probe only — no Playwright snapshot, axe, or pixel diff"
+    },
+    {
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "native capture exit 4: native-sdl-build: install SDL2 (libsdl2-dev or brew install sdl2)",
+      "mode": "native_gui",
+      "native_pixels": false,
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "Capture script on lic main; SDL2/Xvfb deps required for pixel frames"
+    },
+    {
+      "target_id": "gui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_gen",
+      "status": "pass",
+      "mode": "http_probe",
+      "fixture": "li-cursor-agents/ux-harness/fixtures/gui-gen-demo.html",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": [
+        "fixture uses system-ui; Li dark tokens (#0d1117, #58a6ff) match org palette"
+      ],
+      "note": "Probe-only; gui_gen journey not executed without Playwright"
+    },
+    {
+      "target_id": "benchmarks-dashboard-overview",
+      "repo": "benchmarks",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "mode": "manual_static_review",
+      "url": "/",
+      "artifacts": [
+        "dashboard-next/app/globals.css",
+        "dashboard-next/components/shell/header.tsx",
+        "dashboard-next/components/benchmark-search.tsx",
+        "dashboard-next/app/page.tsx"
+      ],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": null, "threshold": 0.04, "note": "no Playwright baseline registered" },
+      "contrast_failures": [],
+      "baseline_status": "none",
+      "tokens_deviation": [
+        "--muted is #9ba3af; design-system.md specifies #8b949e (both pass WCAG AA on #0d1117)"
+      ],
+      "findings": [
+        "Nav, search filters, and tier cards use aria-label / labelled sections; focus-visible rings on interactive elements",
+        "No prefers-reduced-motion guard in globals.css (no CSS transitions on current branch)",
+        "/gpu-matrix/ route not on current branch — ARIA tab issue tracked in #147 for feat branch"
+      ]
+    }
+  ]
+}

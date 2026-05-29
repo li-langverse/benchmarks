@@ -1,0 +1,6 @@
+{
+  "target_id": "gui-gen-fixture",
+  "status": "pass",
+  "fixture": "li-cursor-agents/ux-harness/fixtures/gui-gen-demo.html",
+  "generated_at": "2026-05-29T23:51:39+00:00"
+}

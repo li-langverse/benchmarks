@@ -1,0 +1,6 @@
+{
+  "target_id": "world-studio-native",
+  "status": "skip",
+  "skip_reason": "native capture exit 4: install SDL2 (libsdl2-dev)",
+  "generated_at": "2026-05-29T23:51:39+00:00"
+}
