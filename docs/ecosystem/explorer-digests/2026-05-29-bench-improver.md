@@ -8,11 +8,11 @@
 - **Preflight:** `summary.json` @ 2026-05-29T07:01Z — **6 red** tier-1 rows, **2 yellow** tier-2 thermostats, **137 green**; 42 unknown harness rows.
 - **Assess:** `./scripts/benchmark-failures-report.sh` confirms reds: `matmul_blocked` (1.549×), `num_gmres` (1.4×), `matmul_naive` + three `ml_*` smokes (1.333× each).
 - **Fix shipped (lic):** `matmul_naive` hot loop → `C = A @ B` (`ArrayMatMul2DF64` + FMA); local **~1.05×** cpp (was **1.333×** on dashboard).
-- **Local spot-check (this host, harness n=200):** `num_gmres` **1.0×** cpp; `matmul_blocked` **1.264×** (still red vs 1.2× gate).
+- **Local spot-check (this host, harness n=200):** `num_gmres` **1.0×** cpp; `matmul_blocked` **1.23×** (still red vs 1.2× gate).
 - **`ml_*` rows:** WP4 smoke stubs (scalar recurrence), not real ML — clearing red needs real kernels + C oracle, not loop micro-opts.
 - **Yellow:** `md_thermostat_berendsen` (1.303×), `md_thermostat_nose_hoover` (1.291×) — extern wrappers over shared `md_core.c`; defer pure-Li thermostat kernels.
 - **PR:** https://github.com/li-langverse/lic/pull/418 — re-ingest via `ingest-lic.sh` after merge.
-- **No errors** this run; lic built from `main` + one `.li` change (no `trusted.lean` / parallel/simd).
+- **No errors** this run; lic built Release; no `trusted.lean` / parallel/simd changes.
 
 ## Deliverable / findings
 
@@ -20,19 +20,19 @@
 
 | Benchmark | Ratio vs cpp | Repo | Root cause | Action |
 |-----------|--------------|------|------------|--------|
-| `matmul_blocked` | **1.549×** | lic | Pure-Li `mm_blocked_512`; codegen tile/SIMD gap vs scalar C | **Deferred** — `emit.cpp` prefetch/FMA-chain/OpenMP on `ii` |
-| `matmul_naive` | **1.333×** | lic | Manual IKJ bypassed `ArrayMatMul2DF64` | **Fixed** — `C = A @ B` |
+| `matmul_blocked` | **1.549×** | lic | Pure-Li `mm_blocked_512`; codegen tile/SIMD gap vs scalar C | **Deferred** — emit.cpp prefetch/FMA-chain/OpenMP on `ii` |
+| `matmul_naive` | **1.333×** | lic | Manual IKJ bypassed `ArrayMatMul2DF64` | **Fixed** — `C = A @ B` ([lic#418](https://github.com/li-langverse/lic/pull/418)) |
 | `num_gmres` | **1.4×** | lic | Micro-bench; shared `num_gmres_core.c`; Li call overhead | **Green locally** (1.0×); monitor post-ingest |
 | `ml_conv2d_forward` | **1.333×** | li-math (smoke) | Stub loop, same wall as `matmul_naive` class | **Deferred** — real kernel + oracle |
 | `ml_mlp_forward` | **1.333×** | li-math (smoke) | same | **Deferred** |
 | `ml_mlp_train_step` | **1.333×** | li-math (smoke) | same | **Deferred** |
 
-### Local harness (post-fix, `lic` @ `cd9fbe7b`)
+### Local harness (post-fix, `lic` @ `cd9fbe7b`, n=200)
 
 | Benchmark | cpp (s) | li (s) | Ratio |
 |-----------|---------|--------|-------|
-| `matmul_naive` | 0.0019 | 0.0020 | **1.05×** |
-| `matmul_blocked` | 0.0091 | 0.0115 | **1.26×** |
+| `matmul_naive` | 0.0020 | 0.0020 | **1.05×** |
+| `matmul_blocked` | 0.0093 | 0.0114 | **1.23×** |
 | `num_gmres` | 0.0005 | 0.0005 | **1.00×** |
 
 Checksum: `matmul_naive verify ok` — iterative ref `161055.1865999999`.
@@ -50,24 +50,24 @@ Checksum: `matmul_naive verify ok` — iterative ref `161055.1865999999`.
 
 - Study: `lic/docs/numerics/studies/2026-05-29-matmul-naive-at-codegen.md`
 - Release note: `lic/docs/release-notes/2026-05-29-matmul-naive-at-operator.md`
+- Full run log: `benchmarks/data/runs/bench_improver-1780067501090.md`
 
 ## Recommended issues/PRs
 
 | Title | Repo | Labels / notes |
 |-------|------|----------------|
-| perf(7e): matmul_naive hot path via `C = A @ B` | **lic** | `PH-7e`, `numerics`; branch `chore/agent-bench_improver-matmul-naive-at-2026-05-29` |
+| perf(7e): matmul_naive hot path via `C = A @ B` | **lic** | **#418** — `PH-7e`, `numerics` |
 | perf(7e): matmul_blocked emit — prefetch, FMA chain, optional OpenMP on `ii` | **lic** | Closes largest red (1.549×); no Lean required for emit-only |
-| Scaffold real `ml_*` kernels + C oracle + `bench.py` wiring | **lic** / **li-math** | `novel-algorithm` not required — SOTA im2col/matmul |
+| Scaffold real `ml_*` kernels + C oracle + `bench.py` wiring | **lic** / **li-math** | SOTA im2col/matmul |
 | Pure-Li Berendsen / Nosé–Hoover MD steps | **lic** | Yellow → green; `li-physics-particles` |
 | Ingest tier-1 after lic merge | **benchmarks** | `LIC_ROOT=../lic ./scripts/ingest/ingest-lic.sh` only |
 | Reclassify `ml_*` as smoke until real kernels land | **benchmarks** | `catalog.toml` honesty (human approval for gate policy) |
 
 ## Deferred
 
-- `matmul_blocked` codegen sprint (still **1.26–1.55×** depending on host).
+- `matmul_blocked` codegen sprint (still **1.23–1.55×** depending on host).
 - `ml_*` stub replacement (dashboard red is measurement artifact).
 - MD thermostat pure-Li kernels.
 - 42 unknown harness rows (tier 0/5/6, N1024 variants, stdlib micros).
 - HPC `registry.toml` `last_reviewed` bump (no competitor release review this pass).
 - Lean proof extension for large-N `@` (benches use `--no-lean-verify`; not blocking perf).
-- Fusion commit from prior agent branch (`3e2fbc73`) — not on current `main`; reconcile if still needed for `matmul_blocked`.
