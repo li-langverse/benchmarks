@@ -1,0 +1,5 @@
+benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags,os,passed,oracle_kind,verify_abs_err,verify_rel_err,verify_ulps,verify_within_1ulp
+md_lennard_jones,cpp,release,1,wall_time,1.1883,s,48d23a7a,x86_64,-O3 -march=native -ffast-math,linux,,,,,,
+md_lennard_jones,rust,release,1,wall_time,1.1743,s,48d23a7a,x86_64,-O3 -march=native -ffast-math (native C kernel),linux,,,,,,
+md_lennard_jones,julia,release,1,wall_time,1.1527,s,48d23a7a,x86_64,-O3 -march=native -ffast-math (native C kernel),linux,,,,,,
+md_lennard_jones,li,release,1,wall_time,1.1833,s,48d23a7a,x86_64,shared C kernel + lic -O3 -march=native -ffast-math,linux,,,,,,

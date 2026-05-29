@@ -24,10 +24,19 @@ def _default_jobs() -> int:
     return max(1, os.cpu_count() or 1)
 
 
+def _bench_harness_dir() -> Path:
+    root = Path(__file__).resolve().parents[1]
+    h = root / "harness"
+    if h.is_dir():
+        return h
+    lic = _lic_root()
+    return lic / "benchmarks" / "harness"
+
+
 def _run_one_bench(payload: tuple[str, int, str]) -> tuple[str, list[dict[str, object]] | None, str | None]:
     spec_name, runs, lic_root = payload
-    os.chdir(lic_root)
-    harness = str(Path(lic_root) / "benchmarks" / "harness")
+    os.environ.setdefault("LIC_ROOT", lic_root)
+    harness = str(_bench_harness_dir())
     if harness not in sys.path:
         sys.path.insert(0, harness)
     from bench import TIER1_BENCHES, TIER2_BENCHES, run_benchmark
@@ -62,8 +71,8 @@ def run_specs(
     jobs: int,
     resume: bool,
 ) -> int:
-    os.chdir(lic_root)
-    sys.path.insert(0, str(lic_root / "benchmarks" / "harness"))
+    harness = _bench_harness_dir()
+    sys.path.insert(0, str(harness))
     from bench import read_csv, write_csv, merge_rows
 
     merged = read_csv(out)
@@ -125,11 +134,12 @@ def main() -> int:
     args = parser.parse_args()
 
     lic_root = _lic_root()
-    os.chdir(lic_root)
-    sys.path.insert(0, str(lic_root / "benchmarks" / "harness"))
-    from bench import TIER1_BENCHES, TIER2_BENCHES, RESULTS
+    os.environ.setdefault("LIC_ROOT", str(lic_root))
+    harness = _bench_harness_dir()
+    sys.path.insert(0, str(harness))
+    from bench import TIER1_BENCHES, TIER2_BENCHES, RESULTS_CSV
 
-    out = RESULTS / "latest.csv"
+    out = RESULTS_CSV
     jobs = max(1, args.jobs)
     resume = not args.no_resume and os.environ.get("BENCH_RESUME", "1").strip().lower() not in (
         "0",

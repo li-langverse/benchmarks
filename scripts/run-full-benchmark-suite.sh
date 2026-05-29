@@ -23,6 +23,7 @@ if [[ ! -d "$LIC_ROOT" ]]; then
   exit 1
 fi
 
+export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
 export LIC_ROOT LIS_ROOT LI_REPO_ROOT="$LIC_ROOT"
 export PATH="$LIC_ROOT/build/compiler/lic:$PATH"
 
@@ -45,7 +46,7 @@ else
 fi
 
 cd "$LIC_ROOT"
-mkdir -p benchmarks/results
+mkdir -p "$(dirname "$BENCHMARKS_CSV")"
 
 if [[ "$SKIP_TIER0" != "1" ]]; then
   log "tier 0 — li-tests + verify + stability"
@@ -61,12 +62,12 @@ python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JO
 }
 
 log "tier 7 — algo_registry family-template aliases"
-python3 benchmarks/harness/bench.py --tier 7 --runs "$RUNS" --skip-verify || {
+python3 "$ROOT/harness/bench.py" --tier 7 --runs "$RUNS" --skip-verify || {
   echo "WARN: tier7 registry aliases failed — continuing" >&2
 }
 
 log "tier 3 — ecosystem (compile, security, async; jobs=${BENCH_JOBS})"
-python3 benchmarks/harness/bench_ecosystem.py --runs "$RUNS" --jobs "$BENCH_JOBS"
+python3 "$ROOT/harness/bench_ecosystem.py" --runs "$RUNS" --jobs "$BENCH_JOBS"
 
 if [[ "${SKIP_TIER5_HTTP:-0}" == "1" ]]; then
   log "tier 5 — HTTP multi-oracle skipped (SKIP_TIER5_HTTP=1)"
@@ -103,12 +104,13 @@ fi
 # Merge tier-5 CSV rows into lic latest.csv for ingest
 python3 - <<'PY' "$ROOT" "$LIC_ROOT"
 import csv
+import os
 import sys
 from pathlib import Path
 
 root = Path(sys.argv[1])
 lic = Path(sys.argv[2])
-latest = lic / "benchmarks/results/latest.csv"
+latest = Path(os.environ.get("BENCHMARKS_CSV", root / "results/latest.csv"))
 tier5_vendor = root / "vendor/lis-tier5/results/latest.csv"
 tier5_extra = lic / "benchmarks/results/http_tier5.csv"
 

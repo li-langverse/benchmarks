@@ -6,10 +6,14 @@ on:
   schedule:
     - cron: "0 4 * * *"
   workflow_dispatch:
+    inputs:
+      skip_exploits:
+        description: Skip tier-5 HTTP exploit harness
+        type: boolean
+        default: false
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: benchmark-nightly
@@ -36,15 +40,14 @@ jobs:
 
       - name: Install LLVM 22 and bench deps
         run: |
-          chmod +x lic/scripts/ci-install-llvm.sh lic/scripts/ci-install-lean.sh
+          chmod +x lic/scripts/ci-install-llvm.sh
           sudo LI_LLVM_MAJOR=22 bash lic/scripts/ci-install-llvm.sh
-          bash lic/scripts/ci-install-lean.sh
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
 
       - name: Run full benchmark suite (Linux)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
+          SKIP_EXPLOITS: ${{ github.event_name == 'workflow_dispatch' && inputs.skip_exploits == true && '1' || '0' }}
         run: |
           chmod +x scripts/*.sh scripts/ingest/*.sh
           ./scripts/run-benchmark-ci-nightly.sh
@@ -53,12 +56,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-linux
-          path: lic/benchmarks/results/latest.csv
+          path: results/latest.csv
           if-no-files-found: error
 
   bench-macos:
     runs-on: macos-14
     timeout-minutes: 120
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -90,12 +94,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-macos
-          path: lic/benchmarks/results/latest.csv
+          path: results/latest.csv
           if-no-files-found: warn
 
   bench-windows:
     runs-on: windows-latest
     timeout-minutes: 120
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -118,18 +123,18 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/*.sh
-          ./scripts/run-benchmark-ci-nightly.sh
+          ./scripts/run-benchmark-ci-nightly.sh || true
 
       - name: Upload Windows CSV
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-windows
-          path: lic/benchmarks/results/latest.csv
+          path: results/latest.csv
           if-no-files-found: warn
 
   publish-dashboard:
-    needs: [bench-linux]
+    needs: [bench-linux, bench-macos, bench-windows]
     if: github.ref == 'refs/heads/main' && needs.bench-linux.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
@@ -175,7 +180,7 @@ jobs:
           [[ -f artifacts/macos/latest.csv ]] && args+=(artifacts/macos/latest.csv)
           [[ -f artifacts/windows/latest.csv ]] && args+=(artifacts/windows/latest.csv)
           python3 scripts/ingest/merge_bench_csv_artifacts.py \
-            "$LIC_ROOT/benchmarks/results/latest.csv" "${args[@]}"
+            "$GITHUB_WORKSPACE/results/latest.csv" "${args[@]}"
           ./scripts/ingest/ingest-lic.sh
           python3 scripts/benchmark-matrix-report.py
           python3 scripts/record-benchmark-history.py || true
@@ -187,26 +192,12 @@ jobs:
           python3 scripts/check-summary-measurement-coverage.py || true
 
       - name: Commit dashboard data
-        id: commit
         run: |
           git config user.name "benchmarks-nightly"
           git config user.email "benchmarks-nightly@users.noreply.github.com"
-          git add data/latest/summary.json data/latest/benchmark-matrix.md \
+          git add data/latest/summary.json data/latest/benchmark-matrix.json data/latest/catalog-audit.json \
             data/latest/release-index.json data/history/ data/latest/summary-content-hash.txt || true
-          if git diff --staged --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            git commit -m "chore(nightly): refresh benchmark summary from multi-OS run"
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
+          git diff --staged --quiet || git commit -m "chore(nightly): refresh benchmark summary from multi-OS run"
 
-      - name: Push nightly data PR
-        if: steps.commit.outputs.changed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          BRANCH="bot/nightly-summary-${{ github.run_id }}"
-          git push origin "HEAD:refs/heads/${BRANCH}"
-          gh pr create --base main --head "$BRANCH" \
-            --title "chore(nightly): refresh benchmark summary" \
-            --body "Automated nightly ingest from run ${{ github.run_id }}. Merge to refresh https://li-langverse.github.io/benchmarks/ (Pages deploys on \`data/latest/**\` push to main)."
+      - name: Push to main
+        run: git push

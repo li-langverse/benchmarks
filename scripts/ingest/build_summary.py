@@ -889,6 +889,41 @@ def source_ref(path: Path, root: Path) -> str:
         return str(path)
 
 
+
+def git_sha(root: Path) -> str:
+    import subprocess
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=root, stderr=subprocess.DEVNULL
+        ).decode().strip()
+    except Exception:
+        return ""
+
+
+def collect_provenance(lic_root: Path, lic_csv: Path) -> dict:
+    import os
+    import platform
+    import subprocess
+    llvm = ""
+    try:
+        llvm = subprocess.check_output(
+            ["clang", "--version"], stderr=subprocess.DEVNULL
+        ).decode().splitlines()[0]
+    except Exception:
+        pass
+    lis_root = Path(os.environ.get("LIS_ROOT", ROOT.parent / "lis"))
+    return {
+        "lic_sha": git_sha(lic_root),
+        "lic_ref": os.environ.get("LIC_REF", "main"),
+        "benchmarks_sha": git_sha(ROOT),
+        "lis_sha": git_sha(lis_root),
+        "llvm_version": llvm,
+        "workflow_run_id": os.environ.get("GITHUB_RUN_ID", ""),
+        "runner_os": platform.system().lower(),
+        "bench_csv": str(lic_csv),
+    }
+
+
 def load_catalog_defaults() -> dict:
     import tomllib
 
@@ -900,7 +935,13 @@ def main() -> int:
     lic_root = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parent / "lic"
     lis_root = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT.parent / "lis"
 
-    lic_csv = lic_root / "benchmarks/results/latest.csv"
+    import os
+
+    bench_csv = Path(os.environ.get("BENCHMARKS_CSV", ROOT / "results/latest.csv"))
+    lic_legacy = lic_root / "benchmarks/results/latest.csv"
+    lic_csv = bench_csv if bench_csv.is_file() else lic_legacy
+    if not lic_csv.is_file() and lic_legacy.is_file():
+        lic_csv = lic_legacy
     lis_csv = lis_root / "results/latest.csv"
     stability_csv = lic_root / "benchmarks/results/stability.csv"
     security_csv = lic_root / "benchmarks/results/security.csv"
@@ -1049,11 +1090,14 @@ def main() -> int:
         }
     )
 
+    provenance = collect_provenance(lic_root, lic_csv)
     summary = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "provenance": provenance,
         "sources": {
             "lic_root": str(lic_root.resolve()),
             "lis_root": str(lis_root.resolve()),
+            "bench_csv": source_ref(lic_csv, ROOT if str(lic_csv).startswith(str(ROOT)) else lic_root),
             "lic_csv": source_ref(lic_csv, lic_root),
             "lis_csv": source_ref(lis_csv, lis_root),
             "stability_csv": source_ref(stability_csv, lic_root),

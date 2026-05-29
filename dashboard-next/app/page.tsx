@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BenchmarkSearch } from "@/components/benchmark-search";
+import { CatalogAuditStrip } from "@/components/overview/catalog-audit-strip";
 import { IngestSourcesStrip } from "@/components/overview/ingest-sources-strip";
 import { Tier1VerifyStrip } from "@/components/overview/tier1-verify-strip";
 import { Badge } from "@/components/ui/badge";
@@ -128,6 +129,7 @@ export default function HomePage() {
       </section>
 
       <Tier1VerifyStrip stats={tier1Stats} />
+      <CatalogAuditStrip />
       <IngestSourcesStrip summary={summary} />
 
       <section className="tier-strip bento-full" aria-label="Tier status counts">
