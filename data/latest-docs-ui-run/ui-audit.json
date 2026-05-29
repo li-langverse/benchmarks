@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-05-29T20:05:00+00:00",
+  "platform": "Linux",
+  "agent": "docs_ui_tester",
+  "summary": {
+    "total": 1,
+    "failing": 1,
+    "passing": 0,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "surface": "docs",
+      "surface_class": "docs",
+      "status": "fail",
+      "mode": "playwright_axe",
+      "url": "file://lic/site (served http://127.0.0.1:8777)",
+      "artifacts": [
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png",
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png",
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/getting-started-desktop.png",
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/getting-started-mobile.png",
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png",
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png",
+        "benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json"
+      ],
+      "axe_violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 12,
+          "detail": "Elements must meet minimum color contrast ratio thresholds"
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "nodes": 5,
+          "detail": "Links must be distinguishable without relying on color"
+        }
+      ],
+      "contrast_failures": [
+        {
+          "selector": ".md-tabs__link",
+          "ratio": 1.71,
+          "wcag_aa": false,
+          "viewports": ["desktop", "mobile"]
+        }
+      ],
+      "pixel_diff": {
+        "max_ratio": null,
+        "threshold": 0.04,
+        "note": "no baselines in ux-harness/baselines/docs/ (see li-cursor-agents#37)"
+      },
+      "baseline_status": "none",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "html_files": 377,
+      "links_checked": 0,
+      "live_pages": {
+        "last_modified": "2026-05-27",
+        "nav_tabs": 5,
+        "local_nav_tabs": 12,
+        "search_index_entries": 248,
+        "local_search_index_entries": 2801,
+        "sample_404": [
+          "/ecosystem/overview/",
+          "/guide/hello-world/",
+          "/game-dev/world-studio-vision/"
+        ]
+      },
+      "findings": [
+        "Harness static_site pass but links_checked=0 (li-cursor-agents#36)",
+        "Live GitHub Pages stale vs local build — publish blocked (#403)",
+        "Raw .md hrefs: 0 in current local build; CI issue #404 may reflect strict-build warnings not shipped HTML",
+        "axe serious violations on local build — #426"
+      ]
+    }
+  ]
+}

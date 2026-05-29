@@ -1,59 +1,80 @@
 {
-  "generated_at": "2026-05-29T19:32:00+00:00",
-  "agent": "gui_ui_tester",
-  "surface": "gui",
+  "generated_at": "2026-05-29T20:05:00+00:00",
+  "agent": "docs_ui_tester",
+  "surface": "docs",
   "audit_kind": "ui",
   "issues": [
     {
-      "priority": "P1",
-      "repo": "benchmarks",
-      "url": "https://github.com/li-langverse/benchmarks/issues/147",
-      "title": "[ui-audit] GPU chip picker: complete ARIA tabs + keyboard roving",
-      "target_id": "benchmarks-dashboard-gpu-matrix"
+      "priority": "P0",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "target_id": "lic-docs"
     },
     {
       "priority": "P1",
-      "repo": "benchmarks",
-      "url": "https://github.com/li-langverse/benchmarks/issues/148",
-      "title": "[ui-audit] Register benchmarks dashboard in ux-targets + Playwright matrix",
-      "target_id": "benchmarks-dashboard-gpu-matrix"
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/426",
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/404",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
+      "target_id": "lic-docs"
     },
     {
       "priority": "P2",
       "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/38",
-      "title": "[ui-audit] Align agents-dashboard harness URL with Playwright port 3099",
-      "target_id": "agents-dashboard"
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
+      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
+      "target_id": "lic-docs"
     }
   ],
   "implementation_queue": [
     {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "benchmarks",
-      "issue": "https://github.com/li-langverse/benchmarks/issues/147",
-      "summary": "Fix GPU chip picker ARIA tab pattern + keyboard nav"
+      "priority": "P0",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/403",
+      "summary": "Fix strict docs build so GitHub Pages matches local 12-tab site"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
-      "repo": "benchmarks",
-      "issue": "https://github.com/li-langverse/benchmarks/issues/148",
-      "summary": "Add benchmarks dashboard to ux-harness + Playwright baselines"
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/426",
+      "summary": "Fix Material theme contrast and in-text link axe violations"
+    },
+    {
+      "priority": "P1",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/404",
+      "summary": "Eliminate raw .md hrefs from strict build warnings"
     }
   ],
   "deferred": [
     {
-      "item": "lic-tetris / world-studio-native SDL capture",
-      "reason": "Host missing libsdl2-dev; install before native pixel audit"
+      "item": "Live Pages Playwright + axe pass",
+      "reason": "Publish frozen 2026-05-27; run after #403"
     },
     {
-      "item": "prefers-reduced-motion on gpu-chip-card transitions",
-      "reason": "P2 polish; bundle with #147 or follow-up"
+      "item": "Pixel baseline diff for lic-docs",
+      "reason": "ux-harness/baselines/docs/ empty; track #37"
     },
     {
-      "item": "Full ux-harness --all on Linux",
-      "reason": "TUI fixture subprocess timeout (30s); scope to GUI targets only"
+      "item": "axe-cli in swarm preflight",
+      "reason": "ChromeDriver/Chrome version skew on host; Playwright path works"
     }
   ]
 }

@@ -1,0 +1,93 @@
+{
+  "viewports": [
+    {
+      "page": "home",
+      "viewport": "desktop",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png"
+    },
+    {
+      "page": "getting-started",
+      "viewport": "desktop",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/getting-started-desktop.png"
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "desktop",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png"
+    },
+    {
+      "page": "home",
+      "viewport": "mobile",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png"
+    },
+    {
+      "page": "getting-started",
+      "viewport": "mobile",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/getting-started-mobile.png"
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "mobile",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png"
+    }
+  ],
+  "axe": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "nodes": 12,
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+    },
+    {
+      "id": "link-in-text-block",
+      "impact": "serious",
+      "nodes": 5,
+      "help": "Links must be distinguishable without relying on color"
+    }
+  ],
+  "contrast": [
+    {
+      "page": "home",
+      "viewport": "desktop",
+      "selector": "nav link",
+      "ratio": 1.71,
+      "wcag_aa": false
+    },
+    {
+      "page": "getting-started",
+      "viewport": "desktop",
+      "selector": "nav link",
+      "ratio": 1.71,
+      "wcag_aa": false
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "desktop",
+      "selector": "nav link",
+      "ratio": 1.71,
+      "wcag_aa": false
+    },
+    {
+      "page": "home",
+      "viewport": "mobile",
+      "selector": "nav link",
+      "ratio": 1.71,
+      "wcag_aa": false
+    },
+    {
+      "page": "getting-started",
+      "viewport": "mobile",
+      "selector": "nav link",
+      "ratio": 1.71,
+      "wcag_aa": false
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "mobile",
+      "selector": "nav link",
+      "ratio": 1.71,
+      "wcag_aa": false
+    }
+  ],
+  "generated_at": "2026-05-29T20:02:41.869Z"
+}
