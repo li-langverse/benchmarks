@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-29T22:09:24Z",
+  "generated_at": "2026-05-29T22:11:24Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 77.9,
+  "overall_score": 78.3,
   "grade": "C",
   "unattended_safe": true,
   "dimensions": {
@@ -35,36 +35,38 @@
         "snapshot_present": true,
         "runner_count": 8,
         "runners_stopped": 6,
-        "plan_todos_pending": 25,
+        "plan_todos_pending": 23,
         "plan_todos_total": 90,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 75.0,
+      "score": 90.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 13,
+        "terminal_runs": 14,
         "error_count": 0,
         "incomplete_count": 2,
-        "running_count": 107,
+        "running_count": 106,
         "error_rate": 0.0,
-        "incomplete_rate": 0.1538,
+        "incomplete_rate": 0.1429,
         "top_error_agents": []
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "gap_pressure": {
-      "score": 92.0,
+      "score": 70.0,
       "weight": 0.15,
       "signals": {
         "gap_report_present": true,
-        "open_gaps": 27,
+        "open_gaps": 57,
         "by_kind": {
-          "missing_package": 5,
-          "plan_debt": 22
+          "missing_package": 3,
+          "plan_debt": 18,
+          "competitor_feature": 30,
+          "ui_ux": 6
         }
       },
       "finding_count": 1
@@ -90,25 +92,23 @@
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json"
     },
     {
-      "id": "swarm-incomplete-rate",
-      "severity": "medium",
-      "message": "Incomplete rate 15%",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
+      "id": "swarm-gap-backlog",
+      "severity": "high",
+      "message": "57 open gap(s) in registry apply pipeline",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "107 runs still marked running (possible stuck SDK)",
+      "message": "106 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
-      "id": "swarm-gap-backlog",
-      "severity": "low",
-      "message": "27 open gap(s) in registry apply pipeline",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     }
   ],
   "recommended_agents": [
+    {
+      "agent": "gap_explorer",
+      "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
+    },
     {
       "agent": "workspace_sweeper",
       "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
