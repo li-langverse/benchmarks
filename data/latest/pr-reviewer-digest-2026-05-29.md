@@ -1,16 +1,16 @@
 # PR reviewer digest — 2026-05-29
 
-**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T12:20Z
+**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T12:32Z
 
 ## Executive summary
 
 - Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — **CI green**, **MERGEABLE**.
 - **Standards: aligned** — org Cursor agent-kit chore; no PH / `plan-approved` required.
-- Version pins on branch: **`1.3.5+6018e18bf2ed91f4`** (matches `org-agent-kit-audit` canonical).
-- **`merge-approved`** label present; did not re-add.
-- **Gate blocker:** `reviewDecision: REVIEW_REQUIRED` — agent token is PR author (`cap-jmk-real`); cannot self-approve.
-- Rank **#1** in `pr-merge-queue-plan.json` (mirror tier before benchmarks/lic).
-- Not in `redundant[]`; supersedes no open feature work.
+- Branch pins **`1.3.5+6018e18bf2ed91f4`** (matches `org-agent-kit-audit` canonical); PR summary still cites 1.3.4 (cosmetic).
+- **`merge-approved`** label present — not re-added.
+- **Gate blocker:** `reviewDecision: REVIEW_REQUIRED` — PR author `cap-jmk-real`; agent cannot self-approve.
+- Rank **#1** in `pr-merge-queue-plan.json` / `pr-program-run.json` recommended order (mirror tier before benchmarks/lic).
+- Not in `redundant[]`; no feature supersession.
 - **No merge** executed; governance repos untouched.
 
 ## Deliverable / findings
@@ -30,15 +30,11 @@
 
 **`pr-merge-gate.py --repo li-httpd --pr 13 --json`:** `ready: false` — sole blocker `review_approved`.
 
-**Preflight:** `pr-merge-queue-plan.json` (2026-05-29T11:06Z); `run-pr-program.py` skipped in briefing (`--skip-slow`). Re-run of queue+program at 12:16Z did not complete within agent window (long-running).
+**Preflight:** `pr-merge-queue-plan.json` (2026-05-29T12:31Z); `pr-program-run.json` (2026-05-29T12:32Z). `gate_ready_with_approval: true` once human approves.
 
-**PR comments:** Standards review already posted (multiple passes); latest: https://github.com/li-langverse/li-httpd/pull/13#issuecomment-4574120652 area — no duplicate comment this pass.
+**PR comment:** Re-pass posted on PR (2026-05-29T12:32Z).
 
-### Approval attempt
-
-```
-GraphQL: Review Can not approve your own pull request
-```
+**north_star_fit:** domain=platform/agent-kit · PH=N/A (enables org agent discipline for provable→easy→fast workflow)
 
 ## Recommended issues/PRs
 
@@ -55,4 +51,4 @@ GraphQL: Review Can not approve your own pull request
 - Auto-merge until **non-author** `APPROVED` on hygiene wave (9 PRs labeled `merge-approved`, 0 `gate_ready`).
 - **li-demo#15** — CI red; not aligned for merge.
 - **roadmap** repo merges — human only per policy.
-- Optional nit: PR body summary still cites `1.3.4`; branch pins `1.3.5+6018e18bf2ed91f4`.
+- Cosmetic: PR body summary still cites `1.3.4`; branch pins `1.3.5+6018e18bf2ed91f4`.
