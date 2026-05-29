@@ -1,51 +1,63 @@
 {
-  "generated_at": "2026-05-29T15:37:00Z",
-  "agent_id": "tui_ui_tester",
+  "generated_at": "2026-05-29T15:42:00Z",
+  "agent_id": "docs_ux_tester",
   "north_star_fit": {
     "pillar": "easy",
-    "domain": "agent tooling / terminal UX",
-    "ph_ids": ["2i-adjacent-tooling"]
+    "domain": "documentation onboarding / IA",
+    "ph_ids": ["handbook", "ecosystem-governance"]
   },
   "issues": [
     {
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "priority": "P1",
-      "target_id": "tui-app-fixture",
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
+      "priority": "P0",
+      "target_id": "lic-docs",
       "status": "open"
     }
   ],
   "implementation_queue": [
     {
-      "priority": "P1",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "priority": "P0",
+      "repo": "lic",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "issue_url": "https://github.com/li-langverse/lic/issues/403",
       "acceptance": [
-        "ux-harness run_audit.py --target tui-app-fixture --mode ui exits 0 without stdin",
-        "tui-demo.sh supports LI_TUI_FIXTURE_NONINTERACTIVE=1 or equivalent"
+        "./scripts/build-docs.sh --strict exits 0",
+        "Docs workflow green on main; Pages deploy succeeds",
+        "https://li-langverse.github.io/li-language/ecosystem/overview/ returns 200",
+        "Live nav tab count matches mkdocs.yml (12 tabs)"
       ],
-      "labels": ["ui-audit", "surface:tui", "ready-for-implement"]
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
     },
     {
       "priority": "P1",
-      "repo": "li-cursor-agents",
-      "title": "feat(ux-harness): TUI frame capture (stdout dump or VHS) + baseline diff",
+      "repo": "lic",
+      "title": "docs(IA): move language reference pages out of Game development nav",
       "acceptance": [
-        "tui-app-fixture and tui-gen-fixture populate artifacts[] with capture paths",
-        "pixel_diff or text snapshot baseline checked in CI"
+        "mkdocs.yml lines 113-129 moved to Language handbook section",
+        "Game development tab contains only game-dev/studio content"
       ],
-      "labels": ["ui-audit", "surface:tui"]
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
     },
     {
       "priority": "P1",
-      "repo": "benchmarks",
-      "title": "chore(preflight): include tui fixtures in ui-ux-audit / agent briefing",
+      "repo": "lic",
+      "title": "docs(ecosystem): replace GitHub tree nav link with in-site roadmap mirror",
       "acceptance": [
-        "data/latest/ui-audit.json includes surface:tui targets",
-        "briefing recommends tui_ui_tester when tui targets fail"
+        "Ecosystem nav no longer links to github.com/li-langverse/roadmap/tree/...",
+        "Roadmap ecosystem pages reachable within MkDocs search index"
       ],
-      "labels": ["ui-audit"]
+      "labels": ["ux-audit", "surface:docs"]
+    },
+    {
+      "priority": "P2",
+      "repo": "li-cursor-agents",
+      "title": "feat(ux-harness): live Pages HEAD-check + Playwright mobile TOC journey for lic-docs",
+      "acceptance": [
+        "run_audit.py optionally HEAD-checks site_url from mkdocs.yml",
+        "mobile_nav journey uses Playwright viewport 375px"
+      ],
+      "labels": ["ux-audit"]
     }
   ]
 }
