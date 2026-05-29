@@ -1,66 +1,91 @@
 {
-  "generated_at": "2026-05-29T21:23:00+00:00",
-  "agent": "tui_ui_tester",
-  "surface": "tui",
-  "audit_kind": "ui",
+  "generated_at": "2026-05-29T21:23:34+00:00",
+  "agent": "docs_ux_tester",
+  "surface": "docs",
+  "audit_kind": "ux",
   "source": "proactive",
   "north_star_fit": {
     "pillar": "easy",
-    "domain": "terminal diagnostics / agent TUI surfaces",
-    "ph_ids": ["PH-2i-adjacent-tooling", "Vision-LLM"]
+    "domain": "lic-docs reading path (prove → write → run fast)",
+    "ph_ids": ["PH-handbook", "PH-ecosystem-governance"]
   },
   "issues": [
     {
+      "priority": "P0",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/422",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/404",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
+      "target_id": "lic-docs"
+    },
+    {
       "priority": "P1",
       "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "target_id": "tui-app-fixture"
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
+      "target_id": "lic-docs"
     }
   ],
   "implementation_queue": [
     {
+      "priority": "P0",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/403",
+      "summary": "Fix strict build-docs.sh link warnings; restore Pages deploy so 12-tab nav and 2801-chunk search index reach live site"
+    },
+    {
       "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "tui-app-fixture: non-blocking harness (stdin pipe or LI_TUI_HARNESS=1); set LANG=C.UTF-8"
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/422",
+      "summary": "Move language/types-and-data, numerics, SIMD, decorators, etc. from Game development tab to Language handbook"
+    },
+    {
+      "priority": "P1",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/404",
+      "summary": "Replace raw .md hrefs and fix missing anchors blocking strict publish"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
-      "issue": null,
-      "summary": "feat(ux-harness): catch TimeoutExpired in TUI adapter + write fail row + stdout artifact"
-    },
-    {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": null,
-      "summary": "feat(ux-harness): TUI frame capture baseline (stdout dump or VHS .tape) for tui-gen-fixture"
-    },
-    {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "benchmarks",
-      "issue": null,
-      "summary": "chore(preflight): merge surface:tui targets from latest-tui-ui-run into briefing ui_audit"
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "summary": "Add live Pages HEAD-check journey and fix links_checked=0 in static_site adapter"
     }
   ],
   "deferred": [
     {
-      "item": "Production lic / lis TUI targets",
-      "reason": "No org repos registered as surface:tui beyond fixtures"
+      "item": "Visual regression / axe on live Pages",
+      "reason": "Delegate to docs_ui_tester after #403 publish restored"
     },
     {
-      "item": "ANSI color contrast scoring",
-      "reason": "Fixtures are monochrome; apply WCAG 4.5:1 when Li terminal theme lands"
+      "item": "Ecosystem nav GitHub tree → in-site roadmap mirror",
+      "reason": "Requires mkdocs-monorepo or symlink strategy; no issue filed yet"
     },
     {
-      "item": "VHS / PTY visual regression CI",
-      "reason": "Blocked on #30 non-interactive harness + maintainer approval for deps"
+      "item": "navigation.instant.prefetch trial",
+      "reason": "P2 enhancement after publish green"
+    },
+    {
+      "item": "MkDocs Material → Zensical migration",
+      "reason": "Watch maintenance-mode successor; no action until docs team decides"
     }
   ],
-  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-tui-ui.md"
+  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-docs-ux.md"
 }
