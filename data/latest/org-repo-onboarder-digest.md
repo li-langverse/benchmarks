@@ -1,17 +1,16 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · briefing `2026-05-29T19:05Z` · discovery `2026-05-29T19:36Z` · CI audit `2026-05-29T19:28Z` · agent-kit audit `2026-05-29T19:35Z`
+**Source:** proactive sweep · discovery `2026-05-29T20:14Z` · CI audit `2026-05-29T19:59Z` · agent-kit audit `2026-05-29T20:13Z` · briefing `2026-05-29T19:05Z`
 
 ## Executive summary
 
-- **Discovery:** `github=34` `known=34` **`new=0`** **`stale=0`** — org list matches briefing/catalog known set (`gh repo list` + refreshed `org-new-repos-discovery.json`).
-- **No net-new onboarding handoffs** — do not add catalog rows without CI + agent-kit path.
+- **Discovery (refreshed):** `github=34` `known=34` **`new=0`** **`stale=0`** — GitHub org list matches catalog/briefing known set (`gh repo list` → `org-new-repos-discovery.json`).
+- **No net-new onboarding** — empty `new_repo_entries`; do not add catalog rows without CI + agent-kit path.
 - **No unclassified *new* repos** — `package_architect` activates only when `new_repos` is non-empty.
-- **`proof-library`** is now in the known set (prior cycle onboarded discovery); still **`missing_kit`** — route to `agent_kit_maintainer`, not catalog registration.
-- **Highest platform risk (existing repos):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **29** repos missing/drifted agent-kit (canonical `1.3.5+6018e18bf2ed91f4`); **`li-gui`** = `missing_local_clone`.
-- **CI posture:** **32** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`); `li-cursor-agents` excluded from org CI sweep per policy.
-- **Agent-kit:** **4** OK, **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`).
-- **Restored preflight:** `scripts/discover-new-org-repos.py` + `agent-briefing.py` `org_new_repos_discovery` integration (was missing from this branch).
+- **Highest platform risk (existing):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **29** repos missing/drifted agent-kit (canonical `1.3.5+6018e18bf2ed91f4`); **`li-gui`** = `missing_local_clone`.
+- **CI posture:** **31** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`); `research-findings` CI-exempt; `li-cursor-agents` excluded from org CI sweep per policy.
+- **Agent-kit:** **4** OK (`benchmarks`, `li-cursor-agents`, `lip`, `lit`), **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`).
+- **Control plane:** heap already routes `agent_kit_maintainer` (9-repo summary) and per-repo kit tasks; **no** `org_repo_onboarding` rows — `new_repos` is empty.
 - **North star:** platform hygiene supports **provable** (`lic`/`lit`/`proof-library`), **secure** (`li-httpd`/`li-net`), **easy** (docs) — defer perf until proof gates pass.
 
 ## Deliverable / findings
@@ -57,7 +56,7 @@ Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edi
 | Repo / scope | Agent | Action | Notes |
 |--------------|-------|--------|-------|
 | 29 repos (see handoff queue) | `agent_kit_maintainer` | `sync_agent_kit` | 26 `missing_kit`, 3 `drift` |
-| `proof-library` | `agent_kit_maintainer` | `sync_agent_kit` | newly known; **unclassified** if it re-enters `new_repos` |
+| `proof-library` | `agent_kit_maintainer` | `sync_agent_kit` | in known set; kit still missing |
 | `lidb` | `ci_maintainer` | `wp_h0_main_default` | Set default branch `main` before enforcing `ci.yml` on default |
 | `li-gui` | `agent_kit_maintainer` | `sync_agent_kit` | `missing_local_clone` — clone workspace before kit PR |
 | `research-findings` | — | — | CI-exempt per org policy; optional docs/kit only |
@@ -130,3 +129,4 @@ Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edi
 - **New repo catalog registration:** blocked until a repo appears in `new_repos` with CI + kit path complete.
 - **Merge program / pr_branch_hygiene:** out of onboarder scope this run.
 - **`proof-library` catalog row:** defer until agent-kit PR lands (onboarder does not register catalog directly).
+- **`docs_maintainer`:** 8 repos without live Pages — separate heap task, not onboarder registration.
