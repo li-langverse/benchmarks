@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T15:53Z",
+  "generated_at": "2026-05-29T19:21Z",
   "org": "li-langverse",
   "github_source": "gh_repo_list",
   "github_repos": [
@@ -22,6 +22,7 @@
     "net.httpd",
     "physics.custom",
     "physics.runtime",
+    "proof-library",
     "render",
     "research-findings",
     "roadmap",
@@ -72,13 +73,37 @@
     "ui",
     "world"
   ],
-  "new_repos": [],
+  "new_repos": [
+    "proof-library"
+  ],
   "stale_known_repos": [],
-  "new_repo_entries": [],
+  "new_repo_entries": [
+    {
+      "repo": "proof-library",
+      "classification": "core_tooling",
+      "onboarding_steps": [
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "missing_kit — install canonical cursor rules before catalog registration"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "GitHub Pages site not live (404) — enable Pages after first green deploy"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "Add proof-library to ecosystem known set after agent-kit PR merges (CI already green on main)"
+        }
+      ]
+    }
+  ],
   "summary": {
-    "github_count": 33,
+    "github_count": 34,
     "known_count": 33,
-    "new_count": 0,
+    "new_count": 1,
     "stale_count": 0
   }
 }
