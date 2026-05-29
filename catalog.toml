@@ -6,6 +6,10 @@
 # catalog_lifecycle — optional; "planned" skips plan-completion-audit path check.
 # path = "unknown" — algo_registry stub until lic harness exists (audit skip).
 
+[defaults]
+validity_required = true
+platforms = ["linux", "macos", "windows"]
+
 [[benchmark]]
 id = "tier0_stability"
 category = "correctness"
@@ -17,6 +21,7 @@ path = "li-tests/benchmarks/tier0_correctness"
 metric = "stability"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cfd_fvm_face_flux"
@@ -29,9 +34,11 @@ path = "benchmarks/tier2_physics/cfd_fvm_face_flux"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cfd_pimple"
@@ -44,9 +51,11 @@ path = "benchmarks/tier2_physics/cfd_pimple"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cfd_piso"
@@ -59,9 +68,11 @@ path = "benchmarks/tier2_physics/cfd_piso"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cfd_simple"
@@ -74,9 +85,11 @@ path = "benchmarks/tier2_physics/cfd_simple"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cfd_turbulence_k_epsilon"
@@ -89,9 +102,11 @@ path = "benchmarks/tier2_physics/cfd_turbulence_k_epsilon"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cfd_turbulence_k_omega_sst"
@@ -104,9 +119,11 @@ path = "benchmarks/tier2_physics/cfd_turbulence_k_omega_sst"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fea_gauss_quadrature"
@@ -119,9 +136,11 @@ path = "benchmarks/tier2_physics/fea_gauss_quadrature"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fea_linear_elasticity"
@@ -134,9 +153,11 @@ path = "benchmarks/tier2_physics/fea_linear_elasticity"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fea_mesh_tri_tet"
@@ -149,9 +170,11 @@ path = "benchmarks/tier2_physics/fea_mesh_tri_tet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fea_solver_direct"
@@ -164,9 +187,11 @@ path = "benchmarks/tier2_physics/fea_solver_direct"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fea_solver_iterative"
@@ -179,9 +204,11 @@ path = "benchmarks/tier2_physics/fea_solver_iterative"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fea_stiffness_assembly"
@@ -194,22 +221,11 @@ path = "benchmarks/tier2_physics/fea_stiffness_assembly"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
-
-[[benchmark]]
-id = "horner_pure_li"
-category = "micro"
-pillar = "compiler"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_micro/horner_pure_li"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-variant = "pure_li"
-ph_ids = ["PH-5b", "PH-7e"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fft_1d_fixed"
@@ -223,8 +239,25 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 compare_oracle = "cpp"
 variant = "fftw_reference"
+problem_size = "1024"
+size_label = "N=1024"
 catalog_lifecycle = "planned"
 ph_ids = ["PH-5b", "PH-7e"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "horner_pure_li"
+category = "micro"
+pillar = "compiler"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_micro/horner_pure_li"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+variant = "pure_li"
+ph_ids = ["PH-5b", "PH-7e"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "matmul_blocked"
@@ -239,6 +272,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "512"
 size_label = "N=512 block=64"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "matmul_blocked_N1024"
@@ -254,6 +288,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "1024"
 size_label = "N=1024 block=64"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "matmul_naive"
@@ -268,6 +303,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "256"
 size_label = "N=256"
 ph_ids = ["PH-5b", "PH-7e"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "matmul_naive_N1024"
@@ -283,6 +319,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "1024"
 size_label = "N=1024"
 ph_ids = ["PH-5b", "PH-7e"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ml_conv2d_forward"
@@ -297,6 +334,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ml_mlp_forward"
@@ -311,6 +349,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ml_mlp_train_step"
@@ -325,6 +364,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "nbody_barnes_hut"
@@ -337,9 +377,11 @@ path = "benchmarks/tier2_physics/nbody_barnes_hut"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_cg"
@@ -352,9 +394,11 @@ path = "benchmarks/tier1_micro/num_cg"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "64"
+size_label = "N=64"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_cholesky"
@@ -367,9 +411,11 @@ path = "benchmarks/tier1_micro/num_cholesky"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "64"
+size_label = "N=64"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_eig_symmetric"
@@ -382,9 +428,11 @@ path = "benchmarks/tier1_micro/num_eig_symmetric"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "32"
+size_label = "N=32"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_fft_r2c"
@@ -397,9 +445,11 @@ path = "benchmarks/tier1_micro/num_fft_r2c"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "512"
+size_label = "N=512"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_gmres"
@@ -412,9 +462,11 @@ path = "benchmarks/tier1_micro/num_gmres"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "48"
+size_label = "N=48"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_integ_euler"
@@ -427,9 +479,11 @@ path = "benchmarks/tier1_micro/num_integ_euler"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_integ_rk4"
@@ -442,9 +496,11 @@ path = "benchmarks/tier1_micro/num_integ_rk4"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_integ_semi_implicit"
@@ -457,9 +513,11 @@ path = "benchmarks/tier1_micro/num_integ_semi_implicit"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_integ_symplectic"
@@ -472,9 +530,11 @@ path = "benchmarks/tier1_micro/num_integ_symplectic"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_integ_verlet"
@@ -487,9 +547,11 @@ path = "benchmarks/tier1_micro/num_integ_verlet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_opt_bfgs"
@@ -502,9 +564,11 @@ path = "benchmarks/tier1_micro/num_opt_bfgs"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_opt_line_search"
@@ -517,9 +581,11 @@ path = "benchmarks/tier1_micro/num_opt_line_search"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_quadrature_gauss"
@@ -532,9 +598,11 @@ path = "benchmarks/tier1_micro/num_quadrature_gauss"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_rng_pcg"
@@ -547,9 +615,11 @@ path = "benchmarks/tier1_micro/num_rng_pcg"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_root_newton"
@@ -562,9 +632,11 @@ path = "benchmarks/tier1_micro/num_root_newton"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "num_sparse_mv"
@@ -577,9 +649,11 @@ path = "benchmarks/tier1_micro/num_sparse_mv"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "256"
+size_label = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "reduce_sum"
@@ -594,6 +668,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "100_000_000"
 size_label = "N=100_000_000"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "simd_dot"
@@ -609,66 +684,7 @@ variant = "shared_c_kernel"
 problem_size = "10_000_000"
 size_label = "N=10_000_000"
 ph_ids = ["PH-5b", "PH-7e"]
-
-# --- stdlib ADT tier-1 (WP0-C; workload_class stub until WP1 Li drivers) ---
-
-[[benchmark]]
-id = "stdlib_list_push_pop"
-category = "micro"
-pillar = "stdlib"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_stdlib/stdlib_list_push_pop"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-workload_class = "stub"
-size_label = "harness pending"
-ph_ids = ["AL-15"]
-
-[[benchmark]]
-id = "stdlib_dict_insert_lookup"
-category = "micro"
-pillar = "stdlib"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-workload_class = "stub"
-problem_size = "500_000_ops"
-size_label = "500k insert+lookup"
-ph_ids = ["AL-15"]
-
-[[benchmark]]
-id = "stdlib_set_ops"
-category = "micro"
-pillar = "stdlib"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_stdlib/stdlib_set_ops"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-workload_class = "stub"
-size_label = "harness pending"
-ph_ids = ["AL-15"]
-
-[[benchmark]]
-id = "stdlib_sort_int"
-category = "micro"
-pillar = "stdlib"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_stdlib/stdlib_sort_int"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-workload_class = "stub"
-problem_size = "1_000_000"
-size_label = "N=1_000_000 int sort"
-ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "stdlib_binary_search"
@@ -680,24 +696,10 @@ repo = "lic"
 path = "benchmarks/tier1_stdlib/stdlib_binary_search"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 problem_size = "200_000_queries"
 size_label = "1M sorted / 200k queries"
 ph_ids = ["AL-15"]
-
-[[benchmark]]
-id = "stdlib_heap_push_pop"
-category = "micro"
-pillar = "stdlib"
-package = "lic"
-tier = 1
-repo = "lic"
-path = "benchmarks/tier1_stdlib/stdlib_heap_push_pop"
-metric = "wall_time"
-threshold_ratio_cpp = 1.2
-workload_class = "stub"
-size_label = "harness pending"
-ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "stdlib_deque_rotate"
@@ -709,9 +711,24 @@ repo = "lic"
 path = "benchmarks/tier1_stdlib/stdlib_deque_rotate"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
-size_label = "harness pending"
+size_label = "workload TBD"
 ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "stdlib_dict_insert_lookup"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "500_000_ops"
+size_label = "500k insert+lookup"
+ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "stdlib_hash_flood"
@@ -723,9 +740,66 @@ repo = "lic"
 path = "benchmarks/tier1_stdlib/stdlib_hash_flood"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
-size_label = "harness pending"
+size_label = "workload TBD"
 ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "stdlib_heap_push_pop"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_heap_push_pop"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+size_label = "workload TBD"
+ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "stdlib_list_push_pop"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_list_push_pop"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+size_label = "workload TBD"
+ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "stdlib_set_ops"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_set_ops"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+size_label = "workload TBD"
+ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "stdlib_sort_int"
+category = "micro"
+pillar = "stdlib"
+package = "lic"
+tier = 1
+repo = "lic"
+path = "benchmarks/tier1_stdlib/stdlib_sort_int"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+problem_size = "1_000_000"
+size_label = "N=1_000_000 int sort"
+ph_ids = ["AL-15"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_colormap"
@@ -740,6 +814,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_decimate"
@@ -754,6 +829,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_inspector_panels"
@@ -768,6 +844,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_linked_views"
@@ -782,6 +859,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_marching_cubes"
@@ -796,6 +874,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_pipeline_graph"
@@ -810,6 +889,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "viz_resample"
@@ -824,6 +904,7 @@ threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "advection_diffusion_2d"
@@ -839,6 +920,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "auto_bicycle_model"
@@ -851,9 +933,11 @@ path = "benchmarks/tier2_physics/auto_bicycle_model"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "auto_dyn_rk4"
@@ -866,9 +950,11 @@ path = "benchmarks/tier2_physics/auto_dyn_rk4"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "auto_sensor_raycast"
@@ -881,9 +967,11 @@ path = "benchmarks/tier2_physics/auto_sensor_raycast"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "bio_proteinmpnn"
@@ -896,9 +984,11 @@ path = "benchmarks/tier1_micro/num_sparse_mv"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "256"
+size_label = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "bio_rfdiffusion"
@@ -911,9 +1001,11 @@ path = "benchmarks/tier1_micro/num_cg"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "64"
+size_label = "N=64"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "bio_rosetta_energy"
@@ -926,9 +1018,11 @@ path = "benchmarks/tier1_micro/num_gmres"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "48"
+size_label = "N=48"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "bio_rotamer_packing"
@@ -941,9 +1035,11 @@ path = "benchmarks/tier1_micro/num_cholesky"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "64"
+size_label = "N=64"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "cloth_swing"
@@ -959,6 +1055,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "combustion_passive"
@@ -974,6 +1071,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "double_pendulum"
@@ -988,6 +1086,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "drug_docking_diffusion"
@@ -1000,9 +1099,11 @@ path = "benchmarks/tier1_micro/num_eig_symmetric"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "32"
+size_label = "N=32"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "drug_docking_score_vina"
@@ -1015,9 +1116,11 @@ path = "benchmarks/tier1_micro/num_fft_r2c"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "512"
+size_label = "N=512"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "drug_fep_alchemical"
@@ -1030,9 +1133,11 @@ path = "benchmarks/tier1_micro/num_rng_pcg"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "drug_litl_stages"
@@ -1045,9 +1150,11 @@ path = "benchmarks/tier1_micro/num_integ_euler"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "drug_ml_retrain_loop"
@@ -1060,9 +1167,11 @@ path = "benchmarks/tier1_micro/num_integ_rk4"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "euler_fluid_2d"
@@ -1078,6 +1187,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "fdtd_waveguide_2d"
@@ -1093,6 +1203,7 @@ problem_size = "tier2_default"
 size_label = "tier2 default grid"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "harmonic_oscillator_chain"
@@ -1107,6 +1218,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "heat_equation_2d"
@@ -1121,6 +1233,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_barostat_parrinello_rahman"
@@ -1133,9 +1246,11 @@ path = "benchmarks/tier2_physics/md_barostat_parrinello_rahman"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_constraints_rattle"
@@ -1148,9 +1263,11 @@ path = "benchmarks/tier2_physics/md_constraints_rattle"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_constraints_shake"
@@ -1163,9 +1280,11 @@ path = "benchmarks/tier2_physics/md_constraints_shake"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_energy_drift"
@@ -1178,9 +1297,11 @@ path = "benchmarks/tier2_physics/md_energy_drift"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_init_fcc_mb"
@@ -1193,9 +1314,11 @@ path = "benchmarks/tier2_physics/md_init_fcc_mb"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_integrator_leapfrog"
@@ -1208,9 +1331,11 @@ path = "benchmarks/tier2_physics/md_integrator_leapfrog"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_integrator_verlet"
@@ -1223,9 +1348,11 @@ path = "benchmarks/tier2_physics/md_integrator_verlet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_lennard_jones"
@@ -1240,6 +1367,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_longrange_ewald"
@@ -1252,9 +1380,11 @@ path = "benchmarks/tier2_physics/md_longrange_ewald"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_longrange_pme"
@@ -1267,9 +1397,11 @@ path = "benchmarks/tier2_physics/md_longrange_pme"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_neighbor_cell_list"
@@ -1282,9 +1414,11 @@ path = "benchmarks/tier2_physics/md_neighbor_cell_list"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_neighbor_verlet_skin"
@@ -1297,9 +1431,11 @@ path = "benchmarks/tier2_physics/md_neighbor_verlet_skin"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_oracle_external"
@@ -1312,9 +1448,11 @@ path = "benchmarks/tier2_physics/md_oracle_external"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_thermostat_berendsen"
@@ -1327,9 +1465,11 @@ path = "benchmarks/tier2_physics/md_thermostat_berendsen"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "md_thermostat_nose_hoover"
@@ -1342,9 +1482,11 @@ path = "benchmarks/tier2_physics/md_thermostat_nose_hoover"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "nbody_gravity"
@@ -1359,6 +1501,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "orbit_two_body"
@@ -1374,6 +1517,7 @@ problem_size = "tier2_default"
 size_label = "tier2 default grid"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "pde_cfl_timestep"
@@ -1386,9 +1530,11 @@ path = "benchmarks/tier1_micro/num_integ_verlet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "pde_heat_implicit_jacobi"
@@ -1401,9 +1547,11 @@ path = "benchmarks/tier1_micro/num_integ_symplectic"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_ase_calculator"
@@ -1416,9 +1564,11 @@ path = "benchmarks/tier2_physics/qm_ase_calculator"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_ccsd"
@@ -1431,9 +1581,11 @@ path = "benchmarks/tier2_physics/qm_ccsd"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_grid_becke"
@@ -1446,9 +1598,11 @@ path = "benchmarks/tier2_physics/qm_dft_grid_becke"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_grid_lebedev"
@@ -1461,9 +1615,11 @@ path = "benchmarks/tier2_physics/qm_dft_grid_lebedev"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_hybrid_exchange"
@@ -1476,9 +1632,11 @@ path = "benchmarks/tier2_physics/qm_dft_hybrid_exchange"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_scf_energy"
@@ -1491,9 +1649,11 @@ path = "benchmarks/tier2_physics/qm_dft_scf_energy"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_xc_gga"
@@ -1506,9 +1666,11 @@ path = "benchmarks/tier2_physics/qm_dft_xc_gga"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_xc_lda"
@@ -1521,9 +1683,11 @@ path = "benchmarks/tier2_physics/qm_dft_xc_lda"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dft_xc_mgga"
@@ -1536,9 +1700,11 @@ path = "benchmarks/tier2_physics/qm_dft_xc_mgga"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_dispersion_d3"
@@ -1551,9 +1717,11 @@ path = "benchmarks/tier2_physics/qm_dispersion_d3"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_ecp"
@@ -1566,9 +1734,11 @@ path = "benchmarks/tier2_physics/qm_ecp"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_eri_density_fitting"
@@ -1581,9 +1751,11 @@ path = "benchmarks/tier2_physics/qm_eri_density_fitting"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_eri_os"
@@ -1596,9 +1768,11 @@ path = "benchmarks/tier2_physics/qm_eri_os"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_eri_screening"
@@ -1611,9 +1785,11 @@ path = "benchmarks/tier2_physics/qm_eri_screening"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_geom_opt_bfgs"
@@ -1626,9 +1802,11 @@ path = "benchmarks/tier2_physics/qm_geom_opt_bfgs"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_geom_opt_internal"
@@ -1641,9 +1819,11 @@ path = "benchmarks/tier2_physics/qm_geom_opt_internal"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_grad_analytical"
@@ -1656,9 +1836,11 @@ path = "benchmarks/tier2_physics/qm_grad_analytical"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_gto_eval"
@@ -1671,9 +1853,11 @@ path = "benchmarks/tier2_physics/qm_gto_eval"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_hf_canonical_ortho"
@@ -1686,9 +1870,11 @@ path = "benchmarks/tier2_physics/qm_hf_canonical_ortho"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_hf_diis"
@@ -1701,9 +1887,11 @@ path = "benchmarks/tier2_physics/qm_hf_diis"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_hf_fock_build"
@@ -1716,9 +1904,11 @@ path = "benchmarks/tier2_physics/qm_hf_fock_build"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_job_queue_io"
@@ -1731,9 +1921,11 @@ path = "benchmarks/tier2_physics/qm_job_queue_io"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_kinetic_integrals"
@@ -1746,9 +1938,11 @@ path = "benchmarks/tier2_physics/qm_kinetic_integrals"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_mp2"
@@ -1761,9 +1955,11 @@ path = "benchmarks/tier2_physics/qm_mp2"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_nuclear_attraction"
@@ -1776,9 +1972,11 @@ path = "benchmarks/tier2_physics/qm_nuclear_attraction"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_overlap_integrals"
@@ -1791,9 +1989,11 @@ path = "benchmarks/tier2_physics/qm_overlap_integrals"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_property_dipole"
@@ -1806,9 +2006,11 @@ path = "benchmarks/tier2_physics/qm_property_dipole"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_property_freq"
@@ -1821,9 +2023,11 @@ path = "benchmarks/tier2_physics/qm_property_freq"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_scf_solver"
@@ -1836,9 +2040,11 @@ path = "benchmarks/tier2_physics/qm_scf_solver"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_tddft_casida"
@@ -1851,9 +2057,11 @@ path = "benchmarks/tier2_physics/qm_tddft_casida"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_tddft_rpa"
@@ -1866,9 +2074,11 @@ path = "benchmarks/tier2_physics/qm_tddft_rpa"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "qm_xtb_gfn"
@@ -1881,9 +2091,11 @@ path = "benchmarks/tier2_physics/qm_xtb_gfn"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ragdoll_chain"
@@ -1899,6 +2111,7 @@ problem_size = "tier2_default"
 size_label = "tier2 default grid"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rigid_body_stack"
@@ -1914,6 +2127,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rigid_broadphase_bvh"
@@ -1926,9 +2140,11 @@ path = "benchmarks/tier2_physics/rigid_broadphase_bvh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rigid_broadphase_sap"
@@ -1941,9 +2157,11 @@ path = "benchmarks/tier2_physics/rigid_broadphase_sap"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rigid_constraints"
@@ -1956,9 +2174,11 @@ path = "benchmarks/tier2_physics/rigid_constraints"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rigid_contact_solver"
@@ -1971,9 +2191,11 @@ path = "benchmarks/tier2_physics/rigid_contact_solver"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rigid_semi_implicit"
@@ -1986,9 +2208,11 @@ path = "benchmarks/tier2_physics/rigid_semi_implicit"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "robo_ik_jacobian"
@@ -2001,9 +2225,11 @@ path = "benchmarks/tier1_micro/num_integ_semi_implicit"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "robo_multibody_step"
@@ -2016,9 +2242,11 @@ path = "benchmarks/tier1_micro/num_root_newton"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "robo_plan_prm"
@@ -2031,9 +2259,11 @@ path = "benchmarks/tier1_micro/num_opt_bfgs"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "robo_plan_rrt"
@@ -2046,9 +2276,11 @@ path = "benchmarks/tier1_micro/num_opt_line_search"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "robo_traj_opt"
@@ -2061,9 +2293,11 @@ path = "benchmarks/tier1_micro/num_quadrature_gauss"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "schrodinger_1d_barrier"
@@ -2079,6 +2313,7 @@ problem_size = "tier2_default"
 size_label = "tier2 default grid"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "sph_dam_break_2d"
@@ -2094,6 +2329,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "three_body"
@@ -2108,6 +2344,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "three_body_pure"
@@ -2123,6 +2360,7 @@ problem_size = "tier2_default"
 size_label = "tier2 default grid"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "wave_equation_1d"
@@ -2137,6 +2375,7 @@ threshold_ratio_cpp = 1.2
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "wave_equation_2d"
@@ -2152,6 +2391,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "wind_field_bc"
@@ -2167,6 +2407,7 @@ variant = "shared_c_kernel"
 problem_size = "tier2_default"
 size_label = "tier2 default grid"
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_export_gcode_3mf"
@@ -2179,9 +2420,11 @@ path = "benchmarks/tier2_physics/md_integrator_verlet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_infill_grid_lines"
@@ -2194,9 +2437,11 @@ path = "benchmarks/tier2_physics/md_energy_drift"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_infill_gyroid"
@@ -2209,9 +2454,11 @@ path = "benchmarks/tier2_physics/md_oracle_external"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_offset_perimeters"
@@ -2224,9 +2471,11 @@ path = "benchmarks/tier2_physics/md_neighbor_cell_list"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_plane_mesh_intersect"
@@ -2239,9 +2488,11 @@ path = "benchmarks/tier2_physics/md_neighbor_verlet_skin"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_polygon_clip"
@@ -2254,9 +2505,11 @@ path = "benchmarks/tier2_physics/md_integrator_leapfrog"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_slice_layers"
@@ -2269,9 +2522,11 @@ path = "benchmarks/tier2_physics/md_thermostat_nose_hoover"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_support_tree"
@@ -2284,9 +2539,11 @@ path = "benchmarks/tier2_physics/md_thermostat_berendsen"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_thermal_warp"
@@ -2299,9 +2556,11 @@ path = "benchmarks/tier2_physics/md_barostat_parrinello_rahman"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "am_toolpath_arcs"
@@ -2314,9 +2573,11 @@ path = "benchmarks/tier2_physics/md_constraints_shake"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
-size_label = "harness pending"
+problem_size = "catalog"
+size_label = "registry catalog entry"
 validity_required = true
 ph_ids = ["PH-5b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "lip_smoke"
@@ -2329,6 +2590,7 @@ path = "scripts/ci.sh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-8b"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "lit_smoke"
@@ -2341,6 +2603,7 @@ path = "scripts/ci.sh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-8e"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "https_static"
@@ -2357,6 +2620,7 @@ variant = "tls_m15_pending"
 problem_size = "tls_static"
 size_label = "TLS static M15"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "keepalive_pipelining"
@@ -2372,6 +2636,7 @@ compare_oracle = "nginx"
 problem_size = "pipeline_16"
 size_label = "16-pipeline keepalive"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "lb_least_conn"
@@ -2385,6 +2650,7 @@ metric = "rps"
 threshold_ratio_cpp = 1.0
 compare_oracle = "nginx"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "lb_peer_down"
@@ -2398,6 +2664,7 @@ metric = "rps"
 threshold_ratio_cpp = 1.0
 compare_oracle = "nginx"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "lb_round_robin"
@@ -2411,6 +2678,7 @@ metric = "rps"
 threshold_ratio_cpp = 1.0
 compare_oracle = "nginx"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "proxy_loopback"
@@ -2427,6 +2695,7 @@ variant = "li_epoll"
 problem_size = "loopback_wrk"
 size_label = "loopback wrk"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rate_limit_429"
@@ -2441,6 +2710,7 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "li"
 variant = "rate_limit"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "static_large"
@@ -2456,6 +2726,7 @@ compare_oracle = "nginx"
 problem_size = "payload_1mib"
 size_label = "1 MiB file.bin"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "static_small"
@@ -2471,6 +2742,7 @@ compare_oracle = "nginx"
 problem_size = "payload_1k"
 size_label = "1 KiB static /"
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "tier5_http_exploits"
@@ -2483,6 +2755,7 @@ path = "benchmarks/tier5_http/harness/exploit_http.py"
 metric = "pass_rate"
 threshold_ratio_cpp = 1.0
 ph_ids = ["PH-H"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ann_qps_10k"
@@ -2496,6 +2769,7 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "faiss_cpu"
 variant = "vector_ann"
 ph_ids = ["PH-DB-8", "PH-DB-G2"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ann_recall_at_10_10k"
@@ -2509,6 +2783,7 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "faiss_cpu"
 variant = "vector_ann"
 ph_ids = ["PH-DB-8", "PH-DB-G2"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ann_recall_at_10_1m"
@@ -2522,6 +2797,35 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "faiss_cpu"
 variant = "vector_ann_nightly"
 ph_ids = ["PH-DB-8", "PH-DB-G2"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "concurrent_readers"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_parallel/scenarios/concurrent_readers"
+metric = "ops_per_sec"
+threshold_ratio_cpp = 1.0
+compare_oracle = "postgres"
+variant = "db_parallel"
+ph_ids = ["WP-N4", "PH-DB-PAR"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "concurrent_writers"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_parallel/scenarios/concurrent_writers"
+metric = "ops_per_sec"
+threshold_ratio_cpp = 1.0
+compare_oracle = "postgres"
+variant = "db_parallel"
+ph_ids = ["WP-N4", "PH-DB-PAR"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "gpu_ann_speedup_10k"
@@ -2535,6 +2839,7 @@ threshold_ratio_cpp = 1.5
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup"
 ph_ids = ["PH-DB-G2"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "gpu_ann_speedup_1m"
@@ -2548,6 +2853,7 @@ threshold_ratio_cpp = 1.5
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup_nightly"
 ph_ids = ["PH-DB-G2"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "graph_cycle_detect"
@@ -2561,6 +2867,7 @@ threshold_ratio_cpp = 1.2
 compare_oracle = "postgres_age"
 variant = "registry_graph"
 ph_ids = ["PH-DB-G1"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "graph_dep_closure"
@@ -2574,45 +2881,7 @@ threshold_ratio_cpp = 1.2
 compare_oracle = "postgres_age"
 variant = "registry_graph"
 ph_ids = ["PH-DB-G1"]
-
-[[benchmark]]
-id = "registry_publish"
-category = "database"
-package = "lidb"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_registry/scenarios/registry_publish"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-compare_oracle = "postgres"
-variant = "registry_oltp"
-ph_ids = ["PH-DB-5"]
-
-[[benchmark]]
-id = "registry_read_by_name"
-category = "database"
-package = "lidb"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_registry/scenarios/registry_read_by_name"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-compare_oracle = "postgres"
-variant = "registry_oltp"
-ph_ids = ["PH-DB-5"]
-
-[[benchmark]]
-id = "registry_read_latest"
-category = "database"
-package = "lidb"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_registry/scenarios/registry_read_latest"
-metric = "latency_p95"
-threshold_ratio_cpp = 1.2
-compare_oracle = "postgres"
-variant = "registry_oltp"
-ph_ids = ["PH-DB-5"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "injection_blocked"
@@ -2627,6 +2896,63 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_security"
 ph_ids = ["WP-N4", "PH-DB-SEC"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "query_log_complete"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_audit/scenarios/query_log_complete"
+metric = "completeness_ratio"
+threshold_ratio_cpp = 1.0
+compare_oracle = "postgres"
+variant = "db_audit"
+ph_ids = ["WP-N4", "PH-DB-AUD"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "registry_publish"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_publish"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres"
+variant = "registry_oltp"
+ph_ids = ["PH-DB-5"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "registry_read_by_name"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_read_by_name"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres"
+variant = "registry_oltp"
+ph_ids = ["PH-DB-5"]
+platforms = ["linux", "macos", "windows"]
+
+[[benchmark]]
+id = "registry_read_latest"
+category = "database"
+package = "lidb"
+tier = 6
+repo = "lidb"
+path = "benchmarks/tier_db_registry/scenarios/registry_read_latest"
+metric = "latency_p95"
+threshold_ratio_cpp = 1.2
+compare_oracle = "postgres"
+variant = "registry_oltp"
+ph_ids = ["PH-DB-5"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rls_bypass_blocked"
@@ -2641,6 +2967,7 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_security"
 ph_ids = ["WP-N4", "PH-DB-SEC"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rss_idle"
@@ -2654,6 +2981,7 @@ threshold_ratio_cpp = 1.1
 compare_oracle = "postgres"
 variant = "db_memory"
 ph_ids = ["WP-N4", "PH-DB-MEM"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "rss_peak_load"
@@ -2667,45 +2995,7 @@ threshold_ratio_cpp = 1.1
 compare_oracle = "postgres"
 variant = "db_memory"
 ph_ids = ["WP-N4", "PH-DB-MEM"]
-
-[[benchmark]]
-id = "concurrent_readers"
-category = "database"
-package = "lidb"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_parallel/scenarios/concurrent_readers"
-metric = "ops_per_sec"
-threshold_ratio_cpp = 1.0
-compare_oracle = "postgres"
-variant = "db_parallel"
-ph_ids = ["WP-N4", "PH-DB-PAR"]
-
-[[benchmark]]
-id = "concurrent_writers"
-category = "database"
-package = "lidb"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_parallel/scenarios/concurrent_writers"
-metric = "ops_per_sec"
-threshold_ratio_cpp = 1.0
-compare_oracle = "postgres"
-variant = "db_parallel"
-ph_ids = ["WP-N4", "PH-DB-PAR"]
-
-[[benchmark]]
-id = "query_log_complete"
-category = "database"
-package = "lidb"
-tier = 6
-repo = "lidb"
-path = "benchmarks/tier_db_audit/scenarios/query_log_complete"
-metric = "completeness_ratio"
-threshold_ratio_cpp = 1.0
-compare_oracle = "postgres"
-variant = "db_audit"
-ph_ids = ["WP-N4", "PH-DB-AUD"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "tamper_evidence"
@@ -2719,6 +3009,7 @@ threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_audit"
 ph_ids = ["WP-N4", "PH-DB-AUD"]
+platforms = ["linux", "macos", "windows"]
 
 [[benchmark]]
 id = "ws_publish_latency"
@@ -2732,3 +3023,4 @@ threshold_ratio_cpp = 1.2
 compare_oracle = "postgres"
 variant = "db_realtime"
 ph_ids = ["WP-N4", "PH-DB-RT"]
+platforms = ["linux", "macos", "windows"]

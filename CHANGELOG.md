@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Dashboard completeness sprint:** `scripts/audit-dashboard-gaps.py`, `scripts/refresh-dashboard-completeness.py`; multi-OS skip charts + catalog size metadata — [2026-05-29-dashboard-completeness-sprint.md](docs/release-notes/2026-05-29-dashboard-completeness-sprint.md).
+
 ### Fixed
 
 - **Tier-1 matmul workloads:** sync Li `matmul_naive` / `matmul_blocked` drivers with lic IKJ / blocked IKJ (pending CSV re-ingest) — [2026-05-29-tier1-matmul-dashboard-sprint.md](docs/release-notes/2026-05-29-tier1-matmul-dashboard-sprint.md).

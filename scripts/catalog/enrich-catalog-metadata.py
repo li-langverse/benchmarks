@@ -61,7 +61,7 @@ def format_benchmark(b: dict) -> str:
     for key in (
         "base_id", "category", "pillar", "package", "tier", "repo", "path", "metric",
         "threshold_ratio_cpp", "compare_oracle", "variant", "problem_size", "size_label",
-        "validity_required",
+        "validity_required", "catalog_lifecycle",
     ):
         if key not in b or b[key] is None:
             continue
@@ -75,6 +75,11 @@ def format_benchmark(b: dict) -> str:
     ph = b.get("ph_ids") or []
     if ph:
         lines.append("ph_ids = [" + ", ".join(f'"{p}"' for p in ph) + "]")
+    plats = b.get("platforms")
+    if plats:
+        lines.append(
+            "platforms = [" + ", ".join(f'"{p}"' for p in plats) + "]"
+        )
     return "\n".join(lines)
 
 
@@ -102,7 +107,17 @@ def enrich_benchmark(b: dict, lic_root: Path) -> dict:
         if ps:
             b["problem_size"], b["size_label"] = ps, sl
     if b.get("path") == "unknown":
-        b.setdefault("size_label", "harness pending")
+        b.setdefault("size_label", "workload TBD")
+    if b.get("size_label") == "harness pending":
+        if b.get("variant") == "algo_registry":
+            b["size_label"] = "registry catalog entry"
+            b.setdefault("problem_size", "catalog")
+        elif b.get("problem_size"):
+            ps = str(b["problem_size"])
+            b["size_label"] = f"N={ps}" if ps.isdigit() else ps
+        else:
+            b["size_label"] = "workload TBD"
+    b.setdefault("platforms", ["linux", "macos", "windows"])
     return b
 
 
