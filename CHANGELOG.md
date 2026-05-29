@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Ecosystem audit:** register `lic` / `roadmap` handbook URLs and eight package pages under `li-language/ecosystem/*` in `LIVE_DOCS` (package URLs live after lic docs deploy).
 - **Dashboard timing:** mean ± σ and `sample_runs` in langs table and bench pages (`value_stat: mean`) — [2026-05-28-bench-mean-std-dashboard.md](docs/release-notes/2026-05-28-bench-mean-std-dashboard.md).
 - **Full suite:** parallel tier 1+2 via `run-lic-tier-benches.py` (`BENCH_JOBS`); tier 3 `--jobs`; defaults `BENCH_RUNS=6`, `BENCH_SUBSEC_MIN_RUNS=20`; supplemental HTTP bench mean ± σ.
 - **Multi-OS ingest + dashboard:** `build_summary.py` emits one chart/row per `(benchmark, os)`; matrix `?os=` filter; nightly macOS/Windows CSV merge via `merge_bench_csv_artifacts.py`.

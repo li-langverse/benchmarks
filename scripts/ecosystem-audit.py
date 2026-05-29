@@ -38,9 +38,22 @@ def list_org_repos() -> list[str]:
 
 
 ORG_REPOS: list[str] = []  # filled in main()
+_HANDBOOK = "https://li-langverse.github.io/li-language/ecosystem"
 LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
+    # Compiler source (`lic`) publishes via `li-language` GitHub Pages (same handbook).
+    "lic": "https://li-langverse.github.io/li-language/",
+    "roadmap": "https://li-langverse.github.io/roadmap/development-overview/",
+    # Package mirrors — handbook pages in `lic` mkdocs (deploy via li-language Pages).
+    "lip": f"{_HANDBOOK}/lip/",
+    "lit": f"{_HANDBOOK}/lit/",
+    "lis": f"{_HANDBOOK}/lis/",
+    "li-net": f"{_HANDBOOK}/li-net/",
+    "li-httpd": f"{_HANDBOOK}/li-httpd/",
+    "li-std-core": f"{_HANDBOOK}/li-std-core/",
+    "li-std-math": f"{_HANDBOOK}/li-std-math/",
+    "li-demo": f"{_HANDBOOK}/li-demo/",
 }
 VISION = {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
