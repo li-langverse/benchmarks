@@ -5,12 +5,12 @@
 ## Executive summary
 
 - Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — CI green, mergeable.
-- **Standards: aligned** — platform agent-kit hygiene; no PH/plan-approved required.
+- **Standards: aligned** — platform agent-kit hygiene; no PH / `plan-approved` required.
 - **`merge-approved`** already present; did not re-add.
 - **Gate blocker:** `reviewDecision: REVIEW_REQUIRED` — agent cannot self-approve (author `cap-jmk-real`).
-- Posted standards review comment on PR; human **Approve** unblocks `pr-merge-gate.py`.
+- Standards review comment posted on PR; human **Approve** unblocks `pr-merge-gate.py`.
 - Rank **1** in `pr-merge-queue-plan.json` (mirror tier before benchmarks/lic).
-- Version files pin **`1.3.5+6018e18bf2ed91f4`** (matches `li-cursor-agents`); PR body text stale (1.3.4).
+- Version files pin **`1.3.5+6018e18bf2ed91f4`** (matches `li-cursor-agents`); PR body summary still cites 1.3.4 (nit).
 - **No merge** executed; governance repos untouched.
 
 ## Deliverable / findings
