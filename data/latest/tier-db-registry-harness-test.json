@@ -1,0 +1,85 @@
+{
+  "engine_mode": "lidb_only",
+  "profile": "ci",
+  "threshold_ratio_vs_postgres": 1.2,
+  "status": "unknown",
+  "scenarios": [
+    {
+      "id": "registry_publish",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "unknown",
+      "engines": {
+        "lidb": {
+          "p50_ms": 4.0528,
+          "p95_ms": 4.4666
+        },
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "PH-DB-5"
+      ],
+      "ph_dependencies": [
+        "PH-DB-1",
+        "PH-DB-4"
+      ]
+    },
+    {
+      "id": "registry_read_by_name",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "unknown",
+      "engines": {
+        "lidb": {
+          "p50_ms": 1.0555,
+          "p95_ms": 1.1742
+        },
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "PH-DB-5"
+      ],
+      "ph_dependencies": [
+        "PH-DB-1",
+        "PH-DB-4"
+      ]
+    },
+    {
+      "id": "registry_read_latest",
+      "metric": "latency_p95",
+      "unit": "ms",
+      "lower_is_better": true,
+      "threshold_ratio_vs_postgres": 1.2,
+      "status": "unknown",
+      "engines": {
+        "lidb": {
+          "p50_ms": 1.0424,
+          "p95_ms": 1.1624
+        },
+        "postgres": null
+      },
+      "ratio_vs_postgres": null,
+      "ph_ids": [
+        "PH-DB-5"
+      ],
+      "ph_dependencies": [
+        "PH-DB-1",
+        "PH-DB-4"
+      ]
+    }
+  ],
+  "ph_ids": [
+    "PH-DB-5"
+  ],
+  "ph_dependencies": [
+    "PH-DB-1",
+    "PH-DB-4"
+  ],
+  "notes": "lidb_embed timings only \u2014 set POSTGRES_URL for ratio (PH-DB-5 gate)"
+}
