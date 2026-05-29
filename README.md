@@ -24,7 +24,8 @@ cd dashboard && npm install && npm run dev
 
 ## Add a benchmark
 
-1. Implement in the owning repo (usually `lic`).
+1. Implement workload under `benchmarks/workloads/` (params.toml, reference kernel, optional `li/main.li`).
+2. Toolchain: `LIC_ROOT=../lic` — `lic build` only; harness driver lives in this repo (`harness/run_suite.py`).
 2. Add a `[[benchmark]]` row to [`catalog.toml`](catalog.toml).
 3. Run ingest after CI produces CSV.
 
@@ -63,3 +64,13 @@ All five: `./scripts/run-db-full-spectrum-bench.sh`
 PR-only workflow. Do **not** duplicate `lic` harness here. See [AGENTS.md](AGENTS.md).
 
 Human setup: [SETUP_GITHUB.md](SETUP_GITHUB.md).
+
+
+## Full suite + nightly
+
+```bash
+LIC_ROOT=../lic ./scripts/run-full-benchmark-suite.sh
+LIC_ROOT=../lic ./scripts/run-benchmark-ci-nightly.sh   # CI entry
+```
+
+Results CSV: `results/latest.csv` (ingest + dashboard). Multi-OS nightly: `.github/workflows/benchmark-nightly.yml`.

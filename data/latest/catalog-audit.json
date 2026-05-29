@@ -1,0 +1,138 @@
+{
+  "schema": "benchmarks/catalog-audit/v1",
+  "catalog_rows": 187,
+  "harness_pending_count": 114,
+  "harness_pending_sample": [
+    "cfd_fvm_face_flux",
+    "cfd_pimple",
+    "cfd_piso",
+    "cfd_simple",
+    "cfd_turbulence_k_epsilon",
+    "cfd_turbulence_k_omega_sst",
+    "fea_gauss_quadrature",
+    "fea_linear_elasticity",
+    "fea_mesh_tri_tet",
+    "fea_solver_direct",
+    "fea_solver_iterative",
+    "fea_stiffness_assembly",
+    "nbody_barnes_hut",
+    "num_cg",
+    "num_cholesky",
+    "num_eig_symmetric",
+    "num_fft_r2c",
+    "num_gmres",
+    "num_integ_euler",
+    "num_integ_rk4"
+  ],
+  "missing_problem_size_count": 38,
+  "missing_problem_size_sample": [
+    "tier0_stability",
+    "horner_pure_li",
+    "ml_conv2d_forward",
+    "ml_mlp_forward",
+    "ml_mlp_train_step",
+    "viz_colormap",
+    "viz_decimate",
+    "viz_inspector_panels",
+    "viz_linked_views",
+    "viz_marching_cubes",
+    "viz_pipeline_graph",
+    "viz_resample",
+    "lip_smoke",
+    "lit_smoke",
+    "lb_least_conn",
+    "lb_peer_down",
+    "lb_round_robin",
+    "rate_limit_429",
+    "tier5_http_exploits",
+    "ann_qps_10k"
+  ],
+  "workload_dir_present_count": 165,
+  "workload_dir_missing_count": 21,
+  "workload_dir_missing_sample": [
+    {
+      "id": "matmul_blocked_N1024",
+      "path": "benchmarks/tier1_micro/matmul_blocked"
+    },
+    {
+      "id": "matmul_naive_N1024",
+      "path": "benchmarks/tier1_micro/matmul_naive"
+    },
+    {
+      "id": "stdlib_list_push_pop",
+      "path": "benchmarks/tier1_stdlib/stdlib_list_push_pop"
+    },
+    {
+      "id": "stdlib_dict_insert_lookup",
+      "path": "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup"
+    },
+    {
+      "id": "stdlib_set_ops",
+      "path": "benchmarks/tier1_stdlib/stdlib_set_ops"
+    },
+    {
+      "id": "stdlib_sort_int",
+      "path": "benchmarks/tier1_stdlib/stdlib_sort_int"
+    },
+    {
+      "id": "stdlib_binary_search",
+      "path": "benchmarks/tier1_stdlib/stdlib_binary_search"
+    },
+    {
+      "id": "stdlib_heap_push_pop",
+      "path": "benchmarks/tier1_stdlib/stdlib_heap_push_pop"
+    },
+    {
+      "id": "stdlib_deque_rotate",
+      "path": "benchmarks/tier1_stdlib/stdlib_deque_rotate"
+    },
+    {
+      "id": "stdlib_hash_flood",
+      "path": "benchmarks/tier1_stdlib/stdlib_hash_flood"
+    },
+    {
+      "id": "lip_smoke",
+      "path": "scripts/ci.sh"
+    },
+    {
+      "id": "lit_smoke",
+      "path": "scripts/ci.sh"
+    },
+    {
+      "id": "https_static",
+      "path": "benchmarks/tier5_http/scenarios/https_static"
+    },
+    {
+      "id": "keepalive_pipelining",
+      "path": "benchmarks/tier5_http/scenarios/keepalive_pipelining"
+    },
+    {
+      "id": "lb_least_conn",
+      "path": "benchmarks/tier5_http/scenarios/lb_least_conn"
+    },
+    {
+      "id": "lb_peer_down",
+      "path": "benchmarks/tier5_http/scenarios/lb_peer_down"
+    },
+    {
+      "id": "lb_round_robin",
+      "path": "benchmarks/tier5_http/scenarios/lb_round_robin"
+    },
+    {
+      "id": "proxy_loopback",
+      "path": "packages/li-net-httpd"
+    },
+    {
+      "id": "static_large",
+      "path": "benchmarks/tier5_http/scenarios/static_large"
+    },
+    {
+      "id": "static_small",
+      "path": "benchmarks/tier5_http/scenarios/static_small"
+    },
+    {
+      "id": "tier5_http_exploits",
+      "path": "benchmarks/tier5_http/harness/exploit_http.py"
+    }
+  ]
+}

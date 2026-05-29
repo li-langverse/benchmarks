@@ -87,8 +87,14 @@ def main() -> int:
                         }
                     )
 
+    prov = summary.get("provenance") or {}
     index["snapshots"].append(
-        {"at": summary.get("generated_at", ts), "path": str(snap_path.relative_to(ROOT))}
+        {
+            "at": summary.get("generated_at", ts),
+            "path": str(snap_path.relative_to(ROOT)),
+            "lic_sha": prov.get("lic_sha", ""),
+            "benchmarks_sha": prov.get("benchmarks_sha", ""),
+        }
     )
     index["snapshots"] = index["snapshots"][-120:]
     index["latest_deltas"] = deltas

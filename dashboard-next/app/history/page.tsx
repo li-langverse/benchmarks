@@ -33,6 +33,7 @@ export default function HistoryPage() {
   }
 
   const summary = loadSummary();
+  const prov = (summary as { provenance?: Record<string, string> }).provenance;
   const summaryById = Object.fromEntries(summary.rows.map((r) => [r.benchmark, r]));
 
   return (

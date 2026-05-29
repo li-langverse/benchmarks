@@ -77,7 +77,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Dashboard invariants
-        run: python3 scripts/check-dashboard-invariants.py
+        run: python3 scripts/catalog/audit-catalog-coverage.py
+          python3 scripts/check-dashboard-invariants.py
 
       - name: Summary measurement coverage (committed summary)
         run: python3 scripts/check-summary-measurement-coverage.py

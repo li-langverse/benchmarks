@@ -92,6 +92,6 @@ jobs:
         run: |
           git config user.name "benchmarks-ingest"
           git config user.email "benchmarks-ingest@users.noreply.github.com"
-          git add data/latest/summary.json data/latest/release-index.json
+          git add data/latest/summary.json data/latest/release-index.json data/history/ data/latest/summary-content-hash.txt
           git diff --staged --quiet || git commit -m "chore: ingest benchmark summary and release index"
           git push

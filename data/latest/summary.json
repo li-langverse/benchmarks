@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-28T04:18:42.127126+00:00",
+  "generated_at": "2026-05-29T07:01:43.212199+00:00",
   "sources": {
     "lic_root": "/agent/repos/lic",
     "lis_root": "/agent/repos/lis",
@@ -29193,5 +29193,16 @@
       "size_label": null,
       "base_id": null
     }
-  ]
+  ],
+  "provenance": {
+    "lic_sha": "8c47ae518884d531c186c72c6c6a507580d43e2a",
+    "lic_ref": "main",
+    "benchmarks_sha": "77c81fdd40b58142c7360e8bfd938e27731ca423",
+    "lis_sha": "5f645f1159a1f85f8ef08299ed39490553442798",
+    "llvm_version": "",
+    "workflow_run_id": "",
+    "runner_os": "linux",
+    "bench_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv",
+    "note": "summary restored from 2026-05-29T065044Z history until nightly publishes fresh multi-OS ingest"
+  }
 }
