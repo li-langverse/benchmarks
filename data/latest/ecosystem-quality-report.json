@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-29T23:04:12Z",
+  "generated_at": "2026-05-29T23:04:56Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 73.3,
+  "overall_score": 78.3,
   "grade": "C",
-  "unattended_safe": false,
+  "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
       "score": 84.0,
@@ -42,19 +42,19 @@
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 70.0,
+      "score": 90.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 7,
+        "terminal_runs": 5,
         "error_count": 0,
-        "incomplete_count": 2,
-        "running_count": 113,
+        "incomplete_count": 0,
+        "running_count": 115,
         "error_rate": 0.0,
-        "incomplete_rate": 0.2857,
+        "incomplete_rate": 0.0,
         "top_error_agents": []
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "gap_pressure": {
       "score": 70.0,
@@ -97,23 +97,13 @@
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
-      "id": "swarm-incomplete-rate",
-      "severity": "medium",
-      "message": "Incomplete rate 29%",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "113 runs still marked running (possible stuck SDK)",
+      "message": "115 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     }
   ],
   "recommended_agents": [
-    {
-      "agent": "swarm_observer",
-      "reason": "swarm_execution dimension below 75 \u2014 meta audit runs/errors"
-    },
     {
       "agent": "gap_explorer",
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
