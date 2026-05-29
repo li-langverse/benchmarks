@@ -30,7 +30,7 @@ python3 scripts/check-summary-measurement-coverage.py
 cd dashboard-next && npm ci && npm run build
 # Copy JSON like CI/Pages
 mkdir -p out/latest
-for f in summary.json release-index.json benchmark-matrix.json proof-posture.json; do
+for f in summary.json release-index.json benchmark-matrix.json; do
   [ -f "../data/latest/$f" ] && cp "../data/latest/$f" out/latest/
 done
 bash ../scripts/check-dashboard-static-routes.sh

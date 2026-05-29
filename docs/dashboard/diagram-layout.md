@@ -172,7 +172,8 @@ flowchart TB
 |------|-------|
 | `data/latest/benchmark-matrix.json` | Security HTTP exploit matrix; catalog metadata |
 | `data/history/index.json` | Perf facet trend on detail |
-| `data/latest/proof-posture.json` | Link from detail to `/proofs` only |
+
+Proof corpus: external link to [proof-library](https://li-langverse.github.io/proof-library/) via `/proofs` redirect.
 
 ---
 
