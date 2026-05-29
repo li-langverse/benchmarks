@@ -41,6 +41,9 @@ ORG_REPOS: list[str] = []  # filled in main()
 LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
+    # Compiler source (`lic`) publishes via `li-language` GitHub Pages (same handbook).
+    "lic": "https://li-langverse.github.io/li-language/",
+    "roadmap": "https://li-langverse.github.io/roadmap/development-overview/",
 }
 VISION = {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
