@@ -1,16 +1,16 @@
 # PR reviewer digest — 2026-05-29
 
-**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T17:46Z
+**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T17:58Z
 
 ## Executive summary
 
 - Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — **CI green**, **MERGEABLE**.
-- **Standards: aligned** — org Cursor agent-kit chore; closes `missing_kit` for li-httpd; no PH / `plan-approved` required.
+- **Standards: aligned** — org Cursor agent-kit chore; closes local `missing_kit` for li-httpd; no PH / `plan-approved` required.
 - Branch pins **`1.3.5+6018e18bf2ed91f4`** (org canonical); PR body summary still cites 1.3.4 (cosmetic only).
 - **`merge-approved`** label present — validated; not re-added.
 - **Gate blocker:** `reviewDecision: REVIEW_REQUIRED` — author `cap-jmk-real`; agent token cannot self-approve.
 - Rank **#1** in `pr-program-run.json` (mirror/httpd tier before benchmarks/lic).
-- Not in `redundant[]`; no feature supersession.
+- Not in `redundant[]`; `pr-merge-queue-plan.json` shows no merge_sequence conflicts.
 - **No merge** executed; governance repos untouched.
 
 ## Deliverable / findings
@@ -32,7 +32,7 @@
 
 **Preflight:** `pr-merge-queue-plan.json` (2026-05-29T17:02Z); `pr-program-run.json` (2026-05-29T12:32Z). `gate_ready_with_approval: true` once human approves.
 
-**PR comment:** Standards alignment posted — https://github.com/li-langverse/li-httpd/pull/13
+**PR comment:** https://github.com/li-langverse/li-httpd/pull/13#issuecomment-4578228250
 
 **north_star_fit:** domain=platform/agent-kit · PH=N/A (coord_platform — org agent discipline for provable→easy→fast workflow)
 
