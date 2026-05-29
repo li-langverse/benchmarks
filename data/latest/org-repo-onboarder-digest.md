@@ -1,6 +1,6 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · briefing `2026-05-29T10:05Z` · discovery refreshed `2026-05-29T10:11Z`
+**Source:** proactive sweep · briefing `2026-05-29T12:27Z` · discovery refreshed `2026-05-29T12:45Z`
 
 ## Executive summary
 
@@ -102,7 +102,7 @@ Downstream agents own isolated clone PRs; onboarder does not open PRs.
 - **Catalog pruning:** no stale entries; no archive/delete without human sign-off.
 - **New repo catalog registration:** blocked until a repo appears in `new_repos` with CI + kit path complete.
 - **Explorer / plan_audit / ci_bug_triage:** skipped in preflight (`--skip-slow`).
-- **Merge program:** 85 open PRs / 35 failed CI — out of onboarder scope.
+- **Merge program:** 95 open PRs / 36 failed CI — out of onboarder scope.
 - **`li-gui`:** audit incomplete locally (`missing_local_clone`); kit sync deferred until workspace clone exists.
 
 ## Error
