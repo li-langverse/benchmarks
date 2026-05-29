@@ -1,80 +1,72 @@
 {
-  "generated_at": "2026-05-29T20:05:00+00:00",
-  "agent": "docs_ui_tester",
-  "surface": "docs",
-  "audit_kind": "ui",
+  "generated_at": "2026-05-29T20:22:04+00:00",
+  "agent": "tui_ux_tester",
+  "surface": "tui",
+  "audit_kind": "ux",
+  "north_star_fit": {
+    "pillar": "ai-first",
+    "domain": "agent terminal diagnostics (Vision-LLM)",
+    "ph_ids": ["Vision-LLM"]
+  },
   "issues": [
     {
-      "priority": "P0",
-      "repo": "lic",
-      "url": "https://github.com/li-langverse/lic/issues/403",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "target_id": "lic-docs"
-    },
-    {
       "priority": "P1",
-      "repo": "lic",
-      "url": "https://github.com/li-langverse/lic/issues/426",
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
-      "target_id": "lic-docs"
-    },
-    {
-      "priority": "P1",
-      "repo": "lic",
-      "url": "https://github.com/li-langverse/lic/issues/404",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
-      "target_id": "lic-docs"
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "target_id": "tui-app-fixture"
     },
     {
       "priority": "P1",
       "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
-      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
-      "target_id": "lic-docs"
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/33",
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "target_id": "tui-app-fixture"
     },
     {
       "priority": "P2",
       "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
-      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
-      "target_id": "lic-docs"
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/34",
+      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
+      "target_id": "tui-app-fixture"
     }
   ],
   "implementation_queue": [
     {
-      "priority": "P0",
-      "agent": "docs_maintainer",
-      "repo": "lic",
-      "issue": "https://github.com/li-langverse/lic/issues/403",
-      "summary": "Fix strict docs build so GitHub Pages matches local 12-tab site"
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "summary": "Make tui-demo.sh CI-safe (UX_HARNESS stdin / skip read); unblock ui-audit row"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
-      "repo": "lic",
-      "issue": "https://github.com/li-langverse/lic/issues/426",
-      "summary": "Fix Material theme contrast and in-text link axe violations"
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/33",
+      "summary": "Execute key_nav_help journey in tui.py with scripted keys; emit journey-log.json"
     },
     {
-      "priority": "P1",
-      "agent": "docs_maintainer",
-      "repo": "lic",
-      "issue": "https://github.com/li-langverse/lic/issues/404",
-      "summary": "Eliminate raw .md hrefs from strict build warnings"
+      "priority": "P2",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/34",
+      "summary": "Add LI_TUI_ERROR and LI_TUI_EXPORT_A11Y paths; fail rubric when missing"
     }
   ],
   "deferred": [
     {
-      "item": "Live Pages Playwright + axe pass",
-      "reason": "Publish frozen 2026-05-27; run after #403"
+      "item": "lic diagnose interactive TUI target",
+      "reason": "JSON stdout only today; spec in Vision-LLM phase"
     },
     {
-      "item": "Pixel baseline diff for lic-docs",
-      "reason": "ux-harness/baselines/docs/ empty; track #37"
+      "item": "VHS terminal recordings + baselines",
+      "reason": "After fixture CI stability (#30)"
     },
     {
-      "item": "axe-cli in swarm preflight",
-      "reason": "ChromeDriver/Chrome version skew on host; Playwright path works"
+      "item": "Merge TUI targets into global ux-audit preflight",
+      "reason": "benchmarks preflight currently runs docs slice only"
     }
-  ]
+  ],
+  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-tui-ux.md"
 }

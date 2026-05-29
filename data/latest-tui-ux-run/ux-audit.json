@@ -1,24 +1,76 @@
 {
-  "generated_at": "2026-05-29T19:30:02.307658+00:00",
+  "generated_at": "2026-05-29T20:22:04+00:00",
   "platform": "Linux",
+  "agent": "tui_ux_tester",
   "summary": {
-    "total": 1,
-    "failing": 0,
+    "total": 2,
+    "failing": 1,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "status": "fail",
+      "journeys": [
+        {
+          "id": "key_nav_help",
+          "steps": ["launch", "tab_help", "quit"],
+          "completed": false,
+          "step_count": 3,
+          "note": "adapter never executes steps; UI harness times out on read"
+        }
+      ],
+      "friction_points": [
+        {
+          "journey": "key_nav_help",
+          "issue": "Fixture blocks on read without TTY; journey not executed"
+        },
+        {
+          "issue": "Help overlay not bound to h key; two generic read prompts only"
+        }
+      ],
+      "sota_refs": ["textual", "bubbletea"],
+      "rubric_scores": {
+        "nav_clarity": 0.45,
+        "task_efficiency": 0.5,
+        "empty_states": 0.9,
+        "error_handling": 0.5,
+        "cognitive_load": 0.55
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": ["help_overlay", "error"],
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-app-fixture.txt"
+      ],
+      "mode": "fixture",
+      "harness_error": "subprocess.TimeoutExpired after 30s (read -r without stdin)"
+    },
     {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
       "surface": "tui",
       "surface_class": "tui_gen",
       "status": "pass",
-      "journeys": [],
-      "friction_points": [],
-      "sota_refs": [
-        "textual"
+      "journeys": [
+        {
+          "id": "cli_to_tui",
+          "steps": ["run_generator", "capture_screen"],
+          "completed": false,
+          "step_count": 2,
+          "note": "exit 0 but journey steps not validated"
+        }
       ],
+      "friction_points": [
+        {
+          "journey": "cli_to_tui",
+          "issue": "Generator output static; no edit loop or error state"
+        }
+      ],
+      "sota_refs": ["textual", "bubbletea"],
       "rubric_scores": {
         "nav_clarity": 0.85,
         "task_efficiency": 0.8,
@@ -27,8 +79,10 @@
         "cognitive_load": 0.7
       },
       "rubric_threshold": 0.6,
-      "missing_states": [],
-      "artifacts": [],
+      "missing_states": ["error"],
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
+      ],
       "mode": "fixture"
     }
   ]
