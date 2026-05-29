@@ -212,17 +212,17 @@ def effective_size_meta(cfg: dict, *, has_csv: bool) -> dict[str, str | None]:
     sizes = size_meta(cfg)
     sizes.pop("base_id", None)
     sl = sizes.get("size_label")
-    if has_csv and sl == "harness pending":
+    if sl in (None, "", "harness pending", "pending"):
         if cfg.get("problem_size"):
             sizes["size_label"] = f"N={cfg['problem_size']}"
         elif cfg.get("variant") == "algo_registry":
             sizes["size_label"] = "algo registry stub"
-        elif int(cfg.get("tier", 0)) >= 2:
+        elif has_csv and int(cfg.get("tier", 0)) >= 2:
             sizes["size_label"] = "tier2 default grid"
-        else:
+        elif has_csv:
             sizes["size_label"] = "harness wired"
-    elif sl == "harness pending" and cfg.get("variant") == "algo_registry":
-        sizes["size_label"] = "algo registry stub"
+        elif sl == "harness pending":
+            sizes["size_label"] = "harness pending"
     return sizes
 
 

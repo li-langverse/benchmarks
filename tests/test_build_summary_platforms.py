@@ -42,6 +42,11 @@ class BuildSummaryPlatformTests(unittest.TestCase):
         meta = effective_size_meta(cfg, has_csv=False)
         self.assertEqual(meta["size_label"], "algo registry stub")
 
+    def test_effective_size_meta_missing_label_with_csv(self):
+        cfg = {"variant": "algo_registry", "tier": 1}
+        meta = effective_size_meta(cfg, has_csv=True)
+        self.assertEqual(meta["size_label"], "algo registry stub")
+
     def test_platform_skip_chart_has_skip_status(self):
         cfg = {
             "category": "micro",

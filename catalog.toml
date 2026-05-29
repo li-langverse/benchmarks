@@ -225,6 +225,8 @@ metric = "wall_time"
 threshold_ratio_cpp = 1.2
 compare_oracle = "cpp"
 variant = "fftw_reference"
+problem_size = "4096"
+size_label = "N=4096 FFT"
 catalog_lifecycle = "planned"
 ph_ids = ["PH-5b", "PH-7e"]
 
