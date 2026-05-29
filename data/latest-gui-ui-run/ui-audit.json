@@ -1,0 +1,45 @@
+{
+  "generated_at": "2026-05-29T22:43:40+00:00",
+  "platform": "Linux",
+  "agent": "gui_ui_tester",
+  "summary": {
+    "total": 5,
+    "failing": 0,
+    "passing": 2,
+    "skipped": 3
+  },
+  "targets": [
+    {
+      "target_id": "agents-dashboard",
+      "status": "skip",
+      "skip_reason": "GUI not reachable at http://127.0.0.1:3000 (start dashboard for extended audit)",
+      "mode": "http_probe"
+    },
+    {
+      "target_id": "lic-tetris",
+      "status": "skip",
+      "skip_reason": "native capture script not configured (paths.capture_script or lic_root)",
+      "mode": "native_gui",
+      "native_pixels": false
+    },
+    {
+      "target_id": "world-studio-native",
+      "status": "skip",
+      "skip_reason": "native capture script not configured (paths.capture_script or lic_root)",
+      "mode": "native_gui",
+      "native_pixels": false
+    },
+    {
+      "target_id": "world-studio-demo",
+      "status": "pass",
+      "mode": "http_probe",
+      "fixture": "li-cursor-agents/ux-harness/fixtures/world-studio-workspace.html"
+    },
+    {
+      "target_id": "gui-gen-fixture",
+      "status": "pass",
+      "mode": "http_probe",
+      "fixture": "li-cursor-agents/ux-harness/fixtures/gui-gen-demo.html"
+    }
+  ]
+}

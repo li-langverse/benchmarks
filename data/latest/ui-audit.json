@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T21:22:34+00:00",
+  "generated_at": "2026-05-29T22:43:40+00:00",
   "platform": "Linux",
   "agent": "gui_ui_tester",
   "source": "proactive",
@@ -24,7 +24,7 @@
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
       "baseline_status": "ok",
       "tokens_deviation": [],
-      "note": "Playwright uses LI_PLAYWRIGHT_UI_PORT=3099; harness probes 3000 — see li-cursor-agents#38"
+      "note": "Playwright CI uses LI_PLAYWRIGHT_UI_PORT=3099; harness probes 3000 — li-cursor-agents#38"
     },
     {
       "target_id": "lic-tetris",
@@ -40,7 +40,7 @@
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
       "baseline_status": "ok",
       "tokens_deviation": [],
-      "note": "Tetris example has no capture_script in ux-targets; blocked until native capture lands (#394)"
+      "note": "No capture_script in ux-targets for tetris; blocked until lic#394"
     },
     {
       "target_id": "world-studio-demo",
@@ -118,9 +118,7 @@
       "tokens_deviation": [],
       "findings": [
         "gpu-chip-picker uses role=tab/tablist without tabpanel or roving tabindex",
-        "gpu-chip-card transitions lack prefers-reduced-motion guard",
-        "section uses placeholder CSS class on shipped route",
-        "target not registered in li-cursor-agents/config/ux-targets.json"
+        ".gpu-chip-card transition (border-color, box-shadow 0.15s) lacks prefers-reduced-motion guard"
       ]
     }
   ]
