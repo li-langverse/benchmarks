@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-29T12:00:15Z",
+  "generated_at": "2026-05-29T12:10:20Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 72.8,
-  "grade": "C",
+  "overall_score": 64.0,
+  "grade": "D",
   "unattended_safe": false,
   "dimensions": {
     "briefing_health": {
@@ -42,19 +42,32 @@
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 90.0,
+      "score": 55.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 5,
-        "error_count": 0,
-        "incomplete_count": 0,
-        "running_count": 115,
-        "error_rate": 0.0,
-        "incomplete_rate": 0.0,
-        "top_error_agents": []
+        "terminal_runs": 15,
+        "error_count": 5,
+        "incomplete_count": 1,
+        "running_count": 105,
+        "error_rate": 0.3333,
+        "incomplete_rate": 0.0667,
+        "top_error_agents": [
+          {
+            "agent": "implementation_gaps",
+            "count": 1
+          },
+          {
+            "agent": "docs_maintainer",
+            "count": 1
+          },
+          {
+            "agent": "code_implementer",
+            "count": 1
+          }
+        ]
       },
-      "finding_count": 1
+      "finding_count": 2
     },
     "gap_pressure": {
       "score": 70.0,
@@ -72,6 +85,12 @@
     }
   },
   "findings": [
+    {
+      "id": "swarm-error-rate",
+      "severity": "critical",
+      "message": "Error rate 33% over last 15 terminal runs",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
+    },
     {
       "id": "failed-pr-ci",
       "severity": "high",
@@ -111,7 +130,7 @@
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "115 runs still marked running (possible stuck SDK)",
+      "message": "105 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -123,8 +142,16 @@
   ],
   "recommended_agents": [
     {
+      "agent": "swarm_observer",
+      "reason": "swarm_execution dimension below 75 \u2014 meta audit runs/errors"
+    },
+    {
       "agent": "gap_explorer",
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
+    },
+    {
+      "agent": "ecosystem_grader",
+      "reason": "overall ecosystem quality below 70 \u2014 narrative grade + dispatch order"
     },
     {
       "agent": "ci_maintainer",
