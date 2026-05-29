@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-29T10:11:45Z",
+  "generated_at": "2026-05-29T10:53:42Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 59.0,
-  "grade": "F",
+  "overall_score": 60.3,
+  "grade": "D",
   "unattended_safe": false,
   "dimensions": {
     "briefing_health": {
@@ -12,7 +12,7 @@
         "briefing_present": true,
         "preflight_failed": 1,
         "preflight_skipped": 8,
-        "recommended_agent_count": 9
+        "recommended_agent_count": 14
       },
       "finding_count": 2
     },
@@ -21,7 +21,7 @@
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 85,
+        "open_prs": 90,
         "failed_prs": 35,
         "repos_missing_ci_main": 1,
         "benchmark_red_count": 0
@@ -35,34 +35,34 @@
         "snapshot_present": true,
         "runner_count": 8,
         "runners_stopped": 6,
-        "plan_todos_pending": 25,
+        "plan_todos_pending": 26,
         "plan_todos_total": 90,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 35.0,
+      "score": 40.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 22,
-        "error_count": 7,
-        "incomplete_count": 6,
-        "running_count": 98,
-        "error_rate": 0.3182,
-        "incomplete_rate": 0.2727,
+        "terminal_runs": 19,
+        "error_count": 5,
+        "incomplete_count": 3,
+        "running_count": 101,
+        "error_rate": 0.2632,
+        "incomplete_rate": 0.1579,
         "top_error_agents": [
           {
-            "agent": "pr_branch_opener",
+            "agent": "bug_fixer",
+            "count": 2
+          },
+          {
+            "agent": "code_implementer",
             "count": 1
           },
           {
-            "agent": "bench_improver",
-            "count": 1
-          },
-          {
-            "agent": "agent_kit_maintainer",
+            "agent": "pr_alignment",
             "count": 1
           }
         ]
@@ -88,7 +88,7 @@
     {
       "id": "swarm-error-rate",
       "severity": "critical",
-      "message": "Error rate 32% over last 22 terminal runs",
+      "message": "Error rate 26% over last 19 terminal runs",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -130,13 +130,13 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 27%",
+      "message": "Incomplete rate 16%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "98 runs still marked running (possible stuck SDK)",
+      "message": "101 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -174,10 +174,6 @@
     {
       "agent": "workspace_sweeper",
       "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
-    },
-    {
-      "agent": "agent_kit_maintainer",
-      "reason": "briefing P0: 28 repos missing or drifted agent-kit"
     }
   ],
   "inputs": {

@@ -2,26 +2,31 @@
   "run_id": "swarm_observer-2026-05-29-swarm-coverage",
   "agent_id": "swarm_observer",
   "research_goal_id": "swarm_coverage",
-  "generated_at": "2026-05-29T10:12:00Z",
+  "generated_at": "2026-05-29T10:54:00Z",
   "status": "finished",
   "north_star_fit": {
     "domains": ["ecosystem", "ai"],
     "summary": "Swarm gap orchestration — registry, backlog apply, handoffs"
   },
-  "posture": "critical",
-  "ecosystem_grade": "F",
-  "overall_score": 59.0,
+  "posture": "degraded",
+  "ecosystem_grade": "D",
+  "overall_score": 60.3,
   "unattended_safe": false,
-  "briefing_hash": "e5fad788e09b81ca",
+  "briefing_hash": "411fc1de96d0dd94",
   "report_md": "benchmarks/data/runs/swarm_observer-2026-05-29-swarm-coverage.md",
-  "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md",
+  "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r2-competitor-stubs.md",
+  "orch_todo_completed": "orch-r2-competitor-stubs",
   "evidence": [
     "benchmarks/data/latest/ecosystem-quality-report.json",
     "benchmarks/data/latest/swarm-gap-actions.json",
+    "benchmarks/data/latest/agent-briefing.json",
     "lic/data/swarm-gap-registry/registry.yaml",
-    "lic/docs/ecosystem/ecosystem-package-backlog.md",
-    "lic/data/goal-directed-agents/snapshot.json"
+    "lic/docs/ecosystem/sim-md-research-backlog.md",
+    "li-cursor-agents/data/control-plane/state.json",
+    "li-cursor-agents/data/runs/swarm_observer-1779968173877.json"
   ],
-  "open_missing_package_gaps": 3,
+  "open_gaps": 54,
+  "open_competitor_feature": 30,
+  "gap_ingest_ran": true,
   "gap_apply_ran": true
 }
