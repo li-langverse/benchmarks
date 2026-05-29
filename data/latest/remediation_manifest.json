@@ -1,56 +1,49 @@
 {
-  "generated_at": "2026-05-29T10:05:00Z",
-  "agent_id": "tui_ui_tester",
-  "surface": "tui",
+  "generated_at": "2026-05-29T12:52:00Z",
+  "agent_id": "docs_ux_tester",
+  "surface": "docs",
   "north_star_fit": {
     "pillar": "easy",
-    "domain": "terminal UI for lic tooling and agent workflows",
-    "ph_ids": ["PH-UX-tui-harness", "ecosystem-agent-surfaces"]
+    "domain": "documentation IA and reading path for prove → write → run fast",
+    "ph_ids": ["PH-handbook", "ecosystem-governance-docs"]
   },
   "preflight": {
+    "ux_audit_path": "data/latest/ux-audit.json",
     "ui_audit_path": "data/latest/ui-audit.json",
-    "harness_note": "briefing ui-audit is docs-only; TUI targets re-run to data/latest-tui-ui-run/ui-audit.json",
-    "tui_app_fixture": "fail_timeout",
-    "tui_gen_fixture": "pass"
+    "target_id": "lic-docs",
+    "harness_status": "pass",
+    "rubric_min": 0.7
   },
-  "issues": [
-    {
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "priority": "P1",
-      "labels": ["ready-for-implement", "surface:tui", "ui-audit"]
-    }
-  ],
+  "issues": [],
   "implementation_queue": [
     {
       "priority": "P1",
-      "repo": "li-cursor-agents",
-      "item": "Fix tui-demo.sh / tui adapter for non-interactive harness (issue #30)",
-      "sources": ["ui_audit", "tui_ui_tester_digest"],
-      "acceptance": "run_audit.py --target tui-app-fixture --mode ui passes in <5s on Linux CI"
+      "repo": "lic",
+      "item": "Move language reference pages from Game development tab to Language handbook (mkdocs.yml nav)",
+      "sources": ["ux_audit", "docs_ux_tester_digest"],
+      "acceptance": "types-and-data, numerics, SIMD, decorators, linalg appear under Language handbook; Game development retains game-dev-only pages"
     },
     {
       "priority": "P1",
-      "repo": "li-cursor-agents",
-      "item": "Capture TUI stdout frames to artifacts/ and optional VHS baseline",
-      "sources": ["tui_ui_tester_digest"],
-      "acceptance": "ui-audit target rows include non-empty artifacts paths"
+      "repo": "lic",
+      "item": "Replace Ecosystem Canonical docs GitHub tree link with in-site mirror or monorepo plugin",
+      "sources": ["ux_audit", "docs_ux_tester_digest"],
+      "acceptance": "Ecosystem nav entry stays on li-language domain; search finds roadmap ecosystem pages"
     },
     {
       "priority": "P1",
       "repo": "benchmarks",
-      "item": "Wire TUI targets into org ui-ux preflight / agent-briefing ui_audit block",
-      "sources": ["tui_ui_tester_digest"],
-      "acceptance": "data/latest/ui-audit.json lists tui-app-fixture and tui-gen-fixture after preflight"
+      "item": "Register lic → li-language Pages URL in ecosystem-audit LIVE_DOCS",
+      "sources": ["ecosystem_audit", "docs_ux_tester_digest"],
+      "acceptance": "repos_without_live_docs no longer lists lic when li-language Pages is up"
     },
     {
       "priority": "P2",
-      "repo": "li-cursor-agents",
-      "item": "Catalog org TUI repos in ux-targets.json when lic CLI TUI ships",
-      "sources": ["ecosystem_explorer"],
-      "acceptance": "At least one non-fixture target with surface_class tui_app or tui_gen"
+      "repo": "lic",
+      "item": "Document Material search shortcuts (F/S/) in contributing/documentation.md; optional navigation.instant.prefetch",
+      "sources": ["sota_research", "docs_ux_tester_digest"],
+      "acceptance": "contributing guide lists keyboard shortcuts; mkdocs.yml prefetch behind maintainer review"
     }
   ],
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-29-tui-ui.md"
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-29-docs-ux.md"
 }
