@@ -8,13 +8,7 @@
     "llvm_version": "",
     "workflow_run_id": "",
     "runner_os": "linux",
-    "bench_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv",
-    "gpu_name": "NVIDIA GeForce RTX 3060",
-    "gpu_driver": "550.163.01",
-    "gpu_memory_mib": 12288,
-    "gpu_compute_capability": "8.6",
-    "gpu_uuid": "GPU-88af5152-7561-3e2b-2a97-a992b276fb15",
-    "local_ingest_at": "2026-05-29T07:25:19.113936+00:00"
+    "bench_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv"
   },
   "sources": {
     "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/lic",
