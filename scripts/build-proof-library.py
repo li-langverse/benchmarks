@@ -125,7 +125,6 @@ def scan_lean_file(path: Path, namespace: str, lic: Path) -> dict[str, dict]:
             i += 1
         body = "\n".join(chunk)
         status = classify_lean(name, body, kind)
-        rel = str(path.relative_to(lic)) if lic in path.parents or path.is_relative_to(lic) else str(path)
         try:
             rel = str(path.relative_to(lic))
         except ValueError:
