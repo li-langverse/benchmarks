@@ -1,12 +1,12 @@
 # PR reviewer digest — 2026-05-29
 
-**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T18:47Z
+**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T18:48Z
 
 ## Executive summary
 
 - Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — **CI green** (`changes` + `docs-only` success; `check` skipped), **MERGEABLE** / clean (REST).
 - **Standards: aligned** — org Cursor agent-kit chore; closes `missing_kit` for li-httpd; no PH / `plan-approved` required.
-- Branch pins org canonical **`1.3.5+6018e18bf2ed91f4`** (matches `benchmarks/scripts/expected-agent-kit-version`); PR body summary still cites 1.3.4 (cosmetic).
+- Branch pins org canonical **`1.3.5+6018e18bf2ed91f4`** (matches `scripts/expected-agent-kit-version`); PR body summary still cites 1.3.4 (cosmetic).
 - **`merge-approved`** label present — validated; not re-added.
 - **Gate blocker:** `REVIEW_REQUIRED` — author `cap-jmk-real`; 0 reviews; agent cannot self-approve.
 - Rank **#1** in `pr-program-run.json` (mirror/httpd tier before benchmarks/lic).
