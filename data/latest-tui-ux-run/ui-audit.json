@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-05-29T19:30:02.351539+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_gen",
+      "artifacts": [],
+      "mode": "fixture",
+      "status": "pass",
+      "fixture_exit_code": 0,
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0
+    }
+  ]
+}
