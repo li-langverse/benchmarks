@@ -1,0 +1,114 @@
+{
+  "generated_at": "2026-05-29T19:30:00Z",
+  "agent_id": "docs_ux_tester",
+  "north_star_fit": {
+    "pillar": "easy",
+    "domain": "handbook reading path / MkDocs IA",
+    "ph_ids": ["PH-2i-adjacent-docs", "Vision-LLM-handbook"]
+  },
+  "issues": [
+    {
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
+      "priority": "P0",
+      "target_id": "lic-docs",
+      "status": "open",
+      "evidence": "Live Pages last-modified 2026-05-27; /ecosystem/overview/ and /guide/hello-world/ return 404; search index 248 vs 2801 local; docs.yml run 26642211697 failed"
+    },
+    {
+      "url": "https://github.com/li-langverse/lic/issues/422",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "priority": "P1",
+      "target_id": "lic-docs",
+      "status": "open",
+      "agent_source": "docs_ux_tester",
+      "evidence": "mkdocs.yml lines 119–129: language reference under Game development tab"
+    },
+    {
+      "url": "https://github.com/li-langverse/lic/issues/404",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
+      "priority": "P1",
+      "target_id": "lic-docs",
+      "status": "open",
+      "agent_source": "docs_ui_tester",
+      "evidence": "Contributes to strict build failure; raw .md hrefs in lic/site/"
+    },
+    {
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
+      "priority": "P1",
+      "target_id": "lic-docs",
+      "status": "open",
+      "agent_source": "docs_ui_tester",
+      "evidence": "Harness blind spot: no live URL verification; links_checked=0"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "priority": "P0",
+      "repo": "lic",
+      "title": "[ux-audit] Fix docs strict build — restore GitHub Pages publish",
+      "issue_url": "https://github.com/li-langverse/lic/issues/403",
+      "acceptance": [
+        "./scripts/build-docs.sh --strict exits 0 on main",
+        "Live Pages serves 12 nav tabs (Guide, Ecosystem, Game development, etc.)",
+        "/ecosystem/overview/ and /guide/hello-world/ return HTTP 200",
+        "search_index.json docs count ≥ 2500"
+      ],
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "agent_source": "docs_ux_tester"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "title": "docs(IA): move language reference pages out of Game development nav",
+      "issue_url": "https://github.com/li-langverse/lic/issues/422",
+      "acceptance": [
+        "mkdocs.yml lines 119–129 moved under Language handbook",
+        "Game development tab contains only game-dev/ and physics/ content",
+        "Diátaxis reference quadrant not mixed with tutorial/how-to tabs"
+      ],
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "agent_source": "docs_ux_tester",
+      "files_hint": ["lic/mkdocs.yml"]
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "title": "docs(ecosystem): replace GitHub tree nav link with in-site roadmap mirror",
+      "issue_url": null,
+      "acceptance": [
+        "Ecosystem nav item resolves within MkDocs (no raw github.com/tree link)",
+        "Unified search covers ecosystem vision/standards pages"
+      ],
+      "labels": ["ux-audit", "surface:docs"],
+      "agent_source": "docs_ux_tester",
+      "files_hint": ["lic/mkdocs.yml", "lic/docs/ecosystem/"]
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs",
+      "issue_url": "https://github.com/li-langverse/lic/issues/404",
+      "acceptance": [
+        "Deep scan: 0 relative raw .md hrefs in lic/site/",
+        "mkdocs build --strict exits 0"
+      ],
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "agent_source": "docs_ui_tester"
+    },
+    {
+      "priority": "P2",
+      "repo": "li-cursor-agents",
+      "title": "feat(ux-harness): live Pages HEAD-check + Playwright mobile TOC journey for lic-docs",
+      "issue_url": null,
+      "acceptance": [
+        "run_audit.py HEAD-checks li-langverse.github.io/li-language/ key paths",
+        "Playwright journey opens nav drawer + On this page on 375px viewport",
+        "ux-audit flags publish drift when live ≠ local"
+      ],
+      "labels": ["ux-audit", "surface:docs"],
+      "agent_source": "docs_ux_tester"
+    }
+  ]
+}

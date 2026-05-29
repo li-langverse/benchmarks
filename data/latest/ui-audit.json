@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-05-29T19:30:00+00:00",
+  "platform": "Linux",
+  "agent": "gui_ui_tester",
+  "summary": {
+    "total": 6,
+    "failing": 1,
+    "passing": 2,
+    "skipped": 3,
+    "manual_review": 1
+  },
+  "targets": [
+    {
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "GUI not reachable at http://127.0.0.1:3000 (start dashboard for extended audit)",
+      "mode": "http_probe",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "unknown",
+      "tokens_deviation": []
+    },
+    {
+      "target_id": "lic-tetris",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "native capture exit 4: install SDL2 (libsdl2-dev)",
+      "mode": "native_gui",
+      "native_pixels": false,
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "unknown",
+      "tokens_deviation": []
+    },
+    {
+      "target_id": "world-studio-demo",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "mode": "http_probe",
+      "fixture": "li-cursor-agents/ux-harness/fixtures/world-studio-workspace.html",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "Fixture existence only; no Playwright snapshot or axe run"
+    },
+    {
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "SDL capture failed (missing sdl2/xvfb?)",
+      "mode": "native_gui",
+      "native_pixels": false,
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "unknown",
+      "tokens_deviation": []
+    },
+    {
+      "target_id": "gui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_gen",
+      "status": "pass",
+      "mode": "http_probe",
+      "fixture": "li-cursor-agents/ux-harness/fixtures/gui-gen-demo.html",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "baseline_status": "ok",
+      "tokens_deviation": []
+    },
+    {
+      "target_id": "benchmarks-dashboard-gpu-matrix",
+      "repo": "benchmarks",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "fail",
+      "mode": "manual_static_review",
+      "url": "/gpu-matrix/",
+      "artifacts": [
+        "dashboard-next/out/gpu-matrix/index.html"
+      ],
+      "axe_violations": [
+        {
+          "id": "aria-required-children",
+          "impact": "moderate",
+          "nodes": 1,
+          "detail": "tablist without associated tabpanels"
+        }
+      ],
+      "pixel_diff": { "max_ratio": null, "threshold": 0.04, "note": "no baseline registered" },
+      "contrast_failures": [],
+      "baseline_status": "none",
+      "tokens_deviation": [],
+      "findings": [
+        "gpu-chip-picker uses role=tab/tablist without tabpanel or roving tabindex",
+        "gpu-chip-card transitions lack prefers-reduced-motion guard",
+        "section uses placeholder CSS class on shipped route",
+        "target not registered in li-cursor-agents/config/ux-targets.json"
+      ]
+    }
+  ]
+}
