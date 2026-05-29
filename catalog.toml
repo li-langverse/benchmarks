@@ -6,6 +6,10 @@
 # catalog_lifecycle — optional; "planned" skips plan-completion-audit path check.
 # path = "unknown" — algo_registry stub until lic harness exists (audit skip).
 
+[defaults]
+platforms = ["linux", "macos", "windows"]
+validity_required = true
+
 [[benchmark]]
 id = "tier0_stability"
 category = "correctness"
@@ -209,6 +213,8 @@ path = "benchmarks/tier1_micro/horner_pure_li"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "pure_li"
+problem_size = "1000000"
+size_label = "N=1M Horner"
 ph_ids = ["PH-5b", "PH-7e"]
 
 [[benchmark]]
@@ -2732,3 +2738,8 @@ threshold_ratio_cpp = 1.2
 compare_oracle = "postgres"
 variant = "db_realtime"
 ph_ids = ["WP-N4", "PH-DB-RT"]
+
+[reporting]
+platforms = ["linux", "macos", "windows"]
+validity_required = true
+sota_policy = "best_competitor_lang_excludes_li"
