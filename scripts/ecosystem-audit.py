@@ -10,6 +10,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+_SCRIPTS = Path(__file__).resolve().parent
+if str(_SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(_SCRIPTS))
+from org_repos import CI_EXEMPT_REPOS  # noqa: E402
+
+
 def list_org_repos() -> list[str]:
     """All non-archived li-langverse repos (dynamic)."""
     proc = subprocess.run(
@@ -181,7 +187,9 @@ def main() -> int:
     failed = [p for p in prs if p["ci"] == "fail"]
     ready = [p for p in prs if p["ready"]]
 
-    missing_ci = [r for r in ORG_REPOS if not has_ci_on_main(r)]
+    missing_ci = [
+        r for r in ORG_REPOS if r not in CI_EXEMPT_REPOS and not has_ci_on_main(r)
+    ]
     missing_docs = [
         r
         for r in ORG_REPOS
