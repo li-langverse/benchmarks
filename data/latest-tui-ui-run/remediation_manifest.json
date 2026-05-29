@@ -1,6 +1,6 @@
 {
   "generated_at": "2026-05-29T21:23:00+00:00",
-  "agent": "tui_ui_tester",
+  "agent_id": "tui_ui_tester",
   "surface": "tui",
   "audit_kind": "ui",
   "source": "proactive",
@@ -11,11 +11,12 @@
   },
   "issues": [
     {
-      "priority": "P1",
-      "repo": "li-cursor-agents",
       "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
       "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "target_id": "tui-app-fixture"
+      "priority": "P1",
+      "target_id": "tui-app-fixture",
+      "status": "open",
+      "evidence": "run_audit.py --target tui-app-fixture --mode ui → TimeoutExpired @ 30s (uncaught); piped stdin exits 0 — captures/tui-app-piped.txt"
     }
   ],
   "implementation_queue": [

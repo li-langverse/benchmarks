@@ -1,19 +1,53 @@
 {
-  "generated_at": "2026-05-29T20:36:17.029170+00:00",
+  "generated_at": "2026-05-29T21:23:00+00:00",
   "platform": "Linux",
+  "agent": "tui_ui_tester",
+  "source": "proactive",
   "summary": {
-    "total": 1,
-    "failing": 0,
+    "total": 2,
+    "failing": 1,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
     {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "artifacts": [
+        "benchmarks/data/latest-tui-ui-run/captures/tui-app-piped.txt"
+      ],
+      "mode": "fixture",
+      "status": "fail",
+      "harness_error": "subprocess.TimeoutExpired: Command timed out after 30 seconds (blocks on read -r without stdin); run_audit.py exits uncaught",
+      "fixture_exit_code": null,
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": null,
+        "threshold": 0.04,
+        "note": "no frame baseline; manual stdout capture only"
+      },
+      "contrast_failures": [],
+      "baseline_status": "none",
+      "tokens_deviation": [
+        "em dash renders as mojibake in capture without strict UTF-8 harness env"
+      ],
+      "broken_links": 0,
+      "findings": [
+        "ANSI clear+home (ESC[2J ESC[H) — 3-line prompt flow",
+        "Piped stdin (h/q) exits 0 in <1s — layout readable but not harness-validated",
+        "No fg/bg ANSI colors — contrast N/A for monochrome stub"
+      ]
+    },
+    {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
       "surface": "tui",
       "surface_class": "tui_gen",
-      "artifacts": [],
+      "artifacts": [
+        "benchmarks/data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
+      ],
       "mode": "fixture",
       "status": "pass",
       "fixture_exit_code": 0,
@@ -25,7 +59,12 @@
       "contrast_failures": [],
       "baseline_status": "ok",
       "tokens_deviation": [],
-      "broken_links": 0
+      "broken_links": 0,
+      "findings": [
+        "Unicode box frame (31 cols) — deterministic layout",
+        "No ANSI color tokens — apply Li dark palette when generator ships",
+        "Status line always ok — no error-state frame for visual regression"
+      ]
     }
   ]
 }
