@@ -1,49 +1,77 @@
 {
-  "generated_at": "2026-05-29T12:52:00Z",
-  "agent_id": "docs_ux_tester",
-  "surface": "docs",
+  "generated_at": "2026-05-29T12:58:00Z",
+  "agent_id": "gui_ui_tester",
+  "surface": "gui",
   "north_star_fit": {
     "pillar": "easy",
-    "domain": "documentation IA and reading path for prove → write → run fast",
-    "ph_ids": ["PH-handbook", "ecosystem-governance-docs"]
+    "domain": "agent dashboard + World Studio GUI surfaces (web + native SDL)",
+    "ph_ids": ["PH-UX", "Phase-7d-studio", "Vision-LLM-agent-diagnostics"]
   },
   "preflight": {
-    "ux_audit_path": "data/latest/ux-audit.json",
     "ui_audit_path": "data/latest/ui-audit.json",
-    "target_id": "lic-docs",
-    "harness_status": "pass",
-    "rubric_min": 0.7
+    "gui_rerun_path": "data/latest-gui-ui-run/ui-audit-gui-all.json",
+    "harness_summary": {
+      "total": 5,
+      "passing": 2,
+      "failing": 0,
+      "skipped": 3
+    }
   },
-  "issues": [],
+  "issues": [
+    {
+      "priority": "P1",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/31",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] dashboard Playwright e2e blocked by live-stream-feed TypeScript build"
+    },
+    {
+      "priority": "P1",
+      "url": "https://github.com/li-langverse/lic/issues/394",
+      "repo": "lic",
+      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main for ux-harness native GUI"
+    },
+    {
+      "priority": "P1",
+      "url": "https://github.com/li-langverse/benchmarks/issues/138",
+      "repo": "benchmarks",
+      "title": "[ui-audit] Expand org preflight ui-audit.json to GUI/TUI ux-targets"
+    },
+    {
+      "priority": "P2",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/32",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] ux-harness web_gui: Playwright snapshots + axe for HTML fixtures"
+    }
+  ],
   "implementation_queue": [
     {
       "priority": "P1",
-      "repo": "lic",
-      "item": "Move language reference pages from Game development tab to Language handbook (mkdocs.yml nav)",
-      "sources": ["ux_audit", "docs_ux_tester_digest"],
-      "acceptance": "types-and-data, numerics, SIMD, decorators, linalg appear under Language handbook; Game development retains game-dev-only pages"
+      "repo": "li-cursor-agents",
+      "item": "Fix live-stream-feed.tsx types so dashboard-ui builds and Playwright mock e2e runs",
+      "sources": ["gui_ui_tester_digest", "issue-31"],
+      "acceptance": "npx playwright test e2e/live-stream-mock.spec.ts passes; agents-dashboard reachable or documented mock mode"
     },
     {
       "priority": "P1",
       "repo": "lic",
-      "item": "Replace Ecosystem Canonical docs GitHub tree link with in-site mirror or monorepo plugin",
-      "sources": ["ux_audit", "docs_ux_tester_digest"],
-      "acceptance": "Ecosystem nav entry stays on li-language domain; search finds roadmap ecosystem pages"
+      "item": "Land studio-ui-ux-capture-native.sh on main for ux-harness world-studio-native",
+      "sources": ["gui_ui_tester_digest", "issue-394"],
+      "acceptance": "run_audit --target world-studio-native returns native_pixels true with PNG artifacts on Linux Xvfb"
     },
     {
       "priority": "P1",
       "repo": "benchmarks",
-      "item": "Register lic → li-language Pages URL in ecosystem-audit LIVE_DOCS",
-      "sources": ["ecosystem_audit", "docs_ux_tester_digest"],
-      "acceptance": "repos_without_live_docs no longer lists lic when li-language Pages is up"
+      "item": "Add scripts/ui-ux-audit.py and wire agent-briefing preflight for all ux-targets",
+      "sources": ["gui_ui_tester_digest", "issue-138"],
+      "acceptance": "agent-briefing.json includes ui_audit with GUI target rows"
     },
     {
       "priority": "P2",
-      "repo": "lic",
-      "item": "Document Material search shortcuts (F/S/) in contributing/documentation.md; optional navigation.instant.prefetch",
-      "sources": ["sota_research", "docs_ux_tester_digest"],
-      "acceptance": "contributing guide lists keyboard shortcuts; mkdocs.yml prefetch behind maintainer review"
+      "repo": "li-cursor-agents",
+      "item": "Extend web_gui adapter with Playwright screenshots, axe, and pixel baselines for HTML fixtures",
+      "sources": ["gui_ui_tester_digest", "issue-32"],
+      "acceptance": "world-studio-demo audit produces artifacts and axe_violations arrays; focus styles in fixtures"
     }
   ],
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-29-docs-ux.md"
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-29-gui-ui.md"
 }
