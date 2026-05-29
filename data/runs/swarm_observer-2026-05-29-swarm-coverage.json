@@ -1,0 +1,27 @@
+{
+  "run_id": "swarm_observer-2026-05-29-swarm-coverage",
+  "agent_id": "swarm_observer",
+  "research_goal_id": "swarm_coverage",
+  "generated_at": "2026-05-29T10:12:00Z",
+  "status": "finished",
+  "north_star_fit": {
+    "domains": ["ecosystem", "ai"],
+    "summary": "Swarm gap orchestration — registry, backlog apply, handoffs"
+  },
+  "posture": "critical",
+  "ecosystem_grade": "F",
+  "overall_score": 59.0,
+  "unattended_safe": false,
+  "briefing_hash": "e5fad788e09b81ca",
+  "report_md": "benchmarks/data/runs/swarm_observer-2026-05-29-swarm-coverage.md",
+  "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md",
+  "evidence": [
+    "benchmarks/data/latest/ecosystem-quality-report.json",
+    "benchmarks/data/latest/swarm-gap-actions.json",
+    "lic/data/swarm-gap-registry/registry.yaml",
+    "lic/docs/ecosystem/ecosystem-package-backlog.md",
+    "lic/data/goal-directed-agents/snapshot.json"
+  ],
+  "open_missing_package_gaps": 3,
+  "gap_apply_ran": true
+}
