@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-05-29T15:45:00Z",
+  "agent_id": "docs_ui_tester",
+  "site_dir": "../lic/site",
+  "html_files": 377,
+  "hrefs_estimated": 32591,
+  "unique_md_hrefs": 93,
+  "harness_links_checked": 0,
+  "harness_broken_links": 0,
+  "sample_md_hrefs": [
+    {
+      "page": "superpowers/plans/2026-05-14-li-master-plan/index.html",
+      "href": "../ecosystem/strict-by-default.md"
+    },
+    {
+      "page": "superpowers/plans/2026-05-14-li-master-plan/index.html",
+      "href": "../verification/provability-gaps.md"
+    },
+    {
+      "page": "verification/provability-gaps/index.html",
+      "href": "../../proof-database/DISCREPANCIES.md"
+    },
+    {
+      "page": "testing/security/index.html",
+      "href": "../../SECURITY.md"
+    }
+  ],
+  "contrast_tokens": {
+    "li_ice_on_void": 17.36,
+    "li_muted_on_void": 7.24,
+    "li_cyan_on_void": 11.82,
+    "primary_on_light": 5.13
+  },
+  "issues_filed": [
+    "https://github.com/li-langverse/li-cursor-agents/issues/36",
+    "https://github.com/li-langverse/lic/issues/404",
+    "https://github.com/li-langverse/li-cursor-agents/issues/37"
+  ]
+}

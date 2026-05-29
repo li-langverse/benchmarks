@@ -1,63 +1,77 @@
 {
-  "generated_at": "2026-05-29T15:42:00Z",
-  "agent_id": "docs_ux_tester",
+  "generated_at": "2026-05-29T15:45:00Z",
+  "agent_id": "docs_ui_tester",
   "north_star_fit": {
     "pillar": "easy",
-    "domain": "documentation onboarding / IA",
-    "ph_ids": ["handbook", "ecosystem-governance"]
+    "domain": "handbook / MkDocs",
+    "ph_ids": ["2i-adjacent-docs"]
   },
   "issues": [
     {
-      "url": "https://github.com/li-langverse/lic/issues/403",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
-      "priority": "P0",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
+      "priority": "P1",
+      "target_id": "lic-docs",
+      "status": "open"
+    },
+    {
+      "url": "https://github.com/li-langverse/lic/issues/404",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
+      "priority": "P1",
+      "target_id": "lic-docs",
+      "status": "open"
+    },
+    {
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
+      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
+      "priority": "P2",
       "target_id": "lic-docs",
       "status": "open"
     }
   ],
   "implementation_queue": [
     {
-      "priority": "P0",
-      "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "issue_url": "https://github.com/li-langverse/lic/issues/403",
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix",
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
       "acceptance": [
-        "./scripts/build-docs.sh --strict exits 0",
-        "Docs workflow green on main; Pages deploy succeeds",
-        "https://li-langverse.github.io/li-language/ecosystem/overview/ returns 200",
-        "Live nav tab count matches mkdocs.yml (12 tabs)"
+        "run_audit.py --target lic-docs --mode ui reports links_checked > 0",
+        "test_static_site.py covers unquoted href and /li-language/ prefix"
       ],
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"]
     },
     {
       "priority": "P1",
       "repo": "lic",
-      "title": "docs(IA): move language reference pages out of Game development nav",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
+      "issue_url": "https://github.com/li-langverse/lic/issues/404",
       "acceptance": [
-        "mkdocs.yml lines 113-129 moved to Language handbook section",
-        "Game development tab contains only game-dev/studio content"
+        "Zero .md hrefs in lic/site/**/*.html after mkdocs build",
+        "mkdocs build --strict passes in CI"
       ],
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
-    },
-    {
-      "priority": "P1",
-      "repo": "lic",
-      "title": "docs(ecosystem): replace GitHub tree nav link with in-site roadmap mirror",
-      "acceptance": [
-        "Ecosystem nav no longer links to github.com/li-langverse/roadmap/tree/...",
-        "Roadmap ecosystem pages reachable within MkDocs search index"
-      ],
-      "labels": ["ux-audit", "surface:docs"]
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"]
     },
     {
       "priority": "P2",
       "repo": "li-cursor-agents",
-      "title": "feat(ux-harness): live Pages HEAD-check + Playwright mobile TOC journey for lic-docs",
+      "title": "[ui-audit] Seed baselines/docs + Playwright capture",
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
       "acceptance": [
-        "run_audit.py optionally HEAD-checks site_url from mkdocs.yml",
-        "mobile_nav journey uses Playwright viewport 375px"
+        "ux-harness/baselines/docs/ contains desktop + mobile PNGs",
+        "lic-docs ui-audit artifacts[] non-empty when Playwright available"
       ],
-      "labels": ["ux-audit"]
+      "labels": ["ui-audit", "surface:docs"]
+    },
+    {
+      "priority": "P2",
+      "repo": "benchmarks",
+      "title": "chore(preflight): embed ui_audit and ux_audit in agent-briefing.json",
+      "acceptance": [
+        "agent-briefing.json includes ui_audit from data/latest/ui-audit.json",
+        "briefing recommends docs_ui_tester when lic-docs fails"
+      ],
+      "labels": ["ui-audit"]
     }
   ]
 }
