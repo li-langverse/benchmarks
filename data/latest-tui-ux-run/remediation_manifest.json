@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T21:30:00+00:00",
+  "generated_at": "2026-05-29T22:03:22.117583+00:00",
   "agent": "tui_ux_tester",
   "surface": "tui",
   "audit_kind": "ux",
@@ -38,7 +38,7 @@
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "Non-blocking TUI harness: stdin pipe or LI_TUI_HARNESS=1; LANG=C.UTF-8; catch TimeoutExpired"
+      "summary": "Non-blocking TUI harness: stdin pipe or LI_TUI_HARNESS=1; LANG=C.UTF-8; catch TimeoutExpired in run_audit.py"
     },
     {
       "priority": "P1",
@@ -58,15 +58,15 @@
   "deferred": [
     {
       "item": "Production lic/lis interactive TUI targets",
-      "reason": "JSON diagnostics first (lic check --format=json, lic diagnose); no shipped Li TUI"
+      "reason": "JSON diagnostics first; no shipped Li TUI"
     },
     {
       "item": "VHS / PTY visual regression",
-      "reason": "adapters/tui.py PTY reserved; blocked on #30 harness stability"
+      "reason": "Blocked on #30 harness stability"
     },
     {
-      "item": "Merge TUI rows into global data/latest/ux-audit.json preflight",
-      "reason": "Org preflight still docs-only; requires benchmarks ui-ux-audit orchestration"
+      "item": "Merge TUI rows into global ux-audit preflight",
+      "reason": "Org preflight docs-only today"
     }
   ],
   "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-tui-ux.md"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T21:30:00+00:00",
+  "generated_at": "2026-05-29T22:03:22.117583+00:00",
   "agent": "tui_ux_tester",
   "surface": "tui",
   "audit_kind": "ux",
@@ -38,7 +38,7 @@
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "Non-blocking TUI harness: stdin pipe or LI_TUI_HARNESS=1; LANG=C.UTF-8; catch TimeoutExpired"
+      "summary": "Non-blocking TUI harness: stdin pipe or LI_TUI_HARNESS=1; LANG=C.UTF-8; catch TimeoutExpired in run_audit.py"
     },
     {
       "priority": "P1",

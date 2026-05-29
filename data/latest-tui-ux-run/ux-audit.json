@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T21:30:00+00:00",
+  "generated_at": "2026-05-29T22:03:22.117583+00:00",
   "platform": "Linux",
   "agent": "tui_ux_tester",
   "source": "proactive",
@@ -26,6 +26,9 @@
         },
         {
           "issue": "h key in prompt not interpreted; help requires two blocking read lines"
+        },
+        {
+          "issue": "UTF-8 mojibake in piped capture (em dash) without LANG=C.UTF-8 in harness env"
         }
       ],
       "sota_refs": ["textual", "bubbletea"],
@@ -42,7 +45,7 @@
         "benchmarks/data/latest-tui-ux-run/captures/tui-app-piped.txt"
       ],
       "mode": "fixture",
-      "harness_error": "subprocess.TimeoutExpired: timed out after 30 seconds"
+      "harness_error": "subprocess.TimeoutExpired: Command '['bash', '.../tui-demo.sh']' timed out after 30 seconds"
     },
     {
       "target_id": "tui-gen-fixture",
