@@ -14,6 +14,7 @@ export BENCH_TARGET_SAMPLE_SEC="${BENCH_TARGET_SAMPLE_SEC:-1.0}"
 export BENCH_MAX_RUNS="${BENCH_MAX_RUNS:-200}"
 SKIP_BUILD="${SKIP_BUILD:-0}"
 SKIP_TIER0="${SKIP_TIER0:-0}"
+SKIP_TIER3="${SKIP_TIER3:-0}"
 SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}"
 
 log() { echo "==> $*"; }
@@ -66,8 +67,13 @@ python3 "$ROOT/harness/bench.py" --tier 7 --runs "$RUNS" --skip-verify || {
   echo "WARN: tier7 registry aliases failed — continuing" >&2
 }
 
+if [[ "$SKIP_TIER3" == "1" ]]; then
+  log "tier 3 — ecosystem skipped (SKIP_TIER3=1)"
+else
 log "tier 3 — ecosystem (compile, security, async; jobs=${BENCH_JOBS})"
 python3 "$ROOT/harness/bench_ecosystem.py" --runs "$RUNS" --jobs "$BENCH_JOBS"
+
+fi
 
 if [[ "${SKIP_TIER5_HTTP:-0}" == "1" ]]; then
   log "tier 5 — HTTP multi-oracle skipped (SKIP_TIER5_HTTP=1)"

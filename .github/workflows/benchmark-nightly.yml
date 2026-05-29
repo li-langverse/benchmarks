@@ -80,6 +80,9 @@ jobs:
           echo "CC=$(brew --prefix llvm@22)/bin/clang" >> "$GITHUB_ENV"
           echo "CXX=$(brew --prefix llvm@22)/bin/clang++" >> "$GITHUB_ENV"
 
+      - name: Install Rust/Julia (macOS)
+        run: brew install rust julia 2>/dev/null || true
+
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic

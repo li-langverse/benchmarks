@@ -23,7 +23,7 @@ log() { echo "==> $*"; }
 
 case "$(uname -s)" in
   Linux*) log "nightly profile: full (Linux)"; export SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}" ;;
-  Darwin*) log "nightly profile: core (macOS)"; export SKIP_EXPLOITS=1 SKIP_TIER5_HTTP=1 ;;
+  Darwin*) log "nightly profile: core (macOS)"; export SKIP_EXPLOITS=1 SKIP_TIER5_HTTP=1 SKIP_TIER0=1 SKIP_TIER3=1 ;;
   MINGW*|MSYS*|CYGWIN*|Windows*) log "nightly profile: core (Windows)"; export SKIP_EXPLOITS=1 SKIP_TIER5_HTTP=1 ;;
   *) log "nightly profile: core"; export SKIP_EXPLOITS=1 SKIP_TIER5_HTTP=1 ;;
 esac
