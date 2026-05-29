@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-05-29T15:37:00Z",
+  "agent_id": "tui_ui_tester",
+  "north_star_fit": {
+    "pillar": "easy",
+    "domain": "agent tooling / terminal UX",
+    "ph_ids": ["2i-adjacent-tooling"]
+  },
+  "issues": [
+    {
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "priority": "P1",
+      "target_id": "tui-app-fixture",
+      "status": "open"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "acceptance": [
+        "ux-harness run_audit.py --target tui-app-fixture --mode ui exits 0 without stdin",
+        "tui-demo.sh supports LI_TUI_FIXTURE_NONINTERACTIVE=1 or equivalent"
+      ],
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"]
+    },
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "title": "feat(ux-harness): TUI frame capture (stdout dump or VHS) + baseline diff",
+      "acceptance": [
+        "tui-app-fixture and tui-gen-fixture populate artifacts[] with capture paths",
+        "pixel_diff or text snapshot baseline checked in CI"
+      ],
+      "labels": ["ui-audit", "surface:tui"]
+    },
+    {
+      "priority": "P1",
+      "repo": "benchmarks",
+      "title": "chore(preflight): include tui fixtures in ui-ux-audit / agent briefing",
+      "acceptance": [
+        "data/latest/ui-audit.json includes surface:tui targets",
+        "briefing recommends tui_ui_tester when tui targets fail"
+      ],
+      "labels": ["ui-audit"]
+    }
+  ]
+}
