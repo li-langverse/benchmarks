@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-05-29T22:15:00+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 1,
+    "passing": 0,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "surface": "docs",
+      "surface_class": "docs",
+      "mode": "playwright_axe",
+      "status": "fail",
+      "artifacts": [
+        "data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/hello-world-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/hello-world-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json"
+      ],
+      "axe_violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 12
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "nodes": 5
+        }
+      ],
+      "contrast_failures": [],
+      "broken_links": 0,
+      "html_files": 377,
+      "links_checked": 0,
+      "baseline_status": "none",
+      "pixel_diff": {
+        "max_ratio": null,
+        "threshold": 0.04,
+        "note": "ux-harness/baselines/docs/ empty (.gitkeep only)"
+      },
+      "live_drift": {
+        "nav_tabs_local": 12,
+        "nav_tabs_live": 5,
+        "search_docs_local": 2801,
+        "search_docs_live": 248,
+        "live_404_paths": [
+          "ecosystem/overview/",
+          "guide/hello-world/",
+          "game-dev/world-studio-vision/"
+        ]
+      },
+      "static_site_scan": {
+        "raw_md_hrefs_unique": 45,
+        "note": "Full HTML scan (unquoted href); harness adapter still reports links_checked=0"
+      }
+    }
+  ]
+}
