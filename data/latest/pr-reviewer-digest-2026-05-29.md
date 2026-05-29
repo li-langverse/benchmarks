@@ -26,13 +26,13 @@
 | Security | N/A (policy sync); adds `guard-secrets.sh`, `guard-destructive-git.sh` |
 | Performance | N/A per agent deliverable checklist |
 | Release notes | N/A (chore agent-kit sync) |
-| Ecosystem-first | Canonical stamp via `sync-agent-kit.sh`; org rollout stamp `1.3.5+6018e18bf2ed91f4` (roadmap `main` still at 1.3.2 — separate drift; this PR advances li-httpd to org canonical) |
+| Ecosystem-first | Canonical stamp via `sync-agent-kit.sh`; org rollout stamp `1.3.5+6018e18bf2ed91f4` |
 
 **`pr-merge-gate.py --repo li-httpd --pr 13 --json`:** `ready: false` — sole blocker `review_approved`.
 
 **Preflight:** `pr-merge-queue-plan.json` (2026-05-29T18:01Z); `pr-program-run.json` (2026-05-29T12:32Z). `gate_ready_with_approval: true` once human approves.
 
-**PR comments:** prior `pr_reviewer` alignment notes on PR (2026-05-29T17:49–17:58Z).
+**PR comment posted:** https://github.com/li-langverse/li-httpd/pull/13#issuecomment-4578670665
 
 **north_star_fit:** domain=platform/agent-kit · PH=N/A (coord_platform — org agent discipline for provable→easy→fast workflow)
 
