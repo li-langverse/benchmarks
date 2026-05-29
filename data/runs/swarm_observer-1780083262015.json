@@ -1,0 +1,25 @@
+{
+  "run_id": "swarm_observer-1780083262015",
+  "agent_id": "swarm_observer",
+  "generated_at": "2026-05-29T19:36:00Z",
+  "research_goal_id": "swarm_coverage",
+  "north_star_fit": ["ecosystem", "ai-first"],
+  "posture": "degraded",
+  "scorecard": {
+    "path": "data/latest/ecosystem-quality-report.json",
+    "overall_score": 71.3,
+    "grade": "C",
+    "unattended_safe": false
+  },
+  "open_gaps": {
+    "total": 53,
+    "missing_package": 3,
+    "plan_debt": 19,
+    "competitor_feature": 30
+  },
+  "orch_todo": "orch-r3-missing-package-sweep",
+  "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md",
+  "digest_md": "data/runs/swarm_observer-1780083262015.md",
+  "briefing_path": "data/latest/agent-briefing.json",
+  "swarm_gap_actions": "data/latest/swarm-gap-actions.json"
+}
