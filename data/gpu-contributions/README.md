@@ -12,5 +12,5 @@ Each subdirectory is **one physical machine** (one GPU + host CPU). Do not mix c
 **How to contribute:** [docs/ecosystem/gpu-chip-contributions.md](../../docs/ecosystem/gpu-chip-contributions.md)
 
 ```bash
-LIC_ROOT=../lic ./scripts/ingest/submit-gpu-contribution.sh nvidia-rtx-3090-linux "NVIDIA GeForce RTX 3090"
+CONTRIBUTOR_GITHUB=you ./scripts/donate-gpu-chip.sh nvidia-rtx-3090-linux
 ```
