@@ -1,6 +1,6 @@
 # Org repo onboarder digest — 2026-05-29
 
-**Source:** proactive sweep · discovery `2026-05-29T20:14Z` · CI audit `2026-05-29T19:59Z` · agent-kit audit `2026-05-29T20:13Z` · briefing `2026-05-29T19:05Z`
+**Source:** proactive sweep · discovery `2026-05-29T20:47Z` · CI audit `2026-05-29T20:37Z` · agent-kit audit `2026-05-29T20:46Z` · briefing `2026-05-29T19:05Z`
 
 ## Executive summary
 
@@ -9,8 +9,8 @@
 - **No unclassified *new* repos** — `package_architect` activates only when `new_repos` is non-empty.
 - **Highest platform risk (existing):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **29** repos missing/drifted agent-kit (canonical `1.3.5+6018e18bf2ed91f4`); **`li-gui`** = `missing_local_clone`.
 - **CI posture:** **31** repos OK on `main`, **0** missing `ci.yml`, **1** gated (`lidb`); `research-findings` CI-exempt; `li-cursor-agents` excluded from org CI sweep per policy.
-- **Agent-kit:** **4** OK (`benchmarks`, `li-cursor-agents`, `lip`, `lit`), **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`).
-- **Control plane:** heap already routes `agent_kit_maintainer` (9-repo summary) and per-repo kit tasks; **no** `org_repo_onboarding` rows — `new_repos` is empty.
+- **Agent-kit:** **4** OK (`benchmarks`, `li-cursor-agents`, `lip`, `lit`), **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`); control plane already enqueues `agent_kit_maintainer` + open PR alignment for several kit rollouts.
+- **Control plane:** heap routes `agent_kit_maintainer` (28-repo summary); **no** `org_repo_onboarding` rows — `new_repos` is empty.
 - **North star:** platform hygiene supports **provable** (`lic`/`lit`/`proof-library`), **secure** (`li-httpd`/`li-net`), **easy** (docs) — defer perf until proof gates pass.
 
 ## Deliverable / findings
