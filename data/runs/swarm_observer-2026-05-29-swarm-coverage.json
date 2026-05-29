@@ -1,8 +1,8 @@
 {
-  "run_id": "swarm_observer-2026-05-29-swarm-coverage-r5",
+  "run_id": "swarm_observer-2026-05-29-swarm-coverage-r6",
   "agent_id": "swarm_observer",
   "research_goal_id": "swarm_coverage",
-  "generated_at": "2026-05-29T12:18:00Z",
+  "generated_at": "2026-05-29T12:50:00Z",
   "status": "finished",
   "north_star_fit": {
     "domains": ["ecosystem", "ai"],
@@ -12,25 +12,26 @@
   "ecosystem_grade": "D",
   "overall_score": 64.0,
   "unattended_safe": false,
-  "briefing_hash": "5ebb031963cff33b",
-  "report_md": "benchmarks/data/runs/swarm_observer-2026-05-29-swarm-coverage.md",
-  "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md",
-  "orch_todo_completed": "orch-r3-missing-package-sweep",
-  "orch_todo_next": "orch-r4-ui-ux-signals",
+  "briefing_hash": "6dafd0f997c09105",
+  "report_md": "benchmarks/data/runs/swarm_observer-2026-05-29-swarm-coverage-r6.md",
+  "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r4-ui-ux-signals.md",
+  "orch_todo_completed": "orch-r4-ui-ux-signals",
+  "orch_todo_next": null,
   "evidence": [
     "benchmarks/data/latest/ecosystem-quality-report.json",
     "benchmarks/data/latest/swarm-gap-actions.json",
     "benchmarks/data/latest/agent-briefing.json",
+    "benchmarks/data/latest/ui-audit.json",
+    "benchmarks/data/latest/ux-audit.json",
     "lic/data/swarm-gap-registry/registry.yaml",
-    "lic/docs/ecosystem/ecosystem-package-backlog.md",
+    "lic/data/goal-directed-agents/snapshot.json",
     "li-cursor-agents/data/control-plane/state.json"
   ],
-  "open_gaps": 52,
-  "open_missing_package": 3,
+  "open_gaps": 56,
+  "open_ui_ux": 5,
   "gap_ingest_ran": true,
   "gap_apply_ran": true,
   "cursor_api_key": "set",
-  "db_errors_24h": 718,
-  "db_errors_null_completion_24h": 710,
-  "dispatch_burst_at": "2026-05-29T12:14Z"
+  "db_errors_24h": 806,
+  "db_errors_null_completion_24h": 739
 }

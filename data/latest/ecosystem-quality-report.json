@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T12:17:06Z",
+  "generated_at": "2026-05-29T12:48:13Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 64.0,
   "grade": "D",
@@ -21,8 +21,8 @@
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 92,
-        "failed_prs": 35,
+        "open_prs": 95,
+        "failed_prs": 36,
         "repos_missing_ci_main": 1,
         "benchmark_red_count": 0
       },
@@ -35,7 +35,7 @@
         "snapshot_present": true,
         "runner_count": 8,
         "runners_stopped": 6,
-        "plan_todos_pending": 25,
+        "plan_todos_pending": 24,
         "plan_todos_total": 90,
         "agents_live": 0
       },
@@ -46,23 +46,23 @@
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 16,
-        "error_count": 5,
+        "terminal_runs": 21,
+        "error_count": 8,
         "incomplete_count": 1,
-        "running_count": 104,
-        "error_rate": 0.3125,
-        "incomplete_rate": 0.0625,
+        "running_count": 99,
+        "error_rate": 0.381,
+        "incomplete_rate": 0.0476,
         "top_error_agents": [
           {
-            "agent": "implementation_gaps",
-            "count": 1
-          },
-          {
-            "agent": "docs_maintainer",
-            "count": 1
+            "agent": "bug_fixer",
+            "count": 2
           },
           {
             "agent": "code_implementer",
+            "count": 2
+          },
+          {
+            "agent": "pr_alignment",
             "count": 1
           }
         ]
@@ -88,13 +88,13 @@
     {
       "id": "swarm-error-rate",
       "severity": "critical",
-      "message": "Error rate 31% over last 16 terminal runs",
+      "message": "Error rate 38% over last 21 terminal runs",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "failed-pr-ci",
       "severity": "high",
-      "message": "35 open PR(s) with failing CI",
+      "message": "36 open PR(s) with failing CI",
       "evidence": "ecosystem-audit.metrics.failed_prs"
     },
     {
@@ -130,7 +130,7 @@
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "104 runs still marked running (possible stuck SDK)",
+      "message": "99 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
