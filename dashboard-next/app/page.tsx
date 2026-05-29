@@ -120,7 +120,7 @@ export default function HomePage() {
           ))}
         </p>
         <p className="honesty-links">
-          <Link href="/proofs/">Proof library</Link>
+          <a href="https://li-langverse.github.io/proof-library/">Proof library</a>
           {" · "}
           <a href={HONESTY_DOC_URL} target="_blank" rel="noopener noreferrer">
             Benchmark honesty policy

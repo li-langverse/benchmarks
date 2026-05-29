@@ -31,7 +31,7 @@ export function Header({
               {p.label}
             </Link>
           ))}
-          <Link href="/proofs/">Proof library</Link>
+          <a href="https://li-langverse.github.io/proof-library/">Proof library</a>
         </nav>
       </div>
     </header>
