@@ -7,8 +7,8 @@ import {
   GpuTimingCell,
   GpuValidityCell,
 } from "@/components/gpu/gpu-backend-cells";
-import type { GpuMatrixRow } from "@/lib/lig-gpu-matrix";
-import { compareBackends } from "@/lib/lig-gpu-matrix";
+import type { GpuMatrixRow } from "@/lib/lig-gpu-matrix-types";
+import { compareBackends } from "@/lib/lig-gpu-matrix-types";
 
 type GpuMatrixTableProps = {
   rows: GpuMatrixRow[];

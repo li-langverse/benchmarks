@@ -701,3 +701,160 @@ main {
 .data-table {
   font-size: 0.95rem;
 }
+
+/* GPU matrix page */
+.gpu-matrix-page h2 {
+  margin-bottom: 0.5rem;
+}
+
+.gpu-pilot-strip {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--green) 40%, var(--border));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--green) 8%, var(--surface));
+  font-size: 0.9rem;
+}
+
+.gpu-chip-grid-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.gpu-chip-diagram {
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.gpu-chip-diagram-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.gpu-chip-diagram-empty {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.gpu-chip-diagram-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.gpu-chip-bar-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr 4.5rem auto;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gpu-chip-bar-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8rem;
+}
+
+.gpu-chip-bar-track {
+  height: 1rem;
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.gpu-chip-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 4px;
+  min-width: 2px;
+}
+
+.gpu-chip-bar-fill.gpu-chip-bar-invalid {
+  background: var(--yellow);
+}
+
+.gpu-chip-bar-value {
+  text-align: right;
+  font-size: 0.8rem;
+}
+
+.gpu-matrix-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.gpu-matrix-search input {
+  min-width: 12rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.gpu-matrix-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.gpu-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.gpu-matrix-table th,
+.gpu-matrix-table td {
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.gpu-matrix-table th {
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.gpu-matrix-table tbody tr:hover {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.gpu-col-timing {
+  min-width: 6rem;
+}
+
+.gpu-workload-id {
+  max-width: 14rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gpu-timing-empty {
+  color: var(--muted);
+}
+
+.gpu-funding-gaps ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}

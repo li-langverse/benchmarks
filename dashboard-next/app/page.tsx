@@ -19,6 +19,8 @@ import {
 import { releaseFreshnessBanner } from "@/lib/release-freshness";
 import { COVERAGE_GAP_DOC, coverageHonesty, splitTierCounts } from "@/lib/coverage";
 import { loadSummary } from "@/lib/summary";
+import { loadLigGpuMatrix } from "@/lib/lig-gpu-matrix";
+import { formatTimingSec } from "@/lib/lig-gpu-matrix-types";
 import { tier1VerifyStats } from "@/lib/tier1-verify";
 import { pillarPerfCounts } from "@/lib/validity";
 
@@ -46,6 +48,12 @@ export default function HomePage() {
   const freshness = packageFreshnessRows(releaseIndex, summary.generated_at);
   const releaseBanner = releaseFreshnessBanner(releaseIndex, summary.generated_at);
   const tier1Stats = tier1VerifyStats(summary.rows);
+  let gpuMatrix: ReturnType<typeof loadLigGpuMatrix> | null = null;
+  try {
+    gpuMatrix = loadLigGpuMatrix();
+  } catch {
+    gpuMatrix = null;
+  }
 
   return (
     <main className="bento">
@@ -127,6 +135,27 @@ export default function HomePage() {
           </a>
         </p>
       </section>
+
+      {gpuMatrix ? (
+        <section className="gpu-pilot-strip bento-full" aria-label="GPU backend matrix">
+          <p>
+            <strong>GPU matrix:</strong> {String(gpuMatrix.summary.dashboard_workloads)} workloads
+            enumerated for CUDA, Vulkan, HIP, and Metal. CPU timed:{" "}
+            {String(gpuMatrix.summary.timed_cpu_rows)} · CUDA timed:{" "}
+            {String(gpuMatrix.summary.timed_cuda_rows)}.
+            {gpuMatrix.honest_pilot?.gpu_timing_ns != null ? (
+              <>
+                {" "}
+                Pilot CUDA matmul:{" "}
+                {formatTimingSec(Number(gpuMatrix.honest_pilot.gpu_timing_ns) / 1e9)}.
+              </>
+            ) : null}
+          </p>
+          <p style={{ marginTop: "0.5rem" }}>
+            <Link href="/gpu-matrix/">Open GPU matrix (CPU vs GPU timing + validity) →</Link>
+          </p>
+        </section>
+      ) : null}
 
       <Tier1VerifyStrip stats={tier1Stats} />
       <CatalogAuditStrip />

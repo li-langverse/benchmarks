@@ -1,5 +1,5 @@
-import type { GpuDiagram } from "@/lib/lig-gpu-matrix";
-import { formatTimingSec } from "@/lib/lig-gpu-matrix";
+import type { GpuDiagram } from "@/lib/lig-gpu-matrix-types";
+import { formatTimingSec } from "@/lib/lig-gpu-matrix-types";
 
 type GpuChipDiagramProps = {
   diagram: GpuDiagram;

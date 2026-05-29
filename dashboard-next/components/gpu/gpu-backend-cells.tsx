@@ -1,5 +1,5 @@
-import type { GpuBackendCell } from "@/lib/lig-gpu-matrix";
-import { formatTimingSec, validityLabel } from "@/lib/lig-gpu-matrix";
+import type { GpuBackendCell } from "@/lib/lig-gpu-matrix-types";
+import { formatTimingSec, validityLabel } from "@/lib/lig-gpu-matrix-types";
 
 type GpuBackendBadgeProps = {
   cell?: GpuBackendCell;

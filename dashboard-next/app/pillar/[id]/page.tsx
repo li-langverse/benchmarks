@@ -27,6 +27,15 @@ export default async function PillarPage({ params }: PageProps) {
         <p>{pillar.description}</p>
         <p className="mono" style={{ marginTop: "0.75rem", color: "var(--muted)" }}>
           {rows.length} benchmark row{rows.length === 1 ? "" : "s"} with pillar={id}
+          {id === "graphics" ? (
+            <>
+              {" "}
+              ·{" "}
+              <Link href="/gpu-matrix/">
+                GPU matrix (CUDA · Li native · Vulkan)
+              </Link>
+            </>
+          ) : null}
         </p>
 
         <BenchRowList

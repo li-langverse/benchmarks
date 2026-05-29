@@ -68,6 +68,7 @@ jobs:
           test -f data/latest/tier-db-realtime.json
 
       - run: test -f data/latest/summary.json
+      - run: test -f data/latest/lig-gpu-matrix.json
 
   # Pages deploy builds dashboard-next on push to main (pages.yml). PRs gate here only (WP-E1 dedupe).
   dashboard-build:
