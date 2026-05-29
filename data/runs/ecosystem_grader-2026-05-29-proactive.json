@@ -1,0 +1,51 @@
+{
+  "run_id": "ecosystem_grader-2026-05-29-proactive",
+  "agent_id": "ecosystem_grader",
+  "generated_at": "2026-05-29T11:19:09Z",
+  "status": "finished",
+  "source": "proactive",
+  "north_star_fit": {
+    "domains": ["ecosystem", "provable", "ai-first"],
+    "ph_ids": ["2i", "7d", "7e"],
+    "summary": "Orchestration before implementers — proof before perf"
+  },
+  "posture": "degraded",
+  "ecosystem_grade": "D",
+  "overall_score": 64.0,
+  "unattended_safe": false,
+  "briefing_generated_at": "2026-05-29T11:05Z",
+  "scorecard_generated_at": "2026-05-29T11:19:09Z",
+  "report_md": "benchmarks/data/runs/ecosystem_grader-2026-05-29-proactive.md",
+  "dimensions": {
+    "briefing_health": 77.0,
+    "ecosystem_posture": 57.0,
+    "goal_directed_health": 70.0,
+    "swarm_execution": 55.0,
+    "gap_pressure": 70.0
+  },
+  "dispatch_order": [
+    "workspace_sweeper",
+    "swarm_observer",
+    "pr_alignment",
+    "gap_explorer",
+    "plan_verifier",
+    "implementation_gaps",
+    "agent_kit_maintainer",
+    "ci_maintainer",
+    "bug_fixer",
+    "code_implementer",
+    "docs_maintainer"
+  ],
+  "evidence": [
+    "benchmarks/data/latest/ecosystem-quality-report.json",
+    "benchmarks/data/latest/agent-briefing.json",
+    "benchmarks/data/latest/swarm-gap-actions.json",
+    "benchmarks/data/latest/org-repo-ci-audit.json",
+    "lic/data/goal-directed-agents/snapshot.json",
+    "li-cursor-agents/data/runs"
+  ],
+  "open_gaps": 53,
+  "failed_prs": 35,
+  "runners_stopped": 6,
+  "swarm_error_rate": 0.3182
+}
