@@ -1,6 +1,87 @@
 {
-  "generated_at": "2026-05-29T23:51:39+00:00",
-  "agent_id": "gui_ui_tester",
-  "issues": [],
-  "implementation_queue": []
+  "generated_at": "2026-05-29T23:53:49+00:00",
+  "agent_id": "docs_ui_tester",
+  "surface": "docs",
+  "audit_kind": "ui",
+  "issues": [
+    {
+      "priority": "P0",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/426",
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/404",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique in title; 69 in current scan)",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P2",
+      "repo": "li-cursor-agents",
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
+      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
+      "target_id": "lic-docs"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "priority": "P0",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/403",
+      "summary": "Publish current lic/site (12 tabs, 2801 search entries); fix strict build"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/426",
+      "summary": "Fix axe color-contrast (12 nodes) and link-in-text-block (5 nodes) on local build"
+    },
+    {
+      "priority": "P1",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/404",
+      "summary": "Remove 69 raw .md hrefs from built HTML (repo-relative paths; regressed from 45)"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "summary": "Fix static_site adapter href parsing and site_url-aware link checks"
+    }
+  ],
+  "deferred": [
+    {
+      "item": "Live Pages Playwright + axe pass",
+      "reason": "Publish stale; guide/hello-world/ 404 on live despite local build"
+    },
+    {
+      "item": "Pixel baseline diff for lic-docs",
+      "reason": "ux-harness/baselines/ empty; track #37"
+    },
+    {
+      "item": "Per-repo MkDocs sites (8 repos without live pages)",
+      "reason": "Out of scope for lic-docs target"
+    }
+  ]
 }
