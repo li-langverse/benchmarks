@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-29T10:53:42Z",
+  "generated_at": "2026-05-29T11:19:22Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 60.3,
+  "overall_score": 64.0,
   "grade": "D",
   "unattended_safe": false,
   "dimensions": {
@@ -12,7 +12,7 @@
         "briefing_present": true,
         "preflight_failed": 1,
         "preflight_skipped": 8,
-        "recommended_agent_count": 14
+        "recommended_agent_count": 12
       },
       "finding_count": 2
     },
@@ -21,7 +21,7 @@
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 90,
+        "open_prs": 92,
         "failed_prs": 35,
         "repos_missing_ci_main": 1,
         "benchmark_red_count": 0
@@ -35,49 +35,49 @@
         "snapshot_present": true,
         "runner_count": 8,
         "runners_stopped": 6,
-        "plan_todos_pending": 26,
+        "plan_todos_pending": 25,
         "plan_todos_total": 90,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 40.0,
+      "score": 55.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 19,
-        "error_count": 5,
+        "terminal_runs": 22,
+        "error_count": 7,
         "incomplete_count": 3,
-        "running_count": 101,
-        "error_rate": 0.2632,
-        "incomplete_rate": 0.1579,
+        "running_count": 98,
+        "error_rate": 0.3182,
+        "incomplete_rate": 0.1364,
         "top_error_agents": [
           {
             "agent": "bug_fixer",
-            "count": 2
+            "count": 3
           },
           {
             "agent": "code_implementer",
-            "count": 1
+            "count": 2
           },
           {
-            "agent": "pr_alignment",
+            "agent": "pr_merger",
             "count": 1
           }
         ]
       },
-      "finding_count": 3
+      "finding_count": 2
     },
     "gap_pressure": {
       "score": 70.0,
       "weight": 0.15,
       "signals": {
         "gap_report_present": true,
-        "open_gaps": 54,
+        "open_gaps": 53,
         "by_kind": {
           "missing_package": 3,
-          "plan_debt": 21,
+          "plan_debt": 20,
           "competitor_feature": 30
         }
       },
@@ -88,7 +88,7 @@
     {
       "id": "swarm-error-rate",
       "severity": "critical",
-      "message": "Error rate 26% over last 19 terminal runs",
+      "message": "Error rate 32% over last 22 terminal runs",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -112,7 +112,7 @@
     {
       "id": "swarm-gap-backlog",
       "severity": "high",
-      "message": "54 open gap(s) in registry apply pipeline",
+      "message": "53 open gap(s) in registry apply pipeline",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
@@ -128,15 +128,9 @@
       "evidence": "agent-briefing.preflight_runs"
     },
     {
-      "id": "swarm-incomplete-rate",
-      "severity": "medium",
-      "message": "Incomplete rate 16%",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "101 runs still marked running (possible stuck SDK)",
+      "message": "98 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -168,12 +162,12 @@
       "reason": "briefing_health weak \u2014 refresh plan audit preflight"
     },
     {
-      "agent": "proof_gap_researcher",
-      "reason": "briefing P0: swarm: research goal provability_holes eligible (priority 9)"
-    },
-    {
       "agent": "workspace_sweeper",
       "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
+    },
+    {
+      "agent": "implementation_gaps",
+      "reason": "briefing P0: cross-check plan vs implementation"
     }
   ],
   "inputs": {
