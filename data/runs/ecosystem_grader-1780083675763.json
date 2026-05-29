@@ -1,0 +1,34 @@
+{
+  "run_id": "ecosystem_grader-1780083675763",
+  "agent_id": "ecosystem_grader",
+  "generated_at": "2026-05-29T19:41:00Z",
+  "source": "proactive",
+  "north_star_fit": ["PH-2i", "PH-5b", "PH-7e", "ecosystem"],
+  "scorecard": {
+    "path": "data/latest/ecosystem-quality-report.json",
+    "generated_at": "2026-05-29T19:41:42Z",
+    "overall_score": 67.6,
+    "grade": "D",
+    "unattended_safe": false
+  },
+  "dimensions": {
+    "briefing_health": 84.0,
+    "ecosystem_posture": 67.0,
+    "goal_directed_health": 70.0,
+    "swarm_execution": 55.0,
+    "gap_pressure": 70.0
+  },
+  "recommended_dispatch": [
+    "swarm_observer",
+    "gap_explorer",
+    "workspace_sweeper",
+    "plan_verifier",
+    "implementation_gaps",
+    "ci_maintainer",
+    "agent_kit_maintainer",
+    "numerics_researcher",
+    "bench_improver"
+  ],
+  "digest_md": "data/runs/ecosystem_grader-1780083675763.md",
+  "briefing_path": "data/latest/agent-briefing.json"
+}
