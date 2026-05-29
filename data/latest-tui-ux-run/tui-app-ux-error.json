@@ -1,0 +1,16 @@
+{
+  "target_id": "tui-app-fixture",
+  "surface_class": "tui_app",
+  "status": "fail",
+  "error": "subprocess.TimeoutExpired",
+  "detail": "Command timed out after 30 seconds — fixture blocks on read without stdin",
+  "journeys_configured": [
+    {
+      "id": "key_nav_help",
+      "steps": ["launch", "tab_help", "quit"],
+      "completed": false
+    }
+  ],
+  "manual_piped_exit_code": 0,
+  "harness_command": "python3 ux-harness/run_audit.py --target tui-app-fixture --mode ux"
+}
