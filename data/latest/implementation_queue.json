@@ -1,48 +1,34 @@
 {
-  "generated_at": "2026-05-29T21:23:00+00:00",
-  "source": "tui_ui_tester",
+  "generated_at": "2026-05-29T21:30:00+00:00",
+  "source": "tui_ux_tester",
   "items": [
     {
       "priority": "P1",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "tui-app-fixture: non-blocking harness (stdin pipe or LI_TUI_HARNESS=1); set LANG=C.UTF-8"
+      "summary": "tui-app-fixture: non-blocking harness (stdin pipe or LI_TUI_HARNESS=1); catch TimeoutExpired; LANG=C.UTF-8"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/33",
-      "summary": "TUI UX adapter: run key_nav_help journey with scripted input"
-    },
-    {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": null,
-      "summary": "feat(ux-harness): catch TimeoutExpired in TUI adapter + write fail row + stdout artifact"
-    },
-    {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": null,
-      "summary": "feat(ux-harness): TUI frame capture baseline (stdout dump or VHS .tape) for tui-gen-fixture"
-    },
-    {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "benchmarks",
-      "issue": null,
-      "summary": "chore(preflight): merge surface:tui targets from latest-tui-ui-run into briefing ui_audit"
+      "summary": "TUI UX adapter: run key_nav_help and cli_to_tui journeys with scripted input"
     },
     {
       "priority": "P2",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/34",
-      "summary": "TUI fixtures: error surface + LI_TUI_EXPORT_A11Y plain text"
+      "summary": "TUI fixtures: LI_TUI_ERROR=1 error surface + LI_TUI_EXPORT_A11Y plain text export"
+    },
+    {
+      "priority": "P2",
+      "agent": "code_implementer",
+      "repo": "benchmarks",
+      "issue": null,
+      "summary": "chore(preflight): merge surface:tui ux-audit rows from latest-tui-ux-run into agent briefing"
     }
   ]
 }

@@ -1,13 +1,49 @@
 {
-  "generated_at": "2026-05-29T20:36:22.458392+00:00",
+  "generated_at": "2026-05-29T21:30:00+00:00",
   "platform": "Linux",
+  "agent": "tui_ux_tester",
+  "source": "proactive",
   "summary": {
-    "total": 1,
-    "failing": 0,
+    "total": 2,
+    "failing": 1,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "status": "fail",
+      "journeys": [],
+      "friction_points": [
+        {
+          "issue": "harness TimeoutExpired — fixture blocks on read without stdin; run_audit.py exits uncaught"
+        },
+        {
+          "issue": "key_nav_help journey defined in ux-targets.json but never executed by TUI adapter"
+        },
+        {
+          "issue": "h key in prompt not interpreted; help requires two blocking read lines"
+        }
+      ],
+      "sota_refs": ["textual", "bubbletea"],
+      "rubric_scores": {
+        "nav_clarity": 0.5,
+        "task_efficiency": 0.5,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": ["error_display", "a11y_plain_export"],
+      "artifacts": [
+        "benchmarks/data/latest-tui-ux-run/captures/tui-app-piped.txt"
+      ],
+      "mode": "fixture",
+      "harness_error": "subprocess.TimeoutExpired: timed out after 30 seconds"
+    },
     {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
@@ -15,10 +51,15 @@
       "surface_class": "tui_gen",
       "status": "pass",
       "journeys": [],
-      "friction_points": [],
-      "sota_refs": [
-        "textual"
+      "friction_points": [
+        {
+          "issue": "cli_to_tui journey not executed; rubric scores are fixture-default not evidence-based"
+        },
+        {
+          "issue": "Status line always ok — no error-state path for UX/error_handling validation"
+        }
       ],
+      "sota_refs": ["textual"],
       "rubric_scores": {
         "nav_clarity": 0.85,
         "task_efficiency": 0.8,
@@ -27,7 +68,7 @@
         "cognitive_load": 0.7
       },
       "rubric_threshold": 0.6,
-      "missing_states": [],
+      "missing_states": ["error_display", "a11y_plain_export"],
       "artifacts": [],
       "mode": "fixture"
     }

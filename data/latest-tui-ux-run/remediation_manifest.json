@@ -58,15 +58,15 @@
   "deferred": [
     {
       "item": "Production lic/lis interactive TUI targets",
-      "reason": "JSON diagnostics first; no shipped Li TUI"
+      "reason": "JSON diagnostics first (lic check --format=json, lic diagnose); no shipped Li TUI"
     },
     {
       "item": "VHS / PTY visual regression",
-      "reason": "Blocked on #30 harness stability"
+      "reason": "adapters/tui.py PTY reserved; blocked on #30 harness stability"
     },
     {
-      "item": "Merge TUI rows into global ux-audit preflight",
-      "reason": "Org preflight docs-only today"
+      "item": "Merge TUI rows into global data/latest/ux-audit.json preflight",
+      "reason": "Org preflight still docs-only; requires benchmarks ui-ux-audit orchestration"
     }
   ],
   "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-tui-ux.md"
