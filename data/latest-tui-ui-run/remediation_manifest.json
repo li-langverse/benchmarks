@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-05-29T18:50:00Z",
+  "agent_id": "tui_ui_tester",
+  "north_star_fit": {
+    "pillar": "easy",
+    "domain": "terminal diagnostics / agent TUI surfaces",
+    "ph_ids": ["PH-2i-adjacent-tooling", "Vision-LLM"]
+  },
+  "issues": [
+    {
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "priority": "P1",
+      "target_id": "tui-app-fixture",
+      "status": "open",
+      "evidence": "run_audit.py --target tui-app-fixture → TimeoutExpired @ 30s; piped stdin exits 0 (see captures/tui-app-piped.txt)"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-app-fixture: non-blocking harness (stdin pipe or LI_TUI_HARNESS=1)",
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "acceptance": [
+        "ux-harness/fixtures/tui-demo.sh exits 0 with no TTY within 5s",
+        "run_audit.py --target tui-app-fixture --mode ui reports status pass",
+        "Optional: detect non-TTY and auto-skip interactive prompts"
+      ],
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "files_hint": ["li-cursor-agents/ux-harness/fixtures/tui-demo.sh", "li-cursor-agents/ux-harness/adapters/tui.py"]
+    },
+    {
+      "priority": "P1",
+      "repo": "li-cursor-agents",
+      "title": "feat(ux-harness): catch TimeoutExpired in TUI adapter + stdout artifact dump",
+      "issue_url": null,
+      "acceptance": [
+        "run_audit.py never crashes on fixture timeout; returns status fail + harness_error",
+        "artifacts[] includes stdout capture path under ux-harness/artifacts/<target>/",
+        "Optional VHS .tape baseline documented in README"
+      ],
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "files_hint": ["li-cursor-agents/ux-harness/adapters/tui.py", "li-cursor-agents/ux-harness/run_audit.py"]
+    },
+    {
+      "priority": "P1",
+      "repo": "benchmarks",
+      "title": "chore(preflight): include TUI fixtures in ui-ux-audit / agent-briefing.json",
+      "issue_url": null,
+      "acceptance": [
+        "data/latest/ui-audit.json includes surface:tui targets or merged tui-ui-run snapshot",
+        "briefing recommends tui_ui_tester when tui-app-fixture fails"
+      ],
+      "labels": ["ui-audit", "documentation"],
+      "files_hint": ["benchmarks/scripts/*briefing*", "benchmarks/data/latest/agent-briefing.json"]
+    }
+  ]
+}

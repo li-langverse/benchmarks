@@ -1,13 +1,33 @@
 {
-  "generated_at": "2026-05-29T17:55:50.476956+00:00",
+  "generated_at": "2026-05-29T18:50:00.000000+00:00",
   "platform": "Linux",
   "summary": {
-    "total": 1,
-    "failing": 0,
+    "total": 2,
+    "failing": 1,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "artifacts": [],
+      "mode": "fixture",
+      "status": "fail",
+      "harness_error": "subprocess.TimeoutExpired: Command timed out after 30 seconds (blocks on read -r without stdin)",
+      "fixture_exit_code": null,
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0
+    },
     {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
