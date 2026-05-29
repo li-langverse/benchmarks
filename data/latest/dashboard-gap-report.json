@@ -1,0 +1,1158 @@
+{
+  "generated_at": "2026-05-29T16:22:25.882638+00:00",
+  "summary_path": "data\\latest\\summary.json",
+  "benchmark_bases": 33,
+  "chart_rows": 33,
+  "table_rows": 33,
+  "p0_count": 132,
+  "p1_count": 35,
+  "issue_counts": {
+    "missing_os": 33,
+    "bad_size_label": 33,
+    "problem_size_null": 33,
+    "validity_unknown": 33,
+    "sota_empty": 20,
+    "status_unknown": 13,
+    "chart_pending": 2
+  },
+  "p0": [
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "advection_diffusion_2d",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "advection_diffusion_2d",
+      "detail": "size_label=None",
+      "chart_id": "advection_diffusion_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "advection_diffusion_2d",
+      "detail": "validity_status=None",
+      "chart_id": "advection_diffusion_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "advection_diffusion_2d",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "advection_diffusion_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cloth_swing",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "cloth_swing",
+      "detail": "size_label=None",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cloth_swing",
+      "detail": "validity_status=None",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cloth_swing",
+      "detail": "status='unknown'",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "combustion_passive",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "combustion_passive",
+      "detail": "size_label=None",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "combustion_passive",
+      "detail": "validity_status=None",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "combustion_passive",
+      "detail": "status='unknown'",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "double_pendulum",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "double_pendulum",
+      "detail": "size_label=None",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "double_pendulum",
+      "detail": "validity_status=None",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "double_pendulum",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "euler_fluid_2d",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "euler_fluid_2d",
+      "detail": "size_label=None",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "euler_fluid_2d",
+      "detail": "validity_status=None",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "euler_fluid_2d",
+      "detail": "status='unknown'",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "size_label=None",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "validity_status=None",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "heat_equation_2d",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "heat_equation_2d",
+      "detail": "size_label=None",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "heat_equation_2d",
+      "detail": "validity_status=None",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "heat_equation_2d",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "horner_pure_li",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "horner_pure_li",
+      "detail": "size_label=None",
+      "chart_id": "horner_pure_li"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "horner_pure_li",
+      "detail": "validity_status=None",
+      "chart_id": "horner_pure_li"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "horner_pure_li",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "horner_pure_li"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "https_static",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "https_static",
+      "detail": "size_label=None",
+      "chart_id": "https_static"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "https_static",
+      "detail": "validity_status=None",
+      "chart_id": "https_static"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "https_static",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "https_static"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "keepalive_pipelining",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "keepalive_pipelining",
+      "detail": "size_label=None",
+      "chart_id": "keepalive_pipelining"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "keepalive_pipelining",
+      "detail": "validity_status=None",
+      "chart_id": "keepalive_pipelining"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "keepalive_pipelining",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "keepalive_pipelining"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lb_least_conn",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lb_least_conn",
+      "detail": "size_label=None",
+      "chart_id": "lb_least_conn"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lb_least_conn",
+      "detail": "validity_status=None",
+      "chart_id": "lb_least_conn"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lb_least_conn",
+      "detail": "status='unknown'",
+      "chart_id": "lb_least_conn"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lb_peer_down",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lb_peer_down",
+      "detail": "size_label=None",
+      "chart_id": "lb_peer_down"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lb_peer_down",
+      "detail": "validity_status=None",
+      "chart_id": "lb_peer_down"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lb_peer_down",
+      "detail": "status='unknown'",
+      "chart_id": "lb_peer_down"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lb_round_robin",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lb_round_robin",
+      "detail": "size_label=None",
+      "chart_id": "lb_round_robin"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lb_round_robin",
+      "detail": "validity_status=None",
+      "chart_id": "lb_round_robin"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lb_round_robin",
+      "detail": "status='unknown'",
+      "chart_id": "lb_round_robin"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lip_smoke",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lip_smoke",
+      "detail": "size_label=None",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lip_smoke",
+      "detail": "validity_status=None",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lip_smoke",
+      "detail": "status='unknown'",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lit_smoke",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lit_smoke",
+      "detail": "size_label=None",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lit_smoke",
+      "detail": "validity_status=None",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lit_smoke",
+      "detail": "status='unknown'",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "matmul_blocked",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "matmul_blocked",
+      "detail": "size_label=None",
+      "chart_id": "matmul_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "matmul_blocked",
+      "detail": "validity_status=None",
+      "chart_id": "matmul_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "matmul_blocked",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "matmul_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "matmul_naive",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "matmul_naive",
+      "detail": "size_label=None",
+      "chart_id": "matmul_naive"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "matmul_naive",
+      "detail": "validity_status=None",
+      "chart_id": "matmul_naive"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "matmul_naive",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "matmul_naive"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_lennard_jones",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "md_lennard_jones",
+      "detail": "size_label=None",
+      "chart_id": "md_lennard_jones"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "md_lennard_jones",
+      "detail": "validity_status=None",
+      "chart_id": "md_lennard_jones"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "md_lennard_jones",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "md_lennard_jones"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "nbody_gravity",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "nbody_gravity",
+      "detail": "size_label=None",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "nbody_gravity",
+      "detail": "validity_status=None",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "nbody_gravity",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "proxy_loopback",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "proxy_loopback",
+      "detail": "size_label=None",
+      "chart_id": "proxy_loopback"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "proxy_loopback",
+      "detail": "validity_status=None",
+      "chart_id": "proxy_loopback"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "proxy_loopback",
+      "detail": "status='unknown'",
+      "chart_id": "proxy_loopback"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rate_limit_429",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rate_limit_429",
+      "detail": "size_label=None",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rate_limit_429",
+      "detail": "validity_status=None",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "rate_limit_429",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "reduce_sum",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "reduce_sum",
+      "detail": "size_label=None",
+      "chart_id": "reduce_sum"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "reduce_sum",
+      "detail": "validity_status=None",
+      "chart_id": "reduce_sum"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "reduce_sum",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "reduce_sum"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_body_stack",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rigid_body_stack",
+      "detail": "size_label=None",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_body_stack",
+      "detail": "validity_status=None",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_body_stack",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "security_gates",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "security_gates",
+      "detail": "size_label=None",
+      "chart_id": "security_gates"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "security_gates",
+      "detail": "validity_status=None",
+      "chart_id": "security_gates"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "security_gates",
+      "detail": "status='unknown'",
+      "chart_id": "security_gates"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "simd_dot",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "simd_dot",
+      "detail": "size_label=None",
+      "chart_id": "simd_dot"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "simd_dot",
+      "detail": "validity_status=None",
+      "chart_id": "simd_dot"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "simd_dot",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "simd_dot"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "sph_dam_break_2d",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "sph_dam_break_2d",
+      "detail": "size_label=None",
+      "chart_id": "sph_dam_break_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "sph_dam_break_2d",
+      "detail": "validity_status=None",
+      "chart_id": "sph_dam_break_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "sph_dam_break_2d",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "sph_dam_break_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "static_large",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "static_large",
+      "detail": "size_label=None",
+      "chart_id": "static_large"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "static_large",
+      "detail": "validity_status=None",
+      "chart_id": "static_large"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "static_large",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "static_large"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "static_small",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "static_small",
+      "detail": "size_label=None",
+      "chart_id": "static_small"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "static_small",
+      "detail": "validity_status=None",
+      "chart_id": "static_small"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "static_small",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "static_small"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "three_body",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "three_body",
+      "detail": "size_label=None",
+      "chart_id": "three_body"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "three_body",
+      "detail": "validity_status=None",
+      "chart_id": "three_body"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "three_body",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "three_body"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "tier5_http_exploits",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "tier5_http_exploits",
+      "detail": "size_label=None",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "tier5_http_exploits",
+      "detail": "validity_status=None",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "tier5_http_exploits",
+      "detail": "status='unknown'",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "wave_equation_1d",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "wave_equation_1d",
+      "detail": "size_label=None",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "wave_equation_1d",
+      "detail": "validity_status=None",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "wave_equation_1d",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "wave_equation_2d",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "wave_equation_2d",
+      "detail": "size_label=None",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "wave_equation_2d",
+      "detail": "validity_status=None",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
+      "base_id": "wave_equation_2d",
+      "detail": "no sota_lang/sota_value",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "wind_field_bc",
+      "detail": "missing platforms: ['linux', 'macos', 'windows']; have []"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "wind_field_bc",
+      "detail": "size_label=None",
+      "chart_id": "wind_field_bc"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "wind_field_bc",
+      "detail": "validity_status=None",
+      "chart_id": "wind_field_bc"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "wind_field_bc",
+      "detail": "status='unknown'",
+      "chart_id": "wind_field_bc"
+    }
+  ],
+  "p1": [
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "advection_diffusion_2d",
+      "detail": "problem_size is null",
+      "chart_id": "advection_diffusion_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "cloth_swing",
+      "detail": "problem_size is null",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "combustion_passive",
+      "detail": "problem_size is null",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "double_pendulum",
+      "detail": "problem_size is null",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "euler_fluid_2d",
+      "detail": "problem_size is null",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "problem_size is null",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "heat_equation_2d",
+      "detail": "problem_size is null",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "horner_pure_li",
+      "detail": "problem_size is null",
+      "chart_id": "horner_pure_li"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "https_static",
+      "detail": "problem_size is null",
+      "chart_id": "https_static"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "keepalive_pipelining",
+      "detail": "problem_size is null",
+      "chart_id": "keepalive_pipelining"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lb_least_conn",
+      "detail": "problem_size is null",
+      "chart_id": "lb_least_conn"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lb_peer_down",
+      "detail": "problem_size is null",
+      "chart_id": "lb_peer_down"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lb_round_robin",
+      "detail": "problem_size is null",
+      "chart_id": "lb_round_robin"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lip_smoke",
+      "detail": "problem_size is null",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lip_smoke",
+      "detail": "chart marked pending",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lit_smoke",
+      "detail": "problem_size is null",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lit_smoke",
+      "detail": "chart marked pending",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "matmul_blocked",
+      "detail": "problem_size is null",
+      "chart_id": "matmul_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "matmul_naive",
+      "detail": "problem_size is null",
+      "chart_id": "matmul_naive"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "md_lennard_jones",
+      "detail": "problem_size is null",
+      "chart_id": "md_lennard_jones"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "nbody_gravity",
+      "detail": "problem_size is null",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "proxy_loopback",
+      "detail": "problem_size is null",
+      "chart_id": "proxy_loopback"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rate_limit_429",
+      "detail": "problem_size is null",
+      "chart_id": "rate_limit_429"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "reduce_sum",
+      "detail": "problem_size is null",
+      "chart_id": "reduce_sum"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rigid_body_stack",
+      "detail": "problem_size is null",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "security_gates",
+      "detail": "problem_size is null",
+      "chart_id": "security_gates"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "simd_dot",
+      "detail": "problem_size is null",
+      "chart_id": "simd_dot"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "sph_dam_break_2d",
+      "detail": "problem_size is null",
+      "chart_id": "sph_dam_break_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "static_large",
+      "detail": "problem_size is null",
+      "chart_id": "static_large"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "static_small",
+      "detail": "problem_size is null",
+      "chart_id": "static_small"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "three_body",
+      "detail": "problem_size is null",
+      "chart_id": "three_body"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "tier5_http_exploits",
+      "detail": "problem_size is null",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "wave_equation_1d",
+      "detail": "problem_size is null",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "wave_equation_2d",
+      "detail": "problem_size is null",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "wind_field_bc",
+      "detail": "problem_size is null",
+      "chart_id": "wind_field_bc"
+    }
+  ]
+}
