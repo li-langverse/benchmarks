@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T19:41:42Z",
+  "generated_at": "2026-05-29T19:42:46Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 67.6,
   "grade": "D",
@@ -46,12 +46,12 @@
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 26,
+        "terminal_runs": 27,
         "error_count": 7,
-        "incomplete_count": 1,
-        "running_count": 94,
-        "error_rate": 0.2692,
-        "incomplete_rate": 0.0385,
+        "incomplete_count": 2,
+        "running_count": 93,
+        "error_rate": 0.2593,
+        "incomplete_rate": 0.0741,
         "top_error_agents": [
           {
             "agent": "bug_fixer",
@@ -74,11 +74,12 @@
       "weight": 0.15,
       "signals": {
         "gap_report_present": true,
-        "open_gaps": 53,
+        "open_gaps": 57,
         "by_kind": {
           "missing_package": 3,
-          "plan_debt": 20,
-          "competitor_feature": 30
+          "plan_debt": 18,
+          "competitor_feature": 30,
+          "ui_ux": 6
         }
       },
       "finding_count": 1
@@ -88,7 +89,7 @@
     {
       "id": "swarm-error-rate",
       "severity": "critical",
-      "message": "Error rate 27% over last 26 terminal runs",
+      "message": "Error rate 26% over last 27 terminal runs",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -112,13 +113,13 @@
     {
       "id": "swarm-gap-backlog",
       "severity": "high",
-      "message": "53 open gap(s) in registry apply pipeline",
+      "message": "57 open gap(s) in registry apply pipeline",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "94 runs still marked running (possible stuck SDK)",
+      "message": "93 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
