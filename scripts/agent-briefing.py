@@ -30,6 +30,7 @@ PREFLIGHT_SCRIPTS = [
     ("ecosystem_audit", ["python3", "scripts/ecosystem-audit.py"]),
     ("org_ci_audit", ["python3", "scripts/ensure-org-repo-ci.py"]),
     ("org_agent_kit_audit", ["python3", "scripts/ensure-org-agent-kit.py", "--local-only"]),
+    ("org_new_repos_discovery", ["python3", "scripts/discover-new-org-repos.py"]),
     ("explorer", ["python3", "scripts/ecosystem-explorer.py"]),
     ("merge_plan", ["python3", "scripts/pr-merge-queue-plan.py"]),
     ("pr_program", ["python3", "scripts/run-pr-program.py"]),
@@ -197,6 +198,13 @@ CURSOR_AGENTS = [
         "preflight": ["org_agent_kit_audit", "ecosystem_explorer"],
     },
     {
+        "id": "org_repo_onboarder",
+        "prompt": "li-cursor-agents/prompts/org-repo-onboarder.md",
+        "skills": ["explore-li-ecosystem"],
+        "when": "New li-langverse GitHub repos not yet in ecosystem catalog",
+        "preflight": ["org_new_repos_discovery", "org_ci_audit", "org_agent_kit_audit"],
+    },
+    {
         "id": "workspace_sweeper",
         "prompt": "li-cursor-agents/prompts/workspace-sweeper.md",
         "when": "Uncommitted work in sibling clones — fallback commit/push/PR + restart stack",
@@ -270,6 +278,20 @@ def build_agent_deliverable_gaps(data: dict) -> dict:
 
 def recommend_agents(data: dict) -> list[dict]:
     rec: list[dict] = []
+
+    disc = data.get("org_new_repos_discovery") or {}
+    if isinstance(disc, dict):
+        new_repos = disc.get("new_repos") or []
+        if new_repos:
+            names = ", ".join(str(r) for r in new_repos[:5])
+            extra = f" (+{len(new_repos) - 5} more)" if len(new_repos) > 5 else ""
+            rec.insert(
+                0,
+                {
+                    "agent": "org_repo_onboarder",
+                    "reason": f"{len(new_repos)} new org repo(s): {names}{extra}",
+                },
+            )
 
     plan = data.get("plan_completion_audit") or {}
     if isinstance(plan, dict) and plan.get("summary", {}).get("total_findings", 0) > 0:
@@ -577,6 +599,7 @@ def main() -> int:
         "ecosystem_explorer": load_json(LATEST / "ecosystem-explorer.json"),
         "org_ci_audit": load_json(LATEST / "org-repo-ci-audit.json"),
         "org_agent_kit_audit": load_json(LATEST / "org-agent-kit-audit.json"),
+        "org_new_repos_discovery": load_json(LATEST / "org-new-repos-discovery.json"),
         "merge_plan": load_json(LATEST / "pr-merge-queue-plan.json"),
         "pr_program": load_json(LATEST / "pr-program-run.json"),
         "pr_branch_hygiene": load_json(LATEST / "pr-branch-hygiene.json"),
