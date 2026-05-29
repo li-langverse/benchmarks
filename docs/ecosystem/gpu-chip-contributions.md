@@ -19,48 +19,47 @@ Donate benchmark results from **your** machine so the public dashboard can compa
 
 ## Quick start (contributor)
 
-### 1. Build lic and run the GPU suite
+### One command
+
+From the **benchmarks** repo (with a sibling **lic** checkout, or set `LIC_ROOT`):
 
 ```bash
-git clone https://github.com/li-langverse/lic.git
-cd lic
-./scripts/build.sh
-
-# NVIDIA + CUDA example
-export CUDA_HOME=/usr/lib/cuda   # or your CUDA install
-./scripts/bench-lig-gpu-suite.sh
-
-# Apple Silicon — on macOS with Metal toolchain when available
-# LIG_EMIT_METAL=1 ./scripts/bench-lig-gpu-suite.sh
+CONTRIBUTOR_GITHUB=your-handle ./scripts/donate-gpu-chip.sh nvidia-rtx-3090-linux
 ```
 
-Results land in `lic/benchmarks/results/lig-gpu-suite-latest.json` (and optionally `lig-gpu-suite-honest.json`).
+This will:
 
-### 2. Scaffold the contribution folder (benchmarks repo)
+1. Build `lic` if needed (`SKIP_LIC_BUILD=1` to skip)
+2. Run `./scripts/bench-lig-gpu-suite.sh` (or the harness fallback) on **your** machine
+3. Create `data/gpu-contributions/<chip-slug>/`, validate, and rebuild `lig-gpu-matrix.json`
+
+GPU name is auto-detected from `nvidia-smi` (Linux) or `system_profiler` (macOS). Override with a second argument:
 
 ```bash
-git clone https://github.com/li-langverse/benchmarks.git
-cd benchmarks
-
-LIC_ROOT=../lic \
-CONTRIBUTOR_GITHUB=your-github-handle \
-CPU_MODEL="Apple M1 Pro" \
-./scripts/ingest/submit-gpu-contribution.sh apple-m1-macos "Apple M1 Pro (Metal)"
+./scripts/donate-gpu-chip.sh apple-m1-macos "Apple M1 Pro (Metal)"
 ```
 
-For anonymous donation:
+Re-benchmark an existing donation:
 
 ```bash
-ANONYMOUS_OK=1 LIC_ROOT=../lic ./scripts/ingest/submit-gpu-contribution.sh nvidia-rtx-3090-linux "NVIDIA GeForce RTX 3090"
+GPU_CHIP_UPDATE=1 ./scripts/donate-gpu-chip.sh nvidia-rtx-3060-linux
 ```
 
-### 3. Open a PR
+Then open a PR:
 
 ```bash
 git checkout -b donate/nvidia-rtx-3090-linux
-git add data/gpu-contributions/nvidia-rtx-3090-linux/
+git add data/gpu-contributions/nvidia-rtx-3090-linux/ data/latest/lig-gpu-matrix.json
 git commit -m "feat(gpu): donate RTX 3090 Linux GPU matrix"
 git push -u origin HEAD
+```
+
+### Manual steps (optional)
+
+If you already ran the suite in `lic` and only need to copy artifacts:
+
+```bash
+LIC_ROOT=../lic ./scripts/ingest/submit-gpu-contribution.sh nvidia-rtx-3090-linux "NVIDIA GeForce RTX 3090"
 ```
 
 CI validates the manifest and rebuilds `data/latest/lig-gpu-matrix.json`. Reviewers check:

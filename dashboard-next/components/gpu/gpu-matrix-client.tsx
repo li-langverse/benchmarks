@@ -37,9 +37,9 @@ export function GpuMatrixClient({ matrix }: GpuMatrixClientProps) {
     <>
       <aside className="gpu-donate-banner" role="note">
         <div>
-          <strong>Donate a chip</strong> — run the LiG GPU suite on your machine (M1, RTX 3090,
-          RX 7900, …) and open a PR with one folder under{" "}
-          <code>data/gpu-contributions/&lt;chip-slug&gt;/</code>.
+          <strong>Donate a chip</strong> — one command from the benchmarks repo:{" "}
+          <code className="mono">./scripts/donate-gpu-chip.sh &lt;chip-slug&gt;</code>
+          {" "}(builds lic, runs suite, creates <code>data/gpu-contributions/</code>).
         </div>
         {matrix.contribution_policy_url ? (
           <a href={matrix.contribution_policy_url} target="_blank" rel="noopener noreferrer">
