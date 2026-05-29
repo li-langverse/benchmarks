@@ -1,14 +1,14 @@
 # PR reviewer digest — 2026-05-29
 
-**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T18:46Z
+**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T19:02Z
 
 ## Executive summary
 
-- Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — **CI green**, **MERGEABLE**.
+- Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — **CI green**, **MERGEABLE** (REST).
 - **Standards: aligned** — org Cursor agent-kit chore; closes `missing_kit` for li-httpd; no PH / `plan-approved` required.
 - Branch pins org canonical **`1.3.5+6018e18bf2ed91f4`** (matches `benchmarks/scripts/expected-agent-kit-version`); PR body summary still cites 1.3.4 (cosmetic).
 - **`merge-approved`** label present — validated; not re-added.
-- **Gate blocker:** `reviewDecision: REVIEW_REQUIRED` — author `cap-jmk-real`; agent cannot self-approve (REST `422`).
+- **Gate blocker:** `REVIEW_REQUIRED` — author `cap-jmk-real`; 0 reviews; agent cannot self-approve.
 - Rank **#1** in `pr-program-run.json` (mirror/httpd tier before benchmarks/lic).
 - Not in `redundant[]`; `pr-merge-queue-plan.json` shows no merge_sequence conflicts.
 - **No merge** executed; governance repos untouched.
@@ -30,11 +30,11 @@
 
 **Diff (37 files, +1257):** agent-kit version pin, hooks (`guard-li-surface`, `guard-pr-merge`, secrets/destructive-git), rules (`li-ecosystem-gates`, `li-pr-only`, PH-ML stub-then-implement), skills (plan-feature, local-ci-quota, release-notes), automations README + repo stubs.
 
-**`pr-merge-gate.py`:** GraphQL quota exhausted this pass (`pr_not_found`); preflight `pr-program-run.json` reports `gate_ready_with_approval: true`, blockers `[]` once human approves.
+**`pr-merge-gate.py`:** GraphQL quota exhausted (`pr_not_found`); preflight `pr-program-run.json` reports `gate_ready_with_approval: true`, blockers `[]` once human approves.
 
 **Preflight:** `pr-merge-queue-plan.json` (2026-05-29T18:01Z); `pr-program-run.json` (2026-05-29T12:32Z).
 
-**PR comment posted:** https://github.com/li-langverse/li-httpd/pull/13#issuecomment-4578718175
+**PR comment posted:** https://github.com/li-langverse/li-httpd/pull/13#issuecomment-4578725069
 
 **north_star_fit:** domain=platform/agent-kit · PH=N/A (coord_platform — org agent discipline for provable→easy→fast workflow)
 
@@ -56,4 +56,4 @@
 - **roadmap** repo merges — human only per policy.
 - Cosmetic: update PR body summary from `1.3.4+…` to `1.3.5+6018e18bf2ed91f4` (optional).
 - **roadmap** agent-kit drift (1.3.2 on `main` vs org canonical 1.3.5) — track via `agent_kit_maintainer`, not blocking this PR.
-- **`pr-merge-gate.py` live re-run** — retry when GraphQL quota resets (~18:52Z).
+- **`pr-merge-gate.py` live re-run** — retry when GraphQL quota resets (~19:05Z).
