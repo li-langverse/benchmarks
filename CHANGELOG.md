@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- **Preflight on Windows:** shared `scripts/gh_util.py` (UTF-8 `gh` JSON decode, `shutil.which`) fixes `ci-bug-triage.py` / `issue-feature-triage.py` / `pr-merge-queue-plan.py` crashes on cp1252 hosts.
 - **Tier-1 matmul workloads:** sync Li `matmul_naive` / `matmul_blocked` drivers with lic IKJ / blocked IKJ (pending CSV re-ingest) — [2026-05-29-tier1-matmul-dashboard-sprint.md](docs/release-notes/2026-05-29-tier1-matmul-dashboard-sprint.md).
 - **Nightly publish:** `publish-dashboard` depends on Linux bench success only (not macOS/Windows) — [2026-05-27-publish-dashboard-linux-only.md](docs/release-notes/2026-05-27-publish-dashboard-linux-only.md).
 

@@ -6,8 +6,6 @@ Writes data/latest/ci-bug-triage.json
 from __future__ import annotations
 
 import json
-import os
-import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,6 +16,7 @@ LOCAL_CI = ROOT / "data/latest/local-ci-results.json"
 ORG = "li-langverse"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from gh_util import gh_available, gh_json  # noqa: E402
 from org_repos import ORG_REPOS  # noqa: E402
 
 BUG_LABELS = {
@@ -29,13 +28,6 @@ BUG_LABELS = {
     "broken-ci",
     "defect",
 }
-
-
-def gh_json(args: list[str]):
-    proc = subprocess.run(["gh", *args], capture_output=True, text=True, check=False)
-    if proc.returncode != 0 or not proc.stdout.strip():
-        return []
-    return json.loads(proc.stdout)
 
 
 def classify_ci(rollup: list[dict] | None) -> str:
@@ -93,7 +85,8 @@ def bug_issues() -> list[dict]:
                 "number,title,url,labels,body",
                 "--limit",
                 "30",
-            ]
+            ],
+            default=[],
         )
         for issue in issues or []:
             labels = {lb["name"].lower() for lb in issue.get("labels") or []}
@@ -128,7 +121,8 @@ def gha_failing_prs() -> list[dict]:
                 "number,title,url,statusCheckRollup",
                 "--limit",
                 "15",
-            ]
+            ],
+            default=[],
         )
         for pr in prs or []:
             ci = classify_ci(pr.get("statusCheckRollup"))
@@ -148,7 +142,7 @@ def gha_failing_prs() -> list[dict]:
 
 
 def main() -> int:
-    if subprocess.run(["which", "gh"], capture_output=True).returncode != 0:
+    if not gh_available():
         print("gh required", file=sys.stderr)
         return 1
 

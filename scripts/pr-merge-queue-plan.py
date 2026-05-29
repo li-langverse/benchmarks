@@ -10,13 +10,14 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/pr-merge-queue-plan.json"
+sys.path.insert(0, str(ROOT / "scripts"))
+from gh_util import gh_json  # noqa: E402
 
 ORG_REPOS = [
     "lic",
@@ -53,18 +54,6 @@ TITLE_PRIORITY_HINTS: list[tuple[int, re.Pattern[str]]] = [
     (10, re.compile(r"agent-kit|sync", re.I)),
     (15, re.compile(r"benchmark|catalog|ingest", re.I)),
 ]
-
-
-def gh_json(args: list[str]) -> dict | list | None:
-    proc = subprocess.run(
-        ["gh", *args],
-        capture_output=True,
-        text=True,
-        check=False,
-    )
-    if proc.returncode != 0 or not proc.stdout.strip():
-        return None
-    return json.loads(proc.stdout)
 
 
 def gate_ready(repo: str, number: int) -> tuple[bool, list[str]]:

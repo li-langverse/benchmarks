@@ -8,12 +8,13 @@ Requires: gh auth login with repo read access.
 from __future__ import annotations
 
 import json
-import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+from gh_util import gh_available, gh_json  # noqa: E402
 
 # Repos that accept feature issues + planning
 ORG_REPOS = [
@@ -41,13 +42,6 @@ PLANNED_LABELS = {
 }
 
 
-def gh_json(args: list[str]):
-    proc = subprocess.run(["gh", *args], capture_output=True, text=True, check=False)
-    if proc.returncode != 0 or not proc.stdout.strip():
-        return None
-    return json.loads(proc.stdout)
-
-
 def triage_repo(repo: str) -> dict:
     issues = gh_json(
         [
@@ -61,7 +55,8 @@ def triage_repo(repo: str) -> dict:
             "number,title,url,labels,createdAt,body",
             "--limit",
             "50",
-        ]
+        ],
+        default=[],
     )
     if not issues:
         return {"repo": repo, "error": "no issues or gh failed", "needs_plan": [], "planned": [], "candidates": []}
@@ -99,7 +94,7 @@ def triage_repo(repo: str) -> dict:
 
 
 def main() -> int:
-    if subprocess.run(["which", "gh"], capture_output=True).returncode != 0:
+    if not gh_available():
         print("gh required", file=sys.stderr)
         return 1
 

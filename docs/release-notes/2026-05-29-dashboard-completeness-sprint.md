@@ -35,3 +35,4 @@ python3 scripts/refresh-dashboard-completeness.py
 
 - Tier-1/2 lic harness CSV re-ingest on Linux nightly (matmul reds).
 - macOS/Windows measured rows when nightly artifacts land (skip → green/yellow/red).
+- Migrate remaining preflight scripts to `scripts/gh_util.py` (ecosystem-audit, local-ci-sweep, etc.).
