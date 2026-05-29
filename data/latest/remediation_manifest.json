@@ -1,77 +1,91 @@
 {
-  "generated_at": "2026-05-29T22:48:00+00:00",
-  "agent": "tui_ux_tester",
-  "surface": "tui",
+  "generated_at": "2026-05-29T22:48:08+00:00",
+  "agent": "docs_ux_tester",
+  "surface": "docs",
   "audit_kind": "ux",
   "source": "proactive",
   "north_star_fit": {
-    "pillar": "ai-first",
-    "domain": "agent-facing terminal UX (tui_app, tui_gen fixtures; Vision-LLM diagnostics)",
-    "ph_ids": ["Vision-LLM", "PH-UX"]
+    "pillar": "easy",
+    "domain": "documentation onboarding — prove → write → run fast reading path",
+    "ph_ids": ["PH-handbook", "Vision-LLM"]
   },
   "issues": [
     {
+      "priority": "P0",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
+      "target_id": "lic-docs"
+    },
+    {
       "priority": "P1",
-      "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "target_id": "tui-app-fixture"
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/422",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/404",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
+      "target_id": "lic-docs"
     },
     {
       "priority": "P1",
       "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/33",
-      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
-      "target_id": "tui-app-fixture"
-    },
-    {
-      "priority": "P2",
-      "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/34",
-      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
-      "target_id": "tui-gen-fixture"
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
+      "target_id": "lic-docs"
     }
   ],
   "implementation_queue": [
     {
-      "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "tui-demo.sh: detect non-TTY / use stdin lines; adapter catch TimeoutExpired → fail row"
+      "priority": "P0",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/403",
+      "summary": "Fix strict build-docs.sh link warnings; restore Pages publish so live nav/search match local 12-tab IA"
     },
     {
       "priority": "P1",
-      "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/33",
-      "summary": "adapters/tui.py: pipe journey steps (h, q) for key_nav_help; record journey results"
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/422",
+      "summary": "Relocate language/types-and-data, numerics, SIMD pages from Game development to Language handbook tab"
+    },
+    {
+      "priority": "P1",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": null,
+      "summary": "Replace Ecosystem nav GitHub tree link (mkdocs.yml:96) with in-site mirror or roadmap Pages URL"
     },
     {
       "priority": "P2",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/34",
-      "summary": "fixtures: LI_TUI_ERROR=1 branch + LI_TUI_EXPORT_A11Y structured plain snapshot"
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "summary": "static_site adapter: HEAD-check live Pages + increment links_checked; Playwright mobile TOC journey"
     }
   ],
   "deferred": [
     {
-      "item": "VHS / PTY visual regression for fixtures",
-      "reason": "adapters/tui.py PTY reserved; blocked on #30 non-interactive harness"
+      "item": "Visual regression / axe on live Pages",
+      "reason": "Delegate to docs_ui_tester after #403 publish restored"
     },
     {
-      "item": "Production lic / lis TUI targets",
-      "reason": "No shipped interactive terminal app; JSON diagnostics first (lic diagnose)"
+      "item": "navigation.instant.prefetch trial",
+      "reason": "Experimental Material feature; evaluate post-publish"
     },
     {
-      "item": "Merge TUI rows into global data/latest/ux-audit.json preflight",
-      "reason": "Org preflight runs docs-only slice today"
+      "item": "toc.integrate handbook-only pilot",
+      "reason": "Conflicts with navigation.tabs.sticky per Material docs"
     },
     {
-      "item": "Bubble Tea / Textual bindings in Li stdlib",
-      "reason": "Language TUI surface not started; harness fixtures only"
+      "item": "MkDocs Material → Zensical migration",
+      "reason": "Watch maintenance-mode successor; no action until docs team decides"
     }
   ],
-  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-tui-ux.md"
+  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-docs-ux.md"
 }

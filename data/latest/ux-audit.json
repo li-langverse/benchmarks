@@ -1,6 +1,8 @@
 {
-  "generated_at": "2026-05-29T19:27:58.039937+00:00",
+  "generated_at": "2026-05-29T22:48:08.137515+00:00",
   "platform": "Linux",
+  "agent": "docs_ux_tester",
+  "source": "proactive",
   "summary": {
     "total": 1,
     "failing": 0,
@@ -37,7 +39,8 @@
       ],
       "friction_points": [],
       "sota_refs": [
-        "mkdocs-material"
+        "mkdocs-material",
+        "diataxis"
       ],
       "rubric_scores": {
         "nav_clarity": 0.85,
@@ -50,7 +53,19 @@
       "missing_states": [],
       "artifacts": [],
       "mode": "static_site",
-      "rubric_min": 0.7
+      "rubric_min": 0.7,
+      "live_pages_drift": {
+        "last_modified": "2026-05-27",
+        "nav_tabs_live": 5,
+        "nav_tabs_local": 12,
+        "search_chunks_live": 248,
+        "search_chunks_local": 2801,
+        "paths_404": [
+          "/ecosystem/overview/",
+          "/guide/hello-world/",
+          "/game-dev/world-studio-vision/"
+        ]
+      }
     }
   ]
 }
