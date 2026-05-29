@@ -1,21 +1,22 @@
 {
-  "run_id": "swarm_observer-2026-05-29-swarm-coverage-r3",
+  "run_id": "swarm_observer-2026-05-29-swarm-coverage-r4",
   "agent_id": "swarm_observer",
   "research_goal_id": "swarm_coverage",
-  "generated_at": "2026-05-29T11:20:00Z",
+  "generated_at": "2026-05-29T12:00:15Z",
   "status": "finished",
   "north_star_fit": {
     "domains": ["ecosystem", "ai"],
     "summary": "Swarm gap orchestration — registry, backlog apply, handoffs"
   },
   "posture": "degraded",
-  "ecosystem_grade": "D",
-  "overall_score": 64.0,
+  "ecosystem_grade": "C",
+  "overall_score": 72.8,
   "unattended_safe": false,
-  "briefing_hash": "411fc1de96d0dd94",
+  "briefing_hash": "32439f2bba84e2c1",
   "report_md": "benchmarks/data/runs/swarm_observer-2026-05-29-swarm-coverage.md",
   "orchestrator_note": "lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md",
   "orch_todo_completed": "orch-r3-missing-package-sweep",
+  "orch_todo_next": "orch-r4-ui-ux-signals",
   "evidence": [
     "benchmarks/data/latest/ecosystem-quality-report.json",
     "benchmarks/data/latest/swarm-gap-actions.json",
@@ -24,7 +25,7 @@
     "lic/docs/ecosystem/ecosystem-package-backlog.md",
     "li-cursor-agents/data/control-plane/state.json"
   ],
-  "open_gaps": 53,
+  "open_gaps": 52,
   "open_missing_package": 3,
   "gap_ingest_ran": true,
   "gap_apply_ran": true,

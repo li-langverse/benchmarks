@@ -1,24 +1,24 @@
 # Swarm observer — meta audit (`swarm_coverage`)
 
-**Run id:** `swarm_observer-2026-05-29-swarm-coverage-r3`  
-**Generated:** 2026-05-29T11:20Z  
+**Run id:** `swarm_observer-2026-05-29-swarm-coverage-r4`  
+**Generated:** 2026-05-29T12:00Z  
 **Research goal:** `swarm_coverage`  
 **north_star_fit:** ecosystem, ai — gap registry, backlog apply, handoffs  
-**Briefing hash:** `411fc1de96d0dd94` (compact snapshot 2026-05-29T10:36Z)  
+**Briefing hash:** `32439f2bba84e2c1` (compact snapshot 2026-05-29T11:05Z)  
 **Orchestrator note:** `lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md`
 
 ---
 
 ## Executive summary
 
-- **Posture: degraded** — ecosystem grade **D (64.0)**, `unattended_safe: false` (`benchmarks/data/latest/ecosystem-quality-report.json`, regenerated this pass; up from 60.3 as reconcile noise dropped in terminal sample).
+- **Posture: degraded** — ecosystem grade **C (72.8)**, `unattended_safe: false` (`benchmarks/data/latest/ecosystem-quality-report.json`, regenerated this pass).
 - **Unattended operation: not safe** — 35 open PRs with failing CI, `agents_live: 0`, six of eight goal-directed runners not live, eight preflight scripts on `--skip-slow`.
-- **SDK auth OK** — `CURSOR_API_KEY` set; recent DB `error` rows are predominantly `unregistered_running_reconciled` (supervisor tick preemption), not auth failures.
-- **Swarm execution improving** — grade dimension 55 (was 40): 22 terminal runs sampled, 7 errors (32% → reconcile-dominated); 101 runs still `running` in files (stuck-SDK risk).
-- **Briefing vs runs:** Heap prioritizes `pr_alignment`, governance agents; programmatic observer queued `implementation_gaps` + `proof_gap_researcher` retry (`li-cursor-agents/data/control-plane/state.json`).
-- **Gap orchestration (orch-r3):** All three `missing_package` gaps patched to `pending` in `ecosystem-package-backlog.md`; registry orch-r3 row **closed**; handoff to `issue_planner` / `package_architect`.
-- **Programmatic observer:** `retry_counts: {}`, `stopped_agents: []` — no auto-retry budget consumed; `needs_meta_observer: true` in local state.
-- **Stale Supabase report:** `control_plane_reports.is_latest` still **2026-05-25** (`healthy: true`, 0 runs) — do not trust for live posture; use DB `agent_runs` + disk runs.
+- **SDK auth OK** — `CURSOR_API_KEY` set; DB shows 718 `error` rows in 24h but the latest terminal sample has **0% leaf error rate** (115 `running`, 5 terminal) — reconcile noise dominates historical counts.
+- **Async swarm active** — supervisor tick at 11:59Z dispatched heap agents (`pr_alignment`, `implementation_gaps`, `bug_fixer`, etc.); local `swarm_health.healthy: true` with **goal_mismatch** finding only.
+- **Gap orchestration (orch-r3): complete** — ingest + apply re-run; three `missing_package` gaps patched to `pending` in `ecosystem-package-backlog.md`; registry orch-r3 row **closed**; handoff to `issue_planner` / `package_architect`.
+- **Programmatic observer:** `retry_counts: {}`, `stopped_agents: []`; remediations queued `implementation_gaps` + `workspace_sweeper` (goal-align).
+- **Stale Supabase report:** `control_plane_reports.is_latest` still **2026-05-25** — use DB `agent_runs` + disk runs for live posture.
+- **Next orchestrator todo:** `orch-r4-ui-ux-signals` (`ui_ux` / studio-ui-ux plan linkage).
 
 ---
 
@@ -28,24 +28,25 @@
 
 | Agent / area | Symptom | Evidence | Severity |
 |--------------|---------|----------|----------|
-| **Supervisor** | Mass `unregistered_running_reconciled` at ~10:51–10:53Z | `agent_runs.error` last 6h | high |
 | **Ecosystem** | 35 failing PR CI | `benchmarks/data/latest/agent-briefing.json` | high |
 | **Goal-directed** | 6 runners stopped, `agents_live: 0` | `lic/data/goal-directed-agents/snapshot.json` | high |
-| **Gap registry** | 53 open gaps (3 package, 20 plan_debt, 30 competitor) | `registry.yaml`, `swarm-gap-actions.json` | medium |
-| **Preflight** | `org_agent_kit_audit` exit 1 | `agent-briefing.preflight_runs` | medium |
-| **Preflight** | 8× `--skip-slow` | same | medium |
-| **agent_kit_maintainer** | Rollout succeeded (28 PRs); DB shows reconcile error on duplicate row | `agent_kit_maintainer-1780052164622.json` (finished) | low |
-| **bug_fixer** | SDK `status: error` after long lic PR #319 attempt | `bug_fixer-1780051882294.json` | medium |
+| **Gap registry** | 52 open gaps (3 package, 19 plan_debt, 30 competitor) | `lic/data/swarm-gap-registry/registry.yaml`, `swarm-gap-actions.json` | high |
+| **Briefing drift** | Top recommended agents not in recent reconcile sample | `li-cursor-agents/data/control-plane/state.json` → `goal_mismatch` | medium |
+| **Preflight** | `org_agent_kit_audit` exit 1 (28 repos need kit) | `agent-briefing.preflight_runs` | medium |
+| **Preflight** | 8× `--skip-slow` (plan_audit, ci_bug_triage, …) | same | medium |
+| **bug_fixer** | SDK `status: error` after long lic PR #319 attempt | `li-cursor-agents/data/runs/bug_fixer-1780051882294.json` | medium |
 | **Dashboard** | `control_plane_reports` stale 4 days | Supabase `control_plane_reports` | medium |
+| **Swarm files** | 115+ runs `running` in 120-sample (SDK finalize lag) | `ecosystem-quality-report` → `swarm-many-running` | low |
+| **agent_kit_maintainer** | 5 `finished` in 6h window | DB `agent_runs` | low |
 
 ### Error classification (sampled)
 
 | Root cause | Evidence | Notes |
 |------------|----------|-------|
-| Supervisor reconcile / preempt | `error_snippet: unregistered_running_reconciled` | Exclude from leaf `error_rate` in observer |
-| SDK run error (leaf) | `bug_fixer-1780051882294` — workspace/repo mismatch | Prompt: bind workspace repo to triage target |
-| Stale preflight | Briefing 10:36Z, tick 11:19Z | Drop `--skip-slow` on degraded/meta ticks |
-| Mock/finished mismatch | `agent_kit_maintainer` finished in JSON, error in DB | Reconcile status write order |
+| Supervisor reconcile / preempt | Historical `unregistered_running_reconciled` in DB | Exclude from leaf `error_rate` in observer |
+| SDK run error (leaf) | `bug_fixer-1780051882294` — workspace `li-demo`, triage target `lic` | Prompt: bind workspace repo to triage `repo` field |
+| Stale preflight | Briefing 11:05Z vs tick 11:59Z | Drop `--skip-slow` on degraded/meta ticks |
+| Running-not-finalized | 115 `running` in grade sample | Reconcile stale `running` > N hours |
 
 ### Self-heal actions taken (programmatic observer)
 
@@ -53,15 +54,15 @@
 |--------|--------|
 | Auto-retry (`observer.retry_counts`) | **Empty** |
 | `stopped_agents` | **[]** |
-| Remediations | `dispatch_healer: implementation_gaps`, `retry_agent: proof_gap_researcher` |
-| Gap ingest + apply | **Executed** — orch-r3 package todos confirmed `pending` |
-| Meta observer dispatch | Quality report recommends `swarm_observer`, `gap_explorer`, `ecosystem_grader` |
+| Remediations (local state) | `dispatch_healer: implementation_gaps`, `retry_agent: workspace_sweeper` (goal-align) |
+| Gap ingest + apply | **Executed** this pass (`registry.yaml` updated_at 12:00Z) |
+| Meta observer dispatch | Quality report recommends `gap_explorer`, `ecosystem_grader`, `ci_maintainer` |
 
 ### Gap orchestration (`swarm_coverage` / orch-r3)
 
 | Metric | Value |
 |--------|-------|
-| Open gaps | 53 (3 `missing_package`, 20 `plan_debt`, 30 `competitor_feature`) |
+| Open gaps | 52 (3 `missing_package`, 19 `plan_debt`, 30 `competitor_feature`) |
 | Package backlog | `pkg-line-profiler`, `pkg-std-summary`, `pkg-std-plot` → **pending** |
 | Orch-r3 registry | `gap-plan-pending-swarm-observer-orch-r3-missing-package-sweep` → **closed** |
 | Note | `lic/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r3-missing-package-sweep.md` |
@@ -79,14 +80,14 @@
 
 ### Human-only blockers
 
-- **lic** studio waves PRs #367–378 — governance review; no auto-merge.
+- **lic** studio waves PRs #367–379 — governance review; no auto-merge.
 - **roadmap** agent-kit PR #25 — human merge only.
 - **28 agent-kit rollout PRs** — review + CI before merge (li-demo #15 red).
 - **trusted.lean** / provability policy — human-approved issues only.
 
 ### Agent deliverable checklist
 
-- [x] Ecosystem quality report regenerated (64.0, grade D)
+- [x] Ecosystem quality report regenerated (72.8, grade C)
 - [x] Control-plane DB queried (`agent_runs`, `control_plane_state`, `control_plane_reports`)
 - [x] Local `state.json` + error run samples
 - [x] Gap ingest + apply (orch-r3)
