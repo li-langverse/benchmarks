@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T19:06:08.476354+00:00",
+  "generated_at": "2026-05-29T19:07:26.377546+00:00",
   "dry_run": false,
   "open_gaps": 53,
   "by_kind": {
@@ -12,84 +12,84 @@
       "gap_id": "gap-line-profiler-001",
       "gap_kind": "missing_package",
       "title": "li-line-profiler \u2014 line-level profiling package (seed)",
-      "at": "2026-05-29T19:06:08.469971+00:00",
+      "at": "2026-05-29T19:07:26.373382+00:00",
       "patch": "patched pkg-line-profiler \u2192 pending in ecosystem-package-backlog.md"
     },
     {
       "gap_id": "gap-missing-std-std-summary",
       "gap_kind": "missing_package",
       "title": "Missing std module std.summary",
-      "at": "2026-05-29T19:06:08.470305+00:00",
+      "at": "2026-05-29T19:07:26.373677+00:00",
       "patch": "patched pkg-std-summary \u2192 pending in ecosystem-package-backlog.md"
     },
     {
       "gap_id": "gap-missing-std-std-plot",
       "gap_kind": "missing_package",
       "title": "Missing std module std.plot",
-      "at": "2026-05-29T19:06:08.471539+00:00",
+      "at": "2026-05-29T19:07:26.373862+00:00",
       "patch": "patched pkg-std-plot \u2192 pending in ecosystem-package-backlog.md"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-doc-c-phase-plan-files-02-03-07-",
       "gap_kind": "plan_debt",
       "title": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates",
-      "at": "2026-05-29T19:06:08.471749+00:00",
+      "at": "2026-05-29T19:07:26.374026+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-2i-math-linalg-surface-par",
       "gap_kind": "plan_debt",
       "title": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred",
-      "at": "2026-05-29T19:06:08.471756+00:00",
+      "at": "2026-05-29T19:07:26.374031+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-2e-contracts-refinements-p",
       "gap_kind": "plan_debt",
       "title": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_r",
-      "at": "2026-05-29T19:06:08.471760+00:00",
+      "at": "2026-05-29T19:07:26.374033+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-2f-lean-4-verify-partial-a",
       "gap_kind": "plan_debt",
       "title": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contr",
-      "at": "2026-05-29T19:06:08.471761+00:00",
+      "at": "2026-05-29T19:07:26.374035+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-7d-execution-decorators-pa",
       "gap_kind": "plan_debt",
       "title": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristic",
-      "at": "2026-05-29T19:06:08.471763+00:00",
+      "at": "2026-05-29T19:07:26.374038+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-7e-math-simd-parallel-lowe",
       "gap_kind": "plan_debt",
       "title": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred",
-      "at": "2026-05-29T19:06:08.471765+00:00",
+      "at": "2026-05-29T19:07:26.374039+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-h-li-httpd-m1-li-after-2e-",
       "gap_kind": "plan_debt",
       "title": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))",
-      "at": "2026-05-29T19:06:08.471768+00:00",
+      "at": "2026-05-29T19:07:26.374041+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-vision-llm-llm-first-agent-json-",
       "gap_kind": "plan_debt",
       "title": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnosti",
-      "at": "2026-05-29T19:06:08.471770+00:00",
+      "at": "2026-05-29T19:07:26.374044+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-sim-sim-p1-num-dot-axpy",
       "gap_kind": "plan_debt",
       "title": "sim: pending plan todo sim-p1-num-dot-axpy",
-      "at": "2026-05-29T19:06:08.471771+00:00",
+      "at": "2026-05-29T19:07:26.374046+00:00",
       "patch": "patched sim-p1-num-dot-axpy \u2192 pending in sim-algorithm-backlog.md",
       "suggest_systemd_loop": "sim"
     },
@@ -97,56 +97,56 @@
       "gap_id": "gap-plan-pending-sim-sim-p1-md-neighbor-cell",
       "gap_kind": "plan_debt",
       "title": "sim: pending plan todo sim-p1-md-neighbor-cell",
-      "at": "2026-05-29T19:06:08.471979+00:00",
+      "at": "2026-05-29T19:07:26.374222+00:00",
       "patch": "patched sim-p1-md-neighbor-cell \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-sim-p2-qm-dft-scf",
       "gap_kind": "plan_debt",
       "title": "sim: pending plan todo sim-p2-qm-dft-scf",
-      "at": "2026-05-29T19:06:08.472164+00:00",
+      "at": "2026-05-29T19:07:26.374400+00:00",
       "patch": "patched sim-p2-qm-dft-scf \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-md-research-md-r3-oracle-plan",
       "gap_kind": "plan_debt",
       "title": "sim-md-research: pending plan todo md-r3-oracle-plan",
-      "at": "2026-05-29T19:06:08.472331+00:00",
+      "at": "2026-05-29T19:07:26.374605+00:00",
       "patch": "patched md-r3-oracle-plan \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-chem-research-chem-r2-dft-scf-gap",
       "gap_kind": "plan_debt",
       "title": "sim-chem-research: pending plan todo chem-r2-dft-scf-gap",
-      "at": "2026-05-29T19:06:08.472498+00:00",
+      "at": "2026-05-29T19:07:26.374782+00:00",
       "patch": "patched chem-r2-dft-scf-gap \u2192 pending in sim-chem-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-chem-research-chem-r3-package-placement",
       "gap_kind": "plan_debt",
       "title": "sim-chem-research: pending plan todo chem-r3-package-placement",
-      "at": "2026-05-29T19:06:08.472664+00:00",
+      "at": "2026-05-29T19:07:26.374948+00:00",
       "patch": "patched chem-r3-package-placement \u2192 pending in sim-chem-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-swarm-observer-orch-r3-missing-package-sweep",
       "gap_kind": "plan_debt",
       "title": "swarm-observer: pending plan todo orch-r3-missing-package-sweep",
-      "at": "2026-05-29T19:06:08.472865+00:00",
+      "at": "2026-05-29T19:07:26.375118+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-swarm-observer-orch-r4-ui-ux-signals",
       "gap_kind": "plan_debt",
       "title": "swarm-observer: pending plan todo orch-r4-ui-ux-signals",
-      "at": "2026-05-29T19:06:08.472871+00:00",
+      "at": "2026-05-29T19:07:26.375123+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-security-research-sec-r1-httpd-fuzz-smoke",
       "gap_kind": "plan_debt",
       "title": "security-research: pending plan todo sec-r1-httpd-fuzz-smoke",
-      "at": "2026-05-29T19:06:08.472873+00:00",
+      "at": "2026-05-29T19:07:26.375125+00:00",
       "patch": "deferred (no runner backlog mapping)",
       "suggest_systemd_loop": "security-research"
     },
@@ -154,213 +154,213 @@
       "gap_id": "gap-plan-pending-security-research-sec-r2-tier5-gap-exploit",
       "gap_kind": "plan_debt",
       "title": "security-research: pending plan todo sec-r2-tier5-gap-exploit",
-      "at": "2026-05-29T19:06:08.472876+00:00",
+      "at": "2026-05-29T19:07:26.375128+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-security-research-sec-r3-runtime-surface",
       "gap_kind": "plan_debt",
       "title": "security-research: pending plan todo sec-r3-runtime-surface",
-      "at": "2026-05-29T19:06:08.472878+00:00",
+      "at": "2026-05-29T19:07:26.375130+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-8p-parallel-compile-ci-thr",
       "gap_kind": "plan_debt",
       "title": "Phase 8p \u2014 Parallel compile + CI throughput \u2014 **partial (8p-a/b/c/d):** 8p-a parallel `run_all` + isolated `LI_BUILD_DIR",
-      "at": "2026-05-29T19:06:08.472880+00:00",
+      "at": "2026-05-29T19:07:26.375131+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-competitor-pure-li-ph7e-catalog",
       "gap_kind": "competitor_feature",
       "title": "Increase pure_li catalog variants for PH-7e codegen proof",
-      "at": "2026-05-29T19:06:08.472883+00:00"
+      "at": "2026-05-29T19:07:26.375134+00:00"
     },
     {
       "gap_id": "gap-hpc-kokkos-execution-memory-spaces",
       "gap_kind": "competitor_feature",
       "title": "Kokkos-class execution model: parallel_for, Views, GPU memory spaces",
-      "at": "2026-05-29T19:06:08.472885+00:00"
+      "at": "2026-05-29T19:07:26.375136+00:00"
     },
     {
       "gap_id": "gap-hpc-petsc-kokkos-implicit-pde",
       "gap_kind": "competitor_feature",
       "title": "PETSc 3.25 Kokkos-native KSP/PC (aijkokkos, PCBJKOKKOS) implicit PDE stack",
-      "at": "2026-05-29T19:06:08.472889+00:00"
+      "at": "2026-05-29T19:07:26.375137+00:00"
     },
     {
       "gap_id": "gap-hpc-fftw-roofline-catalog-row",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 FFT micro-bench: FFTW vs vendor GPU roofline (cuFFT/VkFFT/heFFTe)",
-      "at": "2026-05-29T19:06:08.472892+00:00"
+      "at": "2026-05-29T19:07:26.375140+00:00"
     },
     {
       "gap_id": "gap-hpc-hypre-boomeramg-tier2-pde",
       "gap_kind": "competitor_feature",
       "title": "hypre BoomerAMG + parallel CSR for large-scale implicit PDE",
-      "at": "2026-05-29T19:06:08.472895+00:00"
+      "at": "2026-05-29T19:07:26.375142+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-matmul-naive-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: matmul_naive 1.73x vs cpp (Eigen/MKL class)",
-      "at": "2026-05-29T19:06:08.472897+00:00"
+      "at": "2026-05-29T19:07:26.375144+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-gmres-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_gmres 1.68x vs cpp (iterative solver class)",
-      "at": "2026-05-29T19:06:08.472899+00:00"
+      "at": "2026-05-29T19:07:26.375145+00:00"
     },
     {
       "gap_id": "gap-vertical-stub-md-lennard-jones",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: md_lennard_jones (LAMMPS/GROMACS)",
-      "at": "2026-05-29T19:06:08.472901+00:00",
+      "at": "2026-05-29T19:07:26.375148+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-md-lennard-jones \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-pde-heat-2d",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: pde_heat_2d (OpenFOAM/PETSc)",
-      "at": "2026-05-29T19:06:08.473156+00:00",
-      "patch": "appended gap-competitor-gap-vertical-stub-pde-heat-2d to sim-algorithm-backlog.md"
+      "at": "2026-05-29T19:07:26.375370+00:00",
+      "patch": "patched gap-competitor-gap-vertical-stub-pde-heat-2d \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-fea-linear-elasticity",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: fea_linear_elasticity (CalculiX/ANSYS)",
-      "at": "2026-05-29T19:06:08.473305+00:00",
-      "patch": "appended gap-competitor-gap-vertical-stub-fea-linear-elasticity to sim-algorithm-backlog.md"
+      "at": "2026-05-29T19:07:26.375579+00:00",
+      "patch": "patched gap-competitor-gap-vertical-stub-fea-linear-elasticity \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cfd-lid-driven-cavity",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cfd_lid_driven_cavity (OpenFOAM/COMSOL)",
-      "at": "2026-05-29T19:06:08.473442+00:00",
-      "patch": "appended gap-competitor-gap-vertical-stub-cfd-lid-driven-cavity to sim-algorithm-backlog.md"
+      "at": "2026-05-29T19:07:26.375776+00:00",
+      "patch": "patched gap-competitor-gap-vertical-stub-cfd-lid-driven-cavity \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-infra-verticals-toml-missing-benchmarks-main",
       "gap_kind": "competitor_feature",
       "title": "benchmarks/competitive/verticals.toml missing on main \u2014 blocks swarm-gap vertical ingest",
-      "at": "2026-05-29T19:06:08.473581+00:00"
+      "at": "2026-05-29T19:07:26.375975+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-integ-euler-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_integ_euler 1.40x vs cpp (explicit integrator class)",
-      "at": "2026-05-29T19:06:08.473586+00:00"
+      "at": "2026-05-29T19:07:26.375981+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-integ-verlet-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_integ_verlet 1.35x vs cpp (symplectic integrator class)",
-      "at": "2026-05-29T19:06:08.473588+00:00"
+      "at": "2026-05-29T19:07:26.375984+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-opt-line-search-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_opt_line_search 2.00x vs cpp (optimization microbench)",
-      "at": "2026-05-29T19:06:08.473590+00:00"
+      "at": "2026-05-29T19:07:26.375986+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-cloth-swing-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: cloth_swing 1.37x vs cpp (physics tier-2)",
-      "at": "2026-05-29T19:06:08.473593+00:00"
+      "at": "2026-05-29T19:07:26.375988+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-orbit-two-body-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: orbit_two_body 1.69x vs cpp (N-body integrator)",
-      "at": "2026-05-29T19:06:08.473595+00:00"
+      "at": "2026-05-29T19:07:26.375991+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-schrodinger-1d-barrier-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: schrodinger_1d_barrier 1.77x vs cpp (quantum PDE stub)",
-      "at": "2026-05-29T19:06:08.473596+00:00"
+      "at": "2026-05-29T19:07:26.375993+00:00"
     },
     {
       "gap_id": "gap-hpc-raja-execution-policies",
       "gap_kind": "competitor_feature",
       "title": "RAJA policy-based loop abstractions vs Li std/execution decorators",
-      "at": "2026-05-29T19:06:08.473599+00:00"
+      "at": "2026-05-29T19:07:26.375997+00:00"
     },
     {
       "gap_id": "gap-hpc-sundials-stiff-ode-sensitivity",
       "gap_kind": "competitor_feature",
       "title": "SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators",
-      "at": "2026-05-29T19:06:08.473600+00:00"
+      "at": "2026-05-29T19:07:26.375999+00:00"
     },
     {
       "gap_id": "gap-hpc-openmp-llvm-lowering-rubric",
       "gap_kind": "competitor_feature",
       "title": "OpenMP prescriptive vs descriptive lowering rubric for portable codegen",
-      "at": "2026-05-29T19:06:08.473602+00:00"
+      "at": "2026-05-29T19:07:26.376001+00:00"
     },
     {
       "gap_id": "gap-competitor-chapel-hpsf-productivity",
       "gap_kind": "competitor_feature",
       "title": "Chapel 2.x HPSF productivity parallel language vs Li PH-7d execution",
-      "at": "2026-05-29T19:06:08.473603+00:00"
+      "at": "2026-05-29T19:07:26.376004+00:00"
     },
     {
       "gap_id": "gap-vertical-stub-drug-litl",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: drug_litl",
-      "at": "2026-05-29T19:06:08.473606+00:00",
+      "at": "2026-05-29T19:07:26.376006+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-drug-litl \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-bio-litl",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: bio_litl",
-      "at": "2026-05-29T19:06:08.473836+00:00",
+      "at": "2026-05-29T19:07:26.376216+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-bio-litl \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-scientific-viz",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: scientific_viz",
-      "at": "2026-05-29T19:06:08.474059+00:00",
+      "at": "2026-05-29T19:07:26.376406+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-scientific-viz \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cinematic-encode",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cinematic_encode",
-      "at": "2026-05-29T19:06:08.474267+00:00",
+      "at": "2026-05-29T19:07:26.376598+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-cinematic-encode \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cinematic-color-grade",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cinematic_color_grade",
-      "at": "2026-05-29T19:06:08.475456+00:00",
+      "at": "2026-05-29T19:07:26.376787+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-cinematic-color-grade \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cinematic-audio-sync",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cinematic_audio_sync",
-      "at": "2026-05-29T19:06:08.475705+00:00",
+      "at": "2026-05-29T19:07:26.376980+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-cinematic-audio-sync \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-mmo-shard",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: mmo_shard",
-      "at": "2026-05-29T19:06:08.475934+00:00",
+      "at": "2026-05-29T19:07:26.377171+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-mmo-shard \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-qm-dft",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: qm_dft",
-      "at": "2026-05-29T19:06:08.476151+00:00",
+      "at": "2026-05-29T19:07:26.377366+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-qm-dft \u2192 pending in sim-md-research-backlog.md"
     }
   ],
@@ -379,9 +379,9 @@
     "patched chem-r2-dft-scf-gap \u2192 pending in sim-chem-research-backlog.md",
     "patched chem-r3-package-placement \u2192 pending in sim-chem-research-backlog.md",
     "patched gap-competitor-gap-vertical-stub-md-lennard-jones \u2192 pending in sim-md-research-backlog.md",
-    "appended gap-competitor-gap-vertical-stub-pde-heat-2d to sim-algorithm-backlog.md",
-    "appended gap-competitor-gap-vertical-stub-fea-linear-elasticity to sim-algorithm-backlog.md",
-    "appended gap-competitor-gap-vertical-stub-cfd-lid-driven-cavity to sim-algorithm-backlog.md",
+    "patched gap-competitor-gap-vertical-stub-pde-heat-2d \u2192 pending in sim-algorithm-backlog.md",
+    "patched gap-competitor-gap-vertical-stub-fea-linear-elasticity \u2192 pending in sim-algorithm-backlog.md",
+    "patched gap-competitor-gap-vertical-stub-cfd-lid-driven-cavity \u2192 pending in sim-algorithm-backlog.md",
     "patched gap-competitor-gap-vertical-stub-drug-litl \u2192 pending in sim-md-research-backlog.md",
     "patched gap-competitor-gap-vertical-stub-bio-litl \u2192 pending in sim-md-research-backlog.md",
     "patched gap-competitor-gap-vertical-stub-scientific-viz \u2192 pending in sim-md-research-backlog.md",
