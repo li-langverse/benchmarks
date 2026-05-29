@@ -90,6 +90,8 @@ def classify_lean(name: str, body: str, kind: str) -> str:
         return "proved"
     if re.search(r":=\s*(Int|Float|Li|Nat)\.", body):
         return "proved"
+    if kind == "theorem" and re.search(r":=\s*[A-Za-z_.][\w.]*", body):
+        return "proved"
     if ":= by" in body:
         return "proved"
     return "open"

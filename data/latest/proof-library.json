@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-29T18:55Z",
+  "generated_at": "2026-05-29T18:56Z",
   "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui",
   "lic_commit": "3e21dd9af7849bb15c02c40d3350801bfb21ed21",
   "sources": {
@@ -18,7 +18,7 @@
   },
   "summary": {
     "total": 36,
-    "divergent": 9,
+    "divergent": 6,
     "by_catalog_status": {
       "axiomatic": 10,
       "open": 9,
@@ -28,8 +28,7 @@
     "by_lean_status": {
       "axiomatic": 15,
       "unknown": 6,
-      "open": 3,
-      "proved": 8,
+      "proved": 11,
       "placeholder": 4
     },
     "discrepancy_register_count": 24
@@ -239,8 +238,8 @@
       "field": "math",
       "statement": "Real addition associative (discharged from M-AX-REAL-ADD-ASSOC).",
       "catalog_status": "proved",
-      "lean_status": "open",
-      "diverges": true,
+      "lean_status": "proved",
+      "diverges": false,
       "gap_id": "G-math",
       "gap_kind": "proof_gap",
       "lean_theorem": "Li.ProofDb.Math.m_lm_add_assoc",
@@ -257,8 +256,8 @@
       "field": "math",
       "statement": "Real addition commutative (discharged from M-AX-REAL-ADD-COMM).",
       "catalog_status": "proved",
-      "lean_status": "open",
-      "diverges": true,
+      "lean_status": "proved",
+      "diverges": false,
       "gap_id": "G-math",
       "gap_kind": "proof_gap",
       "lean_theorem": "Li.ProofDb.Math.m_lm_add_comm",
@@ -293,8 +292,8 @@
       "field": "math",
       "statement": "Real multiply-by-one (discharged from M-AX-REAL-MUL-ONE).",
       "catalog_status": "proved",
-      "lean_status": "open",
-      "diverges": true,
+      "lean_status": "proved",
+      "diverges": false,
       "gap_id": "G-math",
       "gap_kind": "proof_gap",
       "lean_theorem": "Li.ProofDb.Math.m_lm_mul_one",

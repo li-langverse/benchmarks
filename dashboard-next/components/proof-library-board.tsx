@@ -8,7 +8,7 @@ import {
   proofStatusBadgeClass,
   type ProofLibraryEntry,
   type ProofVoteOption,
-} from "@/lib/proof-library";
+} from "@/lib/proof-library-types";
 
 const VOTE_KEY = "li-proof-votes-v1";
 const GITHUB_ISSUE_BASE =

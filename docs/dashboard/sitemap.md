@@ -11,7 +11,7 @@ Quick route reference for the Li scientific benchmark portal. Full layout, compo
 | `/bench/[id]` | Single benchmark detail + history |
 | `/matrix` | Full benchmark matrix (filters, table) |
 | `/history` | Ingest / run history index |
-| `/proofs` | Provability coverage (G-*, Lean) — not bench status |
+| `/proofs` | Proof library — catalog vs Lean, local human votes |
 | `/packages/[pkg]` | Package freshness (`lip`, `lit`, `lis`, …) |
 
 **Global nav (target):** Overview · Matrix · History · Proofs · Packages
