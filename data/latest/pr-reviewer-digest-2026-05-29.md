@@ -1,15 +1,15 @@
 # PR reviewer digest — 2026-05-29
 
-**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T16:28Z
+**Agent:** `pr_reviewer` · **Queued:** `pr:review:li-httpd:13` · **North star:** proof → easy → fast · **Pass:** 2026-05-29T17:46Z
 
 ## Executive summary
 
 - Reviewed **li-httpd#13** (`chore(agent-kit): sync roadmap cursor policy`) — **CI green**, **MERGEABLE**.
 - **Standards: aligned** — org Cursor agent-kit chore; closes `missing_kit` for li-httpd; no PH / `plan-approved` required.
-- Branch pins **`1.3.5+6018e18bf2ed91f4`** (matches org canonical); PR body summary still cites 1.3.4 (cosmetic only).
-- **`merge-approved`** label present — validated by this pass; not re-added.
+- Branch pins **`1.3.5+6018e18bf2ed91f4`** (org canonical); PR body summary still cites 1.3.4 (cosmetic only).
+- **`merge-approved`** label present — validated; not re-added.
 - **Gate blocker:** `reviewDecision: REVIEW_REQUIRED` — author `cap-jmk-real`; agent token cannot self-approve.
-- Rank **#1** in `pr-merge-queue-plan.json` / `pr-program-run.json` (mirror/httpd tier before benchmarks/lic).
+- Rank **#1** in `pr-program-run.json` (mirror/httpd tier before benchmarks/lic).
 - Not in `redundant[]`; no feature supersession.
 - **No merge** executed; governance repos untouched.
 
@@ -30,9 +30,9 @@
 
 **`pr-merge-gate.py --repo li-httpd --pr 13 --json`:** `ready: false` — sole blocker `review_approved`.
 
-**Preflight:** `pr-merge-queue-plan.json` (2026-05-29T12:56Z); `pr-program-run.json` (2026-05-29T12:32Z). `gate_ready_with_approval: true` once human approves.
+**Preflight:** `pr-merge-queue-plan.json` (2026-05-29T17:02Z); `pr-program-run.json` (2026-05-29T12:32Z). `gate_ready_with_approval: true` once human approves.
 
-**PR comment:** Standards alignment posted — https://github.com/li-langverse/li-httpd/pull/13#issuecomment-4577510134
+**PR comment:** Standards alignment posted — https://github.com/li-langverse/li-httpd/pull/13
 
 **north_star_fit:** domain=platform/agent-kit · PH=N/A (coord_platform — org agent discipline for provable→easy→fast workflow)
 
