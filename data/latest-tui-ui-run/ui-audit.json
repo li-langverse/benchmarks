@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-05-29T19:45:25.340325+00:00",
+  "platform": "Linux",
+  "agent": "tui_ui_tester",
+  "summary": {
+    "total": 2,
+    "failing": 1,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "status": "fail",
+      "mode": "fixture",
+      "harness_error": "TimeoutExpired after 30s (read -r blocks without TTY/stdin)",
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-app-fixture.txt"
+      ],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": null,
+        "threshold": 0.04,
+        "note": "no baseline"
+      },
+      "contrast_failures": [],
+      "baseline_status": "none",
+      "tokens_deviation": [],
+      "findings": [
+        "blocks on read -r in non-interactive subprocess",
+        "passes with piped stdin (exit 0)",
+        "ANSI clear+home present; no color tokens",
+        "UTF-8 em dash mojibake in capture (locale/terminal encoding)"
+      ]
+    },
+    {
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_gen",
+      "status": "pass",
+      "mode": "fixture",
+      "fixture_exit_code": 0,
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
+      ],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "findings": [
+        "Unicode box frame 31 cols; no ANSI color; sparse layout OK for stub"
+      ]
+    }
+  ]
+}
