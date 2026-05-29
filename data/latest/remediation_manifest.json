@@ -1,0 +1,48 @@
+{
+  "generated_at": "2026-05-29T09:30:00Z",
+  "agent_id": "docs_ux_tester",
+  "surface": "docs",
+  "north_star_fit": {
+    "pillar": "easy",
+    "domain": "documentation onboarding and ecosystem reading paths",
+    "ph_ids": ["PH-UX-docs-IA", "ecosystem-governance-docs"]
+  },
+  "preflight": {
+    "ux_audit_path": "data/latest/ux-audit.json",
+    "ui_audit_path": "data/latest/ui-audit.json",
+    "harness_target": "lic-docs",
+    "harness_status": "pass"
+  },
+  "issues": [],
+  "implementation_queue": [
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "item": "Move language reference pages from Game development to Language handbook in mkdocs.yml",
+      "sources": ["ux_audit", "docs_ux_tester_digest"],
+      "acceptance": "Nav IA matches Diátaxis; no language/*.md under Game development tab"
+    },
+    {
+      "priority": "P1",
+      "repo": "roadmap",
+      "item": "Publish ecosystem canonical docs to GitHub Pages or sync into li-language build",
+      "sources": ["ecosystem_audit", "docs_ux_tester_digest"],
+      "acceptance": "Ecosystem reading path stays on li-langverse.github.io with working search"
+    },
+    {
+      "priority": "P1",
+      "repo": "benchmarks",
+      "item": "Map lic docs URL to li-language in ecosystem-audit LIVE_DOCS",
+      "sources": ["ecosystem_audit"],
+      "acceptance": "lic not listed in repos_without_live_docs when li-language Pages is up"
+    },
+    {
+      "priority": "P2",
+      "repo": "lic",
+      "item": "Document search keyboard shortcuts; evaluate navigation.instant.prefetch",
+      "sources": ["ux_audit", "sota_research"],
+      "acceptance": "Help overlay or contributing note; mkdocs.yml updated if prefetch enabled"
+    }
+  ],
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-29-docs-ux.md"
+}
