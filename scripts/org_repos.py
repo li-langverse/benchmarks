@@ -9,6 +9,9 @@ from __future__ import annotations
 # Local SDK / automation runner — not part of core product org loop.
 IGNORE_REPOS = frozenset({"li-cursor-agents"})
 
+# No required ci.yml on default branch (research archive). See repo-ci-required.md.
+CI_EXEMPT_REPOS = IGNORE_REPOS | frozenset({"research-findings"})
+
 # Automation/testing repo (workflows, gate experiments) — not product merge queue.
 AUTOMATION_SANDBOX_REPOS = frozenset({"li-demo"})
 
