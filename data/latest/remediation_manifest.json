@@ -1,19 +1,28 @@
 {
-  "generated_at": "2026-05-29T17:58:30Z",
-  "agent_id": "docs_ui_tester",
+  "generated_at": "2026-05-29T18:10:00Z",
+  "agent_id": "docs_ux_tester",
   "north_star_fit": {
     "pillar": "easy",
-    "domain": "handbook / MkDocs built site",
-    "ph_ids": ["PH-2i-adjacent-docs"]
+    "domain": "handbook reading path / MkDocs IA",
+    "ph_ids": ["PH-2i-adjacent-docs", "Vision-LLM-handbook"]
   },
   "issues": [
+    {
+      "url": "https://github.com/li-langverse/lic/issues/403",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
+      "priority": "P0",
+      "target_id": "lic-docs",
+      "status": "open",
+      "evidence": "Live Pages last-modified 2026-05-27; /ecosystem/overview/ and /guide/hello-world/ return 404; search index 248 vs 2801 local; docs.yml run 26642211697 failed"
+    },
     {
       "url": "https://github.com/li-langverse/lic/issues/404",
       "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique)",
       "priority": "P1",
       "target_id": "lic-docs",
       "status": "open",
-      "evidence": "45 relative raw .md hrefs + 26 GitHub blob .md links in built site/ (deep scan 2026-05-29)"
+      "agent_source": "docs_ui_tester",
+      "evidence": "Contributes to strict build failure; raw .md hrefs in lic/site/"
     },
     {
       "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
@@ -21,18 +30,52 @@
       "priority": "P1",
       "target_id": "lic-docs",
       "status": "open",
-      "evidence": "Harness reports links_checked=0, broken_links=0 despite raw .md hrefs present"
-    },
-    {
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
-      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
-      "priority": "P2",
-      "target_id": "lic-docs",
-      "status": "open",
-      "evidence": "artifacts[] empty; no ux-harness/baselines/docs/; axe/contrast/pixel_diff stubbed"
+      "agent_source": "docs_ui_tester",
+      "evidence": "Harness blind spot: no live URL verification; links_checked=0"
     }
   ],
   "implementation_queue": [
+    {
+      "priority": "P0",
+      "repo": "lic",
+      "title": "[ux-audit] Fix docs strict build — restore GitHub Pages publish",
+      "issue_url": "https://github.com/li-langverse/lic/issues/403",
+      "acceptance": [
+        "./scripts/build-docs.sh --strict exits 0 on main",
+        "Live Pages serves 12 nav tabs (Guide, Ecosystem, Game development, etc.)",
+        "/ecosystem/overview/ and /guide/hello-world/ return HTTP 200",
+        "search_index.json docs count ≥ 2500"
+      ],
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "agent_source": "docs_ux_tester"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "title": "docs(IA): move language reference pages out of Game development nav",
+      "issue_url": null,
+      "acceptance": [
+        "mkdocs.yml lines 119–129 moved under Language handbook",
+        "Game development tab contains only game-dev/ and physics/ content",
+        "Diátaxis reference quadrant not mixed with tutorial/how-to tabs"
+      ],
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "agent_source": "docs_ux_tester",
+      "files_hint": ["lic/mkdocs.yml"]
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "title": "docs(ecosystem): replace GitHub tree nav link with in-site roadmap mirror",
+      "issue_url": null,
+      "acceptance": [
+        "Ecosystem nav item resolves within MkDocs (no raw github.com/tree link)",
+        "Unified search covers ecosystem vision/standards pages"
+      ],
+      "labels": ["ux-audit", "surface:docs"],
+      "agent_source": "docs_ux_tester",
+      "files_hint": ["lic/mkdocs.yml", "lic/docs/ecosystem/"]
+    },
     {
       "priority": "P1",
       "repo": "lic",
@@ -40,20 +83,7 @@
       "issue_url": "https://github.com/li-langverse/lic/issues/404",
       "acceptance": [
         "Deep scan: 0 relative raw .md hrefs in lic/site/",
-        "mkdocs build --strict exits 0",
-        "Representative master-plan and provability-gaps links resolve to .html pages"
-      ],
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "agent_source": "docs_ui_tester"
-    },
-    {
-      "priority": "P1",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] static_site adapter: parse unquoted href + site_url prefix",
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
-      "acceptance": [
-        "run_audit.py --target lic-docs reports links_checked > 0",
-        "broken_links reflects relative raw .md href count until lic#404 fixed"
+        "mkdocs build --strict exits 0"
       ],
       "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
       "agent_source": "docs_ui_tester"
@@ -61,14 +91,15 @@
     {
       "priority": "P2",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture",
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37",
+      "title": "feat(ux-harness): live Pages HEAD-check + Playwright mobile TOC journey for lic-docs",
+      "issue_url": null,
       "acceptance": [
-        "ux-harness/baselines/docs/lic-docs/ contains desktop + 375px mobile PNGs",
-        "run_audit.py populates artifacts[] and runs axe on rendered pages"
+        "run_audit.py HEAD-checks li-langverse.github.io/li-language/ key paths",
+        "Playwright journey opens nav drawer + On this page on 375px viewport",
+        "ux-audit flags publish drift when live ≠ local"
       ],
-      "labels": ["ui-audit", "surface:docs"],
-      "agent_source": "docs_ui_tester"
+      "labels": ["ux-audit", "surface:docs"],
+      "agent_source": "docs_ux_tester"
     }
   ]
 }
