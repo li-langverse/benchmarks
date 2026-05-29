@@ -1,7 +1,8 @@
 {
-  "generated_at": "2026-05-29T19:30:00+00:00",
+  "generated_at": "2026-05-29T20:55:00+00:00",
   "platform": "Linux",
   "agent": "gui_ui_tester",
+  "source": "proactive",
   "summary": {
     "total": 6,
     "failing": 1,
@@ -21,8 +22,9 @@
       "artifacts": [],
       "axe_violations": [],
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
-      "baseline_status": "unknown",
-      "tokens_deviation": []
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "Playwright uses LI_PLAYWRIGHT_UI_PORT=3099; harness probes 3000 — see li-cursor-agents#38"
     },
     {
       "target_id": "lic-tetris",
@@ -30,14 +32,15 @@
       "surface": "gui",
       "surface_class": "gui_app",
       "status": "skip",
-      "skip_reason": "native capture exit 4: install SDL2 (libsdl2-dev)",
+      "skip_reason": "native capture script not configured (paths.capture_script or lic_root)",
       "mode": "native_gui",
       "native_pixels": false,
       "artifacts": [],
       "axe_violations": [],
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
-      "baseline_status": "unknown",
-      "tokens_deviation": []
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "Tetris example has no capture_script in ux-targets; blocked until native capture lands (#394)"
     },
     {
       "target_id": "world-studio-demo",
@@ -51,8 +54,10 @@
       "axe_violations": [],
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
       "baseline_status": "ok",
-      "tokens_deviation": [],
-      "note": "Fixture existence only; no Playwright snapshot or axe run"
+      "tokens_deviation": [
+        "fixture uses system-ui stack; production dashboard uses IBM Plex Sans"
+      ],
+      "note": "Fixture existence probe only — no Playwright snapshot, axe, or pixel diff"
     },
     {
       "target_id": "world-studio-native",
@@ -60,14 +65,15 @@
       "surface": "gui",
       "surface_class": "gui_app",
       "status": "skip",
-      "skip_reason": "SDL capture failed (missing sdl2/xvfb?)",
+      "skip_reason": "native capture script not configured (paths.capture_script or lic_root)",
       "mode": "native_gui",
       "native_pixels": false,
       "artifacts": [],
       "axe_violations": [],
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
-      "baseline_status": "unknown",
-      "tokens_deviation": []
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "note": "scripts/studio-ui-ux-capture-native.sh absent on lic main — lic#394"
     },
     {
       "target_id": "gui-gen-fixture",
@@ -81,7 +87,10 @@
       "axe_violations": [],
       "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
       "baseline_status": "ok",
-      "tokens_deviation": []
+      "tokens_deviation": [
+        "fixture uses system-ui; Li dark tokens (#0d1117, #58a6ff) match org palette"
+      ],
+      "note": "Probe-only; gui_gen journey not executed without Playwright"
     },
     {
       "target_id": "benchmarks-dashboard-gpu-matrix",
@@ -92,7 +101,8 @@
       "mode": "manual_static_review",
       "url": "/gpu-matrix/",
       "artifacts": [
-        "dashboard-next/out/gpu-matrix/index.html"
+        "dashboard-next/app/gpu-matrix/page.tsx",
+        "dashboard-next/components/gpu/gpu-chip-picker.tsx"
       ],
       "axe_violations": [
         {

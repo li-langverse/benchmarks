@@ -1,72 +1,91 @@
 {
-  "generated_at": "2026-05-29T20:22:04+00:00",
-  "agent": "tui_ux_tester",
-  "surface": "tui",
-  "audit_kind": "ux",
+  "generated_at": "2026-05-29T20:55:00+00:00",
+  "agent": "gui_ui_tester",
+  "surface": "gui",
+  "audit_kind": "ui",
+  "source": "proactive",
   "north_star_fit": {
-    "pillar": "ai-first",
-    "domain": "agent terminal diagnostics (Vision-LLM)",
-    "ph_ids": ["Vision-LLM"]
+    "pillar": "easy",
+    "domain": "ecosystem GUI surfaces (dashboard, studio mocks, gpu-matrix)",
+    "ph_ids": ["PH-UX"]
   },
   "issues": [
     {
       "priority": "P1",
-      "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
-      "target_id": "tui-app-fixture"
+      "repo": "benchmarks",
+      "url": "https://github.com/li-langverse/benchmarks/issues/147",
+      "title": "[ui-audit] GPU chip picker: complete ARIA tabs + keyboard roving",
+      "target_id": "benchmarks-dashboard-gpu-matrix"
     },
     {
       "priority": "P1",
-      "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/33",
-      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
-      "target_id": "tui-app-fixture"
+      "repo": "benchmarks",
+      "url": "https://github.com/li-langverse/benchmarks/issues/148",
+      "title": "[ui-audit] Register benchmarks dashboard in ux-targets + Playwright matrix",
+      "target_id": "benchmarks-dashboard-gpu-matrix"
     },
     {
       "priority": "P2",
       "repo": "li-cursor-agents",
-      "url": "https://github.com/li-langverse/li-cursor-agents/issues/34",
-      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
-      "target_id": "tui-app-fixture"
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/38",
+      "title": "[ui-audit] Align agents-dashboard harness URL with Playwright port 3099",
+      "target_id": "agents-dashboard"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/394",
+      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main for ux-harness native GUI",
+      "target_id": "world-studio-native"
     }
   ],
   "implementation_queue": [
     {
       "priority": "P1",
       "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
-      "summary": "Make tui-demo.sh CI-safe (UX_HARNESS stdin / skip read); unblock ui-audit row"
+      "repo": "benchmarks",
+      "issue": "https://github.com/li-langverse/benchmarks/issues/147",
+      "summary": "Replace tablist pattern with radiogroup or add tabpanels + arrow-key roving; guard motion"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
-      "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/33",
-      "summary": "Execute key_nav_help journey in tui.py with scripted keys; emit journey-log.json"
+      "repo": "benchmarks",
+      "issue": "https://github.com/li-langverse/benchmarks/issues/148",
+      "summary": "Register gpu-matrix in ux-targets.json; seed Playwright baselines under dashboard-next"
     },
     {
       "priority": "P2",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
-      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/34",
-      "summary": "Add LI_TUI_ERROR and LI_TUI_EXPORT_A11Y paths; fail rubric when missing"
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/38",
+      "summary": "Probe LI_DASHBOARD_UI_PORT or 3099 in web_gui adapter when 3000 unreachable"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/394",
+      "summary": "Land studio-ui-ux-capture-native.sh on main; unblock world-studio-native + lic-tetris pixels"
     }
   ],
   "deferred": [
     {
-      "item": "lic diagnose interactive TUI target",
-      "reason": "JSON stdout only today; spec in Vision-LLM phase"
+      "item": "Playwright viewport matrix + pixel diff for agents-dashboard",
+      "reason": "Dashboard not running on host; blocked on #38 port alignment"
     },
     {
-      "item": "VHS terminal recordings + baselines",
-      "reason": "After fixture CI stability (#30)"
+      "item": "lic-tetris SDL frame capture",
+      "reason": "No capture_script in ux-targets; depends on #394 + tetris harness wiring"
     },
     {
-      "item": "Merge TUI targets into global ux-audit preflight",
-      "reason": "benchmarks preflight currently runs docs slice only"
+      "item": "axe + contrast on HTML fixtures",
+      "reason": "web_gui adapter is http_probe-only until Playwright path lands (#37)"
+    },
+    {
+      "item": "studio-ui-ux-capture-progress.sh iteration PNGs",
+      "reason": "Never commit PNG/MP4; use GitHub release studio-ui-ux-progress"
     }
   ],
-  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-tui-ux.md"
+  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-29-gui-ui.md"
 }
