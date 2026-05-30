@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-30T09:59:06Z",
+  "generated_at": "2026-05-30T10:01:46Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 80.0,
-  "grade": "B",
+  "overall_score": 75.0,
+  "grade": "C",
   "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
@@ -12,7 +12,7 @@
         "briefing_present": true,
         "preflight_failed": 1,
         "preflight_skipped": 8,
-        "recommended_agent_count": 12
+        "recommended_agent_count": 11
       },
       "finding_count": 2
     },
@@ -35,26 +35,26 @@
         "snapshot_present": true,
         "runner_count": 9,
         "runners_stopped": 6,
-        "plan_todos_pending": 37,
+        "plan_todos_pending": 36,
         "plan_todos_total": 110,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 90.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 1,
+        "terminal_runs": 3,
         "error_count": 0,
-        "incomplete_count": 0,
-        "running_count": 119,
+        "incomplete_count": 1,
+        "running_count": 117,
         "error_rate": 0.0,
-        "incomplete_rate": 0.0,
+        "incomplete_rate": 0.3333,
         "top_error_agents": []
       },
-      "finding_count": 1
+      "finding_count": 2
     },
     "gap_pressure": {
       "score": 60.0,
@@ -97,9 +97,15 @@
       "evidence": "agent-briefing.preflight_runs"
     },
     {
+      "id": "swarm-incomplete-rate",
+      "severity": "medium",
+      "message": "Incomplete rate 33%",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
+    },
+    {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "119 runs still marked running (possible stuck SDK)",
+      "message": "117 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -117,6 +123,10 @@
   ],
   "recommended_agents": [
     {
+      "agent": "swarm_observer",
+      "reason": "swarm_execution dimension below 75 \u2014 meta audit runs/errors"
+    },
+    {
       "agent": "gap_explorer",
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
@@ -130,7 +140,7 @@
     },
     {
       "agent": "workspace_sweeper",
-      "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
+      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
