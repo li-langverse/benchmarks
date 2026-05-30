@@ -1,163 +1,151 @@
 {
-  "generated_at": "2026-05-30T01:06:00.000Z",
-  "agent_id": "docs_ux_tester",
+  "generated_at": "2026-05-30T01:27:00.000Z",
+  "agent_id": "gui_ui_tester",
   "issues": [
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "problem": "Live GitHub Pages (5 tabs, 248 search docs) diverges from local build (12 tabs, 2801 docs). Primary onboarding URLs return 404.",
-      "evidence": [
-        "live: guide/hello-world/ -> 404",
-        "live: ecosystem/overview/ -> 404",
-        "search index: 248 live vs 2801 local",
-        "nav tabs: 5 live vs 12 local"
-      ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
-      "remediation_checklist": [
-        "[ ] Fix docs CI strict build so Pages deploys current lic/site",
-        "[ ] Verify guide/hello-world/ and ecosystem/overview/ return 200 on live",
-        "[ ] Confirm search index >= 2500 docs after deploy",
-        "[ ] Acceptance: ux-audit live probe green for first_reading_path journey"
-      ],
-      "suggested_implementer": "docs_maintainer",
-      "priority": "P0",
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/403"
-    },
-    {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
-      "problem": "11 language/*.md reference pages nested under Game development tab; Diátaxis reference quadrant split across tabs.",
-      "evidence": [
-        "mkdocs.yml Game development: 11 entries under language/*",
-        "Language handbook tab: 5 overview pages only"
-      ],
-      "sota_reference": "https://diataxis.fr/start-here/",
-      "remediation_checklist": [
-        "[ ] Move language/types-and-data.md through language/effects-and-io.md to Language handbook tab",
-        "[ ] Leave game-dev how-to content under Game development",
-        "[ ] Acceptance: Language handbook tab has >= 16 reference pages; Diátaxis map in contributing/docs updated"
-      ],
-      "suggested_implementer": "docs_maintainer",
-      "priority": "P1",
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/422"
-    },
-    {
-      "surface": "docs",
+      "surface": "gui",
       "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block",
-      "problem": "Prior Playwright pass reported axe violations: color-contrast (12), link-in-text-block (5).",
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] agents-dashboard: align globals.css with Li dark tokens + focus-visible",
+      "problem": "Static CSS review: token drift from org Li dark palette; no :focus-visible on interactive controls; btn-primary uses Tailwind blue.",
       "evidence": [
-        "docs/stylesheets/extra.css custom palette",
-        "prior docs_ui_tester Playwright artifacts"
+        "dashboard-ui/app/globals.css --bg #0f1419 vs #0d1117",
+        "no :focus-visible rules in globals.css",
+        "harness skip: :3000 unreachable"
       ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/",
+      "sota_reference": "benchmarks/dashboard-next/app/globals.css",
       "remediation_checklist": [
-        "[ ] Fix contrast ratios in extra.css for slate/default palettes",
-        "[ ] Distinguish inline links from body text",
-        "[ ] Acceptance: axe scan zero violations on home + hello-world"
+        "[ ] Replace :root tokens with Li dark set",
+        "[ ] Add :focus-visible on .btn, .nav a, drawer controls",
+        "[ ] Gate .btn transitions with prefers-reduced-motion",
+        "[ ] Acceptance: axe zero focus violations when Playwright audit runs"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/426"
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/40"
     },
     {
-      "surface": "docs",
+      "surface": "gui",
       "kind": "ui",
-      "target_id": "lic-docs",
+      "target_id": "world-studio-native",
       "repo": "lic",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs",
-      "problem": "69 unique href=\"*.md\" links in built HTML — broken when opened from static host or copied.",
+      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main for ux-harness native GUI",
+      "problem": "Native GUI targets skip because capture script missing on lic main.",
       "evidence": [
-        "prior HTML scan of lic/site"
+        "world-studio-native skip_reason: native capture script not configured",
+        "lic-tetris skip with same root cause"
       ],
-      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "sota_reference": "li-cursor-agents/ux-harness/adapters/native_capture.py",
       "remediation_checklist": [
-        "[ ] Audit markdown sources for unquoted .md links",
-        "[ ] Fix mkdocs link resolution in contributing guide",
-        "[ ] Acceptance: zero raw .md hrefs in built site"
+        "[ ] Add scripts/studio-ui-ux-capture-native.sh on lic main",
+        "[ ] Wire STUDIO_UI_UX_NATIVE_PNG_DIR output for harness",
+        "[ ] Acceptance: world-studio-native ui audit reports native_pixels true"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/404"
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/394"
+    },
+    {
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "world-studio-demo",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] ux-harness web_gui: Playwright snapshots + axe for HTML fixtures",
+      "problem": "Fixture targets pass file-existence probe only — no viewport matrix, pixel diff, or axe.",
+      "evidence": [
+        "world-studio-demo status pass with artifacts: []",
+        "gui-gen-fixture same probe-only path"
+      ],
+      "sota_reference": "https://github.com/dequelabs/axe-core",
+      "remediation_checklist": [
+        "[ ] Extend web_gui adapter with Playwright capture for fixtures",
+        "[ ] Seed baselines for 1920x1080 and 390x844 viewports",
+        "[ ] Acceptance: axe + pixel_diff populated in ui-audit.json"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/32"
+    },
+    {
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] Align agents-dashboard harness URL with Playwright port 3099",
+      "problem": "Harness probes :3000 but Playwright CI uses 3099 — extended audit skips without manual server.",
+      "evidence": [
+        "ui-audit skip_reason: GUI not reachable at http://127.0.0.1:3000"
+      ],
+      "sota_reference": "li-cursor-agents/config/ux-targets.json",
+      "remediation_checklist": [
+        "[ ] Align URL or env LI_PLAYWRIGHT_UI_PORT in harness",
+        "[ ] CI webServer before run_audit",
+        "[ ] Acceptance: agents-dashboard ui audit pass when CI matrix runs"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P2",
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/38"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 403,
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "remediation_summary": "Publish current lic/site to GitHub Pages; fix 404 on onboarding URLs",
-      "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
-      "acceptance": [
-        "guide/hello-world/ returns 200 on live",
-        "search index >= 2500 docs",
-        "12 nav tabs visible on live"
-      ],
-      "agent_source": "docs_ux_tester",
-      "journeys": ["first_reading_path"]
-    },
-    {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 422,
-      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
-      "remediation_summary": "Restructure mkdocs.yml nav per Diátaxis reference quadrant",
-      "files_hint": ["mkdocs.yml", "docs/contributing/documentation.md"],
-      "acceptance": [
-        "All language/*.md reference under Language handbook tab",
-        "Game development tab contains only how-to/vision content"
-      ],
-      "agent_source": "docs_ux_tester",
-      "journeys": ["first_reading_path"]
-    },
-    {
       "kind": "ui_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 426,
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block",
-      "remediation_summary": "Fix accessibility violations in docs theme CSS",
-      "files_hint": ["docs/stylesheets/extra.css"],
-      "acceptance": ["axe zero violations on lic-docs home and hello-world"],
-      "agent_source": "docs_ux_tester"
-    },
-    {
-      "kind": "ui_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 404,
-      "title": "[ui-audit] Built docs site contains raw .md hrefs",
-      "remediation_summary": "Eliminate raw .md hrefs from built HTML",
-      "files_hint": ["docs/**/*.md", "mkdocs.yml"],
-      "acceptance": ["zero href=\"*.md\" in lic/site HTML"],
-      "agent_source": "docs_ux_tester"
-    },
-    {
-      "kind": "ux_remediation",
       "repo": "li-cursor-agents",
-      "surface": "docs",
-      "issue": 36,
-      "title": "static_site adapter: unquoted href + live drift probe",
-      "remediation_summary": "Extend ux-harness to detect live/local drift and raw .md hrefs",
-      "files_hint": ["ux-harness/adapters/static_site.py"],
-      "acceptance": ["ux-audit fails when live Pages 404 on configured journey URLs"],
-      "agent_source": "docs_ux_tester",
-      "journeys": ["first_reading_path", "mobile_nav"]
+      "surface": "gui",
+      "issue": 40,
+      "title": "[ui-audit] agents-dashboard: align globals.css with Li dark tokens + focus-visible",
+      "remediation_summary": "Align dashboard-ui CSS with org Li dark tokens and keyboard focus rings",
+      "files_hint": ["dashboard-ui/app/globals.css"],
+      "acceptance": [
+        "Token values match benchmarks/dashboard-next/app/globals.css",
+        ":focus-visible on interactive controls",
+        "prefers-reduced-motion guards on transitions"
+      ],
+      "agent_source": "gui_ui_tester"
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "lic",
+      "surface": "gui",
+      "issue": 394,
+      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main",
+      "remediation_summary": "Enable native SDL/Xvfb capture for Tetris and Studio viewport",
+      "files_hint": ["scripts/studio-ui-ux-capture-native.sh"],
+      "acceptance": [
+        "world-studio-native reports native_pixels true",
+        "lic-tetris produces non-uniform PNG artifacts"
+      ],
+      "agent_source": "gui_ui_tester"
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "issue": 32,
+      "title": "[ui-audit] Playwright + axe for HTML fixtures",
+      "remediation_summary": "Replace fixture file-existence probe with real visual audit",
+      "files_hint": ["ux-harness/adapters/web_gui.py"],
+      "acceptance": [
+        "world-studio-demo ui-audit has non-empty artifacts",
+        "axe_violations array populated or zero with proof"
+      ],
+      "agent_source": "gui_ui_tester"
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "issue": 38,
+      "title": "[ui-audit] agents-dashboard port alignment",
+      "remediation_summary": "Fix harness URL vs Playwright CI port mismatch",
+      "files_hint": ["config/ux-targets.json", "ux-harness/adapters/web_gui.py"],
+      "acceptance": ["agents-dashboard pass when dashboard dev server running"],
+      "agent_source": "gui_ui_tester"
     }
   ]
 }
