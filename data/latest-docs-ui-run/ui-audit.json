@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-30T14:16:12.773947+00:00",
-  "proactive_capture_at": "2026-05-30T14:16:13.040Z",
+  "generated_at": "2026-05-30T15:18:56.552981+00:00",
+  "proactive_capture_at": "2026-05-30T15:19:41.016Z",
   "platform": "Linux",
   "summary": {
     "total": 1,
@@ -22,7 +22,9 @@
         "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png",
         "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png",
         "data/latest-docs-ui-run/artifacts/lic-docs-live/home-desktop.png",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/home-mobile.png"
+        "data/latest-docs-ui-run/artifacts/lic-docs-live/home-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-mobile.png"
       ],
       "axe_violations": [
         {
@@ -46,10 +48,12 @@
       "contrast_failures": [],
       "contrast_samples": [
         {
+          "page": "home",
+          "viewport": "desktop",
           "selector": ".md-tabs__link",
           "ratio": 21,
           "wcag_aa": true,
-          "note": "Tab chrome passes; axe failures are elsewhere on home desktop"
+          "note": "Tab chrome passes; axe failures are body/content on home desktop"
         }
       ],
       "baseline_status": "missing",
@@ -58,19 +62,18 @@
       "status": "fail",
       "broken_links": 0,
       "broken_links_deep_scan": {
-        "relative_checked": 32507,
-        "broken_relative": 158,
-        "broken_md_unique": 48,
-        "broken_other_unique": 70,
-        "note": "Harness 40-file sample reports 0; full-tree scan finds repo-path hrefs outside site/"
+        "relative_checked": 32591,
+        "broken_relative": 30701,
+        "broken_md_unique": 45,
+        "broken_other_unique": 625,
+        "note": "Harness 40-file sample reports 0; full-tree scan includes repo-path hrefs outside site/"
       },
       "html_files": 377,
       "links_checked": 0,
-      "raw_md_hrefs": 42,
+      "raw_md_hrefs": 74,
       "local_tabs": 12,
       "live_pages": {
         "base": "https://li-langverse.github.io/li-language/",
-        "last_modified": "Sat, 30 May 2026 12:17:17 GMT",
         "tabs_live": 5,
         "tabs_local": 12,
         "paths": {
@@ -78,6 +81,10 @@
           "ecosystem/overview/": 404,
           "language/overview/": 404,
           "verification/provability-gaps/": 200
+        },
+        "search_index_docs": {
+          "live": 248,
+          "local": 2801
         }
       },
       "harness_static_only_status": "pass"
