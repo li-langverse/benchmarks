@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Plan cross-links:** open master-plan tracker table + **`ui_ux_quality`** handoff for `gui_ux_tester` / `docs_ui_tester` — [2026-05-30-docs-maintainer-cross-links.md](docs/release-notes/2026-05-30-docs-maintainer-cross-links.md).
+
+### Changed
+
+- **Ecosystem audit:** `ecosystem-audit.py` HEAD-checks org handbook Pages URLs (`HANDBOOK_PAGES`) instead of a static missing-docs list; reports `repos_with_live_pages`.
+
 ### Fixed
 
 - **Tier-1 matmul workloads:** sync Li `matmul_naive` / `matmul_blocked` drivers with lic IKJ / blocked IKJ (pending CSV re-ingest) — [2026-05-29-tier1-matmul-dashboard-sprint.md](docs/release-notes/2026-05-29-tier1-matmul-dashboard-sprint.md).
@@ -24,7 +32,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - **Dashboard completeness sprint (Phase A):** catalog `[reporting].platforms`, ingest macOS/Windows skip charts, audit gap script — [2026-05-29-dashboard-completeness-sprint.md](docs/release-notes/2026-05-29-dashboard-completeness-sprint.md).
-- **Dashboard completeness sprint (Phase B/C):** tier 0/1 per-OS summary rows + refresh expansion for completion gate — same release note.
 - **`refresh-dashboard-completeness.py`:** offline summary refresh for multi-OS skip charts; committed `summary.json` P0=0; CI runs `audit-dashboard-gaps.py` on PRs.
 
 

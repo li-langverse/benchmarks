@@ -38,13 +38,14 @@ def list_org_repos() -> list[str]:
 
 
 ORG_REPOS: list[str] = []  # filled in main()
-
-# Expected GitHub Pages handbook URLs (HEAD 2xx). lic canonical site is li-language mkdocs.
-REPO_LIVE_DOC_URLS: dict[str, str] = {
+LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
-    "lic": "https://li-langverse.github.io/li-language/",
-    "roadmap": "https://li-langverse.github.io/roadmap/development-overview/",
+}
+
+# Org package mirrors + compiler hub — HEAD-checked each audit run
+HANDBOOK_PAGES: dict[str, str] = {
+    "lic": "https://li-langverse.github.io/lic/",
     "lip": "https://li-langverse.github.io/lip/",
     "lit": "https://li-langverse.github.io/lit/",
     "lis": "https://li-langverse.github.io/lis/",
@@ -53,6 +54,7 @@ REPO_LIVE_DOC_URLS: dict[str, str] = {
     "li-std-core": "https://li-langverse.github.io/li-std-core/",
     "li-std-math": "https://li-langverse.github.io/li-std-math/",
     "li-demo": "https://li-langverse.github.io/li-demo/",
+    "roadmap": "https://li-langverse.github.io/roadmap/development-overview/",
 }
 VISION = {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -224,15 +226,10 @@ def main() -> int:
     ready = [p for p in prs if p["ready"]]
 
     missing_ci = [r for r in ORG_REPOS if not has_ci_on_main(r)]
-    missing_docs = sorted(
-        r for r in ORG_REPOS if (url := REPO_LIVE_DOC_URLS.get(r)) and not head_ok(url)
-    )
-    live_docs_missing = sorted(
-        r for r, url in REPO_LIVE_DOC_URLS.items() if not head_ok(url)
-    )
-    live_docs_up = sorted(
-        r for r, url in REPO_LIVE_DOC_URLS.items() if head_ok(url)
-    )
+    all_live_urls = {**LIVE_DOCS, **HANDBOOK_PAGES}
+    missing_docs = [r for r, url in HANDBOOK_PAGES.items() if not head_ok(url)]
+    live_docs_missing = [r for r, url in all_live_urls.items() if not head_ok(url)]
+    live_docs_ok = [r for r, url in all_live_urls.items() if head_ok(url)]
 
     summary = load_benchmark_summary()
     bench = benchmark_posture(summary) if summary else {"error": "no summary.json — run ingest"}
@@ -297,7 +294,7 @@ def main() -> int:
             "ready_prs": len(ready),
             "repos_missing_ci_main": len(missing_ci),
             "repos_without_live_pages": len(missing_docs),
-            "repos_with_live_pages": len(live_docs_up),
+            "repos_with_live_pages": len(live_docs_ok),
         },
         "failed_prs": failed,
         "ready_prs": ready,
