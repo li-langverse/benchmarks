@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-05-30T09:36:15.138286+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "skip_reason": null,
+      "native_pixels": true,
+      "journeys": [
+        {
+          "id": "studio_viewport_pixels",
+          "steps": [
+            "xvfb",
+            "sdl_draw",
+            "png_capture"
+          ],
+          "completed": true,
+          "step_count": 3
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "godot-editor",
+        "cursor-agent",
+        "linear-app"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.75,
+        "error_handling": 0.7,
+        "cognitive_load": 0.72
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-000.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-001.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-002.png"
+      ],
+      "mode": "native_gui"
+    }
+  ]
+}

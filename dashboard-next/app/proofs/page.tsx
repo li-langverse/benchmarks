@@ -1,40 +1,23 @@
 import Link from "next/link";
 
-const PROVABILITY_GAPS_URL =
-  "https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md";
+const PROOF_LIBRARY_URL = "https://li-langverse.github.io/proof-library/";
 
 export default function ProofsPage() {
   return (
     <main>
       <section className="placeholder">
-        <h2>Proofs vs benchmarks</h2>
+        <h2>Proof library moved</h2>
         <p>
-          Dashboard status colors report <strong>wall-clock ratios</strong> against
-          catalog thresholds (usually C++). They are not Lean proof certificates or
-          G-* closure evidence.
-        </p>
-        <ul style={{ marginTop: "1rem", paddingLeft: "1.25rem", color: "var(--muted)" }}>
-          <li>
-            <strong style={{ color: "var(--text)" }}>Green</strong> — ratio within
-            threshold; does not mean the kernel is formally verified.
-          </li>
-          <li>
-            <strong style={{ color: "var(--text)" }}>Red pure_li</strong> — PH-7e
-            codegen performance debt, not a missing proof row.
-          </li>
-          <li>
-            <strong style={{ color: "var(--text)" }}>shared_c_kernel</strong> — shared
-            C numerics; not pure-Li competitiveness proof.
-          </li>
-        </ul>
-        <p style={{ marginTop: "1.25rem" }}>
-          Proof wiring and G-* gaps:{" "}
-          <a href={PROVABILITY_GAPS_URL} target="_blank" rel="noopener noreferrer">
-            lic/docs/verification/provability-gaps.md
-          </a>
+          The proof corpus dashboard (catalog vs Lean, divergence, human votes) lives in
+          the dedicated{" "}
+          <a href={PROOF_LIBRARY_URL}>proof-library</a> repository — separate from
+          benchmark wall-clock performance.
         </p>
         <p style={{ marginTop: "1.25rem" }}>
-          <Link href="/pillar/proofs/">Pillar: proofs</Link>
+          <a href={PROOF_LIBRARY_URL}>Open proof library →</a>
+        </p>
+        <p style={{ marginTop: "1.25rem" }}>
+          <Link href="/pillar/proofs/">Pillar: proofs (perf rows)</Link>
           {" · "}
           <Link href="/">← Overview</Link>
         </p>

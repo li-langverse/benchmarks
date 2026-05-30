@@ -32,6 +32,7 @@ export function Header({
               {p.label}
             </Link>
           ))}
+          <a href="https://li-langverse.github.io/proof-library/">Proof library</a>
           <Link href="/proofs/">Proofs ≠ bench</Link>
         </nav>
       </div>

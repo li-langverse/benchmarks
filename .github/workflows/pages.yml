@@ -8,7 +8,6 @@ on:
       - "dashboard-next/**"
       - "scripts/dashboard/**"
       - "data/latest/**"
-      - "data/gpu-contributions/**"
       - "static-dashboard/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
@@ -42,7 +41,7 @@ jobs:
           npm ci
           npm run build
           mkdir -p out/latest
-          for f in summary.json release-index.json benchmark-matrix.json proof-posture.json lig-gpu-matrix.json; do
+          for f in summary.json release-index.json benchmark-matrix.json; do
             if [ -f "../data/latest/$f" ]; then
               cp "../data/latest/$f" out/latest/
             fi

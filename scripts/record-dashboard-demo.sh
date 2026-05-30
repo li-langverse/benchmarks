@@ -29,7 +29,7 @@ npm run build
 
 echo "==> copy ingest artifacts into static export"
 mkdir -p "$OUT/latest"
-for f in summary.json release-index.json benchmark-matrix.json proof-posture.json; do
+for f in summary.json release-index.json benchmark-matrix.json; do
   src="$BENCH_ROOT/data/latest/$f"
   if [[ -f "$src" ]]; then
     cp "$src" "$OUT/latest/"
