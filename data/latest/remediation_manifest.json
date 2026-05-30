@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T09:37:00Z",
+  "generated_at": "2026-05-30T12:45:00Z",
   "agent_id": "gui_ui_tester",
-  "briefing_generated_at": "2026-05-30T08:04Z",
+  "briefing_generated_at": "2026-05-30T12:07Z",
   "digest_path": "docs/ecosystem/ux-digests/2026-05-30-gui-ui.md",
   "issues": [
     {
@@ -13,12 +13,12 @@
       "problem": "npm run test:playwright:mock fails; Next.js build error on live-stream-feed.tsx:77",
       "evidence": [
         "dashboard-ui/components/activity/live-stream-feed.tsx — m.args?.path type error",
-        "Proactive run 2026-05-30: test:playwright:mock exit 1"
+        "Proactive run 2026-05-30: test:e2e:mock exit 1"
       ],
       "sota_reference": "https://playwright.dev/docs/test-webserver",
       "remediation_checklist": [
         "[ ] File: dashboard-ui/components/activity/live-stream-feed.tsx — type guard for tool step message args",
-        "[ ] Test: npm run test:playwright:mock passes",
+        "[ ] Test: npm run test:e2e:mock passes",
         "[ ] Acceptance: Playwright snapshots generated under dashboard-ui/"
       ],
       "suggested_implementer": "code_implementer",
@@ -175,7 +175,7 @@
       "title": "Fix live-stream-feed TS for Playwright",
       "remediation_summary": "Unblock test:playwright:mock and dashboard visual regression",
       "files_hint": ["dashboard-ui/components/activity/live-stream-feed.tsx"],
-      "acceptance": ["test:playwright:mock green", "snapshots committed in CI artifact not git"],
+      "acceptance": ["test:e2e:mock green", "snapshots committed in CI artifact not git"],
       "agent_source": "gui_ui_tester",
       "journeys": ["agents_list_empty", "live_stream"],
       "sources": ["ui_audit"]
