@@ -7,11 +7,11 @@
       "profile": "workflows",
       "ok": false,
       "exit_code": 1,
-      "started_at": "2026-05-30T00:18:43Z",
-      "finished_at": "2026-05-30T00:22:22Z",
-      "summary": "  \u2715 3 failed  \u00b7 252 passed wrote sample /tmp/li-local-ci-pr.gQQ4lT/benchmarks/results/latest.csv (15 rows) \u2014 replace with real timings when codegen lands ==> FAIL profile=lic-host (215s) exit=1 "
+      "started_at": "2026-05-30T00:39:06Z",
+      "finished_at": "2026-05-30T00:41:13Z",
+      "summary": "\u2500\u2500 li-tests \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2715 3 failed  \u00b7 252 passed ==> FAIL profile=lic-host (124s) exit=1 "
     }
   ],
-  "generated_at": "2026-05-30T00:22:22Z",
-  "sweep_at": "2026-05-30T00:22Z"
+  "generated_at": "2026-05-30T00:41:13Z",
+  "sweep_at": "2026-05-30T00:41Z"
 }
