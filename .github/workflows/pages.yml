@@ -1,4 +1,4 @@
-name: Deploy dashboard
+﻿name: Deploy dashboard
 
 on:
   push:
@@ -35,6 +35,8 @@ jobs:
 
       - name: Install and build Next dashboard
         working-directory: dashboard-next
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
         run: |
           npm ci
           npm run build
@@ -44,6 +46,7 @@ jobs:
               cp "../data/latest/$f" out/latest/
             fi
           done
+          echo "benchmarks.lilangverse.xyz" > out/CNAME
 
       - name: Verify Pages artifact
         run: test -s dashboard-next/out/index.html

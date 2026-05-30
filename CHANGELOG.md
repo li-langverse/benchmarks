@@ -23,7 +23,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **Benchmark nightly GHA:** daily `benchmark-nightly.yml` (Linux full suite, macOS/Windows core) commits `data/latest/summary.json` — [2026-05-27-benchmark-nightly-gha.md](docs/release-notes/2026-05-27-benchmark-nightly-gha.md).
+- **Dashboard completeness sprint (Phase A):** catalog `[reporting].platforms`, ingest macOS/Windows skip charts, audit gap script — [2026-05-29-dashboard-completeness-sprint.md](docs/release-notes/2026-05-29-dashboard-completeness-sprint.md).
+- **`refresh-dashboard-completeness.py`:** offline summary refresh for multi-OS skip charts; committed `summary.json` P0=0; CI runs `audit-dashboard-gaps.py` on PRs.
+
 
 ### Changed
 
