@@ -1,0 +1,42 @@
+{
+  "generated_at": "2026-05-30T15:11Z",
+  "run_id": "ci_maintainer-1780153762514",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform)",
+  "audit": {
+    "repos_ok": 34,
+    "repos_exempt": 1,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 0,
+    "exempt": ["research-findings"],
+    "audit_method": "ensure-org-repo-ci.py (GitHub API, canonical 14:53Z preflight)"
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 0,
+    "missing_ci_on_main": []
+  },
+  "actions_taken": [
+    "Preflight org-repo-ci-audit.json (14:53Z): 34 OK, 0 missing",
+    "Re-ran ensure-org-repo-ci.py — exit 1, 33 audit_incomplete (GitHub API rate limit)",
+    "Restored org-repo-ci-audit.json to last good preflight snapshot",
+    "ecosystem-audit.json unchanged: missing_ci_on_main []",
+    "No isolated clone ci.yml edits — zero missing repos"
+  ],
+  "github_api": {
+    "rest_core_remaining": 0,
+    "rate_limit_reset_unix": 1780155528,
+    "note": "Re-run at 15:10Z exhausted REST core; use preflight 14:53Z audit until reset (~28 min)"
+  },
+  "errors": [
+    {
+      "phase": "ensure-org-repo-ci.py",
+      "message": "GitHub API rate limit exceeded (HTTP 403); 33 repos audit_incomplete"
+    }
+  ],
+  "branch_protection_note": "Package mirrors emit job id check; rulesets not applied org-wide — human apply-org-branch-protection.sh",
+  "continue_on_error_findings": [
+    "lic ci.yml build-and-test-windows (OS matrix) — pre-existing, out of scope for add-CI pass"
+  ]
+}
