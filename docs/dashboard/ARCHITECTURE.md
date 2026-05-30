@@ -16,7 +16,7 @@ flowchart LR
   CAT["catalog.toml"]
   ING["scripts/ingest/"]
   SUM["data/latest/summary.json"]
-  SIDE["Sidecars: benchmark-matrix.json, proof-posture.json, release-index.json"]
+  SIDE["Sidecars: benchmark-matrix.json, release-index.json"]
   NEXT["dashboard-next build"]
   OUT["dashboard-next/out/"]
   PAGES["GitHub Pages"]
@@ -48,7 +48,6 @@ flowchart LR
 | `scripts/ingest/build_summary.py` | Merge **lic**/**lis** CSV + stability/security → `summary.json` |
 | `scripts/ingest/build_summary_fixture.py` | CI/compare gate: full catalog from fixtures → `data/latest/summary.json` |
 | `scripts/ingest/summary-compare-gate.sh` | Li vs Python parity on fixture catalog |
-| `scripts/build-proof-posture.py` | G-* proof posture sidecar |
 | `scripts/benchmark-matrix-report.py` | Markdown/JSON matrix from `summary.json` |
 
 **Policy (ingest):** Li is never `sota_lang`; validity gate before perf colors; see [benchmark honesty](../honesty/benchmark-dashboard.md).
