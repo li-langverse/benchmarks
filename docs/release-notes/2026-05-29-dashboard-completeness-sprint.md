@@ -47,6 +47,36 @@ python3 -m unittest tests.test_audit_dashboard_gaps -v
 python3 scripts/check-dashboard-invariants.py
 ```
 
+## Phase B — Harness hosting (in progress)
+
+- Tier-0/1 **summary rows** now mirror per-platform charts (`linux` measured + `macos`/`windows` skip until nightly CSV merge).
+- `refresh-dashboard-completeness.py` expands tier 0/1 rows from charts; completion gate requires macOS + Windows row presence.
+- **Deferred:** 6 pre-existing red tier-1 rows (`matmul_*`, `ml_*`, `num_gmres`) — lic CSV re-bench + companion PR on `lic` (see [2026-05-29-tier1-matmul-dashboard-sprint.md](2026-05-29-tier1-matmul-dashboard-sprint.md)).
+
+## Phase C — Three-OS CI matrix (partial)
+
+- `benchmark-nightly.yml` already runs Linux + macOS + Windows and merges CSV via `merge_bench_csv_artifacts.py`.
+- PR CI uses committed skip rows until nightly lands measured macOS/Windows tier-1 slice on `main`.
+
+## Verify (Phase B/C delta)
+
+```bash
+cd benchmarks
+python3 scripts/refresh-dashboard-completeness.py
+python3 scripts/audit-dashboard-gaps.py   # exit 0
+python3 -m unittest tests.test_build_summary_platforms -v
+python3 - <<'PY'
+import json, sys
+from pathlib import Path
+s = json.loads(Path("data/latest/summary.json").read_text())
+rows = s.get("rows") or []
+os_seen = {r.get("os") for r in rows if r.get("tier") in (0, 1, "0", "1")}
+for need in ("macos", "windows"):
+    assert need in os_seen, f"missing tier-0/1 row for os={need}"
+print("completion gate: tier-0/1 macos+windows rows OK")
+PY
+```
+
 ## Phase B deferral (regression-check)
 
 `./scripts/regression-check.sh` still reports **6 pre-existing red rows** (`matmul_blocked`, `matmul_naive`, `ml_conv2d_forward`, `ml_mlp_forward`, `ml_mlp_train_step`, `num_gmres`). These are **not new** dashboard-completeness regressions; they are tracked in [2026-05-29-tier1-matmul-dashboard-sprint.md](2026-05-29-tier1-matmul-dashboard-sprint.md) and require **lic** tier-1 CSV re-ingest after matmul driver alignment (Phase B follow-up PR on `lic`, not this PR).
