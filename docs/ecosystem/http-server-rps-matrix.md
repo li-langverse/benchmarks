@@ -1,6 +1,6 @@
 # HTTP webserver RPS matrix (tier 5)
 
-Generated: 2026-05-30T09:25:07.040661+00:00
+Generated: 2026-05-30T09:57:30.712478+00:00
 
 **Mandatory after every li-httpd change:**
 `LIC_ROOT=… ./scripts/run-tier5-http-bench.sh` → `./scripts/benchmark-matrix-report.py`
