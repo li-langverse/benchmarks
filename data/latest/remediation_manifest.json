@@ -1,222 +1,118 @@
 {
-  "generated_at": "2026-05-30T09:37:00Z",
-  "agent_id": "gui_ui_tester",
-  "briefing_generated_at": "2026-05-30T08:04Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-gui-ui.md",
+  "generated_at": "2026-05-30T13:24:00Z",
+  "agent_id": "docs_ui_tester",
+  "briefing_generated_at": "2026-05-30T12:07Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ui.md",
   "issues": [
     {
-      "surface": "gui",
+      "surface": "docs",
       "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] dashboard Playwright e2e blocked by live-stream-feed TypeScript build",
-      "problem": "npm run test:playwright:mock fails; Next.js build error on live-stream-feed.tsx:77",
-      "evidence": [
-        "dashboard-ui/components/activity/live-stream-feed.tsx — m.args?.path type error",
-        "Proactive run 2026-05-30: test:playwright:mock exit 1"
-      ],
-      "sota_reference": "https://playwright.dev/docs/test-webserver",
-      "remediation_checklist": [
-        "[ ] File: dashboard-ui/components/activity/live-stream-feed.tsx — type guard for tool step message args",
-        "[ ] Test: npm run test:playwright:mock passes",
-        "[ ] Acceptance: Playwright snapshots generated under dashboard-ui/"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P0",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/31"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] ux-harness web_gui: Playwright snapshots + axe for HTML fixtures",
-      "problem": "web_gui adapter http_probe only; pass status without axe, pixel diff, or viewport matrix",
-      "evidence": [
-        "ux-harness/adapters/web_gui.py — mode http_probe",
-        "gui-gen-fixture and world-studio-demo pass with empty axe_violations"
-      ],
-      "sota_reference": "https://www.deque.com/axe/",
-      "remediation_checklist": [
-        "[ ] File: ux-harness/adapters/web_gui.py — Playwright file:// load + axe-core",
-        "[ ] File: ux-harness/ — viewport matrix desktop/tablet/mobile baselines",
-        "[ ] Test: run_audit.py --target world-studio-demo records axe + pixel_diff",
-        "[ ] Acceptance: failing contrast/axe surfaces status=fail"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/32"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] Align agents-dashboard harness URL with Playwright port 3099",
-      "problem": "ux-targets.json probes :3000; Playwright webServer uses LI_PLAYWRIGHT_UI_PORT default 3099",
-      "evidence": [
-        "config/ux-targets.json url http://127.0.0.1:3000",
-        "dashboard-ui/playwright.config.ts port 3099",
-        "Audit skip_reason: GUI not reachable at :3000"
-      ],
-      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/tree/main/dashboard-ui",
-      "remediation_checklist": [
-        "[ ] File: config/ux-targets.json — url or env-based port alignment",
-        "[ ] File: ux-harness/adapters/web_gui.py — probe Playwright port when set",
-        "[ ] Test: agents-dashboard status=pass when test:e2e webServer running",
-        "[ ] Acceptance: empty-state journey executable in CI"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/38"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] agents-dashboard: align globals.css with Li dark tokens + focus-visible",
-      "problem": "Dashboard CSS deviates from Li GitHub dark palette; no focus-visible rings",
-      "evidence": [
-        "dashboard-ui/app/globals.css --bg #0f1419 vs fixture #0d1117",
-        "--accent #6eb5ff vs Li #58a6ff",
-        "No :focus-visible rules in globals.css"
-      ],
-      "sota_reference": "https://primer.style/design/foundations/color",
-      "remediation_checklist": [
-        "[ ] File: dashboard-ui/app/globals.css — map to Li token set",
-        "[ ] Add :focus-visible on nav links, buttons, inputs",
-        "[ ] Test: contrast check on --text/--bg pair",
-        "[ ] Acceptance: tokens_deviation empty in ui-audit for live dashboard"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/40"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "lic-tetris",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] lic-tetris native_gui runs studio SDL stub instead of examples/tetris",
-      "problem": "native_capture invokes studio-ui-ux-capture-native.sh for all native targets; lic-tetris pass is misleading",
-      "evidence": [
-        "data/latest-gui-ui-run/ui-audit.json lic-tetris pass with studio stub note",
-        "Same ppm_dir as world-studio-native",
-        "examples/tetris exists but unused"
-      ],
-      "sota_reference": "https://docs.godotengine.org/",
-      "remediation_checklist": [
-        "[ ] File: ux-harness/adapters/native_capture.py — tetris-specific capture branch",
-        "[ ] File: config/ux-targets.json — tetris build/capture paths",
-        "[ ] Test: lic-tetris PNG shows board not studio grid",
-        "[ ] Acceptance: UX-14 truth — capture_meta.example=tetris"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/46"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "gui-gen-fixture",
-      "repo": "li-cursor-agents",
-      "title": "[ux-audit] gui-gen fixture stub — expand error/empty/edit states",
-      "problem": "gui-gen-demo.html is minimal mock; no error/empty/edit journey evidence",
-      "evidence": [
-        "ux-harness/fixtures/gui-gen-demo.html — single panel only",
-        "missing_states not tracked in http_probe pass"
-      ],
-      "sota_reference": "https://ui.shadcn.com/",
-      "remediation_checklist": [
-        "[ ] File: ux-harness/fixtures/gui-gen-demo.html — error/empty/edit panels",
-        "[ ] Journey gen_preview_loop steps exercised",
-        "[ ] Acceptance: ux-audit missing_states empty"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P2",
-      "labels": ["ux-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/44"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "world-studio-native",
+      "target_id": "lic-docs",
       "repo": "lic",
-      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main for ux-harness native GUI",
-      "problem": "Default LIC_ROOT=../lic has no capture script; world-studio-native skips without lic-studio-ui",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
+      "problem": "Published li-language Pages has 5-tab legacy nav; local mkdocs.yml builds 12 tabs; new IA paths 404 on live",
       "evidence": [
-        "lic/scripts/studio-ui-ux-capture-native.sh missing on main",
-        "Pass only when LIC_ROOT=lic-studio-ui"
+        "Live Last-Modified 2026-05-30T12:17Z — home 200 but guide/hello-world 404",
+        "Local 12 tabs vs live 5 tabs (live-summary.json)",
+        "data/latest-docs-ui-run/ui-audit.json live_pages.paths"
       ],
-      "sota_reference": "https://github.com/li-langverse/lic/issues/394",
+      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
       "remediation_checklist": [
-        "[ ] Port scripts/studio-ui-ux-capture-native.sh to main lic",
-        "[ ] CI: xvfb-run smoke on Linux",
-        "[ ] Acceptance: run_audit world-studio-native pass without LIC_ROOT override"
+        "[ ] File: lic/.github/workflows/docs.yml — green mkdocs build --strict",
+        "[ ] Fix remaining link warnings blocking deploy",
+        "[ ] Test: curl -sI https://li-langverse.github.io/li-language/guide/hello-world/ → 200",
+        "[ ] Acceptance: live tab count matches local mkdocs nav"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P0",
+      "labels": ["ux-audit", "surface:docs", "documentation"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/403"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
+      "problem": "Playwright axe on home desktop: 12 color-contrast + 5 link-in-text-block serious violations",
+      "evidence": [
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json axe array",
+        "Proactive run 2026-05-30T13:23Z — tab chrome passes 21:1 but body content fails"
+      ],
+      "sota_reference": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html",
+      "remediation_checklist": [
+        "[ ] File: lic/docs/stylesheets/extra.css — raise muted text contrast; underline inline links in prose",
+        "[ ] File: lic/mkdocs.yml — verify Material palette tokens",
+        "[ ] Test: docs-ui-capture.mjs → axe violations empty on home",
+        "[ ] Acceptance: ui-audit lic-docs status=pass with axe wired"
       ],
       "suggested_implementer": "code_implementer",
-      "priority": "P2",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/394"
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/426"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
+      "problem": "docs.py static_site pass hides axe/pixel failures; baselines/docs/ missing",
+      "evidence": [
+        "ux-harness/adapters/docs.py — empty artifacts, baseline_status ok without files",
+        "Harness pass vs proactive fail in data/latest-docs-ui-run/ui-audit.json"
+      ],
+      "sota_reference": "https://playwright.dev/docs/test-snapshots",
+      "remediation_checklist": [
+        "[ ] File: ux-harness/baselines/docs/ — seed from capture-summary viewports",
+        "[ ] File: ux-harness/adapters/docs.py — invoke Playwright + axe or docs-ui-capture.mjs",
+        "[ ] Test: run_audit.py --target lic-docs --mode ui records fail on axe",
+        "[ ] Acceptance: pixel_diff.max_ratio measured; baseline_status=ok with PNG files present"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
     }
   ],
   "implementation_queue": [
     {
       "kind": "ui_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 31,
-      "title": "Fix live-stream-feed TS for Playwright",
-      "remediation_summary": "Unblock test:playwright:mock and dashboard visual regression",
-      "files_hint": ["dashboard-ui/components/activity/live-stream-feed.tsx"],
-      "acceptance": ["test:playwright:mock green", "snapshots committed in CI artifact not git"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["agents_list_empty", "live_stream"],
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 403,
+      "title": "Unblock strict MkDocs CI and deploy 12-tab handbook",
+      "remediation_summary": "Live Pages must match local IA; fix 404 on guide/ecosystem/language paths",
+      "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
+      "acceptance": ["live /guide/hello-world/ returns 200", "12 nav tabs on Pages"],
+      "agent_source": "docs_ui_tester",
+      "journeys": ["first_reading_path"],
+      "sources": ["ui_audit"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 426,
+      "title": "Fix Material theme axe contrast + inline link styling",
+      "remediation_summary": "Clear 17 serious axe nodes on home desktop",
+      "files_hint": ["docs/stylesheets/extra.css", "mkdocs.yml"],
+      "acceptance": ["axe color-contrast and link-in-text-block zero on home", "docs-ui-capture.mjs axe array empty"],
+      "agent_source": "docs_ui_tester",
+      "journeys": ["mobile_nav"],
       "sources": ["ui_audit"]
     },
     {
       "kind": "ui_remediation",
       "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 32,
-      "title": "Playwright + axe in web_gui adapter",
-      "remediation_summary": "Replace http_probe with real viewport matrix and accessibility scan",
-      "files_hint": ["ux-harness/adapters/web_gui.py"],
-      "acceptance": ["axe_violations populated when contrast fails", "pixel_diff measured vs baseline"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["studio_workspace", "gen_preview_loop"],
-      "sources": ["ui_audit"]
-    },
-    {
-      "kind": "ui_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 46,
-      "title": "lic-tetris target-specific native capture",
-      "remediation_summary": "Do not reuse studio SDL stub for tetris audit pass",
-      "files_hint": ["ux-harness/adapters/native_capture.py", "config/ux-targets.json"],
-      "acceptance": ["lic-tetris artifacts show tetromino board", "capture_meta.example=tetris"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["play_session"],
-      "sources": ["ui_audit"]
-    },
-    {
-      "kind": "ui_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 40,
-      "title": "Dashboard Li dark tokens and focus rings",
-      "remediation_summary": "Align globals.css with #0d1117 palette and WCAG focus-visible",
-      "files_hint": ["dashboard-ui/app/globals.css"],
-      "acceptance": ["tokens_deviation empty on live probe", "focus-visible on interactive elements"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["agents_list_empty"],
+      "surface": "docs",
+      "issue": 37,
+      "title": "Wire Playwright capture + baselines into docs harness",
+      "remediation_summary": "Harness fail must reflect axe and pixel drift, not static-only pass",
+      "files_hint": ["ux-harness/adapters/docs.py", "ux-harness/baselines/docs/"],
+      "acceptance": ["run_audit lic-docs fail when axe violations present", "baseline PNGs committed under baselines/docs/"],
+      "agent_source": "docs_ui_tester",
+      "journeys": ["mobile_nav", "first_reading_path"],
       "sources": ["ui_audit"]
     }
   ]

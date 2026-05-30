@@ -1,0 +1,93 @@
+{
+  "viewports": [
+    {
+      "page": "home",
+      "viewport": "desktop",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png"
+    },
+    {
+      "page": "home",
+      "viewport": "mobile",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png"
+    },
+    {
+      "page": "hello-world",
+      "viewport": "desktop",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/hello-world-desktop.png"
+    },
+    {
+      "page": "hello-world",
+      "viewport": "mobile",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/hello-world-mobile.png"
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "desktop",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png"
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "mobile",
+      "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png"
+    }
+  ],
+  "axe": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "nodes": 12,
+      "help": "Elements must meet minimum color contrast ratio thresholds"
+    },
+    {
+      "id": "link-in-text-block",
+      "impact": "serious",
+      "nodes": 5,
+      "help": "Links must be distinguishable without relying on color"
+    }
+  ],
+  "contrast": [
+    {
+      "page": "home",
+      "viewport": "desktop",
+      "selector": ".md-tabs__link",
+      "ratio": 21,
+      "wcag_aa": true
+    },
+    {
+      "page": "home",
+      "viewport": "mobile",
+      "selector": ".md-tabs__link",
+      "ratio": 21,
+      "wcag_aa": true
+    },
+    {
+      "page": "hello-world",
+      "viewport": "desktop",
+      "selector": ".md-tabs__link",
+      "ratio": 21,
+      "wcag_aa": true
+    },
+    {
+      "page": "hello-world",
+      "viewport": "mobile",
+      "selector": ".md-tabs__link",
+      "ratio": 21,
+      "wcag_aa": true
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "desktop",
+      "selector": ".md-tabs__link",
+      "ratio": 21,
+      "wcag_aa": true
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "mobile",
+      "selector": ".md-tabs__link",
+      "ratio": 21,
+      "wcag_aa": true
+    }
+  ],
+  "generated_at": "2026-05-30T13:23:50.379Z"
+}
