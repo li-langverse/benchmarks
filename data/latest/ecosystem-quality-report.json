@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-30T14:56:21Z",
+  "generated_at": "2026-05-30T13:58:27Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 75.8,
+  "overall_score": 78.2,
   "grade": "C",
-  "unattended_safe": false,
+  "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
       "score": 85.0,
@@ -42,19 +42,19 @@
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 60.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 11,
+        "terminal_runs": 32,
         "error_count": 1,
-        "incomplete_count": 5,
-        "running_count": 109,
-        "error_rate": 0.0909,
-        "incomplete_rate": 0.4545,
+        "incomplete_count": 27,
+        "running_count": 88,
+        "error_rate": 0.0312,
+        "incomplete_rate": 0.8438,
         "top_error_agents": [
           {
-            "agent": "autoresearch",
+            "agent": "gui_ui_tester",
             "count": 1
           }
         ]
@@ -98,13 +98,13 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 45%",
+      "message": "Incomplete rate 84%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "109 runs still marked running (possible stuck SDK)",
+      "message": "88 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
