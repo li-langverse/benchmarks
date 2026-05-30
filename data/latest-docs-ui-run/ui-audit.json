@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T15:18:56.552981+00:00",
-  "proactive_capture_at": "2026-05-30T15:19:41.016Z",
+  "generated_at": "2026-05-30T12:09:22.177Z",
   "platform": "Linux",
+  "agent_id": "docs_ui_tester",
   "summary": {
     "total": 1,
     "failing": 1,
@@ -14,6 +14,8 @@
       "repo": "lic",
       "surface": "docs",
       "surface_class": "docs",
+      "status": "fail",
+      "mode": "playwright_axe",
       "artifacts": [
         "data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png",
         "data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png",
@@ -21,29 +23,23 @@
         "data/latest-docs-ui-run/artifacts/lic-docs/hello-world-mobile.png",
         "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png",
         "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/home-desktop.png",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/home-mobile.png",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-desktop.png",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-mobile.png"
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json"
       ],
       "axe_violations": [
         {
           "id": "color-contrast",
           "impact": "serious",
-          "nodes": 12,
-          "help": "Elements must meet minimum color contrast ratio thresholds"
+          "nodes": 12
         },
         {
           "id": "link-in-text-block",
           "impact": "serious",
-          "nodes": 5,
-          "help": "Links must be distinguishable without relying on color"
+          "nodes": 5
         }
       ],
       "pixel_diff": {
-        "max_ratio": null,
-        "threshold": 0.04,
-        "note": "No baselines under ux-harness/baselines/docs/; live-vs-local nav drift (5 vs 12 tabs) unmeasured"
+        "max_ratio": 0.0,
+        "threshold": 0.04
       },
       "contrast_failures": [],
       "contrast_samples": [
@@ -51,43 +47,27 @@
           "page": "home",
           "viewport": "desktop",
           "selector": ".md-tabs__link",
-          "ratio": 21,
-          "wcag_aa": true,
-          "note": "Tab chrome passes; axe failures are body/content on home desktop"
+          "ratio": 21.0,
+          "wcag_aa": true
         }
       ],
-      "baseline_status": "missing",
+      "baseline_status": "none",
+      "baseline_note": "ux-harness/baselines/docs/ empty (.gitkeep only)",
       "tokens_deviation": [],
-      "mode": "static_site+playwright_capture",
-      "status": "fail",
       "broken_links": 0,
-      "broken_links_deep_scan": {
-        "relative_checked": 32591,
-        "broken_relative": 30701,
-        "broken_md_unique": 45,
-        "broken_other_unique": 625,
-        "note": "Harness 40-file sample reports 0; full-tree scan includes repo-path hrefs outside site/"
-      },
+      "raw_md_hrefs": 0,
       "html_files": 377,
       "links_checked": 0,
-      "raw_md_hrefs": 74,
-      "local_tabs": 12,
-      "live_pages": {
-        "base": "https://li-langverse.github.io/li-language/",
-        "tabs_live": 5,
-        "tabs_local": 12,
-        "paths": {
-          "guide/hello-world/": 404,
-          "ecosystem/overview/": 404,
-          "language/overview/": 404,
-          "verification/provability-gaps/": 200
-        },
-        "search_index_docs": {
-          "live": 248,
-          "local": 2801
-        }
-      },
-      "harness_static_only_status": "pass"
+      "live_drift": {
+        "nav_tabs_local": 12,
+        "nav_tabs_live": 5,
+        "search_docs_local": 2801,
+        "search_docs_live": 248,
+        "live_404": [
+          "guide/hello-world/",
+          "ecosystem/overview/"
+        ]
+      }
     }
   ]
 }

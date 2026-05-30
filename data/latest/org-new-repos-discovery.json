@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T16:50Z",
+  "generated_at": "2026-05-30T12:05Z",
   "org": "li-langverse",
-  "github_source": "gh_repo_list",
+  "github_source": "gh_api_orgs_repos",
   "github_repos": [
     "benchmarks",
     "li-cursor-agents",
@@ -43,18 +43,22 @@
     "benchmarks",
     "li-cursor-agents",
     "li-demo",
-    "li-gui",
     "li-httpd",
     "li-language",
-    "li-local-ci",
     "li-net",
     "li-std-core",
     "li-std-math",
     "lic",
-    "lidb",
     "lip",
     "lis",
     "lit",
+    "roadmap"
+  ],
+  "new_repos": [
+    "li-gui",
+    "li-local-ci",
+    "lic-docs",
+    "lidb",
     "mmo",
     "net.httpd",
     "physics.custom",
@@ -62,7 +66,6 @@
     "proof-library",
     "render",
     "research-findings",
-    "roadmap",
     "sim",
     "sim.additive",
     "sim.automotive",
@@ -75,11 +78,70 @@
     "ui",
     "world"
   ],
-  "new_repos": [
-    "lic-docs"
-  ],
   "stale_known_repos": [],
   "new_repo_entries": [
+    {
+      "repo": "li-gui",
+      "classification": "candidate_official",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo li-gui"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on li-gui"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for li-gui"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify li-gui \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add li-gui to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "li-local-ci",
+      "classification": "candidate_official",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo li-local-ci"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on li-local-ci"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for li-local-ci"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify li-local-ci \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add li-local-ci to org catalog / work-queue targets"
+        }
+      ]
+    },
     {
       "repo": "lic-docs",
       "classification": "unclassified",
@@ -110,12 +172,601 @@
           "reason": "After CI + agent-kit, add lic-docs to org catalog / work-queue targets"
         }
       ]
+    },
+    {
+      "repo": "lidb",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo lidb"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on lidb"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for lidb"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify lidb \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add lidb to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "mmo",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo mmo"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on mmo"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for mmo"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify mmo \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add mmo to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "net.httpd",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo net.httpd"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on net.httpd"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for net.httpd"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify net.httpd \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add net.httpd to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "physics.custom",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo physics.custom"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on physics.custom"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for physics.custom"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify physics.custom \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add physics.custom to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "physics.runtime",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo physics.runtime"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on physics.runtime"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for physics.runtime"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify physics.runtime \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add physics.runtime to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "proof-library",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo proof-library"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on proof-library"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for proof-library"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify proof-library \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add proof-library to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "render",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo render"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on render"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for render"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify render \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add render to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "research-findings",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo research-findings"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on research-findings"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for research-findings"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify research-findings \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add research-findings to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "sim",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo sim"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on sim"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for sim"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify sim \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add sim to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "sim.additive",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo sim.additive"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on sim.additive"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for sim.additive"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify sim.additive \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add sim.additive to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "sim.automotive",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo sim.automotive"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on sim.automotive"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for sim.automotive"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify sim.automotive \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add sim.automotive to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "sim.drug_design",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo sim.drug_design"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on sim.drug_design"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for sim.drug_design"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify sim.drug_design \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add sim.drug_design to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "sim.robotics",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo sim.robotics"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on sim.robotics"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for sim.robotics"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify sim.robotics \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add sim.robotics to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "sim.scientific",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo sim.scientific"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on sim.scientific"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for sim.scientific"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify sim.scientific \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add sim.scientific to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "store.realtime",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo store.realtime"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on store.realtime"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for store.realtime"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify store.realtime \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add store.realtime to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "studio",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo studio"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on studio"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for studio"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify studio \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add studio to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "studio.ai",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo studio.ai"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on studio.ai"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for studio.ai"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify studio.ai \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add studio.ai to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "ui",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo ui"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on ui"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for ui"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify ui \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add ui to org catalog / work-queue targets"
+        }
+      ]
+    },
+    {
+      "repo": "world",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo world"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on world"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for world"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify world \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add world to org catalog / work-queue targets"
+        }
+      ]
     }
   ],
   "summary": {
     "github_count": 35,
-    "known_count": 34,
-    "new_count": 1,
+    "known_count": 13,
+    "new_count": 22,
     "stale_count": 0
   },
   "downstream_agent": "org_repo_onboarder"

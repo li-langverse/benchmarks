@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-05-30T14:01Z",
+  "run_id": "ci_maintainer-1780149652563",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform)",
+  "audit": {
+    "script_repos_ok": 12,
+    "rest_full_org_ok": 33,
+    "repos_exempt": 2,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 0,
+    "exempt": ["li-cursor-agents", "research-findings"],
+    "audit_method": "ensure-org-repo-ci.py + REST org paginate spot-check"
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 0,
+    "missing_ci_on_main": []
+  },
+  "actions_taken": [
+    "Ran ensure-org-repo-ci.py — exit 0, refreshed org-repo-ci-audit.json",
+    "REST full-org sweep (35 active repos) — 33 OK, 0 missing",
+    "Verified ecosystem-audit.json missing_ci_on_main aligned (empty)",
+    "Branch protection vs workflow job spot-check (org-branch-protection.json)",
+    "No isolated clone ci.yml edits — zero missing repos"
+  ],
+  "github_api": {
+    "rest_core_remaining": 2694,
+    "graphql_remaining": 0,
+    "note": "GraphQL exhausted; gh repo list under-scopes script to 12 repos; REST paginate used for full verification"
+  },
+  "branch_protection_note": "Package mirrors emit job id check; rulesets not applied org-wide — human apply-org-branch-protection.sh",
+  "continue_on_error_findings": [
+    "lic ci.yml build-and-test-windows (OS matrix) — pre-existing, out of scope for add-CI pass"
+  ]
+}

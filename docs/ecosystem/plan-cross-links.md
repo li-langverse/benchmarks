@@ -37,34 +37,20 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | `2026-05-16-li-httpd-plan.md` | **lis** / httpd |
 | `2026-05-16-li-math-linalg-surface.md` | Math / **PH-7e** · **G-math**, **G-math-syn** |
 | `2026-05-24-studio-ui-ux-plan-loop.md` | **PH-UX** / Studio (UX honesty, not Lean) |
-| `2026-05-22-parallel-compile-ci.md` | **PH-8p** — parallel compile / CI throughput |
 | **lidb / registry DB** (proposal) | **PH-DB-*** · [tier-db-registry-benchmark.md](./tier-db-registry-benchmark.md) |
 | **lidb graph / vector / GPU** (PH-DB-G0) | [tier-db-graph-registry.md](./tier-db-graph-registry.md) · [tier-db-vector-ann.md](./tier-db-vector-ann.md) · [tier-db-gpu-speedup.md](./tier-db-gpu-speedup.md) |
 | **lidb full-spectrum audit** (WP-N4) | [tier-db-security.md](./tier-db-security.md) · [tier-db-memory.md](./tier-db-memory.md) · [tier-db-parallel.md](./tier-db-parallel.md) · [tier-db-audit.md](./tier-db-audit.md) · [tier-db-realtime.md](./tier-db-realtime.md) |
 
-## Open master-plan tracker rows (2026-05-30)
+## UI/UX quality (`ui_ux_quality` research goal)
 
-Preflight: `data/latest/ecosystem-audit.json` · `plan_completion_audit.summary.open_tracker_items: 5`. Do not mark **Done** without cited evidence.
+| Layer | Path |
+|-------|------|
+| **Handoff (lic)** | [gui-ux-quality-handoff.md](https://github.com/li-langverse/lic/blob/main/docs/ecosystem/gui-ux-quality-handoff.md) |
+| **Orchestrator ingest** | [orch-r4-ui-ux-signals](https://github.com/li-langverse/lic/blob/main/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r4-ui-ux-signals.md) |
+| **UX digests** | [ux-digests/](../ux-digests/) (`*-gui-ux.md`, `*-gui-ui.md`) |
+| **Targets** | `li-cursor-agents/config/ux-targets.json` |
 
-| PH | Gap ID(s) | Phase plan (lic) |
-|----|-----------|------------------|
-| **2i** — Math / linalg | **G-math**, **G-math-syn** | [`2026-05-16-li-math-linalg-surface.md`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-16-li-math-linalg-surface.md) |
-| **7d** — Execution decorators | **G-dec**, **G-par** | [`2026-05-16-li-execution-decorators.md`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/specs/2026-05-16-li-execution-decorators.md) · [`phase-07-native-hpc`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-phase-07-native-hpc.md) |
-| **7e** — Math → SIMD lowering | **G-math** | [`2026-05-16-li-math-linalg-surface.md`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-16-li-math-linalg-surface.md) · [`benchmarks-and-simulations`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-benchmarks-and-simulations.md) |
-| **8p** — Parallel compile / CI | — | [`2026-05-22-parallel-compile-ci.md`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-22-parallel-compile-ci.md) |
-| **Vision-LLM** — Agent JSON diagnostics | — | [`2026-05-16-li-llm-first-design.md`](https://github.com/li-langverse/lic/blob/main/docs/superpowers/specs/2026-05-16-li-llm-first-design.md) |
-
-## UI / UX audit handoff (`ui_ux_quality` research goal)
-
-Surface quality is **not** proof — keep separate from **G-*** rows. Supports **`gui_ux_tester`**, **`docs_ui_tester`**, **`studio_ui_ux_builder`**.
-
-| Agent | Surface | Latest digest |
-|-------|---------|---------------|
-| `gui_ux_tester` | GUI apps, fixtures, native SDL | [2026-05-30-gui-ui.md](./ux-digests/2026-05-30-gui-ui.md) · `data/latest-gui-ui-run/ui-audit.json` |
-| `docs_ui_tester` | MkDocs / handbook Pages | [2026-05-30-docs-ui.md](./ux-digests/2026-05-30-docs-ui.md) |
-| `studio_ui_ux_builder` | PH-UX plan loop, bench gates | [`data/latest/studio-ui-ux-builder-digest.md`](../../data/latest/studio-ui-ux-builder-digest.md) |
-
-Remediation: `data/latest/remediation_manifest.json` (P1 issues + acceptance checklists). Workflow repo routing: **`lic`** for studio-ui-ux harness; **`li-cursor-agents`** for ux-harness adapters.
+Primary agent: **`gui_ux_tester`**. Companion: **`gui_ui_tester`**. Implementation: **`studio_ui_ux_builder`**.
 
 ## Automation
 
