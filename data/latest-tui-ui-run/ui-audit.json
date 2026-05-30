@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T19:50:29.347527+00:00",
+  "generated_at": "2026-05-30T21:50:44.373042+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -31,7 +31,7 @@
       "broken_links": 0,
       "capture_meta": {
         "piped_exit_code": 0,
-        "piped_bytes": 107,
+        "piped_bytes": 97,
         "ansi_clear": true,
         "utf8_mojibake": true
       }

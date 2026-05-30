@@ -1,106 +1,114 @@
 {
-  "generated_at": "2026-05-30T21:49Z",
-  "agent_id": "docs_ux_tester",
+  "generated_at": "2026-05-30T21:51Z",
+  "agent_id": "tui_ui_tester",
   "briefing_generated_at": "2026-05-30T21:46Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ux.md",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-tui-ui.md",
   "issues": [
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
-      "problem": "Published li-language Pages has 5 tabs vs 12 in mkdocs.yml; hero paths /guide/hello-world/, /ecosystem/overview/, /language/overview/ return 404; search index 248 vs 2801 local entries",
+      "surface": "tui",
+      "kind": "ui",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "problem": "tui-demo.sh uses read -r twice; harness subprocess.run times out at 30s and run_audit.py exits uncaught",
       "evidence": [
-        "data/latest-docs-ux-run/ux-audit.json: lic-docs pass locally but live HEAD checks fail",
-        "data/latest-docs-ui-run/ui-audit.json: live_pages paths 404, tabs_live=5, tabs_local=12",
-        "curl verification 2026-05-30T21:49Z: guide/hello-world/ 404"
+        "data/latest-tui-ui-run/ui-audit.json: tui-app-fixture fail, baseline_status timeout",
+        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt: piped stdin exit 0 in <50ms"
       ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
+      "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
-        "[ ] File: lic/docs/ — fix strict build link warnings blocking CI deploy",
-        "[ ] File: .github/workflows/docs.yml — ensure Pages deploy on green strict build",
-        "[ ] Test: curl -sI https://li-langverse.github.io/li-language/guide/hello-world/ returns 200",
-        "[ ] Acceptance: live search index docs count ≥ 2500; 12 nav tabs visible"
+        "[ ] File: li-cursor-agents/ux-harness/adapters/tui.py — catch TimeoutExpired; pipe stdin for journey steps",
+        "[ ] File: li-cursor-agents/ux-harness/fixtures/tui-demo.sh — LI_TUI_NONINTERACTIVE=1 or accept stdin EOF",
+        "[ ] Test: python3 ux-harness/run_audit.py --target tui-app-fixture --mode ui exits 0 with fail row",
+        "[ ] Acceptance: ui-audit.json written without harness crash"
       ],
-      "suggested_implementer": "docs_maintainer",
-      "priority": "P0",
-      "labels": ["ux-audit", "surface:docs", "documentation"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/403"
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
     },
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
-      "problem": "11 language/*.md reference pages nested under Game development tab violate Diátaxis separation; increases cognitive load (rubric 0.70)",
+      "surface": "tui",
+      "kind": "ui",
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] TUI harness lacks stdout frame capture and baseline diff",
+      "problem": "Pass path leaves artifacts empty; no insta/VHS baseline or pixel_diff beyond stub 0.0",
       "evidence": [
-        "lic/mkdocs.yml nav: Game development contains language/types-and-data.md through language/effects-and-io.md",
-        "diataxis.fr/start-here/: reference vs how-to must be distinct quadrants",
-        "data/latest-docs-ux-run/ux-audit.json: cognitive_load 0.70"
+        "data/latest-tui-ui-run/ui-audit.json: tui-gen pass with artifacts only after manual capture",
+        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt: 5 lines, 31 col box frame"
       ],
-      "sota_reference": "https://diataxis.fr/start-here/",
+      "sota_reference": "https://ratatui.rs/recipes/testing/snapshots/",
       "remediation_checklist": [
-        "[ ] File: lic/mkdocs.yml — move 11 language/*.md pages to Language handbook tab",
-        "[ ] File: lic/docs/game-dev/ — add cross-links from game-dev pages to moved reference",
-        "[ ] Test: mkdocs build --strict passes",
-        "[ ] Acceptance: Game development tab contains only game-dev domain content"
+        "[ ] File: ux-harness/adapters/tui.py — write stdout to captures/<target_id>.txt on every run",
+        "[ ] File: ux-harness/ — optional insta baseline path per target",
+        "[ ] Test: pass target has non-empty artifacts in ui-audit.json",
+        "[ ] Acceptance: pixel_diff or snapshot compare wired for tui-gen-fixture"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:docs", "documentation"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/422"
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/48"
+    },
+    {
+      "surface": "tui",
+      "kind": "ui",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-demo.sh UTF-8 em dash mojibake in harness captures",
+      "problem": "Em dash in title renders as M-bM-^@M-^T in cat -v captures unless LANG=UTF-8 or ASCII hyphen",
+      "evidence": [
+        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt: mojibake on em dash (cat -v)"
+      ],
+      "sota_reference": "https://www.w3.org/International/questions/qa-choosing-encodings",
+      "remediation_checklist": [
+        "[ ] File: ux-harness/fixtures/tui-demo.sh — use ASCII hyphen or document UTF-8 requirement",
+        "[ ] File: ux-harness/adapters/tui.py — set env LANG=C.UTF-8 for subprocess",
+        "[ ] Test: capture file contains literal em dash or ASCII - without mojibake",
+        "[ ] Acceptance: utf8_mojibake false in capture_meta"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P2",
+      "labels": ["ui-audit", "surface:tui"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/49"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 403,
-      "title": "Docs CI strict build failing — GitHub Pages stale",
-      "remediation_summary": "Fix strict build link warnings; deploy 12-tab IA to li-language Pages",
-      "files_hint": ["docs/", ".github/workflows/docs.yml", "mkdocs.yml"],
-      "acceptance": ["live /guide/hello-world/ returns 200", "search index ≥ 2500 docs entries", "12 nav tabs on live"],
-      "agent_source": "docs_ux_tester",
-      "sources": ["ux_audit"]
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 30,
+      "title": "tui-app-fixture blocks on read in non-interactive harness",
+      "remediation_summary": "Catch TimeoutExpired; pipe stdin; non-interactive fixture mode",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/fixtures/tui-demo.sh"],
+      "acceptance": ["run_audit.py --target tui-app-fixture --mode ui exits 0", "ui-audit fail row without crash"],
+      "agent_source": "tui_ui_tester",
+      "sources": ["ui_audit"]
     },
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 422,
-      "title": "Diátaxis IA: move language reference out of Game development nav",
-      "remediation_summary": "Relocate 11 language/*.md pages from Game development to Language handbook in mkdocs.yml",
-      "files_hint": ["mkdocs.yml", "docs/language/", "docs/game-dev/"],
-      "acceptance": ["Game development tab domain-only", "cognitive_load rubric ≥ 0.75 after re-audit"],
-      "agent_source": "docs_ux_tester",
-      "sources": ["ux_audit"]
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 48,
+      "title": "TUI harness stdout frame capture and baseline diff",
+      "remediation_summary": "Always write captures; optional insta snapshot for tui-gen-fixture",
+      "files_hint": ["ux-harness/adapters/tui.py"],
+      "acceptance": ["pass targets include artifact paths in ui-audit.json"],
+      "agent_source": "tui_ui_tester",
+      "sources": ["ui_audit"]
     },
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": null,
-      "title": "docs(IA): add Diátaxis labels to home doc-map + collapse Project tab",
-      "remediation_summary": "Label home doc-map quadrants; nest Project phase plans under Contributing",
-      "files_hint": ["docs/index.md", "mkdocs.yml"],
-      "acceptance": ["home doc-map shows tutorial/how-to/reference/explanation labels", "Project tab ≤ 3 top-level entries"],
-      "agent_source": "docs_ux_tester",
-      "sources": ["ux_audit"]
-    },
-    {
-      "kind": "ux_remediation",
+      "kind": "ui_remediation",
       "repo": "benchmarks",
-      "surface": "docs",
+      "surface": "tui",
       "issue": null,
-      "title": "ux-harness HEAD-check live Pages URL post-deploy",
-      "remediation_summary": "Add live Pages tab count + hero path checks to ecosystem audit / agent-briefing",
-      "files_hint": ["scripts/ecosystem-audit.py", "li-cursor-agents/ux-harness/adapters/docs.py"],
-      "acceptance": ["briefing flags stale Pages when tabs_live < tabs_local", "repos_without_live_pages reflects stale deploy"],
-      "agent_source": "docs_ux_tester",
-      "sources": ["ux_audit"]
+      "title": "chore(preflight): include TUI fixtures in ui-ux-audit / agent-briefing.json",
+      "remediation_summary": "Merge data/latest-tui-ui-run rows into org preflight ui_audit signal",
+      "files_hint": ["scripts/agent-briefing.sh", "scripts/ecosystem-audit.py"],
+      "acceptance": ["briefing ui_audit.summary reflects tui-app fail when harness not run proactively"],
+      "agent_source": "tui_ui_tester",
+      "sources": ["ui_audit"]
     }
   ]
 }
