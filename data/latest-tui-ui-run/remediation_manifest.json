@@ -1,0 +1,72 @@
+{
+  "generated_at": "2026-05-30T00:55:00+00:00",
+  "agent_id": "tui_ui_tester",
+  "surface": "tui",
+  "audit_kind": "ui",
+  "source": "proactive",
+  "north_star_fit": {
+    "pillar": "easy",
+    "domain": "terminal diagnostics / agent TUI surfaces",
+    "ph_ids": ["Vision-LLM", "PH-2i-adjacent-tooling"]
+  },
+  "issues": [
+    {
+      "url": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "priority": "P1",
+      "target_id": "tui-app-fixture",
+      "status": "open",
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "evidence": "run_audit.py --target tui-app-fixture --mode ui → TimeoutExpired @ 30s (uncaught); printf 'h\\nq\\n' | tui-demo.sh → exit 0"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": "https://github.com/li-langverse/li-cursor-agents/issues/30",
+      "summary": "tui-app-fixture: non-blocking harness (stdin pipe, LI_TUI_HARNESS=1, or Textual Pilot); LANG=C.UTF-8"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": null,
+      "summary": "feat(ux-harness): catch TimeoutExpired in TUI adapter; write fail row + stdout artifact path"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "li-cursor-agents",
+      "issue": null,
+      "summary": "feat(ux-harness): TUI frame capture baseline (stdout dump or VHS .tape) for tui-gen-fixture"
+    },
+    {
+      "priority": "P1",
+      "agent": "code_implementer",
+      "repo": "benchmarks",
+      "issue": null,
+      "summary": "chore(preflight): surface:tui rows from data/latest-tui-ui-run into agent-briefing ui_audit"
+    }
+  ],
+  "deferred": [
+    {
+      "item": "Production lic / lis TUI targets",
+      "reason": "No org repos registered as surface:tui beyond ux-targets fixtures"
+    },
+    {
+      "item": "ANSI color contrast scoring",
+      "reason": "Fixtures monochrome; WCAG 4.5:1 when Li terminal theme ships"
+    },
+    {
+      "item": "VHS / PTY visual regression CI",
+      "reason": "Blocked on #30 + maintainer approval for deps"
+    },
+    {
+      "item": "tui_ux_tester journey rubric",
+      "reason": "Blocked on stable non-interactive tui-app-fixture (#33)"
+    }
+  ],
+  "digest": "benchmarks/docs/ecosystem/ux-digests/2026-05-30-tui-ui.md"
+}

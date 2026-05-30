@@ -1,31 +1,51 @@
 {
-  "generated_at": "2026-05-30T00:45:41.823006+00:00",
+  "generated_at": "2026-05-30T00:55:00+00:00",
   "platform": "Linux",
+  "agent": "tui_ui_tester",
+  "source": "proactive",
   "summary": {
-    "total": 1,
-    "failing": 0,
+    "total": 2,
+    "failing": 1,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
     {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "artifacts": ["captures/tui-app-piped.stdout"],
+      "mode": "fixture",
+      "status": "fail",
+      "fixture_exit_code": null,
+      "error": "subprocess.TimeoutExpired: bash tui-demo.sh timed out after 30s (blocks on read -r without TTY stdin)",
+      "harness_crash": true,
+      "axe_violations": [],
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "contrast_failures": [],
+      "baseline_status": "missing",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "note": "Piped stdin workaround exits 0 — see captures/tui-app-piped.stdout"
+    },
+    {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
       "surface": "tui",
       "surface_class": "tui_gen",
-      "artifacts": [],
+      "artifacts": ["captures/tui-gen.stdout"],
       "mode": "fixture",
       "status": "pass",
       "fixture_exit_code": 0,
       "axe_violations": [],
-      "pixel_diff": {
-        "max_ratio": 0.0,
-        "threshold": 0.04
-      },
+      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
       "contrast_failures": [],
-      "baseline_status": "ok",
+      "baseline_status": "missing",
       "tokens_deviation": [],
-      "broken_links": 0
+      "broken_links": 0,
+      "layout_cols_max": 31,
+      "ansi_color": false
     }
   ]
 }
