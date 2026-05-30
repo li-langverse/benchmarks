@@ -31,36 +31,9 @@
       "artifact": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png"
     }
   ],
-  "axe": [
-    {
-      "id": "color-contrast",
-      "impact": "serious",
-      "nodes": 12,
-      "help": "Elements must meet minimum color contrast ratio thresholds"
-    },
-    {
-      "id": "link-in-text-block",
-      "impact": "serious",
-      "nodes": 5,
-      "help": "Links must be distinguishable without relying on color"
-    }
-  ],
+  "axe": [],
   "contrast": [
     {
-      "page": "home",
-      "viewport": "desktop",
-      "selector": ".md-tabs__link",
-      "ratio": 21,
-      "wcag_aa": true
-    },
-    {
-      "page": "home",
-      "viewport": "mobile",
-      "selector": ".md-tabs__link",
-      "ratio": 21,
-      "wcag_aa": true
-    },
-    {
       "page": "hello-world",
       "viewport": "desktop",
       "selector": ".md-tabs__link",
@@ -89,5 +62,5 @@
       "wcag_aa": true
     }
   ],
-  "generated_at": "2026-05-30T15:19:41.016Z"
+  "generated_at": "2026-05-30T20:27:00.350Z"
 }
