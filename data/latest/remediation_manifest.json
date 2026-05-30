@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-05-30T01:06:00.000Z",
+  "agent_id": "docs_ux_tester",
+  "issues": [
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "problem": "Live GitHub Pages (5 tabs, 248 search docs) diverges from local build (12 tabs, 2801 docs). Primary onboarding URLs return 404.",
+      "evidence": [
+        "live: guide/hello-world/ -> 404",
+        "live: ecosystem/overview/ -> 404",
+        "search index: 248 live vs 2801 local",
+        "nav tabs: 5 live vs 12 local"
+      ],
+      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
+      "remediation_checklist": [
+        "[ ] Fix docs CI strict build so Pages deploys current lic/site",
+        "[ ] Verify guide/hello-world/ and ecosystem/overview/ return 200 on live",
+        "[ ] Confirm search index >= 2500 docs after deploy",
+        "[ ] Acceptance: ux-audit live probe green for first_reading_path journey"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P0",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/403"
+    },
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "problem": "11 language/*.md reference pages nested under Game development tab; Diátaxis reference quadrant split across tabs.",
+      "evidence": [
+        "mkdocs.yml Game development: 11 entries under language/*",
+        "Language handbook tab: 5 overview pages only"
+      ],
+      "sota_reference": "https://diataxis.fr/start-here/",
+      "remediation_checklist": [
+        "[ ] Move language/types-and-data.md through language/effects-and-io.md to Language handbook tab",
+        "[ ] Leave game-dev how-to content under Game development",
+        "[ ] Acceptance: Language handbook tab has >= 16 reference pages; Diátaxis map in contributing/docs updated"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/422"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block",
+      "problem": "Prior Playwright pass reported axe violations: color-contrast (12), link-in-text-block (5).",
+      "evidence": [
+        "docs/stylesheets/extra.css custom palette",
+        "prior docs_ui_tester Playwright artifacts"
+      ],
+      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/",
+      "remediation_checklist": [
+        "[ ] Fix contrast ratios in extra.css for slate/default palettes",
+        "[ ] Distinguish inline links from body text",
+        "[ ] Acceptance: axe scan zero violations on home + hello-world"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/426"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs",
+      "problem": "69 unique href=\"*.md\" links in built HTML — broken when opened from static host or copied.",
+      "evidence": [
+        "prior HTML scan of lic/site"
+      ],
+      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "remediation_checklist": [
+        "[ ] Audit markdown sources for unquoted .md links",
+        "[ ] Fix mkdocs link resolution in contributing guide",
+        "[ ] Acceptance: zero raw .md hrefs in built site"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/404"
+    }
+  ],
+  "implementation_queue": [
+    {
+      "kind": "ux_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 403,
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "remediation_summary": "Publish current lic/site to GitHub Pages; fix 404 on onboarding URLs",
+      "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
+      "acceptance": [
+        "guide/hello-world/ returns 200 on live",
+        "search index >= 2500 docs",
+        "12 nav tabs visible on live"
+      ],
+      "agent_source": "docs_ux_tester",
+      "journeys": ["first_reading_path"]
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 422,
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "remediation_summary": "Restructure mkdocs.yml nav per Diátaxis reference quadrant",
+      "files_hint": ["mkdocs.yml", "docs/contributing/documentation.md"],
+      "acceptance": [
+        "All language/*.md reference under Language handbook tab",
+        "Game development tab contains only how-to/vision content"
+      ],
+      "agent_source": "docs_ux_tester",
+      "journeys": ["first_reading_path"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 426,
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block",
+      "remediation_summary": "Fix accessibility violations in docs theme CSS",
+      "files_hint": ["docs/stylesheets/extra.css"],
+      "acceptance": ["axe zero violations on lic-docs home and hello-world"],
+      "agent_source": "docs_ux_tester"
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 404,
+      "title": "[ui-audit] Built docs site contains raw .md hrefs",
+      "remediation_summary": "Eliminate raw .md hrefs from built HTML",
+      "files_hint": ["docs/**/*.md", "mkdocs.yml"],
+      "acceptance": ["zero href=\"*.md\" in lic/site HTML"],
+      "agent_source": "docs_ux_tester"
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "docs",
+      "issue": 36,
+      "title": "static_site adapter: unquoted href + live drift probe",
+      "remediation_summary": "Extend ux-harness to detect live/local drift and raw .md hrefs",
+      "files_hint": ["ux-harness/adapters/static_site.py"],
+      "acceptance": ["ux-audit fails when live Pages 404 on configured journey URLs"],
+      "agent_source": "docs_ux_tester",
+      "journeys": ["first_reading_path", "mobile_nav"]
+    }
+  ]
+}
