@@ -1,8 +1,18 @@
 {
   "generated_at": "2026-05-30T10:37:47Z",
   "agent_id": "tui_ui_tester",
+  "surface": "tui",
+  "audit_kind": "ui",
+  "source": "proactive",
   "briefing_generated_at": "2026-05-30T10:03Z",
   "digest_path": "docs/ecosystem/ux-digests/2026-05-30-tui-ui.md",
+  "north_star_fit": "easy · Vision-LLM · terminal diagnostics for lic diagnose / agent workflows",
+  "ui_audit_summary": {
+    "total": 2,
+    "passing": 1,
+    "failing": 1,
+    "skipped": 0
+  },
   "issues": [
     {
       "surface": "tui",
@@ -17,7 +27,6 @@
         "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt",
         "ux-harness/adapters/tui.py:33 subprocess.run timeout=30"
       ],
-      "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
         "[ ] File: ux-harness/fixtures/tui-demo.sh — LI_TUI_HARNESS=1 or stdin pipe mode",
         "[ ] File: ux-harness/adapters/tui.py — catch TimeoutExpired; write fail row + stdout artifact",
@@ -36,10 +45,9 @@
       "title": "[ui-audit] TUI harness lacks stdout frame capture and baseline diff",
       "problem": "adapters/tui.py records pass/fail only; artifacts[] empty on pass; pixel_diff and contrast_failures always stub zeros",
       "evidence": [
-        "tui-gen-fixture status pass with artifacts [] from harness",
-        "manual capture at data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
+        "tui-gen-fixture status pass with artifacts [] from harness (manual capture added in digest run)",
+        "data/latest-tui-ui-run/ui-audit.json baseline_status timeout for tui-app-fixture"
       ],
-      "sota_reference": "https://ratatui.rs/recipes/testing/snapshots/",
       "remediation_checklist": [
         "[ ] File: ux-harness/adapters/tui.py — dump stdout to artifacts/ on every run",
         "[ ] File: ux-harness/baselines/tui-gen-fixture/ — insta or line-diff baseline",
@@ -55,13 +63,12 @@
       "kind": "ui",
       "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] tui-demo.sh UTF-8 em dash mojibake in harness captures",
+      "title": "[ui-audit] tui-demo.sh UTF-8 em dash mojibake in capture files",
       "problem": "Title uses Unicode em dash; capture files show mojibake unless LANG=C.UTF-8 end-to-end",
       "evidence": [
         "cat -A data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt shows M-bM-^@M-^T",
         "ux-harness/fixtures/tui-demo.sh line 3 em dash literal"
       ],
-      "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
         "[ ] File: tui-demo.sh — ASCII hyphen or enforce UTF-8 in harness env",
         "[ ] Test: capture bytes match expected UTF-8 for title line"

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T09:34:32.475108+00:00",
+  "generated_at": "2026-05-30T10:37:47.000000+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -13,7 +13,9 @@
       "repo": "li-cursor-agents",
       "surface": "tui",
       "surface_class": "tui_app",
-      "artifacts": [],
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt"
+      ],
       "mode": "fixture",
       "status": "fail",
       "fixture_exit_code": null,
