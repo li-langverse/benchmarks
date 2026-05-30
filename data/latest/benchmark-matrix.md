@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-05-30T08:12:00.577777+00:00
+Generated: 2026-05-30T09:11:59.631651+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -67,10 +67,10 @@ Status: **green** — 0 failures / 36 cells
 | fea_solver_iterative | 1 | skip | — | lic |
 | fea_stiffness_assembly | 1 | skip | — | lic |
 | fft_1d_fixed | 1 | skip | — | lic |
-| horner_pure_li | 1 | skip | — | lic |
-| matmul_blocked | 1 | skip | — | lic |
+| horner_pure_li | 1 | red | 3.000× | lic |
+| matmul_blocked | 1 | green | 1.022× | lic |
 | matmul_blocked_N1024 | 1 | skip | — | lic |
-| matmul_naive | 1 | skip | — | lic |
+| matmul_naive | 1 | green | 1.056× | lic |
 | matmul_naive_N1024 | 1 | skip | — | lic |
 | ml_conv2d_forward | 1 | skip | — | li-math |
 | ml_mlp_forward | 1 | skip | — | li-math |
@@ -92,8 +92,8 @@ Status: **green** — 0 failures / 36 cells
 | num_rng_pcg | 1 | skip | — | lic |
 | num_root_newton | 1 | skip | — | lic |
 | num_sparse_mv | 1 | skip | — | lic |
-| reduce_sum | 1 | skip | — | lic |
-| simd_dot | 1 | skip | — | lic |
+| reduce_sum | 1 | green | 1.043× | lic |
+| simd_dot | 1 | green | 1.000× | lic |
 | stdlib_binary_search | 1 | skip | — | lic |
 | stdlib_deque_rotate | 1 | skip | — | lic |
 | stdlib_dict_insert_lookup | 1 | skip | — | lic |
@@ -141,7 +141,7 @@ Status: **green** — 0 failures / 36 cells
 | md_init_fcc_mb | 2 | skip | — | lic |
 | md_integrator_leapfrog | 2 | skip | — | lic |
 | md_integrator_verlet | 2 | skip | — | lic |
-| md_lennard_jones | 2 | green | 0.996× | lic |
+| md_lennard_jones | 2 | skip | — | lic |
 | md_longrange_ewald | 2 | skip | — | lic |
 | md_longrange_pme | 2 | skip | — | lic |
 | md_neighbor_cell_list | 2 | skip | — | lic |
