@@ -33,6 +33,115 @@ def chart_os(ch: dict) -> str:
     return "linux"
 
 
+def chart_row_from_chart(
+    base: str,
+    cfg: dict,
+    ch: dict,
+    row_by_bench: dict[str, dict],
+) -> dict:
+    """Build a summary row mirroring a platform chart for tier 0/1."""
+    meta = bs.row_meta(cfg)
+    sizes = bs.effective_size_meta(cfg, has_csv=bool(ch.get("series")))
+    ref = cfg.get("compare_oracle") or (
+        "postgres" if cfg.get("category") == "database" else "cpp"
+    )
+    existing = row_by_bench.get(base) or {}
+    st = ch.get("status") or existing.get("status") or "unknown"
+    if ch.get("validity_status") == "skip" or not ch.get("series"):
+        st = "skip"
+    series = ch.get("series") or []
+    li_pt = next((s for s in series if s.get("lang") == "li"), None)
+    ref_lang = ch.get("reference_lang", ref)
+    ref_pt = next((s for s in series if s.get("lang") == ref_lang), None)
+    sota_lang = ch.get("sota_lang")
+    sota_pt = (
+        next((s for s in series if s.get("lang") == sota_lang), None)
+        if sota_lang
+        else None
+    )
+    return {
+        "benchmark": base,
+        "repo": cfg.get("repo", "lic"),
+        "tier": cfg.get("tier", 0),
+        "category": cfg.get("category", existing.get("category", "micro")),
+        "metric": ch.get("metric") or existing.get("metric") or cfg.get("metric", "wall_time"),
+        "li_value": li_pt.get("value") if li_pt else None,
+        "li_stddev": li_pt.get("stddev") if li_pt else None,
+        "li_sample_runs": li_pt.get("sample_runs") if li_pt else None,
+        "cpp_value": ref_pt.get("value") if ref_pt and ref_lang == "cpp" else None,
+        "cpp_stddev": ref_pt.get("stddev") if ref_pt and ref_lang == "cpp" else None,
+        "cpp_sample_runs": ref_pt.get("sample_runs") if ref_pt and ref_lang == "cpp" else None,
+        "ratio_vs_cpp": ch.get("ratio_vs_reference"),
+        "sota_lang": sota_lang,
+        "sota_value": sota_pt.get("value") if sota_pt else None,
+        "ratio_vs_sota": ch.get("ratio_vs_sota"),
+        "unit": ch.get("unit") or existing.get("unit"),
+        "variant": cfg.get("variant"),
+        "status": st,
+        "validity_status": ch.get("validity_status")
+        or existing.get("validity_status")
+        or "skip",
+        "validity_source": ch.get("validity_source")
+        or existing.get("validity_source")
+        or "platform_not_measured",
+        "os": chart_os(ch),
+        "ph_ids": cfg.get("ph_ids", []),
+        "path": cfg.get("path", ""),
+        "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+        "compare_oracle": ref,
+        "ci_url": existing.get("ci_url", ""),
+        "langs": series,
+        **meta,
+        "problem_size": ch.get("problem_size", cfg.get("problem_size")),
+        "size_label": ch.get("size_label", cfg.get("size_label")),
+        "base_id": ch.get("base_id", bs.chart_base_id(base, cfg)),
+    }
+
+
+def expand_tier01_rows(
+    summary: dict,
+    catalog: dict[str, dict],
+    catalog_defaults: dict,
+) -> None:
+    """Ensure tier 0/1 benchmarks have one summary row per catalog platform."""
+    charts_by_base: dict[str, list[dict]] = defaultdict(list)
+    for cat in (summary.get("categories") or {}).values():
+        for ch in cat.get("charts") or []:
+            charts_by_base[chart_base_id(ch)].append(ch)
+
+    by_bench: dict[str, list[dict]] = defaultdict(list)
+    for row in summary.get("rows") or []:
+        by_bench[row["benchmark"]].append(row)
+
+    expanded: list[dict] = []
+    for base in sorted(by_bench.keys()):
+        group = by_bench[base]
+        cfg = catalog.get(base)
+        if not cfg or not bs.tier_le_1(cfg):
+            expanded.extend(group)
+            continue
+        platforms = bs.catalog_platforms(cfg, catalog_defaults)
+        charts = charts_by_base.get(base, [])
+        chart_by_os = {chart_os(c): c for c in charts}
+        row_by_bench = {base: group[0]}
+        for plat in platforms:
+            ch = chart_by_os.get(plat)
+            if ch:
+                expanded.append(chart_row_from_chart(base, cfg, ch, row_by_bench))
+            else:
+                skip = bs.build_platform_skip_chart(
+                    base,
+                    cfg,
+                    plat,
+                    chart_id=bs.chart_id_for_os(base, plat, multi=len(platforms) > 1),
+                    multi=len(platforms) > 1,
+                )
+                expanded.append(chart_row_from_chart(base, cfg, skip, row_by_bench))
+    summary["rows"] = sorted(
+        expanded, key=lambda row: (row["tier"], row["benchmark"], row.get("os", ""))
+    )
+
+
 def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> dict:
     rows = summary.get("rows") or []
     row_by_bench = {r["benchmark"]: r for r in rows}
@@ -148,6 +257,7 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
             if ch.get("size_label")
         }
     )
+    expand_tier01_rows(summary, catalog, catalog_defaults)
     return summary
 
 

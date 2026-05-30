@@ -7,6 +7,16 @@
 
 Ingest triggers: `workflow_dispatch`, `repository_dispatch` (`lic-bench-complete`, `package-release`), push to `data/**` on PRs. Release manifests: [docs/dashboard/release-manifest.md](docs/dashboard/release-manifest.md).
 
+## Fix package handbook 404 (`live_docs_down`)
+
+Handbook content may already be on `main` while Pages is disabled. From **benchmarks**:
+
+```bash
+./scripts/enable-org-handbook-pages.sh
+```
+
+Or per repo: **Settings → Pages → Build and deployment → GitHub Actions**, then run **Handbook (Pages)** workflow on `main`.
+
 ## Fix dashboard 404 (`live_docs_down`)
 
 `ecosystem-audit.py` HEAD-checks https://li-langverse.github.io/benchmarks/ — **404** means Pages is not published yet.

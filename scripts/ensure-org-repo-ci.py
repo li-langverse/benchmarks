@@ -30,7 +30,7 @@ DEFAULT_BRANCH_MAIN = "main"
 _SCRIPTS = Path(__file__).resolve().parent
 if str(_SCRIPTS) not in sys.path:
     sys.path.insert(0, str(_SCRIPTS))
-from org_repos import IGNORE_REPOS, filter_repos  # noqa: E402
+from org_repos import IGNORE_REPOS, ORG_REPOS, filter_repos  # noqa: E402
 
 EXEMPT_REPOS: set[str] = set(IGNORE_REPOS) | {"research-findings"}
 
@@ -51,7 +51,8 @@ def gh_json(args: list[str]):
 def list_org_repos() -> list[str]:
     rows = gh_json(["repo", "list", ORG, "--limit", "100", "--json", "name,isArchived"])
     if not rows:
-        return []
+        # GraphQL rate limits should not yield a vacuous pass (OK: 0).
+        return sorted(ORG_REPOS)
     return sorted(r["name"] for r in rows if not r.get("isArchived"))
 
 
@@ -62,6 +63,9 @@ def default_branch(repo: str) -> str | None:
         name = ref.get("name")
         if name:
             return name
+    # GraphQL rate limit — assume main for org policy repos with local checkout.
+    if (ROOT.parent / repo).is_dir() or repo == "benchmarks":
+        return DEFAULT_BRANCH_MAIN
     return None
 
 
