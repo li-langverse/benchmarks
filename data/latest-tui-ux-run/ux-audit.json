@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T09:34:02.356019+00:00",
+  "generated_at": "2026-05-30T14:00:05.629091+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -25,7 +25,7 @@
       "friction_points": [
         {
           "journey": "key_nav_help",
-          "issue": "Harness subprocess.TimeoutExpired after 30s — fixture blocks on read without stdin"
+          "issue": "run_audit.py uncaught subprocess.TimeoutExpired after 30s — fixture blocks on read without stdin pipe"
         },
         {
           "journey": "key_nav_help",
@@ -33,7 +33,7 @@
         },
         {
           "journey": "key_nav_help",
-          "issue": "run_audit.py crashes with uncaught TimeoutExpired instead of recording fail row"
+          "issue": "Adapter does not pipe stdin; printf '\\n\\n' workaround exits 0 in <50ms"
         }
       ],
       "sota_refs": ["textual", "bubbletea"],
@@ -70,6 +70,10 @@
         {
           "journey": "cli_to_tui",
           "issue": "Journey defined in ux-targets.yaml but adapter never executes steps — rubric is default pass"
+        },
+        {
+          "journey": "cli_to_tui",
+          "issue": "Always Status: ok — no LI_TUI_ERROR failure branch"
         }
       ],
       "sota_refs": ["textual", "bubbletea"],

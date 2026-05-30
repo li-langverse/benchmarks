@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-30T12:10:00.000Z",
-  "agent_id": "docs_ui_tester",
+  "generated_at": "2026-05-30T14:01:00.000Z",
+  "agent_id": "tui_ux_tester",
   "issues": [
     {
       "surface": "docs",
@@ -115,6 +115,73 @@
       "priority": "P2",
       "labels": ["ui-audit", "surface:docs"],
       "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
+    },
+    {
+      "surface": "tui",
+      "kind": "ui",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "problem": "run_audit.py crashes with uncaught subprocess.TimeoutExpired after 30s; tui-demo.sh blocks on read without stdin pipe.",
+      "evidence": [
+        "data/latest-tui-ui-run/ui-audit.json harness_error",
+        "ux-harness/fixtures/tui-demo.sh read -r without LI_TUI_HARNESS=1",
+        "printf '\\n\\n' | tui-demo.sh exits 0 in <50ms"
+      ],
+      "sota_reference": "https://github.com/charmbracelet/bubbletea",
+      "remediation_checklist": [
+        "[ ] Catch TimeoutExpired in adapters/tui.py; record fail row not crash",
+        "[ ] Pipe stdin (\\n\\n) or set LI_TUI_HARNESS=1 non-interactive mode",
+        "[ ] Acceptance: run_audit.py --target tui-app-fixture exits 0 with status fail"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
+    },
+    {
+      "surface": "tui",
+      "kind": "ux",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "problem": "ux-targets.yaml defines key_nav_help journey but adapters/tui.py returns empty journeys[] and default rubric scores.",
+      "evidence": [
+        "config/ux-targets.yaml key_nav_help steps: launch, tab_help, quit",
+        "data/latest-tui-ux-run/ux-audit.json journeys completed: false"
+      ],
+      "sota_reference": "https://textual.textualize.io/guide/screens/",
+      "remediation_checklist": [
+        "[ ] Execute journey steps with piped stdin or PTY",
+        "[ ] Populate journeys[] and friction_points from step results",
+        "[ ] Acceptance: key_nav_help completed true when fixture supports harness mode"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/33"
+    },
+    {
+      "surface": "tui",
+      "kind": "ux",
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
+      "problem": "Fixtures always show Status: ok; no LI_TUI_ERROR=1 branch or LI_TUI_EXPORT_A11Y structured plain snapshot.",
+      "evidence": [
+        "ux-harness/fixtures/tui-gen-demo.sh always Status: ok",
+        "missing_states: error, a11y_export in ux-audit.json"
+      ],
+      "sota_reference": "https://textual.textualize.io/api/binding/",
+      "remediation_checklist": [
+        "[ ] Add LI_TUI_ERROR=1 failure branch to both fixtures",
+        "[ ] Add LI_TUI_EXPORT_A11Y=1 plain-text export (headings/lists, no box art)",
+        "[ ] Acceptance: ux-audit missing_states empty after harness run"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P2",
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/34"
     }
   ],
   "implementation_queue": [
@@ -167,6 +234,30 @@
       "acceptance": ["ui-audit fails when live Pages 404 on configured journey URLs"],
       "agent_source": "docs_ui_tester",
       "journeys": ["first_reading_path", "mobile_nav"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 30,
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "remediation_summary": "Catch TimeoutExpired and pipe stdin for non-interactive harness runs",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/fixtures/tui-demo.sh"],
+      "acceptance": ["run_audit.py --target tui-app-fixture exits 0 with status fail recorded"],
+      "agent_source": "tui_ux_tester",
+      "journeys": ["key_nav_help"]
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 33,
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "remediation_summary": "Wire journey step execution and rubric from evidence not defaults",
+      "files_hint": ["ux-harness/adapters/tui.py", "config/ux-targets.yaml"],
+      "acceptance": ["key_nav_help journey completed true in ux-audit.json"],
+      "agent_source": "tui_ux_tester",
+      "journeys": ["key_nav_help", "cli_to_tui"]
     }
   ]
 }
