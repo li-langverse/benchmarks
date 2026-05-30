@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-05-30T12:09:13.843081+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "surface": "docs",
+      "surface_class": "docs",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "mode": "static_site",
+      "status": "pass",
+      "broken_links": 0,
+      "html_files": 377,
+      "links_checked": 0
+    }
+  ]
+}
