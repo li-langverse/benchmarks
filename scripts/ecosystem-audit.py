@@ -87,6 +87,31 @@ def classify_ci(rollup: list[dict] | None) -> str:
     return "pass"
 
 
+def _has_ci_on_main_graphql(repo: str) -> bool | None:
+    """GraphQL fallback when REST contents API is rate-limited."""
+    q = (
+        "query($owner:String!,$name:String!) {"
+        " repository(owner:$owner,name:$name) {"
+        ' ci: object(expression:"main:.github/workflows/ci.yml") { ... on Blob { oid } }'
+        ' ci2: object(expression:"main:.github/workflows/ci.yaml") { ... on Blob { oid } }'
+        " } }"
+    )
+    proc = subprocess.run(
+        ["gh", "api", "graphql", "-f", f"query={q}", "-f", "owner=li-langverse", "-f", f"name={repo}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0 or not proc.stdout.strip():
+        return None
+    try:
+        data = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return None
+    repo_node = (data.get("data") or {}).get("repository") or {}
+    return bool((repo_node.get("ci") or {}).get("oid") or (repo_node.get("ci2") or {}).get("oid"))
+
+
 def has_ci_on_main(repo: str) -> bool:
     proc = subprocess.run(
         [
@@ -101,6 +126,11 @@ def has_ci_on_main(repo: str) -> bool:
         check=False,
     )
     if proc.returncode != 0:
+        err = (proc.stderr or proc.stdout or "").lower()
+        if "rate limit" in err:
+            gql = _has_ci_on_main_graphql(repo)
+            if gql is not None:
+                return gql
         return False
     names = [ln.strip() for ln in proc.stdout.splitlines() if ln.strip()]
     return any(n.endswith(".yml") or n.endswith(".yaml") for n in names)
