@@ -23,6 +23,7 @@ export function Header({
           <Link href="/">Overview</Link>
           <Link href="/#search">Search</Link>
           <Link href="/matrix/">Matrix</Link>
+          <Link href="/gpu-matrix/">GPU matrix</Link>
           <Link href="/history/">History</Link>
         </nav>
         <nav className="pillar-nav" aria-label="Pillars">

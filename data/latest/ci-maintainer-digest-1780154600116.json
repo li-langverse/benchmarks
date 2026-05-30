@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-30T15:27Z",
+  "run_id": "ci_maintainer-1780154600116",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform; secure + provable pillar)",
+  "audit": {
+    "repos_ok": 32,
+    "repos_exempt": 1,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 2,
+    "incomplete_repos": ["li-local-ci", "lic-docs"],
+    "incomplete_verified_via_graphql": true,
+    "exempt": ["research-findings"],
+    "audit_method": "ensure-org-repo-ci.py --allow-local-fallback + GraphQL spot-check for incomplete"
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 35,
+    "missing_ci_on_main_stale": true,
+    "note": "ecosystem-audit.py uses REST has_ci_on_main; false positives while core rate limit exhausted"
+  },
+  "actions_taken": [
+    "Ran ensure-org-repo-ci.py — exit 1, 33 audit_incomplete (REST rate limit)",
+    "Re-ran ensure-org-repo-ci.py --allow-local-fallback — OK: 32, missing: 0, incomplete: 2",
+    "GraphQL verified li-local-ci and lic-docs have ci.yml on main",
+    "Re-ran ecosystem-audit.py — exit 0 but missing_ci_on_main still stale (35 repos)",
+    "No isolated clone ci.yml edits — zero missing repos"
+  ],
+  "github_api": {
+    "rest_core_remaining": 0,
+    "graphql_remaining": 2763,
+    "rate_limit_reset_unix": 1780155528,
+    "note": "Use GraphQL or wait for REST reset (~15:52Z) before trusting ecosystem-audit missing_ci_on_main"
+  },
+  "errors": [
+    {
+      "phase": "ensure-org-repo-ci.py (REST-only)",
+      "message": "GitHub API rate limit exceeded (HTTP 403); 33 repos audit_incomplete"
+    },
+    {
+      "phase": "ecosystem-audit.py",
+      "message": "missing_ci_on_main lists 35 repos — stale signal due to REST rate limit (not real gaps)"
+    }
+  ],
+  "branch_protection_note": "Package mirrors emit job id check; rulesets not applied org-wide — human apply-org-branch-protection.sh",
+  "continue_on_error_findings": [
+    "lic ci.yml build-and-test-windows (OS matrix) — pre-existing, out of scope for add-CI pass"
+  ]
+}

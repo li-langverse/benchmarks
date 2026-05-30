@@ -1,11 +1,11 @@
 # HTTP webserver RPS matrix (tier 5)
 
-Generated: 2026-05-27T19:03:31.596375+00:00
+Generated: 2026-05-30T10:00:50.015748+00:00
 
 **Mandatory after every li-httpd change:**
 `LIC_ROOT=… ./scripts/run-tier5-http-bench.sh` → `./scripts/benchmark-matrix-report.py`
 
-Source CSV: `/agent/repos/benchmarks/vendor/lis-tier5/results/latest.csv`
+Source CSV: `/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/vendor/lis-tier5/results/latest.csv`
 
 Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenarios bench **nginx + li**; static scenarios bench all oracles.
 
