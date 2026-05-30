@@ -21,7 +21,9 @@ data/latest/security-cwe-feed.json
 data/latest/security-cwe-feed-delta.json
 data/latest/security-cwe-feed-prev.json
 data/latest/workspace-dirty-sweep.json
+data/latest/org-new-repos-discovery.json
 data/latest/tier-db-registry-harness.json
+data/workspaces/
 benchmarks/tier_db_registry/results/latest.csv
 
 data/visuals/latest/*.png

@@ -33,8 +33,8 @@
 
 | Issue | Plan path | PR |
 |-------|-----------|-----|
-| **benchmarks#51** | `docs/ecosystem/plans/2026-05-30-fft-vendor-rubrics-ph5b.md` | [PR #198](https://github.com/li-langverse/benchmarks/pull/198) |
-| **benchmarks#52** | same (combined rubric) | [PR #198](https://github.com/li-langverse/benchmarks/pull/198) |
+| **benchmarks#51** | `docs/ecosystem/plans/2026-05-30-fft-vendor-rubrics-ph5b.md` | draft PR (branch `docs/plan-fft-vendor-rubrics-51-52`) |
+| **benchmarks#52** | same (combined rubric) | same |
 
 ### Already planned (no duplicate work)
 
@@ -84,7 +84,7 @@ Research goal eligible — cite on handoff:
 | [#135](https://github.com/li-langverse/benchmarks/pull/135) | LIC_ROOT agent preflight (#20–#29, #54) | `plan-approved` on linked issues |
 | [#136](https://github.com/li-langverse/benchmarks/pull/136) | tier-1 FFT micro-bench (#18) | `plan-approved` on #18 |
 | [#137](https://github.com/li-langverse/benchmarks/pull/137) | PH-IO-7 summary parity (#53) | `plan-approved` on #53 |
-| [#198](https://github.com/li-langverse/benchmarks/pull/198) | FFT vendor rubrics (#51, #52) | `plan-approved` on #51, #52 |
+| (this run) | FFT vendor rubrics (#51, #52) | `plan-approved` on #51, #52 |
 
 ### Implementation queue (after approval)
 
