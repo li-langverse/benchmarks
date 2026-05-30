@@ -42,6 +42,26 @@ LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
 }
+# Repos expected to publish a handbook landing (see lic/docs/ecosystem/live-handbook-sites.md).
+HANDBOOK_REPOS = (
+    "lic",
+    "lip",
+    "lit",
+    "lis",
+    "roadmap",
+    "li-net",
+    "li-httpd",
+    "li-std-core",
+    "li-std-math",
+    "li-demo",
+)
+
+
+def handbook_url(repo: str) -> str:
+    """Public Pages URL for org handbook audit (lic → li-language mirror)."""
+    if repo == "lic":
+        return LIVE_DOCS["li-language"]
+    return f"https://li-langverse.github.io/{repo}/"
 VISION = {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li ≤1.2× cpp (tier-1/2); beat HPC SOTA everywhere — PH-5b, PH-7e pure-Li codegen",
@@ -183,9 +203,7 @@ def main() -> int:
 
     missing_ci = [r for r in ORG_REPOS if not has_ci_on_main(r)]
     missing_docs = [
-        r
-        for r in ORG_REPOS
-        if r not in LIVE_DOCS and r in ("lic", "lip", "lit", "lis", "roadmap", "li-net", "li-httpd", "li-std-core", "li-std-math", "li-demo")
+        r for r in ORG_REPOS if r in HANDBOOK_REPOS and not head_ok(handbook_url(r))
     ]
     live_docs_missing = [r for r, url in LIVE_DOCS.items() if not head_ok(url)]
 
