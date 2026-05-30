@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T15:32:02.872902+00:00",
+  "generated_at": "2026-05-30T09:25:07.040661+00:00",
   "sources": {
     "summary_json": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/summary.json",
     "catalog_toml": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/catalog.toml",
@@ -14,8 +14,8 @@
       "unknown": 1
     },
     "1": {
-      "green": 21,
-      "yellow": 1,
+      "green": 20,
+      "yellow": 2,
       "red": 0,
       "unknown": 33
     },
