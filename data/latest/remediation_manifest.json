@@ -1,26 +1,29 @@
 {
-  "generated_at": "2026-05-30T09:38:22Z",
-  "agent_id": "docs_ux_tester",
+  "generated_at": "2026-05-30T09:40:00Z",
+  "agent_id": "docs_ui_tester",
   "briefing_generated_at": "2026-05-30T08:04Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ux.md",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ui.md",
   "issues": [
     {
       "surface": "docs",
       "kind": "ux",
       "target_id": "lic-docs",
       "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (128 link warnings)",
-      "problem": "Live li-language Pages Last-Modified 2026-05-27; 5 tabs vs 12 local; /guide/hello-world/ and /ecosystem/overview/ return 404",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "problem": "Live GitHub Pages (5 tabs, 248 search docs) diverges from local build (12 tabs, 2801 docs). Primary onboarding URLs return 404.",
       "evidence": [
-        "HEAD https://li-langverse.github.io/li-language/guide/hello-world/ → 404",
-        "Local lic/site: 377 HTML; search_index.json ~1.4 MB vs live ~135 KB",
-        "ux-audit.json lic-docs pass (static local only)"
+        "live: guide/hello-world/ -> 404",
+        "live: ecosystem/overview/ -> 404",
+        "search index: 248 live vs 2801 local",
+        "nav tabs: 5 live vs 12 local (mkdocs.yml)",
+        "Last-Modified: 2026-05-27T12:51:05Z"
       ],
       "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
       "remediation_checklist": [
-        "[ ] File: lic/docs/ — fix mkdocs --strict link warnings (128)",
-        "[ ] CI: docs workflow green on main",
-        "[ ] Acceptance: live site shows 12 tabs; new paths 200"
+        "[ ] Fix docs CI strict build so Pages deploys current lic/site",
+        "[ ] Verify guide/hello-world/ and ecosystem/overview/ return 200 on live",
+        "[ ] Confirm search index >= 2500 docs after deploy",
+        "[ ] Acceptance: ux-audit live probe green for first_reading_path journey"
       ],
       "suggested_implementer": "docs_maintainer",
       "priority": "P0",
@@ -29,45 +32,93 @@
     },
     {
       "surface": "docs",
-      "kind": "ux",
+      "kind": "ui",
       "target_id": "lic-docs",
       "repo": "lic",
-      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
-      "problem": "Game development tab contains language/types-and-data.md, numerics.md, etc. — violates Diátaxis reference vs how-to separation",
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block",
+      "problem": "Playwright+axe on local lic/site: color-contrast (12 nodes), link-in-text-block (5 nodes).",
       "evidence": [
-        "lic/mkdocs.yml nav Game development section lines 119-129",
-        "Rubric cognitive_load 0.70 (lowest dimension)"
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json",
+        "docs/stylesheets/extra.css custom palette",
+        "2026-05-30T09:39Z proactive capture — unchanged from prior pass"
       ],
-      "sota_reference": "https://diataxis.fr/start-here/",
+      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/",
       "remediation_checklist": [
-        "[ ] File: lic/mkdocs.yml — move language/*.md under Language handbook",
-        "[ ] Acceptance: Game dev tab only game-dev/ and physics/ paths"
+        "[ ] Fix contrast ratios in extra.css for slate/default palettes",
+        "[ ] Distinguish inline links from body text (underline or weight)",
+        "[ ] Acceptance: axe scan zero violations on home + hello-world"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/422"
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/426"
     },
     {
       "surface": "docs",
       "kind": "ui",
       "target_id": "lic-docs",
       "repo": "lic",
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
-      "problem": "Accessibility violations on Material theme not caught by static_site harness mode",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs",
+      "problem": "Prior passes reported 69–93 raw href=\"*.md\" in built HTML. 2026-05-30 full scan: 0 locally — verify after Pages deploy.",
       "evidence": [
-        "docs_ui_tester prior run",
-        "ui-audit pass with empty axe_violations (static_site mode)"
+        "2026-05-30 Python scan of lic/site: 0 unique .md hrefs",
+        "2026-05-29 Playwright pass: 69 unique (regression)"
       ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/",
+      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/36",
       "remediation_checklist": [
-        "[ ] File: lic/docs/stylesheets/extra.css — contrast tokens",
-        "[ ] Acceptance: axe scan on built site passes WCAG AA"
+        "[ ] Re-scan live Pages HTML after #403 deploy",
+        "[ ] Add harness check for raw .md hrefs in static_site adapter",
+        "[ ] Acceptance: zero raw .md hrefs in built site (local + live)"
       ],
       "suggested_implementer": "docs_maintainer",
       "priority": "P1",
+      "labels": ["ui-audit", "surface:docs"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/404",
+      "status_note": "local_build_clean_2026-05-30"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "li-cursor-agents",
+      "title": "static_site adapter: unquoted href + live drift probe",
+      "problem": "run_audit.py static adapter passes lic-docs despite axe failures and live/local drift.",
+      "evidence": [
+        "data/latest/ui-audit.json status pass vs data/latest-docs-ui-run status fail",
+        "links_checked: 0 in static adapter"
+      ],
+      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "remediation_checklist": [
+        "[ ] Detect raw .md hrefs in audit_static_site",
+        "[ ] Optional live URL probe for configured journey paths",
+        "[ ] Acceptance: ui-audit fails when axe violations or live 404 on journey URLs"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
       "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/426"
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/36"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "li-cursor-agents",
+      "title": "Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
+      "problem": "No committed PNG baselines under ux-harness/baselines/docs/; pixel drift cannot be measured.",
+      "evidence": [
+        "ux-harness/baselines/docs/ absent in li-cursor-agents tree",
+        "pixel_diff.max_ratio 0.0 is adapter default, not measured"
+      ],
+      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/37",
+      "remediation_checklist": [
+        "[ ] Commit baseline PNGs from docs-ui-capture.mjs output",
+        "[ ] Wire pixel diff in docs adapter or proactive script",
+        "[ ] Acceptance: baseline_status ok with max_ratio threshold 0.04"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P2",
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
     }
   ],
   "implementation_queue": [
@@ -76,37 +127,49 @@
       "repo": "lic",
       "surface": "docs",
       "issue": 403,
-      "title": "Unblock li-language Pages deploy (strict mkdocs)",
-      "remediation_summary": "Fix 128 link warnings; publish 12-tab IA to GitHub Pages",
-      "files_hint": ["lic/mkdocs.yml", "lic/docs/"],
-      "acceptance": ["live /guide/hello-world/ returns 200", "search index >1 MB"],
-      "agent_source": "docs_ux_tester",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "remediation_summary": "Publish current lic/site to GitHub Pages; fix 404 on onboarding URLs",
+      "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
+      "acceptance": [
+        "guide/hello-world/ returns 200 on live",
+        "search index >= 2500 docs",
+        "12 nav tabs visible on live"
+      ],
+      "agent_source": "docs_ui_tester",
       "journeys": ["first_reading_path"],
-      "sources": ["ux_audit", "live_head_check"]
+      "sources": ["ui_audit"]
     },
     {
-      "kind": "ux_remediation",
+      "kind": "ui_remediation",
       "repo": "lic",
       "surface": "docs",
-      "issue": 422,
-      "title": "Diátaxis nav: relocate language reference from Game dev",
-      "remediation_summary": "Move language/*.md pages to Language handbook tab",
-      "files_hint": ["lic/mkdocs.yml"],
-      "acceptance": ["cognitive_load rubric ≥0.75 on re-audit"],
-      "agent_source": "docs_ux_tester",
-      "journeys": ["first_reading_path"],
-      "sources": ["ux_audit"]
+      "issue": 426,
+      "title": "[ui-audit] lic-docs axe color-contrast + link-in-text-block",
+      "remediation_summary": "Fix Material theme palette and inline link styling in extra.css",
+      "files_hint": ["docs/stylesheets/extra.css", "mkdocs.yml"],
+      "acceptance": [
+        "axe zero serious violations on home desktop",
+        "contrast_samples pass for body copy selectors"
+      ],
+      "agent_source": "docs_ui_tester",
+      "journeys": [],
+      "sources": ["ui_audit"]
     },
     {
-      "kind": "docs_deploy",
-      "repo": "lip",
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
       "surface": "docs",
-      "title": "Satellite handbook Pages for 8 repos without live docs",
-      "remediation_summary": "docs_maintainer sweep: lip, lit, lis, li-demo, li-httpd, li-net, li-std-core, li-std-math",
-      "files_hint": ["docs/", ".github/workflows/pages.yml"],
-      "acceptance": ["ecosystem-audit repos_without_live_docs count → 0"],
-      "agent_source": "docs_ux_tester",
-      "sources": ["ecosystem_audit"]
+      "issue": 36,
+      "title": "static_site adapter: raw .md href + live drift probe",
+      "remediation_summary": "Fail ui-audit when axe/live drift detected; expand link scan",
+      "files_hint": ["ux-harness/adapters/static_site.py", "ux-harness/adapters/docs.py"],
+      "acceptance": [
+        "links_checked > 0 on lic-docs",
+        "proactive_playwright status reflected in briefing ui_audit"
+      ],
+      "agent_source": "docs_ui_tester",
+      "journeys": ["first_reading_path", "mobile_nav"],
+      "sources": ["ui_audit"]
     }
   ]
 }
