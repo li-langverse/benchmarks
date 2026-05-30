@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-05-30T19:48Z",
+  "run_id": "ci_maintainer-1780170449021",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform; secure + provable pillar)",
+  "audit": {
+    "repos_ok": 34,
+    "repos_exempt": 1,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 0,
+    "exempt": ["research-findings"],
+    "audit_method": "ensure-org-repo-ci.py (GitHub API, full REST scan)"
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 0,
+    "missing_ci_on_main": []
+  },
+  "actions_taken": [
+    "Re-ran ensure-org-repo-ci.py — OK: 34, missing: 0, gated: 0, incomplete: 0",
+    "Re-ran ecosystem-audit.py — aligned missing_ci_on_main []",
+    "No isolated clone ci.yml edits — zero missing repos",
+    "GitHub REST core 4891/5000 — no rate-limit false positives this cycle"
+  ],
+  "github_api": {
+    "rest_core_remaining": 4891,
+    "graphql_remaining": 3934,
+    "note": "Full org CI audit succeeded; prior stale missing_ci_on_main signal cleared"
+  },
+  "errors": [],
+  "branch_protection_note": "Direct branch protection API 404 on lic/lip; org rulesets not readable with current token — package mirrors emit job id check per template",
+  "continue_on_error_findings": [
+    "lic ci.yml build-and-test-windows (OS matrix) — pre-existing, out of scope for add-CI pass"
+  ]
+}
