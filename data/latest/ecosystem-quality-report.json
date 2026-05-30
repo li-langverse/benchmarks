@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-30T09:28:47Z",
+  "generated_at": "2026-05-30T13:20:16Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 69.0,
-  "grade": "D",
+  "overall_score": 70.8,
+  "grade": "C",
   "unattended_safe": false,
   "dimensions": {
     "briefing_health": {
@@ -12,12 +12,12 @@
         "briefing_present": true,
         "preflight_failed": 1,
         "preflight_skipped": 8,
-        "recommended_agent_count": 13
+        "recommended_agent_count": 12
       },
       "finding_count": 2
     },
     "ecosystem_posture": {
-      "score": 67.0,
+      "score": 75.0,
       "weight": 0.25,
       "signals": {
         "audit_present": true,
@@ -26,32 +26,32 @@
         "repos_missing_ci_main": 0,
         "benchmark_red_count": 6
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "goal_directed_health": {
       "score": 70.0,
       "weight": 0.2,
       "signals": {
         "snapshot_present": true,
-        "runner_count": 9,
+        "runner_count": 8,
         "runners_stopped": 6,
-        "plan_todos_pending": 36,
-        "plan_todos_total": 110,
+        "plan_todos_pending": 25,
+        "plan_todos_total": 97,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 71.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 21,
+        "terminal_runs": 9,
         "error_count": 0,
-        "incomplete_count": 4,
-        "running_count": 99,
+        "incomplete_count": 8,
+        "running_count": 111,
         "error_rate": 0.0,
-        "incomplete_rate": 0.1905,
+        "incomplete_rate": 0.8889,
         "top_error_agents": []
       },
       "finding_count": 2
@@ -105,13 +105,13 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 19%",
+      "message": "Incomplete rate 89%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "99 runs still marked running (possible stuck SDK)",
+      "message": "111 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -119,12 +119,6 @@
       "severity": "medium",
       "message": "31 plan_debt gap rows",
       "evidence": "swarm-gap-actions.by_kind.plan_debt"
-    },
-    {
-      "id": "repos-missing-live-docs",
-      "severity": "low",
-      "message": "8 repos without live docs pages",
-      "evidence": "ecosystem-audit.metrics.repos_without_live_pages"
     }
   ],
   "recommended_agents": [
@@ -135,14 +129,6 @@
     {
       "agent": "gap_explorer",
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
-    },
-    {
-      "agent": "ecosystem_grader",
-      "reason": "overall ecosystem quality below 70 \u2014 narrative grade + dispatch order"
-    },
-    {
-      "agent": "ci_maintainer",
-      "reason": "ecosystem_posture weak \u2014 missing CI / failed PR signals"
     },
     {
       "agent": "plan_verifier",
