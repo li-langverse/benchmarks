@@ -1,15 +1,15 @@
-# Org repo onboarder digest — 2026-05-30T0935Z
+# Org repo onboarder digest — 2026-05-30T1015Z
 
-**Agent:** `org_repo_onboarder` · **Source:** proactive · discovery `2026-05-30T09:35Z` · CI audit `2026-05-30T09:34Z` (rate-limited) · agent-kit audit `2026-05-30T09:34Z` · briefing `2026-05-30T08:04Z`
+**Agent:** `org_repo_onboarder` · **Source:** proactive · discovery `2026-05-30T10:15Z` · CI audit `2026-05-30T10:14Z` · agent-kit audit `2026-05-30T10:15Z` · briefing `2026-05-30T10:03Z`
 
 ## Executive summary
 
-- **Discovery (refreshed):** `github=35` `known=35` **`new=0`** **`stale=0`** via `gh_repo_list` — all GitHub org repos are in the known set.
-- **Preflight script gap:** `scripts/discover-new-org-repos.py` was absent on this branch; restored from git history (`7b2962f`) and re-run successfully.
+- **Discovery (refreshed):** `github=35` `known=35` **`new=0`** **`stale=0`** via `gh_repo_list` — GitHub org and catalog/audit known set are in sync.
 - **No net-new repos** — `new_repo_entries` is empty; do not add catalog rows without CI + agent-kit path.
-- **CI audit blocked:** `org-repo-ci-audit.json` hit GitHub API rate limit (HTTP 403) for 34/35 repos — `audit_incomplete`; last clean preflight (`08:04Z`) reported **0 missing CI**.
-- **Platform hygiene (existing repos):** **30** repos missing/drifted agent-kit (**3 drift:** `lic`, `lis`, `roadmap`; **27 missing_kit**); **4 OK:** `benchmarks`, `li-cursor-agents`, `lip`, `lit`.
-- **Highest-risk unclassified (if they appear in `new_repos` next cycle):** `lidb`, `lic-docs`, `net.httpd`, `store.realtime` — placement/CI ambiguity before catalog registration.
+- **CI audit complete:** **0** repos missing `ci.yml` on default branch (`repos_missing_ci: []`); `research-findings` exempt; `li-cursor-agents` excluded per `org_repos.IGNORE_REPOS`.
+- **Agent-kit hygiene:** **30** repos missing or drifted (**3 drift:** `lic`, `lis`, `roadmap`; **27 missing_kit**); **4 OK:** `benchmarks`, `li-cursor-agents`, `lip`, `lit`; `lic-docs` = `missing_local_clone` (no sibling checkout).
+- **Highest-risk unclassified (next `new_repos` cycle):** `lidb`, `lic-docs`, `net.httpd`, `store.realtime` — placement/CI ambiguity before catalog registration.
+- **Live docs gap:** **8** repos without live Pages (`li-demo`, `li-httpd`, `li-net`, `li-std-core`, `li-std-math`, `lip`, `lis`, `lit`) — `docs_maintainer` heap, not onboarder-owned.
 - **North star:** platform hygiene → **provable** (`lic`, `lit`, `proof-library`), **easy** (`lic-docs`, `studio`), **secure** (`li-httpd`, `li-net`, `lidb`) — no perf/catalog work ahead of proof gates.
 - **Briefing gap:** `agent-briefing.json` does not embed `org_new_repos_discovery` — read `data/latest/org-new-repos-discovery.json` directly.
 
@@ -54,10 +54,9 @@ Preflight: `data/latest/org-new-repos-discovery.json`, `org-repo-ci-audit.json`,
 | Repo / scope | Agent | Action | Notes |
 |--------------|-------|--------|-------|
 | 30 repos (`repos_needing_sync`) | `agent_kit_maintainer` | `sync_agent_kit` | canonical `1.3.5+6018e18bf2ed91f4`; **drift:** `lic`/`lis`/`roadmap`, rest **missing_kit** |
-| `lic-docs` | `ci_maintainer` | `add_ci_yml` | carry-forward from prior cycle — verify after rate limit clears |
-| `lidb` | `ci_maintainer` | `wp_h0_main_default` | WP-H0: default branch `main` before org CI gate on default |
-| `lic-docs` | `agent_kit_maintainer` | `sync_agent_kit` | `lic-docs` missing local clone in audit |
-| 8 repos (briefing) | `docs_maintainer` | `live_docs_smoke` | `repos_without_live_docs` in ecosystem audit |
+| `lic-docs` | `agent_kit_maintainer` | `sync_agent_kit` | CI OK on GitHub; audit has no local clone |
+| `lidb` | `ci_maintainer` | `wp_h0_main_default` | policy note WP-H0 — confirm default branch gate |
+| 8 repos (ecosystem audit) | `docs_maintainer` | `live_docs_smoke` | `repos_without_live_docs` |
 | All 35 | `org_repo_onboarder` | `refresh_discovery` | wire `org_new_repos_discovery` into `agent-briefing.py` |
 
 Downstream agents own isolated-clone PRs — onboarder does **not** open PRs or edit sibling trees.
@@ -70,8 +69,6 @@ Downstream agents own isolated-clone PRs — onboarder does **not** open PRs or 
 
 | agent_id | repo | action | north_star_fit |
 |----------|------|--------|----------------|
-| `ci_maintainer` | `lic-docs` | `add_ci_yml` | platform / easy — handbook CI gate |
-| `ci_maintainer` | `lidb` | `wp_h0_main_default` | platform / secure — PH-DB-0 default branch |
 | `agent_kit_maintainer` | `lic` | `sync_agent_kit` | provable — drift `1.3.3` → `1.3.5` |
 | `agent_kit_maintainer` | `lis` | `sync_agent_kit` | provable — drift |
 | `agent_kit_maintainer` | `roadmap` | `sync_agent_kit` | governance — drift |
@@ -88,7 +85,9 @@ Downstream agents own isolated-clone PRs — onboarder does **not** open PRs or 
 | `agent_kit_maintainer` | `li-std-math` | `sync_agent_kit` | provable / PH-2i |
 | `agent_kit_maintainer` | `render` | `sync_agent_kit` | graphics / PH-GD |
 | `agent_kit_maintainer` | `world` | `sync_agent_kit` | gaming / PH-GD |
-| `docs_maintainer` | `li-demo` | `live_docs_smoke` | 8 repos without live Pages (heap) |
+| `agent_kit_maintainer` | `lic-docs` | `sync_agent_kit` | easy — handbook; clone + kit PR |
+| `ci_maintainer` | `lidb` | `wp_h0_main_default` | platform / secure — PH-DB-0 default branch |
+| `docs_maintainer` | `li-demo` | `live_docs_smoke` | easy — Pages handbook |
 | `docs_maintainer` | `lip` | `live_docs_smoke` | ecosystem audit gap |
 | `org_repo_onboarder` | `*` | `refresh_discovery` | embed discovery in briefing each preflight |
 
@@ -106,20 +105,19 @@ Downstream agents own isolated-clone PRs — onboarder does **not** open PRs or 
 
 | Repo | Title (suggested) | Labels |
 |------|-------------------|--------|
-| `lic-docs` | chore(ci): add required `ci.yml` for org CI policy | `platform`, `ci`, `docs` |
 | `lidb` | WP-H0: set default branch to `main` before org CI gate | `platform`, `ci`, `PH-DB-0` |
 | `lic` | chore(agent-kit): align cursor stamp to canonical `1.3.5` | `agent-kit`, `drift`, `provable` |
 | `roadmap` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `governance` |
 | `studio` | chore(agent-kit): install canonical cursor rules | `agent-kit`, `PH-GD` |
 | `proof-library` | chore(agent-kit): install canonical cursor rules | `agent-kit`, `provable` |
+| `lic-docs` | chore(agent-kit): install canonical cursor rules | `agent-kit`, `docs` |
 | `benchmarks` | chore(preflight): embed `org_new_repos_discovery` in agent briefing | `platform`, `agent-kit` |
-| `benchmarks` | chore(org): restore `discover-new-org-repos.py` on main branch | `platform`, `agent-kit` |
 
 ## Deferred
 
 - **Catalog registration** for any repo — blocked until it appears in `new_repos` with CI + agent-kit complete.
 - **Stale catalog pruning** — none identified; no archive/delete without human sign-off.
-- **Bulk agent-kit wave** — remaining `missing_kit` mirrors (`sim.*`, `physics.*`, `mmo`, `store.realtime`, etc.) after P0 drift + platform repos.
+- **Bulk agent-kit wave** — remaining `missing_kit` mirrors (`sim.*`, `physics.*`, `mmo`, `store.realtime`, `net.httpd`, etc.) after P0 drift + platform repos.
 - **`docs_maintainer`** live Pages — separate heap task (8 repos); not onboarder-owned.
-- **CI re-audit** — defer until GitHub API rate limit clears; do not enqueue false `missing_ci` from rate-limited `09:34Z` run.
+- **`li-cursor-agents`** — excluded from org CI sweep; kit already at canonical stamp.
 - **Merge program / pr_branch_opener** — out of scope (`--skip-slow` briefing).
