@@ -1,7 +1,7 @@
 # FFT vendor rubrics — gearshifft + VkFFT crossover (PH-5b / G-math)
 
 > **Issues:** [benchmarks#51](https://github.com/li-langverse/benchmarks/issues/51), [#52](https://github.com/li-langverse/benchmarks/issues/52)  
-> **Parent plan:** [2026-05-18-tier1-fft-microbench.md](./2026-05-18-tier1-fft-microbench.md) · [#18](https://github.com/li-langverse/benchmarks/issues/18)  
+> **Parent plan:** [2026-05-29-tier1-fft-microbench-ph5b.md](./2026-05-29-tier1-fft-microbench-ph5b.md) · [#18](https://github.com/li-langverse/benchmarks/issues/18)  
 > **Repo:** li-langverse/benchmarks (policy + catalog) + **lic** (harness oracles)  
 > **Vision:** **Fast** (roofline honesty), **Provable** (deterministic size grid before pure-Li claims)  
 > **Learned from:** [gearshifft](https://github.com/mpicbg-scicomp/gearshifft), [UTK FFT vendor study (ICL-UTK-1079-2018)](https://icl.utk.edu/files/publications/2018/icl-utk-1079-2018.pdf), [FFTW vs cuFFT crossover notes](https://gist.github.com/pentschev/9e7c50c1321d2b7c067d), [research-methodology.md](../../numerics/research-methodology.md)
