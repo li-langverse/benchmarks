@@ -1,17 +1,18 @@
-# Org repo onboarder digest — 2026-05-30T0432Z
+# Org repo onboarder digest — 2026-05-30T14:51Z
 
-**Agent:** `org_repo_onboarder` · **Source:** proactive sweep · discovery `2026-05-30T04:32Z` · CI audit `2026-05-30T04:22Z` · agent-kit audit `2026-05-30T04:31Z` · briefing `2026-05-30T04:06Z`
+**Agent:** `org_repo_onboarder` · **Source:** proactive · discovery `2026-05-30T14:51Z` · CI audit `2026-05-30T14:32Z` · agent-kit audit `2026-05-30T14:46Z` · briefing `2026-05-30T14:02Z`
 
 ## Executive summary
 
-- **Discovery (refreshed):** `github=35` `known=35` **`new=0`** **`stale=0`** — GitHub org list matches catalog/briefing known set (`gh repo list` → `org-new-repos-discovery.json`).
-- **No net-new onboarding** — empty `new_repo_entries`; do not add catalog rows without CI + agent-kit path.
-- **No unclassified *new* repos** — `package_architect` activates only when `new_repos` is non-empty.
-- **Highest platform risk (existing):** `lidb` gated on non-`main` default (`feat/ph-db-2-liorm-liq`); **`lic-docs`** missing required `ci.yml` (has `docs.yml` only); **29** repos missing/drifted agent-kit; **`li-gui`** / **`lic-docs`** = `missing_local_clone` (not in `repos_needing_sync` until workspace clone exists).
-- **CI posture:** **32** repos OK on `main`, **1** missing `ci.yml` (`lic-docs`), **1** gated (`lidb`); `research-findings` CI-exempt; `li-cursor-agents` excluded from org CI sweep per policy.
-- **Agent-kit:** **4** OK (`benchmarks`, `li-cursor-agents`, `lip`, `lit`), **29** need sync (26 `missing_kit`, 3 `drift`: `lic`, `lis`, `roadmap`); canonical stamp `1.3.5+6018e18bf2ed91f4`.
-- **Control plane:** heap routes `agent_kit_maintainer` (9-repo summary in briefing) + per-repo `agentkit:*` fingerprints; **no** `org_repo_onboarding` rows — `new_repos` is empty.
-- **North star:** platform hygiene supports **provable** (`lic`/`lit`/`proof-library`), **secure** (`li-httpd`/`li-net`), **easy** (docs) — defer perf until proof gates pass.
+- **Discovery (refreshed):** `github=35` · `known=35` · **`new=0`** · **`stale=0`** (`gh_repo_list`) — org catalog / audit known set matches GitHub.
+- **No net-new repos** this cycle; onboarding focus shifts to **agent-kit hygiene** on repos already in the known set.
+- **Agent-kit gap:** **21** repos with `missing_kit` (no canonical stamp `1.3.5+6018e18bf2ed91f4`); **`lic-docs`** has no local clone (`missing_local_clone`).
+- **CI audit blocked:** `org-repo-ci-audit.json` hit **GitHub API rate limit** — **33** repos `audit_incomplete`; only `research-findings` verified (`exempt`). Do not treat empty workflow lists as missing CI.
+- **Ecosystem audit (briefing):** `repos_missing_ci_main=0` — prior green signal still holds; re-run CI audit after rate limit reset.
+- **Highest-risk hygiene (placement + security):** `lidb`, `store.realtime`, `net.httpd`, `lic-docs` — data/realtime/http/docs surface.
+- **Product P0 (routing → core_tooling):** `studio`, `studio.ai`, `ui`, `sim`, `render`, `world`, `proof-library`.
+- **North star fit:** platform hygiene unblocks **provable** (`proof-library`), **easy** (`studio`, `ui`, `lic-docs`), **secure** (`lidb`, `net.httpd`, `store.realtime`).
+- **Briefing gap:** `agent-briefing.json` omits `org_new_repos_discovery` — consume `data/latest/org-new-repos-discovery.json` directly.
 
 ## Deliverable / findings
 
@@ -20,123 +21,138 @@
 | Metric | Count |
 |--------|------:|
 | GitHub (non-archived) | 35 |
-| Known (audits + core list) | 35 |
-| **New** | **0** |
-| **Stale known** | **0** |
+| Known (CI + agent-kit audits + core list) | 35 |
+| **New (not in known set)** | **0** |
+| **Stale known (catalog ⊄ GitHub)** | **0** |
 
-Preflight artifacts: `data/latest/org-new-repos-discovery.json`, `org-repo-ci-audit.json`, `org-agent-kit-audit.json`
-
-Briefing `agent-briefing.py` does not yet wire `org_new_repos_discovery` into `data/latest/agent-briefing.json` — use discovery JSON directly until preflight hook lands.
-
-**Delta vs prior cycle:** GitHub count **34 → 35** — `lic-docs` now in known set (CI audit `repos_missing_ci`); still **not** in `new_repos` because audits already track it.
+Preflight: `data/latest/org-new-repos-discovery.json`, `org-repo-ci-audit.json`, `org-agent-kit-audit.json`
 
 ### New repos (classification + handoffs)
 
-*None this cycle.*
+*None.* `new_repos: []`, `new_repo_entries: []`.
 
-| Repo | Classification | Recommended handoffs |
-|------|----------------|----------------------|
-| — | — | — |
+All 35 GitHub repos are in `known_repos`. Remaining work is **onboarding hygiene** (agent-kit, CI audit refresh, placement) — not discovery.
+
+### Agent-kit backlog (known repos — primary handoff surface)
+
+| Repo | Auto class | **Confirmed** | Agent-kit status | Recommended handoffs |
+|------|------------|---------------|------------------|----------------------|
+| `studio` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `docs_maintainer` → `code_implementer` |
+| `studio.ai` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `ui` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `sim` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `render` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `world` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `proof-library` | unclassified | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `li-local-ci` | candidate_official | **core_tooling** | `missing_kit` | `agent_kit_maintainer` → `code_implementer` |
+| `lidb` | unclassified | **candidate_official** | `missing_kit` | `agent_kit_maintainer` → `package_architect` → `code_implementer` |
+| `lic-docs` | unclassified | **candidate_official** | `missing_local_clone` | clone → `agent_kit_maintainer` → `docs_maintainer` → `package_architect` |
+| `net.httpd` | unclassified | **official_mirror** | `missing_kit` | `agent_kit_maintainer` → `ci_maintainer` (verify only) |
+| `li-gui` | candidate_official | candidate_official | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `store.realtime` | unclassified | unclassified | `missing_kit` | `agent_kit_maintainer` → **`package_architect` (P0)** |
+| `sim.additive` | unclassified | unclassified (vertical) | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `sim.automotive` | unclassified | unclassified (vertical) | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `sim.drug_design` | unclassified | unclassified (vertical) | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `sim.robotics` | unclassified | unclassified (vertical) | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `sim.scientific` | unclassified | unclassified (vertical) | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `physics.custom` | unclassified | unclassified | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `physics.runtime` | unclassified | unclassified | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `mmo` | unclassified | unclassified | `missing_kit` | `agent_kit_maintainer` → `package_architect` |
+| `research-findings` | unclassified | unclassified | `missing_kit` | `agent_kit_maintainer` (research exempt CI policy) |
+
+**Agent-kit OK (13):** `benchmarks`, `li-cursor-agents`, `li-demo`, `li-httpd`, `li-language`, `li-net`, `li-std-core`, `li-std-math`, `lic`, `lip`, `lis`, `lit`, `roadmap`
+
+**Onboarding plan (hygiene repos — downstream agents only):**
+
+| Step | Agent | Action | When |
+|------|-------|--------|------|
+| 1 | `agent_kit_maintainer` | `sync_agent_kit` | **Now** — canonical `1.3.5+6018e18bf2ed91f4` |
+| 2 | `ci_maintainer` | `refresh_ci_audit` | After GitHub rate limit reset — do not infer CI gaps from incomplete audit |
+| 3 | `docs_maintainer` | `live_docs_smoke` | After kit PR (where `pages.yml` exists) |
+| 4 | `package_architect` | `placement_review` | `unclassified` + `candidate_official` only |
+| 5 | `code_implementer` | `register_in_catalog` | **After** kit + CI audit green — do not catalog early |
 
 ### Stale catalog entries
 
-*None this cycle.* No archive/delete candidates without human approval.
-
-### Catalog sync (all GitHub repos — reference classification)
-
-Per `classify_new_repo()` in discovery policy (applies when a repo appears in `new_repos`):
-
-| Bucket | Repos |
-|--------|-------|
-| **core_tooling** | `lic`, `li-language`, `lip`, `lit`, `lis`, `benchmarks`, `roadmap`, `li-cursor-agents` |
-| **official_mirror** | `li-net`, `li-httpd`, `li-std-core`, `li-std-math`, `li-demo`, `net.httpd` |
-| **candidate_official** | `li-gui`, `li-local-ci`, `lidb`, `lic-docs` |
-| **unclassified** (domain packages) | `proof-library`, `sim*`, `physics.*`, `render`, `studio`, `studio.ai`, `ui`, `world`, `mmo`, `store.realtime`, `research-findings` |
-
-### Onboarding plan (existing repos — hygiene, not “new repo”)
-
-Downstream agents own isolated clone PRs; onboarder does **not** open PRs or edit sibling working trees.
-
-| Repo / scope | Agent | Action | Notes |
-|--------------|-------|--------|-------|
-| 29 repos (see handoff queue) | `agent_kit_maintainer` | `sync_agent_kit` | 26 `missing_kit`, 3 `drift` |
-| `proof-library` | `agent_kit_maintainer` | `sync_agent_kit` | in known set; kit still missing |
-| `lidb` | `ci_maintainer` | `wp_h0_main_default` | Set default branch `main` before enforcing `ci.yml` on default |
-| `lic-docs` | `ci_maintainer` | `add_ci_yml` | Has `docs.yml` only; not a `new_repos` entry |
-| `lic-docs` | `agent_kit_maintainer` | `sync_agent_kit` | `missing_local_clone` — clone workspace before kit PR |
-| `li-gui` | `agent_kit_maintainer` | `sync_agent_kit` | `missing_local_clone` — clone workspace before kit PR |
-| `research-findings` | — | — | CI-exempt per org policy; optional docs/kit only |
+*None.* `stale_known_repos: []`. No archive/delete candidates this cycle.
 
 ### Handoff queue (control plane)
 
-**New-repo onboarding (`org_repo_onboarding`):** *empty* — `new_repo_entries` is `[]`.
-
-**Explicit rows to enqueue (onboarder recommendation):**
+**`org_repo_onboarding` — P0 (enqueue first):**
 
 | agent_id | repo | action | north_star_fit |
 |----------|------|--------|----------------|
-| `ci_maintainer` | `lidb` | `wp_h0_main_default` | platform / secure — default-branch gate before proof CI |
-| `ci_maintainer` | `lic-docs` | `add_ci_yml` | platform / easy — docs site needs org CI gate |
-| `agent_kit_maintainer` | `lic` | `sync_agent_kit` | drift → align canonical stamp |
-| `agent_kit_maintainer` | `lis` | `sync_agent_kit` | drift |
-| `agent_kit_maintainer` | `roadmap` | `sync_agent_kit` | drift |
-| `agent_kit_maintainer` | `li-demo` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-httpd` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-language` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-local-ci` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-net` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-std-core` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-std-math` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `lidb` | `sync_agent_kit` | missing_kit (after WP-H0) |
-| `agent_kit_maintainer` | `mmo` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `net.httpd` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `physics.custom` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `physics.runtime` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `proof-library` | `sync_agent_kit` | missing_kit — provable surface |
-| `agent_kit_maintainer` | `render` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `research-findings` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `sim` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `sim.additive` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `sim.automotive` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `sim.drug_design` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `sim.robotics` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `sim.scientific` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `store.realtime` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `studio` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `studio.ai` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `ui` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `world` | `sync_agent_kit` | missing_kit |
-| `agent_kit_maintainer` | `li-gui` | `sync_agent_kit` | clone + install kit |
-| `agent_kit_maintainer` | `lic-docs` | `sync_agent_kit` | clone + install kit (after CI) |
+| `agent_kit_maintainer` | `studio` | `sync_agent_kit` | easy / PH-GD |
+| `agent_kit_maintainer` | `studio.ai` | `sync_agent_kit` | ai-first / PH-GD |
+| `agent_kit_maintainer` | `ui` | `sync_agent_kit` | easy |
+| `agent_kit_maintainer` | `sim` | `sync_agent_kit` | scientific computing / PH-SIM |
+| `agent_kit_maintainer` | `render` | `sync_agent_kit` | graphics / PH-GD |
+| `agent_kit_maintainer` | `proof-library` | `sync_agent_kit` | provable |
+| `agent_kit_maintainer` | `lidb` | `sync_agent_kit` | secure / PH-DB |
+| `agent_kit_maintainer` | `lic-docs` | `sync_agent_kit` | easy — **clone first** |
+| `agent_kit_maintainer` | `net.httpd` | `sync_agent_kit` | secure / server mirror |
+| `agent_kit_maintainer` | `li-local-ci` | `sync_agent_kit` | platform / CI tooling |
+| `package_architect` | `lidb` | `placement_review` | secure — official PKG vs experimental |
+| `package_architect` | `store.realtime` | `placement_review` | secure — realtime data plane |
+| `package_architect` | `lic-docs` | `placement_review` | easy — docs vs lic monorepo split |
+| `ci_maintainer` | `benchmarks` | `refresh_ci_audit` | re-run `org-repo-ci-audit` after rate limit |
 
-**If a repo appears in `new_repos` next cycle**, enqueue per `onboarding_steps_for_repo`:
+**P1 — domain verticals + GUI:**
 
-| agent_id | action |
-|----------|--------|
-| `ci_maintainer` | `add_ci_yml` |
-| `agent_kit_maintainer` | `sync_agent_kit` |
-| `docs_maintainer` | `live_docs_smoke` |
-| `package_architect` | `placement_review` (if `unclassified` or `candidate_official`) |
-| `code_implementer` | `register_in_catalog` (after CI + kit) |
+| agent_id | repo | action |
+|----------|------|--------|
+| `agent_kit_maintainer` | `world` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `li-gui` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `sim.robotics` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `sim.scientific` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `sim.additive` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `sim.automotive` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `sim.drug_design` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `physics.runtime` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `physics.custom` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `mmo` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `store.realtime` | `sync_agent_kit` |
+| `agent_kit_maintainer` | `research-findings` | `sync_agent_kit` |
+
+**After kit + CI audit — catalog (blocked until gates green):**
+
+| agent_id | repo | action |
+|----------|------|--------|
+| `code_implementer` | `studio` | `register_in_catalog` |
+| `code_implementer` | `ui` | `register_in_catalog` |
+| `code_implementer` | `sim` | `register_in_catalog` |
+| `code_implementer` | `render` | `register_in_catalog` |
+| `code_implementer` | `proof-library` | `register_in_catalog` |
+| `docs_maintainer` | `studio` | `live_docs_smoke` |
+
+| agent_id | repo | action |
+|----------|------|--------|
+| `org_repo_onboarder` | `benchmarks` | `embed_discovery_in_briefing` |
+
+Downstream agents own isolated-clone PRs — onboarder does **not** open PRs or edit sibling trees.
 
 ## Recommended issues/PRs
 
 | Repo | Title (suggested) | Labels |
 |------|-------------------|--------|
-| `lidb` | WP-H0: set default branch to `main` before org CI gate | `platform`, `ci` |
-| `lic-docs` | chore(ci): add required `ci.yml` alongside docs workflow | `platform`, `ci`, `docs` |
-| `proof-library` | chore(agent-kit): install canonical cursor rules | `agent-kit`, `chore`, `provable` |
-| `li-demo` | chore(agent-kit): sync roadmap cursor policy | `agent-kit`, `chore` |
-| `lic` | chore(agent-kit): align cursor stamp to canonical | `agent-kit`, `drift` |
-| `studio` | chore(agent-kit): install canonical cursor rules | `agent-kit`, `chore` |
-
-*(Open agent-kit PRs with failing CI — route to `bug_fixer` / `ci_maintainer`, not onboarder self-merge.)*
+| `studio` | chore(agent-kit): sync canonical cursor rules `1.3.5` | `agent-kit`, `PH-GD` |
+| `studio.ai` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `ai-first` |
+| `ui` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `platform` |
+| `sim` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `PH-SIM` |
+| `lidb` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `secure` |
+| `lic-docs` | chore(agent-kit): sync canonical cursor rules (initial clone) | `agent-kit`, `docs` |
+| `net.httpd` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `server` |
+| `proof-library` | chore(agent-kit): sync canonical cursor rules | `agent-kit`, `provable` |
+| `benchmarks` | chore(preflight): embed `org_new_repos_discovery` in agent briefing | `platform` |
+| `benchmarks` | chore(ci-audit): re-run org-repo-ci-audit after GH rate limit | `platform`, `ci` |
 
 ## Deferred
 
-- **Catalog pruning:** no stale entries; no archive/delete without human sign-off.
-- **New repo catalog registration:** blocked until a repo appears in `new_repos` with CI + kit path complete.
-- **Merge program / pr_branch_hygiene:** out of onboarder scope this run.
-- **`proof-library` catalog row:** defer until agent-kit PR lands (onboarder does not register catalog directly).
-- **`docs_maintainer`:** 10 repos without live Pages — separate heap task, not onboarder registration.
-- **Briefing preflight hook:** wire `discover-new-org-repos.py` into `agent-briefing.py` so `org_new_repos_discovery` is embedded in `agent-briefing.json`.
+- **Net-new repo onboarding** — none (`new_count=0`).
+- **Catalog registration** for hygiene repos — blocked until agent-kit stamp + CI audit refresh.
+- **`ci_maintainer` `add_ci_yml`** — not indicated; ecosystem audit reports `repos_missing_ci_main=0`.
+- **Stale catalog pruning** — none.
+- **Bulk `sim.*` / `physics.*` placement** — defer `package_architect` until P0 product repos kit-complete.
+- **CI audit conclusions** while rate-limited — defer until `org-repo-ci-audit` re-run succeeds.
+- **Merge program / PR opener** — out of scope (`--skip-slow` briefing).
+- **Self-merge / sibling-tree edits** — explicitly out of scope.
