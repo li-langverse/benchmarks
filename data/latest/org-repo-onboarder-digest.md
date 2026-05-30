@@ -1,6 +1,6 @@
-# Org repo onboarder digest — 2026-05-30T14:51Z
+# Org repo onboarder digest — 2026-05-30T15:35Z
 
-**Agent:** `org_repo_onboarder` · **Source:** proactive · discovery `2026-05-30T14:51Z` · CI audit `2026-05-30T14:32Z` · agent-kit audit `2026-05-30T14:46Z` · briefing `2026-05-30T14:02Z`
+**Agent:** `org_repo_onboarder` · **Source:** proactive · discovery `2026-05-30T15:35Z` · CI audit `2026-05-30T15:26Z` · agent-kit audit `2026-05-30T15:34Z` · briefing `2026-05-30T14:02Z`
 
 ## Executive summary
 
