@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T14:06:00Z",
+  "generated_at": "2026-05-30T14:16:00Z",
   "agent_id": "docs_ui_tester",
   "briefing_generated_at": "2026-05-30T14:02Z",
   "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ui.md",
@@ -37,7 +37,7 @@
       "problem": "Playwright axe on home desktop: 12 color-contrast + 5 link-in-text-block serious violations",
       "evidence": [
         "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json axe array",
-        "Proactive run 2026-05-30T14:04Z — tab chrome passes 21:1 but body content fails"
+        "Proactive run 2026-05-30T14:16Z — tab chrome passes 21:1 but body content fails"
       ],
       "sota_reference": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html",
       "remediation_checklist": [
