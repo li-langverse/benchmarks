@@ -1,32 +1,32 @@
 {
-  "generated_at": "2026-05-30T13:58:27Z",
+  "generated_at": "2026-05-30T12:20:21Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 78.2,
+  "overall_score": 70.8,
   "grade": "C",
-  "unattended_safe": true,
+  "unattended_safe": false,
   "dimensions": {
     "briefing_health": {
-      "score": 85.0,
+      "score": 77.0,
       "weight": 0.15,
       "signals": {
         "briefing_present": true,
-        "preflight_failed": 0,
+        "preflight_failed": 1,
         "preflight_skipped": 8,
-        "recommended_agent_count": 10
+        "recommended_agent_count": 12
       },
-      "finding_count": 1
+      "finding_count": 2
     },
     "ecosystem_posture": {
-      "score": 100.0,
+      "score": 75.0,
       "weight": 0.25,
       "signals": {
         "audit_present": true,
         "open_prs": 0,
         "failed_prs": 0,
         "repos_missing_ci_main": 0,
-        "benchmark_red_count": 0
+        "benchmark_red_count": 6
       },
-      "finding_count": 0
+      "finding_count": 1
     },
     "goal_directed_health": {
       "score": 70.0,
@@ -46,15 +46,15 @@
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 32,
+        "terminal_runs": 22,
         "error_count": 1,
-        "incomplete_count": 27,
-        "running_count": 88,
-        "error_rate": 0.0312,
-        "incomplete_rate": 0.8438,
+        "incomplete_count": 8,
+        "running_count": 98,
+        "error_rate": 0.0455,
+        "incomplete_rate": 0.3636,
         "top_error_agents": [
           {
-            "agent": "gui_ui_tester",
+            "agent": "code_implementer",
             "count": 1
           }
         ]
@@ -78,6 +78,12 @@
   },
   "findings": [
     {
+      "id": "benchmark-red-rows",
+      "severity": "high",
+      "message": "6 red benchmark row(s)",
+      "evidence": "ecosystem-audit.benchmarks.red"
+    },
+    {
       "id": "goal-runners-stopped",
       "severity": "high",
       "message": "6 goal-directed runner(s) not running",
@@ -90,6 +96,12 @@
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
+      "id": "preflight-failures",
+      "severity": "medium",
+      "message": "1 preflight script(s) exited non-zero",
+      "evidence": "agent-briefing.preflight_runs"
+    },
+    {
       "id": "preflight-skipped",
       "severity": "medium",
       "message": "8 preflight scripts skipped (--skip-slow)",
@@ -98,13 +110,13 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 84%",
+      "message": "Incomplete rate 36%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "88 runs still marked running (possible stuck SDK)",
+      "message": "98 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -124,16 +136,16 @@
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
     {
+      "agent": "plan_verifier",
+      "reason": "briefing_health weak \u2014 refresh plan audit preflight"
+    },
+    {
       "agent": "proof_gap_researcher",
       "reason": "briefing P0: swarm: research goal provability_holes eligible (priority 9)"
     },
     {
       "agent": "workspace_sweeper",
-      "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
-    },
-    {
-      "agent": "plan_verifier",
-      "reason": "briefing P0: plan-completion-audit findings"
+      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
