@@ -54,12 +54,24 @@ def gh_json(args: list[str]) -> list[dict] | dict | None:
     return json.loads(proc.stdout)
 
 
+def list_github_repos_rest() -> list[str] | None:
+    """REST org listing — avoids GraphQL rate limits on `gh repo list`."""
+    rows = gh_json(["api", f"orgs/{ORG}/repos", "--paginate"])
+    if not isinstance(rows, list):
+        return None
+    names = sorted(r["name"] for r in rows if isinstance(r, dict) and r.get("name") and not r.get("archived"))
+    return names or None
+
+
 def list_github_repos() -> tuple[list[str], str]:
     rows = gh_json(["repo", "list", ORG, "--limit", "100", "--json", "name,isArchived"])
-    if not rows:
-        return CORE_AGENT_KIT_REPOS, "fallback_core_list"
-    names = sorted(r["name"] for r in rows if not r.get("isArchived"))
-    return names, "gh_repo_list"
+    if rows:
+        names = sorted(r["name"] for r in rows if not r.get("isArchived"))
+        return names, "gh_repo_list"
+    rest = list_github_repos_rest()
+    if rest:
+        return rest, "gh_api_orgs_repos"
+    return CORE_AGENT_KIT_REPOS, "fallback_core_list"
 
 
 def load_json(path: Path) -> dict | list | None:
