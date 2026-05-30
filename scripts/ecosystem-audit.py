@@ -42,6 +42,20 @@ LIVE_DOCS = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
 }
+
+# Org package mirrors + compiler hub — HEAD-checked each audit run
+HANDBOOK_PAGES: dict[str, str] = {
+    "lic": "https://li-langverse.github.io/lic/",
+    "lip": "https://li-langverse.github.io/lip/",
+    "lit": "https://li-langverse.github.io/lit/",
+    "lis": "https://li-langverse.github.io/lis/",
+    "li-net": "https://li-langverse.github.io/li-net/",
+    "li-httpd": "https://li-langverse.github.io/li-httpd/",
+    "li-std-core": "https://li-langverse.github.io/li-std-core/",
+    "li-std-math": "https://li-langverse.github.io/li-std-math/",
+    "li-demo": "https://li-langverse.github.io/li-demo/",
+    "roadmap": "https://li-langverse.github.io/roadmap/development-overview/",
+}
 VISION = {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
     "benchmark_goal": "Li ≤1.2× cpp (tier-1/2); beat HPC SOTA everywhere — PH-5b, PH-7e pure-Li codegen",
@@ -75,6 +89,31 @@ def classify_ci(rollup: list[dict] | None) -> str:
     return "pass"
 
 
+def _has_ci_on_main_graphql(repo: str) -> bool | None:
+    """GraphQL fallback when REST contents API is rate-limited."""
+    q = (
+        "query($owner:String!,$name:String!) {"
+        " repository(owner:$owner,name:$name) {"
+        ' ci: object(expression:"main:.github/workflows/ci.yml") { ... on Blob { oid } }'
+        ' ci2: object(expression:"main:.github/workflows/ci.yaml") { ... on Blob { oid } }'
+        " } }"
+    )
+    proc = subprocess.run(
+        ["gh", "api", "graphql", "-f", f"query={q}", "-f", "owner=li-langverse", "-f", f"name={repo}"],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if proc.returncode != 0 or not proc.stdout.strip():
+        return None
+    try:
+        data = json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        return None
+    repo_node = (data.get("data") or {}).get("repository") or {}
+    return bool((repo_node.get("ci") or {}).get("oid") or (repo_node.get("ci2") or {}).get("oid"))
+
+
 def has_ci_on_main(repo: str) -> bool:
     proc = subprocess.run(
         [
@@ -89,6 +128,11 @@ def has_ci_on_main(repo: str) -> bool:
         check=False,
     )
     if proc.returncode != 0:
+        err = (proc.stderr or proc.stdout or "").lower()
+        if "rate limit" in err:
+            gql = _has_ci_on_main_graphql(repo)
+            if gql is not None:
+                return gql
         return False
     names = [ln.strip() for ln in proc.stdout.splitlines() if ln.strip()]
     return any(n.endswith(".yml") or n.endswith(".yaml") for n in names)
@@ -182,12 +226,10 @@ def main() -> int:
     ready = [p for p in prs if p["ready"]]
 
     missing_ci = [r for r in ORG_REPOS if not has_ci_on_main(r)]
-    missing_docs = [
-        r
-        for r in ORG_REPOS
-        if r not in LIVE_DOCS and r in ("lic", "lip", "lit", "lis", "roadmap", "li-net", "li-httpd", "li-std-core", "li-std-math", "li-demo")
-    ]
-    live_docs_missing = [r for r, url in LIVE_DOCS.items() if not head_ok(url)]
+    all_live_urls = {**LIVE_DOCS, **HANDBOOK_PAGES}
+    missing_docs = [r for r, url in HANDBOOK_PAGES.items() if not head_ok(url)]
+    live_docs_missing = [r for r, url in all_live_urls.items() if not head_ok(url)]
+    live_docs_ok = [r for r, url in all_live_urls.items() if head_ok(url)]
 
     summary = load_benchmark_summary()
     bench = benchmark_posture(summary) if summary else {"error": "no summary.json — run ingest"}
@@ -252,6 +294,7 @@ def main() -> int:
             "ready_prs": len(ready),
             "repos_missing_ci_main": len(missing_ci),
             "repos_without_live_pages": len(missing_docs),
+            "repos_with_live_pages": len(live_docs_ok),
         },
         "failed_prs": failed,
         "ready_prs": ready,

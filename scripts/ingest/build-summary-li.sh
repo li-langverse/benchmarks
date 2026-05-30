@@ -3,6 +3,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+export LI_BENCHMARKS_ROOT="$ROOT"
 INGEST_DIR="$(cd "$(dirname "$0")" && pwd)"
 LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
 export LI_REPO_ROOT="${LI_REPO_ROOT:-$LIC_ROOT}"

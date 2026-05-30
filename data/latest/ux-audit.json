@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-05-30T11:01:01.653016+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "surface": "docs",
+      "surface_class": "docs",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "first_reading_path",
+          "steps": [
+            "home",
+            "language-design",
+            "verification"
+          ],
+          "completed": true,
+          "step_count": 3
+        },
+        {
+          "id": "mobile_nav",
+          "steps": [
+            "home_mobile",
+            "nav_drawer"
+          ],
+          "completed": true,
+          "step_count": 2
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [],
+      "mode": "static_site",
+      "rubric_min": 0.7
+    }
+  ]
+}

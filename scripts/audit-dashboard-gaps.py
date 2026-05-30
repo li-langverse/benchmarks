@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""Audit data/latest/summary.json for dashboard completeness gaps (P0 / P1).
+
+P0: missing size, unknown validity/status without reason, missing SOTA, missing macOS/Windows
+     rows per benchmark base, harness-only perf for tier<=2.
+"""
+from __future__ import annotations
+
+import json
+import sys
+from collections import Counter, defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SUMMARY = ROOT / "data/latest/summary.json"
+OUT = ROOT / "data/latest/dashboard-gap-report.json"
+REQUIRED_OS = ("linux", "macos", "windows")
+VALID_STATUSES = frozenset({"pass", "fail", "skip", "advisory"})
+VALID_PERF_STATUSES = frozenset({"green", "yellow", "red", "skip", "pending"})
+ALLOWED_PENDING_SIZE = frozenset({"algo registry stub", "harness pending"})
+
+
+def load_summary(path: Path) -> dict:
+    if not path.is_file():
+        raise SystemExit(f"audit-dashboard-gaps: missing {path}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def normalize_audit_os(raw: str | None) -> str | None:
+    if not raw:
+        return None
+    os = raw.strip().lower()
+    if os in ("darwin", "osx"):
+        return "macos"
+    return os
+
+
+def collect_charts(summary: dict) -> list[dict]:
+    charts: list[dict] = []
+    for _cat, cdata in (summary.get("categories") or {}).items():
+        charts.extend(cdata.get("charts") or [])
+    return charts
+
+
+def audit(summary: dict) -> dict:
+    charts = collect_charts(summary)
+    rows = summary.get("rows") or []
+
+    by_base: dict[str, list[dict]] = defaultdict(list)
+    for ch in charts:
+        base = ch.get("base_id") or ch.get("id") or ""
+        by_base[base].append(ch)
+
+    p0: list[dict] = []
+    p1: list[dict] = []
+    counts = Counter()
+
+    def add(severity: str, code: str, base: str, detail: str, chart_id: str | None = None) -> None:
+        entry = {"severity": severity, "code": code, "base_id": base, "detail": detail}
+        if chart_id:
+            entry["chart_id"] = chart_id
+        (p0 if severity == "P0" else p1).append(entry)
+        counts[code] += 1
+
+    for base, group in sorted(by_base.items()):
+        oss = {normalize_audit_os(c.get("os")) for c in group if c.get("os")}
+        oss.discard(None)
+        missing_os = [o for o in REQUIRED_OS if o not in oss]
+        if missing_os:
+            add("P0", "missing_os", base, f"missing platforms: {missing_os}; have {sorted(oss)}")
+
+        for ch in group:
+            cid = ch.get("id") or base
+            sl = ch.get("size_label")
+            st = ch.get("status")
+            vs = ch.get("validity_status")
+            is_skip = st == "skip" or vs == "skip"
+
+            if sl in (None, "", "-") and not is_skip:
+                add("P0", "bad_size_label", base, f"size_label={sl!r}", cid)
+            elif sl == "harness pending" and not is_skip:
+                add("P0", "bad_size_label", base, f"size_label={sl!r}", cid)
+            elif sl == "pending" and not is_skip:
+                add("P0", "bad_size_label", base, f"size_label={sl!r}", cid)
+
+            if ch.get("problem_size") is None and sl in (None, "", "-", "harness pending", "pending"):
+                if not is_skip:
+                    add("P1", "problem_size_null", base, "problem_size is null", cid)
+
+            if vs in (None, "", "unknown"):
+                add("P0", "validity_unknown", base, f"validity_status={vs!r}", cid)
+
+            if st in (None, "", "unknown"):
+                add("P0", "status_unknown", base, f"status={st!r}", cid)
+
+            if not ch.get("sota_lang") and ch.get("sota_value") is None:
+                if st not in ("unknown", "skip", "pending") and not ch.get("pending"):
+                    if vs not in ("skip", "advisory"):
+                        add("P0", "sota_empty", base, "no sota_lang/sota_value", cid)
+
+            tier = ch.get("tier")
+            if tier is None:
+                for r in rows:
+                    if r.get("benchmark") == base or r.get("benchmark") == cid:
+                        tier = r.get("tier")
+                        break
+            series = ch.get("series") or []
+            if tier in (0, 1, 2, "0", "1", "2") and any(
+                s.get("lang") == "harness" for s in series
+            ):
+                if st != "skip":
+                    add("P0", "harness_lang_tier12", base, "tier<=2 chart has lang=harness", cid)
+
+            if ch.get("pending") and st not in ("skip", "pending"):
+                add("P1", "chart_pending", base, "chart marked pending", cid)
+
+    report = {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "summary_path": str(SUMMARY.relative_to(ROOT)),
+        "benchmark_bases": len(by_base),
+        "chart_rows": len(charts),
+        "table_rows": len(rows),
+        "p0_count": len(p0),
+        "p1_count": len(p1),
+        "issue_counts": dict(counts),
+        "p0": p0[:500],
+        "p1": p1[:200],
+    }
+    return report
+
+
+def main() -> int:
+    summary = load_summary(SUMMARY)
+    report = audit(summary)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+
+    print(
+        f"audit-dashboard-gaps: bases={report['benchmark_bases']} "
+        f"P0={report['p0_count']} P1={report['p1_count']}"
+    )
+    print(f"  wrote {OUT.relative_to(ROOT)}")
+    for code, n in sorted(report["issue_counts"].items(), key=lambda x: -x[1])[:12]:
+        print(f"  {code}: {n}")
+
+    return 1 if report["p0_count"] else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

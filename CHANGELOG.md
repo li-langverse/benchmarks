@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Changed
+
+- **Ecosystem audit:** `ecosystem-audit.py` HEAD-checks org handbook Pages URLs (`HANDBOOK_PAGES`) instead of a static missing-docs list; reports `repos_with_live_pages`.
+
 ### Fixed
 
 - **Tier-1 matmul workloads:** sync Li `matmul_naive` / `matmul_blocked` drivers with lic IKJ / blocked IKJ (pending CSV re-ingest) — [2026-05-29-tier1-matmul-dashboard-sprint.md](docs/release-notes/2026-05-29-tier1-matmul-dashboard-sprint.md).
@@ -23,7 +27,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- **Benchmark nightly GHA:** daily `benchmark-nightly.yml` (Linux full suite, macOS/Windows core) commits `data/latest/summary.json` — [2026-05-27-benchmark-nightly-gha.md](docs/release-notes/2026-05-27-benchmark-nightly-gha.md).
+- **Dashboard completeness sprint (Phase A):** catalog `[reporting].platforms`, ingest macOS/Windows skip charts, audit gap script — [2026-05-29-dashboard-completeness-sprint.md](docs/release-notes/2026-05-29-dashboard-completeness-sprint.md).
+- **`refresh-dashboard-completeness.py`:** offline summary refresh for multi-OS skip charts; committed `summary.json` P0=0; CI runs `audit-dashboard-gaps.py` on PRs.
+
 
 ### Changed
 

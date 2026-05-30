@@ -19,6 +19,7 @@ import {
 import { releaseFreshnessBanner } from "@/lib/release-freshness";
 import { COVERAGE_GAP_DOC, coverageHonesty, splitTierCounts } from "@/lib/coverage";
 import { loadSummary } from "@/lib/summary";
+import { loadLigGpuMatrix } from "@/lib/lig-gpu-matrix";
 import { tier1VerifyStats } from "@/lib/tier1-verify";
 import { pillarPerfCounts } from "@/lib/validity";
 
@@ -46,6 +47,12 @@ export default function HomePage() {
   const freshness = packageFreshnessRows(releaseIndex, summary.generated_at);
   const releaseBanner = releaseFreshnessBanner(releaseIndex, summary.generated_at);
   const tier1Stats = tier1VerifyStats(summary.rows);
+  let gpuMatrix: ReturnType<typeof loadLigGpuMatrix> | null = null;
+  try {
+    gpuMatrix = loadLigGpuMatrix();
+  } catch {
+    gpuMatrix = null;
+  }
 
   return (
     <main className="bento">
@@ -120,13 +127,32 @@ export default function HomePage() {
           ))}
         </p>
         <p className="honesty-links">
-          <Link href="/proofs/">Proof coverage map</Link>
+          <a href="https://li-langverse.github.io/proof-library/">Proof library</a>
+          {" · "}
+          <Link href="/proofs/">Proofs ≠ bench</Link>
           {" · "}
           <a href={HONESTY_DOC_URL} target="_blank" rel="noopener noreferrer">
             Benchmark honesty policy
           </a>
         </p>
       </section>
+
+      {gpuMatrix ? (
+        <section className="gpu-donate-banner bento-full" aria-label="GPU chip matrix">
+          <div>
+            <strong>{String(gpuMatrix.summary.contribution_count)} donated chip(s)</strong>
+            {Number(gpuMatrix.summary.open_slot_count) > 0 ? (
+              <>
+                {" "}
+                · {String(gpuMatrix.summary.open_slot_count)} open slots (M1, RTX 3090, …)
+              </>
+            ) : null}
+            {" "}
+            — donate your hardware for the cross-vendor matrix.
+          </div>
+          <Link href="/gpu-matrix/">GPU matrix →</Link>
+        </section>
+      ) : null}
 
       <Tier1VerifyStrip stats={tier1Stats} />
       <CatalogAuditStrip />

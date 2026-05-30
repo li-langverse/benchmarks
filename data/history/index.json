@@ -65,195 +65,165 @@
       "path": "data/history/2026-05-29T065044Z.json",
       "lic_sha": "",
       "benchmarks_sha": ""
+    },
+    {
+      "at": "2026-05-30T09:25:06.910563+00:00",
+      "path": "data/history/2026-05-30T092506Z.json",
+      "lic_sha": "11ef5e370210a1bb4f08b128242d336c2b7a89ab",
+      "benchmarks_sha": "be26474518748fe3feec85dcb9636c6295701524"
+    },
+    {
+      "at": "2026-05-30T09:57:30.576285+00:00",
+      "path": "data/history/2026-05-30T095730Z.json",
+      "lic_sha": "ae8f500f9f85f7f75901f51981f91c62987f43ce",
+      "benchmarks_sha": "c1dae23102fdfdf777fa206bf6e7547b167ffad7"
+    },
+    {
+      "at": "2026-05-30T10:00:49.879827+00:00",
+      "path": "data/history/2026-05-30T100049Z.json",
+      "lic_sha": "c18c48e6050a768250e6e70b0fa434d0503465bd",
+      "benchmarks_sha": "83438d6998601cc0eb148901d57d95ef9916f577"
     }
   ],
   "latest_deltas": [
     {
+      "benchmark": "tier0_stability",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fft_1d_fixed",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
       "benchmark": "horner_pure_li",
-      "field": "ratio_vs_cpp",
-      "from": 0.4444,
-      "to": 0.75,
-      "delta": 0.3056,
-      "improved": false
+      "field": "status",
+      "from": "skip",
+      "to": "green"
     },
     {
       "benchmark": "matmul_blocked",
-      "field": "ratio_vs_cpp",
-      "from": 1.5347,
-      "to": 1.549,
-      "delta": 0.0143,
-      "improved": false
+      "field": "status",
+      "from": "skip",
+      "to": "green"
     },
     {
       "benchmark": "matmul_naive",
-      "field": "ratio_vs_cpp",
-      "from": 1.4,
-      "to": 1.3333,
-      "delta": -0.0667,
-      "improved": true
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_cg",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_cholesky",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_eig_symmetric",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_fft_r2c",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_gmres",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_integ_euler",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_integ_rk4",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_integ_semi_implicit",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_integ_symplectic",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_integ_verlet",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_opt_bfgs",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_opt_line_search",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_quadrature_gauss",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_rng_pcg",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_root_newton",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
+    },
+    {
+      "benchmark": "num_sparse_mv",
+      "field": "status",
+      "from": "skip",
+      "to": "green"
     },
     {
       "benchmark": "reduce_sum",
-      "field": "ratio_vs_cpp",
-      "from": 0.9776,
-      "to": 1.0234,
-      "delta": 0.0458,
-      "improved": false
+      "field": "status",
+      "from": "skip",
+      "to": "green"
     },
     {
       "benchmark": "simd_dot",
-      "field": "ratio_vs_cpp",
-      "from": 0.0155,
-      "to": 0.8807,
-      "delta": 0.8652,
-      "improved": false
-    },
-    {
-      "benchmark": "advection_diffusion_2d",
-      "field": "ratio_vs_cpp",
-      "from": 1.1109,
-      "to": 1.0833,
-      "delta": -0.0276,
-      "improved": true
-    },
-    {
-      "benchmark": "cloth_swing",
       "field": "status",
-      "from": "unknown",
+      "from": "skip",
       "to": "green"
-    },
-    {
-      "benchmark": "combustion_passive",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
-    },
-    {
-      "benchmark": "double_pendulum",
-      "field": "ratio_vs_cpp",
-      "from": 0.9997,
-      "to": 1.0544,
-      "delta": 0.0547,
-      "improved": false
-    },
-    {
-      "benchmark": "euler_fluid_2d",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
-    },
-    {
-      "benchmark": "harmonic_oscillator_chain",
-      "field": "status",
-      "from": "yellow",
-      "to": "green"
-    },
-    {
-      "benchmark": "harmonic_oscillator_chain",
-      "field": "ratio_vs_cpp",
-      "from": 1.2151,
-      "to": 0.8594,
-      "delta": -0.3557,
-      "improved": true
-    },
-    {
-      "benchmark": "heat_equation_2d",
-      "field": "ratio_vs_cpp",
-      "from": 0.9592,
-      "to": 1.0247,
-      "delta": 0.0655,
-      "improved": false
-    },
-    {
-      "benchmark": "md_lennard_jones",
-      "field": "ratio_vs_cpp",
-      "from": 0.001,
-      "to": 0.9805,
-      "delta": 0.9795,
-      "improved": false
-    },
-    {
-      "benchmark": "nbody_gravity",
-      "field": "ratio_vs_cpp",
-      "from": 0.9995,
-      "to": 0.9218,
-      "delta": -0.0777,
-      "improved": true
-    },
-    {
-      "benchmark": "rigid_body_stack",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
-    },
-    {
-      "benchmark": "sph_dam_break_2d",
-      "field": "ratio_vs_cpp",
-      "from": 0.995,
-      "to": 1.0714,
-      "delta": 0.0764,
-      "improved": false
-    },
-    {
-      "benchmark": "three_body",
-      "field": "ratio_vs_cpp",
-      "from": 0.998,
-      "to": 1.1053,
-      "delta": 0.1073,
-      "improved": false
-    },
-    {
-      "benchmark": "wave_equation_1d",
-      "field": "ratio_vs_cpp",
-      "from": 1.001,
-      "to": 1.0879,
-      "delta": 0.0869,
-      "improved": false
-    },
-    {
-      "benchmark": "wave_equation_2d",
-      "field": "ratio_vs_cpp",
-      "from": 0.9993,
-      "to": 1.0588,
-      "delta": 0.0595,
-      "improved": false
-    },
-    {
-      "benchmark": "wind_field_bc",
-      "field": "status",
-      "from": "unknown",
-      "to": "green"
-    },
-    {
-      "benchmark": "https_static",
-      "field": "status",
-      "from": "green",
-      "to": "unknown"
-    },
-    {
-      "benchmark": "keepalive_pipelining",
-      "field": "status",
-      "from": "green",
-      "to": "unknown"
-    },
-    {
-      "benchmark": "rate_limit_429",
-      "field": "status",
-      "from": "green",
-      "to": "unknown"
-    },
-    {
-      "benchmark": "static_large",
-      "field": "status",
-      "from": "green",
-      "to": "unknown"
-    },
-    {
-      "benchmark": "static_small",
-      "field": "status",
-      "from": "green",
-      "to": "unknown"
     }
   ],
-  "updated_at": "2026-05-29T06:50:44.007842+00:00"
+  "updated_at": "2026-05-30T10:00:49.958616+00:00"
 }
