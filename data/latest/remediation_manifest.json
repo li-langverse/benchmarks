@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T14:42:00Z",
+  "generated_at": "2026-05-30T15:01:00Z",
   "agent_id": "gui_ui_tester",
   "briefing_generated_at": "2026-05-30T14:02Z",
   "digest_path": "docs/ecosystem/ux-digests/2026-05-30-gui-ui.md",
@@ -9,20 +9,22 @@
       "kind": "ui",
       "target_id": "agents-dashboard",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] dashboard Playwright e2e blocked by live-stream-feed TypeScript build",
-      "problem": "npm run test:playwright:mock fails — live-stream-feed.tsx:77 Property 'path' does not exist on type '{}'",
+      "title": "[ui-audit] dashboard Playwright e2e — live-stream delta assertion",
+      "problem": "Build unblocked; mock e2e 1/2 pass — failing test expects text-delta label in live stream feed",
       "evidence": [
-        "Proactive run 2026-05-30T14:41Z — Playwright webServer exit code 1",
-        "data/latest-gui-ui-run/ui-audit.json agents-dashboard status=skip"
+        "2026-05-30T15:00Z — npm run build green; test:playwright:mock 1 passed, 1 failed",
+        "live-stream-feed.tsx TS fixed; RuntimePayload.sdk_slots_in_use added"
       ],
       "sota_reference": "https://playwright.dev/docs/test-webserver",
       "remediation_checklist": [
-        "[ ] File: dashboard-ui/components/activity/live-stream-feed.tsx — type tool step message args",
-        "[ ] Test: npm run test:playwright:mock → green",
+        "[x] File: dashboard-ui/components/activity/live-stream-feed.tsx — type tool step message args",
+        "[x] Test: npm run build → green",
+        "[ ] Fix e2e/live-stream-mock.spec.ts text-delta assertion for live delta rows",
+        "[ ] Test: npm run test:playwright:mock → all green",
         "[ ] Acceptance: agents-dashboard reachable at :3099 with axe + viewport matrix"
       ],
       "suggested_implementer": "code_implementer",
-      "priority": "P0",
+      "priority": "P1",
       "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
       "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/31"
     },
@@ -98,29 +100,6 @@
     {
       "surface": "gui",
       "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] agents-dashboard: align globals.css with Li dark tokens + focus-visible",
-      "problem": "Dashboard uses #0f1419/#6eb5ff vs Li canonical #0d1117/#58a6ff; no :focus-visible rules",
-      "evidence": [
-        "dashboard-ui/app/globals.css — no focus-visible selector",
-        "Fixtures gui-gen-demo.html and world-studio-workspace.html use #0d1117"
-      ],
-      "sota_reference": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
-      "remediation_checklist": [
-        "[ ] File: dashboard-ui/app/globals.css — align --bg/--accent to Li tokens",
-        "[ ] Add :focus-visible ring on nav, buttons, form fields",
-        "[ ] Test: axe focus-order / color-contrast on dashboard home",
-        "[ ] Acceptance: tokens_deviation empty; contrast_failures empty on live dashboard"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/40"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
       "target_id": "world-studio-native",
       "repo": "lic",
       "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main for ux-harness native GUI",
@@ -147,10 +126,10 @@
       "repo": "li-cursor-agents",
       "surface": "gui",
       "issue": 31,
-      "title": "Fix live-stream-feed.tsx TS for Playwright mock e2e",
-      "remediation_summary": "Unblock dashboard Playwright snapshots and axe audit",
-      "files_hint": ["dashboard-ui/components/activity/live-stream-feed.tsx"],
-      "acceptance": ["npm run test:playwright:mock green", "agents-dashboard axe run possible"],
+      "title": "Fix live-stream mock e2e delta assertion",
+      "remediation_summary": "TS build fixed; remaining Playwright delta label assertion",
+      "files_hint": ["dashboard-ui/e2e/live-stream-mock.spec.ts", "dashboard-ui/lib/live-stream-display.ts"],
+      "acceptance": ["npm run test:playwright:mock all green", "agents-dashboard axe run possible"],
       "agent_source": "gui_ui_tester",
       "journeys": ["agents_list_empty", "live_stream"],
       "sources": ["ui_audit"]
