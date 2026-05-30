@@ -34,7 +34,15 @@ None.
 
 | Repo | Workspace | Root cause |
 |------|-----------|------------|
-| all 9 | `…/agent-kit-1780134265177/repo` | GraphQL rate limit on `gh api` / `gh pr list`; branches and PRs already present from prior rollout |
+| all 9 | `…/agent-kit-1780135115060/repo` | GraphQL rate limit (0 remaining) on `gh repo clone` / `gh pr create`; empty workspace dirs |
+| all 9 | `…/agent-kit-1780134265177/repo` | Same GraphQL quota; branches and PRs already present from prior rollout |
+
+## Verification pass (`1780135115060`)
+
+- Re-ran `ensure-org-agent-kit.py --local-only` — still 9 needing sync (expected: PRs not merged).
+- Verified all 8 sync branches via `git clone` + REST pulls API: stamp `1.3.5+6018e18bf2ed91f4`, required rules 3/3, `AGENTS.md` + `scripts/sync-agent-kit.sh` present.
+- **`roadmap`**: `main` at canonical stamp; [PR #25](https://github.com/li-langverse/roadmap/pull/25) merged 2026-05-30; sync branch has no delta vs `main` (422 on PR create).
+- **Install failures:** none.
 
 ## Follow-up
 
