@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-05-30T07:37:08Z",
+  "generated_at": "2026-05-30T08:06:03Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 70.8,
-  "grade": "C",
+  "overall_score": 67.8,
+  "grade": "D",
   "unattended_safe": false,
   "dimensions": {
     "briefing_health": {
-      "score": 84.0,
+      "score": 77.0,
       "weight": 0.15,
       "signals": {
         "briefing_present": true,
-        "preflight_failed": 2,
-        "preflight_skipped": 1,
-        "recommended_agent_count": 12
+        "preflight_failed": 1,
+        "preflight_skipped": 8,
+        "recommended_agent_count": 13
       },
-      "finding_count": 1
+      "finding_count": 2
     },
     "ecosystem_posture": {
-      "score": 65.0,
+      "score": 67.0,
       "weight": 0.25,
       "signals": {
         "audit_present": true,
@@ -42,27 +42,19 @@
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 70.0,
+      "score": 60.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 18,
-        "error_count": 4,
-        "incomplete_count": 2,
-        "running_count": 102,
-        "error_rate": 0.2222,
-        "incomplete_rate": 0.1111,
+        "terminal_runs": 10,
+        "error_count": 1,
+        "incomplete_count": 4,
+        "running_count": 110,
+        "error_rate": 0.1,
+        "incomplete_rate": 0.4,
         "top_error_agents": [
           {
-            "agent": "studio_ui_ux_builder",
-            "count": 1
-          },
-          {
-            "agent": "pr_reviewer",
-            "count": 1
-          },
-          {
-            "agent": "implementation_gaps",
+            "agent": "code_implementer",
             "count": 1
           }
         ]
@@ -86,12 +78,6 @@
   },
   "findings": [
     {
-      "id": "preflight-failures",
-      "severity": "high",
-      "message": "2 preflight script(s) exited non-zero",
-      "evidence": "agent-briefing.preflight_runs"
-    },
-    {
       "id": "benchmark-red-rows",
       "severity": "high",
       "message": "6 red benchmark row(s)",
@@ -104,27 +90,39 @@
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json"
     },
     {
-      "id": "swarm-error-rate",
-      "severity": "high",
-      "message": "Error rate 22% over last 18 terminal runs",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
       "id": "swarm-gap-backlog",
       "severity": "high",
       "message": "57 open gap(s) in registry apply pipeline",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
+      "id": "preflight-failures",
+      "severity": "medium",
+      "message": "1 preflight script(s) exited non-zero",
+      "evidence": "agent-briefing.preflight_runs"
+    },
+    {
+      "id": "preflight-skipped",
+      "severity": "medium",
+      "message": "8 preflight scripts skipped (--skip-slow)",
+      "evidence": "agent-briefing.preflight_runs"
+    },
+    {
+      "id": "swarm-incomplete-rate",
+      "severity": "medium",
+      "message": "Incomplete rate 40%",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
+    },
+    {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "102 runs still marked running (possible stuck SDK)",
+      "message": "110 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "repos-missing-live-docs",
       "severity": "low",
-      "message": "10 repos without live docs pages",
+      "message": "8 repos without live docs pages",
       "evidence": "ecosystem-audit.metrics.repos_without_live_pages"
     }
   ],
@@ -138,20 +136,24 @@
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
     {
+      "agent": "ecosystem_grader",
+      "reason": "overall ecosystem quality below 70 \u2014 narrative grade + dispatch order"
+    },
+    {
       "agent": "ci_maintainer",
       "reason": "ecosystem_posture weak \u2014 missing CI / failed PR signals"
     },
     {
-      "agent": "workspace_sweeper",
-      "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
-    },
-    {
       "agent": "plan_verifier",
-      "reason": "briefing P0: plan-completion-audit findings"
+      "reason": "briefing_health weak \u2014 refresh plan audit preflight"
     },
     {
-      "agent": "implementation_gaps",
-      "reason": "briefing P0: cross-check plan vs implementation"
+      "agent": "proof_gap_researcher",
+      "reason": "briefing P0: swarm: research goal provability_holes eligible (priority 9)"
+    },
+    {
+      "agent": "workspace_sweeper",
+      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
