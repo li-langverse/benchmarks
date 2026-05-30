@@ -58,8 +58,9 @@ flowchart LR
 |------|-----------|
 | `summary.json` | Overview, `/matrix`, `/bench/[id]`, search, tier strip |
 | `benchmark-matrix.json` | Matrix report, agent briefing |
-| `proof-posture.json` | Overview proof strip, `/proofs` |
 | `release-index.json` | Package freshness (`/packages/[pkg]`) |
+
+Proof corpus UI: **[proof-library](https://github.com/li-langverse/proof-library)** — `/proofs` redirects there.
 
 ## Dashboard-next
 
