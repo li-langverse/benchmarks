@@ -1,17 +1,17 @@
 # PR reviewer digest — 2026-05-30
 
-**Agent:** `pr_reviewer` · **Source:** proactive ecosystem sweep · **North star:** proof → easy → fast · **Pass:** 2026-05-30T06:40Z
+**Agent:** `pr_reviewer` · **Source:** proactive ecosystem sweep · **Run:** `pr_reviewer-1780124463739` · **Pass:** 2026-05-30T07:01Z · **North star:** proof → easy → fast
 
 ## Executive summary
 
-- **GraphQL rate limit exhausted** (5000/5000, reset ~07:08Z) — `pr-merge-gate.py`, `run-pr-program.py`, and `gh pr list` returned **0 open PRs** (false negative); used **REST API** for live review.
-- **New merge-approved:** [lip#32](https://github.com/li-langverse/lip/pull/32), [lit#18](https://github.com/li-langverse/lit/pull/18) — P0 LLVM 22 CI pin; CI green, standards aligned.
-- **Agent-kit wave (5 PRs)** already labeled `merge-approved` — CI green; **sole blocker:** no human `APPROVED` review on any (`cap-jmk-real` author).
-- **Feature PRs blocked on plan:** [lic#494](https://github.com/li-langverse/lic/pull/494) (PH-HW), [lic#495](https://github.com/li-langverse/lic/pull/495) (CAD/AL-4) — CI green but missing `plan-approved`.
-- **[benchmarks#201](https://github.com/li-langverse/benchmarks/pull/201)** — CI green repo-boundary cleanup; needs full standards pass + release-notes check before `merge-approved`.
-- **Redundant stacks:** 10+ `workspace sweep fallback` PRs on benchmarks/lic — defer/close via `pr_branch_opener` hygiene, not merge queue.
-- **No merge executed**; roadmap/governance repos untouched per policy.
-- **Control-plane:** sibling agents (`pr_merger`, `pr_alignment`) errored same tick — likely GraphQL cascade.
+- **GraphQL exhausted** (0/5000, reset ~07:08Z) — `pr-merge-queue-plan.py`, `run-pr-program.py`, and `pr-merge-gate.py` report **0 open PRs** (false negative); **REST** used for live review.
+- **7 PRs carry `merge-approved`** (lip#32, lit#18, li-net#12, li-httpd#13, li-std-core#8, li-std-math#9) — all **CI green**; **sole org blocker:** zero human `APPROVED` reviews (`cap-jmk-real` author on all).
+- **P0 merge order** (vision tier): lip#32 → lit#18 → agent-kit wave — LLVM 22 CI pin unblocks mirror/toolchain builds.
+- **Feature PRs need plan:** lic#494 (PH-HW LKIR), lic#495 (CAD v1) — CI green; **`plan-needed` added** this pass; defer `merge-approved`.
+- **benchmarks#201** — CI green but **`mergeable: dirty`** + missing release notes; reviewer comment posted; not `merge-approved`.
+- **Red / defer:** lic#496 (CI fail), li-httpd#10 (CI fail + dirty), lic#492 (no checks); **roadmap** PRs — human merge only.
+- **Preflight scripts refreshed** at 07:01Z; merge queue empty until GraphQL resets and gates re-run.
+- **No merge executed**; no new `merge-approved` labels (prior pass already labeled P0/P1 wave).
 
 ## Deliverable / findings
 
@@ -19,33 +19,24 @@
 
 | Script | Result | Notes |
 |--------|--------|-------|
-| `pr-merge-queue-plan.py` | `open_prs=0` | GraphQL blocked — unreliable |
+| `pr-merge-queue-plan.py` | `open_prs=0` | GraphQL — unreliable |
 | `run-pr-program.py` | `open_prs=0 ci_green=0` | Same |
-| `pr-merge-gate.py` | `pr_not_found` | Gate script uses GraphQL |
+| `pr-merge-gate.py --repo lip --pr 32` | `pr_not_found` | Gate script uses GraphQL |
 | REST `gh api pulls` | 50+ open across org | Source of truth this pass |
 
-**Error:** `GraphQL: API rate limit already exceeded for user ID 207167228` (core REST remaining: 4953/5000).
+**Error:** `GraphQL: API rate limit already exceeded for user ID 207167228` (reset `2026-05-30T07:08:35Z`).
 
-### lip#32 · lit#18 — **aligned** ✓
+### P0 — lip#32 · lit#18 — **aligned** (awaiting human approve)
 
 | Gate | Evidence |
 |------|----------|
 | CI | lip bootstrap SUCCESS; lit test SUCCESS |
-| Plan | Chore CI fix — no `plan-approved` required |
+| Plan | Chore CI — no `plan-approved` required |
 | Vision / PH | P0 package CI — LLVM 22 matches `lic` CMake pin |
-| Strict by default | `.github/workflows/ci.yml`, `scripts/ci-install-llvm.sh` only |
-| Security | N/A |
-| Performance | N/A |
-| Release notes | N/A (chore) |
-| Ecosystem-first | Same pattern as lic org CI |
+| Label | `merge-approved` present |
+| Blocker | `mergeable_state: blocked` — branch protection + **0 reviews** |
 
-**Actions taken:** `merge-approved` label added; review comment posted.
-
-**Blocker:** `reviewDecision: REVIEW_REQUIRED` — human Approve → `pr_merger`.
-
-**Merge order:** lip#32 → lit#18 → agent-kit wave (vision: mirrors before lic).
-
-### Agent-kit wave — **aligned, awaiting human approve**
+### P1 — agent-kit wave — **aligned** (awaiting human approve)
 
 | Repo | PR | CI | Label |
 |------|-----|-----|-------|
@@ -53,32 +44,44 @@
 | li-httpd | [#13](https://github.com/li-langverse/li-httpd/pull/13) | green | merge-approved |
 | li-std-core | [#8](https://github.com/li-langverse/li-std-core/pull/8) | green | merge-approved |
 | li-std-math | [#9](https://github.com/li-langverse/li-std-math/pull/9) | green | merge-approved |
-| li-std-math | [#7](https://github.com/li-langverse/li-std-math/pull/7) | green | merge-approved (deps) |
-
-**Blocker:** 0 PR reviews org-wide on this wave. Comment refreshed on li-httpd#13.
 
 ### lic#494 · lic#495 — **needs plan**
 
-| PR | CI | Blocker |
-|----|-----|---------|
-| [#494 PH-HW LKIR](https://github.com/li-langverse/lic/pull/494) | 7/7 SUCCESS | missing `plan-approved` |
-| [#495 CAD fundamentals](https://github.com/li-langverse/lic/pull/495) | 6/6 SUCCESS | missing `plan-approved` |
+| PR | CI | Action this pass |
+|----|-----|------------------|
+| [#494 PH-HW LKIR](https://github.com/li-langverse/lic/pull/494) | 7/7 SUCCESS | `plan-needed` label added |
+| [#495 CAD fundamentals](https://github.com/li-langverse/lic/pull/495) | 6/6 SUCCESS | `plan-needed` label added |
 
-Release notes present; bench evidence on #494. Comments posted — defer `merge-approved` until planner adds label.
+Release notes present on both; bench evidence on #494. Prior reviewer comments stand — defer `merge-approved` until `plan-approved`.
 
-### lic#492 · lic#496 · li-httpd#10 — **defer**
+### benchmarks#201 — **blockers**
 
-| PR | Status |
-|----|--------|
-| lic#492 PH-ML Wave 1 | 0 CI checks — not CI-green |
-| lic#496 PH-CAD types | CI fail (build-and-test) |
-| li-httpd#10 feature | CI fail; needs `plan-approved` |
+| Gate | Status |
+|------|--------|
+| CI | ✓ SUCCESS |
+| Release notes | ✗ missing in diff |
+| Mergeable | ✗ dirty (conflicts with `main`) |
+| Label | none |
 
-### benchmarks#201 — **pending review**
+Comment: [benchmarks#201#issuecomment-4582027662](https://github.com/li-langverse/benchmarks/pull/201#issuecomment-4582027662)
 
-CI green (dashboard-build, ingest-smoke). Cross-cutting repo-boundary + proof-posture removal. Needs CHANGELOG/release-notes verification and scope review before label.
+**north_star_fit:** domain=ecosystem/governance · PH-5b
 
-**north_star_fit:** domain=ecosystem/governance · PH-5b (catalog boundaries)
+### Control-plane
+
+| Agent | Status | Error |
+|-------|--------|-------|
+| `pr_reviewer-1780124463739` | running | — |
+| `pr_merger-1780124441153` | error | `unregistered_running_reconciled` |
+| `pr_alignment-1780124441163` | error | `unregistered_running_reconciled` |
+
+Sibling merge agents likely blocked by same GraphQL exhaustion cascade.
+
+### Ecosystem context (briefing 06:58Z)
+
+- **Open PRs (scripts):** 0 — stale due to GraphQL
+- **Red benchmarks:** 6 rows (matmul_*, ml_*, num_gmres) — numerics backlog, not PR blockers
+- **Dirty workspace:** `lic` on `cursor/httpd-plan-continue` (5 files) — unrelated to merge queue
 
 ## Recommended issues/PRs
 
@@ -90,16 +93,16 @@ CI green (dashboard-build, ingest-smoke). Cross-cutting repo-boundary + proof-po
 | P1 | li-httpd | [#13](https://github.com/li-langverse/li-httpd/pull/13) agent-kit sync | `merge-approved` → human **Approve** |
 | P1 | li-std-core | [#8](https://github.com/li-langverse/li-std-core/pull/8) agent-kit sync | `merge-approved` → human **Approve** |
 | P1 | li-std-math | [#9](https://github.com/li-langverse/li-std-math/pull/9) agent-kit sync | `merge-approved` → human **Approve** |
-| P2 | lic | [#494](https://github.com/li-langverse/lic/pull/494) PH-HW LKIR | add `plan-approved` |
-| P2 | lic | [#495](https://github.com/li-langverse/lic/pull/495) CAD v1 | add `plan-approved` |
-| P2 | benchmarks | [#201](https://github.com/li-langverse/benchmarks/pull/201) repo boundaries | standards pass pending |
-| hygiene | benchmarks/lic | workspace sweep fallback PRs | close redundant stack |
+| P2 | lic | [#494](https://github.com/li-langverse/lic/pull/494) PH-HW LKIR | `plan-needed` → add `plan-approved` |
+| P2 | lic | [#495](https://github.com/li-langverse/lic/pull/495) CAD v1 | `plan-needed` → add `plan-approved` |
+| P2 | benchmarks | [#201](https://github.com/li-langverse/benchmarks/pull/201) repo boundaries | release notes + rebase → standards pass |
+| hygiene | benchmarks/lic | workspace sweep fallback PRs | close redundant stack (`pr_branch_opener`) |
 
 ## Deferred
 
 - Re-run `run-pr-program.py` + `pr-merge-gate.py` after GraphQL reset (~07:08Z).
-- Auto-merge until non-author `APPROVED` on P0/P1 wave (7 PRs with `merge-approved`, 0 gate-ready).
-- **lic#492**, **lic#496**, **li-httpd#10** — CI red or pending; not merge candidates.
+- **`pr_merger`** until non-author `APPROVED` on P0/P1 wave (7 labeled, 0 gate-ready per scripts).
+- **lic#492**, **lic#496**, **li-httpd#10** — not CI-green merge candidates.
 - **roadmap** merges — human only per policy.
-- **167 branches** without open PR — `pr_branch_opener` backlog; do not merge stale sweep fallbacks.
-- Rate-limit guard: stagger org sweeps to avoid GraphQL exhaustion blocking gate scripts.
+- **132+ branches** without open PR — `pr_branch_opener` backlog; do not merge stale sweep fallbacks.
+- Stagger org GraphQL sweeps to avoid exhausting quota and blocking gate scripts.
