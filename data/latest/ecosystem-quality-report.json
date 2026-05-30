@@ -1,60 +1,60 @@
 {
-  "generated_at": "2026-05-27T12:43:59Z",
+  "generated_at": "2026-05-30T05:05:32Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 83.2,
-  "grade": "B",
+  "overall_score": 78.1,
+  "grade": "C",
   "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
-      "score": 84.0,
+      "score": 77.0,
       "weight": 0.15,
       "signals": {
         "briefing_present": true,
-        "preflight_failed": 2,
-        "preflight_skipped": 1,
-        "recommended_agent_count": 15
+        "preflight_failed": 1,
+        "preflight_skipped": 8,
+        "recommended_agent_count": 13
       },
-      "finding_count": 1
+      "finding_count": 2
     },
     "ecosystem_posture": {
-      "score": 47.0,
+      "score": 65.0,
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 87,
-        "failed_prs": 54,
-        "repos_missing_ci_main": 1,
-        "benchmark_red_count": 2
+        "open_prs": 0,
+        "failed_prs": 0,
+        "repos_missing_ci_main": 0,
+        "benchmark_red_count": 6
       },
-      "finding_count": 4
+      "finding_count": 2
     },
     "goal_directed_health": {
-      "score": 100.0,
+      "score": 70.0,
       "weight": 0.2,
       "signals": {
         "snapshot_present": true,
         "runner_count": 8,
-        "runners_stopped": 0,
-        "plan_todos_pending": 38,
-        "plan_todos_total": 99,
-        "agents_live": 7
+        "runners_stopped": 6,
+        "plan_todos_pending": 25,
+        "plan_todos_total": 92,
+        "agents_live": 0
       },
-      "finding_count": 0
+      "finding_count": 1
     },
     "swarm_execution": {
-      "score": 100.0,
+      "score": 90.0,
       "weight": 0.25,
       "signals": {
-        "runs_sampled": 3,
+        "runs_sampled": 120,
         "terminal_runs": 3,
         "error_count": 0,
         "incomplete_count": 0,
-        "running_count": 0,
+        "running_count": 117,
         "error_rate": 0.0,
         "incomplete_rate": 0.0,
         "top_error_agents": []
       },
-      "finding_count": 0
+      "finding_count": 1
     },
     "gap_pressure": {
       "score": 92.0,
@@ -72,28 +72,34 @@
   },
   "findings": [
     {
-      "id": "preflight-failures",
+      "id": "benchmark-red-rows",
       "severity": "high",
-      "message": "2 preflight script(s) exited non-zero",
+      "message": "6 red benchmark row(s)",
+      "evidence": "ecosystem-audit.benchmarks.red"
+    },
+    {
+      "id": "goal-runners-stopped",
+      "severity": "high",
+      "message": "6 goal-directed runner(s) not running",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json"
+    },
+    {
+      "id": "preflight-failures",
+      "severity": "medium",
+      "message": "1 preflight script(s) exited non-zero",
       "evidence": "agent-briefing.preflight_runs"
     },
     {
-      "id": "failed-pr-ci",
-      "severity": "high",
-      "message": "54 open PR(s) with failing CI",
-      "evidence": "ecosystem-audit.metrics.failed_prs"
+      "id": "preflight-skipped",
+      "severity": "medium",
+      "message": "8 preflight scripts skipped (--skip-slow)",
+      "evidence": "agent-briefing.preflight_runs"
     },
     {
-      "id": "repos-missing-ci",
-      "severity": "high",
-      "message": "1 repos missing CI on main",
-      "evidence": "ecosystem-audit.metrics.repos_missing_ci_main"
-    },
-    {
-      "id": "benchmark-red-rows",
-      "severity": "high",
-      "message": "2 red benchmark row(s)",
-      "evidence": "ecosystem-audit.benchmarks.red"
+      "id": "swarm-many-running",
+      "severity": "medium",
+      "message": "117 runs still marked running (possible stuck SDK)",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "repos-missing-live-docs",
@@ -105,7 +111,7 @@
       "id": "swarm-gap-backlog",
       "severity": "low",
       "message": "27 open gap(s) in registry apply pipeline",
-      "evidence": "/agent/repos/benchmarks/data/latest/swarm-gap-actions.json"
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     }
   ],
   "recommended_agents": [
@@ -114,23 +120,23 @@
       "reason": "ecosystem_posture weak \u2014 missing CI / failed PR signals"
     },
     {
-      "agent": "workspace_sweeper",
-      "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
-    },
-    {
       "agent": "plan_verifier",
-      "reason": "briefing P0: plan-completion-audit findings"
+      "reason": "briefing_health weak \u2014 refresh plan audit preflight"
     },
     {
-      "agent": "implementation_gaps",
-      "reason": "briefing P0: cross-check plan vs implementation"
+      "agent": "proof_gap_researcher",
+      "reason": "briefing P0: swarm: research goal provability_holes eligible (priority 9)"
+    },
+    {
+      "agent": "workspace_sweeper",
+      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
-    "briefing": "/agent/repos/benchmarks/data/latest/agent-briefing.json",
-    "goal_directed_snapshot": "/agent/repos/lic/data/goal-directed-agents/snapshot.json",
-    "runs_dir": "/tmp/li-cursor-agents/data/runs",
-    "runs_sampled": 3,
-    "swarm_gap_actions": "/agent/repos/benchmarks/data/latest/swarm-gap-actions.json"
+    "briefing": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/agent-briefing.json",
+    "goal_directed_snapshot": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json",
+    "runs_dir": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs",
+    "runs_sampled": 120,
+    "swarm_gap_actions": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
   }
 }
