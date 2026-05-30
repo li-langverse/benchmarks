@@ -7,11 +7,11 @@
       "profile": "workflows",
       "ok": false,
       "exit_code": 1,
-      "started_at": "2026-05-30T06:39:01Z",
-      "finished_at": "2026-05-30T06:41:08Z",
-      "summary": "\u2500\u2500 li-tests \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2715 1 failed  \u00b7 254 passed ==> FAIL profile=lic-host (122s) exit=1 "
+      "started_at": "2026-05-30T06:53:10Z",
+      "finished_at": "2026-05-30T06:55:18Z",
+      "summary": "\u2500\u2500 li-tests \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2715 3 failed  \u00b7 252 passed ==> FAIL profile=lic-host (124s) exit=1 "
     }
   ],
-  "generated_at": "2026-05-30T06:41:08Z",
-  "sweep_at": "2026-05-30T06:41Z"
+  "generated_at": "2026-05-30T06:55:18Z",
+  "sweep_at": "2026-05-30T06:55Z"
 }
