@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T00:18:47+00:00",
+  "generated_at": "2026-05-30T00:51:58+00:00",
   "agent_id": "docs_ux_tester",
   "surface": "docs",
   "audit_kind": "ux",
@@ -29,7 +29,7 @@
       "priority": "P1",
       "repo": "lic",
       "url": "https://github.com/li-langverse/lic/issues/404",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs (74 unique in current scan)",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (69 unique in current scan)",
       "target_id": "lic-docs"
     },
     {
@@ -82,7 +82,7 @@
       "agent": "docs_maintainer",
       "repo": "lic",
       "issue": "https://github.com/li-langverse/lic/issues/404",
-      "summary": "Remove 74 raw .md hrefs from built HTML"
+      "summary": "Remove 69 raw .md hrefs from built HTML"
     },
     {
       "priority": "P2",
@@ -125,5 +125,17 @@
     "cognitive_load": 0.62,
     "harness_rubric_min": 0.7,
     "note": "Harness auto-pass does not probe live Pages or mkdocs IA"
+  },
+  "live_drift": {
+    "nav_tabs_local": 12,
+    "nav_tabs_live": 5,
+    "search_docs_local": 2801,
+    "search_docs_live": 248,
+    "live_404_paths": [
+      "ecosystem/overview/",
+      "guide/hello-world/",
+      "game-dev/world-studio-vision/"
+    ],
+    "probed_at": "2026-05-30T00:51:58+00:00"
   }
 }
