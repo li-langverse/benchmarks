@@ -6,12 +6,12 @@
       "number": 439,
       "profile": "workflows",
       "ok": false,
-      "exit_code": 1,
-      "started_at": "2026-05-30T00:39:06Z",
-      "finished_at": "2026-05-30T00:41:13Z",
-      "summary": "\u2500\u2500 li-tests \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2715 3 failed  \u00b7 252 passed ==> FAIL profile=lic-host (124s) exit=1 "
+      "exit_code": 127,
+      "started_at": "2026-05-30T00:48:18Z",
+      "finished_at": "2026-05-30T00:48:18Z",
+      "summary": "==> li-local-ci run profile=lic-host repo=/tmp/li-local-ci-pr.bVkTsp mode=host /home/s4il0r/Documents/Cursor/li-langverse/li-local-ci/profiles/lic-host.sh: line 12: ./scripts/ci.sh: No such file or directory ==> FAIL profile=lic-host (0s) exit=127 "
     }
   ],
-  "generated_at": "2026-05-30T00:41:13Z",
-  "sweep_at": "2026-05-30T00:41Z"
+  "generated_at": "2026-05-30T00:48:18Z",
+  "sweep_at": "2026-05-30T00:48Z"
 }
