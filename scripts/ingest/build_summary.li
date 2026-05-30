@@ -1,7 +1,7 @@
 # PH-IO-7 — build data/latest/summary.json via std/summary
 import std.summary
 
-proc main() raises IO, Alloc -> int
+def main() raises IO, Alloc -> int
   requires true
   ensures result == 0
   decreases 0
