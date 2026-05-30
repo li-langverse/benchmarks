@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T13:30:00Z",
+  "generated_at": "2026-05-30T14:11:00Z",
   "agent_id": "gui_ui_tester",
-  "briefing_generated_at": "2026-05-30T12:07Z",
+  "briefing_generated_at": "2026-05-30T14:02Z",
   "digest_path": "docs/ecosystem/ux-digests/2026-05-30-gui-ui.md",
   "issues": [
     {
@@ -12,7 +12,7 @@
       "title": "[ui-audit] dashboard Playwright e2e blocked by live-stream-feed TypeScript build",
       "problem": "npm run test:playwright:mock fails — live-stream-feed.tsx:77 Property 'path' does not exist on type '{}'",
       "evidence": [
-        "2026-05-30T13:29Z npm run test:playwright:mock exit 1",
+        "2026-05-30T14:10Z npm run test:playwright:mock exit 1",
         "WebServer Next.js build worker exit code 1"
       ],
       "sota_reference": "https://playwright.dev/docs/test-webserver",
@@ -35,7 +35,7 @@
       "problem": "ux-targets.json probes :3000; Playwright e2e uses :3099 — harness skip when dev server on Playwright port",
       "evidence": [
         "data/latest-gui-ui-run/ui-audit.json agents-dashboard skip_reason",
-        "curl :3000 and :3099 both 000 during audit"
+        "curl :3000 and :3099 unreachable during 2026-05-30T14:10Z audit"
       ],
       "sota_reference": "https://playwright.dev/docs/api/class-testconfig#test-config-web-server",
       "remediation_checklist": [
@@ -103,7 +103,7 @@
       "problem": "Dashboard uses #0f1419/#6eb5ff vs Li canonical #0d1117/#58a6ff; no :focus-visible rules",
       "evidence": [
         "dashboard-ui/app/globals.css :root tokens",
-        "grep focus-visible dashboard-ui — no matches"
+        "grep focus-visible dashboard-ui — no matches (2026-05-30T14:10Z)"
       ],
       "sota_reference": "https://primer.style/design/accessibility/color-considerations",
       "remediation_checklist": [
@@ -126,7 +126,7 @@
       "problem": "Without LIC_ROOT env, native targets skip; main lic lacks scripts/studio-ui-ux-capture-native.sh",
       "evidence": [
         "lic main: NO capture script; lic-studio-ui: YES",
-        "run_audit lic-tetris/world-studio-native skip without LIC_ROOT"
+        "run_audit lic-tetris/world-studio-native skip without LIC_ROOT (2026-05-30T14:10Z)"
       ],
       "sota_reference": "https://github.com/li-langverse/lic/issues/394",
       "remediation_checklist": [

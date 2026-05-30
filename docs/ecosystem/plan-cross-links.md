@@ -40,6 +40,17 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | **lidb graph / vector / GPU** (PH-DB-G0) | [tier-db-graph-registry.md](./tier-db-graph-registry.md) · [tier-db-vector-ann.md](./tier-db-vector-ann.md) · [tier-db-gpu-speedup.md](./tier-db-gpu-speedup.md) |
 | **lidb full-spectrum audit** (WP-N4) | [tier-db-security.md](./tier-db-security.md) · [tier-db-memory.md](./tier-db-memory.md) · [tier-db-parallel.md](./tier-db-parallel.md) · [tier-db-audit.md](./tier-db-audit.md) · [tier-db-realtime.md](./tier-db-realtime.md) |
 
+## UI/UX quality (`ui_ux_quality` research goal)
+
+| Layer | Path |
+|-------|------|
+| **Handoff (lic)** | [gui-ux-quality-handoff.md](https://github.com/li-langverse/lic/blob/main/docs/ecosystem/gui-ux-quality-handoff.md) |
+| **Orchestrator ingest** | [orch-r4-ui-ux-signals](https://github.com/li-langverse/lic/blob/main/docs/ecosystem/orchestrator-notes/2026-05-29-orch-r4-ui-ux-signals.md) |
+| **UX digests** | [ux-digests/](../ux-digests/) (`*-gui-ux.md`, `*-gui-ui.md`) |
+| **Targets** | `li-cursor-agents/config/ux-targets.json` |
+
+Primary agent: **`gui_ux_tester`**. Companion: **`gui_ui_tester`**. Implementation: **`studio_ui_ux_builder`**.
+
 ## Automation
 
 `python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic` sibling checkout; CI `lic`. Skips path=unknown and catalog_lifecycle=planned.) Output: `data/latest/plan-completion-audit.json` (`master_plan_open` = tracker only; `stale_spec_checklists` = normative task bullets, not gates).
