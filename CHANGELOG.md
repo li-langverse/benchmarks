@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+
+- **Plan cross-links:** open master-plan tracker table + **`ui_ux_quality`** handoff for `gui_ux_tester` / `docs_ui_tester` — [2026-05-30-docs-maintainer-cross-links.md](docs/release-notes/2026-05-30-docs-maintainer-cross-links.md).
+
 ### Changed
 
 - **Ecosystem audit:** `ecosystem-audit.py` HEAD-checks org handbook Pages URLs (`HANDBOOK_PAGES`) instead of a static missing-docs list; reports `repos_with_live_pages`.
