@@ -1,32 +1,18 @@
 {
-  "generated_at": "2026-05-30T15:20:20.841126+00:00",
-  "relative_checked": 32591,
-  "broken_relative": 30701,
-  "broken_md_unique": 45,
-  "broken_other_unique": 625,
-  "raw_md_hrefs": 74,
-  "local_tabs": 12,
-  "tab_names": [
-    "Home",
-    "Getting started",
-    "Guide",
-    "Ecosystem",
-    "Language handbook",
-    "Game development",
-    "Compiler",
-    "Testing and security",
-    "Benchmarks",
-    "Reference",
-    "Contributing",
-    "Project"
-  ],
+  "generated_at": "2026-05-30T23:52:22.821756+00:00",
+  "relative_checked": 32484,
+  "broken_relative": 209,
+  "broken_md_unique": 41,
+  "broken_other_unique": 117,
+  "raw_md_hrefs": 79,
+  "local_tabs": 0,
+  "tab_names": [],
   "live_paths": {
     "guide/hello-world/": 404,
     "ecosystem/overview/": 404,
     "language/overview/": 404,
     "verification/provability-gaps/": 200
   },
-  "last_modified": null,
   "search_index": {
     "live": 248,
     "local": 2801
