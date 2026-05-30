@@ -168,7 +168,7 @@ Preflight: `data/latest/org-new-repos-discovery.json`, `org-repo-ci-audit.json`,
 | `lidb` | WP-H0: set default branch to `main` before org CI gate | `platform`, `ci`, `PH-DB-0` |
 | `lidb` | chore(ci): add required `ci.yml` for org CI policy | `platform`, `ci` |
 | `lic-docs` | chore(ci): add required `ci.yml` for org CI policy | `platform`, `ci`, `docs` |
-| `net.httpd` | chore(onboard): bootstrap org CI + agent-kit for httpd mirror | `platform`, `ci`, `secure` |
+| `net.httpd` | chore(ci): bootstrap org CI + agent-kit for httpd mirror | `platform`, `ci`, `secure` |
 | `studio` | chore(onboard): CI + agent-kit for World Studio shell | `agent-kit`, `PH-GD`, `platform` |
 | `studio.ai` | chore(onboard): CI + agent-kit for studio AI integration | `agent-kit`, `ai-first`, `PH-GD` |
 | `li-local-ci` | chore(onboard): CI + agent-kit for local CI tooling | `platform`, `ci`, `agent-kit` |

@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-05-30T14:56:21Z",
+  "generated_at": "2026-05-30T10:03:02Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 75.8,
+  "overall_score": 75.0,
   "grade": "C",
-  "unattended_safe": false,
+  "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
-      "score": 85.0,
+      "score": 77.0,
       "weight": 0.15,
       "signals": {
         "briefing_present": true,
-        "preflight_failed": 0,
+        "preflight_failed": 1,
         "preflight_skipped": 8,
-        "recommended_agent_count": 10
+        "recommended_agent_count": 11
       },
-      "finding_count": 1
+      "finding_count": 2
     },
     "ecosystem_posture": {
-      "score": 100.0,
+      "score": 92.0,
       "weight": 0.25,
       "signals": {
         "audit_present": true,
@@ -26,38 +26,33 @@
         "repos_missing_ci_main": 0,
         "benchmark_red_count": 0
       },
-      "finding_count": 0
+      "finding_count": 1
     },
     "goal_directed_health": {
       "score": 70.0,
       "weight": 0.2,
       "signals": {
         "snapshot_present": true,
-        "runner_count": 8,
+        "runner_count": 9,
         "runners_stopped": 6,
-        "plan_todos_pending": 25,
-        "plan_todos_total": 97,
+        "plan_todos_pending": 36,
+        "plan_todos_total": 110,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 60.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 11,
-        "error_count": 1,
-        "incomplete_count": 5,
-        "running_count": 109,
-        "error_rate": 0.0909,
-        "incomplete_rate": 0.4545,
-        "top_error_agents": [
-          {
-            "agent": "autoresearch",
-            "count": 1
-          }
-        ]
+        "terminal_runs": 5,
+        "error_count": 0,
+        "incomplete_count": 2,
+        "running_count": 115,
+        "error_rate": 0.0,
+        "incomplete_rate": 0.4,
+        "top_error_agents": []
       },
       "finding_count": 2
     },
@@ -90,6 +85,12 @@
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
+      "id": "preflight-failures",
+      "severity": "medium",
+      "message": "1 preflight script(s) exited non-zero",
+      "evidence": "agent-briefing.preflight_runs"
+    },
+    {
       "id": "preflight-skipped",
       "severity": "medium",
       "message": "8 preflight scripts skipped (--skip-slow)",
@@ -98,13 +99,13 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 45%",
+      "message": "Incomplete rate 40%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "109 runs still marked running (possible stuck SDK)",
+      "message": "115 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -112,6 +113,12 @@
       "severity": "medium",
       "message": "31 plan_debt gap rows",
       "evidence": "swarm-gap-actions.by_kind.plan_debt"
+    },
+    {
+      "id": "repos-missing-live-docs",
+      "severity": "low",
+      "message": "8 repos without live docs pages",
+      "evidence": "ecosystem-audit.metrics.repos_without_live_pages"
     }
   ],
   "recommended_agents": [
@@ -124,16 +131,16 @@
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
     {
+      "agent": "plan_verifier",
+      "reason": "briefing_health weak \u2014 refresh plan audit preflight"
+    },
+    {
       "agent": "proof_gap_researcher",
       "reason": "briefing P0: swarm: research goal provability_holes eligible (priority 9)"
     },
     {
       "agent": "workspace_sweeper",
-      "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
-    },
-    {
-      "agent": "plan_verifier",
-      "reason": "briefing P0: plan-completion-audit findings"
+      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
