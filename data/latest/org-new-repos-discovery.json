@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T07:35Z",
+  "generated_at": "2026-05-30T08:34Z",
   "org": "li-langverse",
-  "github_source": "gh_api_orgs_repos_paginate",
+  "github_source": "gh_repo_list",
   "github_repos": [
     "benchmarks",
     "li-cursor-agents",
@@ -85,6 +85,5 @@
     "new_count": 0,
     "stale_count": 0
   },
-  "downstream_agent": "org_repo_onboarder",
-  "notes": "Reconciled after gh GraphQL rate limit caused fallback_core_list (known=13) and false new_count=22; REST org repos API + prior discovery known set."
+  "downstream_agent": "org_repo_onboarder"
 }
