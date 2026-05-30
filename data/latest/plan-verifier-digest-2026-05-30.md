@@ -1,7 +1,7 @@
 # Plan verifier digest — 2026-05-30
 
-**Preflight:** `data/latest/plan-completion-audit.json` at `2026-05-30T09:37Z` (166 findings).  
-**Swarm ingest:** `lic/scripts/swarm-gap-ingest.py` exit 0 — registry 83 gaps (48 plan_debt, 30 competitor, 5 missing_package); 0 rows added this pass.  
+**Preflight:** `data/latest/plan-completion-audit.json` at `2026-05-30T13:19Z` (166 findings).  
+**Swarm ingest:** `lic/scripts/swarm-gap-ingest.py` exit 0 — registry **90** gaps (55 plan_debt, 30 competitor, 5 missing_package); **0** rows added this pass.  
 **north_star_fit:** governance · PH-2i, PH-7d, PH-7e, PH-8p, Vision-LLM · G-math, G-par, G-dec, G-math-syn
 
 ## Executive summary
@@ -10,16 +10,16 @@
 - **PH-2i:** length-1 broadcast has `li-tests` evidence (`broadcast_len1_*`, `norm_float4` in `manifest.toml`); full NumPy-rank broadcast and P-linalg loop≡ensures gate still open — tracker row stays partial.
 - **PH-7e / G-math:** six tier-1 benchmarks red vs C++ (>1.2×): `matmul_blocked`, `matmul_naive`, `ml_conv2d_forward`, `ml_mlp_*`, `num_gmres` — blocks perf sub-plan gate (#463).
 - **PH-7d / G-par / G-dec:** `@vectorized` → `ArraySimdScope` in MIR (`lower.cpp`); policy tests green; MIR proc tags + Lean disjoint proofs open (#387).
-- **PH-8p:** `--jobs=N` only `setenv("LI_COMPILE_JOBS")` in `main.cpp:161-163`; no compiler consumer — #525 filed this pass.
+- **PH-8p:** `--jobs=N` only `setenv("LI_COMPILE_JOBS")` in `main.cpp:162`; no compiler consumer — #525.
 - **Provability:** 13 Partial + 4 Missing **G-***; register dated 2026-05-21; none marked **Done**.
-- **Goal-directed agents:** **10** `plan_pending` todos across **5** runners; registry ids `gap-plan-pending-<runner>-<todo>` aligned; httpd wrk-soak items supervisor-stale (exit 124).
-- **Issues this pass:** #525 (PH-8p-c), #526 (PH-2i NumPy-rank), #527 (PH-2h/G-math-syn) — no duplicates for orchestrator-owned debt.
+- **Goal-directed agents:** **8** `plan_pending` todos across **5** runners; registry ids `gap-plan-pending-<runner>-<todo>` aligned; httpd wrk-soak items supervisor-stale (exit 124).
+- **Issues this pass:** no new filings — #525–527, #463, #477, #521–523 already cover PH/G gaps without orchestrator overlap.
 
 ## Tracker review
 
 | Phase | Master plan cite | Verdict | Evidence |
 |-------|------------------|---------|----------|
-| **2i** | `lic/docs/superpowers/plans/2026-05-14-li-master-plan.md:444` | **Open (partial)** | **Slice done:** `math_linalg/norm_float4.li`, `reductions/`, `broadcast_len1_add_float4.li`, `broadcast_len1_mul_int4.li` (`manifest.toml:825-830,868`). **Open:** NumPy-rank broadcast (#526); sub-plan gate **P-linalg** loop≡ensures (#472). |
+| **2i** | `lic/docs/superpowers/plans/2026-05-14-li-master-plan.md:444` | **Open (partial)** | **Slice done:** `math_linalg/norm_float4.li`, `reductions/`, `broadcast_len1_add_float4.li`, `broadcast_len1_mul_int4.li` (`manifest.toml:825-830`). **Open:** NumPy-rank broadcast (#526); sub-plan gate **P-linalg** loop≡ensures (#472). |
 | **7d** | `:454` | **Open (partial)** | **Slice done:** `decorators/vectorized_for_scope_ok.li`, `parallel_def_disjoint_inherit.li` (#150 7d-c). **Open:** full MIR proc tags, **G-par** Lean (#387); phase-07 gate “Tier 2 MD `@` on `def`” unchecked. |
 | **7e** | `:455` | **Open (partial)** | **Slice done:** loop matmul + FMA horner; `horner_pure_li` advisory green per register. **Open:** 6 red tier-1 rows (ecosystem audit); strict `LI_TIER1_PERF_STRICT` optional (#463). |
 | **8p** | `:467` | **Open (partial)** | Ninja `-j` for C++ only. **Open:** `run_all.sh` sequential (#428); `--jobs` parse-only (#525). |
@@ -62,7 +62,7 @@ From `lic/docs/verification/provability-gaps.md` (2026-05-21):
 | Update `provability-gaps.md` on compiler close | P1 | Register stale vs broadcast_len1 / tier-1 red reality |
 | Archive normative spec checklists | P3 | 9 stale rows in `phase-02-typechecker.md` |
 | Catalog path gaps (117) | P2 | `competitor_feature` registry rows — not PH blockers |
-| Fix failing PR CI (ecosystem audit) | P0 | 45 failed PRs — precedes new plan work |
+| Fix failing PR CI (ecosystem audit) | P0 | 33 failed PRs — precedes new plan work |
 
 ## Recommended issues
 
@@ -79,5 +79,5 @@ From `lic/docs/verification/provability-gaps.md` (2026-05-21):
 - No plan checkbox edits or implementation (requires `plan-approved`).
 - Runner-owned todos (httpd, studio-ui-ux, sim-*, security-research) — swarm_observer / existing #477, #521–523.
 - 117 catalog-only gaps (P2) — `bench_improver` / `gap_explorer`.
-- P0 org CI (45 failed PRs) — `bug_fixer` / `ci_bug_triage` scope.
+- P0 org CI (33 failed PRs) — `bug_fixer` / `ci_bug_triage` scope.
 - `provability-gaps.md` date refresh — doc change deferred to implementation PRs.
