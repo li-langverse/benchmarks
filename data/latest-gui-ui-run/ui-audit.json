@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-05-30T13:29:27.148810+00:00",
+  "platform": "Linux",
+  "agent": "gui_ui_tester",
+  "summary": {
+    "total": 5,
+    "failing": 0,
+    "passing": 4,
+    "skipped": 1
+  },
+  "targets": [
+    {
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "mode": "http_probe",
+      "status": "skip",
+      "skip_reason": "GUI not reachable at http://127.0.0.1:3000 (start dashboard for extended audit)"
+    },
+    {
+      "target_id": "gui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_gen",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "mode": "http_probe",
+      "status": "pass",
+      "fixture": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/fixtures/gui-gen-demo.html"
+    },
+    {
+      "target_id": "world-studio-demo",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "mode": "http_probe",
+      "status": "pass",
+      "fixture": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/fixtures/world-studio-workspace.html"
+    },
+    {
+      "target_id": "lic-tetris",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "mode": "native_gui",
+      "artifacts": [
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/lic-tetris/png/native/frame-000.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/lic-tetris/png/native/frame-001.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/lic-tetris/png/native/frame-002.png"
+      ],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "status": "pass",
+      "skip_reason": null,
+      "native_pixels": true,
+      "capture_meta": {
+        "status": "pass",
+        "native_pixels": true,
+        "png_count": 3,
+        "png_dir": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/lic-tetris/png/native",
+        "ppm_dir": "/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui/deploy/studio-demo/native/out",
+        "capture_mode": "xvfb_sdl",
+        "note": "SDL viewport stub \u2014 not full li-studio binary"
+      },
+      "capture_stdout": "{\"native_pixels\":true,\"frames_saved\":3,\"width\":1280,\"height\":720,\"out\":\"/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui/deploy/studio-demo/native/out\"}\nstudio-ppm-to-png: wrote 3 PNG(s) \u2192 /home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/lic-tetris/png/native\n{\"native_pixels\": true, \"png_count\": 3}"
+    },
+    {
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "mode": "native_gui",
+      "artifacts": [
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-000.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-001.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-002.png"
+      ],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "status": "pass",
+      "skip_reason": null,
+      "native_pixels": true,
+      "capture_meta": {
+        "status": "pass",
+        "native_pixels": true,
+        "png_count": 3,
+        "png_dir": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native",
+        "ppm_dir": "/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui/deploy/studio-demo/native/out",
+        "capture_mode": "xvfb_sdl",
+        "note": "SDL viewport stub \u2014 not full li-studio binary"
+      },
+      "capture_stdout": "{\"native_pixels\":true,\"frames_saved\":3,\"width\":1280,\"height\":720,\"out\":\"/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui/deploy/studio-demo/native/out\"}\nstudio-ppm-to-png: wrote 3 PNG(s) \u2192 /home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native\n{\"native_pixels\": true, \"png_count\": 3}"
+    }
+  ]
+}

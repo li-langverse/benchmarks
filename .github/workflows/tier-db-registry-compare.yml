@@ -1,0 +1,50 @@
+name: tier-db-registry-compare
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * *"
+
+jobs:
+  postgres-compare:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: bench
+          POSTGRES_PASSWORD: bench
+          POSTGRES_DB: registry_bench
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U bench -d registry_bench"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: benchmarks
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lidb
+          path: lidb
+      - name: Build lidb_embed
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ python3
+          cmake -S lidb -B lidb/build/smoke -DCMAKE_BUILD_TYPE=Release
+          cmake --build lidb/build/smoke --target lidb_embed -j
+      - name: Run registry P95 compare
+        env:
+          POSTGRES_URL: postgresql://bench:bench@localhost:5432/registry_bench
+          BENCH_PROFILE: nightly
+          BENCH_HARNESS_JSON: benchmarks/data/latest/tier-db-registry-harness.json
+        run: |
+          pip install psycopg2-binary --quiet
+          bash lidb/scripts/bench/registry_oltp.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tier-db-registry-compare
+          path: benchmarks/data/latest/tier-db-registry.json

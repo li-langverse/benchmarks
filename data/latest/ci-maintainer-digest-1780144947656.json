@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-05-30T12:52Z",
+  "run_id": "ci_maintainer-1780144947656",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform)",
+  "audit": {
+    "repos_ok": 33,
+    "repos_exempt": 2,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 0,
+    "exempt": ["li-cursor-agents", "research-findings"],
+    "audit_method": "REST per-repo (GraphQL rate-limited)"
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 0,
+    "missing_ci_on_main": []
+  },
+  "actions_taken": [
+    "Ran ensure-org-repo-ci.py — GraphQL exhausted; initial audit empty",
+    "REST re-audit of 35 org repos — exit 0, refreshed org-repo-ci-audit.json",
+    "Verified lic-docs ci.yml on main — no new CI PRs",
+    "No isolated clone ci.yml edits — zero missing repos"
+  ],
+  "github_api": {
+    "graphql": "rate-limited (user 207167228)",
+    "rest_core_remaining": 3235
+  },
+  "branch_protection_note": "Package mirrors without rulesets remain follow-up for apply-org-branch-protection.sh",
+  "continue_on_error_findings": [
+    "lic ci.yml windows job (OS matrix) — pre-existing, out of scope for add-CI pass"
+  ]
+}

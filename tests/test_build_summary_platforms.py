@@ -64,6 +64,24 @@ class BuildSummaryPlatformTests(unittest.TestCase):
         self.assertEqual(chart["size_label"], "algo registry stub")
         self.assertEqual(chart["base_id"], "foo")
 
+    def test_completion_gate_tier01_has_macos_windows_rows(self):
+        summary_path = ROOT / "data/latest/summary.json"
+        if not summary_path.is_file():
+            self.skipTest("committed summary.json missing")
+        summary = json.loads(summary_path.read_text(encoding="utf-8"))
+        rows = summary.get("rows") or []
+        os_seen = {
+            r.get("os")
+            for r in rows
+            if isinstance(r, dict) and r.get("tier") in (0, 1, "0", "1")
+        }
+        for need in ("macos", "windows"):
+            self.assertIn(
+                need,
+                os_seen,
+                msg=f"missing tier-0/1 summary row for os={need}",
+            )
+
     def test_fixture_ingest_emits_three_os_charts_for_simd_dot(self):
         fixture_csv = INGEST / "fixtures/summary/lic.csv"
         summary_path = ROOT / "data/latest/summary.json"
