@@ -1,0 +1,34 @@
+{
+  "generated_at": "2026-05-30T13:18Z",
+  "run_id": "ci_maintainer-1780147631718",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform)",
+  "audit": {
+    "repos_ok": 34,
+    "repos_exempt": 1,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 0,
+    "exempt": ["research-findings"],
+    "audit_method": "ensure-org-repo-ci.py (GitHub API)"
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 0,
+    "missing_ci_on_main": []
+  },
+  "actions_taken": [
+    "Ran ensure-org-repo-ci.py — exit 0, refreshed org-repo-ci-audit.json",
+    "Verified ecosystem-audit.json missing_ci_on_main aligned (empty)",
+    "Branch protection vs workflow job spot-check (local ci.yml vs org-branch-protection.json)",
+    "No isolated clone ci.yml edits — zero missing repos"
+  ],
+  "github_api": {
+    "rest_core_remaining": 11,
+    "note": "quota nearly exhausted after audit; no per-repo REST re-scan beyond script output"
+  },
+  "branch_protection_note": "Package mirrors emit job id check; rulesets not applied org-wide — human apply-org-branch-protection.sh",
+  "continue_on_error_findings": [
+    "lic ci.yml build-and-test-windows (OS matrix) — pre-existing, out of scope for add-CI pass"
+  ]
+}

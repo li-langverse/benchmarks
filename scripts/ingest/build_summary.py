@@ -903,6 +903,69 @@ def is_pending_catalog_row(
     return not has_csv_rows(all_rows, bench_id, cfg)
 
 
+def tier_le_1(cfg: dict) -> bool:
+    tier = cfg.get("tier", 99)
+    return tier in (0, 1, "0", "1")
+
+
+def append_benchmark_summary_rows(
+    results: list[dict],
+    *,
+    bench_id: str,
+    cfg: dict,
+    bench_charts: list[dict],
+    category: str,
+    metric: str,
+    raw: list[dict],
+    validity_status: str,
+    validity_source: str,
+    primary_status: str | None = None,
+) -> None:
+    """Emit one summary row per platform chart for tier 0/1; else primary only."""
+    if tier_le_1(cfg):
+        for chart in bench_charts:
+            os_name = chart.get("os", "linux")
+            scoped = rows_for_bench_os(raw, bench_id, cfg, os_name)
+            st = chart.get("status", primary_status or "unknown")
+            results.append(
+                make_summary_row(
+                    bench_id=bench_id,
+                    cfg=cfg,
+                    chart=chart,
+                    validity_status=chart.get("validity_status", validity_status),
+                    validity_source=chart.get("validity_source", validity_source),
+                    os_name=os_name,
+                    category=category,
+                    metric=chart.get("metric", metric),
+                    status=st,
+                    raw_rows=scoped or raw,
+                )
+            )
+        return
+
+    primary = next(
+        (c for c in bench_charts if c.get("os") == "linux" and c.get("series")),
+        next((c for c in bench_charts if c.get("series")), bench_charts[0]),
+    )
+    os_name = primary.get("os", "linux")
+    scoped = rows_for_bench_os(raw, bench_id, cfg, os_name)
+    st = primary_status or primary.get("status", "unknown")
+    results.append(
+        make_summary_row(
+            bench_id=bench_id,
+            cfg=cfg,
+            chart=primary,
+            validity_status=primary.get("validity_status", validity_status),
+            validity_source=primary.get("validity_source", validity_source),
+            os_name=os_name,
+            category=category,
+            metric=primary.get("metric", metric),
+            status=st,
+            raw_rows=scoped or raw,
+        )
+    )
+
+
 def append_pending_row(
     *,
     bench_id: str,
@@ -939,6 +1002,38 @@ def append_pending_row(
         charts_by_cat[category].append(chart)
         charts_by_pillar[meta["pillar"]].append(chart)
     tier_counts[str(cfg.get("tier", 3))]["unknown"] += 1
+    if tier_le_1(cfg):
+        for chart in charts:
+            results.append(
+                {
+                    "benchmark": bench_id,
+                    "repo": cfg.get("repo", "lic"),
+                    "tier": cfg.get("tier", 0),
+                    "category": category,
+                    "metric": metric,
+                    "li_value": None,
+                    "cpp_value": None,
+                    "ratio_vs_cpp": None,
+                    "sota_lang": None,
+                    "sota_value": None,
+                    "ratio_vs_sota": None,
+                    "unit": "ms" if category == "database" else None,
+                    "variant": cfg.get("variant"),
+                    "status": "skip",
+                    "validity_status": "skip",
+                    "validity_source": chart.get("validity_source", validity_source),
+                    "os": chart.get("os", "linux"),
+                    "ph_ids": cfg.get("ph_ids", []),
+                    "path": cfg.get("path", ""),
+                    "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+                    "compare_oracle": ref,
+                    "ci_url": "",
+                    **meta,
+                    **sizes,
+                }
+            )
+        return
+
     primary = charts[0]
     results.append(
         {
@@ -1103,33 +1198,17 @@ def main() -> int:
                 charts_by_pillar[ch["pillar"]].append(ch)
             bucket = st if st in ("green", "yellow", "red") else "unknown"
             tier_counts[str(cfg.get("tier", 0))][bucket] += 1
-            primary = tier0_charts[0] if tier0_charts else chart
-            results.append(
-                {
-                    "benchmark": bench_id,
-                    "repo": cfg.get("repo", "lic"),
-                    "tier": cfg.get("tier", 0),
-                    "category": category,
-                    "metric": metric,
-                    "li_value": None,
-                    "cpp_value": None,
-                    "ratio_vs_cpp": None,
-                    "sota_lang": None,
-                    "sota_value": None,
-                    "ratio_vs_sota": None,
-                    "unit": None,
-                    "variant": None,
-                    "status": st,
-                    "validity_status": validity_status,
-                    "validity_source": validity_source,
-                    "os": primary.get("os", "linux") if primary else "linux",
-                    "ph_ids": cfg.get("ph_ids", []),
-                    "path": cfg.get("path", ""),
-                    "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
-                    "compare_oracle": cfg.get("compare_oracle", "cpp"),
-                    "ci_url": "",
-                    **meta,
-                }
+            append_benchmark_summary_rows(
+                results,
+                bench_id=bench_id,
+                cfg=cfg,
+                bench_charts=tier0_charts,
+                category=category,
+                metric=metric,
+                raw=raw,
+                validity_status=validity_status,
+                validity_source=validity_source,
+                primary_status=st,
             )
             continue
 
@@ -1199,20 +1278,17 @@ def main() -> int:
         bucket = st if st in ("green", "yellow", "red") else "unknown"
         tier_counts[tier][bucket] += 1
 
-        scoped = rows_for_bench_os(raw, bench_id, cfg, primary.get("os", "linux"))
-        results.append(
-            make_summary_row(
-                bench_id=bench_id,
-                cfg=cfg,
-                chart=primary,
-                validity_status=primary.get("validity_status", validity_status),
-                validity_source=primary.get("validity_source", validity_source),
-                os_name=primary.get("os", "linux"),
-                category=category,
-                metric=primary.get("metric", metric),
-                status=st,
-                raw_rows=scoped or raw,
-            )
+        append_benchmark_summary_rows(
+            results,
+            bench_id=bench_id,
+            cfg=cfg,
+            bench_charts=bench_charts,
+            category=category,
+            metric=metric,
+            raw=raw,
+            validity_status=validity_status,
+            validity_source=validity_source,
+            primary_status=st,
         )
 
     categories = {}
@@ -1261,7 +1337,7 @@ def main() -> int:
         "tier_counts": dict(tier_counts),
         "categories": categories,
         "pillars": pillars,
-        "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),
+        "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"], r.get("os", ""))),
     }
 
     out_dir = ROOT / "data/latest"
