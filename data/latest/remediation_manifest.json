@@ -1,209 +1,117 @@
 {
-  "generated_at": "2026-05-30T13:30:00Z",
-  "agent_id": "gui_ui_tester",
-  "briefing_generated_at": "2026-05-30T12:07Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-gui-ui.md",
+  "generated_at": "2026-05-30T14:05:00Z",
+  "agent_id": "tui_ui_tester",
+  "briefing_generated_at": "2026-05-30T14:02Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-tui-ui.md",
   "issues": [
     {
-      "surface": "gui",
+      "surface": "tui",
       "kind": "ui",
-      "target_id": "agents-dashboard",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] dashboard Playwright e2e blocked by live-stream-feed TypeScript build",
-      "problem": "npm run test:playwright:mock fails — live-stream-feed.tsx:77 Property 'path' does not exist on type '{}'",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "problem": "tui-demo.sh uses read -r twice; subprocess.run blocks 30s then TimeoutExpired uncaught in run_audit.py",
       "evidence": [
-        "2026-05-30T13:29Z npm run test:playwright:mock exit 1",
-        "WebServer Next.js build worker exit code 1"
+        "2026-05-30T14:04Z run_audit.py --target tui-app-fixture exit 1 TimeoutExpired",
+        "printf '\\n\\n' | tui-demo.sh exit 0 in <50ms"
       ],
-      "sota_reference": "https://playwright.dev/docs/test-webserver",
+      "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
-        "[ ] File: dashboard-ui/components/activity/live-stream-feed.tsx — type tool step message args",
-        "[ ] Test: npm run test:playwright:mock green",
-        "[ ] Acceptance: viewport matrix e2e can start webServer on :3099"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P0",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/31"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] Align agents-dashboard harness URL with Playwright port 3099",
-      "problem": "ux-targets.json probes :3000; Playwright e2e uses :3099 — harness skip when dev server on Playwright port",
-      "evidence": [
-        "data/latest-gui-ui-run/ui-audit.json agents-dashboard skip_reason",
-        "curl :3000 and :3099 both 000 during audit"
-      ],
-      "sota_reference": "https://playwright.dev/docs/api/class-testconfig#test-config-web-server",
-      "remediation_checklist": [
-        "[ ] File: config/ux-targets.json — url http://127.0.0.1:3099 or env-driven",
-        "[ ] Test: run_audit.py --target agents-dashboard pass when dashboard running",
-        "[ ] Acceptance: CI webServer port matches harness probe"
+        "[ ] File: ux-harness/adapters/tui.py — catch TimeoutExpired; record fail row",
+        "[ ] File: ux-harness/fixtures/tui-demo.sh — LI_TUI_HARNESS=1 or stdin pipe path",
+        "[ ] Test: run_audit.py --target tui-app-fixture records fail without crash",
+        "[ ] Acceptance: proactive audit writes complete ui-audit.json"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/38"
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
     },
     {
-      "surface": "gui",
+      "surface": "tui",
       "kind": "ui",
-      "target_id": "world-studio-demo",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] ux-harness web_gui: Playwright snapshots + axe for HTML fixtures",
-      "problem": "web_gui adapter http_probe only — pass hides missing axe, viewport matrix, pixel diff",
+      "title": "[ui-audit] TUI harness lacks stdout frame capture and baseline diff",
+      "problem": "tui adapter pass/fail only checks exit code; no stdout capture, insta/VHS baseline, or pixel_diff for terminal frames",
       "evidence": [
-        "ux-harness/adapters/web_gui.py mode http_probe",
-        "gui-gen-fixture and world-studio-demo axe_violations empty, max_ratio 0.0 default"
+        "tui-gen-fixture pass leaves artifacts: [] until manual capture",
+        "pixel_diff.max_ratio 0.0 is adapter default not measured"
       ],
-      "sota_reference": "https://github.com/dequelabs/axe-core-npm",
+      "sota_reference": "https://github.com/charmbracelet/vhs",
       "remediation_checklist": [
-        "[ ] File: ux-harness/adapters/web_gui.py — invoke Playwright + axe on fixture file:// URLs",
-        "[ ] File: ux-harness/baselines/gui/ — seed PNG baselines",
-        "[ ] Test: run_audit.py --target world-studio-demo records measured pixel_diff",
-        "[ ] Acceptance: harness fail on axe serious violations"
+        "[ ] File: ux-harness/adapters/tui.py — write stdout to captures/{target_id}.txt",
+        "[ ] File: ux-harness/baselines/tui/ — seed text baselines for fixtures",
+        "[ ] Test: run_audit.py --target tui-gen-fixture populates artifacts",
+        "[ ] Acceptance: baseline_status fail on frame drift"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/32"
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/48"
     },
     {
-      "surface": "gui",
+      "surface": "tui",
       "kind": "ui",
-      "target_id": "lic-tetris",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] lic-tetris native_gui runs studio SDL stub instead of examples/tetris",
-      "problem": "lic-tetris pass with LIC_ROOT=lic-studio-ui captures studio viewport stub, not Tetris example",
+      "title": "[ui-audit] tui-demo.sh UTF-8 em dash mojibake in harness captures",
+      "problem": "Em dash in fixture title renders as M-bM-^@M-^T in cat -v capture when locale/encoding not UTF-8",
       "evidence": [
-        "capture_meta.note: SDL viewport stub — not full li-studio binary",
-        "Same ppm_dir for lic-tetris and world-studio-native"
+        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt cat -v output",
+        "ux-harness/fixtures/tui-demo.sh line 3 em dash literal"
       ],
-      "sota_reference": "https://github.com/li-langverse/lic/tree/main/examples/tetris",
+      "sota_reference": "https://www.w3.org/International/questions/qa-choosing-encodings",
       "remediation_checklist": [
-        "[ ] File: ux-harness/adapters/native_capture.py — target-specific capture for lic-tetris",
-        "[ ] File: lic/examples/tetris — dedicated capture script or harness hook",
-        "[ ] Test: lic-tetris PNG differs from world-studio-native baseline",
-        "[ ] Acceptance: play_session journey frames show Tetris board"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/46"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] agents-dashboard: align globals.css with Li dark tokens + focus-visible",
-      "problem": "Dashboard uses #0f1419/#6eb5ff vs Li canonical #0d1117/#58a6ff; no :focus-visible rules",
-      "evidence": [
-        "dashboard-ui/app/globals.css :root tokens",
-        "grep focus-visible dashboard-ui — no matches"
-      ],
-      "sota_reference": "https://primer.style/design/accessibility/color-considerations",
-      "remediation_checklist": [
-        "[ ] File: dashboard-ui/app/globals.css — align --bg/--accent to Li tokens",
-        "[ ] Add :focus-visible ring on nav, buttons, form fields",
-        "[ ] Test: axe contrast + focus on dashboard home when server up",
-        "[ ] Acceptance: tokens_deviation empty on agents-dashboard"
-      ],
-      "suggested_implementer": "studio_ui_ux_builder",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/40"
-    },
-    {
-      "surface": "gui",
-      "kind": "ui",
-      "target_id": "world-studio-native",
-      "repo": "lic",
-      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main for ux-harness native GUI",
-      "problem": "Without LIC_ROOT env, native targets skip; main lic lacks scripts/studio-ui-ux-capture-native.sh",
-      "evidence": [
-        "lic main: NO capture script; lic-studio-ui: YES",
-        "run_audit lic-tetris/world-studio-native skip without LIC_ROOT"
-      ],
-      "sota_reference": "https://github.com/li-langverse/lic/issues/394",
-      "remediation_checklist": [
-        "[ ] File: lic/scripts/studio-ui-ux-capture-native.sh — seed from lic-studio-ui",
-        "[ ] Test: run_audit.py --target world-studio-native pass with default paths.lic_root",
-        "[ ] Acceptance: proactive audit green without LIC_ROOT override"
+        "[ ] File: ux-harness/adapters/tui.py — env LANG=C.UTF-8 for fixture subprocess",
+        "[ ] Or File: tui-demo.sh — ASCII hyphen in title for CI captures",
+        "[ ] Test: capture file contains readable em dash or ASCII dash consistently",
+        "[ ] Acceptance: no mojibake in tui-app-fixture-piped.txt"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P2",
-      "labels": ["ui-audit", "surface:gui", "PH-UX"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/394"
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/49"
     }
   ],
   "implementation_queue": [
     {
       "kind": "ui_remediation",
       "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 31,
-      "title": "Fix live-stream-feed.tsx TS — unblock Playwright mock e2e",
-      "remediation_summary": "Dashboard webServer must start for viewport/axe audit",
-      "files_hint": ["dashboard-ui/components/activity/live-stream-feed.tsx"],
-      "acceptance": ["npm run test:playwright:mock exit 0", "webServer starts on :3099"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["agents_list_empty", "live_stream"],
+      "surface": "tui",
+      "issue": 30,
+      "title": "Catch TimeoutExpired + stdin pipe for tui-app-fixture",
+      "remediation_summary": "Harness must not crash; fixture must exit in CI without TTY",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/fixtures/tui-demo.sh"],
+      "acceptance": ["run_audit.py --target tui-app-fixture exit 0 with fail row", "piped stdin path automated"],
+      "agent_source": "tui_ui_tester",
+      "journeys": [],
       "sources": ["ui_audit"]
     },
     {
       "kind": "ui_remediation",
       "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 38,
-      "title": "Align harness dashboard URL with Playwright port",
-      "remediation_summary": "agents-dashboard skip when only Playwright port is up",
-      "files_hint": ["config/ux-targets.json"],
-      "acceptance": ["run_audit agents-dashboard pass with npm run dev on :3099"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["agents_list_empty"],
+      "surface": "tui",
+      "issue": 48,
+      "title": "Stdout frame capture + baseline diff for TUI adapter",
+      "remediation_summary": "Pass path must persist terminal captures and compare baselines",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/baselines/tui/"],
+      "acceptance": ["artifacts populated on pass", "baseline_status reflects frame drift"],
+      "agent_source": "tui_ui_tester",
+      "journeys": [],
       "sources": ["ui_audit"]
     },
     {
       "kind": "ui_remediation",
       "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 32,
-      "title": "Wire Playwright + axe into web_gui adapter",
-      "remediation_summary": "HTML fixture pass must reflect real axe/pixel measurements",
-      "files_hint": ["ux-harness/adapters/web_gui.py", "ux-harness/baselines/gui/"],
-      "acceptance": ["axe violations populated on fixture scan", "pixel_diff.max_ratio measured"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["studio_workspace", "gen_preview_loop"],
-      "sources": ["ui_audit"]
-    },
-    {
-      "kind": "ui_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 46,
-      "title": "lic-tetris must capture Tetris, not studio stub",
-      "remediation_summary": "False pass misleads UX-14 bench honesty",
-      "files_hint": ["ux-harness/adapters/native_capture.py", "config/ux-targets.json"],
-      "acceptance": ["lic-tetris artifacts differ from world-studio-native", "capture_meta references examples/tetris"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["play_session"],
-      "sources": ["ui_audit"]
-    },
-    {
-      "kind": "ui_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 40,
-      "title": "Dashboard Li dark tokens + focus-visible",
-      "remediation_summary": "Align agent chrome with ecosystem dark theme and keyboard a11y",
-      "files_hint": ["dashboard-ui/app/globals.css"],
-      "acceptance": ["--bg #0d1117 or documented token map", ":focus-visible on interactive elements"],
-      "agent_source": "gui_ui_tester",
-      "journeys": ["keyboard_first_workflow"],
+      "surface": "tui",
+      "issue": 49,
+      "title": "Fix UTF-8 mojibake in tui-demo captures",
+      "remediation_summary": "Terminal frame audit requires consistent encoding in captures",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/fixtures/tui-demo.sh"],
+      "acceptance": ["capture shows em dash or ASCII dash without mojibake"],
+      "agent_source": "tui_ui_tester",
+      "journeys": [],
       "sources": ["ui_audit"]
     }
   ]
