@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-05-30T12:10:01.287104+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 0,
+    "skipped": 1
+  },
+  "targets": [
+    {
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "mode": "native_gui",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "status": "skip",
+      "skip_reason": "native capture script not configured (paths.capture_script or lic_root)",
+      "native_pixels": false
+    }
+  ]
+}
