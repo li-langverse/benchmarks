@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-05-30T09:37Z",
+  "run_id": "ci_maintainer-1780133512165",
+  "method": "graphql_batch",
+  "org": "li-langverse",
+  "total_repos": 35,
+  "repos_with_ci_yml_on_main": 33,
+  "repos_missing_ci_yml_on_main": [
+    "lic-docs"
+  ],
+  "repos_exempt": [
+    "research-findings"
+  ],
+  "github_rest_rate_limit": "exhausted (5000/5000) \u2014 ecosystem-audit missing_ci_on_main unreliable",
+  "actions_taken": [
+    "Closed duplicate lic-docs PR #3 (superseded by #1 merge-approved)",
+    "Refreshed org-repo-ci-audit.json with --allow-local-fallback"
+  ],
+  "open_ci_prs": [
+    {
+      "repo": "lic-docs",
+      "pr": 1,
+      "url": "https://github.com/li-langverse/lic-docs/pull/1",
+      "status": "CI green, merge-approved"
+    }
+  ]
+}

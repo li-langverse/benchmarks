@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-05-30T09:34:32.475108+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 2,
+    "failing": 1,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "artifacts": [],
+      "mode": "fixture",
+      "status": "fail",
+      "fixture_exit_code": null,
+      "harness_error": "subprocess.TimeoutExpired: tui-demo.sh timed out after 30 seconds",
+      "axe_violations": [],
+      "pixel_diff": {"max_ratio": 0.0, "threshold": 0.04},
+      "contrast_failures": [],
+      "baseline_status": "timeout",
+      "tokens_deviation": [],
+      "broken_links": 0
+    },
+    {
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_gen",
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
+      ],
+      "mode": "fixture",
+      "status": "pass",
+      "fixture_exit_code": 0,
+      "axe_violations": [],
+      "pixel_diff": {"max_ratio": 0.0, "threshold": 0.04},
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0
+    }
+  ]
+}
