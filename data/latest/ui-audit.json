@@ -1,11 +1,11 @@
 {
   "generated_at": "2026-05-30T01:27:51.076124+00:00",
   "platform": "Linux",
-  "agent_id": "gui_ui_tester",
+  "agent_id": "docs_ui_tester",
   "summary": {
     "total": 6,
-    "failing": 0,
-    "passing": 3,
+    "failing": 1,
+    "passing": 2,
     "skipped": 3
   },
   "targets": [
@@ -69,20 +69,37 @@
       "repo": "lic",
       "surface": "docs",
       "surface_class": "docs",
-      "artifacts": [],
-      "axe_violations": [],
+      "status": "fail",
+      "mode": "static_site+playwright",
+      "artifacts": [
+        "data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json"
+      ],
+      "axe_violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 12
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "nodes": 5
+        }
+      ],
       "pixel_diff": {
         "max_ratio": 0.0,
         "threshold": 0.04
       },
       "contrast_failures": [],
-      "baseline_status": "ok",
+      "baseline_status": "none",
       "tokens_deviation": [],
-      "mode": "static_site",
-      "status": "pass",
       "broken_links": 0,
+      "raw_md_hrefs": 0,
       "html_files": 377,
-      "links_checked": 0
+      "links_checked": 0,
+      "playwright_audit": "data/latest-docs-ui-run/ui-audit.json"
     },
     {
       "target_id": "lic-tetris",

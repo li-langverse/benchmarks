@@ -1,0 +1,73 @@
+{
+  "generated_at": "2026-05-30T01:27:39.292Z",
+  "platform": "Linux",
+  "agent_id": "docs_ui_tester",
+  "summary": {
+    "total": 1,
+    "failing": 1,
+    "passing": 0,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "surface": "docs",
+      "surface_class": "docs",
+      "status": "fail",
+      "mode": "playwright_axe",
+      "artifacts": [
+        "data/latest-docs-ui-run/artifacts/lic-docs/home-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/home-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/hello-world-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/hello-world-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-desktop.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/provability-gaps-mobile.png",
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json"
+      ],
+      "axe_violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 12
+        },
+        {
+          "id": "link-in-text-block",
+          "impact": "serious",
+          "nodes": 5
+        }
+      ],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "contrast_samples": [
+        {
+          "page": "home",
+          "viewport": "desktop",
+          "selector": ".md-tabs__link",
+          "ratio": 21.0,
+          "wcag_aa": true
+        }
+      ],
+      "baseline_status": "none",
+      "baseline_note": "ux-harness/baselines/docs/ empty (.gitkeep only)",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "raw_md_hrefs": 0,
+      "html_files": 377,
+      "links_checked": 0,
+      "live_drift": {
+        "nav_tabs_local": 12,
+        "nav_tabs_live": 5,
+        "search_docs_local": 2801,
+        "search_docs_live": 248,
+        "live_404": [
+          "guide/hello-world/",
+          "ecosystem/overview/"
+        ]
+      }
+    }
+  ]
+}
