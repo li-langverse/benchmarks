@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T14:51Z",
+  "generated_at": "2026-05-30T15:03Z",
   "org": "li-langverse",
-  "github_source": "gh_repo_list",
+  "github_source": "gh_api_orgs_repos",
   "github_repos": [
     "benchmarks",
     "li-cursor-agents",
