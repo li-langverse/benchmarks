@@ -56,9 +56,16 @@ def main() -> int:
     catalog_ids = [b["id"] for b in benches]
     catalog_set = set(catalog_ids)
 
+    catalog_by_id = {b["id"]: b for b in benches}
     summary = json.loads(SUMMARY.read_text())
     rows = summary.get("rows", [])
-    row_by_bench = {r["benchmark"]: r for r in rows}
+    rows_by_bench: dict[str, list[dict]] = {}
+    for row in rows:
+        rows_by_bench.setdefault(row["benchmark"], []).append(row)
+    row_by_bench = {
+        bench: next((r for r in group if r.get("os") == "linux"), group[0])
+        for bench, group in rows_by_bench.items()
+    }
 
     if len(catalog_ids) != len(catalog_set):
         fail("duplicate catalog ids")
@@ -66,16 +73,26 @@ def main() -> int:
     if len(rows) < MIN_ROWS:
         fail(f"summary rows {len(rows)} < minimum {MIN_ROWS}")
 
-    if len(rows) != len(catalog_set):
-        fail(f"row count {len(rows)} != catalog count {len(catalog_set)}")
-
-    missing = catalog_set - set(row_by_bench)
+    missing = catalog_set - set(rows_by_bench)
     if missing:
         fail(f"catalog ids missing from summary.rows: {sorted(missing)[:5]} … ({len(missing)} total)")
 
-    extra = set(row_by_bench) - catalog_set
+    extra = set(rows_by_bench) - catalog_set
     if extra:
         fail(f"summary rows not in catalog: {sorted(extra)[:5]} … ({len(extra)} total)")
+
+    for bench_id, group in rows_by_bench.items():
+        cfg = catalog_by_id.get(bench_id, {})
+        tier = cfg.get("tier", 99)
+        tier01 = tier in (0, 1, "0", "1")
+        if tier01:
+            oss = {r.get("os") for r in group if r.get("os")}
+            if len(group) > 3:
+                fail(f"{bench_id}: tier 0/1 has {len(group)} rows (max 3 per OS)")
+            if len(group) > 1 and len(oss) != len(group):
+                fail(f"{bench_id}: tier 0/1 duplicate OS in summary rows")
+        elif len(group) != 1:
+            fail(f"{bench_id}: tier {tier} has {len(group)} rows (expected 1)")
 
     banned_in_catalog = catalog_set & BANNED_STUB_IDS
     if banned_in_catalog:
@@ -116,7 +133,7 @@ def main() -> int:
 
     print(
         f"PASS check-dashboard-invariants "
-        f"({len(rows)} rows, {len(pillars)} pillars, policy={policy})"
+        f"({len(rows)} rows, {len(rows_by_bench)} benchmarks, {len(pillars)} pillars, policy={policy})"
     )
     return 0
 
