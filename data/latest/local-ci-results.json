@@ -7,11 +7,11 @@
       "profile": "workflows",
       "ok": false,
       "exit_code": 127,
-      "started_at": "2026-05-30T00:48:18Z",
-      "finished_at": "2026-05-30T00:48:18Z",
-      "summary": "==> li-local-ci run profile=lic-host repo=/tmp/li-local-ci-pr.bVkTsp mode=host /home/s4il0r/Documents/Cursor/li-langverse/li-local-ci/profiles/lic-host.sh: line 12: ./scripts/ci.sh: No such file or directory ==> FAIL profile=lic-host (0s) exit=127 "
+      "started_at": "2026-05-30T00:49:41Z",
+      "finished_at": "2026-05-30T00:49:41Z",
+      "summary": "==> li-local-ci run profile=lic-host repo=/tmp/li-local-ci-pr.j5zg12 mode=host /home/s4il0r/Documents/Cursor/li-langverse/li-local-ci/profiles/lic-host.sh: line 12: ./scripts/ci.sh: No such file or directory ==> FAIL profile=lic-host (0s) exit=127 "
     }
   ],
-  "generated_at": "2026-05-30T00:48:18Z",
-  "sweep_at": "2026-05-30T00:48Z"
+  "generated_at": "2026-05-30T00:49:41Z",
+  "sweep_at": "2026-05-30T00:49Z"
 }
