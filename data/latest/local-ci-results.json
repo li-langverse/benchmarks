@@ -1,0 +1,17 @@
+{
+  "runs": [
+    {
+      "key": "lic#439",
+      "repo": "lic",
+      "number": 439,
+      "profile": "workflows",
+      "ok": false,
+      "exit_code": 1,
+      "started_at": "2026-05-29T23:50:48Z",
+      "finished_at": "2026-05-29T23:52:54Z",
+      "summary": "\u2500\u2500 li-tests \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500   \u2715 4 failed  \u00b7 251 passed ==> FAIL profile=lic-host (123s) exit=1 "
+    }
+  ],
+  "generated_at": "2026-05-29T23:52:54Z",
+  "sweep_at": "2026-05-29T23:52Z"
+}
