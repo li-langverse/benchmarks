@@ -6,9 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Changed
+### Added
 
-- **Ecosystem audit:** `ecosystem-audit.py` HEAD-checks org handbook Pages URLs (`HANDBOOK_PAGES`) instead of a static missing-docs list; reports `repos_with_live_pages`.
+- **Docs maintainer digest:** run `1780170457780` — `data/runs/docs_maintainer-1780170457780.md` (preflight green; lic PH tracker handoff).
+
+### Changed
 
 ### Fixed
 
