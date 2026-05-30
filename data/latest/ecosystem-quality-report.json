@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-30T21:47:55Z",
+  "generated_at": "2026-05-30T21:48:56Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 73.3,
+  "overall_score": 77.0,
   "grade": "C",
-  "unattended_safe": false,
+  "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
       "score": 77.0,
@@ -42,27 +42,27 @@
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 55.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 11,
+        "terminal_runs": 13,
         "error_count": 3,
         "incomplete_count": 0,
-        "running_count": 109,
-        "error_rate": 0.2727,
+        "running_count": 107,
+        "error_rate": 0.2308,
         "incomplete_rate": 0.0,
         "top_error_agents": [
+          {
+            "agent": "docs_maintainer",
+            "count": 1
+          },
           {
             "agent": "gui_ui_tester",
             "count": 1
           },
           {
             "agent": "bench_improver",
-            "count": 1
-          },
-          {
-            "agent": "docs_maintainer",
             "count": 1
           }
         ]
@@ -86,16 +86,16 @@
   },
   "findings": [
     {
-      "id": "swarm-error-rate",
-      "severity": "critical",
-      "message": "Error rate 27% over last 11 terminal runs",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
       "id": "goal-runners-stopped",
       "severity": "high",
       "message": "6 goal-directed runner(s) not running",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json"
+    },
+    {
+      "id": "swarm-error-rate",
+      "severity": "high",
+      "message": "Error rate 23% over last 13 terminal runs",
+      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-gap-backlog",
@@ -118,7 +118,7 @@
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "109 runs still marked running (possible stuck SDK)",
+      "message": "107 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
