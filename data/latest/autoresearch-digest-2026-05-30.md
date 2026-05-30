@@ -1,18 +1,18 @@
-# Autoresearch digest — 2026-05-30 (proactive v7)
+# Autoresearch digest — 2026-05-30 (proactive v6)
 
-**Agent:** `autoresearch` · **Run:** `autoresearch-1780115445230` · **Source:** proactive  
-**Full run log:** `data/runs/autoresearch-1780115445230.md`  
+**Agent:** `autoresearch` · **Run:** `autoresearch-1780113672069` · **Source:** proactive  
+**Full run log:** `data/runs/autoresearch-1780113672069.md`  
 **north_star_fit:** PH-5b, PH-7e (pure_li codegen proof before perf claims)
 
 ## Executive summary
 
-- Dashboard ingest (2026-05-29T07:01Z) lists **6 red** tier-1 rows; **local tier-1 @ lic `c6e9ca7d` clears 5/6** — only **`matmul_blocked` pure_li** remains red at **1.256×** vs cpp (threshold 1.2×).
-- **`matmul_blocked`** uses MIR hook `mm_blocked_512` → `ArrayMatMulBlocked2DF64` with vec-FMA inner tile already in-tree; gap is **marginal codegen tuning**, not missing SOTA recipe.
-- **`matmul_naive`** local **1.00×**; **`num_gmres`** local **1.00×** (shared C kernel); **`horner_pure_li`** local **0.80×** — dashboard ratios for these rows are **stale**.
-- **No novel-algorithm hypothesis** passes Mode A SOTA bar — blocked GEMM = standard BLIS IKJ+BK=64; autoresearch closes **negative** this cycle.
-- **`horner_pure_li` verify** fails spec check (`native != spec 'inf'`) — route to **bench_improver** for reference.py / fast-math spec alignment; timing unaffected.
-- **3× `ml_*` reds** (`ml_conv2d_forward`, `ml_mlp_forward`, `ml_mlp_train_step`) live in **li-math** `algo_registry` — out of autoresearch scope.
-- Concurrent **`bench_improver`** run active; prior **15+ agent runs** today errored in control-plane (supervisor reconciliation, not bench regression).
-- Action: merge **ingest refresh** after lic bench CSV lands; micro-opt **`matmul_blocked`** vec-FMA tile (≤1.2×) via **code_implementer**, not novel algorithm PR.
+- Dashboard shows **6 red** tier-1 rows (ingest @ 2026-05-29T07:01Z); **local spot-check @ lic `28cf644b` clears 5/6** — only **`matmul_blocked` pure_li** remains red at **1.23×** vs cpp.
+- **`matmul_naive`** local **1.06×** (green); **`num_gmres`** local **0.80×** (shared C kernel, not pure_li); **`horner_pure_li`** dashboard already **green** (0.75×).
+- **No novel-algorithm hypothesis** passes Mode A SOTA bar — blocked GEMM gap is **PH-7e codegen** (BLIS-style IKJ + FMA micro-kernel), not missing numerics recipe.
+- Canonical fix lane: **lic [#437](https://github.com/li-langverse/lic/pull/437)** (`ArrayMatMulBlocked2DF64` vec-FMA); autoresearch defers invention until codegen PR lands and re-bench fails ≥1.2×.
+- **3× `ml_*` reds** live in **li-math** (`algo_registry`) — out of autoresearch scope; route to **bench_improver** / li-math harness.
+- **6 stale autoresearch digest branches** on lic + benchmarks with no open PR — file via **pr_branch_opener** or close.
+- Prior **8 autoresearch control-plane runs** today errored `unregistered_running_reconciled` — orchestration gap, not numerics failure.
+- Study: `docs/numerics/studies/2026-05-30-autoresearch-proactive-sweep.md` (negative novel result; local benches documented).
 
-See `data/runs/autoresearch-1780115445230.md` for triage table, recommended PRs, and agent deliverable checklist.
+See `data/runs/autoresearch-1780113672069.md` for triage table, recommended PRs, and agent deliverable checklist.

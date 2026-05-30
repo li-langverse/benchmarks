@@ -1,3 +1,5 @@
-# Docs maintainer digest — latest
+# Implementation gaps digest — latest
 
-See [2026-05-30-docs-maintainer-1780112191589.md](2026-05-30-docs-maintainer-1780112191589.md) (run `1780112191589`).
+**See:** [2026-05-30-gaps.md](./2026-05-30-gaps.md) (implementation_gaps · coord_governance · 2026-05-30T04:27Z)
+
+Quick pointer for automations; dated file is canonical.
