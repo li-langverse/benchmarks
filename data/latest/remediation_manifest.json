@@ -1,139 +1,174 @@
 {
-  "generated_at": "2026-05-30T15:35Z",
-  "agent_id": "docs_ux_tester",
-  "briefing_generated_at": "2026-05-30T14:02Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ux.md",
+  "generated_at": "2026-05-30T15:48Z",
+  "agent_id": "gui_ui_tester",
+  "briefing_generated_at": "2026-05-30T15:44Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-gui-ui.md",
   "issues": [
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (5-tab nav)",
-      "problem": "Published handbook has 5-tab legacy nav; local mkdocs builds 12 tabs; hero IA paths 404 on live; search index ~91% smaller (248 vs 2801 docs)",
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] Wire Playwright snapshots + axe for dashboard and HTML fixtures",
+      "problem": "web_gui adapter uses http_probe only — no viewport matrix, pixel diff, axe, or contrast scan on live dashboard",
       "evidence": [
-        "2026-05-30T15:32Z HEAD: /guide/hello-world/, /ecosystem/overview/, /language/overview/ → 404",
-        "Live tabs: Home, Getting started, Guides, Reference, Project (5) vs local 12",
-        "search_index.json live 248 docs vs local 2801 docs; Last-Modified 2026-05-30 but content stale"
+        "data/latest-gui-ui-run/ui-audit.json: agents-dashboard skip at :3000",
+        "All GUI targets: axe_violations=[], pixel_diff.max_ratio=0.0",
+        "Adapter: li-cursor-agents/ux-harness/adapters/web_gui.py mode=http_probe"
       ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
+      "sota_reference": "https://github.com/dequelabs/axe-core",
       "remediation_checklist": [
-        "[ ] File: lic/.github/workflows/docs.yml — green mkdocs build --strict",
-        "[ ] Fix remaining link warnings blocking deploy",
-        "[ ] Test: curl -sI https://li-langverse.github.io/li-language/guide/hello-world/ → 200",
-        "[ ] Acceptance: live tab count matches local mkdocs nav (12 tabs)"
+        "[ ] File: li-cursor-agents/ux-harness/adapters/web_gui.py — Playwright capture + axe",
+        "[ ] Seed baselines for dashboard + fixtures",
+        "[ ] Test: ui-audit agents-dashboard reports artifacts + axe pass",
+        "[ ] Acceptance: viewport matrix (mobile/tablet/desktop) with pixel_diff ≤ 0.04"
       ],
-      "suggested_implementer": "docs_maintainer",
-      "priority": "P0",
-      "labels": ["ux-audit", "surface:docs", "documentation"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/403"
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/32"
     },
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
-      "problem": "11 language/*.md reference pages nested under Game development tab — violates Diátaxis separation; cognitive_load rubric at threshold (0.70)",
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] Align harness probe URL to Playwright webServer port",
+      "problem": "Harness probes :3000 but Playwright e2e uses webServer on :3099 — dashboard skip even when e2e passes",
       "evidence": [
-        "lic/mkdocs.yml lines 119–129: types-and-data, numerics, simd-parallel, etc. under Game development",
-        "Language handbook tab has only 5 pages; Game dev tab mixes domain how-to with reference"
+        "ux-targets.json url: http://127.0.0.1:3000",
+        "2026-05-30T15:47Z proactive run: agents-dashboard skip_reason unreachable at :3000",
+        "test:e2e:mock passes with Playwright-managed server"
       ],
-      "sota_reference": "https://diataxis.fr/start-here/",
+      "sota_reference": "https://playwright.dev/docs/test-webserver",
       "remediation_checklist": [
-        "[ ] File: lic/mkdocs.yml — move language/*.md entries to Language handbook tab",
-        "[ ] Test: Game development nav contains only game-dev/* and physics/GAME_DEV.md",
-        "[ ] Acceptance: Diátaxis audit — reference quadrant has single top-level home"
+        "[ ] File: li-cursor-agents/config/ux-targets.json — align url or add probe fallback",
+        "[ ] File: ux-harness/adapters/web_gui.py — start webServer or read PLAYWRIGHT_BASE_URL",
+        "[ ] Acceptance: ui-audit agents-dashboard pass when e2e webServer running"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/422"
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/38"
     },
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "docs(IA): add Diátaxis labels to home doc-map + collapse Project tab behind Contributing",
-      "problem": "Project tab exposes 10+ phase plans to all visitors; home doc-map lacks explicit Diátaxis quadrant labels; rubric cognitive_load 0.70 (lowest dimension)",
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] Fix live-stream mock e2e text-delta assertion",
+      "problem": "test:e2e:mock fails — live-stream-feed never contains 'text-delta' string during mocked run",
       "evidence": [
-        "lic/docs/index.md doc-map table lists sections without tutorial/how-to/reference/explanation labels",
-        "mkdocs.yml Project tab: master plan + 7 phase plans + benchmarks plan",
-        "ux-audit rubric: cognitive_load 0.70, rubric_min 0.70"
+        "npm run test:e2e:mock → 1 passed, 1 failed",
+        "FAIL: live-stream-mock.spec.ts:127 toContainText('text-delta')",
+        "PASS: run drawer shows thinking when trace has no deltas yet"
       ],
-      "sota_reference": "https://diataxis.fr/start-here/",
+      "sota_reference": "https://playwright.dev/docs/test-assertions",
       "remediation_checklist": [
-        "[ ] File: lic/docs/index.md — add Diátaxis quadrant column to doc-map table",
-        "[ ] File: lic/mkdocs.yml — nest Project items under Contributing or add nav filter",
-        "[ ] Acceptance: cognitive_load rubric ≥ 0.75 on next ux-audit pass"
+        "[ ] File: dashboard-ui/e2e/live-stream-mock.spec.ts — align assertion with mock SSE payload",
+        "[ ] File: dashboard-ui/e2e/fixtures or mock route — emit text-delta events",
+        "[ ] Acceptance: npm run test:e2e:mock green in CI"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": null
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/31"
     },
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "docs(ecosystem): mirror roadmap policy pages in MkDocs instead of GitHub-only stubs",
-      "problem": "ecosystem/*.md pages are GitHub stubs — first reading path to Ecosystem breaks in-site flow; users leave handbook for canonical policy",
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "lic-tetris",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] lic-tetris must not reuse studio SDL stub",
+      "problem": "lic-tetris native_gui pass captures studio viewport stub frames, not examples/tetris gameplay",
       "evidence": [
-        "lic/docs/ecosystem/overview.md — stub redirecting to li-langverse/roadmap",
-        "Journey first_reading_path: Home → Ecosystem → GitHub exit"
+        "capture_meta.note: SDL viewport stub — not full li-studio binary",
+        "capture_stdout ppm_dir: lic-studio-ui/deploy/studio-demo/native/out",
+        "ux-targets.json paths.example: ../lic/examples/tetris unused by adapter"
       ],
-      "sota_reference": "https://diataxis.fr/start-here/",
+      "sota_reference": "https://github.com/li-langverse/lic/issues/515",
       "remediation_checklist": [
-        "[ ] File: lic/docs/ecosystem/*.md — include rendered content or mkdocs include from roadmap",
-        "[ ] Test: /ecosystem/overview/ renders full page without GitHub redirect",
-        "[ ] Acceptance: ecosystem reading path stays on li-language Pages"
+        "[ ] File: ux-harness/adapters/native_gui.py — route lic-tetris to tetris binary/capture",
+        "[ ] Test: frame artifacts differ from world-studio-native baseline",
+        "[ ] Acceptance: capture_meta references examples/tetris not studio stub"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:docs"],
-      "issue_url": null
+      "labels": ["ui-audit", "surface:gui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/46"
+    },
+    {
+      "surface": "gui",
+      "kind": "ui",
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "title": "[ui-audit] Add studio-ui-ux-capture-native.sh on main lic",
+      "problem": "Native capture script exists on lic-studio-ui worktree only; main lic lacks studio-ui-ux-capture-native.sh",
+      "evidence": [
+        "lic/scripts/studio-ui-ux-capture-native.sh missing on main",
+        "Harness requires LIC_ROOT=lic-studio-ui for native pass",
+        "Issue #47 documents env workaround"
+      ],
+      "sota_reference": "lic/docs/game-dev/competitive-intel/ui-ux-by-dimension.md",
+      "remediation_checklist": [
+        "[ ] File: lic/scripts/studio-ui-ux-capture-native.sh — port from lic-studio-ui",
+        "[ ] Test: LIC_ROOT=../lic ui-audit world-studio-native pass without worktree",
+        "[ ] Acceptance: script on main; documented in ux-harness README"
+      ],
+      "suggested_implementer": "studio_ui_ux_builder",
+      "priority": "P2",
+      "labels": ["ui-audit", "surface:gui", "PH-UX"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/394"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 403,
-      "title": "Unblock strict MkDocs CI and deploy 12-tab handbook",
-      "remediation_summary": "Live Pages must match local IA; fix 404 hero paths and restore search index",
-      "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
-      "acceptance": ["live /guide/hello-world/ returns 200", "12 nav tabs on Pages", "search index ≥ 2500 docs"],
-      "agent_source": "docs_ux_tester",
-      "journeys": ["first_reading_path", "mobile_nav"],
-      "sources": ["ux_audit"]
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "issue": 32,
+      "title": "Wire Playwright snapshots + axe for dashboard and fixtures",
+      "remediation_summary": "Extend web_gui adapter beyond http_probe — viewport matrix, pixel diff, axe",
+      "files_hint": ["ux-harness/adapters/web_gui.py", "ux-harness/baselines/"],
+      "acceptance": ["ui-audit agents-dashboard reports artifacts", "axe_violations empty", "pixel_diff ≤ 0.04"],
+      "agent_source": "gui_ui_tester",
+      "sources": ["ui_audit"]
     },
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 422,
-      "title": "Move language reference pages out of Game development nav",
-      "remediation_summary": "Diátaxis IA cleanup — 11 language/*.md pages to Language handbook tab",
-      "files_hint": ["mkdocs.yml"],
-      "acceptance": ["Game development nav has zero language/*.md entries"],
-      "agent_source": "docs_ux_tester",
-      "journeys": ["first_reading_path"],
-      "sources": ["ux_audit"]
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "issue": 38,
+      "title": "Align harness probe to Playwright webServer port",
+      "remediation_summary": "Fix :3000 vs :3099 mismatch so proactive audit probes live dashboard",
+      "files_hint": ["config/ux-targets.json", "ux-harness/adapters/web_gui.py"],
+      "acceptance": ["agents-dashboard status pass when e2e webServer up"],
+      "agent_source": "gui_ui_tester",
+      "sources": ["ui_audit"]
     },
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": null,
-      "title": "Diátaxis labels on home doc-map + collapse Project tab",
-      "remediation_summary": "Reduce cognitive load; label quadrants on index.md doc-map",
-      "files_hint": ["docs/index.md", "mkdocs.yml"],
-      "acceptance": ["cognitive_load rubric ≥ 0.75"],
-      "agent_source": "docs_ux_tester",
-      "sources": ["ux_audit"]
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "issue": 31,
+      "title": "Fix live-stream mock e2e text-delta assertion",
+      "remediation_summary": "Mock SSE must emit text-delta events expected by live-stream-mock.spec.ts",
+      "files_hint": ["dashboard-ui/e2e/live-stream-mock.spec.ts"],
+      "acceptance": ["npm run test:e2e:mock green"],
+      "agent_source": "gui_ui_tester",
+      "sources": ["ui_audit"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "issue": 46,
+      "title": "lic-tetris must not reuse studio SDL stub",
+      "remediation_summary": "Route native_gui capture to examples/tetris not studio viewport stub",
+      "files_hint": ["ux-harness/adapters/native_gui.py"],
+      "acceptance": ["lic-tetris artifacts distinct from world-studio-native"],
+      "agent_source": "gui_ui_tester",
+      "sources": ["ui_audit"]
     }
   ]
 }
