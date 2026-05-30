@@ -38,9 +38,21 @@ def list_org_repos() -> list[str]:
 
 
 ORG_REPOS: list[str] = []  # filled in main()
-LIVE_DOCS = {
+
+# Expected GitHub Pages handbook URLs (HEAD 2xx). lic canonical site is li-language mkdocs.
+REPO_LIVE_DOC_URLS: dict[str, str] = {
     "benchmarks": "https://li-langverse.github.io/benchmarks/",
     "li-language": "https://li-langverse.github.io/li-language/",
+    "lic": "https://li-langverse.github.io/li-language/",
+    "roadmap": "https://li-langverse.github.io/roadmap/development-overview/",
+    "lip": "https://li-langverse.github.io/lip/",
+    "lit": "https://li-langverse.github.io/lit/",
+    "lis": "https://li-langverse.github.io/lis/",
+    "li-net": "https://li-langverse.github.io/li-net/",
+    "li-httpd": "https://li-langverse.github.io/li-httpd/",
+    "li-std-core": "https://li-langverse.github.io/li-std-core/",
+    "li-std-math": "https://li-langverse.github.io/li-std-math/",
+    "li-demo": "https://li-langverse.github.io/li-demo/",
 }
 VISION = {
     "master_plan": "https://github.com/li-langverse/lic/blob/main/docs/superpowers/plans/2026-05-14-li-master-plan.md",
@@ -182,12 +194,15 @@ def main() -> int:
     ready = [p for p in prs if p["ready"]]
 
     missing_ci = [r for r in ORG_REPOS if not has_ci_on_main(r)]
-    missing_docs = [
-        r
-        for r in ORG_REPOS
-        if r not in LIVE_DOCS and r in ("lic", "lip", "lit", "lis", "roadmap", "li-net", "li-httpd", "li-std-core", "li-std-math", "li-demo")
-    ]
-    live_docs_missing = [r for r, url in LIVE_DOCS.items() if not head_ok(url)]
+    missing_docs = sorted(
+        r for r in ORG_REPOS if (url := REPO_LIVE_DOC_URLS.get(r)) and not head_ok(url)
+    )
+    live_docs_missing = sorted(
+        r for r, url in REPO_LIVE_DOC_URLS.items() if not head_ok(url)
+    )
+    live_docs_up = sorted(
+        r for r, url in REPO_LIVE_DOC_URLS.items() if head_ok(url)
+    )
 
     summary = load_benchmark_summary()
     bench = benchmark_posture(summary) if summary else {"error": "no summary.json — run ingest"}
@@ -252,6 +267,7 @@ def main() -> int:
             "ready_prs": len(ready),
             "repos_missing_ci_main": len(missing_ci),
             "repos_without_live_pages": len(missing_docs),
+            "repos_with_live_pages": len(live_docs_up),
         },
         "failed_prs": failed,
         "ready_prs": ready,
