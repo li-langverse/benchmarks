@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T10:13:25Z",
+  "generated_at": "2026-05-30T10:14:31Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 75.0,
+  "overall_score": 76.0,
   "grade": "C",
   "unattended_safe": true,
   "dimensions": {
@@ -42,16 +42,16 @@
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 70.0,
+      "score": 74.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
         "terminal_runs": 6,
         "error_count": 0,
-        "incomplete_count": 2,
+        "incomplete_count": 1,
         "running_count": 114,
         "error_rate": 0.0,
-        "incomplete_rate": 0.3333,
+        "incomplete_rate": 0.1667,
         "top_error_agents": []
       },
       "finding_count": 2
@@ -99,7 +99,7 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 33%",
+      "message": "Incomplete rate 17%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
