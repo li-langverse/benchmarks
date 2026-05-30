@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "generated_at": "2026-05-30T05:07:19.110783+00:00",
-=======
   "generated_at": "2026-05-30T05:18:31.176147+00:00",
->>>>>>> origin/main
   "summary_path": "data\\latest\\summary.json",
   "benchmark_bases": 185,
   "chart_rows": 555,

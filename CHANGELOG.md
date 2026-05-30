@@ -24,10 +24,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - **Dashboard completeness sprint (Phase A):** catalog `[reporting].platforms`, ingest macOS/Windows skip charts, audit gap script — [2026-05-29-dashboard-completeness-sprint.md](docs/release-notes/2026-05-29-dashboard-completeness-sprint.md).
-<<<<<<< HEAD
 - **Dashboard completeness sprint (Phase B/C):** tier 0/1 per-OS summary rows + refresh expansion for completion gate — same release note.
-=======
->>>>>>> origin/main
 - **`refresh-dashboard-completeness.py`:** offline summary refresh for multi-OS skip charts; committed `summary.json` P0=0; CI runs `audit-dashboard-gaps.py` on PRs.
 
 
