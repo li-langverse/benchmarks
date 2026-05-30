@@ -47,6 +47,7 @@ python3 -m unittest tests.test_audit_dashboard_gaps -v
 python3 scripts/check-dashboard-invariants.py
 ```
 
+<<<<<<< HEAD
 ## Phase B — Harness hosting (in progress)
 
 - Tier-0/1 **summary rows** now mirror per-platform charts (`linux` measured + `macos`/`windows` skip until nightly CSV merge).
@@ -80,5 +81,10 @@ PY
 ## Phase B deferral (regression-check)
 
 `./scripts/regression-check.sh` still reports **4 red rows** on Linux (`ml_conv2d_forward`, `ml_mlp_forward`, `ml_mlp_train_step`, `num_gmres`). These are **not new** dashboard-completeness regressions; they need **lic** tier-1 perf work + CSV re-ingest (companion PR on `lic`, not #143). Matmul catalog entries are skip-only in the committed snapshot until nightly Linux CSV lands.
+=======
+## Phase B deferral (regression-check)
+
+`./scripts/regression-check.sh` still reports **6 pre-existing red rows** (`matmul_blocked`, `matmul_naive`, `ml_conv2d_forward`, `ml_mlp_forward`, `ml_mlp_train_step`, `num_gmres`). These are **not new** dashboard-completeness regressions; they are tracked in [2026-05-29-tier1-matmul-dashboard-sprint.md](2026-05-29-tier1-matmul-dashboard-sprint.md) and require **lic** tier-1 CSV re-ingest after matmul driver alignment (Phase B follow-up PR on `lic`, not this PR).
+>>>>>>> origin/main
 
 Nightly/ingest workflows keep `regression-check.sh || true` until tier-1 perf greens on `main`.

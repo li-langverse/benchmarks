@@ -47,6 +47,20 @@ Skeleton for **lidb vs Postgres 15+** registry publish/read P95 — see [tier-db
 
 CI writes stub manifests under `data/latest/tier-db-*.json` (no GPU required on GHA).
 
+## GPU chip matrix (community hardware)
+
+Donate results from **your** GPU machine (M1, RTX 3090, RTX 3060, RX 7900, …). Each chip is a separate folder under `data/gpu-contributions/<chip-slug>/`.
+
+**Docs:** [gpu-chip-contributions.md](docs/ecosystem/gpu-chip-contributions.md) · **Dashboard:** `/gpu-matrix/`
+
+```bash
+# One command — build lic, run suite on your machine, scaffold contribution folder:
+CONTRIBUTOR_GITHUB=you ./scripts/donate-gpu-chip.sh nvidia-rtx-3090-linux
+
+python3 scripts/ingest/validate-gpu-contribution.py   # also run by donate-gpu-chip.sh
+python3 scripts/ingest/build-lig-gpu-matrix.py       # also run by donate-gpu-chip.sh
+```
+
 ## lidb full-spectrum audit (WP-N4 stubs)
 
 | Tier | Measures | Doc | Run |
