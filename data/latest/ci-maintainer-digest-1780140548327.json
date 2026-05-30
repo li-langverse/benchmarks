@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-05-30T11:30Z",
+  "run_id": "ci_maintainer-1780140548327",
+  "source": "proactive",
+  "org": "li-langverse",
+  "north_star_fit": "ecosystem-ci gate — provable org hygiene before package merges (PH ecosystem platform)",
+  "audit": {
+    "repos_ok": 34,
+    "repos_missing_ci": 0,
+    "repos_gated_non_main_default": 0,
+    "repos_audit_incomplete": 0,
+    "exempt": ["research-findings"]
+  },
+  "ecosystem_audit": {
+    "repos_missing_ci_main": 0,
+    "missing_ci_on_main": []
+  },
+  "actions_taken": [
+    "Ran ensure-org-repo-ci.py — exit 0, refreshed org-repo-ci-audit.json",
+    "Verified lic-docs ci.yml on main (PR #1 merged; no new CI PRs)",
+    "No isolated clone edits — zero missing repos"
+  ],
+  "branch_protection_note": "Sampled lic/lip/proof-library: main not ruleset-protected via REST; apply-org-branch-protection.sh pending for package mirrors",
+  "continue_on_error_findings": [
+    "lic ci.yml windows job (OS matrix) — pre-existing, out of scope for add-CI pass",
+    "proof-library checkout lic step — step-level fallback, not OS matrix"
+  ]
+}

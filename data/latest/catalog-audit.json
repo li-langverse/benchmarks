@@ -24,10 +24,9 @@
     "num_integ_euler",
     "num_integ_rk4"
   ],
-  "missing_problem_size_count": 38,
+  "missing_problem_size_count": 37,
   "missing_problem_size_sample": [
     "tier0_stability",
-    "horner_pure_li",
     "ml_conv2d_forward",
     "ml_mlp_forward",
     "ml_mlp_train_step",
@@ -45,7 +44,8 @@
     "lb_round_robin",
     "rate_limit_429",
     "tier5_http_exploits",
-    "ann_qps_10k"
+    "ann_qps_10k",
+    "ann_recall_at_10_10k"
   ],
   "workload_dir_present_count": 165,
   "workload_dir_missing_count": 21,

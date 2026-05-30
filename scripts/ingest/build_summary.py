@@ -181,15 +181,49 @@ def is_sota_candidate(lang: str) -> bool:
     return bool(lang) and lang not in ("li", "harness")
 
 
+PLATFORM_ORDER = ("linux", "macos", "windows")
+
+
 def normalize_os(raw: str | None) -> str:
     if not raw:
         return "unknown"
     os = raw.strip().lower()
-    if os in ("linux", "darwin", "windows"):
+    if os in ("linux", "windows"):
         return os
-    if os in ("macos", "osx"):
-        return "darwin"
+    if os in ("darwin", "macos", "osx"):
+        return "macos"
     return os or "unknown"
+
+
+def catalog_platforms(cfg: dict, catalog_defaults: dict) -> list[str]:
+    raw = cfg.get("platforms") or catalog_defaults.get("platforms") or list(PLATFORM_ORDER)
+    ordered = [p for p in PLATFORM_ORDER if p in raw]
+    for p in raw:
+        if p not in ordered:
+            ordered.append(p)
+    return ordered or list(PLATFORM_ORDER)
+
+
+def chart_base_id(bench_id: str, cfg: dict) -> str:
+    return str(cfg.get("base_id") or bench_id)
+
+
+def effective_size_meta(cfg: dict, *, has_csv: bool) -> dict[str, str | None]:
+    sizes = size_meta(cfg)
+    sizes.pop("base_id", None)
+    sl = sizes.get("size_label")
+    if sl in (None, "", "harness pending", "pending"):
+        if cfg.get("problem_size"):
+            sizes["size_label"] = f"N={cfg['problem_size']}"
+        elif cfg.get("variant") == "algo_registry":
+            sizes["size_label"] = "algo registry stub"
+        elif has_csv and int(cfg.get("tier", 0)) >= 2:
+            sizes["size_label"] = "tier2 default grid"
+        elif has_csv:
+            sizes["size_label"] = "harness wired"
+        elif sl == "harness pending":
+            sizes["size_label"] = "harness pending"
+    return sizes
 
 
 def csv_passed(row: dict) -> bool | None:
@@ -246,7 +280,7 @@ def bench_os(
     tags = os_tags_for_bench(rows, bench_id, cfg, variant=variant)
     if tags == ["unknown"]:
         return "unknown"
-    for preferred in ("linux", "darwin", "windows"):
+    for preferred in PLATFORM_ORDER:
         if preferred in tags:
             return preferred
     return tags[0]
@@ -269,7 +303,7 @@ def os_tags_for_bench(
         li_tags = {normalize_os(r.get("os") or r.get("OS")) for r in li_rows}
         if li_tags:
             tags &= li_tags or tags
-    ordered = [t for t in ("linux", "darwin", "windows") if t in tags]
+    ordered = [t for t in PLATFORM_ORDER if t in tags]
     rest = sorted(t for t in tags if t not in ordered and t != "unknown")
     if ordered or rest:
         return ordered + rest
@@ -546,7 +580,9 @@ def make_summary_row(
         "ci_url": "",
         "langs": series,
         **meta,
-        **size_meta(cfg),
+        "problem_size": chart.get("problem_size", cfg.get("problem_size")),
+        "size_label": chart.get("size_label", cfg.get("size_label")),
+        "base_id": chart.get("base_id", chart_base_id(bench_id, cfg)),
     }
     if numeric_validity is not None:
         row["numeric_validity"] = numeric_validity
@@ -730,6 +766,53 @@ def build_stability_chart(stability_path: Path) -> dict | None:
     }
 
 
+def build_platform_skip_chart(
+    bench_id: str,
+    cfg: dict,
+    os_tag: str,
+    *,
+    chart_id: str | None = None,
+    multi: bool = False,
+    validity_source: str = "platform_not_measured",
+) -> dict:
+    """Placeholder chart when catalog expects an OS but CSV has no measurements."""
+    category = cfg.get("category", "micro")
+    metric = cfg.get("metric", "wall_time")
+    meta = row_meta(cfg)
+    sizes = effective_size_meta(cfg, has_csv=False)
+    ref = cfg.get("compare_oracle") or ("postgres" if category == "database" else "cpp")
+    cid = chart_id or chart_id_for_os(bench_id, os_tag, multi=multi)
+    title = chart_title(bench_id, {**cfg, **sizes})
+    if multi and os_tag != "unknown":
+        title = f"{title} ({os_tag})"
+    return {
+        "id": cid,
+        "base_id": chart_base_id(bench_id, cfg),
+        "title": title,
+        "metric": metric,
+        "unit": "ms" if category == "database" else "",
+        "lower_is_better": metric in ("wall_time", "latency", "latency_p95"),
+        "reference_lang": ref,
+        "series": [],
+        "grouped": False,
+        "repo": cfg.get("repo", "lic"),
+        "path": cfg.get("path", ""),
+        "status": "skip",
+        "perf_status": "unknown",
+        "pending": True,
+        "pillar": meta["pillar"],
+        "package": meta["package"],
+        "validity_status": "skip",
+        "validity_source": validity_source,
+        "os": os_tag,
+        "sota_lang": None,
+        "sota_value": None,
+        "ratio_vs_reference": None,
+        "ratio_vs_sota": None,
+        **sizes,
+    }
+
+
 def build_perf_chart(
     bench_id: str,
     cfg: dict,
@@ -739,6 +822,7 @@ def build_perf_chart(
     validity_source: str,
     os_tag: str | None = None,
     chart_id: str | None = None,
+    has_csv: bool = True,
 ) -> dict:
     metric = cfg.get("metric", "wall_time")
     variant = cfg.get("variant")
@@ -780,14 +864,15 @@ def build_perf_chart(
     perf_st = status_for_ratio(ratio, threshold)
     st = apply_validity_gate(perf_st, validity_status)
     meta = row_meta(cfg)
-    sizes = size_meta(cfg)
+    sizes = effective_size_meta(cfg, has_csv=has_csv)
     os_name = os_tag or bench_os(rows, bench_id, cfg, variant=variant)
     cid = chart_id or bench_id
-    title = chart_title(bench_id, cfg)
+    title = chart_title(bench_id, {**cfg, **sizes})
     if os_tag and os_tag != "unknown":
         title = f"{title} ({os_tag})"
     return {
         "id": cid,
+        "base_id": chart_base_id(bench_id, cfg),
         "title": title,
         "metric": metric,
         "unit": series[0]["unit"] if series else "",
@@ -818,6 +903,69 @@ def is_pending_catalog_row(
     return not has_csv_rows(all_rows, bench_id, cfg)
 
 
+def tier_le_1(cfg: dict) -> bool:
+    tier = cfg.get("tier", 99)
+    return tier in (0, 1, "0", "1")
+
+
+def append_benchmark_summary_rows(
+    results: list[dict],
+    *,
+    bench_id: str,
+    cfg: dict,
+    bench_charts: list[dict],
+    category: str,
+    metric: str,
+    raw: list[dict],
+    validity_status: str,
+    validity_source: str,
+    primary_status: str | None = None,
+) -> None:
+    """Emit one summary row per platform chart for tier 0/1; else primary only."""
+    if tier_le_1(cfg):
+        for chart in bench_charts:
+            os_name = chart.get("os", "linux")
+            scoped = rows_for_bench_os(raw, bench_id, cfg, os_name)
+            st = chart.get("status", primary_status or "unknown")
+            results.append(
+                make_summary_row(
+                    bench_id=bench_id,
+                    cfg=cfg,
+                    chart=chart,
+                    validity_status=chart.get("validity_status", validity_status),
+                    validity_source=chart.get("validity_source", validity_source),
+                    os_name=os_name,
+                    category=category,
+                    metric=chart.get("metric", metric),
+                    status=st,
+                    raw_rows=scoped or raw,
+                )
+            )
+        return
+
+    primary = next(
+        (c for c in bench_charts if c.get("os") == "linux" and c.get("series")),
+        next((c for c in bench_charts if c.get("series")), bench_charts[0]),
+    )
+    os_name = primary.get("os", "linux")
+    scoped = rows_for_bench_os(raw, bench_id, cfg, os_name)
+    st = primary_status or primary.get("status", "unknown")
+    results.append(
+        make_summary_row(
+            bench_id=bench_id,
+            cfg=cfg,
+            chart=primary,
+            validity_status=primary.get("validity_status", validity_status),
+            validity_source=primary.get("validity_source", validity_source),
+            os_name=os_name,
+            category=category,
+            metric=primary.get("metric", metric),
+            status=st,
+            raw_rows=scoped or raw,
+        )
+    )
+
+
 def append_pending_row(
     *,
     bench_id: str,
@@ -828,30 +976,65 @@ def append_pending_row(
     charts_by_pillar: dict[str, list[dict]],
     tier_counts: dict[str, dict[str, int]],
     results: list[dict],
+    catalog_defaults: dict,
 ) -> None:
     meta = row_meta(cfg)
-    sizes = size_meta(cfg)
+    sizes = effective_size_meta(cfg, has_csv=False)
     ref = cfg.get("compare_oracle") or ("postgres" if category == "database" else "cpp")
-    chart = {
-        "id": bench_id,
-        "title": chart_title(bench_id, cfg),
-        "metric": metric,
-        "unit": "ms" if category == "database" else "",
-        "lower_is_better": metric in ("wall_time", "latency", "latency_p95"),
-        "reference_lang": ref,
-        "series": [],
-        "grouped": False,
-        "repo": cfg.get("repo", "lic"),
-        "path": cfg.get("path", ""),
-        "status": "unknown",
-        "pending": True,
-        "pillar": meta["pillar"],
-        "package": meta["package"],
-        **sizes,
-    }
-    charts_by_cat[category].append(chart)
-    charts_by_pillar[meta["pillar"]].append(chart)
+    platforms = catalog_platforms(cfg, catalog_defaults)
+    multi = len(platforms) > 1
+    validity_source = (
+        "harness_not_wired"
+        if cfg.get("variant") == "algo_registry"
+        else "harness_pending"
+    )
+    charts: list[dict] = []
+    for os_tag in platforms:
+        chart = build_platform_skip_chart(
+            bench_id,
+            cfg,
+            os_tag,
+            chart_id=chart_id_for_os(bench_id, os_tag, multi=multi),
+            multi=multi,
+            validity_source=validity_source,
+        )
+        charts.append(chart)
+        charts_by_cat[category].append(chart)
+        charts_by_pillar[meta["pillar"]].append(chart)
     tier_counts[str(cfg.get("tier", 3))]["unknown"] += 1
+    if tier_le_1(cfg):
+        for chart in charts:
+            results.append(
+                {
+                    "benchmark": bench_id,
+                    "repo": cfg.get("repo", "lic"),
+                    "tier": cfg.get("tier", 0),
+                    "category": category,
+                    "metric": metric,
+                    "li_value": None,
+                    "cpp_value": None,
+                    "ratio_vs_cpp": None,
+                    "sota_lang": None,
+                    "sota_value": None,
+                    "ratio_vs_sota": None,
+                    "unit": "ms" if category == "database" else None,
+                    "variant": cfg.get("variant"),
+                    "status": "skip",
+                    "validity_status": "skip",
+                    "validity_source": chart.get("validity_source", validity_source),
+                    "os": chart.get("os", "linux"),
+                    "ph_ids": cfg.get("ph_ids", []),
+                    "path": cfg.get("path", ""),
+                    "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
+                    "compare_oracle": ref,
+                    "ci_url": "",
+                    **meta,
+                    **sizes,
+                }
+            )
+        return
+
+    primary = charts[0]
     results.append(
         {
             "benchmark": bench_id,
@@ -867,10 +1050,10 @@ def append_pending_row(
             "ratio_vs_sota": None,
             "unit": "ms" if category == "database" else None,
             "variant": cfg.get("variant"),
-            "status": "unknown",
-            "validity_status": "unknown",
-            "validity_source": "none",
-            "os": "unknown",
+            "status": "skip",
+            "validity_status": "skip",
+            "validity_source": validity_source,
+            "os": primary.get("os", "linux"),
             "ph_ids": cfg.get("ph_ids", []),
             "path": cfg.get("path", ""),
             "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
@@ -928,7 +1111,12 @@ def load_catalog_defaults() -> dict:
     import tomllib
 
     raw = tomllib.loads((ROOT / "catalog.toml").read_text())
-    return {k: v for k, v in raw.items() if k != "benchmark"}
+    merged: dict = {}
+    for key in ("defaults", "reporting"):
+        section = raw.get(key)
+        if isinstance(section, dict):
+            merged.update(section)
+    return merged
 
 
 def main() -> int:
@@ -974,9 +1162,6 @@ def main() -> int:
 
         if category == "correctness" and bench_id == "tier0_stability":
             chart = build_stability_chart(stability_csv)
-            if chart:
-                charts_by_cat["correctness"].append(chart)
-                charts_by_pillar[chart["pillar"]].append(chart)
             required = validity_required_for(cfg, catalog_defaults)
             validity_status, validity_source = validity_for_benchmark(
                 bench_id, cfg, raw, stability_index, required=required
@@ -984,33 +1169,46 @@ def main() -> int:
             st = "green" if validity_status == "pass" else (
                 "red" if validity_status == "fail" else "unknown"
             )
-            tier_counts[str(cfg.get("tier", 0))][st] += 1
-            results.append(
-                {
-                    "benchmark": bench_id,
-                    "repo": cfg.get("repo", "lic"),
-                    "tier": cfg.get("tier", 0),
-                    "category": category,
-                    "metric": metric,
-                    "li_value": None,
-                    "cpp_value": None,
-                    "ratio_vs_cpp": None,
-                    "sota_lang": None,
-                    "sota_value": None,
-                    "ratio_vs_sota": None,
-                    "unit": None,
-                    "variant": None,
-                    "status": st,
-                    "validity_status": validity_status,
-                    "validity_source": validity_source,
-                    "os": bench_os(raw, bench_id, cfg),
-                    "ph_ids": cfg.get("ph_ids", []),
-                    "path": cfg.get("path", ""),
-                    "threshold_ratio_cpp": float(cfg.get("threshold_ratio_cpp", 1.2)),
-                    "compare_oracle": cfg.get("compare_oracle", "cpp"),
-                    "ci_url": "",
-                    **meta,
-                }
+            platforms = catalog_platforms(cfg, catalog_defaults)
+            multi = len(platforms) > 1
+            tier0_charts: list[dict] = []
+            for os_tag in platforms:
+                if os_tag == "linux" and chart:
+                    tier0_charts.append(
+                        {
+                            **chart,
+                            "base_id": chart_base_id(bench_id, cfg),
+                            "os": "linux",
+                            "id": chart_id_for_os(bench_id, "linux", multi=multi),
+                        }
+                    )
+                else:
+                    tier0_charts.append(
+                        build_platform_skip_chart(
+                            bench_id,
+                            cfg,
+                            os_tag,
+                            chart_id=chart_id_for_os(bench_id, os_tag, multi=multi),
+                            multi=multi,
+                            validity_source="platform_not_measured",
+                        )
+                    )
+            for ch in tier0_charts:
+                charts_by_cat["correctness"].append(ch)
+                charts_by_pillar[ch["pillar"]].append(ch)
+            bucket = st if st in ("green", "yellow", "red") else "unknown"
+            tier_counts[str(cfg.get("tier", 0))][bucket] += 1
+            append_benchmark_summary_rows(
+                results,
+                bench_id=bench_id,
+                cfg=cfg,
+                bench_charts=tier0_charts,
+                category=category,
+                metric=metric,
+                raw=raw,
+                validity_status=validity_status,
+                validity_source=validity_source,
+                primary_status=st,
             )
             continue
 
@@ -1024,6 +1222,7 @@ def main() -> int:
                 charts_by_pillar=charts_by_pillar,
                 tier_counts=tier_counts,
                 results=results,
+                catalog_defaults=catalog_defaults,
             )
             continue
 
@@ -1031,44 +1230,66 @@ def main() -> int:
         validity_status, validity_source = validity_for_benchmark(
             bench_id, cfg, raw, stability_index, required=required
         )
-        os_tags = os_tags_for_bench(raw, bench_id, cfg, variant=cfg.get("variant"))
-        multi_os = len([t for t in os_tags if t != "unknown"]) > 1
-        for os_tag in os_tags:
-            scoped = rows_for_bench_os(raw, bench_id, cfg, os_tag)
-            if not scoped and os_tag != "unknown":
-                continue
-            chart = build_perf_chart(
-                bench_id,
-                cfg,
-                raw,
-                validity_status=validity_status,
-                validity_source=validity_source,
-                os_tag=os_tag,
-                chart_id=chart_id_for_os(bench_id, os_tag, multi=multi_os),
+        platforms = catalog_platforms(cfg, catalog_defaults)
+        os_tags_from_csv = os_tags_for_bench(raw, bench_id, cfg, variant=cfg.get("variant"))
+        multi_os = len(platforms) > 1
+        bench_charts: list[dict] = []
+        for os_tag in platforms:
+            has_data = os_tag in os_tags_from_csv and bool(
+                rows_for_bench_os(raw, bench_id, cfg, os_tag)
             )
-            if not chart.get("series") and os_tag == "unknown":
+            cid = chart_id_for_os(bench_id, os_tag, multi=multi_os)
+            if has_data:
+                chart = build_perf_chart(
+                    bench_id,
+                    cfg,
+                    raw,
+                    validity_status=validity_status,
+                    validity_source=validity_source,
+                    os_tag=os_tag,
+                    chart_id=cid,
+                    has_csv=True,
+                )
+            else:
+                chart = build_platform_skip_chart(
+                    bench_id,
+                    cfg,
+                    os_tag,
+                    chart_id=cid,
+                    multi=multi_os,
+                )
+            if not chart.get("series") and chart.get("status") != "skip":
                 continue
+            bench_charts.append(chart)
+
+        if not bench_charts:
+            continue
+
+        primary = next(
+            (c for c in bench_charts if c.get("os") == "linux" and c.get("series")),
+            next((c for c in bench_charts if c.get("series")), bench_charts[0]),
+        )
+        for chart in bench_charts:
             charts_by_cat[category].append(chart)
             charts_by_pillar[meta["pillar"]].append(chart)
 
-            st = chart["status"]
-            tier = str(cfg.get("tier", 0))
-            tier_counts[tier][st] += 1
+        st = primary["status"]
+        tier = str(cfg.get("tier", 0))
+        bucket = st if st in ("green", "yellow", "red") else "unknown"
+        tier_counts[tier][bucket] += 1
 
-            results.append(
-                make_summary_row(
-                    bench_id=bench_id,
-                    cfg=cfg,
-                    chart=chart,
-                    validity_status=validity_status,
-                    validity_source=validity_source,
-                    os_name=chart.get("os", "unknown"),
-                    category=category,
-                    metric=chart.get("metric", metric),
-                    status=st,
-                    raw_rows=scoped or raw,
-                )
-            )
+        append_benchmark_summary_rows(
+            results,
+            bench_id=bench_id,
+            cfg=cfg,
+            bench_charts=bench_charts,
+            category=category,
+            metric=metric,
+            raw=raw,
+            validity_status=validity_status,
+            validity_source=validity_source,
+            primary_status=st,
+        )
 
     categories = {}
     for cat in CATEGORY_ORDER:
@@ -1116,7 +1337,7 @@ def main() -> int:
         "tier_counts": dict(tier_counts),
         "categories": categories,
         "pillars": pillars,
-        "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"])),
+        "rows": sorted(results, key=lambda r: (r["tier"], r["benchmark"], r.get("os", ""))),
     }
 
     out_dir = ROOT / "data/latest"

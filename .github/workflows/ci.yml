@@ -69,6 +69,12 @@ jobs:
 
       - run: test -f data/latest/summary.json
 
+      - name: GPU chip contributions
+        run: |
+          python3 scripts/ingest/validate-gpu-contribution.py
+          python3 scripts/ingest/build-lig-gpu-matrix.py
+          test -f data/latest/lig-gpu-matrix.json
+
   # Pages deploy builds dashboard-next on push to main (pages.yml). PRs gate here only (WP-E1 dedupe).
   dashboard-build:
     if: github.event_name == 'pull_request'
@@ -77,8 +83,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Dashboard invariants
-        run: python3 scripts/catalog/audit-catalog-coverage.py
+        run: |
+          python3 scripts/catalog/audit-catalog-coverage.py
           python3 scripts/check-dashboard-invariants.py
+          python3 scripts/audit-dashboard-gaps.py
 
       - name: Summary measurement coverage (committed summary)
         run: python3 scripts/check-summary-measurement-coverage.py
