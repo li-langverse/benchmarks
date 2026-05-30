@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T15:35Z",
+  "generated_at": "2026-05-30T16:24Z",
   "org": "li-langverse",
   "github_source": "gh_repo_list",
   "github_repos": [
@@ -51,7 +51,6 @@
     "li-std-core",
     "li-std-math",
     "lic",
-    "lic-docs",
     "lidb",
     "lip",
     "lis",
@@ -76,13 +75,47 @@
     "ui",
     "world"
   ],
-  "new_repos": [],
+  "new_repos": [
+    "lic-docs"
+  ],
   "stale_known_repos": [],
-  "new_repo_entries": [],
+  "new_repo_entries": [
+    {
+      "repo": "lic-docs",
+      "classification": "unclassified",
+      "onboarding_steps": [
+        {
+          "agent": "ci_maintainer",
+          "action": "add_ci_yml",
+          "reason": "Bootstrap ci.yml on new repo lic-docs"
+        },
+        {
+          "agent": "agent_kit_maintainer",
+          "action": "sync_agent_kit",
+          "reason": "Install roadmap agent-kit on lic-docs"
+        },
+        {
+          "agent": "docs_maintainer",
+          "action": "live_docs_smoke",
+          "reason": "Verify handbook / live docs for lic-docs"
+        },
+        {
+          "agent": "package_architect",
+          "action": "placement_review",
+          "reason": "Classify lic-docs \u2014 official PKG vs experimental vs archive"
+        },
+        {
+          "agent": "code_implementer",
+          "action": "register_in_catalog",
+          "reason": "After CI + agent-kit, add lic-docs to org catalog / work-queue targets"
+        }
+      ]
+    }
+  ],
   "summary": {
     "github_count": 35,
-    "known_count": 35,
-    "new_count": 0,
+    "known_count": 34,
+    "new_count": 1,
     "stale_count": 0
   },
   "downstream_agent": "org_repo_onboarder"
