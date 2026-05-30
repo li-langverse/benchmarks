@@ -73,25 +73,13 @@
       "benchmarks_sha": "be26474518748fe3feec85dcb9636c6295701524"
     },
     {
-      "at": "2026-05-30T09:57:30.576285+00:00",
-      "path": "data/history/2026-05-30T095730Z.json",
-      "lic_sha": "ae8f500f9f85f7f75901f51981f91c62987f43ce",
-      "benchmarks_sha": "c1dae23102fdfdf777fa206bf6e7547b167ffad7"
-    },
-    {
-      "at": "2026-05-30T10:00:49.879827+00:00",
-      "path": "data/history/2026-05-30T100049Z.json",
-      "lic_sha": "c18c48e6050a768250e6e70b0fa434d0503465bd",
-      "benchmarks_sha": "83438d6998601cc0eb148901d57d95ef9916f577"
+      "at": "2026-05-30T15:32:02.741589+00:00",
+      "path": "data/history/2026-05-30T153202Z.json",
+      "lic_sha": "57f114cb05a86070565632e01aad48806a172e12",
+      "benchmarks_sha": "06c68a91c550fc21eb1a48954e0defb5ef7d0f13"
     }
   ],
   "latest_deltas": [
-    {
-      "benchmark": "tier0_stability",
-      "field": "status",
-      "from": "skip",
-      "to": "unknown"
-    },
     {
       "benchmark": "fft_1d_fixed",
       "field": "status",
@@ -108,7 +96,7 @@
       "benchmark": "matmul_blocked",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "yellow"
     },
     {
       "benchmark": "matmul_naive",
@@ -225,5 +213,5 @@
       "to": "green"
     }
   ],
-  "updated_at": "2026-05-30T10:00:49.958616+00:00"
+  "updated_at": "2026-05-30T15:32:02.819242+00:00"
 }

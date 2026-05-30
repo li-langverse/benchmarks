@@ -1,174 +1,113 @@
 {
-  "generated_at": "2026-05-30T09:40:00Z",
-  "agent_id": "docs_ui_tester",
-  "briefing_generated_at": "2026-05-30T08:04Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ui.md",
+  "generated_at": "2026-05-30T21:51Z",
+  "agent_id": "tui_ui_tester",
+  "briefing_generated_at": "2026-05-30T21:46Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-tui-ui.md",
   "issues": [
     {
-      "surface": "docs",
-      "kind": "ux",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "problem": "Live GitHub Pages (5 tabs, 248 search docs) diverges from local build (12 tabs, 2801 docs). Primary onboarding URLs return 404.",
-      "evidence": [
-        "live: guide/hello-world/ -> 404",
-        "live: ecosystem/overview/ -> 404",
-        "search index: 248 live vs 2801 local",
-        "nav tabs: 5 live vs 12 local (mkdocs.yml)",
-        "Last-Modified: 2026-05-27T12:51:05Z"
-      ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
-      "remediation_checklist": [
-        "[ ] Fix docs CI strict build so Pages deploys current lic/site",
-        "[ ] Verify guide/hello-world/ and ecosystem/overview/ return 200 on live",
-        "[ ] Confirm search index >= 2500 docs after deploy",
-        "[ ] Acceptance: ux-audit live probe green for first_reading_path journey"
-      ],
-      "suggested_implementer": "docs_maintainer",
-      "priority": "P0",
-      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/403"
-    },
-    {
-      "surface": "docs",
+      "surface": "tui",
       "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block",
-      "problem": "Playwright+axe on local lic/site: color-contrast (12 nodes), link-in-text-block (5 nodes).",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "problem": "tui-demo.sh uses read -r twice; harness subprocess.run times out at 30s and run_audit.py exits uncaught",
       "evidence": [
-        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json",
-        "docs/stylesheets/extra.css custom palette",
-        "2026-05-30T09:39Z proactive capture — unchanged from prior pass"
+        "data/latest-tui-ui-run/ui-audit.json: tui-app-fixture fail, baseline_status timeout",
+        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt: piped stdin exit 0 in <50ms"
       ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/",
+      "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
-        "[ ] Fix contrast ratios in extra.css for slate/default palettes",
-        "[ ] Distinguish inline links from body text (underline or weight)",
-        "[ ] Acceptance: axe scan zero violations on home + hello-world"
+        "[ ] File: li-cursor-agents/ux-harness/adapters/tui.py — catch TimeoutExpired; pipe stdin for journey steps",
+        "[ ] File: li-cursor-agents/ux-harness/fixtures/tui-demo.sh — LI_TUI_NONINTERACTIVE=1 or accept stdin EOF",
+        "[ ] Test: python3 ux-harness/run_audit.py --target tui-app-fixture --mode ui exits 0 with fail row",
+        "[ ] Acceptance: ui-audit.json written without harness crash"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/426"
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
     },
     {
-      "surface": "docs",
+      "surface": "tui",
       "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs",
-      "problem": "Prior passes reported 69–93 raw href=\"*.md\" in built HTML. 2026-05-30 full scan: 0 locally — verify after Pages deploy.",
-      "evidence": [
-        "2026-05-30 Python scan of lic/site: 0 unique .md hrefs",
-        "2026-05-29 Playwright pass: 69 unique (regression)"
-      ],
-      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/36",
-      "remediation_checklist": [
-        "[ ] Re-scan live Pages HTML after #403 deploy",
-        "[ ] Add harness check for raw .md hrefs in static_site adapter",
-        "[ ] Acceptance: zero raw .md hrefs in built site (local + live)"
-      ],
-      "suggested_implementer": "docs_maintainer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:docs"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/404",
-      "status_note": "local_build_clean_2026-05-30"
-    },
-    {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
+      "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
-      "title": "static_site adapter: unquoted href + live drift probe",
-      "problem": "run_audit.py static adapter passes lic-docs despite axe failures and live/local drift.",
+      "title": "[ui-audit] TUI harness lacks stdout frame capture and baseline diff",
+      "problem": "Pass path leaves artifacts empty; no insta/VHS baseline or pixel_diff beyond stub 0.0",
       "evidence": [
-        "data/latest/ui-audit.json status pass vs data/latest-docs-ui-run status fail",
-        "links_checked: 0 in static adapter"
+        "data/latest-tui-ui-run/ui-audit.json: tui-gen pass with artifacts only after manual capture",
+        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt: 5 lines, 31 col box frame"
       ],
-      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/36",
+      "sota_reference": "https://ratatui.rs/recipes/testing/snapshots/",
       "remediation_checklist": [
-        "[ ] Detect raw .md hrefs in audit_static_site",
-        "[ ] Optional live URL probe for configured journey paths",
-        "[ ] Acceptance: ui-audit fails when axe violations or live 404 on journey URLs"
+        "[ ] File: ux-harness/adapters/tui.py — write stdout to captures/<target_id>.txt on every run",
+        "[ ] File: ux-harness/ — optional insta baseline path per target",
+        "[ ] Test: pass target has non-empty artifacts in ui-audit.json",
+        "[ ] Acceptance: pixel_diff or snapshot compare wired for tui-gen-fixture"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/36"
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/48"
     },
     {
-      "surface": "docs",
+      "surface": "tui",
       "kind": "ui",
-      "target_id": "lic-docs",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
-      "problem": "No committed PNG baselines under ux-harness/baselines/docs/; pixel drift cannot be measured.",
+      "title": "[ui-audit] tui-demo.sh UTF-8 em dash mojibake in harness captures",
+      "problem": "Em dash in title renders as M-bM-^@M-^T in cat -v captures unless LANG=UTF-8 or ASCII hyphen",
       "evidence": [
-        "ux-harness/baselines/docs/ absent in li-cursor-agents tree",
-        "pixel_diff.max_ratio 0.0 is adapter default, not measured"
+        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt: mojibake on em dash (cat -v)"
       ],
-      "sota_reference": "https://github.com/li-langverse/li-cursor-agents/issues/37",
+      "sota_reference": "https://www.w3.org/International/questions/qa-choosing-encodings",
       "remediation_checklist": [
-        "[ ] Commit baseline PNGs from docs-ui-capture.mjs output",
-        "[ ] Wire pixel diff in docs adapter or proactive script",
-        "[ ] Acceptance: baseline_status ok with max_ratio threshold 0.04"
+        "[ ] File: ux-harness/fixtures/tui-demo.sh — use ASCII hyphen or document UTF-8 requirement",
+        "[ ] File: ux-harness/adapters/tui.py — set env LANG=C.UTF-8 for subprocess",
+        "[ ] Test: capture file contains literal em dash or ASCII - without mojibake",
+        "[ ] Acceptance: utf8_mojibake false in capture_meta"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P2",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
+      "labels": ["ui-audit", "surface:tui"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/49"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ux_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 403,
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "remediation_summary": "Publish current lic/site to GitHub Pages; fix 404 on onboarding URLs",
-      "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
-      "acceptance": [
-        "guide/hello-world/ returns 200 on live",
-        "search index >= 2500 docs",
-        "12 nav tabs visible on live"
-      ],
-      "agent_source": "docs_ui_tester",
-      "journeys": ["first_reading_path"],
-      "sources": ["ui_audit"]
-    },
-    {
       "kind": "ui_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 426,
-      "title": "[ui-audit] lic-docs axe color-contrast + link-in-text-block",
-      "remediation_summary": "Fix Material theme palette and inline link styling in extra.css",
-      "files_hint": ["docs/stylesheets/extra.css", "mkdocs.yml"],
-      "acceptance": [
-        "axe zero serious violations on home desktop",
-        "contrast_samples pass for body copy selectors"
-      ],
-      "agent_source": "docs_ui_tester",
-      "journeys": [],
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 30,
+      "title": "tui-app-fixture blocks on read in non-interactive harness",
+      "remediation_summary": "Catch TimeoutExpired; pipe stdin; non-interactive fixture mode",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/fixtures/tui-demo.sh"],
+      "acceptance": ["run_audit.py --target tui-app-fixture --mode ui exits 0", "ui-audit fail row without crash"],
+      "agent_source": "tui_ui_tester",
       "sources": ["ui_audit"]
     },
     {
       "kind": "ui_remediation",
       "repo": "li-cursor-agents",
-      "surface": "docs",
-      "issue": 36,
-      "title": "static_site adapter: raw .md href + live drift probe",
-      "remediation_summary": "Fail ui-audit when axe/live drift detected; expand link scan",
-      "files_hint": ["ux-harness/adapters/static_site.py", "ux-harness/adapters/docs.py"],
-      "acceptance": [
-        "links_checked > 0 on lic-docs",
-        "proactive_playwright status reflected in briefing ui_audit"
-      ],
-      "agent_source": "docs_ui_tester",
-      "journeys": ["first_reading_path", "mobile_nav"],
+      "surface": "tui",
+      "issue": 48,
+      "title": "TUI harness stdout frame capture and baseline diff",
+      "remediation_summary": "Always write captures; optional insta snapshot for tui-gen-fixture",
+      "files_hint": ["ux-harness/adapters/tui.py"],
+      "acceptance": ["pass targets include artifact paths in ui-audit.json"],
+      "agent_source": "tui_ui_tester",
+      "sources": ["ui_audit"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "benchmarks",
+      "surface": "tui",
+      "issue": null,
+      "title": "chore(preflight): include TUI fixtures in ui-ux-audit / agent-briefing.json",
+      "remediation_summary": "Merge data/latest-tui-ui-run rows into org preflight ui_audit signal",
+      "files_hint": ["scripts/agent-briefing.sh", "scripts/ecosystem-audit.py"],
+      "acceptance": ["briefing ui_audit.summary reflects tui-app fail when harness not run proactively"],
+      "agent_source": "tui_ui_tester",
       "sources": ["ui_audit"]
     }
   ]

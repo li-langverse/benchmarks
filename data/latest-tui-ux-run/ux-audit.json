@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T09:34:02.356019+00:00",
+  "generated_at": "2026-05-30T21:46:12.000000+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -14,41 +14,23 @@
       "surface": "tui",
       "surface_class": "tui_app",
       "status": "fail",
-      "journeys": [
-        {
-          "id": "key_nav_help",
-          "steps": ["launch", "tab_help", "quit"],
-          "completed": false,
-          "step_count": 3
-        }
-      ],
+      "journeys": [],
       "friction_points": [
-        {
-          "journey": "key_nav_help",
-          "issue": "Harness subprocess.TimeoutExpired after 30s — fixture blocks on read without stdin"
-        },
-        {
-          "journey": "key_nav_help",
-          "issue": "Banner claims 'h for help' but key is not interpreted; two read lines required"
-        },
-        {
-          "journey": "key_nav_help",
-          "issue": "run_audit.py crashes with uncaught TimeoutExpired instead of recording fail row"
-        }
+        {"issue": "harness TimeoutExpired — fixture blocks on read -r (non-TTY); run_audit.py exit 1 uncaught"},
+        {"issue": "key_nav_help journey defined but not executed"},
+        {"issue": "banner claims h for help but key not interpreted; piped stdin completes flow in <50ms"}
       ],
       "sota_refs": ["textual", "bubbletea"],
       "rubric_scores": {
-        "nav_clarity": 0.45,
-        "task_efficiency": 0.4,
-        "empty_states": 0.35,
+        "nav_clarity": 0.5,
+        "task_efficiency": 0.5,
+        "empty_states": 0.9,
         "error_handling": 0.5,
-        "cognitive_load": 0.55
+        "cognitive_load": 0.6
       },
       "rubric_threshold": 0.6,
-      "missing_states": ["help_overlay", "error", "a11y_export"],
-      "artifacts": [
-        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt"
-      ],
+      "missing_states": ["help_overlay", "error_display", "a11y_plain_export"],
+      "artifacts": ["captures/tui-app-fixture-piped.txt"],
       "mode": "fixture",
       "harness_error": "subprocess.TimeoutExpired: tui-demo.sh timed out after 30 seconds"
     },
@@ -58,19 +40,9 @@
       "surface": "tui",
       "surface_class": "tui_gen",
       "status": "pass",
-      "journeys": [
-        {
-          "id": "cli_to_tui",
-          "steps": ["run_generator", "capture_screen"],
-          "completed": false,
-          "step_count": 2
-        }
-      ],
+      "journeys": [],
       "friction_points": [
-        {
-          "journey": "cli_to_tui",
-          "issue": "Journey defined in ux-targets.yaml but adapter never executes steps — rubric is default pass"
-        }
+        {"issue": "cli_to_tui journey defined but not executed — rubric scores are adapter defaults"}
       ],
       "sota_refs": ["textual", "bubbletea"],
       "rubric_scores": {
@@ -81,10 +53,8 @@
         "cognitive_load": 0.7
       },
       "rubric_threshold": 0.6,
-      "missing_states": ["error", "a11y_export"],
-      "artifacts": [
-        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
-      ],
+      "missing_states": ["error_display", "a11y_plain_export"],
+      "artifacts": ["captures/tui-gen-fixture.txt"],
       "mode": "fixture"
     }
   ]

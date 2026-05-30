@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-30T14:55:16.895847+00:00",
+  "generated_at": "2026-05-30T15:32:02.741589+00:00",
   "provenance": {
-    "lic_sha": "4ddbd3c6a2a6af877e6d8f8aed5f307064988adf",
+    "lic_sha": "57f114cb05a86070565632e01aad48806a172e12",
     "lic_ref": "main",
-    "benchmarks_sha": "f00d541828a843558b89cd9f7c550fbad18f1696",
+    "benchmarks_sha": "06c68a91c550fc21eb1a48954e0defb5ef7d0f13",
     "lis_sha": "85434de9262d96d3645ba0256468730cd4086d50",
     "llvm_version": "",
     "workflow_run_id": "",
@@ -11,7 +11,7 @@
     "bench_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv"
   },
   "sources": {
-    "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/workspaces/li-langverse/lic/bench_improver-1780152640031/repo",
+    "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/workspaces/li-langverse/lic/bench_improver-1780154862474/repo",
     "lis_root": "/home/s4il0r/Documents/Cursor/li-langverse/lis",
     "bench_csv": "results/latest.csv",
     "lic_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv",
@@ -59,8 +59,8 @@
       "unknown": 1
     },
     "1": {
-      "green": 20,
-      "yellow": 2,
+      "green": 21,
+      "yellow": 1,
       "red": 0,
       "unknown": 33
     },
@@ -1073,27 +1073,27 @@
           "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
+          "sota_lang": "rust",
           "series": [
             {
               "lang": "li",
+              "value": 0.0154,
+              "unit": "s",
+              "variant": "release",
+              "os": "linux",
+              "stddev": 0.000816,
+              "sample_runs": 66,
+              "relative_perf": 0.987
+            },
+            {
+              "lang": "cpp",
               "value": 0.0153,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000583,
-              "sample_runs": 67,
+              "stddev": 0.000684,
+              "sample_runs": 63,
               "relative_perf": 0.9935
-            },
-            {
-              "lang": "cpp",
-              "value": 0.0152,
-              "unit": "s",
-              "variant": "release",
-              "os": "linux",
-              "stddev": 0.000738,
-              "sample_runs": 67,
-              "relative_perf": 1.0
             },
             {
               "lang": "rust",
@@ -1101,19 +1101,19 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000616,
-              "sample_runs": 68,
+              "stddev": 0.000546,
+              "sample_runs": 66,
               "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.0152,
+              "value": 0.0154,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000543,
-              "sample_runs": 67,
-              "relative_perf": 1.0
+              "stddev": 0.00076,
+              "sample_runs": 65,
+              "relative_perf": 0.987
             }
           ],
           "grouped": false,
@@ -1121,8 +1121,8 @@
           "path": "benchmarks/tier1_micro/fft_1d_fixed",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0066,
-          "ratio_vs_sota": 0.9935,
+          "ratio_vs_reference": 1.0065,
+          "ratio_vs_sota": 0.987,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -1313,7 +1313,7 @@
           "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
+          "sota_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -1321,39 +1321,39 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000433,
-              "sample_runs": 92,
-              "relative_perf": 0.8037
+              "stddev": 0.000609,
+              "sample_runs": 96,
+              "relative_perf": 0.8224
             },
             {
               "lang": "cpp",
-              "value": 0.0086,
+              "value": 0.0089,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000436,
-              "sample_runs": 101,
-              "relative_perf": 1.0
+              "stddev": 0.00046,
+              "sample_runs": 115,
+              "relative_perf": 0.9888
             },
             {
               "lang": "rust",
-              "value": 0.0086,
+              "value": 0.0091,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000523,
-              "sample_runs": 118,
-              "relative_perf": 1.0
+              "stddev": 0.000613,
+              "sample_runs": 106,
+              "relative_perf": 0.967
             },
             {
               "lang": "julia",
-              "value": 0.0087,
+              "value": 0.0088,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000399,
+              "stddev": 0.000495,
               "sample_runs": 116,
-              "relative_perf": 0.9885
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -1361,10 +1361,10 @@
           "path": "benchmarks/tier1_micro/matmul_blocked",
           "status": "yellow",
           "perf_status": "yellow",
-          "ratio_vs_reference": 1.2442,
-          "ratio_vs_sota": 0.8037,
+          "ratio_vs_reference": 1.2022,
+          "ratio_vs_sota": 0.8224,
           "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_source": "latest.csv:passed",
           "os": "linux",
           "pillar": "numerics",
           "package": "lic",
@@ -1518,41 +1518,41 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0022,
+              "value": 0.0021,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000402,
+              "stddev": 0.000321,
               "sample_runs": 200,
-              "relative_perf": 0.8182
+              "relative_perf": 0.9048
             },
             {
               "lang": "cpp",
-              "value": 0.0018,
+              "value": 0.0019,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000307,
+              "stddev": 0.000326,
               "sample_runs": 200,
               "relative_perf": 1.0
             },
             {
               "lang": "rust",
-              "value": 0.0018,
+              "value": 0.0019,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000178,
+              "stddev": 0.000164,
               "sample_runs": 200,
               "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.0018,
+              "value": 0.0019,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.00017,
+              "stddev": 0.000242,
               "sample_runs": 200,
               "relative_perf": 1.0
             }
@@ -1560,12 +1560,12 @@
           "grouped": false,
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_naive",
-          "status": "yellow",
-          "perf_status": "yellow",
-          "ratio_vs_reference": 1.2222,
-          "ratio_vs_sota": 0.8182,
+          "status": "green",
+          "perf_status": "green",
+          "ratio_vs_reference": 1.1053,
+          "ratio_vs_sota": 0.9048,
           "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_source": "latest.csv:passed",
           "os": "linux",
           "pillar": "numerics",
           "package": "lic",
@@ -2767,17 +2767,17 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.00012,
+              "stddev": 0.000331,
               "sample_runs": 200,
-              "relative_perf": 0.9231
+              "relative_perf": 1.0
             },
             {
               "lang": "cpp",
-              "value": 0.0012,
+              "value": 0.0013,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 6.1e-05,
+              "stddev": 0.000406,
               "sample_runs": 200,
               "relative_perf": 1.0
             },
@@ -2787,9 +2787,9 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 7.2e-05,
+              "stddev": 0.000226,
               "sample_runs": 200,
-              "relative_perf": 0.9231
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
@@ -2797,9 +2797,9 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000274,
+              "stddev": 0.000419,
               "sample_runs": 200,
-              "relative_perf": 0.9231
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -2807,8 +2807,8 @@
           "path": "benchmarks/tier1_micro/num_integ_rk4",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.9231,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 1.0,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -4083,43 +4083,43 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0181,
+              "value": 0.0187,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001334,
+              "stddev": 0.001587,
               "sample_runs": 57,
-              "relative_perf": 0.9503
+              "relative_perf": 0.9626
             },
             {
               "lang": "cpp",
-              "value": 0.0172,
+              "value": 0.018,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001008,
-              "sample_runs": 55,
+              "stddev": 0.001261,
+              "sample_runs": 56,
               "relative_perf": 1.0
             },
             {
               "lang": "rust",
-              "value": 0.0176,
+              "value": 0.0268,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001172,
-              "sample_runs": 53,
-              "relative_perf": 0.9773
+              "stddev": 0.007179,
+              "sample_runs": 56,
+              "relative_perf": 0.6716
             },
             {
               "lang": "julia",
-              "value": 0.0174,
+              "value": 0.021,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001223,
-              "sample_runs": 56,
-              "relative_perf": 0.9885
+              "stddev": 0.005049,
+              "sample_runs": 41,
+              "relative_perf": 0.8571
             }
           ],
           "grouped": false,
@@ -4127,10 +4127,10 @@
           "path": "benchmarks/tier1_micro/simd_dot",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0523,
-          "ratio_vs_sota": 0.9503,
+          "ratio_vs_reference": 1.0389,
+          "ratio_vs_sota": 0.9626,
           "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_source": "latest.csv:passed",
           "os": "linux",
           "pillar": "numerics",
           "package": "lic",
@@ -17115,27 +17115,27 @@
           "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
+          "sota_lang": "rust",
           "series": [
             {
               "lang": "li",
+              "value": 0.0154,
+              "unit": "s",
+              "variant": "release",
+              "os": "linux",
+              "stddev": 0.000816,
+              "sample_runs": 66,
+              "relative_perf": 0.987
+            },
+            {
+              "lang": "cpp",
               "value": 0.0153,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000583,
-              "sample_runs": 67,
+              "stddev": 0.000684,
+              "sample_runs": 63,
               "relative_perf": 0.9935
-            },
-            {
-              "lang": "cpp",
-              "value": 0.0152,
-              "unit": "s",
-              "variant": "release",
-              "os": "linux",
-              "stddev": 0.000738,
-              "sample_runs": 67,
-              "relative_perf": 1.0
             },
             {
               "lang": "rust",
@@ -17143,19 +17143,19 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000616,
-              "sample_runs": 68,
+              "stddev": 0.000546,
+              "sample_runs": 66,
               "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.0152,
+              "value": 0.0154,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000543,
-              "sample_runs": 67,
-              "relative_perf": 1.0
+              "stddev": 0.00076,
+              "sample_runs": 65,
+              "relative_perf": 0.987
             }
           ],
           "grouped": false,
@@ -17163,8 +17163,8 @@
           "path": "benchmarks/tier1_micro/fft_1d_fixed",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0066,
-          "ratio_vs_sota": 0.9935,
+          "ratio_vs_reference": 1.0065,
+          "ratio_vs_sota": 0.987,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -17235,7 +17235,7 @@
           "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
+          "sota_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -17243,39 +17243,39 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000433,
-              "sample_runs": 92,
-              "relative_perf": 0.8037
+              "stddev": 0.000609,
+              "sample_runs": 96,
+              "relative_perf": 0.8224
             },
             {
               "lang": "cpp",
-              "value": 0.0086,
+              "value": 0.0089,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000436,
-              "sample_runs": 101,
-              "relative_perf": 1.0
+              "stddev": 0.00046,
+              "sample_runs": 115,
+              "relative_perf": 0.9888
             },
             {
               "lang": "rust",
-              "value": 0.0086,
+              "value": 0.0091,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000523,
-              "sample_runs": 118,
-              "relative_perf": 1.0
+              "stddev": 0.000613,
+              "sample_runs": 106,
+              "relative_perf": 0.967
             },
             {
               "lang": "julia",
-              "value": 0.0087,
+              "value": 0.0088,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000399,
+              "stddev": 0.000495,
               "sample_runs": 116,
-              "relative_perf": 0.9885
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -17283,10 +17283,10 @@
           "path": "benchmarks/tier1_micro/matmul_blocked",
           "status": "yellow",
           "perf_status": "yellow",
-          "ratio_vs_reference": 1.2442,
-          "ratio_vs_sota": 0.8037,
+          "ratio_vs_reference": 1.2022,
+          "ratio_vs_sota": 0.8224,
           "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_source": "latest.csv:passed",
           "os": "linux",
           "pillar": "numerics",
           "package": "lic",
@@ -17440,41 +17440,41 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0022,
+              "value": 0.0021,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000402,
+              "stddev": 0.000321,
               "sample_runs": 200,
-              "relative_perf": 0.8182
+              "relative_perf": 0.9048
             },
             {
               "lang": "cpp",
-              "value": 0.0018,
+              "value": 0.0019,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000307,
+              "stddev": 0.000326,
               "sample_runs": 200,
               "relative_perf": 1.0
             },
             {
               "lang": "rust",
-              "value": 0.0018,
+              "value": 0.0019,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000178,
+              "stddev": 0.000164,
               "sample_runs": 200,
               "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.0018,
+              "value": 0.0019,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.00017,
+              "stddev": 0.000242,
               "sample_runs": 200,
               "relative_perf": 1.0
             }
@@ -17482,12 +17482,12 @@
           "grouped": false,
           "repo": "lic",
           "path": "benchmarks/tier1_micro/matmul_naive",
-          "status": "yellow",
-          "perf_status": "yellow",
-          "ratio_vs_reference": 1.2222,
-          "ratio_vs_sota": 0.8182,
+          "status": "green",
+          "perf_status": "green",
+          "ratio_vs_reference": 1.1053,
+          "ratio_vs_sota": 0.9048,
           "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_source": "latest.csv:passed",
           "os": "linux",
           "pillar": "numerics",
           "package": "lic",
@@ -18689,17 +18689,17 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.00012,
+              "stddev": 0.000331,
               "sample_runs": 200,
-              "relative_perf": 0.9231
+              "relative_perf": 1.0
             },
             {
               "lang": "cpp",
-              "value": 0.0012,
+              "value": 0.0013,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 6.1e-05,
+              "stddev": 0.000406,
               "sample_runs": 200,
               "relative_perf": 1.0
             },
@@ -18709,9 +18709,9 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 7.2e-05,
+              "stddev": 0.000226,
               "sample_runs": 200,
-              "relative_perf": 0.9231
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
@@ -18719,9 +18719,9 @@
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.000274,
+              "stddev": 0.000419,
               "sample_runs": 200,
-              "relative_perf": 0.9231
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -18729,8 +18729,8 @@
           "path": "benchmarks/tier1_micro/num_integ_rk4",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.9231,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 1.0,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -20005,43 +20005,43 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.0181,
+              "value": 0.0187,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001334,
+              "stddev": 0.001587,
               "sample_runs": 57,
-              "relative_perf": 0.9503
+              "relative_perf": 0.9626
             },
             {
               "lang": "cpp",
-              "value": 0.0172,
+              "value": 0.018,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001008,
-              "sample_runs": 55,
+              "stddev": 0.001261,
+              "sample_runs": 56,
               "relative_perf": 1.0
             },
             {
               "lang": "rust",
-              "value": 0.0176,
+              "value": 0.0268,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001172,
-              "sample_runs": 53,
-              "relative_perf": 0.9773
+              "stddev": 0.007179,
+              "sample_runs": 56,
+              "relative_perf": 0.6716
             },
             {
               "lang": "julia",
-              "value": 0.0174,
+              "value": 0.021,
               "unit": "s",
               "variant": "release",
               "os": "linux",
-              "stddev": 0.001223,
-              "sample_runs": 56,
-              "relative_perf": 0.9885
+              "stddev": 0.005049,
+              "sample_runs": 41,
+              "relative_perf": 0.8571
             }
           ],
           "grouped": false,
@@ -20049,10 +20049,10 @@
           "path": "benchmarks/tier1_micro/simd_dot",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0523,
-          "ratio_vs_sota": 0.9503,
+          "ratio_vs_reference": 1.0389,
+          "ratio_vs_sota": 0.9626,
           "validity_status": "pass",
-          "validity_source": "latest.csv:perf_present",
+          "validity_source": "latest.csv:passed",
           "os": "linux",
           "pillar": "numerics",
           "package": "lic",
@@ -33383,16 +33383,16 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0153,
-      "li_stddev": 0.000583,
-      "li_sample_runs": 67,
-      "cpp_value": 0.0152,
-      "cpp_stddev": 0.000738,
-      "cpp_sample_runs": 67,
-      "ratio_vs_cpp": 1.0066,
-      "sota_lang": "cpp",
+      "li_value": 0.0154,
+      "li_stddev": 0.000816,
+      "li_sample_runs": 66,
+      "cpp_value": 0.0153,
+      "cpp_stddev": 0.000684,
+      "cpp_sample_runs": 63,
+      "ratio_vs_cpp": 1.0065,
+      "sota_lang": "rust",
       "sota_value": 0.0152,
-      "ratio_vs_sota": 0.9935,
+      "ratio_vs_sota": 0.987,
       "unit": "s",
       "variant": "fftw_reference",
       "status": "green",
@@ -33410,23 +33410,23 @@
       "langs": [
         {
           "lang": "li",
+          "value": 0.0154,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.000816,
+          "sample_runs": 66,
+          "relative_perf": 0.987
+        },
+        {
+          "lang": "cpp",
           "value": 0.0153,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000583,
-          "sample_runs": 67,
+          "stddev": 0.000684,
+          "sample_runs": 63,
           "relative_perf": 0.9935
-        },
-        {
-          "lang": "cpp",
-          "value": 0.0152,
-          "unit": "s",
-          "variant": "release",
-          "os": "linux",
-          "stddev": 0.000738,
-          "sample_runs": 67,
-          "relative_perf": 1.0
         },
         {
           "lang": "rust",
@@ -33434,19 +33434,19 @@
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000616,
-          "sample_runs": 68,
+          "stddev": 0.000546,
+          "sample_runs": 66,
           "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.0152,
+          "value": 0.0154,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000543,
-          "sample_runs": 67,
-          "relative_perf": 1.0
+          "stddev": 0.00076,
+          "sample_runs": 65,
+          "relative_perf": 0.987
         }
       ],
       "pillar": "numerics",
@@ -33688,20 +33688,20 @@
       "category": "micro",
       "metric": "wall_time",
       "li_value": 0.0107,
-      "li_stddev": 0.000433,
-      "li_sample_runs": 92,
-      "cpp_value": 0.0086,
-      "cpp_stddev": 0.000436,
-      "cpp_sample_runs": 101,
-      "ratio_vs_cpp": 1.2442,
-      "sota_lang": "cpp",
-      "sota_value": 0.0086,
-      "ratio_vs_sota": 0.8037,
+      "li_stddev": 0.000609,
+      "li_sample_runs": 96,
+      "cpp_value": 0.0089,
+      "cpp_stddev": 0.00046,
+      "cpp_sample_runs": 115,
+      "ratio_vs_cpp": 1.2022,
+      "sota_lang": "julia",
+      "sota_value": 0.0088,
+      "ratio_vs_sota": 0.8224,
       "unit": "s",
       "variant": null,
       "status": "yellow",
       "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_source": "latest.csv:passed",
       "os": "linux",
       "ph_ids": [
         "PH-5b"
@@ -33717,46 +33717,55 @@
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000433,
-          "sample_runs": 92,
-          "relative_perf": 0.8037
+          "stddev": 0.000609,
+          "sample_runs": 96,
+          "relative_perf": 0.8224
         },
         {
           "lang": "cpp",
-          "value": 0.0086,
+          "value": 0.0089,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000436,
-          "sample_runs": 101,
-          "relative_perf": 1.0
+          "stddev": 0.00046,
+          "sample_runs": 115,
+          "relative_perf": 0.9888
         },
         {
           "lang": "rust",
-          "value": 0.0086,
+          "value": 0.0091,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000523,
-          "sample_runs": 118,
-          "relative_perf": 1.0
+          "stddev": 0.000613,
+          "sample_runs": 106,
+          "relative_perf": 0.967
         },
         {
           "lang": "julia",
-          "value": 0.0087,
+          "value": 0.0088,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000399,
+          "stddev": 0.000495,
           "sample_runs": 116,
-          "relative_perf": 0.9885
+          "relative_perf": 1.0
         }
       ],
       "pillar": "numerics",
       "package": "lic",
       "problem_size": "512",
       "size_label": "N=512 block=64",
-      "base_id": "matmul_blocked"
+      "base_id": "matmul_blocked",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 1288460.7564,
+        "checksum_value": 1288460.7564,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 4.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "matmul_blocked",
@@ -33792,7 +33801,16 @@
       "package": "lic",
       "problem_size": "512",
       "size_label": "N=512 block=64",
-      "base_id": "matmul_blocked"
+      "base_id": "matmul_blocked",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 1288460.7564,
+        "checksum_value": 1288460.7564,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 4.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "matmul_blocked",
@@ -33828,7 +33846,16 @@
       "package": "lic",
       "problem_size": "512",
       "size_label": "N=512 block=64",
-      "base_id": "matmul_blocked"
+      "base_id": "matmul_blocked",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 1288460.7564,
+        "checksum_value": 1288460.7564,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 4.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "matmul_blocked_N1024",
@@ -33926,21 +33953,21 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0022,
-      "li_stddev": 0.000402,
+      "li_value": 0.0021,
+      "li_stddev": 0.000321,
       "li_sample_runs": 200,
-      "cpp_value": 0.0018,
-      "cpp_stddev": 0.000307,
+      "cpp_value": 0.0019,
+      "cpp_stddev": 0.000326,
       "cpp_sample_runs": 200,
-      "ratio_vs_cpp": 1.2222,
+      "ratio_vs_cpp": 1.1053,
       "sota_lang": "cpp",
-      "sota_value": 0.0018,
-      "ratio_vs_sota": 0.8182,
+      "sota_value": 0.0019,
+      "ratio_vs_sota": 0.9048,
       "unit": "s",
       "variant": null,
-      "status": "yellow",
+      "status": "green",
       "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_source": "latest.csv:passed",
       "os": "linux",
       "ph_ids": [
         "PH-5b",
@@ -33953,41 +33980,41 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0022,
+          "value": 0.0021,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000402,
+          "stddev": 0.000321,
           "sample_runs": 200,
-          "relative_perf": 0.8182
+          "relative_perf": 0.9048
         },
         {
           "lang": "cpp",
-          "value": 0.0018,
+          "value": 0.0019,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000307,
+          "stddev": 0.000326,
           "sample_runs": 200,
           "relative_perf": 1.0
         },
         {
           "lang": "rust",
-          "value": 0.0018,
+          "value": 0.0019,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000178,
+          "stddev": 0.000164,
           "sample_runs": 200,
           "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.0018,
+          "value": 0.0019,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.00017,
+          "stddev": 0.000242,
           "sample_runs": 200,
           "relative_perf": 1.0
         }
@@ -33996,7 +34023,16 @@
       "package": "lic",
       "problem_size": "256",
       "size_label": "N=256",
-      "base_id": "matmul_naive"
+      "base_id": "matmul_naive",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 161055.1866,
+        "checksum_value": 161055.1866,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 136.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "matmul_naive",
@@ -34033,7 +34069,16 @@
       "package": "lic",
       "problem_size": "256",
       "size_label": "N=256",
-      "base_id": "matmul_naive"
+      "base_id": "matmul_naive",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 161055.1866,
+        "checksum_value": 161055.1866,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 136.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "matmul_naive",
@@ -34070,7 +34115,16 @@
       "package": "lic",
       "problem_size": "256",
       "size_label": "N=256",
-      "base_id": "matmul_naive"
+      "base_id": "matmul_naive",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 161055.1866,
+        "checksum_value": 161055.1866,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 136.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "matmul_naive_N1024",
@@ -35426,15 +35480,15 @@
       "category": "micro",
       "metric": "wall_time",
       "li_value": 0.0013,
-      "li_stddev": 0.00012,
+      "li_stddev": 0.000331,
       "li_sample_runs": 200,
-      "cpp_value": 0.0012,
-      "cpp_stddev": 6.1e-05,
+      "cpp_value": 0.0013,
+      "cpp_stddev": 0.000406,
       "cpp_sample_runs": 200,
-      "ratio_vs_cpp": 1.0833,
+      "ratio_vs_cpp": 1.0,
       "sota_lang": "cpp",
-      "sota_value": 0.0012,
-      "ratio_vs_sota": 0.9231,
+      "sota_value": 0.0013,
+      "ratio_vs_sota": 1.0,
       "unit": "s",
       "variant": "algo_registry",
       "status": "green",
@@ -35455,17 +35509,17 @@
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.00012,
+          "stddev": 0.000331,
           "sample_runs": 200,
-          "relative_perf": 0.9231
+          "relative_perf": 1.0
         },
         {
           "lang": "cpp",
-          "value": 0.0012,
+          "value": 0.0013,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 6.1e-05,
+          "stddev": 0.000406,
           "sample_runs": 200,
           "relative_perf": 1.0
         },
@@ -35475,9 +35529,9 @@
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 7.2e-05,
+          "stddev": 0.000226,
           "sample_runs": 200,
-          "relative_perf": 0.9231
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
@@ -35485,9 +35539,9 @@
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.000274,
+          "stddev": 0.000419,
           "sample_runs": 200,
-          "relative_perf": 0.9231
+          "relative_perf": 1.0
         }
       ],
       "pillar": "numerics",
@@ -37064,21 +37118,21 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0181,
-      "li_stddev": 0.001334,
+      "li_value": 0.0187,
+      "li_stddev": 0.001587,
       "li_sample_runs": 57,
-      "cpp_value": 0.0172,
-      "cpp_stddev": 0.001008,
-      "cpp_sample_runs": 55,
-      "ratio_vs_cpp": 1.0523,
+      "cpp_value": 0.018,
+      "cpp_stddev": 0.001261,
+      "cpp_sample_runs": 56,
+      "ratio_vs_cpp": 1.0389,
       "sota_lang": "cpp",
-      "sota_value": 0.0172,
-      "ratio_vs_sota": 0.9503,
+      "sota_value": 0.018,
+      "ratio_vs_sota": 0.9626,
       "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
       "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "validity_source": "latest.csv:passed",
       "os": "linux",
       "ph_ids": [
         "PH-5b",
@@ -37091,50 +37145,59 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.0181,
+          "value": 0.0187,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.001334,
+          "stddev": 0.001587,
           "sample_runs": 57,
-          "relative_perf": 0.9503
+          "relative_perf": 0.9626
         },
         {
           "lang": "cpp",
-          "value": 0.0172,
+          "value": 0.018,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.001008,
-          "sample_runs": 55,
+          "stddev": 0.001261,
+          "sample_runs": 56,
           "relative_perf": 1.0
         },
         {
           "lang": "rust",
-          "value": 0.0176,
+          "value": 0.0268,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.001172,
-          "sample_runs": 53,
-          "relative_perf": 0.9773
+          "stddev": 0.007179,
+          "sample_runs": 56,
+          "relative_perf": 0.6716
         },
         {
           "lang": "julia",
-          "value": 0.0174,
+          "value": 0.021,
           "unit": "s",
           "variant": "release",
           "os": "linux",
-          "stddev": 0.001223,
-          "sample_runs": 56,
-          "relative_perf": 0.9885
+          "stddev": 0.005049,
+          "sample_runs": 41,
+          "relative_perf": 0.8571
         }
       ],
       "pillar": "numerics",
       "package": "lic",
       "problem_size": "10_000_000",
       "size_label": "N=10_000_000",
-      "base_id": "simd_dot"
+      "base_id": "simd_dot",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 340367.6243,
+        "checksum_value": 340367.6243,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 23712.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "simd_dot",
@@ -37171,7 +37234,16 @@
       "package": "lic",
       "problem_size": "10_000_000",
       "size_label": "N=10_000_000",
-      "base_id": "simd_dot"
+      "base_id": "simd_dot",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 340367.6243,
+        "checksum_value": 340367.6243,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 23712.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "simd_dot",
@@ -37208,7 +37280,16 @@
       "package": "lic",
       "problem_size": "10_000_000",
       "size_label": "N=10_000_000",
-      "base_id": "simd_dot"
+      "base_id": "simd_dot",
+      "numeric_validity": {
+        "oracle": "iterative",
+        "analytical_value": 340367.6243,
+        "checksum_value": 340367.6243,
+        "abs_error": 0.0,
+        "rel_error": 0.0,
+        "ulps": 23712.0,
+        "within_1ulp": false
+      }
     },
     {
       "benchmark": "stdlib_binary_search",
