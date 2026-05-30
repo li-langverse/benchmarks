@@ -1,0 +1,159 @@
+{
+  "status": "cuda_device_pilot",
+  "wave": "4d",
+  "host_os": "Linux",
+  "gpu_timing_ns": 4750,
+  "cuda_timing_ns": 4750,
+  "metal_timing_ns": "N/A",
+  "hip_timing_ns": "N/A",
+  "vulkan_dispatch": "spirv_validation_stub_ok",
+  "spirv_validation": "header_smoke_extended",
+  "cuda_emit_status": 1,
+  "metal_emit_status": "emit_off",
+  "hip_emit_status": "emit_off",
+  "vulkan_lavapipe_hint": false,
+  "note": "Honest 2x2 CUDA device timing via lig-cuda-timing-probe; Vulkan compute pipeline still partial (WP-HW-07).",
+  "parity": {
+    "generated_at": "2026-05-29T18:57:59Z",
+    "registry": "benchmarks/competitive/lig-kernels.toml",
+    "kernel_ids": [
+      "lig.kernel.matmul_f32",
+      "lig.kernel.matmul_f64",
+      "lig.kernel.dot_f32",
+      "lig.kernel.reduce_sum_f32",
+      "lig.kernel.md_force_short",
+      "lig.kernel.md_force_full",
+      "lig.kernel.heat_stencil_2d_f32",
+      "lig.kernel.sph_density_f32",
+      "lig.kernel.horner_f32",
+      "lig.kernel.mlp_forward_f32",
+      "lig.kernel.memcpy_h2d_f32",
+      "lig.kernel.memcpy_d2h_f32",
+      "lig.kernel.quat_rotate_vec3",
+      "lig.kernel.present_blit_rgba8"
+    ],
+    "kernels": [
+      {
+        "kernel_id": "lig.kernel.matmul_f32",
+        "validity_min": 0.999,
+        "validity_ratio": 0.0,
+        "validity_gate_pass": false,
+        "compile_ok": false,
+        "status": "pilot",
+        "cpu_sec": 0.17863,
+        "stderr_tail": "/usr/bin/ld: /tmp/li_rt_lig_cuda-818058.o: in function `li_rt_lig_cuda_matmul2x2_device':\nli_rt_lig_cuda.c:(.text+0x1ce): undefined reference to `li_rt_lig_cuda_ptx_lookup'\nclang-22: error: linker command failed with exit code 1 (use -v to see invocation)\nerror: build failed: clang link failed\n"
+      },
+      {
+        "kernel_id": "lig.kernel.matmul_f64",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.dot_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.reduce_sum_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.md_force_short",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.md_force_full",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.heat_stencil_2d_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.sph_density_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.horner_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.mlp_forward_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.memcpy_h2d_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.memcpy_d2h_f32",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.quat_rotate_vec3",
+        "status": "stub",
+        "compile_ok": false
+      },
+      {
+        "kernel_id": "lig.kernel.present_blit_rgba8",
+        "status": "stub",
+        "compile_ok": false
+      }
+    ],
+    "kernel_id": "lig.kernel.matmul_f32",
+    "validity_min": 0.999,
+    "validity_ratio": 0.0,
+    "validity_gate_pass": false,
+    "compile_ok": false,
+    "cpu_sec": 0.17863
+  },
+  "cuda_hardware": {
+    "nvidia_smi": true,
+    "cuda_home": true,
+    "cuda_home_path": "/usr/lib/cuda",
+    "nvcc": true
+  },
+  "cuda_home_probe": {
+    "cuda_home_set": true,
+    "cuda_path_set": false,
+    "cuda_home": "/usr/lib/cuda",
+    "cuda_path": null,
+    "nvcc_on_path": true,
+    "nvcc_path": "/usr/bin/nvcc",
+    "nvcc_version": "nvcc: NVIDIA (R) Cuda compiler driver",
+    "nvidia_smi": true,
+    "embedded_ptx_count": 1,
+    "embedded_ptx_kernel_ids": [
+      "lig.kernel.matmul_f32"
+    ],
+    "blocked_ptx_kernel_ids": [
+      "lig.kernel.mlp_forward_f32",
+      "lig.kernel.matmul_f64",
+      "lig.kernel.dot_f32"
+    ],
+    "device_timing_in_this_probe": false,
+    "device_timing_probe": "scripts/lig-cuda-timing-probe.sh",
+    "ready_emit_cpu_ref": true,
+    "wp_hw_09": "ready_emit_cpu_ref"
+  },
+  "ptx_catalog_embedded": [
+    "lig.kernel.matmul_f32"
+  ],
+  "ptx_catalog_blocked": [
+    "lig.kernel.mlp_forward_f32",
+    "lig.kernel.matmul_f64",
+    "lig.kernel.dot_f32"
+  ],
+  "cuda_cpu_ref": "2x2_host_reference_when_emit_on",
+  "wp_hw_08": "device_matmul2x2_pilot",
+  "wp_hw_09": "ptx_device_pilot"
+}

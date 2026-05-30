@@ -16,3 +16,10 @@ Link: `docs/release-notes/YYYY-MM-DD-<slug>.md` (skill **write-li-release-notes*
 ## Test plan
 
 - [ ] CI green on PR
+
+## GPU chip donation (if applicable)
+
+- [ ] One folder under `data/gpu-contributions/<chip-slug>/` only — one physical machine
+- [ ] `python3 scripts/ingest/validate-gpu-contribution.py` passes
+- [ ] No hand-edited timings; suite re-run on donor hardware
+- [ ] See [gpu-chip-contributions.md](docs/ecosystem/gpu-chip-contributions.md)

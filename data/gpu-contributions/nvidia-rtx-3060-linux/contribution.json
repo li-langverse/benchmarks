@@ -1,0 +1,26 @@
+{
+  "schema": "benchmarks/gpu-chip-contribution/v1",
+  "chip_slug": "nvidia-rtx-3060-linux",
+  "label": "NVIDIA GeForce RTX 3060",
+  "vendor": "nvidia",
+  "host_os": "Linux",
+  "primary_backend": "cuda",
+  "contributor": {
+    "org": "li-langverse",
+    "role": "lab",
+    "github": "li-langverse"
+  },
+  "hardware": {
+    "gpu_name": "NVIDIA GeForce RTX 3060",
+    "driver_version": "550.163.01",
+    "compute_capability": "8.6",
+    "memory_total_mib": 12288,
+    "cpu_model": "lab host (see suite JSON for host CPU at run time)"
+  },
+  "artifacts": {
+    "lig_gpu_suite": "lig-gpu-suite-latest.json",
+    "lig_gpu_honest": "lig-gpu-suite-honest.json"
+  },
+  "submitted_at": "2026-05-29",
+  "notes": "Debian 13 lab node; CUDA 12.4; honest pilot matmul 2×2 device timing."
+}
