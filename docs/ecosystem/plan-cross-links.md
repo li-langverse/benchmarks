@@ -35,7 +35,8 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | `2026-05-14-benchmarks-and-simulations.md` | Bench harness |
 | `2026-05-16-li-package-manager-lip.md` | **lip** |
 | `2026-05-16-li-httpd-plan.md` | **lis** / httpd |
-| `2026-05-16-li-math-linalg-surface.md` | Math / **PH-7e** |
+| `2026-05-16-li-math-linalg-surface.md` | Math / **PH-7e** · **G-math**, **G-math-syn** |
+| `2026-05-24-studio-ui-ux-plan-loop.md` | **PH-UX** / Studio (UX honesty, not Lean) |
 | **lidb / registry DB** (proposal) | **PH-DB-*** · [tier-db-registry-benchmark.md](./tier-db-registry-benchmark.md) |
 | **lidb graph / vector / GPU** (PH-DB-G0) | [tier-db-graph-registry.md](./tier-db-graph-registry.md) · [tier-db-vector-ann.md](./tier-db-vector-ann.md) · [tier-db-gpu-speedup.md](./tier-db-gpu-speedup.md) |
 | **lidb full-spectrum audit** (WP-N4) | [tier-db-security.md](./tier-db-security.md) · [tier-db-memory.md](./tier-db-memory.md) · [tier-db-parallel.md](./tier-db-parallel.md) · [tier-db-audit.md](./tier-db-audit.md) · [tier-db-realtime.md](./tier-db-realtime.md) |
