@@ -96,7 +96,17 @@ Do **not** relax `threshold_ratio_cpp` in `catalog.toml`.
 
 ---
 
-## 7. Commands
+## 7. Visuals / plots
+
+**N/A (tier-1 micro GEMM).** No physics GIF or stability overlay required; speed evidence is wall_time tables above. Render after future PH-7e win:
+
+```bash
+LIC_ROOT=../lic ./scripts/render-benchmark-visuals.sh  # tier-2 only when applicable
+```
+
+Checklist visual gate: **BLOCKED — N/A** with reason documented (negative micro study, no novel kernel).
+
+## 8. Commands
 
 ```bash
 cd /path/to/lic/benchmarks/harness
