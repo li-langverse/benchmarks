@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T08:39:38.083160+00:00",
+  "generated_at": "2026-05-30T09:07:32.772999+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -19,7 +19,10 @@
       "harness_error": "subprocess.TimeoutExpired: tui-demo.sh timed out after 30 seconds",
       "fixture_exit_code": null,
       "axe_violations": [],
-      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
       "contrast_failures": [],
       "baseline_status": "missing",
       "tokens_deviation": [],
@@ -30,12 +33,17 @@
       "repo": "li-cursor-agents",
       "surface": "tui",
       "surface_class": "tui_gen",
-      "artifacts": ["data/latest-tui-ui-run/captures/tui-gen-fixture.txt"],
+      "artifacts": [
+        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
+      ],
       "mode": "fixture",
       "status": "pass",
       "fixture_exit_code": 0,
       "axe_violations": [],
-      "pixel_diff": { "max_ratio": 0.0, "threshold": 0.04 },
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
       "contrast_failures": [],
       "baseline_status": "ok",
       "tokens_deviation": [],

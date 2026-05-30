@@ -120,6 +120,35 @@
       "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/44"
     }
   ],
+  "tui_ui_audit_summary": {
+    "total": 2,
+    "passing": 1,
+    "failing": 1,
+    "skipped": 0,
+    "digest_path": "docs/ecosystem/ux-digests/2026-05-30-tui-ui.md"
+  },
+  "tui_issues": [
+    {
+      "surface": "tui",
+      "kind": "ui",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
+    },
+    {
+      "surface": "tui",
+      "kind": "ui",
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ui-audit] TUI harness lacks stdout frame capture and baseline diff",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": null
+    }
+  ],
   "implementation_queue": [
     {
       "kind": "ui_remediation",
@@ -158,6 +187,32 @@
       "acceptance": ["agents-dashboard audit runs when dashboard service up"],
       "agent_source": "gui_ui_tester",
       "targets": ["agents-dashboard"],
+      "sources": ["ui_audit"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 30,
+      "title": "[ui-audit] tui-app-fixture non-interactive harness",
+      "remediation_summary": "Stdin pipe, LI_TUI_HARNESS=1, catch TimeoutExpired in tui adapter",
+      "files_hint": ["ux-harness/fixtures/tui-demo.sh", "ux-harness/adapters/tui.py"],
+      "acceptance": ["run_audit --target tui-app-fixture --mode ui exits 0 with status row"],
+      "agent_source": "tui_ui_tester",
+      "targets": ["tui-app-fixture"],
+      "sources": ["ui_audit"]
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": null,
+      "title": "[ui-audit] TUI stdout capture + baseline diff",
+      "remediation_summary": "Dump fixture stdout; insta baseline for tui-gen-fixture frame",
+      "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/baselines/tui-gen-fixture/"],
+      "acceptance": ["artifacts[] populated on every TUI run"],
+      "agent_source": "tui_ui_tester",
+      "targets": ["tui-gen-fixture"],
       "sources": ["ui_audit"]
     }
   ]
