@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T20:31:51.000000+00:00",
+  "generated_at": "2026-05-30T21:46:12.000000+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -16,9 +16,9 @@
       "status": "fail",
       "journeys": [],
       "friction_points": [
-        {"issue": "harness TimeoutExpired — fixture blocks on read -r (non-TTY)"},
+        {"issue": "harness TimeoutExpired — fixture blocks on read -r (non-TTY); run_audit.py exit 1 uncaught"},
         {"issue": "key_nav_help journey defined but not executed"},
-        {"issue": "banner claims h for help but key not interpreted"}
+        {"issue": "banner claims h for help but key not interpreted; piped stdin completes flow in <50ms"}
       ],
       "sota_refs": ["textual", "bubbletea"],
       "rubric_scores": {
@@ -30,7 +30,7 @@
       },
       "rubric_threshold": 0.6,
       "missing_states": ["help_overlay", "error_display", "a11y_plain_export"],
-      "artifacts": [],
+      "artifacts": ["captures/tui-app-fixture-piped.txt"],
       "mode": "fixture",
       "harness_error": "subprocess.TimeoutExpired: tui-demo.sh timed out after 30 seconds"
     },
@@ -54,7 +54,7 @@
       },
       "rubric_threshold": 0.6,
       "missing_states": ["error_display", "a11y_plain_export"],
-      "artifacts": [],
+      "artifacts": ["captures/tui-gen-fixture.txt"],
       "mode": "fixture"
     }
   ]
