@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-05-30T03:34:43.786784+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 0,
+    "skipped": 1
+  },
+  "targets": [
+    {
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "skip",
+      "skip_reason": "GUI not reachable at http://127.0.0.1:3000 (start dashboard for extended audit)",
+      "journeys": [],
+      "friction_points": [],
+      "sota_refs": [
+        "shadcn-ui"
+      ],
+      "rubric_scores": {},
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [],
+      "mode": "http_probe"
+    }
+  ]
+}

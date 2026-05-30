@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-05-30T03:34:43.881320+00:00",
+  "platform": "Linux",
+  "summary": {
+    "total": 1,
+    "failing": 0,
+    "passing": 1,
+    "skipped": 0
+  },
+  "targets": [
+    {
+      "target_id": "gui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_gen",
+      "artifacts": [],
+      "axe_violations": [],
+      "pixel_diff": {
+        "max_ratio": 0.0,
+        "threshold": 0.04
+      },
+      "contrast_failures": [],
+      "baseline_status": "ok",
+      "tokens_deviation": [],
+      "broken_links": 0,
+      "mode": "http_probe",
+      "status": "pass",
+      "fixture": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/fixtures/gui-gen-demo.html"
+    }
+  ]
+}
