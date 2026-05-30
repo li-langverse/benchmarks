@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-30T14:56:21Z",
+  "generated_at": "2026-05-30T15:57:29Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 75.8,
+  "overall_score": 78.2,
   "grade": "C",
-  "unattended_safe": false,
+  "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
       "score": 85.0,
@@ -33,31 +33,26 @@
       "weight": 0.2,
       "signals": {
         "snapshot_present": true,
-        "runner_count": 8,
+        "runner_count": 9,
         "runners_stopped": 6,
-        "plan_todos_pending": 25,
-        "plan_todos_total": 97,
+        "plan_todos_pending": 36,
+        "plan_todos_total": 110,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 60.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 11,
-        "error_count": 1,
+        "terminal_runs": 8,
+        "error_count": 0,
         "incomplete_count": 5,
-        "running_count": 109,
-        "error_rate": 0.0909,
-        "incomplete_rate": 0.4545,
-        "top_error_agents": [
-          {
-            "agent": "autoresearch",
-            "count": 1
-          }
-        ]
+        "running_count": 112,
+        "error_rate": 0.0,
+        "incomplete_rate": 0.625,
+        "top_error_agents": []
       },
       "finding_count": 2
     },
@@ -98,13 +93,13 @@
     {
       "id": "swarm-incomplete-rate",
       "severity": "medium",
-      "message": "Incomplete rate 45%",
+      "message": "Incomplete rate 62%",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "109 runs still marked running (possible stuck SDK)",
+      "message": "112 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
