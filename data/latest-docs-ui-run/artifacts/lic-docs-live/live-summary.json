@@ -57,5 +57,11 @@
       "artifact": "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-mobile.png"
     }
   ],
-  "generated_at": "2026-05-30T13:24:09.054Z"
+  "path_checks": {
+    "guide/hello-world/": 404,
+    "ecosystem/overview/": 404,
+    "language/overview/": 404,
+    "verification/provability-gaps/": 200
+  },
+  "generated_at": "2026-05-30T15:20:24.576Z"
 }
