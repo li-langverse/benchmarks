@@ -1,14 +1,21 @@
 {
-  "generated_at": "2026-05-29T23:53:49+00:00",
-  "agent_id": "docs_ui_tester",
+  "generated_at": "2026-05-30T00:18:47+00:00",
+  "agent_id": "docs_ux_tester",
   "surface": "docs",
-  "audit_kind": "ui",
+  "audit_kind": "ux",
   "issues": [
     {
       "priority": "P0",
       "repo": "lic",
       "url": "https://github.com/li-langverse/lic/issues/403",
       "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "target_id": "lic-docs"
+    },
+    {
+      "priority": "P1",
+      "repo": "lic",
+      "url": "https://github.com/li-langverse/lic/issues/422",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
       "target_id": "lic-docs"
     },
     {
@@ -22,7 +29,7 @@
       "priority": "P1",
       "repo": "lic",
       "url": "https://github.com/li-langverse/lic/issues/404",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs (93 unique in title; 69 in current scan)",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs (74 unique in current scan)",
       "target_id": "lic-docs"
     },
     {
@@ -31,6 +38,14 @@
       "url": "https://github.com/li-langverse/li-cursor-agents/issues/36",
       "title": "[ui-audit] static_site adapter: unquoted href + site_url prefix (links_checked=0)",
       "target_id": "lic-docs"
+    },
+    {
+      "priority": "P2",
+      "repo": "lic",
+      "url": null,
+      "title": "[ux-audit] docs(journey): consolidate Getting started into Guide landing; add search.share",
+      "target_id": "lic-docs",
+      "status": "proposed"
     },
     {
       "priority": "P2",
@@ -46,7 +61,14 @@
       "agent": "docs_maintainer",
       "repo": "lic",
       "issue": "https://github.com/li-langverse/lic/issues/403",
-      "summary": "Publish current lic/site (12 tabs, 2801 search entries); fix strict build"
+      "summary": "Publish current lic/site (12 tabs, 2801 search entries); restore hello-world and ecosystem/overview on live"
+    },
+    {
+      "priority": "P1",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": "https://github.com/li-langverse/lic/issues/422",
+      "summary": "Move 11 language/*.md reference pages from Game development to Language handbook tab"
     },
     {
       "priority": "P1",
@@ -60,28 +82,48 @@
       "agent": "docs_maintainer",
       "repo": "lic",
       "issue": "https://github.com/li-langverse/lic/issues/404",
-      "summary": "Remove 69 raw .md hrefs from built HTML (repo-relative paths; regressed from 45)"
+      "summary": "Remove 74 raw .md hrefs from built HTML"
+    },
+    {
+      "priority": "P2",
+      "agent": "docs_maintainer",
+      "repo": "lic",
+      "issue": null,
+      "summary": "Consolidate onboarding: merge Getting started into Guide landing; enable search.share in mkdocs.yml"
     },
     {
       "priority": "P1",
       "agent": "code_implementer",
       "repo": "li-cursor-agents",
       "issue": "https://github.com/li-langverse/li-cursor-agents/issues/36",
-      "summary": "Fix static_site adapter href parsing and site_url-aware link checks"
+      "summary": "Extend run_docs_ux with mkdocs IA parse and live URL drift probe"
     }
   ],
   "deferred": [
     {
-      "item": "Live Pages Playwright + axe pass",
-      "reason": "Publish stale; guide/hello-world/ 404 on live despite local build"
+      "item": "Live Pages journey re-audit",
+      "reason": "Publish stale; primary onboarding URLs 404 on live"
     },
     {
-      "item": "Pixel baseline diff for lic-docs",
-      "reason": "ux-harness/baselines/ empty; track #37"
+      "item": "toc.integrate on handbook pages",
+      "reason": "Evaluate after #422 IA fix; may conflict with content width"
     },
     {
-      "item": "Per-repo MkDocs sites (8 repos without live pages)",
+      "item": "Per-repo MkDocs sites (10 repos without live pages)",
       "reason": "Out of scope for lic-docs target"
+    },
+    {
+      "item": "rustdoc-grade API search",
+      "reason": "Requires auto-generated API reference; not MkDocs-native today"
     }
-  ]
+  ],
+  "manual_rubric": {
+    "nav_clarity": 0.65,
+    "task_efficiency": 0.72,
+    "empty_states": 0.9,
+    "error_handling": 0.55,
+    "cognitive_load": 0.62,
+    "harness_rubric_min": 0.7,
+    "note": "Harness auto-pass does not probe live Pages or mkdocs IA"
+  }
 }
