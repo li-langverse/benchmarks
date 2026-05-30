@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-05-30T09:25:06.910563+00:00",
+  "generated_at": "2026-05-30T14:55:16.895847+00:00",
   "provenance": {
-    "lic_sha": "11ef5e370210a1bb4f08b128242d336c2b7a89ab",
+    "lic_sha": "4ddbd3c6a2a6af877e6d8f8aed5f307064988adf",
     "lic_ref": "main",
-    "benchmarks_sha": "be26474518748fe3feec85dcb9636c6295701524",
-    "lis_sha": "94873aa573fa0a2fb58b29def1cb864abd8af764",
+    "benchmarks_sha": "f00d541828a843558b89cd9f7c550fbad18f1696",
+    "lis_sha": "85434de9262d96d3645ba0256468730cd4086d50",
     "llvm_version": "",
     "workflow_run_id": "",
     "runner_os": "linux",
     "bench_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv"
   },
   "sources": {
-    "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/workspaces/li-langverse/lic/bench_improver-1780132491868/repo",
+    "lic_root": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/workspaces/li-langverse/lic/bench_improver-1780152640031/repo",
     "lis_root": "/home/s4il0r/Documents/Cursor/li-langverse/lis",
     "bench_csv": "results/latest.csv",
     "lic_csv": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/results/latest.csv",
