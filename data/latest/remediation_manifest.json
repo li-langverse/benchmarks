@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-05-30T15:20Z",
-  "agent_id": "docs_ui_tester",
+  "generated_at": "2026-05-30T15:35Z",
+  "agent_id": "docs_ux_tester",
   "briefing_generated_at": "2026-05-30T14:02Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ui.md",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-docs-ux.md",
   "issues": [
     {
       "surface": "docs",
-      "kind": "ui",
+      "kind": "ux",
       "target_id": "lic-docs",
       "repo": "lic",
       "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale (5-tab nav)",
-      "problem": "Published handbook has 5-tab legacy nav; local mkdocs builds 12 tabs; hero IA paths 404 on live; search index ~91% smaller",
+      "problem": "Published handbook has 5-tab legacy nav; local mkdocs builds 12 tabs; hero IA paths 404 on live; search index ~91% smaller (248 vs 2801 docs)",
       "evidence": [
-        "2026-05-30T15:20Z HEAD: guide/hello-world, ecosystem/overview, language/overview → 404",
-        "Live 5 tabs vs local 12; search_index live 248 vs local 2801 docs",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/live-summary.json"
+        "2026-05-30T15:32Z HEAD: /guide/hello-world/, /ecosystem/overview/, /language/overview/ → 404",
+        "Live tabs: Home, Getting started, Guides, Reference, Project (5) vs local 12",
+        "search_index.json live 248 docs vs local 2801 docs; Last-Modified 2026-05-30 but content stale"
       ],
       "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
       "remediation_checklist": [
         "[ ] File: lic/.github/workflows/docs.yml — green mkdocs build --strict",
         "[ ] Fix remaining link warnings blocking deploy",
         "[ ] Test: curl -sI https://li-langverse.github.io/li-language/guide/hello-world/ → 200",
-        "[ ] Acceptance: live tab count matches local mkdocs nav"
+        "[ ] Acceptance: live tab count matches local mkdocs nav (12 tabs)"
       ],
       "suggested_implementer": "docs_maintainer",
       "priority": "P0",
@@ -30,107 +30,110 @@
     },
     {
       "surface": "docs",
-      "kind": "ui",
+      "kind": "ux",
       "target_id": "lic-docs",
       "repo": "lic",
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
-      "problem": "Playwright axe on home desktop: 12 color-contrast + 5 link-in-text-block serious violations (unchanged)",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "problem": "11 language/*.md reference pages nested under Game development tab — violates Diátaxis separation; cognitive_load rubric at threshold (0.70)",
       "evidence": [
-        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json",
-        "Proactive run 2026-05-30T15:20Z — tab chrome 21:1 passes WCAG AA"
+        "lic/mkdocs.yml lines 119–129: types-and-data, numerics, simd-parallel, etc. under Game development",
+        "Language handbook tab has only 5 pages; Game dev tab mixes domain how-to with reference"
       ],
-      "sota_reference": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html",
+      "sota_reference": "https://diataxis.fr/start-here/",
       "remediation_checklist": [
-        "[ ] File: lic/docs/stylesheets/extra.css — muted text contrast + inline link underline",
-        "[ ] Test: docs-ui-capture.mjs → axe violations empty on home",
-        "[ ] Acceptance: proactive ui-audit status=pass"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/426"
-    },
-    {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "li-cursor-agents",
-      "title": "[ui-audit] Seed baselines/docs + Playwright capture in docs harness adapter",
-      "problem": "docs.py static_site pass hides axe/pixel failures; baselines/docs/ missing",
-      "evidence": [
-        "data/latest/ui-audit.json — artifacts [], axe_violations [] on pass",
-        "data/latest-docs-ui-run/ui-audit.json — proactive fail with axe + captures"
-      ],
-      "sota_reference": "https://playwright.dev/docs/test-snapshots",
-      "remediation_checklist": [
-        "[ ] File: ux-harness/baselines/docs/ — seed PNG baselines",
-        "[ ] File: ux-harness/adapters/docs.py — wire Playwright + axe",
-        "[ ] Test: run_audit.py --target lic-docs records fail on axe"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
-    },
-    {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs",
-      "problem": "Full-tree scan: 74 unique .md hrefs; 45 broken md paths",
-      "evidence": [
-        "data/latest-docs-ui-run/deep-scan.json — raw_md_hrefs 74",
-        "superpowers/plans cross-links to ../ecosystem/*.md in built HTML"
-      ],
-      "sota_reference": "https://www.mkdocs.org/user-guide/configuration/#validation",
-      "remediation_checklist": [
-        "[ ] Replace raw .md hrefs in docs sources",
-        "[ ] Test: deep scan broken_md_unique → 0"
+        "[ ] File: lic/mkdocs.yml — move language/*.md entries to Language handbook tab",
+        "[ ] Test: Game development nav contains only game-dev/* and physics/GAME_DEV.md",
+        "[ ] Acceptance: Diátaxis audit — reference quadrant has single top-level home"
       ],
       "suggested_implementer": "docs_maintainer",
-      "priority": "P2",
-      "labels": ["ui-audit", "surface:docs"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/404"
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/422"
+    },
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "docs(IA): add Diátaxis labels to home doc-map + collapse Project tab behind Contributing",
+      "problem": "Project tab exposes 10+ phase plans to all visitors; home doc-map lacks explicit Diátaxis quadrant labels; rubric cognitive_load 0.70 (lowest dimension)",
+      "evidence": [
+        "lic/docs/index.md doc-map table lists sections without tutorial/how-to/reference/explanation labels",
+        "mkdocs.yml Project tab: master plan + 7 phase plans + benchmarks plan",
+        "ux-audit rubric: cognitive_load 0.70, rubric_min 0.70"
+      ],
+      "sota_reference": "https://diataxis.fr/start-here/",
+      "remediation_checklist": [
+        "[ ] File: lic/docs/index.md — add Diátaxis quadrant column to doc-map table",
+        "[ ] File: lic/mkdocs.yml — nest Project items under Contributing or add nav filter",
+        "[ ] Acceptance: cognitive_load rubric ≥ 0.75 on next ux-audit pass"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": null
+    },
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "docs(ecosystem): mirror roadmap policy pages in MkDocs instead of GitHub-only stubs",
+      "problem": "ecosystem/*.md pages are GitHub stubs — first reading path to Ecosystem breaks in-site flow; users leave handbook for canonical policy",
+      "evidence": [
+        "lic/docs/ecosystem/overview.md — stub redirecting to li-langverse/roadmap",
+        "Journey first_reading_path: Home → Ecosystem → GitHub exit"
+      ],
+      "sota_reference": "https://diataxis.fr/start-here/",
+      "remediation_checklist": [
+        "[ ] File: lic/docs/ecosystem/*.md — include rendered content or mkdocs include from roadmap",
+        "[ ] Test: /ecosystem/overview/ renders full page without GitHub redirect",
+        "[ ] Acceptance: ecosystem reading path stays on li-language Pages"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:docs"],
+      "issue_url": null
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ui_remediation",
+      "kind": "ux_remediation",
       "repo": "lic",
       "surface": "docs",
       "issue": 403,
       "title": "Unblock strict MkDocs CI and deploy 12-tab handbook",
-      "remediation_summary": "Live Pages must match local IA; fix 404 hero paths",
+      "remediation_summary": "Live Pages must match local IA; fix 404 hero paths and restore search index",
       "files_hint": [".github/workflows/docs.yml", "mkdocs.yml"],
-      "acceptance": ["live /guide/hello-world/ returns 200", "12 nav tabs on Pages"],
-      "agent_source": "docs_ui_tester",
-      "journeys": ["first_reading_path"],
-      "sources": ["ui_audit"]
+      "acceptance": ["live /guide/hello-world/ returns 200", "12 nav tabs on Pages", "search index ≥ 2500 docs"],
+      "agent_source": "docs_ux_tester",
+      "journeys": ["first_reading_path", "mobile_nav"],
+      "sources": ["ux_audit"]
     },
     {
-      "kind": "ui_remediation",
+      "kind": "ux_remediation",
       "repo": "lic",
       "surface": "docs",
-      "issue": 426,
-      "title": "Fix Material theme axe contrast + inline link styling",
-      "remediation_summary": "12 color-contrast + 5 link-in-text-block on home desktop",
-      "files_hint": ["docs/stylesheets/extra.css", "mkdocs.yml"],
-      "acceptance": ["docs-ui-capture axe array empty"],
-      "agent_source": "docs_ui_tester",
-      "sources": ["ui_audit"]
+      "issue": 422,
+      "title": "Move language reference pages out of Game development nav",
+      "remediation_summary": "Diátaxis IA cleanup — 11 language/*.md pages to Language handbook tab",
+      "files_hint": ["mkdocs.yml"],
+      "acceptance": ["Game development nav has zero language/*.md entries"],
+      "agent_source": "docs_ux_tester",
+      "journeys": ["first_reading_path"],
+      "sources": ["ux_audit"]
     },
     {
-      "kind": "ui_remediation",
-      "repo": "li-cursor-agents",
+      "kind": "ux_remediation",
+      "repo": "lic",
       "surface": "docs",
-      "issue": 37,
-      "title": "Seed baselines/docs and wire Playwright into harness",
-      "remediation_summary": "Harness pass must reflect measured axe and pixel diff",
-      "files_hint": ["ux-harness/adapters/docs.py", "ux-harness/baselines/docs/"],
-      "acceptance": ["run_audit lic-docs fails when axe serious violations present"],
-      "agent_source": "docs_ui_tester",
-      "sources": ["ui_audit"]
+      "issue": null,
+      "title": "Diátaxis labels on home doc-map + collapse Project tab",
+      "remediation_summary": "Reduce cognitive load; label quadrants on index.md doc-map",
+      "files_hint": ["docs/index.md", "mkdocs.yml"],
+      "acceptance": ["cognitive_load rubric ≥ 0.75"],
+      "agent_source": "docs_ux_tester",
+      "sources": ["ux_audit"]
     }
   ]
 }
