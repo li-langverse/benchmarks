@@ -1,0 +1,115 @@
+{
+  "generated_at": "2026-05-30T02:40:00Z",
+  "agent_id": "docs_ux_tester",
+  "issues": [
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "lic-docs-live-pages",
+      "repo": "lic",
+      "title": "[ux-audit] GitHub Pages stale — 5-tab live site vs 12-tab mkdocs.yml",
+      "problem": "Public reading path broken: key tutorial/reference paths 404 on live while local site passes harness",
+      "evidence": [
+        "Live tabs: Home, Getting started, Guides, Reference, Project (5)",
+        "Local tabs: 12 including Guide, Ecosystem, Language handbook, Game development",
+        "HEAD 404: /guide/hello-world/, /ecosystem/overview/, /language/overview/",
+        "Existing issue: https://github.com/li-langverse/lic/issues/403"
+      ],
+      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/ — instant nav + search require current published index",
+      "remediation_checklist": [
+        "[ ] File: lic/docs/ + scripts/build-docs.sh — fix strict link warnings (#403)",
+        "[ ] Test: ./scripts/build-docs.sh --strict exits 0; Docs workflow green",
+        "[ ] Acceptance: live nav tab count matches mkdocs.yml; /guide/hello-world/ returns 200"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P0",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
+    },
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "ecosystem-live-pages",
+      "repo": "benchmarks",
+      "title": "[ux-audit] 8 satellite repos — handbook Pages 404 breaks cross-repo reading path",
+      "problem": "Briefing lists 8 repos with live_docs_down; ecosystem handbook links dead-end",
+      "evidence": [
+        "HEAD 404: lip, lit, lis, li-demo GitHub Pages roots",
+        "agent-briefing.json repos_without_live_docs: 8 repos",
+        "docs_maintainer queued in heap_plan"
+      ],
+      "sota_reference": "https://diataxis.fr/start-here/ — ecosystem docs should be reachable without leaving the handbook",
+      "remediation_checklist": [
+        "[ ] File: each repo docs.yml + minimal mkdocs/handbook landing",
+        "[ ] Test: curl -I https://li-langverse.github.io/<repo>/ returns 200",
+        "[ ] Acceptance: ecosystem-audit repos_without_live_pages → 0"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P0",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
+    },
+    {
+      "surface": "docs",
+      "kind": "ux",
+      "target_id": "lic-docs-ia-game-dev",
+      "repo": "lic",
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "problem": "Diátaxis violation — reference content nested under domain-specific tab",
+      "evidence": [
+        "mkdocs.yml lines 119-129 under Game development",
+        "Existing issue: https://github.com/li-langverse/lic/issues/422"
+      ],
+      "sota_reference": "https://diataxis.fr/start-here/ — reference quadrant separate from tutorials",
+      "remediation_checklist": [
+        "[ ] File: lic/mkdocs.yml — move language/*.md to Language handbook",
+        "[ ] Test: mkdocs build --strict after #403 fixes",
+        "[ ] Acceptance: Game development tab contains only game-dev/ + physics/"
+      ],
+      "suggested_implementer": "docs_maintainer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:docs", "ready-for-implement"]
+    }
+  ],
+  "implementation_queue": [
+    {
+      "kind": "ux_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 403,
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "remediation_summary": "Fix strict link warnings; redeploy Pages so 12-tab IA is public",
+      "files_hint": ["scripts/build-docs.sh", "docs/", ".github/workflows/docs.yml"],
+      "acceptance": [
+        "Docs CI green on main",
+        "https://li-langverse.github.io/li-language/guide/hello-world/ returns 200",
+        "Live nav tab count matches mkdocs.yml"
+      ],
+      "agent_source": "docs_ux_tester",
+      "journeys": ["first_reading_path", "mobile_nav"]
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 422,
+      "title": "[ux-audit] docs(IA): move language reference pages out of Game development nav",
+      "remediation_summary": "Diátaxis cleanup — consolidate language/*.md under Language handbook tab",
+      "files_hint": ["mkdocs.yml"],
+      "acceptance": [
+        "Game development tab contains only game-dev/ and physics/ paths",
+        "Language handbook contains all language/*.md reference pages"
+      ],
+      "agent_source": "docs_ux_tester"
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "lip",
+      "surface": "docs",
+      "issue": 0,
+      "title": "[ux-audit] Ship minimal handbook GitHub Pages for lip",
+      "remediation_summary": "Enable cross-link from li-language ecosystem tab",
+      "files_hint": [".github/workflows/docs.yml", "docs/index.md"],
+      "acceptance": ["https://li-langverse.github.io/lip/ returns 200"],
+      "agent_source": "docs_ux_tester"
+    }
+  ]
+}
