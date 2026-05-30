@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-05-30T08:06:14.232028+00:00
+Generated: 2026-05-30T08:12:00.577777+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
