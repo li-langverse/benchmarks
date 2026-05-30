@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-30T16:02:43Z",
+  "generated_at": "2026-05-30T16:03:56Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 78.2,
+  "overall_score": 79.8,
   "grade": "C",
   "unattended_safe": true,
   "dimensions": {
@@ -33,10 +33,10 @@
       "weight": 0.2,
       "signals": {
         "snapshot_present": true,
-        "runner_count": 9,
+        "runner_count": 8,
         "runners_stopped": 6,
-        "plan_todos_pending": 35,
-        "plan_todos_total": 110,
+        "plan_todos_pending": 26,
+        "plan_todos_total": 90,
         "agents_live": 0
       },
       "finding_count": 1
@@ -57,18 +57,18 @@
       "finding_count": 2
     },
     "gap_pressure": {
-      "score": 60.0,
+      "score": 70.0,
       "weight": 0.15,
       "signals": {
         "gap_report_present": true,
-        "open_gaps": 63,
+        "open_gaps": 54,
         "by_kind": {
           "missing_package": 3,
-          "plan_debt": 30,
+          "plan_debt": 21,
           "competitor_feature": 30
         }
       },
-      "finding_count": 2
+      "finding_count": 1
     }
   },
   "findings": [
@@ -81,7 +81,7 @@
     {
       "id": "swarm-gap-backlog",
       "severity": "high",
-      "message": "63 open gap(s) in registry apply pipeline",
+      "message": "54 open gap(s) in registry apply pipeline",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
     },
     {
@@ -101,12 +101,6 @@
       "severity": "medium",
       "message": "118 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
-      "id": "plan-debt-gaps",
-      "severity": "medium",
-      "message": "30 plan_debt gap rows",
-      "evidence": "swarm-gap-actions.by_kind.plan_debt"
     }
   ],
   "recommended_agents": [
