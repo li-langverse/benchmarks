@@ -1,0 +1,61 @@
+{
+  "live": [
+    {
+      "page": "home",
+      "viewport": "desktop",
+      "status": 200,
+      "tabs": 5,
+      "tab_names": [
+        "Home",
+        "Getting started",
+        "Guides",
+        "Reference",
+        "Project"
+      ],
+      "artifact": "data/latest-docs-ui-run/artifacts/lic-docs-live/home-desktop.png"
+    },
+    {
+      "page": "home",
+      "viewport": "mobile",
+      "status": 200,
+      "tabs": 5,
+      "tab_names": [
+        "Home",
+        "Getting started",
+        "Guides",
+        "Reference",
+        "Project"
+      ],
+      "artifact": "data/latest-docs-ui-run/artifacts/lic-docs-live/home-mobile.png"
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "desktop",
+      "status": 200,
+      "tabs": 5,
+      "tab_names": [
+        "Home",
+        "Getting started",
+        "Guides",
+        "Reference",
+        "Project"
+      ],
+      "artifact": "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-desktop.png"
+    },
+    {
+      "page": "provability-gaps",
+      "viewport": "mobile",
+      "status": 200,
+      "tabs": 5,
+      "tab_names": [
+        "Home",
+        "Getting started",
+        "Guides",
+        "Reference",
+        "Project"
+      ],
+      "artifact": "data/latest-docs-ui-run/artifacts/lic-docs-live/provability-gaps-mobile.png"
+    }
+  ],
+  "generated_at": "2026-05-30T13:24:09.054Z"
+}
