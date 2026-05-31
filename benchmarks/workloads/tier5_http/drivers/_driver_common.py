@@ -7,7 +7,9 @@ import sys
 from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[3]
+from paths import lic_root
+
+REPO = lic_root()
 SCRIPTS = REPO / "scripts"
 
 
