@@ -84,6 +84,7 @@ jobs:
 
       - name: Dashboard invariants
         run: |
+          python3 scripts/check-reporting-platforms.py
           python3 scripts/catalog/audit-catalog-coverage.py
           python3 scripts/check-dashboard-invariants.py
           python3 scripts/audit-dashboard-gaps.py
@@ -113,3 +114,10 @@ jobs:
           ./scripts/check-dashboard-static-routes.sh
       - name: Verify Pages artifact path
         run: test -s dashboard-next/out/index.html
+
+  reporting-platforms-gate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Multi-OS reporting (catalog + summary)
+        run: python3 scripts/check-reporting-platforms.py

@@ -14,5 +14,6 @@ if [[ "${BENCHMARK_NIGHTLY_GATE_NATIVE:-}" != "1" ]] && command -v wsl >/dev/nul
 fi
 ./scripts/run-benchmark-ci-nightly.sh
 test -s results/latest.csv
+python3 scripts/check-reporting-platforms.py
 python3 scripts/check-dashboard-invariants.py
 echo benchmark-nightly-gate-OK
