@@ -1,114 +1,113 @@
 {
-  "generated_at": "2026-05-31T01:02Z",
-  "agent_id": "gui_ux_tester",
+  "generated_at": "2026-05-31T01:55Z",
+  "agent_id": "tui_ux_tester",
   "briefing_generated_at": "2026-05-31T01:00Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-gui-ux.md",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-tui-ux.md",
   "issues": [
     {
-      "surface": "gui",
+      "surface": "tui",
       "kind": "ux",
-      "target_id": "agents-dashboard",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ux-audit] agents-dashboard unreachable — empty state + live stream journeys blocked",
-      "problem": "Harness skip at http://127.0.0.1:3000; UX-06/07/11 cannot score agent chrome or dashboard empty states",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "problem": "tui-demo.sh uses blocking read -r; harness subprocess times out at 30s and run_audit.py crashes uncaught.",
       "evidence": [
-        "data/latest-gui-ux-run/ux-audit.json: agents-dashboard skip",
-        "ux-targets.json journeys agents_list_empty, live_stream"
+        "data/latest-tui-ux-run/ux-audit.json harness_error TimeoutExpired",
+        "data/latest-tui-ux-run/captures/tui-app-fixture-piped.txt — piped stdin exits 0",
+        "li-cursor-agents/ux-harness/fixtures/tui-demo.sh lines 3-6"
       ],
-      "sota_reference": "https://cursor.com/docs/agent/overview",
+      "sota_reference": "https://textual.textualize.io/guide/input/",
       "remediation_checklist": [
-        "[ ] Start dashboard in CI or document LI_AGENTS_DASHBOARD_URL for harness",
-        "[ ] File: ux-harness/adapters/web_gui.py — retry or fixture fallback",
-        "[ ] Test: agents-dashboard ux-audit status pass with journeys completed",
-        "[ ] Acceptance: UX-06 rubric scored with live or recorded stream"
+        "[ ] Add LI_TUI_NONINTERACTIVE=1 or stdin injection in adapters/tui.py",
+        "[ ] Catch subprocess.TimeoutExpired; emit fail row instead of crash",
+        "[ ] Acceptance: run_audit.py --target tui-app-fixture --mode ux exits 0 with status fail"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/38"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
     },
     {
-      "surface": "gui",
+      "surface": "tui",
       "kind": "ux",
-      "target_id": "world-studio-demo",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ux-audit] Briefing preflight omits GUI targets — proactive harness only",
-      "problem": "data/latest/ux-audit.json audits lic-docs only; gui_ux_tester must run run_audit.py manually",
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "problem": "config/ux-targets.yaml defines key_nav_help journey but adapters/tui.py returns journeys: [] always.",
       "evidence": [
-        "data/latest/ux-audit.json: single lic-docs target",
-        "data/latest-gui-ux-run/ux-audit.json: 5 GUI targets when run proactively"
+        "data/latest-tui-ux-run/ux-audit.json friction_points key_nav_help not executed",
+        "li-cursor-agents/config/ux-targets.yaml journeys key_nav_help",
+        "li-cursor-agents/ux-harness/adapters/tui.py run_tui_ux journeys: []"
       ],
-      "sota_reference": "https://linear.app/",
+      "sota_reference": "https://textual.textualize.io/widgets/footer/",
       "remediation_checklist": [
-        "[ ] File: li-cursor-agents scripts/agent-briefing preflight — add gui ux_audit row",
-        "[ ] Wire data/latest-gui-ux-run/ into briefing snapshot",
-        "[ ] Test: briefing ux-audit summary includes world-studio-demo",
-        "[ ] Acceptance: gui_ux_tester can triage from briefing alone"
+        "[ ] Execute launch/tab_help/quit steps with piped keys or env flags",
+        "[ ] Populate journeys array in ux-audit.json output",
+        "[ ] Derive rubric_scores from journey outcomes not hardcoded defaults",
+        "[ ] Acceptance: key_nav_help journey status pass or fail with step trace"
       ],
-      "suggested_implementer": "agent_kit_maintainer",
+      "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:gui", "automation"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/32"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/33"
     },
     {
-      "surface": "gui",
+      "surface": "tui",
       "kind": "ux",
-      "target_id": "world-studio-native",
+      "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ux-audit] LIC_ROOT required for native GUI capture in harness",
-      "problem": "Without LIC_ROOT pointing at lic-studio-ui worktree, native capture skips with exit 4",
+      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
+      "problem": "Fixtures always show ok status; no LI_TUI_ERROR=1 branch or LI_TUI_EXPORT_A11Y structured plain snapshot.",
       "evidence": [
-        "data/latest-gui-ui-run/ui-audit.json prior skip vs pass with LIC_ROOT=lic-studio-ui",
-        "gui-ux-quality-handoff.md workflow routing table"
+        "data/latest-tui-ux-run/ux-audit.json missing_states help_overlay error_display a11y_plain_export",
+        "li-cursor-agents/ux-harness/fixtures/tui-gen-demo.sh Status: ok only",
+        "li-cursor-agents/ux-harness/fixtures/tui-demo.sh ANSI clear without semantic export"
       ],
-      "sota_reference": "https://ui.shadcn.com/",
+      "sota_reference": "https://www.mintlify.com/charmbracelet/bubbletea/guides/input-handling",
       "remediation_checklist": [
-        "[ ] Document LIC_ROOT in harness README and CI matrix",
-        "[ ] Default LIC_ROOT sibling detection in native_gui adapter",
-        "[ ] Test: world-studio-native pass without manual env on Linux CI",
-        "[ ] Acceptance: ui-audit native_pixels true in default agent run"
+        "[ ] Add LI_TUI_ERROR=1 branch printing structured error to stderr",
+        "[ ] Add LI_TUI_EXPORT_A11Y=1 plain-text snapshot (headings/lists not box art)",
+        "[ ] Harness captures both states; rubric error_handling derived not 0.75 default",
+        "[ ] Acceptance: missing_states empty after fixture update"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P2",
-      "labels": ["ux-audit", "surface:gui"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/47"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/34"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "product",
-      "repo": "lic",
-      "surface": "gui",
-      "todo_id": "studio-ux-16-palette-search-latency",
-      "priority": "P0",
-      "status": "landed",
-      "branch": "cursor/studio-ui-ux-plan-loop",
-      "note": "palette_latency bench + compose on remote; command_palette journey pass"
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 30,
+      "priority": "P1",
+      "action": "Non-interactive harness: catch TimeoutExpired + stdin injection for tui-app-fixture"
     },
     {
-      "kind": "product",
-      "repo": "lic",
-      "surface": "gui",
-      "todo_id": "studio-ux-17-gpu-fail-recovery",
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 33,
+      "priority": "P1",
+      "action": "Execute key_nav_help and cli_to_tui journeys in tui adapter"
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 34,
       "priority": "P2",
-      "status": "pending",
-      "note": "Primer-style native GPU fail strip + retry (UX-08)"
+      "action": "Add error display + a11y plain export to TUI fixtures"
     },
     {
       "kind": "ux_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 32,
-      "priority": "P1",
-      "action": "Merge proactive GUI ux_audit into briefing preflight"
-    },
-    {
-      "kind": "ux_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 38,
-      "priority": "P1",
-      "action": "Start agents-dashboard for empty state + live stream journeys"
+      "repo": "lic",
+      "surface": "tui",
+      "issue": null,
+      "priority": "P2",
+      "action": "Document TUI a11y export contract in llm-first spec (plain + JSON)"
     }
   ]
 }

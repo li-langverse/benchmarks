@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T21:49:05.294961+00:00",
+  "generated_at": "2026-05-31T01:51:21.167059+00:00",
   "platform": "Linux",
   "summary": {
     "total": 1,
@@ -25,7 +25,7 @@
       "mode": "static_site",
       "status": "pass",
       "broken_links": 0,
-      "html_files": 377,
+      "html_files": 242,
       "links_checked": 0
     }
   ]
