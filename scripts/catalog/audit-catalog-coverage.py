@@ -13,6 +13,29 @@ WORKLOADS = ROOT / "benchmarks" / "workloads"
 OUT = ROOT / "data" / "latest" / "catalog-audit.json"
 
 
+def resolve_catalog_path(path: str, bid: str) -> Path:
+    """Map catalog path strings to on-disk workload directories."""
+    if not path or path in ("unknown",):
+        return Path()
+    p = path.replace("\\", "/")
+    candidates: list[Path] = []
+    if p.startswith("benchmarks/"):
+        candidates.append(ROOT / p)
+    if p.startswith("benchmarks/tier"):
+        candidates.append(ROOT / p.replace("benchmarks/tier", "benchmarks/workloads/tier", 1))
+    if p.startswith("benchmarks/viewport/"):
+        tail = p.split("/", 2)[-1]
+        candidates.append(WORKLOADS / "tier1_micro" / tail)
+    for tier in (
+        "tier0_correctness", "tier1_micro", "tier1_stdlib", "tier2_physics",
+        "tier3_ecosystem", "tier5_http", "tier6_db", "tier7_compiler",
+    ):
+        candidates.append(WORKLOADS / tier / bid)
+    for c in candidates:
+        if c.is_dir():
+            return c
+    return candidates[0] if candidates else Path()
+
 def main() -> int:
     doc = tomllib.loads(CATALOG.read_text(encoding="utf-8"))
     rows = doc.get("benchmark", [])
