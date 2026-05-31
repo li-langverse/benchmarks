@@ -115,6 +115,7 @@ def lic_build_command(src: Path) -> tuple[list[str], str]:
     elif os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes") and outcome in (
         "compile_ok",
         "verify_ok",
+        "prove_lean_ok",
     ):
         if "--allow-open-vc" not in cmd:
             cmd.append("--allow-open-vc")
