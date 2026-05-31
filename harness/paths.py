@@ -38,6 +38,19 @@ def tier_dirs() -> tuple[Path, Path, Path]:
     )
 
 
+def tier3_ecosystem_dir() -> Path:
+    p = WORKLOADS / "tier3_ecosystem"
+    if p.is_dir():
+        return p
+    return lic_root() / "benchmarks" / "tier3_ecosystem"
+
+
+def tier5_http_dir() -> Path:
+    p = WORKLOADS / "tier5_http"
+    if p.is_dir():
+        return p
+    return lic_root() / "benchmarks" / "tier5_http"
+
 def results_csv() -> Path:
     env = os.environ.get("BENCHMARKS_CSV", "").strip()
     if env:
