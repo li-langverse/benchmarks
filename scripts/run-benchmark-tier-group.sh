@@ -94,6 +94,7 @@ case "$GROUP" in
 
 
   tier7)
+    export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
     log "tier 7 — algo_registry family-template aliases"
     "$ROOT/scripts/run-bench.sh" --tier 7 --runs "$RUNS" --skip-verify || {
       echo "WARN: tier7 registry aliases failed" >&2
