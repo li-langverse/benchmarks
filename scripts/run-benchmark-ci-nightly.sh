@@ -28,4 +28,5 @@ case "$(uname -s)" in
   *) log "nightly profile: core"; export SKIP_EXPLOITS=1 SKIP_TIER5_HTTP=1 ;;
 esac
 
+export BENCH_NIGHTLY=1
 exec "$ROOT/scripts/run-full-benchmark-suite.sh"
