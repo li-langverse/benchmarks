@@ -244,15 +244,12 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
-      - name: Install LLVM 22 (Windows)
+      - name: Install LLVM 22 + build tools (Windows)
         shell: bash
         run: |
-          choco install llvm --version=22.1.0 -y
-          llvm_root="/c/Program Files/LLVM"
-          test -f "${llvm_root}/lib/cmake/llvm/LLVMConfig.cmake"
-          echo "LLVM_DIR=${llvm_root}/lib/cmake/llvm" >> "$GITHUB_ENV"
-          echo "${llvm_root}/bin" >> "$GITHUB_PATH"
-          clang --version
+          choco install cmake ninja -y
+          chmod +x scripts/ci-install-llvm-windows.sh
+          ./scripts/ci-install-llvm-windows.sh
       - name: Run core benchmarks (Windows)
         shell: bash
         env:
@@ -265,7 +262,6 @@ jobs:
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
           test -s results/latest.csv
       - name: Upload Windows CSV
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-windows
