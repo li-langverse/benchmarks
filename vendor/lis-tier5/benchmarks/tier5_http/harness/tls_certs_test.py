@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import shutil
+import subprocess
 import tempfile
 import unittest
 from pathlib import Path
@@ -32,6 +33,23 @@ class TlsCertsTest(unittest.TestCase):
         specs = parse_tls_specs({"tls": {"matrix": True}}, quick=True)
         self.assertEqual(2, len(specs))
         self.assertEqual(7, len(default_tls_specs(quick=False)))
+
+    def test_long_subject(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            spec = TlsCertSpec(id="rsa2048-long-subject", long_subject=True)
+            mat = generate_tls_material(Path(td), spec)
+            self.assertIsNotNone(mat)
+            assert mat is not None
+            self.assertTrue(mat.cert.is_file())
+            proc = subprocess.run(
+                ["openssl", "x509", "-in", str(mat.cert), "-noout", "-subject"],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertIn("subject=", proc.stdout)
+            self.assertGreater(len(proc.stdout), 120)
 
 
 if __name__ == "__main__":

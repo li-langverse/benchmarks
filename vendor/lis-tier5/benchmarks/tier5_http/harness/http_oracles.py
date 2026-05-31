@@ -56,6 +56,31 @@ def wait_for_port(port: int, timeout_sec: float = 3.0) -> bool:
     return False
 
 
+def verify_https_get(port: int, path: str = "/") -> bool:
+    import ssl
+    import urllib.error
+    import urllib.request
+
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    url = f"https://127.0.0.1:{port}{path}"
+    try:
+        with urllib.request.urlopen(url, timeout=5, context=ctx) as resp:
+            return int(resp.status) == 200
+    except (urllib.error.URLError, OSError, ValueError, ssl.SSLError):
+        return False
+
+
+def wait_for_https_ready(port: int, path: str = "/", timeout_sec: float = 12.0) -> bool:
+    deadline = time.time() + timeout_sec
+    while time.time() < deadline:
+        if verify_https_get(port, path):
+            return True
+        time.sleep(0.15)
+    return False
+
+
 def oracle_available(lang: str) -> bool:
     lang = lang.lower()
     if lang == "nginx":
@@ -472,7 +497,10 @@ def caddy_https_conf(document_root: Path, port: int, cert: Path, key: Path) -> s
     dr = str(document_root.resolve()).replace("\\", "/")
     crt = str(cert.resolve()).replace("\\", "/")
     k = str(key.resolve()).replace("\\", "/")
-    return f"""127.0.0.1:{port} {{
+    return f"""{{
+  auto_https off
+}}
+127.0.0.1:{port} {{
   tls {crt} {k}
   root * {dr}
   file_server
@@ -506,6 +534,17 @@ def launch_caddy(prefix: Path, conf_text: str, port: int) -> subprocess.Popen[st
         stderr=subprocess.DEVNULL,
     )
     if not wait_for_port(port, timeout_sec=5.0):
+        proc.terminate()
+        try:
+            proc.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        return None
+    return proc
+
+
+def _launch_caddy_https(proc: subprocess.Popen[str], port: int) -> subprocess.Popen[str] | None:
+    if not wait_for_https_ready(port, timeout_sec=12.0):
         proc.terminate()
         try:
             proc.wait(timeout=2)
@@ -587,6 +626,10 @@ def start_caddy_bench(port: int, doc_root: Path) -> tuple[tempfile.TemporaryDire
     prefix = Path(tmp.name)
     conf = caddy_prefix_conf(doc_root, port)
     proc = launch_caddy(prefix, conf, port)
+    if proc is None:
+        tmp.cleanup()
+        return None
+    proc = _launch_caddy_https(proc, port)
     if proc is None:
         tmp.cleanup()
         return None
@@ -815,6 +858,10 @@ def start_caddy_https_bench(
     if proc is None:
         tmp.cleanup()
         return None
+    proc = _launch_caddy_https(proc, port)
+    if proc is None:
+        tmp.cleanup()
+        return None
     return tmp, proc
 
 
@@ -878,6 +925,13 @@ def launch_traefik(prefix: Path, static_conf: str, port: int) -> subprocess.Pope
         except subprocess.TimeoutExpired:
             proc.kill()
         return None
+    if not wait_for_https_ready(port, timeout_sec=12.0):
+        proc.terminate()
+        try:
+            proc.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        return None
     return proc
 
 
@@ -928,15 +982,26 @@ def write_li_tls_runtime_conf(
     doc_root: Path,
     cert: Path,
     key: Path,
+    cert_dir: Path | None = None,
 ) -> None:
+    import shutil
+
+    cdir = cert_dir or cert.parent
+    cdir.mkdir(parents=True, exist_ok=True)
+    chain = cdir / "fullchain.pem"
+    priv = cdir / "privkey.pem"
+    shutil.copy2(cert, chain)
+    shutil.copy2(key, priv)
     lines = [
         f"listen_port={port}",
         f"document_root={doc_root.resolve()}",
         "tls_enabled=1",
         "tls_mode=manual",
+        f"tls_cert_dir={cdir.resolve()}",
         f"tls_manual_cert={cert.resolve()}",
         f"tls_manual_key={key.resolve()}",
         "m2_tls_terminate=1",
+        "m2_http2_enabled=1",
     ]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
@@ -953,6 +1018,7 @@ def start_li_https_bench(
     write_li_tls_runtime_conf(conf, port=port, doc_root=doc_root, cert=cert, key=key)
     env = os.environ.copy()
     env.setdefault("LI_HTTPD_WORKERS", "1")
+    env.setdefault("LI_HTTPD_TLS_LEGACY_OPENSSL", "1")
     proc = subprocess.Popen(
         [str(li_bin), str(conf.resolve())],
         stdout=subprocess.DEVNULL,
@@ -984,7 +1050,7 @@ TLS_BENCH_HOOKS: dict[str, tuple[TlsStarter, TlsStopper]] = {
     "nginx": (start_nginx_https_bench, stop_nginx_proxy_bench),
     "apache": (start_apache_https_bench, stop_apache_proxy_bench),
     "lighttpd": (start_lighttpd_https_bench, stop_lighttpd_proxy_bench),
-    "caddy": (start_caddy_https_bench, stop_caddy_proxy_bench),
+    "caddy": (start_caddy_https_bench, stop_caddy_bench),
     "traefik": (start_traefik_https_bench, stop_traefik_https_bench),
     "li": (start_li_https_bench, stop_li_https_bench),
 }

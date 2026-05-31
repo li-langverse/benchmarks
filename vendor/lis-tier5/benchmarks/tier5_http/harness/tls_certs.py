@@ -81,6 +81,31 @@ def _subject_dn(spec: TlsCertSpec) -> str:
         return f"/CN={spec.subject_cn}/OU={pad}/O=li-tier5-bench/C=US"
     return f"/CN={spec.subject_cn}/O=li-tier5-bench/C=US"
 
+def _openssl_req_config(tmp: Path, spec: TlsCertSpec) -> Path:
+    """OpenSSL config for a long DN (multiple 64-char OU components; ASN.1 per-field max is 64)."""
+    cnf = tmp / "openssl-subject.cnf"
+    ous = "\n".join(f"OU = {'x' * 64}" for _ in range(8))
+    cnf.write_text(
+        f"""[req]
+distinguished_name = dn
+prompt = no
+[dn]
+CN = {spec.subject_cn}
+{ous}
+O = li-tier5-bench
+C = US
+""",
+        encoding="utf-8",
+    )
+    return cnf
+
+
+def _req_dn_args(tmp: Path, spec: TlsCertSpec, subject: str) -> list[str]:
+    if spec.long_subject:
+        return ["-config", str(_openssl_req_config(tmp, spec))]
+    return ["-subj", subject]
+
+
 
 def _run_openssl(args: list[str], *, cwd: Path | None = None) -> bool:
     openssl = shutil.which("openssl")
@@ -110,21 +135,30 @@ def _gen_key(key_path: Path, spec: TlsCertSpec) -> bool:
     return _run_openssl(["genpkey", "-algorithm", "RSA", "-pkeyopt", f"rsa_keygen_bits:{bits}", "-out", str(key_path)])
 
 
-def _self_signed(cert_path: Path, key_path: Path, subject: str, days: int = 1) -> bool:
-    return _run_openssl(
-        [
-            "req",
-            "-x509",
-            "-key",
-            str(key_path),
-            "-out",
-            str(cert_path),
-            "-days",
-            str(days),
-            "-subj",
-            subject,
-        ]
-    )
+def _self_signed(
+    cert_path: Path,
+    key_path: Path,
+    subject: str,
+    days: int = 1,
+    *,
+    tmp: Path | None = None,
+    spec: TlsCertSpec | None = None,
+) -> bool:
+    args = [
+        "req",
+        "-x509",
+        "-key",
+        str(key_path),
+        "-out",
+        str(cert_path),
+        "-days",
+        str(days),
+    ]
+    if tmp is not None and spec is not None and spec.long_subject:
+        args.extend(_req_dn_args(tmp, spec, subject))
+    else:
+        args.extend(["-subj", subject])
+    return _run_openssl(args)
 
 
 def _signed_cert(
@@ -134,9 +168,17 @@ def _signed_cert(
     ca_key: Path,
     subject: str,
     days: int = 1,
+    *,
+    tmp: Path | None = None,
+    spec: TlsCertSpec | None = None,
 ) -> bool:
     csr = cert_path.with_suffix(".csr")
-    if not _run_openssl(["req", "-new", "-key", str(key_path), "-out", str(csr), "-subj", subject]):
+    req_args = ["req", "-new", "-key", str(key_path), "-out", str(csr)]
+    if tmp is not None and spec is not None and spec.long_subject:
+        req_args.extend(_req_dn_args(tmp, spec, subject))
+    else:
+        req_args.extend(["-subj", subject])
+    if not _run_openssl(req_args):
         return False
     ok = _run_openssl(
         [
@@ -191,7 +233,7 @@ def generate_tls_material(tmp: Path, spec: TlsCertSpec) -> TlsCertMaterial | Non
         else:
             if not _gen_key(leaf_key, spec):
                 return None
-            if not _self_signed(leaf_cert, leaf_key, subject):
+            if not _self_signed(leaf_cert, leaf_key, subject, tmp=tmp, spec=spec):
                 return None
         return TlsCertMaterial(cert=leaf_cert, key=leaf_key, spec=spec)
 
@@ -222,7 +264,7 @@ def generate_tls_material(tmp: Path, spec: TlsCertSpec) -> TlsCertMaterial | Non
 
     if not _gen_key(leaf_key, spec):
         return None
-    if not _signed_cert(leaf_cert, leaf_key, signer_cert, signer_key, subject):
+    if not _signed_cert(leaf_cert, leaf_key, signer_cert, signer_key, subject, tmp=tmp, spec=spec):
         return None
 
     server_pem = tmp / "server.pem"

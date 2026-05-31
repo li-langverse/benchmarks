@@ -593,7 +593,7 @@ def bench_tls_scenario(
                 variant = "ci" if quick else "release"
                 traefik_note = " traefik_terminate" if lang == "traefik" else ""
 
-                if measure_handshake:
+                if measure_handshake and lang != "li":
                     hs_rps = openssl_https_rps(port, duration)
                     log_bits.append(f"--- {lang} tls hs {spec.id} ---\n{hs_rps}")
                     if hs_rps is not None and hs_rps > 0:
@@ -629,6 +629,33 @@ def bench_tls_scenario(
                     )
                 elif measure_wrk:
                     rows.append(_harness_row(name, "no_wrk"))
+
+                if measure_handshake and lang == "li":
+                    stop_fn(ctx)
+                    ctx = start_fn(port, doc_root, cert, key)
+                    if ctx is None:
+                        rows.append(_harness_row(name, "li_tls_no_start_hs"))
+                    elif not wait_for_port(port, timeout_sec=8.0):
+                        rows.append(_harness_row(name, "li_tls_no_listen_hs"))
+                    else:
+                        hs_dur = min(duration, 5)
+                        hs_rps = openssl_https_rps(port, hs_dur)
+                        log_bits.append(f"--- li tls hs {spec.id} (restart) ---\n{hs_rps}")
+                        if hs_rps is not None and hs_rps > 0:
+                            rows.append(
+                                {
+                                    "benchmark": name,
+                                    "lang": lang,
+                                    "variant": variant,
+                                    "threads": str(connections),
+                                    "metric": "handshake_rps",
+                                    "value": f"{hs_rps:.4f}",
+                                    "unit": "conn/s",
+                                    "git_sha": git_sha_short(),
+                                    "cpu_model": cpu_model(),
+                                    "flags": f"{cert_flags} openssl s_time https li_restart",
+                                }
+                            )
             finally:
                 stop_fn(ctx)
         tmp_tls.cleanup()
