@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-30T21:48:56Z",
+  "generated_at": "2026-05-31T00:54:06Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 77.0,
-  "grade": "C",
+  "overall_score": 82.0,
+  "grade": "B",
   "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
@@ -21,7 +21,7 @@
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 0,
+        "open_prs": 1,
         "failed_prs": 0,
         "repos_missing_ci_main": 0,
         "benchmark_red_count": 0
@@ -35,39 +35,26 @@
         "snapshot_present": true,
         "runner_count": 9,
         "runners_stopped": 6,
-        "plan_todos_pending": 34,
+        "plan_todos_pending": 36,
         "plan_todos_total": 110,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 70.0,
+      "score": 90.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 13,
-        "error_count": 3,
+        "terminal_runs": 7,
+        "error_count": 0,
         "incomplete_count": 0,
-        "running_count": 107,
-        "error_rate": 0.2308,
+        "running_count": 113,
+        "error_rate": 0.0,
         "incomplete_rate": 0.0,
-        "top_error_agents": [
-          {
-            "agent": "docs_maintainer",
-            "count": 1
-          },
-          {
-            "agent": "gui_ui_tester",
-            "count": 1
-          },
-          {
-            "agent": "bench_improver",
-            "count": 1
-          }
-        ]
+        "top_error_agents": []
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "gap_pressure": {
       "score": 60.0,
@@ -92,12 +79,6 @@
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json"
     },
     {
-      "id": "swarm-error-rate",
-      "severity": "high",
-      "message": "Error rate 23% over last 13 terminal runs",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
-    {
       "id": "swarm-gap-backlog",
       "severity": "high",
       "message": "64 open gap(s) in registry apply pipeline",
@@ -118,7 +99,7 @@
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "107 runs still marked running (possible stuck SDK)",
+      "message": "113 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -130,10 +111,6 @@
   ],
   "recommended_agents": [
     {
-      "agent": "swarm_observer",
-      "reason": "swarm_execution dimension below 75 \u2014 meta audit runs/errors"
-    },
-    {
       "agent": "gap_explorer",
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
@@ -142,8 +119,12 @@
       "reason": "briefing_health weak \u2014 refresh plan audit preflight"
     },
     {
+      "agent": "swarm_observer",
+      "reason": "briefing P0: swarm: research goal swarm_coverage eligible (priority 10)"
+    },
+    {
       "agent": "workspace_sweeper",
-      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
+      "reason": "briefing P0: 1 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
