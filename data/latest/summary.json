@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-31T14:47:41.141625+00:00",
+  "generated_at": "2026-05-31T17:44:24.992333+00:00",
   "provenance": {
-    "lic_sha": "d85cc13fd4e7f74fa176cb2f92abff91df747f1b",
+    "lic_sha": "5c780e958fa02ec16bdeda64fecc198fbc5ad517",
     "lic_ref": "main",
-    "benchmarks_sha": "a7a712d1ecbcad6ec4a2f1033393a7e8c1dd97c9",
-    "lis_sha": "2e2fbbd743173f3ed5b0a8c81a8e1abd035e2e55",
+    "benchmarks_sha": "194e935d614e77388aa30e8cd8f0ed601420a930",
+    "lis_sha": "1afa4931d03c314961408b11a5b9de6ec91e1baf",
     "llvm_version": "clang version 22.1.0 (https://github.com/llvm/llvm-project 4434dabb69916856b824f68a64b029c67175e532)",
     "workflow_run_id": "",
     "runner_os": "windows",
@@ -5705,6 +5705,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -5825,6 +5826,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -5945,6 +5947,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -6065,6 +6068,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -6185,6 +6189,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -6305,6 +6310,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -6425,6 +6431,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -6545,6 +6552,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -6665,6 +6673,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -6785,6 +6794,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -6905,6 +6915,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -7025,6 +7036,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -7145,6 +7157,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -7265,6 +7278,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -7385,6 +7399,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "cpp",
+          "sota_ref_lang": "cpp",
           "series": [
             {
               "lang": "li",
@@ -11555,6 +11570,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -19418,6 +19434,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -19538,6 +19555,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -19658,6 +19676,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -19778,6 +19797,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -19898,6 +19918,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -20018,6 +20039,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -20138,6 +20160,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -20258,6 +20281,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -20378,6 +20402,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -20498,6 +20523,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -20618,6 +20644,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -20738,6 +20765,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -20858,6 +20886,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -20978,6 +21007,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
@@ -21098,6 +21128,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "cpp",
+          "sota_ref_lang": "cpp",
           "series": [
             {
               "lang": "li",
@@ -25268,6 +25299,7 @@
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
@@ -27207,6 +27239,7 @@
       "cpp_stddev": null,
       "cpp_sample_runs": null,
       "ratio_vs_cpp": null,
+      "sota_ref_lang": null,
       "sota_lang": null,
       "sota_value": null,
       "ratio_vs_sota": null,
@@ -27256,6 +27289,7 @@
       "cpp_stddev": null,
       "cpp_sample_runs": null,
       "ratio_vs_cpp": null,
+      "sota_ref_lang": null,
       "sota_lang": null,
       "sota_value": null,
       "ratio_vs_sota": null,
@@ -27292,6 +27326,7 @@
       "cpp_stddev": null,
       "cpp_sample_runs": null,
       "ratio_vs_cpp": null,
+      "sota_ref_lang": null,
       "sota_lang": null,
       "sota_value": null,
       "ratio_vs_sota": null,
@@ -32350,6 +32385,7 @@
       "cpp_stddev": 0.008624,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9867,
+      "sota_ref_lang": "julia",
       "sota_lang": "julia",
       "sota_value": 2.0918,
       "ratio_vs_sota": 0.9713,
@@ -32427,6 +32463,7 @@
       "cpp_stddev": 0.061425,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9865,
+      "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 2.0836,
       "ratio_vs_sota": 0.9839,
@@ -32504,8 +32541,9 @@
       "cpp_stddev": 0.077444,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9642,
-      "sota_lang": "julia",
-      "sota_value": 2.1335,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0931,
       "ratio_vs_sota": 1.0193,
       "unit": "s",
       "variant": "algo_registry",
@@ -32581,8 +32619,9 @@
       "cpp_stddev": 0.012338,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9208,
-      "sota_lang": "julia",
-      "sota_value": 2.1032,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0285,
       "ratio_vs_sota": 1.0368,
       "unit": "s",
       "variant": "algo_registry",
@@ -32658,8 +32697,9 @@
       "cpp_stddev": 0.054083,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9645,
-      "sota_lang": "julia",
-      "sota_value": 2.1768,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.1506,
       "ratio_vs_sota": 1.0122,
       "unit": "s",
       "variant": "algo_registry",
@@ -32735,6 +32775,7 @@
       "cpp_stddev": 0.047733,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9222,
+      "sota_ref_lang": "julia",
       "sota_lang": "julia",
       "sota_value": 2.0462,
       "ratio_vs_sota": 0.9574,
@@ -32812,8 +32853,9 @@
       "cpp_stddev": 0.013847,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.938,
-      "sota_lang": "julia",
-      "sota_value": 2.1148,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0802,
       "ratio_vs_sota": 1.0166,
       "unit": "s",
       "variant": "algo_registry",
@@ -32889,8 +32931,9 @@
       "cpp_stddev": 0.017485,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.91,
-      "sota_lang": "julia",
-      "sota_value": 2.1416,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0154,
       "ratio_vs_sota": 1.0626,
       "unit": "s",
       "variant": null,
@@ -32966,8 +33009,9 @@
       "cpp_stddev": 0.056119,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9599,
-      "sota_lang": "rust",
-      "sota_value": 2.0912,
+      "sota_ref_lang": "rust",
+      "sota_lang": "li",
+      "sota_value": 2.0729,
       "ratio_vs_sota": 1.0088,
       "unit": "s",
       "variant": "algo_registry",
@@ -33043,8 +33087,9 @@
       "cpp_stddev": 0.101131,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9687,
-      "sota_lang": "rust",
-      "sota_value": 2.1425,
+      "sota_ref_lang": "rust",
+      "sota_lang": "li",
+      "sota_value": 2.1152,
       "ratio_vs_sota": 1.0129,
       "unit": "s",
       "variant": "algo_registry",
@@ -33120,8 +33165,9 @@
       "cpp_stddev": 0.020385,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.9621,
-      "sota_lang": "julia",
-      "sota_value": 2.1422,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0638,
       "ratio_vs_sota": 1.038,
       "unit": "s",
       "variant": "algo_registry",
@@ -33197,8 +33243,9 @@
       "cpp_stddev": 0.039577,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.8944,
-      "sota_lang": "rust",
-      "sota_value": 2.137,
+      "sota_ref_lang": "rust",
+      "sota_lang": "li",
+      "sota_value": 1.9702,
       "ratio_vs_sota": 1.0847,
       "unit": "s",
       "variant": "algo_registry",
@@ -33274,8 +33321,9 @@
       "cpp_stddev": 0.109584,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 0.8844,
-      "sota_lang": "julia",
-      "sota_value": 2.1929,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0059,
       "ratio_vs_sota": 1.0932,
       "unit": "s",
       "variant": "algo_registry",
@@ -33351,6 +33399,7 @@
       "cpp_stddev": 0.079274,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 1.0131,
+      "sota_ref_lang": "julia",
       "sota_lang": "julia",
       "sota_value": 2.0605,
       "ratio_vs_sota": 0.9723,
@@ -33428,6 +33477,7 @@
       "cpp_stddev": 0.032242,
       "cpp_sample_runs": 2,
       "ratio_vs_cpp": 1.0145,
+      "sota_ref_lang": "cpp",
       "sota_lang": "cpp",
       "sota_value": 2.1232,
       "ratio_vs_sota": 0.9857,
@@ -35005,6 +35055,7 @@
       "cpp_stddev": 0.001643,
       "cpp_sample_runs": 20,
       "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.1807,
       "ratio_vs_sota": 0.9945,

@@ -52,7 +52,7 @@ export function ValidityPanel({ row }: ValidityPanelProps) {
           {row.sota_lang ? (
             <span style={{ color: "var(--muted)" }}>
               {" "}
-              (best in series: <code>{row.sota_lang}</code> — Li is never labeled best)
+              (table SOTA: <code>{row.sota_lang}</code>{row.sota_lang === "li" ? " — Li leads" : " — best competitor"}; charts use <code>{row.sota_ref_lang ?? row.sota_lang}</code> = 1.0)
             </span>
           ) : null}
         </dd>
