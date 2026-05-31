@@ -29,4 +29,8 @@ case "$(uname -s)" in
 esac
 
 export BENCH_NIGHTLY=1
+if [[ "${1:-}" == "tier" && -n "${2:-}" ]]; then
+  exec "$ROOT/scripts/run-benchmark-tier-group.sh" "$2"
+fi
 exec "$ROOT/scripts/run-full-benchmark-suite.sh"
+
