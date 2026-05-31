@@ -8,9 +8,11 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[3]
+from paths import BENCH_REPO, lic_root  # noqa: E402
+
+REPO = lic_root()
 SCRIPTS = REPO / "scripts"
-HARNESS = REPO / "benchmarks" / "harness"
+HARNESS = BENCH_REPO / "harness"
 for p in (str(SCRIPTS), str(HARNESS)):
     if p not in sys.path:
         sys.path.insert(0, p)
