@@ -4,19 +4,15 @@ from __future__ import annotations
 
 import subprocess
 import sys
-import tempfile
-from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[3]
-SCRIPTS = REPO / "scripts"
-HARNESS = REPO / "benchmarks" / "harness"
+from _driver_common import HARNESS, REPO, SCRIPTS, resolve_server_config
+
 for p in (str(SCRIPTS), str(HARNESS)):
     if p not in sys.path:
         sys.path.insert(0, p)
 
 from rng_inject import write_overlay_config  # noqa: E402
-from http_exploit_toml import resolve_server_config  # noqa: E402
 
 
 def run(cfg: dict[str, Any], *, lang: str, stub: bool, port: int) -> dict[str, Any]:

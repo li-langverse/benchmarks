@@ -7,10 +7,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from paths import lic_root
+from paths import BENCH_REPO, lic_root
 
 REPO = lic_root()
 SCRIPTS = REPO / "scripts"
+HARNESS = BENCH_REPO / "harness"
 
 
 def flatten_config(server_config: Path) -> str:
