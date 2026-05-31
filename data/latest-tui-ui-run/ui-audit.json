@@ -1,49 +1,19 @@
 {
-  "generated_at": "2026-05-30T21:50:44.373042+00:00",
+  "generated_at": "2026-05-31T01:56:44.630037+00:00",
   "platform": "Linux",
   "summary": {
-    "total": 2,
-    "failing": 1,
+    "total": 1,
+    "failing": 0,
     "passing": 1,
     "skipped": 0
   },
   "targets": [
     {
-      "target_id": "tui-app-fixture",
-      "repo": "li-cursor-agents",
-      "surface": "tui",
-      "surface_class": "tui_app",
-      "artifacts": [
-        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt"
-      ],
-      "mode": "fixture",
-      "status": "fail",
-      "fixture_exit_code": null,
-      "harness_error": "subprocess.TimeoutExpired: tui-demo.sh timed out after 30 seconds",
-      "axe_violations": [],
-      "pixel_diff": {
-        "max_ratio": 0.0,
-        "threshold": 0.04
-      },
-      "contrast_failures": [],
-      "baseline_status": "timeout",
-      "tokens_deviation": [],
-      "broken_links": 0,
-      "capture_meta": {
-        "piped_exit_code": 0,
-        "piped_bytes": 97,
-        "ansi_clear": true,
-        "utf8_mojibake": true
-      }
-    },
-    {
       "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
       "surface": "tui",
       "surface_class": "tui_gen",
-      "artifacts": [
-        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt"
-      ],
+      "artifacts": [],
       "mode": "fixture",
       "status": "pass",
       "fixture_exit_code": 0,
@@ -55,13 +25,7 @@
       "contrast_failures": [],
       "baseline_status": "ok",
       "tokens_deviation": [],
-      "broken_links": 0,
-      "capture_meta": {
-        "line_count": 5,
-        "max_line_width": 31,
-        "unicode_box": true,
-        "ansi_color": false
-      }
+      "broken_links": 0
     }
   ]
 }
