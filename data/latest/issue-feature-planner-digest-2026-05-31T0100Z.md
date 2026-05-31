@@ -29,8 +29,8 @@
 
 | Issue | Plan path | PR |
 |-------|-----------|-----|
-| **benchmarks#41** | `docs/ecosystem/plans/2026-05-31-pure-li-variant-expansion-ph7e.md` | draft PR (branch `docs/plan-pure-li-variants-41`) |
-| **benchmarks#179** | `docs/ecosystem/plans/2026-05-31-catalog-path-reconciliation-ph5b.md` | draft PR (branch `docs/plan-catalog-reconciliation-179-refresh`) |
+| **benchmarks#41** | `docs/ecosystem/plans/2026-05-31-pure-li-variant-expansion-ph7e.md` | [PR #262](https://github.com/li-langverse/benchmarks/pull/262) |
+| **benchmarks#179** | `docs/ecosystem/plans/2026-05-31-catalog-path-reconciliation-ph5b.md` | [PR #263](https://github.com/li-langverse/benchmarks/pull/263) |
 | **benchmarks#18** | `docs/ecosystem/plans/2026-05-18-tier1-fft-microbench.md` (existing on main) | status refresh comment only |
 
 ### PH / REQ mapping
