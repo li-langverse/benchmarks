@@ -86,7 +86,8 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
           SKIP_BUILD: "0"
         run: |
-          chmod +x scripts/*.sh
+          chmod +x scripts/*.sh lic/scripts/*.sh
+          ./scripts/setup-lic-for-bench.sh
           ./scripts/run-benchmark-ci-nightly.sh
 
       - name: Upload macOS CSV

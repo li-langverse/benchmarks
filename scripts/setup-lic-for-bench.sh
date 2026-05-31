@@ -11,6 +11,14 @@ fi
 case "$(uname -s)" in
   Darwin*)
     export LI_REPO_ROOT="$LIC_ROOT"
+    if command -v brew >/dev/null 2>&1 && [[ -z "${LLVM_DIR:-}" ]]; then
+      llvm_prefix="$(brew --prefix llvm@22 2>/dev/null || true)"
+      if [[ -n "$llvm_prefix" && -d "$llvm_prefix/lib/cmake/llvm" ]]; then
+        export LLVM_DIR="$llvm_prefix/lib/cmake/llvm"
+        export CC="${CC:-$llvm_prefix/bin/clang}"
+        export CXX="${CXX:-$llvm_prefix/bin/clang++}"
+      fi
+    fi
     export CC="${CC:-clang}"
     export CXX="${CXX:-clang++}"
     echo "==> lic compiler (macOS — skip apt)"

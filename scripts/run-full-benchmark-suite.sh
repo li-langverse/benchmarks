@@ -62,7 +62,8 @@ python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JO
 }
 
 log "tier 7 — algo_registry family-template aliases"
-python3 "$ROOT/harness/bench.py" --tier 7 --runs "$RUNS" --skip-verify || {
+PYTHONPATH="${LIC_ROOT}/benchmarks/harness${PYTHONPATH:+:$PYTHONPATH}" \
+  python3 "$LIC_ROOT/benchmarks/harness/bench.py" --tier 7 --runs "$RUNS" --skip-verify || {
   echo "WARN: tier7 registry aliases failed — continuing" >&2
 }
 
