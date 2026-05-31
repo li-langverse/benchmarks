@@ -37,8 +37,9 @@ HTTP_RPS_SCENARIOS = [
 HTTP_VERIFY_SCENARIOS = [
     "rate_limit_429",
     "https_static",
+    "https_tls_matrix",
 ]
-HTTP_BENCH_LANGS = ["li", "nginx", "apache", "lighttpd", "node", "bun"]
+HTTP_BENCH_LANGS = ["li", "nginx", "apache", "lighttpd", "caddy", "traefik", "node", "bun"]
 
 CATEGORY_ORDER = [
     "correctness",
@@ -48,7 +49,7 @@ CATEGORY_ORDER = [
     "security",
     "tooling",
 ]
-HTTP_LANG_ORDER = ["li", "nginx", "apache", "lighttpd", "node", "bun", "harness"]
+HTTP_LANG_ORDER = ["li", "nginx", "apache", "lighttpd", "caddy", "traefik", "node", "bun", "harness"]
 EXPLOIT_LANG_ORDER = ["li", "nginx", "apache", "lighttpd", "caddy", "node", "bun"]
 
 

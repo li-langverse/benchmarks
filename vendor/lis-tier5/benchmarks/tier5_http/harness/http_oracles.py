@@ -12,10 +12,11 @@ from pathlib import Path
 from typing import Any, Callable
 
 # Performance + security oracles (comma-separated env overrides).
-DEFAULT_BENCH_ORACLES = ("nginx", "apache", "lighttpd", "node", "bun", "li")
+DEFAULT_BENCH_ORACLES = ("nginx", "apache", "lighttpd", "caddy", "node", "bun", "li")
+DEFAULT_TLS_ORACLES = ("nginx", "apache", "lighttpd", "caddy", "traefik", "li")
 DEFAULT_EXPLOIT_ORACLES = ("nginx", "apache", "node", "bun", "li")
 STATIC_ORACLES = frozenset({"nginx", "apache", "lighttpd", "caddy", "node", "bun"})
-DEFAULT_PROXY_ORACLES = ("nginx", "apache", "lighttpd", "caddy", "li")
+DEFAULT_PROXY_ORACLES = ("nginx", "apache", "lighttpd", "caddy", "traefik", "li")
 PROXY_ORACLES = frozenset(DEFAULT_PROXY_ORACLES)
 
 
@@ -29,6 +30,10 @@ def parse_oracle_langs(env_var: str, default: tuple[str, ...]) -> list[str]:
         if lang and lang not in out:
             out.append(lang)
     return out
+
+
+def parse_tls_oracle_langs() -> list[str]:
+    return parse_oracle_langs("BENCH_TLS_ORACLES", DEFAULT_TLS_ORACLES)
 
 
 def pick_port() -> int:
@@ -61,6 +66,8 @@ def oracle_available(lang: str) -> bool:
         return shutil.which("lighttpd") is not None
     if lang == "caddy":
         return shutil.which("caddy") is not None
+    if lang == "traefik":
+        return shutil.which("traefik") is not None
     if lang == "li":
         return resolve_li_httpd_bin() is not None
     if lang == "node":
@@ -389,36 +396,9 @@ def caddy_proxy_lb_conf(front_port: int, backend_ports: list[int]) -> str:
 
 
 def ensure_tls_cert(tmp: Path) -> tuple[Path, Path] | None:
-    cert = tmp / "tier5.pem"
-    key = tmp / "tier5-key.pem"
-    if cert.is_file() and key.is_file():
-        return cert, key
-    openssl = shutil.which("openssl")
-    if not openssl:
-        return None
-    subprocess.run(
-        [
-            openssl,
-            "req",
-            "-x509",
-            "-newkey",
-            "rsa:2048",
-            "-keyout",
-            str(key),
-            "-out",
-            str(cert),
-            "-days",
-            "1",
-            "-nodes",
-            "-subj",
-            "/CN=127.0.0.1",
-        ],
-        check=False,
-        capture_output=True,
-    )
-    if cert.is_file() and key.is_file():
-        return cert, key
-    return None
+    from tls_certs import ensure_tls_cert as _ensure
+
+    return _ensure(tmp)
 
 
 def nginx_https_conf(document_root: Path, port: int, prefix: Path, cert: Path, key: Path) -> str:
@@ -838,6 +818,165 @@ def start_caddy_https_bench(
     return tmp, proc
 
 
+
+
+def traefik_dynamic_https_conf(
+    front_port: int, backend_port: int, cert: Path, key: Path
+) -> str:
+    crt = str(cert.resolve()).replace("\\", "/")
+    k = str(key.resolve()).replace("\\", "/")
+    return f"""tls:
+  certificates:
+    - certFile: {crt}
+      keyFile: {k}
+http:
+  routers:
+    bench:
+      rule: PathPrefix(`/`)
+      entryPoints: [https]
+      service: bench
+      tls: {{}}
+  services:
+    bench:
+      loadBalancer:
+        servers:
+          - url: http://127.0.0.1:{backend_port}
+"""
+
+
+def traefik_static_conf(front_port: int, dynamic_path: Path) -> str:
+    dyn = str(dynamic_path.resolve()).replace("\\", "/")
+    return f"""log:
+  level: ERROR
+entryPoints:
+  https:
+    address: 127.0.0.1:{front_port}
+providers:
+  file:
+    filename: {dyn}
+    watch: false
+"""
+
+
+def launch_traefik(prefix: Path, static_conf: str, port: int) -> subprocess.Popen[str] | None:
+    prefix.mkdir(parents=True, exist_ok=True)
+    conf_path = prefix / "traefik.yml"
+    conf_path.write_text(static_conf, encoding="utf-8")
+    traefik = shutil.which("traefik")
+    if not traefik:
+        return None
+    proc = subprocess.Popen(
+        [traefik, "--configFile", str(conf_path.resolve())],
+        cwd=prefix,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    if not wait_for_port(port, timeout_sec=8.0):
+        proc.terminate()
+        try:
+            proc.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        return None
+    return proc
+
+
+def stop_traefik(proc: subprocess.Popen[str] | None) -> None:
+    if proc is None:
+        return
+    proc.terminate()
+    try:
+        proc.wait(timeout=5)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+
+
+def start_traefik_https_bench(
+    port: int, doc_root: Path, cert: Path, key: Path
+) -> tuple[tempfile.TemporaryDirectory[str], tuple[subprocess.Popen[str], tuple | None, Path]] | None:
+    backend_port = pick_port()
+    backend = start_nginx_bench(backend_port, doc_root)
+    if backend is None:
+        return None
+    tmp = tempfile.TemporaryDirectory(prefix="lis-traefik-tls-")
+    prefix = Path(tmp.name)
+    dynamic = prefix / "dynamic.yml"
+    dynamic.write_text(traefik_dynamic_https_conf(port, backend_port, cert, key), encoding="utf-8")
+    proc = launch_traefik(prefix, traefik_static_conf(port, dynamic), port)
+    if proc is None:
+        stop_nginx_bench(backend)
+        tmp.cleanup()
+        return None
+    return tmp, (proc, backend, prefix)
+
+
+def stop_traefik_https_bench(
+    ctx: tuple[tempfile.TemporaryDirectory[str], tuple[subprocess.Popen[str], tuple | None, Path]] | None,
+) -> None:
+    if not ctx:
+        return
+    tmp, (proc, backend, _prefix) = ctx
+    stop_traefik(proc)
+    stop_nginx_bench(backend)
+    tmp.cleanup()
+
+
+def write_li_tls_runtime_conf(
+    path: Path,
+    *,
+    port: int,
+    doc_root: Path,
+    cert: Path,
+    key: Path,
+) -> None:
+    lines = [
+        f"listen_port={port}",
+        f"document_root={doc_root.resolve()}",
+        "tls_enabled=1",
+        "tls_mode=manual",
+        f"tls_manual_cert={cert.resolve()}",
+        f"tls_manual_key={key.resolve()}",
+        "m2_tls_terminate=1",
+    ]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def start_li_https_bench(
+    port: int, doc_root: Path, cert: Path, key: Path
+) -> tuple[tempfile.TemporaryDirectory[str], subprocess.Popen[str]] | None:
+    li_bin = resolve_li_httpd_bin()
+    if not li_bin:
+        return None
+    tmp = tempfile.TemporaryDirectory(prefix="lis-li-tls-")
+    prefix = Path(tmp.name)
+    conf = prefix / "runtime.conf"
+    write_li_tls_runtime_conf(conf, port=port, doc_root=doc_root, cert=cert, key=key)
+    env = os.environ.copy()
+    env.setdefault("LI_HTTPD_WORKERS", "1")
+    proc = subprocess.Popen(
+        [str(li_bin), str(conf.resolve())],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        env=env,
+    )
+    if not wait_for_port(port, timeout_sec=8.0):
+        proc.terminate()
+        try:
+            proc.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        tmp.cleanup()
+        return None
+    return tmp, proc
+
+
+def stop_li_https_bench(ctx: tuple[tempfile.TemporaryDirectory[str], subprocess.Popen[str]] | None) -> None:
+    if not ctx:
+        return
+    tmp, proc = ctx
+    stop_li_bench(proc)
+    tmp.cleanup()
+
 TlsStarter = Callable[[int, Path, Path, Path], Any]
 TlsStopper = Callable[[Any], None]
 
@@ -846,6 +985,8 @@ TLS_BENCH_HOOKS: dict[str, tuple[TlsStarter, TlsStopper]] = {
     "apache": (start_apache_https_bench, stop_apache_proxy_bench),
     "lighttpd": (start_lighttpd_https_bench, stop_lighttpd_proxy_bench),
     "caddy": (start_caddy_https_bench, stop_caddy_proxy_bench),
+    "traefik": (start_traefik_https_bench, stop_traefik_https_bench),
+    "li": (start_li_https_bench, stop_li_https_bench),
 }
 
 

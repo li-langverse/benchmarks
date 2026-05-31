@@ -524,7 +524,7 @@ def bench_tls_scenario(
     *,
     quick: bool,
 ) -> tuple[list[dict[str, str]], str]:
-    """HTTPS tier5 — multi-oracle TLS handshake/RPS (openssl s_time); li verify_skip until M1.5."""
+    """HTTPS tier5 — multi-oracle TLS: wrk full request cycle + openssl s_time handshakes."""
     rows: list[dict[str, str]] = []
     log_bits: list[str] = []
 
@@ -536,79 +536,104 @@ def bench_tls_scenario(
         return rows, "missing static fixture"
 
     load = cfg.get("load") or {}
+    threads = int(load.get("threads") or cfg.get("_load_defaults", {}).get("threads") or 2)
+    connections = int(load.get("connections") or 8)
     duration = int(load.get("duration_sec") or 10)
     if quick:
         duration = min(duration, int(os.environ.get("BENCH_HTTP_QUICK_SEC", "3")))
+    url_path = str(load.get("url_path") or "/")
+    if not url_path.startswith("/"):
+        url_path = "/" + url_path
+
+    tls_cfg = cfg.get("tls") or {}
+    measure_wrk = bool(tls_cfg.get("wrk", True))
+    measure_handshake = bool(tls_cfg.get("handshake", True))
 
     from http_oracles import (
-        DEFAULT_BENCH_ORACLES,
         TLS_BENCH_HOOKS,
-        ensure_tls_cert,
         oracle_available,
-        parse_oracle_langs,
+        parse_tls_oracle_langs,
     )
+    from tls_certs import generate_tls_material, parse_tls_specs
 
-    tmp_tls = tempfile.TemporaryDirectory(prefix="lis-tls-")
-    cert_pair = ensure_tls_cert(Path(tmp_tls.name))
-    if not cert_pair:
-        rows.append(_harness_row(name, "no_tls_cert"))
-        return rows, "openssl cert generation failed"
-    cert, key = cert_pair
+    specs = parse_tls_specs(cfg, quick=quick)
 
-    for lang in parse_oracle_langs("BENCH_HTTP_ORACLES", DEFAULT_BENCH_ORACLES):
-        if lang == "node" or lang == "bun":
-            rows.append(_harness_row(name, f"no_{lang}_https"))
+    for spec in specs:
+        tmp_tls = tempfile.TemporaryDirectory(prefix="lis-tls-")
+        material = generate_tls_material(Path(tmp_tls.name), spec)
+        if material is None:
+            rows.append(_harness_row(name, f"no_tls_cert:{spec.id}"))
+            tmp_tls.cleanup()
             continue
-        if lang == "li":
-            rows.append(
-                {
-                    "benchmark": name,
-                    "lang": "li",
-                    "variant": "ci",
-                    "threads": "1",
-                    "metric": "verify_skip",
-                    "value": "1",
-                    "unit": "bool",
-                    "git_sha": git_sha_short(),
-                    "cpu_model": cpu_model(),
-                    "flags": "tls_m15_pending",
-                }
-            )
-            continue
-        if lang not in TLS_BENCH_HOOKS or not oracle_available(lang):
-            rows.append(_harness_row(name, f"no_{lang}"))
-            continue
-        port = pick_port()
-        start_fn, stop_fn = TLS_BENCH_HOOKS[lang]
-        ctx = start_fn(port, doc_root, cert, key)
-        try:
-            if ctx is None:
-                rows.append(_harness_row(name, f"{lang}_tls_no_start"))
+        cert, key = material.cert, material.key
+        cert_flags = f"cert={spec.id}"
+
+        for lang in parse_tls_oracle_langs():
+            if lang in ("node", "bun"):
+                rows.append(_harness_row(name, f"no_{lang}_https"))
                 continue
-            if not wait_for_port(port, timeout_sec=8.0):
-                rows.append(_harness_row(name, f"{lang}_tls_no_listen"))
+            if lang not in TLS_BENCH_HOOKS or not oracle_available(lang):
+                rows.append(_harness_row(name, f"no_{lang}"))
                 continue
-            if not verify_https_get(port):
-                rows.append(_harness_row(name, f"verify_fail_{lang}:https"))
-                continue
-            rps = openssl_https_rps(port, duration)
-            log_bits.append(f"--- {lang} tls ---\n{rps}")
-            _append_rps_row(
-                rows,
-                name,
-                lang,
-                rps,
-                variant="ci" if quick else "release",
-                connections=8,
-                flags="openssl s_time https",
-                sha=git_sha_short(),
-                cpu=cpu_model(),
-            )
-        finally:
-            stop_fn(ctx)
-    tmp_tls.cleanup()
+
+            port = pick_port()
+            start_fn, stop_fn = TLS_BENCH_HOOKS[lang]
+            ctx = start_fn(port, doc_root, cert, key)
+            try:
+                if ctx is None:
+                    rows.append(_harness_row(name, f"{lang}_tls_no_start"))
+                    continue
+                if not wait_for_port(port, timeout_sec=8.0):
+                    rows.append(_harness_row(name, f"{lang}_tls_no_listen"))
+                    continue
+                if not verify_https_get(port, url_path):
+                    rows.append(_harness_row(name, f"verify_fail_{lang}:https"))
+                    continue
+
+                variant = "ci" if quick else "release"
+                traefik_note = " traefik_terminate" if lang == "traefik" else ""
+
+                if measure_handshake:
+                    hs_rps = openssl_https_rps(port, duration)
+                    log_bits.append(f"--- {lang} tls hs {spec.id} ---\n{hs_rps}")
+                    if hs_rps is not None and hs_rps > 0:
+                        rows.append(
+                            {
+                                "benchmark": name,
+                                "lang": lang,
+                                "variant": variant,
+                                "threads": str(connections),
+                                "metric": "handshake_rps",
+                                "value": f"{hs_rps:.4f}",
+                                "unit": "conn/s",
+                                "git_sha": git_sha_short(),
+                                "cpu_model": cpu_model(),
+                                "flags": f"{cert_flags} openssl s_time https{traefik_note}",
+                            }
+                        )
+
+                if measure_wrk and shutil.which("wrk"):
+                    url = f"https://127.0.0.1:{port}{url_path}"
+                    rps, blob = run_wrk(url, threads, connections, duration, None)
+                    log_bits.append(f"--- {lang} tls wrk {spec.id} ---\n{blob[-1200:]}")
+                    _append_rps_row(
+                        rows,
+                        name,
+                        lang,
+                        rps,
+                        variant=variant,
+                        connections=connections,
+                        flags=f"{cert_flags} wrk https{traefik_note}",
+                        sha=git_sha_short(),
+                        cpu=cpu_model(),
+                    )
+                elif measure_wrk:
+                    rows.append(_harness_row(name, "no_wrk"))
+            finally:
+                stop_fn(ctx)
+        tmp_tls.cleanup()
+
     return rows, "\n".join(log_bits)
-
 
 def bench_rate_limit_scenario(
     name: str,
@@ -779,6 +804,9 @@ def bench_proxy_loopback_scenario(
                 continue
             if lang == "caddy" and not shutil.which("caddy"):
                 rows.append(_harness_row(name, "no_caddy"))
+                continue
+            if lang == "traefik" and not shutil.which("traefik"):
+                rows.append(_harness_row(name, "no_traefik"))
                 continue
             if lang == "nginx" and not shutil.which("nginx"):
                 rows.append(_harness_row(name, "no_nginx"))
