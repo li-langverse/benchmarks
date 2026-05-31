@@ -1199,7 +1199,7 @@ def main() -> int:
         rc = run_verify()
         if rc != 0:
             return rc
-        return subprocess.call([sys.executable, str(REPO / "benchmarks" / "harness" / "stability.py")])
+        return subprocess.call([sys.executable, str(_HARNESS / "stability.py")])
 
     if args.tier == 1:
         return run_tier1_all(
