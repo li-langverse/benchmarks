@@ -100,9 +100,10 @@ def wrk_rps(url: str, *, threads: int, conn: int, duration: str, pipeline: int) 
 
 def _harness_timing(lic_root: Path):
     lic = lic_root.resolve()
-    harness = lic / "benchmarks" / "harness"
-    if str(harness) not in sys.path:
-        sys.path.insert(0, str(harness))
+    bench_root = Path(__file__).resolve().parents[1]
+    for harness in (lic / "benchmarks" / "harness", bench_root / "harness"):
+        if harness.is_dir() and str(harness) not in sys.path:
+            sys.path.insert(0, str(harness))
     from timing_stats import measure_repeated, resolve_timing_runs, stats_from_samples
 
     return measure_repeated, resolve_timing_runs, stats_from_samples
