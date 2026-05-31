@@ -395,6 +395,26 @@ def relative_perf_vs_sota(
     return value / sota_val
 
 
+def table_sota_display(
+    li_val: float | None,
+    competitor_sota_lang: str | None,
+    competitor_sota_val: float | None,
+    *,
+    lower_is_better: bool,
+) -> tuple[str | None, float | None]:
+    """Table SOTA label: li when Li beats best competitor; charts still use competitor ref."""
+    if competitor_sota_lang is None or competitor_sota_val is None:
+        return competitor_sota_lang, competitor_sota_val
+    if li_val is None:
+        return competitor_sota_lang, competitor_sota_val
+    rel = relative_perf_vs_sota(
+        li_val, competitor_sota_val, lower_is_better=lower_is_better
+    )
+    if rel is not None and rel > 1.0:
+        return "li", li_val
+    return competitor_sota_lang, competitor_sota_val
+
+
 def enrich_series_relative_perf(
     series: list[dict],
     sota_lang: str | None,
@@ -549,8 +569,19 @@ def make_summary_row(
     ref = chart.get("reference_lang", "cpp")
     ref_pt = next((s for s in series if s["lang"] == ref), None)
     ref_val = ref_pt["value"] if ref_pt else None
-    sota_lang = chart.get("sota_lang")
-    sota_val = next((s["value"] for s in series if s["lang"] == sota_lang), None) if sota_lang else None
+    sota_ref_lang = chart.get("sota_ref_lang") or chart.get("sota_lang")
+    sota_ref_val = (
+        next((s["value"] for s in series if s["lang"] == sota_ref_lang), None)
+        if sota_ref_lang
+        else None
+    )
+    lower = metric_lower_is_better(metric)
+    table_sota_lang, table_sota_val = table_sota_display(
+        li_val,
+        sota_ref_lang,
+        sota_ref_val,
+        lower_is_better=lower,
+    )
     bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
     numeric_validity = extract_numeric_validity(bench_rows, cfg.get("variant"))
     row = {
@@ -566,8 +597,9 @@ def make_summary_row(
         "cpp_stddev": ref_pt.get("stddev") if ref_pt and ref == "cpp" else None,
         "cpp_sample_runs": ref_pt.get("sample_runs") if ref_pt and ref == "cpp" else None,
         "ratio_vs_cpp": chart.get("ratio_vs_reference"),
-        "sota_lang": sota_lang,
-        "sota_value": sota_val,
+        "sota_ref_lang": sota_ref_lang,
+        "sota_lang": table_sota_lang,
+        "sota_value": table_sota_val,
         "ratio_vs_sota": chart.get("ratio_vs_sota"),
         "unit": chart.get("unit"),
         "variant": cfg.get("variant"),
@@ -881,6 +913,7 @@ def build_perf_chart(
         "lower_is_better": lower,
         "reference_lang": oracle,
         "sota_lang": sota_lang,
+        "sota_ref_lang": sota_lang,
         "series": series,
         "grouped": False,
         "repo": cfg.get("repo", "lic"),
