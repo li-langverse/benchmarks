@@ -10,10 +10,14 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parents[2]
-MD_DIR = REPO / "benchmarks" / "tier2_physics" / "md_lennard_jones"
-BUILD_DIR = REPO / "build" / "bench" / "md_lennard_jones"
-RESULTS = REPO / "benchmarks" / "results"
+_HARNESS = Path(__file__).resolve().parent
+if str(_HARNESS) not in sys.path:
+    sys.path.insert(0, str(_HARNESS))
+from paths import RESULTS, lic_root, tier_dirs
+
+LIC_ROOT = lic_root()
+MD_DIR = tier_dirs()[2] / "md_lennard_jones"
+BUILD_DIR = LIC_ROOT / "build" / "bench" / "md_lennard_jones"
 DEFAULT_OUT = RESULTS / "stability.csv"
 
 STRICT_TESTS = {"harmonic_energy", "momentum_drift"}
@@ -51,12 +55,12 @@ def build_native_stress(path: Path) -> None:
             "-o",
             str(path),
         ],
-        cwd=REPO,
+        cwd=LIC_ROOT,
     )
 
 
 def build_li_stress(path: Path) -> None:
-    lic = REPO / "build" / "compiler" / "lic" / "lic"
+    lic = LIC_ROOT / "build" / "compiler" / "lic" / "lic"
     if not lic.is_file():
         raise RuntimeError(f"lic missing at {lic} — run ./scripts/build.sh")
     env = {**os.environ, "LI_EXTRA_C": str(MD_DIR / "common" / "md_stress.c")}
@@ -71,7 +75,7 @@ def build_li_stress(path: Path) -> None:
             "-O2",
             "-march=native",
         ],
-        cwd=REPO,
+        cwd=LIC_ROOT,
         env=env,
     )
 
