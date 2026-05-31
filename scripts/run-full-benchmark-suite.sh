@@ -45,12 +45,11 @@ else
   export CXX="${CXX:-clang++}"
 fi
 
-cd "$LIC_ROOT"
 mkdir -p "$(dirname "$BENCHMARKS_CSV")"
 
 if [[ "$SKIP_TIER0" != "1" ]]; then
   log "tier 0 — li-tests + verify + stability"
-  if ! python3 benchmarks/harness/bench.py --tier 0; then
+  if ! "$ROOT/scripts/run-bench.sh" --tier 0; then
     echo "WARN: tier0 failed (li-tests/verify) — continuing perf tiers" >&2
   fi
 fi
@@ -62,8 +61,7 @@ python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JO
 }
 
 log "tier 7 — algo_registry family-template aliases"
-PYTHONPATH="${LIC_ROOT}/benchmarks/harness${PYTHONPATH:+:$PYTHONPATH}" \
-  python3 "$LIC_ROOT/benchmarks/harness/bench.py" --tier 7 --runs "$RUNS" --skip-verify || {
+"$ROOT/scripts/run-bench.sh" --tier 7 --runs "$RUNS" --skip-verify || {
   echo "WARN: tier7 registry aliases failed — continuing" >&2
 }
 
