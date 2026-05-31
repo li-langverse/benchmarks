@@ -1,114 +1,133 @@
 {
-  "generated_at": "2026-05-31T01:02Z",
-  "agent_id": "gui_ux_tester",
-  "briefing_generated_at": "2026-05-31T01:00Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-gui-ux.md",
+  "generated_at": "2026-05-31T01:52Z",
+  "agent_id": "docs_ui_tester",
+  "briefing_generated_at": "2026-05-31T01:46Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-docs-ui.md",
   "issues": [
     {
-      "surface": "gui",
-      "kind": "ux",
-      "target_id": "agents-dashboard",
-      "repo": "li-cursor-agents",
-      "title": "[ux-audit] agents-dashboard unreachable — empty state + live stream journeys blocked",
-      "problem": "Harness skip at http://127.0.0.1:3000; UX-06/07/11 cannot score agent chrome or dashboard empty states",
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
+      "problem": "Live Pages serves 5-tab legacy IA; local build has 12 tabs. Key paths 404; search index 248 vs 1956 local.",
       "evidence": [
-        "data/latest-gui-ux-run/ux-audit.json: agents-dashboard skip",
-        "ux-targets.json journeys agents_list_empty, live_stream"
+        "data/latest-docs-ui-run/deep-scan.json live_paths",
+        "data/latest-docs-ui-run/artifacts/lic-docs-live/live-summary.json tabs: 5 vs 12",
+        "search_index live=248 local=1956"
       ],
-      "sota_reference": "https://cursor.com/docs/agent/overview",
+      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
       "remediation_checklist": [
-        "[ ] Start dashboard in CI or document LI_AGENTS_DASHBOARD_URL for harness",
-        "[ ] File: ux-harness/adapters/web_gui.py — retry or fixture fallback",
-        "[ ] Test: agents-dashboard ux-audit status pass with journeys completed",
-        "[ ] Acceptance: UX-06 rubric scored with live or recorded stream"
+        "[ ] Fix strict MkDocs CI build (nav, links, warnings-as-errors)",
+        "[ ] Deploy full 12-tab site to li-language Pages",
+        "[ ] Verify /guide/hello-world/, /ecosystem/overview/, /language/overview/ return 200",
+        "[ ] Acceptance: live search_index docs count within 5% of local"
+      ],
+      "suggested_implementer": "code_implementer",
+      "priority": "P0",
+      "labels": ["ux-audit", "surface:docs"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/403"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
+      "problem": "Home desktop axe scan reports 12 color-contrast and 5 link-in-text-block serious violations.",
+      "evidence": [
+        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json axe array",
+        "data/latest-docs-ui-run/ui-audit.json axe_violations"
+      ],
+      "sota_reference": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "remediation_checklist": [
+        "[ ] File: lic/docs/stylesheets/extra.css — raise muted text contrast + link underline",
+        "[ ] Re-run docs-ui-capture.mjs; axe violations = 0 on home desktop",
+        "[ ] Acceptance: WCAG 2.1 AA on home, hello-world, provability-gaps"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ux-audit", "surface:gui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/38"
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/426"
     },
     {
-      "surface": "gui",
-      "kind": "ux",
-      "target_id": "world-studio-demo",
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
       "repo": "li-cursor-agents",
-      "title": "[ux-audit] Briefing preflight omits GUI targets — proactive harness only",
-      "problem": "data/latest/ux-audit.json audits lic-docs only; gui_ux_tester must run run_audit.py manually",
+      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
+      "problem": "ux-harness/baselines/docs/ missing; pixel diff and baseline drift cannot fail CI.",
       "evidence": [
-        "data/latest/ux-audit.json: single lic-docs target",
-        "data/latest-gui-ux-run/ux-audit.json: 5 GUI targets when run proactively"
+        "data/latest-docs-ui-run/ui-audit.json baseline_status: missing",
+        "ux-harness/adapters/docs.py — no Playwright wiring"
       ],
-      "sota_reference": "https://linear.app/",
+      "sota_reference": "https://playwright.dev/docs/test-snapshots",
       "remediation_checklist": [
-        "[ ] File: li-cursor-agents scripts/agent-briefing preflight — add gui ux_audit row",
-        "[ ] Wire data/latest-gui-ux-run/ into briefing snapshot",
-        "[ ] Test: briefing ux-audit summary includes world-studio-demo",
-        "[ ] Acceptance: gui_ux_tester can triage from briefing alone"
-      ],
-      "suggested_implementer": "agent_kit_maintainer",
-      "priority": "P1",
-      "labels": ["ux-audit", "surface:gui", "automation"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/32"
-    },
-    {
-      "surface": "gui",
-      "kind": "ux",
-      "target_id": "world-studio-native",
-      "repo": "li-cursor-agents",
-      "title": "[ux-audit] LIC_ROOT required for native GUI capture in harness",
-      "problem": "Without LIC_ROOT pointing at lic-studio-ui worktree, native capture skips with exit 4",
-      "evidence": [
-        "data/latest-gui-ui-run/ui-audit.json prior skip vs pass with LIC_ROOT=lic-studio-ui",
-        "gui-ux-quality-handoff.md workflow routing table"
-      ],
-      "sota_reference": "https://ui.shadcn.com/",
-      "remediation_checklist": [
-        "[ ] Document LIC_ROOT in harness README and CI matrix",
-        "[ ] Default LIC_ROOT sibling detection in native_gui adapter",
-        "[ ] Test: world-studio-native pass without manual env on Linux CI",
-        "[ ] Acceptance: ui-audit native_pixels true in default agent run"
+        "[ ] Add ux-harness/baselines/docs/ PNGs from proactive capture",
+        "[ ] Wire Playwright into docs.py adapter",
+        "[ ] Test: ui-audit fails when screenshot diff > 4%",
+        "[ ] Acceptance: docs_ui_tester proactive pass optional in CI"
       ],
       "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
+    },
+    {
+      "surface": "docs",
+      "kind": "ui",
+      "target_id": "lic-docs",
+      "repo": "lic",
+      "title": "[ui-audit] Built docs site contains raw .md hrefs",
+      "problem": "Deep scan finds 51 unique raw .md hrefs in built HTML; 37 broken .md-relative links.",
+      "evidence": [
+        "data/latest-docs-ui-run/deep-scan.json raw_md_hrefs: 51",
+        "broken_md_unique: 37"
+      ],
+      "sota_reference": "https://www.mkdocs.org/user-guide/writing-your-docs/#linking-to-pages",
+      "remediation_checklist": [
+        "[ ] Audit source markdown for .md suffix links",
+        "[ ] Fix or exclude repo-path hrefs from site output",
+        "[ ] Acceptance: raw_md_hrefs = 0 in deep-scan.json"
+      ],
+      "suggested_implementer": "docs_maintainer",
       "priority": "P2",
-      "labels": ["ux-audit", "surface:gui"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/47"
+      "labels": ["ui-audit", "surface:docs"],
+      "issue_url": "https://github.com/li-langverse/lic/issues/404"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "product",
+      "kind": "ui_remediation",
       "repo": "lic",
-      "surface": "gui",
-      "todo_id": "studio-ux-16-palette-search-latency",
+      "surface": "docs",
+      "issue": 403,
       "priority": "P0",
-      "status": "landed",
-      "branch": "cursor/studio-ui-ux-plan-loop",
-      "note": "palette_latency bench + compose on remote; command_palette journey pass"
+      "action": "Deploy 12-tab MkDocs site to GitHub Pages"
     },
     {
-      "kind": "product",
+      "kind": "ui_remediation",
       "repo": "lic",
-      "surface": "gui",
-      "todo_id": "studio-ux-17-gpu-fail-recovery",
+      "surface": "docs",
+      "issue": 426,
+      "priority": "P1",
+      "action": "Fix axe color-contrast + link-in-text-block in Material theme CSS"
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "docs",
+      "issue": 37,
+      "priority": "P1",
+      "action": "Seed baselines/docs + wire Playwright into harness"
+    },
+    {
+      "kind": "ui_remediation",
+      "repo": "lic",
+      "surface": "docs",
+      "issue": 404,
       "priority": "P2",
-      "status": "pending",
-      "note": "Primer-style native GPU fail strip + retry (UX-08)"
-    },
-    {
-      "kind": "ux_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 32,
-      "priority": "P1",
-      "action": "Merge proactive GUI ux_audit into briefing preflight"
-    },
-    {
-      "kind": "ux_remediation",
-      "repo": "li-cursor-agents",
-      "surface": "gui",
-      "issue": 38,
-      "priority": "P1",
-      "action": "Start agents-dashboard for empty state + live stream journeys"
+      "action": "Eliminate raw .md hrefs from built site"
     }
   ]
 }

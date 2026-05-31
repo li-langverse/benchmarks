@@ -61,7 +61,7 @@ Surface quality is **not** proof — keep separate from **G-*** rows. Supports *
 | Agent | Surface | Latest digest |
 |-------|---------|---------------|
 | `gui_ux_tester` | GUI apps, fixtures, native SDL | [2026-05-30-gui-ui.md](./ux-digests/2026-05-30-gui-ui.md) · `data/latest-gui-ui-run/ui-audit.json` |
-| `docs_ui_tester` | MkDocs / handbook Pages | [2026-05-30-docs-ui.md](./ux-digests/2026-05-30-docs-ui.md) |
+| `docs_ui_tester` | MkDocs / handbook Pages | [2026-05-31-docs-ui.md](./ux-digests/2026-05-31-docs-ui.md) · `data/latest-docs-ui-run/ui-audit.json` |
 | `studio_ui_ux_builder` | PH-UX plan loop, bench gates | [`data/latest/studio-ui-ux-builder-digest.md`](../../data/latest/studio-ui-ux-builder-digest.md) |
 
 Remediation: `data/latest/remediation_manifest.json` (P1 issues + acceptance checklists). Workflow repo routing: **`lic`** for studio-ui-ux harness; **`li-cursor-agents`** for ux-harness adapters.

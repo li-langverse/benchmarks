@@ -1,24 +1,24 @@
 {
-  "generated_at": "2026-05-30T15:20:20.841126+00:00",
-  "relative_checked": 32591,
-  "broken_relative": 30701,
-  "broken_md_unique": 45,
-  "broken_other_unique": 625,
-  "raw_md_hrefs": 74,
+  "generated_at": "2026-05-31T01:51:56.107307+00:00",
+  "relative_checked": 21143,
+  "broken_relative": 183,
+  "broken_md_unique": 37,
+  "broken_other_unique": 102,
+  "raw_md_hrefs": 51,
   "local_tabs": 12,
   "tab_names": [
-    "Home",
-    "Getting started",
-    "Guide",
-    "Ecosystem",
-    "Language handbook",
-    "Game development",
-    "Compiler",
-    "Testing and security",
-    "Benchmarks",
-    "Reference",
-    "Contributing",
-    "Project"
+    " Home ",
+    " Getting started ",
+    " Guide ",
+    " Ecosystem ",
+    " Language handbook ",
+    " Game development ",
+    " Compiler ",
+    " Testing and security ",
+    " Benchmarks ",
+    " Reference ",
+    " Contributing ",
+    " Project "
   ],
   "live_paths": {
     "guide/hello-world/": 404,
@@ -26,9 +26,9 @@
     "language/overview/": 404,
     "verification/provability-gaps/": 200
   },
-  "last_modified": null,
+  "last_modified": "Sat, 30 May 2026 12:17:17 GMT",
   "search_index": {
     "live": 248,
-    "local": 2801
+    "local": 1956
   }
 }
