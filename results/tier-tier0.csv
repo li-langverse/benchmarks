@@ -1,0 +1,16 @@
+benchmark,lang,variant,threads,metric,value,stddev,sample_runs,unit,git_sha,cpu_model,flags,os,passed,oracle_kind,verify_abs_err,verify_rel_err,verify_ulps,verify_within_1ulp
+three_body,li,release,1,wall_time,0.42,s,0c313cf0,x86_64,-O3
+three_body,cpp,release,1,wall_time,0.38,s,0c313cf0,x86_64,-O3 -march=native
+three_body,rust,release,1,wall_time,0.41,s,0c313cf0,x86_64,--release
+three_body,julia,release,1,wall_time,0.55,s,0c313cf0,x86_64,-O3
+md_lennard_jones,li,release,1,wall_time,1.2,s,0c313cf0,x86_64,-O3
+md_lennard_jones,cpp,release,1,wall_time,1.0,s,0c313cf0,x86_64,-O3
+md_lennard_jones,li,release,8,wall_time,0.22,s,0c313cf0,x86_64,-O3 --threads=8
+simd_dot,li,release,1,throughput,4.8,GFLOPS,0c313cf0,x86_64,simd
+simd_dot,cpp,release,1,throughput,5.1,GFLOPS,0c313cf0,x86_64,simd
+advection_diffusion_2d,li,release,1,wall_time,0.65,s,0c313cf0,x86_64,-O3
+advection_diffusion_2d,cpp,release,1,wall_time,0.6,s,0c313cf0,x86_64,-O3
+wave_equation_2d,li,release,1,wall_time,0.9,s,0c313cf0,x86_64,-O3
+wave_equation_2d,cpp,release,1,wall_time,0.85,s,0c313cf0,x86_64,-O3
+sph_dam_break_2d,li,release,1,wall_time,1.5,s,0c313cf0,x86_64,-O3
+sph_dam_break_2d,cpp,release,1,wall_time,1.4,s,0c313cf0,x86_64,-O3
