@@ -44,3 +44,16 @@ Historically tier-1/2 micro/physics workloads and `harness/bench.py` lived under
 
 - Tier-0 correctness proofs remain in `lic/li-tests` (verification, not dashboard perf catalog).
 - `lis` vendor HTTP harness under `vendor/lis-tier5` unchanged; tier-5 TOML scenarios now under `benchmarks/workloads/tier5_http`.
+
+
+## Completion status (2026-05-31)
+
+| Step | Status |
+|------|--------|
+| Workloads under `benchmarks/workloads/` | Done |
+| Harness under `benchmarks/harness/` | Done |
+| `scripts/run-bench.sh` entrypoint | Done |
+| `lic/benchmarks/` removed (README redirect) | Done — PR `feat/benchmarks-only-complete` on lic |
+| All lic scripts use `BENCHMARKS_ROOT` | Done |
+| Legacy `lic/benchmarks` fallback in `paths.py` | Removed (strict) |
+| Docs/studies referencing old paths | Follow-up (non-blocking) |
