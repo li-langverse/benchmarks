@@ -51,6 +51,18 @@ def tier5_http_dir() -> Path:
         return p
     return lic_root() / "benchmarks" / "tier5_http"
 
+
+def competitive_registry_path() -> Path:
+    for p in (
+        WORKLOADS / "competitive" / "algo_registry.json",
+        BENCH_REPO / "benchmarks" / "competitive" / "algo_registry.json",
+        lic_root() / "benchmarks" / "competitive" / "algo_registry.json",
+    ):
+        if p.is_file():
+            return p
+    return WORKLOADS / "competitive" / "algo_registry.json"
+
+
 def results_csv() -> Path:
     env = os.environ.get("BENCHMARKS_CSV", "").strip()
     if env:
