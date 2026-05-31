@@ -17,9 +17,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parents[2]
+from paths import lic_root, results_csv
+
+_HARNESS = Path(__file__).resolve().parent
+REPO = lic_root()
 LIC = REPO / "build" / "compiler" / "lic" / "lic"
-RESULTS = REPO / "benchmarks" / "results"
+RESULTS = results_csv().parent
 
 # Wave B tier-2 verify: Lennard-Jones MD + one PDE (heat 2D).
 TIER2_SMOKE: tuple[str, ...] = ("md_lennard_jones", "heat_equation_2d")
@@ -62,7 +65,7 @@ def tier2_smoke_verify(
     os.environ.setdefault("CC", "clang-22")
     os.environ.setdefault("CXX", "clang++-22")
 
-    sys.path.insert(0, str(REPO / "benchmarks" / "harness"))
+    sys.path.insert(0, str(_HARNESS))
     from bench import TIER2_BENCHES, native_result_checksum, verify_benchmark_results, verify_md_refs
     from sim_summary import build_summary, default_summary_path, write_summary
 
@@ -116,7 +119,7 @@ def tier2_smoke_verify(
 
 
 def main() -> int:
-    sys.path.insert(0, str(REPO / "benchmarks" / "harness"))
+    sys.path.insert(0, str(_HARNESS))
     from sim_summary import SUMMARY_FORMATS
 
     parser = argparse.ArgumentParser()

@@ -10,10 +10,13 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parents[2]
-MD_DIR = REPO / "benchmarks" / "tier2_physics" / "md_lennard_jones"
+from paths import lic_root, results_csv, tier_dirs
+
+REPO = lic_root()
+_, _, TIER2 = tier_dirs()
+MD_DIR = TIER2 / "md_lennard_jones"
 BUILD_DIR = REPO / "build" / "bench" / "md_lennard_jones"
-RESULTS = REPO / "benchmarks" / "results"
+RESULTS = results_csv().parent
 DEFAULT_OUT = RESULTS / "stability.csv"
 
 STRICT_TESTS = {"harmonic_energy", "momentum_drift"}
