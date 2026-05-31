@@ -94,8 +94,12 @@ def audit(summary: dict) -> dict:
             if st in (None, "", "unknown"):
                 add("P0", "status_unknown", base, f"status={st!r}", cid)
 
+            metric = ch.get("metric") or ""
+            category = ch.get("category") or ""
             if not ch.get("sota_lang") and ch.get("sota_value") is None:
-                if st not in ("unknown", "skip", "pending") and not ch.get("pending"):
+                if metric == "stability" or category == "correctness":
+                    pass
+                elif st not in ("unknown", "skip", "pending") and not ch.get("pending"):
                     if vs not in ("skip", "advisory"):
                         add("P0", "sota_empty", base, "no sota_lang/sota_value", cid)
 

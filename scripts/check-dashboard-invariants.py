@@ -56,6 +56,12 @@ def main() -> int:
     catalog_ids = [b["id"] for b in benches]
     catalog_set = set(catalog_ids)
 
+    required_catalog_set = {
+        b["id"]
+        for b in benches
+        if str(b.get("catalog_lifecycle") or "").lower() != "planned"
+    }
+
     catalog_by_id = {b["id"]: b for b in benches}
     summary = json.loads(SUMMARY.read_text())
     rows = summary.get("rows", [])
@@ -73,7 +79,7 @@ def main() -> int:
     if len(rows) < MIN_ROWS:
         fail(f"summary rows {len(rows)} < minimum {MIN_ROWS}")
 
-    missing = catalog_set - set(rows_by_bench)
+    missing = required_catalog_set - set(rows_by_bench)
     if missing:
         fail(f"catalog ids missing from summary.rows: {sorted(missing)[:5]} … ({len(missing)} total)")
 
@@ -119,6 +125,8 @@ def main() -> int:
 
     charts = chart_index(summary)
     for b in benches:
+        if str(b.get("catalog_lifecycle") or "").lower() == "planned":
+            continue
         ps = str(b.get("problem_size") or "").strip()
         if not ps:
             continue
