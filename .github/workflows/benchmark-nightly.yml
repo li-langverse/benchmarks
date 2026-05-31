@@ -72,21 +72,14 @@ jobs:
           path: lic
           ref: main
 
-      - name: Install LLVM 22 (macOS)
-        run: |
-          brew update
-          brew install llvm@22 ninja cmake || true
-          echo "LLVM_DIR=$(brew --prefix llvm@22)/lib/cmake/llvm" >> "$GITHUB_ENV"
-          echo "CC=$(brew --prefix llvm@22)/bin/clang" >> "$GITHUB_ENV"
-          echo "CXX=$(brew --prefix llvm@22)/bin/clang++" >> "$GITHUB_ENV"
-
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
           SKIP_BUILD: "0"
         run: |
-          chmod +x scripts/*.sh
+          chmod +x scripts/*.sh lic/scripts/*.sh
+          ./scripts/setup-lic-for-bench.sh
           ./scripts/run-benchmark-ci-nightly.sh
 
       - name: Upload macOS CSV

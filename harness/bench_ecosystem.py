@@ -16,9 +16,38 @@ import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parents[2]
-RESULTS = REPO / "benchmarks" / "results"
-LIC = REPO / "build" / "compiler" / "lic" / "lic"
+def _bench_root() -> Path:
+    if os.environ.get("BENCHMARKS_ROOT"):
+        return Path(os.environ["BENCHMARKS_ROOT"]).resolve()
+    return Path(__file__).resolve().parents[1]
+
+
+def _lic_root() -> Path:
+    if os.environ.get("LIC_ROOT"):
+        return Path(os.environ["LIC_ROOT"]).resolve()
+    bench = _bench_root()
+    if (bench.parent / "lic").is_dir():
+        return bench.parent / "lic"
+    return bench.parent / "lic"
+
+
+def _resolve_lic() -> Path:
+    lic_env = os.environ.get("LIC", "").strip()
+    if lic_env:
+        p = Path(lic_env)
+        if p.is_file():
+            return p
+    root = _lic_root()
+    p = root / "build/compiler/lic/lic"
+    if p.is_file():
+        return p
+    return p
+
+
+BENCH_ROOT = _bench_root()
+REPO = _lic_root()
+RESULTS = BENCH_ROOT / "results"
+LIC = _resolve_lic()
 
 CSV_HEADER = [
     "benchmark",
@@ -83,6 +112,16 @@ def lic_build_command(src: Path) -> tuple[list[str], str]:
     elif outcome in ("verify_open_ok",):
         cmd.extend(["--allow-open-vc", "--no-lean-verify"])
         flags += " --allow-open-vc --no-lean-verify"
+    elif os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes") and outcome in (
+        "compile_ok",
+        "verify_ok",
+    ):
+        if "--allow-open-vc" not in cmd:
+            cmd.append("--allow-open-vc")
+            flags += " --allow-open-vc"
+        if outcome == "verify_ok" and "--no-lean-verify" not in cmd:
+            cmd.append("--no-lean-verify")
+            flags += " --no-lean-verify"
     return cmd, flags
 
 SECURITY_SCRIPTS: tuple[tuple[str, Path], ...] = (
@@ -244,7 +283,9 @@ def bench_compile(*, runs: int, sha: str, cpu: str, jobs: int = 1) -> list[dict[
 
 
 def bench_async_runtime(*, runs: int, sha: str, cpu: str) -> list[dict[str, object]]:
-    spec_dir = REPO / "benchmarks/tier3_ecosystem/async_await_chain"
+    from paths import tier3_ecosystem_dir
+
+    spec_dir = tier3_ecosystem_dir() / "async_await_chain"
     li_main = spec_dir / "li/main.li"
     if not li_main.is_file():
         return []
