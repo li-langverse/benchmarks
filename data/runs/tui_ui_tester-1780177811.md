@@ -17,7 +17,7 @@
 
 See full tables: `docs/ecosystem/ux-digests/2026-05-30-tui-ui.md`
 
-**Evidence:** `data/latest-tui-ui-run/ui-audit.json` (2026-05-30T21:50Z)
+**Evidence:** `data/latest-tui-ui-run/ui-audit.json` (2026-05-31T00:53Z live re-verify)
 
 ## Recommended issues/PRs
 
