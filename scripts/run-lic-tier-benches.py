@@ -9,6 +9,11 @@ import sys
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
 
+_SCRIPT_DIR = Path(__file__).resolve().parent
+if str(_SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_DIR))
+from bench_tier2_groups import TIER2_GROUPS
+
 
 def _lic_root() -> Path:
     root = os.environ.get("LIC_ROOT") or os.environ.get("LI_REPO_ROOT")
@@ -33,8 +38,9 @@ def _bench_harness_dir() -> Path:
     return lic / "benchmarks" / "harness"
 
 
-def _run_one_bench(payload: tuple[str, int, str]) -> tuple[str, list[dict[str, object]] | None, str | None]:
-    spec_name, runs, lic_root = payload
+def _run_one_bench(payload: tuple[str, int, str, str]) -> tuple[str, list[dict[str, object]] | None, str | None]:
+    spec_name, runs, lic_root, out_s = payload
+    os.environ["BENCHMARKS_CSV"] = out_s
     os.environ.setdefault("LIC_ROOT", lic_root)
     harness = str(_bench_harness_dir())
     if harness not in sys.path:
@@ -48,12 +54,11 @@ def _run_one_bench(payload: tuple[str, int, str]) -> tuple[str, list[dict[str, o
     try:
         rows = run_benchmark(spec, runs=runs)
         return spec_name, rows, None
-    except Exception as exc:  # noqa: BLE001 — collect and continue suite
+    except Exception as exc:  # noqa: BLE001
         return spec_name, None, str(exc)
 
 
 def _benchmark_complete(merged: list[dict[str, str]], name: str) -> bool:
-    """True when latest.csv already has li wall_time for this benchmark."""
     for row in merged:
         if row.get("benchmark") != name:
             continue
@@ -70,6 +75,7 @@ def run_specs(
     out: Path,
     jobs: int,
     resume: bool,
+    label: str,
 ) -> int:
     harness = _bench_harness_dir()
     sys.path.insert(0, str(harness))
@@ -83,11 +89,12 @@ def run_specs(
 
     failed: list[str] = []
     if not todo:
-        print(f"nothing to run — {out} already has tier rows", flush=True)
+        print(f"nothing to run — {out} already has {label} rows", flush=True)
         return 0
 
     lic_s = str(lic_root)
-    tasks = [(s.name, runs, lic_s) for s in todo]
+    out_s = str(out)
+    tasks = [(s.name, runs, lic_s, out_s) for s in todo]
 
     if jobs <= 1:
         from bench import run_benchmark
@@ -102,7 +109,7 @@ def run_specs(
                 failed.append(spec.name)
                 print(f"WARN skip {spec.name}: {exc}", file=sys.stderr, flush=True)
     else:
-        print(f"parallel: jobs={jobs} benchmarks={len(todo)}", flush=True)
+        print(f"parallel: jobs={jobs} benchmarks={len(todo)} ({label})", flush=True)
         with ProcessPoolExecutor(max_workers=jobs) as pool:
             futures = {pool.submit(_run_one_bench, task): task[0] for task in tasks}
             for fut in as_completed(futures):
@@ -117,29 +124,46 @@ def run_specs(
                 print(f"ok {name}", flush=True)
 
     if failed:
-        print(f"tier12: {len(failed)} skipped: {', '.join(failed)}", file=sys.stderr)
+        print(f"{label}: {len(failed)} skipped: {', '.join(failed)}", file=sys.stderr)
     print(f"updated {out}")
     return 1 if failed else 0
+
+
+def _filter_tier2(group: str | None) -> tuple:
+    harness = _bench_harness_dir()
+    sys.path.insert(0, str(harness))
+    from bench import TIER2_BENCHES
+
+    if not group:
+        return TIER2_BENCHES
+    key = group.removeprefix("tier2-") if group.startswith("tier2-") else group
+    names = TIER2_GROUPS.get(key)
+    if names is None:
+        raise SystemExit(f"unknown tier2 group {group!r}; expected md, pde, mech")
+    specs = tuple(s for s in TIER2_BENCHES if s.name in names)
+    missing = names - {s.name for s in specs}
+    if missing:
+        raise SystemExit(f"tier2 group {key} missing bench specs: {sorted(missing)}")
+    return specs
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--runs", type=int, default=int(os.environ.get("BENCH_RUNS", "6")))
     parser.add_argument("--jobs", type=int, default=_default_jobs())
-    parser.add_argument(
-        "--no-resume",
-        action="store_true",
-        help="Re-run every benchmark even if latest.csv already has li wall_time",
-    )
+    parser.add_argument("--tier", choices=("1", "2", "all"), default="all")
+    parser.add_argument("--tier2-group", choices=sorted(TIER2_GROUPS))
+    parser.add_argument("--no-resume", action="store_true")
     args = parser.parse_args()
 
     lic_root = _lic_root()
     os.environ.setdefault("LIC_ROOT", str(lic_root))
     harness = _bench_harness_dir()
     sys.path.insert(0, str(harness))
-    from bench import TIER1_BENCHES, TIER2_BENCHES, RESULTS_CSV
+    from bench import TIER1_BENCHES, results_csv
 
-    out = RESULTS_CSV
+    out = results_csv()
+    os.environ["BENCHMARKS_CSV"] = str(out)
     jobs = max(1, args.jobs)
     resume = not args.no_resume and os.environ.get("BENCH_RESUME", "1").strip().lower() not in (
         "0",
@@ -147,13 +171,36 @@ def main() -> int:
         "no",
     )
 
-    rc1 = run_specs(
-        TIER1_BENCHES, runs=args.runs, lic_root=lic_root, out=out, jobs=jobs, resume=resume
-    )
-    rc2 = run_specs(
-        TIER2_BENCHES, runs=args.runs, lic_root=lic_root, out=out, jobs=jobs, resume=resume
-    )
-    return max(rc1, rc2)
+    rc = 0
+    tier = "2" if args.tier2_group else args.tier
+    if tier in ("1", "all"):
+        rc = max(
+            rc,
+            run_specs(
+                TIER1_BENCHES,
+                runs=args.runs,
+                lic_root=lic_root,
+                out=out,
+                jobs=jobs,
+                resume=resume,
+                label="tier-1",
+            ),
+        )
+    if tier in ("2", "all"):
+        specs = _filter_tier2(args.tier2_group)
+        rc = max(
+            rc,
+            run_specs(
+                specs,
+                runs=args.runs,
+                lic_root=lic_root,
+                out=out,
+                jobs=jobs,
+                resume=resume,
+                label=f"tier-2-{args.tier2_group or 'all'}",
+            ),
+        )
+    return rc
 
 
 if __name__ == "__main__":

@@ -65,9 +65,9 @@ jobs:
     timeout-minutes: 120
     strategy:
       fail-fast: false
-      max-parallel: 6
+      max-parallel: 10
       matrix:
-        group: [tier0, tier12, tier7, tier3, tier5, tier5-exploits]
+        group: [tier0, tier1, tier2-md, tier2-pde, tier2-mech, tier7, tier3, tier5, tier5-exploits]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -114,7 +114,7 @@ jobs:
           if-no-files-found: warn
 
   bench-linux-merge:
-    if: github.event_name != 'workflow_dispatch' || inputs.parallel_linux_tiers
+    if: always() && needs.setup-lic-linux.result == 'success' && (github.event_name != 'workflow_dispatch' || inputs.parallel_linux_tiers
     needs: [setup-lic-linux, bench-linux-tier]
     runs-on: ubuntu-24.04
     timeout-minutes: 30
@@ -132,12 +132,8 @@ jobs:
           merge-multiple: true
       - name: Collect tier CSV shards
         run: |
-          mkdir -p results
-          shopt -s nullglob
-          for f in artifacts/tiers/**/tier-*.csv; do
-            cp "$f" "results/$(basename "$f")"
-          done
-          ls -la results/
+          chmod +x scripts/collect-tier-csv-artifacts.sh
+          ./scripts/collect-tier-csv-artifacts.sh artifacts/tiers results
       - uses: actions/download-artifact@v4
         continue-on-error: true
         with:
@@ -204,10 +200,13 @@ jobs:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
           SKIP_BUILD: "0"
+          SKIP_TIER5_HTTP: "1"
+          SKIP_EXPLOITS: "1"
         run: |
           chmod +x scripts/*.sh lic/scripts/*.sh
           ./scripts/setup-lic-for-bench.sh
-          ./scripts/run-benchmark-ci-nightly.sh
+          ./scripts/run-benchmark-ci-nightly.sh tier tier1
+          ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
       - name: Upload macOS CSV
         if: always()
         uses: actions/upload-artifact@v4

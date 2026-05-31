@@ -55,13 +55,44 @@ case "$GROUP" in
       echo "WARN: tier0 failed — continuing" >&2
     fi
     ;;
+
+  tier1)
+    log "tier 1 — micro (runs=$RUNS jobs=${BENCH_JOBS})"
+    export BENCH_RUNS="$RUNS"
+    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 1 || {
+      echo "WARN: tier 1 had failures" >&2
+    }
+    ;;
+  tier2-md)
+    log "tier 2 — MD physics shard (runs=$RUNS jobs=${BENCH_JOBS})"
+    export BENCH_RUNS="$RUNS"
+    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group md || {
+      echo "WARN: tier2-md had failures" >&2
+    }
+    ;;
+  tier2-pde)
+    log "tier 2 — PDE physics shard (runs=$RUNS jobs=${BENCH_JOBS})"
+    export BENCH_RUNS="$RUNS"
+    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group pde || {
+      echo "WARN: tier2-pde had failures" >&2
+    }
+    ;;
+  tier2-mech)
+    log "tier 2 — mechanics physics shard (runs=$RUNS jobs=${BENCH_JOBS})"
+    export BENCH_RUNS="$RUNS"
+    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group mech || {
+      echo "WARN: tier2-mech had failures" >&2
+    }
+    ;;
   tier12)
     log "tier 1+2 — micro + physics (runs=$RUNS jobs=${BENCH_JOBS})"
     export BENCH_RUNS="$RUNS"
-    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" || {
+    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier all || {
       echo "WARN: tier 1+2 had failures" >&2
     }
     ;;
+
+
   tier7)
     log "tier 7 — algo_registry family-template aliases"
     "$ROOT/scripts/run-bench.sh" --tier 7 --runs "$RUNS" --skip-verify || {
@@ -110,6 +141,13 @@ case "$GROUP" in
     exit 2
     ;;
 esac
+
+
+_lic_csv="$LIC_ROOT/benchmarks/results/latest.csv"
+if [[ ! -s "$BENCHMARKS_CSV" ]] && [[ -s "$_lic_csv" ]]; then
+  cp "$_lic_csv" "$BENCHMARKS_CSV"
+  log "copied harness CSV from $_lic_csv"
+fi
 
 if [[ ! -s "$BENCHMARKS_CSV" ]]; then
   echo "WARN: $BENCHMARKS_CSV empty or missing after $GROUP" >&2
