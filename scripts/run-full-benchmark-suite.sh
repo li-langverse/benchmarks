@@ -56,7 +56,7 @@ fi
 
 log "tier 1+2 — micro + physics (runs=$RUNS jobs=${BENCH_JOBS})"
 export BENCH_RUNS="$RUNS"
-python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" || {
+python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier all || {
   echo "WARN: tier 1+2 had failures — continuing" >&2
 }
 
