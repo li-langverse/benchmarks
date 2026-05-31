@@ -27,6 +27,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Dashboard data gates
+        run: |
+          python3 scripts/check-reporting-platforms.py
+          python3 scripts/check-summary-skip-budget.py
+          python3 scripts/check-dashboard-invariants.py
+
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -47,6 +53,11 @@ jobs:
             fi
           done
           echo "benchmarks.lilangverse.xyz" > out/CNAME
+
+      - name: Dashboard static routes
+        run: |
+          chmod +x scripts/check-dashboard-static-routes.sh
+          ./scripts/check-dashboard-static-routes.sh
 
       - name: Verify Pages artifact
         run: test -s dashboard-next/out/index.html

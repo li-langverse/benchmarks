@@ -323,6 +323,7 @@ jobs:
       - name: Dashboard invariants
         run: |
           python3 scripts/check-reporting-platforms.py
+          python3 scripts/check-summary-skip-budget.py
           python3 scripts/check-dashboard-invariants.py
           python3 scripts/check-summary-measurement-coverage.py || true
           python3 scripts/check-zero-missing-data.py
