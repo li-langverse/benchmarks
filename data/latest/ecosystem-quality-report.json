@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-31T01:02:15Z",
+  "generated_at": "2026-05-31T01:46:00Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 72.8,
-  "grade": "C",
-  "unattended_safe": false,
+  "overall_score": 81.5,
+  "grade": "B",
+  "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
       "score": 77.0,
@@ -35,39 +35,26 @@
         "snapshot_present": true,
         "runner_count": 9,
         "runners_stopped": 6,
-        "plan_todos_pending": 35,
-        "plan_todos_total": 110,
+        "plan_todos_pending": 44,
+        "plan_todos_total": 117,
         "agents_live": 0
       },
       "finding_count": 1
     },
     "swarm_execution": {
-      "score": 55.0,
+      "score": 90.0,
       "weight": 0.25,
       "signals": {
         "runs_sampled": 120,
-        "terminal_runs": 25,
-        "error_count": 8,
+        "terminal_runs": 5,
+        "error_count": 0,
         "incomplete_count": 0,
-        "running_count": 95,
-        "error_rate": 0.32,
+        "running_count": 115,
+        "error_rate": 0.0,
         "incomplete_rate": 0.0,
-        "top_error_agents": [
-          {
-            "agent": "swarm_observer",
-            "count": 2
-          },
-          {
-            "agent": "implementation_gaps",
-            "count": 2
-          },
-          {
-            "agent": "gui_ui_tester",
-            "count": 1
-          }
-        ]
+        "top_error_agents": []
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "gap_pressure": {
       "score": 60.0,
@@ -85,12 +72,6 @@
     }
   },
   "findings": [
-    {
-      "id": "swarm-error-rate",
-      "severity": "critical",
-      "message": "Error rate 32% over last 25 terminal runs",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
-    },
     {
       "id": "goal-runners-stopped",
       "severity": "high",
@@ -124,7 +105,7 @@
     {
       "id": "swarm-many-running",
       "severity": "medium",
-      "message": "95 runs still marked running (possible stuck SDK)",
+      "message": "115 runs still marked running (possible stuck SDK)",
       "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
     },
     {
@@ -135,10 +116,6 @@
     }
   ],
   "recommended_agents": [
-    {
-      "agent": "swarm_observer",
-      "reason": "swarm_execution dimension below 75 \u2014 meta audit runs/errors"
-    },
     {
       "agent": "gap_explorer",
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
