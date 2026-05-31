@@ -100,69 +100,8 @@ else
   log "tier 5 — HTTP exploits skipped (SKIP_EXPLOITS=1)"
 fi
 
-# Merge tier-5 CSV rows into lic latest.csv for ingest
-python3 - <<'PY' "$ROOT" "$LIC_ROOT"
-import csv
-import os
-import sys
-from pathlib import Path
-
-root = Path(sys.argv[1])
-lic = Path(sys.argv[2])
-latest = Path(os.environ.get("BENCHMARKS_CSV", root / "results/latest.csv"))
-tier5_vendor = root / "vendor/lis-tier5/results/latest.csv"
-tier5_extra = lic / "benchmarks/results/http_tier5.csv"
-
-import tomllib
-
-catalog = tomllib.loads((root / "catalog.toml").read_text(encoding="utf-8"))
-http_ids = {b["id"] for b in catalog.get("benchmark", []) if b.get("category") == "http"}
-
-header = None
-rows = []
-if latest.is_file():
-    with latest.open(newline="") as f:
-        r = csv.DictReader(f)
-        header = r.fieldnames
-        rows = [row for row in r if row.get("benchmark") not in http_ids]
-
-def extend_csv(path: Path, *, supplemental: bool = False) -> None:
-    global header
-    if not path.is_file():
-        return
-    with path.open(newline="") as f:
-        r = csv.DictReader(f)
-        header = header or r.fieldnames
-        for row in r:
-            bid = row.get("benchmark") or ""
-            lang = row.get("lang") or ""
-            variant = row.get("variant") or ""
-            metric = row.get("metric") or ""
-            key = (bid, lang, variant, metric)
-            if supplemental:
-                if bid != "proxy_loopback":
-                    continue
-                if key in seen_http:
-                    continue
-                if lang == "li" and variant not in ("c_epoll", "li_epoll"):
-                    continue
-                if lang == "nginx":
-                    continue
-            else:
-                seen_http.add(key)
-            rows.append(row)
-
-seen_http: set[tuple[str, str, str, str]] = set()
-extend_csv(tier5_vendor)
-extend_csv(tier5_extra, supplemental=True)
-if not header:
-    sys.exit(0)
-with latest.open("w", newline="") as f:
-    w = csv.DictWriter(f, fieldnames=header)
-    w.writeheader()
-    w.writerows(rows)
-print(f"merged tier5 ({tier5_vendor.name if tier5_vendor.is_file() else '—'} + extra) into {latest}")
-PY
+# Merge tier-5 CSV rows into latest.csv for ingest
+python3 "$ROOT/scripts/merge-tier5-http-into-csv.py" "$ROOT" "$LIC_ROOT"
 
 cd "$ROOT"
 log "ingest + summary.json"

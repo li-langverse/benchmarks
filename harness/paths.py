@@ -38,7 +38,6 @@ def tier_dirs() -> tuple[Path, Path, Path]:
     )
 
 
-
 def tier3_ecosystem_dir() -> Path:
     p = WORKLOADS / "tier3_ecosystem"
     if p.is_dir():
