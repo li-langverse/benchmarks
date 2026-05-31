@@ -1,114 +1,127 @@
 {
-  "generated_at": "2026-05-30T21:51Z",
-  "agent_id": "tui_ui_tester",
-  "briefing_generated_at": "2026-05-30T21:46Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-30-tui-ui.md",
+  "generated_at": "2026-05-31T01:01Z",
+  "agent_id": "tui_ux_tester",
+  "briefing_generated_at": "2026-05-31T01:00Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-tui-ux.md",
   "issues": [
     {
       "surface": "tui",
-      "kind": "ui",
+      "kind": "ux",
       "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
       "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
       "problem": "tui-demo.sh uses read -r twice; harness subprocess.run times out at 30s and run_audit.py exits uncaught",
       "evidence": [
-        "data/latest-tui-ui-run/ui-audit.json: tui-app-fixture fail, baseline_status timeout",
-        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt: piped stdin exit 0 in <50ms"
+        "data/latest-tui-ux-run/ux-audit.json: tui-app-fixture fail, harness_error TimeoutExpired",
+        "data/latest-tui-ux-run/captures/tui-app-fixture-piped.txt: piped stdin exit 0 in <50ms"
       ],
       "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
         "[ ] File: li-cursor-agents/ux-harness/adapters/tui.py — catch TimeoutExpired; pipe stdin for journey steps",
         "[ ] File: li-cursor-agents/ux-harness/fixtures/tui-demo.sh — LI_TUI_NONINTERACTIVE=1 or accept stdin EOF",
-        "[ ] Test: python3 ux-harness/run_audit.py --target tui-app-fixture --mode ui exits 0 with fail row",
-        "[ ] Acceptance: ui-audit.json written without harness crash"
+        "[ ] Test: python3 ux-harness/run_audit.py --target tui-app-fixture --mode ux exits 0 with fail row",
+        "[ ] Acceptance: ux-audit.json written without harness crash"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
       "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
     },
     {
       "surface": "tui",
-      "kind": "ui",
-      "target_id": "tui-gen-fixture",
+      "kind": "ux",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] TUI harness lacks stdout frame capture and baseline diff",
-      "problem": "Pass path leaves artifacts empty; no insta/VHS baseline or pixel_diff beyond stub 0.0",
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "problem": "ux-targets.yaml defines key_nav_help but adapters/tui.py returns journeys: [] and hardcoded rubric scores",
       "evidence": [
-        "data/latest-tui-ui-run/ui-audit.json: tui-gen pass with artifacts only after manual capture",
-        "data/latest-tui-ui-run/captures/tui-gen-fixture.txt: 5 lines, 31 col box frame"
+        "data/latest-tui-ux-run/ux-audit.json: friction key_nav_help not executed",
+        "config/ux-targets.yaml: key_nav_help steps launch, tab_help, quit"
       ],
-      "sota_reference": "https://ratatui.rs/recipes/testing/snapshots/",
+      "sota_reference": "https://textual.textualize.io/guide/testing/",
       "remediation_checklist": [
-        "[ ] File: ux-harness/adapters/tui.py — write stdout to captures/<target_id>.txt on every run",
-        "[ ] File: ux-harness/ — optional insta baseline path per target",
-        "[ ] Test: pass target has non-empty artifacts in ui-audit.json",
-        "[ ] Acceptance: pixel_diff or snapshot compare wired for tui-gen-fixture"
+        "[ ] File: ux-harness/adapters/tui.py — run journey steps with stdin/PTY injection",
+        "[ ] File: ux-harness/fixtures/tui-demo.sh — interpret h/q keys in non-interactive mode",
+        "[ ] Test: ux-audit.json journeys[].completed true for key_nav_help",
+        "[ ] Acceptance: rubric scores derived from journey outcome not static defaults"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:tui", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/48"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/33"
     },
     {
       "surface": "tui",
-      "kind": "ui",
-      "target_id": "tui-app-fixture",
+      "kind": "ux",
+      "target_id": "tui-gen-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] tui-demo.sh UTF-8 em dash mojibake in harness captures",
-      "problem": "Em dash in title renders as M-bM-^@M-^T in cat -v captures unless LANG=UTF-8 or ASCII hyphen",
+      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
+      "problem": "No LI_TUI_ERROR=1 branch or LI_TUI_EXPORT_A11Y structured snapshot; error_handling score not evidence-based",
       "evidence": [
-        "data/latest-tui-ui-run/captures/tui-app-fixture-piped.txt: mojibake on em dash (cat -v)"
+        "data/latest-tui-ux-run/ux-audit.json: missing_states help_overlay, error_display, a11y_plain_export",
+        "fixtures/tui-gen-demo.sh: always Status: ok"
       ],
-      "sota_reference": "https://www.w3.org/International/questions/qa-choosing-encodings",
+      "sota_reference": "https://github.com/charmbracelet/bubbletea/issues/1279",
       "remediation_checklist": [
-        "[ ] File: ux-harness/fixtures/tui-demo.sh — use ASCII hyphen or document UTF-8 requirement",
-        "[ ] File: ux-harness/adapters/tui.py — set env LANG=C.UTF-8 for subprocess",
-        "[ ] Test: capture file contains literal em dash or ASCII - without mojibake",
-        "[ ] Acceptance: utf8_mojibake false in capture_meta"
+        "[ ] File: ux-harness/fixtures/tui-demo.sh — LI_TUI_ERROR=1 prints structured error line",
+        "[ ] File: ux-harness/fixtures/tui-gen-demo.sh — failure branch + LI_TUI_EXPORT_A11Y plain headings",
+        "[ ] Test: ux-audit missing_states empty when env vars set",
+        "[ ] Acceptance: capture files include plain-text a11y section without ANSI-only layout"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P2",
-      "labels": ["ui-audit", "surface:tui"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/49"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/34"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ui_remediation",
+      "kind": "ux_remediation",
       "repo": "li-cursor-agents",
       "surface": "tui",
       "issue": 30,
       "title": "tui-app-fixture blocks on read in non-interactive harness",
       "remediation_summary": "Catch TimeoutExpired; pipe stdin; non-interactive fixture mode",
       "files_hint": ["ux-harness/adapters/tui.py", "ux-harness/fixtures/tui-demo.sh"],
-      "acceptance": ["run_audit.py --target tui-app-fixture --mode ui exits 0", "ui-audit fail row without crash"],
-      "agent_source": "tui_ui_tester",
-      "sources": ["ui_audit"]
+      "acceptance": ["run_audit.py --target tui-app-fixture --mode ux exits 0", "ux-audit fail row without crash"],
+      "agent_source": "tui_ux_tester",
+      "sources": ["ux_audit"]
     },
     {
-      "kind": "ui_remediation",
+      "kind": "ux_remediation",
       "repo": "li-cursor-agents",
       "surface": "tui",
-      "issue": 48,
-      "title": "TUI harness stdout frame capture and baseline diff",
-      "remediation_summary": "Always write captures; optional insta snapshot for tui-gen-fixture",
-      "files_hint": ["ux-harness/adapters/tui.py"],
-      "acceptance": ["pass targets include artifact paths in ui-audit.json"],
-      "agent_source": "tui_ui_tester",
-      "sources": ["ui_audit"]
+      "issue": 33,
+      "title": "Execute key_nav_help and cli_to_tui journeys in TUI adapter",
+      "remediation_summary": "Journey-driven rubric; stdin key injection for h/q/tab",
+      "files_hint": ["ux-harness/adapters/tui.py", "config/ux-targets.yaml"],
+      "acceptance": ["ux-audit journeys non-empty with completed flags"],
+      "agent_source": "tui_ux_tester",
+      "sources": ["ux_audit"]
     },
     {
-      "kind": "ui_remediation",
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 34,
+      "title": "TUI error display and a11y plain-text export fixtures",
+      "remediation_summary": "LI_TUI_ERROR and LI_TUI_EXPORT_A11Y env branches on both fixtures",
+      "files_hint": ["ux-harness/fixtures/tui-demo.sh", "ux-harness/fixtures/tui-gen-demo.sh"],
+      "acceptance": ["missing_states cleared when env set", "plain export in captures"],
+      "agent_source": "tui_ux_tester",
+      "sources": ["ux_audit"]
+    },
+    {
+      "kind": "ux_remediation",
       "repo": "benchmarks",
       "surface": "tui",
       "issue": null,
-      "title": "chore(preflight): include TUI fixtures in ui-ux-audit / agent-briefing.json",
-      "remediation_summary": "Merge data/latest-tui-ui-run rows into org preflight ui_audit signal",
+      "title": "chore(preflight): include TUI fixtures in ux-audit / agent-briefing.json",
+      "remediation_summary": "Merge data/latest-tui-ux-run rows into org preflight ux_audit signal",
       "files_hint": ["scripts/agent-briefing.sh", "scripts/ecosystem-audit.py"],
-      "acceptance": ["briefing ui_audit.summary reflects tui-app fail when harness not run proactively"],
-      "agent_source": "tui_ui_tester",
-      "sources": ["ui_audit"]
+      "acceptance": ["briefing ux_audit.summary reflects tui-app fail when harness not run proactively"],
+      "agent_source": "tui_ux_tester",
+      "sources": ["ux_audit"]
     }
   ]
 }
