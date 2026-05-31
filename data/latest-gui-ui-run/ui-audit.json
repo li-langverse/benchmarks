@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-30T20:26:33.015855+00:00",
+  "generated_at": "2026-05-31T01:02:47.512352+00:00",
   "platform": "Linux",
   "summary": {
     "total": 1,
     "failing": 0,
-    "passing": 0,
-    "skipped": 1
+    "passing": 1,
+    "skipped": 0
   },
   "targets": [
     {
@@ -14,7 +14,11 @@
       "surface": "gui",
       "surface_class": "gui_app",
       "mode": "native_gui",
-      "artifacts": [],
+      "artifacts": [
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-000.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-001.png",
+        "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native/frame-002.png"
+      ],
       "axe_violations": [],
       "pixel_diff": {
         "max_ratio": 0.0,
@@ -24,14 +28,19 @@
       "baseline_status": "ok",
       "tokens_deviation": [],
       "broken_links": 0,
-      "status": "skip",
-      "skip_reason": "native capture exit 4: {\"native_pixels\":false,\"frames_saved\":0,\"width\":1280,\"height\":720,\"out\":\"/home/s4il0r/Documents/Cursor/li-langverse/lic/deploy/studio-demo/native/out\"}\n",
-      "native_pixels": false,
+      "status": "pass",
+      "skip_reason": null,
+      "native_pixels": true,
       "capture_meta": {
-        "status": "fail",
-        "skip_reason": "SDL capture failed (missing sdl2/xvfb?)",
-        "native_pixels": false
-      }
+        "status": "pass",
+        "native_pixels": true,
+        "png_count": 3,
+        "png_dir": "/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui/data/studio-ui-ux-plan-loop/artifacts/verify-native-capture/png",
+        "ppm_dir": "/home/s4il0r/Documents/Cursor/li-langverse/lic-studio-ui/deploy/studio-demo/native/out",
+        "capture_mode": "xvfb_sdl",
+        "note": "SDL viewport stub \u2014 not full li-studio binary"
+      },
+      "capture_stdout": "{\"native_pixels\":true,\"frames_saved\":3,\"width\":1280,\"height\":720,\"out\":\"/home/s4il0r/Documents/Cursor/li-langverse/lic/deploy/studio-demo/native/out\"}\nstudio-ppm-to-png: wrote 3 PNG(s) \u2192 /home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/ux-harness/artifacts/world-studio-native/png/native\n{\"native_pixels\": true, \"png_count\": 3}"
     }
   ]
 }
