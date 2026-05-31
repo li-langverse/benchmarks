@@ -128,6 +128,8 @@ def row_matches_catalog(row: dict, bench_id: str, cfg: dict) -> bool:
     if cat_ps:
         if csv_ps:
             return csv_ps == cat_ps
+        if via_base:
+            return True
         return direct and not (base_id and bench_id != base_id)
     if csv_ps:
         return False
@@ -1156,6 +1158,8 @@ def main() -> int:
         charts_by_pillar[sec_chart["pillar"]].append(sec_chart)
 
     for bench_id, cfg in catalog.items():
+        if cfg.get("catalog_lifecycle") == "planned":
+            continue
         category = cfg.get("category", "micro")
         metric = cfg.get("metric", "wall_time")
         meta = row_meta(cfg)
