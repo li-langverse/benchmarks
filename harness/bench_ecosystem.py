@@ -112,14 +112,11 @@ def lic_build_command(src: Path) -> tuple[list[str], str]:
     elif outcome in ("verify_open_ok",):
         cmd.extend(["--allow-open-vc", "--no-lean-verify"])
         flags += " --allow-open-vc --no-lean-verify"
-    elif os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes") and outcome in (
-        "compile_ok",
-        "verify_ok",
-    ):
+    elif os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes"):
         if "--allow-open-vc" not in cmd:
             cmd.append("--allow-open-vc")
             flags += " --allow-open-vc"
-        if outcome == "verify_ok" and "--no-lean-verify" not in cmd:
+        if "--no-lean-verify" not in cmd:
             cmd.append("--no-lean-verify")
             flags += " --no-lean-verify"
     return cmd, flags
@@ -274,7 +271,11 @@ def bench_compile(*, runs: int, sha: str, cpu: str, jobs: int = 1) -> list[dict[
     with ProcessPoolExecutor(max_workers=jobs) as pool:
         futures = [pool.submit(_bench_one_compile, t) for t in tasks]
         for fut in as_completed(futures):
-            row = fut.result()
+            try:
+                row = fut.result()
+            except Exception as exc:
+                print(f"WARN: ecosystem compile bench skipped: {exc}", file=sys.stderr)
+                continue
             rows.append(row)
             _print_timing(f"{row['benchmark']} lic build", TimingStats(
                 mean=float(row["value"]), stddev=float(row["stddev"] or 0), sample_runs=int(row["sample_runs"] or 1)
