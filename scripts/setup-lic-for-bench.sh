@@ -13,14 +13,24 @@ case "$(uname -s)" in
     export LI_REPO_ROOT="$LIC_ROOT"
     if command -v brew >/dev/null 2>&1 && [[ -z "${LLVM_DIR:-}" ]]; then
       llvm_prefix="$(brew --prefix llvm@22 2>/dev/null || true)"
+      if [[ -z "$llvm_prefix" || ! -d "$llvm_prefix/lib/cmake/llvm" ]]; then
+        if [[ -n "${GITHUB_ACTIONS:-}" ]]; then
+          echo "==> installing llvm@22 via Homebrew" >&2
+          brew install llvm@22
+          llvm_prefix="$(brew --prefix llvm@22)"
+        fi
+      fi
       if [[ -n "$llvm_prefix" && -d "$llvm_prefix/lib/cmake/llvm" ]]; then
         export LLVM_DIR="$llvm_prefix/lib/cmake/llvm"
         export CC="${CC:-$llvm_prefix/bin/clang}"
         export CXX="${CXX:-$llvm_prefix/bin/clang++}"
       fi
     fi
-    export CC="${CC:-clang}"
-    export CXX="${CXX:-clang++}"
+    if [[ -z "${LLVM_DIR:-}" ]]; then
+      echo "LLVM 22 required on macOS: brew install llvm@22" >&2
+      echo "  export LLVM_DIR=\$(brew --prefix llvm@22)/lib/cmake/llvm" >&2
+      exit 1
+    fi
     echo "==> lic compiler (macOS — skip apt)"
     (cd "$LIC_ROOT" && ./scripts/build.sh)
     echo "OK LIC_ROOT=$LIC_ROOT"

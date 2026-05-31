@@ -187,7 +187,6 @@ jobs:
   bench-macos:
     runs-on: macos-14
     timeout-minutes: 120
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -195,6 +194,18 @@ jobs:
           repository: li-langverse/lic
           path: lic
           ref: main
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+          ref: main
+      - name: Install LLVM 22 (macOS)
+        run: |
+          brew install llvm@22
+          llvm_prefix="$(brew --prefix llvm@22)"
+          echo "LLVM_DIR=${llvm_prefix}/lib/cmake/llvm" >> "$GITHUB_ENV"
+          echo "${llvm_prefix}/bin" >> "$GITHUB_PATH"
+          "${llvm_prefix}/bin/clang" --version
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -207,24 +218,28 @@ jobs:
           ./scripts/setup-lic-for-bench.sh
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
+          test -s results/latest.csv
       - name: Upload macOS CSV
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-macos
           path: results/latest.csv
-          if-no-files-found: warn
+          if-no-files-found: error
 
   bench-windows:
     runs-on: windows-latest
     timeout-minutes: 120
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lic
           path: lic
+          ref: main
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
           ref: main
       - name: Install LLVM 22 (Windows)
         shell: bash
@@ -238,20 +253,27 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/*.sh
-          ./scripts/run-benchmark-ci-nightly.sh || true
+          ./scripts/setup-lic-for-bench.sh
+          ./scripts/run-benchmark-ci-nightly.sh tier tier1
+          ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
+          test -s results/latest.csv
       - name: Upload Windows CSV
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-windows
           path: results/latest.csv
-          if-no-files-found: warn
+          if-no-files-found: error
 
   publish-dashboard:
     needs: [bench-linux-merge, bench-linux, bench-macos, bench-windows]
     if: |
+      always() &&
+      !cancelled() &&
       github.ref == 'refs/heads/main' &&
-      (needs.bench-linux-merge.result == 'success' || needs.bench-linux.result == 'success')
+      (needs.bench-linux-merge.result == 'success' || needs.bench-linux.result == 'success') &&
+      needs.bench-macos.result == 'success' &&
+      needs.bench-windows.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -287,8 +309,9 @@ jobs:
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
           args=(artifacts/linux/latest.csv)
-          [[ -f artifacts/macos/latest.csv ]] && args+=(artifacts/macos/latest.csv)
-          [[ -f artifacts/windows/latest.csv ]] && args+=(artifacts/windows/latest.csv)
+          test -f artifacts/macos/latest.csv
+          test -f artifacts/windows/latest.csv
+          args+=(artifacts/macos/latest.csv artifacts/windows/latest.csv)
           python3 scripts/ingest/merge_bench_csv_artifacts.py             "$GITHUB_WORKSPACE/results/latest.csv" "${args[@]}"
           ./scripts/ingest/ingest-lic.sh
           python3 scripts/benchmark-matrix-report.py
