@@ -5,8 +5,8 @@
 1. Read [handbook](docs/handbook/README.md) and [plan cross-links](docs/ecosystem/plan-cross-links.md); [provability gaps](https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md) before proof/perf claims.
 2. Read [roadmap: release-notes](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) — **write before PR**.
 3. **PR-only** — branch + PR; **normal push only** ([git-workflow](docs/ecosystem/git-workflow.md)); CI green; **`merge-approved`** + gate for automated merge (see **merge-approved-pr** skill).
-4. Do **not** copy `lic/benchmarks/harness` into this repo (ingest only).
-5. Update `catalog.toml` when adding benchmarks; run `./scripts/ingest/ingest-lic.sh` locally.
+4. Workloads and harness live **here** — do not add new trees under `lic/benchmarks/` (see `docs/ecosystem/benchmarks-single-repo-layout.md`).
+5. Add workloads under `benchmarks/workloads/`; update `catalog.toml`; run `./scripts/ingest/ingest-lic.sh`.
 6. Dashboard: https://li-langverse.github.io/benchmarks/ — perf labels: [benchmark-dashboard.md](docs/honesty/benchmark-dashboard.md); architecture [ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md); CI invariants [INVARIANTS.md](docs/dashboard/INVARIANTS.md); ship status [SHIP-STATUS.md](docs/dashboard/SHIP-STATUS.md)
 7. `./scripts/sync-agent-kit.sh` after roadmap `agent-kit/` changes.
 8. **lic httpd:** tier-5 HTTP RPS needs epoll `build/li-httpd` — [lic-httpd-bench-compat.md](docs/ecosystem/lic-httpd-bench-compat.md); `lic` `main` may be routing-oracle-only until the httpd perf branch merges.
