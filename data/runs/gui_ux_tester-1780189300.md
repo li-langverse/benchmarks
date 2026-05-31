@@ -10,8 +10,8 @@
 - Briefing `data/latest/ux-audit.json` still **docs-only** — GUI requires proactive `data/latest-gui-ux-run/`.
 - **Empty/error states:** fixture mocks + palette nomatch compose; native GPU fail → **studio-ux-17** deferred.
 - **SOTA:** shadcn/cmdk palette, Primer empty/error, Linear ⌘K search, v0 gen empty states (≥4 manifest URLs).
-- **PH-UX:** palette open 12 ms / filter 4.25 ms vs 50/16 ms budgets.
-- **Implementation:** studio-ux-16 committed on `lic` branch `cursor/studio-ui-ux-plan-loop`; gates green.
+- **PH-UX:** palette open 14 ms / filter 9.5 ms vs 50/30 ms budgets.
+- **Implementation:** studio-ux-16 **done** on remote `cursor/studio-ui-ux-plan-loop`; gates green locally.
 
 ## Deliverable / findings
 
