@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-05-31T17:50:16.222397+00:00",
+  "generated_at": "2026-05-31T19:24:18.979818+00:00",
   "provenance": {
-    "lic_sha": "c1ef0627a4cec8038abef0195a62b79778f74f04",
+    "lic_sha": "0022c8f879b374ca3c6eb63062a46dcbcf3d9148",
     "lic_ref": "main",
-    "benchmarks_sha": "9d751ba9146d9c940a10ef574ba240b615e63cd1",
-    "lis_sha": "1afa4931d03c314961408b11a5b9de6ec91e1baf",
+    "benchmarks_sha": "cd8356985585985d937102a4f791449157b583ba",
+    "lis_sha": "423ff7b83b6d77128ad777bacb2a9de6e0d4640d",
     "llvm_version": "clang version 22.1.0 (https://github.com/llvm/llvm-project 4434dabb69916856b824f68a64b029c67175e532)",
     "workflow_run_id": "",
     "runner_os": "windows",
-    "bench_csv": "C:\\Users\\Julian\\Documents\\Programming\\li\\benchmarks\\results\\latest.csv"
+    "bench_csv": "results\\latest.csv"
   },
   "sources": {
     "lic_root": "C:\\Users\\Julian\\Documents\\Programming\\li\\lic",
     "lis_root": "C:\\Users\\Julian\\Documents\\Programming\\li\\lis",
     "bench_csv": "results\\latest.csv",
-    "lic_csv": "C:\\Users\\Julian\\Documents\\Programming\\li\\benchmarks\\results\\latest.csv",
+    "lic_csv": "results\\latest.csv",
     "lis_csv": "results\\latest.csv",
     "stability_csv": "benchmarks\\results\\stability.csv",
     "security_csv": "benchmarks\\results\\security.csv"
@@ -2527,27 +2527,31 @@
           "base_id": "nbody_barnes_hut",
           "title": "nbody barnes hut (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
-              "value": 1.2,
-              "unit": "x86_64",
+              "value": 2.0154,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.8333
+              "stddev": 0.0505,
+              "sample_runs": 2,
+              "relative_perf": 1.0626
             },
             {
               "lang": "cpp",
-              "value": 1.0,
-              "unit": "x86_64",
+              "value": 2.2147,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.017485,
+              "sample_runs": 2,
+              "relative_perf": 0.967
             },
             {
               "lang": "rust",
@@ -2557,7 +2561,7 @@
               "os": "linux",
               "stddev": 0.11109,
               "sample_runs": 2,
-              "relative_perf": 0.4523
+              "relative_perf": 0.9687
             },
             {
               "lang": "julia",
@@ -2567,7 +2571,7 @@
               "os": "linux",
               "stddev": 0.005607,
               "sample_runs": 2,
-              "relative_perf": 0.4669
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -2575,8 +2579,8 @@
           "path": "benchmarks/workloads/tier2_physics/nbody_barnes_hut",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.2,
-          "ratio_vs_sota": 0.8333,
+          "ratio_vs_reference": 0.91,
+          "ratio_vs_sota": 1.0626,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -5947,7 +5951,7 @@
           "base_id": "advection_diffusion_2d",
           "title": "advection diffusion 2d (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -5955,19 +5959,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -5995,8 +6003,8 @@
           "path": "benchmarks/workloads/tier2_physics/advection_diffusion_2d",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -6064,7 +6072,7 @@
           "base_id": "auto_bicycle_model",
           "title": "auto bicycle model (N=N=256) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -6072,19 +6080,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -6112,8 +6124,8 @@
           "path": "benchmarks/workloads/tier2_physics/auto_bicycle_model",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -6181,7 +6193,7 @@
           "base_id": "auto_dyn_rk4",
           "title": "auto dyn rk4 (N=N=256) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -6189,19 +6201,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -6229,8 +6245,8 @@
           "path": "benchmarks/workloads/tier2_physics/auto_dyn_rk4",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -6298,7 +6314,7 @@
           "base_id": "auto_sensor_raycast",
           "title": "auto sensor raycast (N=N=256) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -6306,19 +6322,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -6346,8 +6366,8 @@
           "path": "benchmarks/workloads/tier2_physics/auto_sensor_raycast",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -9198,27 +9218,31 @@
           "base_id": "md_lennard_jones",
           "title": "md lennard jones (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
-              "value": 1.2,
-              "unit": "x86_64",
+              "value": 2.0154,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.8333
+              "stddev": 0.0505,
+              "sample_runs": 2,
+              "relative_perf": 1.0626
             },
             {
               "lang": "cpp",
-              "value": 1.0,
-              "unit": "x86_64",
+              "value": 2.2147,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.017485,
+              "sample_runs": 2,
+              "relative_perf": 0.967
             },
             {
               "lang": "rust",
@@ -9228,7 +9252,7 @@
               "os": "linux",
               "stddev": 0.11109,
               "sample_runs": 2,
-              "relative_perf": 0.4523
+              "relative_perf": 0.9687
             },
             {
               "lang": "julia",
@@ -9238,7 +9262,7 @@
               "os": "linux",
               "stddev": 0.005607,
               "sample_runs": 2,
-              "relative_perf": 0.4669
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -9246,8 +9270,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_lennard_jones",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.2,
-          "ratio_vs_sota": 0.8333,
+          "ratio_vs_reference": 0.91,
+          "ratio_vs_sota": 1.0626,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -15365,43 +15389,51 @@
           "base_id": "robo_ik_jacobian",
           "title": "robo ik jacobian (N=steps=500000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -15409,8 +15441,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_integ_semi_implicit",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -15478,43 +15510,51 @@
           "base_id": "robo_multibody_step",
           "title": "robo multibody step (N=num_root_newton) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -15522,8 +15562,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_root_newton",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -15591,43 +15631,51 @@
           "base_id": "robo_plan_prm",
           "title": "robo plan prm (N=num_opt_bfgs) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -15635,8 +15683,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_opt_bfgs",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -15704,43 +15752,51 @@
           "base_id": "robo_plan_rrt",
           "title": "robo plan rrt (N=num_opt_line_search) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -15748,8 +15804,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_opt_line_search",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -15817,43 +15873,51 @@
           "base_id": "robo_traj_opt",
           "title": "robo traj opt (N=num_quadrature_gauss) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -15861,8 +15925,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_quadrature_gauss",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -16051,7 +16115,7 @@
           "base_id": "sph_dam_break_2d",
           "title": "sph dam break 2d (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
@@ -16059,19 +16123,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 1.5,
-              "unit": "x86_64",
+              "value": 0.9576,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6377
+              "stddev": 0.00938,
+              "sample_runs": 20,
+              "relative_perf": 0.999
             },
             {
               "lang": "cpp",
-              "value": 1.4,
-              "unit": "x86_64",
+              "value": 1.0041,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6833
+              "stddev": 0.001311,
+              "sample_runs": 2,
+              "relative_perf": 0.9527
             },
             {
               "lang": "rust",
@@ -16099,8 +16167,8 @@
           "path": "benchmarks/workloads/tier2_physics/sph_dam_break_2d",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0714,
-          "ratio_vs_sota": 0.6377,
+          "ratio_vs_reference": 0.9537,
+          "ratio_vs_sota": 0.999,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -16168,43 +16236,51 @@
           "base_id": "three_body",
           "title": "three body (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -16212,8 +16288,8 @@
           "path": "benchmarks/workloads/tier2_physics/three_body",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -16523,7 +16599,7 @@
           "base_id": "wave_equation_2d",
           "title": "wave equation 2d (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -16531,19 +16607,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.9,
-              "unit": "x86_64",
+              "value": 0.1977,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.2261
+              "stddev": 0.009918,
+              "sample_runs": 20,
+              "relative_perf": 1.0293
             },
             {
               "lang": "cpp",
-              "value": 0.85,
-              "unit": "x86_64",
+              "value": 0.2117,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.2394
+              "stddev": 0.018503,
+              "sample_runs": 20,
+              "relative_perf": 0.9613
             },
             {
               "lang": "rust",
@@ -16571,8 +16651,8 @@
           "path": "benchmarks/workloads/tier2_physics/wave_equation_2d",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0588,
-          "ratio_vs_sota": 0.2261,
+          "ratio_vs_reference": 0.9339,
+          "ratio_vs_sota": 1.0293,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -17723,7 +17803,7 @@
           "base_id": "am_export_gcode_3mf",
           "title": "am export gcode 3mf (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -17731,19 +17811,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -17771,8 +17855,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_integrator_verlet",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -17840,7 +17924,7 @@
           "base_id": "am_infill_grid_lines",
           "title": "am infill grid lines (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -17848,19 +17932,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -17888,8 +17976,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_energy_drift",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -17957,7 +18045,7 @@
           "base_id": "am_infill_gyroid",
           "title": "am infill gyroid (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -17965,19 +18053,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18005,8 +18097,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_oracle_external",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18074,7 +18166,7 @@
           "base_id": "am_offset_perimeters",
           "title": "am offset perimeters (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18082,19 +18174,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18122,8 +18218,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_neighbor_cell_list",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18191,7 +18287,7 @@
           "base_id": "am_plane_mesh_intersect",
           "title": "am plane mesh intersect (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18199,19 +18295,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18239,8 +18339,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_neighbor_verlet_skin",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18308,7 +18408,7 @@
           "base_id": "am_polygon_clip",
           "title": "am polygon clip (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18316,19 +18416,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18356,8 +18460,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_integrator_leapfrog",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18425,7 +18529,7 @@
           "base_id": "am_slice_layers",
           "title": "am slice layers (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18433,19 +18537,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18473,8 +18581,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_thermostat_nose_hoover",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18542,7 +18650,7 @@
           "base_id": "am_support_tree",
           "title": "am support tree (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18550,19 +18658,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18590,8 +18702,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_thermostat_berendsen",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18659,7 +18771,7 @@
           "base_id": "am_thermal_warp",
           "title": "am thermal warp (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18667,19 +18779,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18707,8 +18823,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_barostat_parrinello_rahman",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -18776,7 +18892,7 @@
           "base_id": "am_toolpath_arcs",
           "title": "am toolpath arcs (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -18784,19 +18900,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -18824,8 +18944,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_constraints_shake",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -21291,27 +21411,31 @@
           "base_id": "nbody_barnes_hut",
           "title": "nbody barnes hut (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
-              "value": 1.2,
-              "unit": "x86_64",
+              "value": 2.0154,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.8333
+              "stddev": 0.0505,
+              "sample_runs": 2,
+              "relative_perf": 1.0626
             },
             {
               "lang": "cpp",
-              "value": 1.0,
-              "unit": "x86_64",
+              "value": 2.2147,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.017485,
+              "sample_runs": 2,
+              "relative_perf": 0.967
             },
             {
               "lang": "rust",
@@ -21321,7 +21445,7 @@
               "os": "linux",
               "stddev": 0.11109,
               "sample_runs": 2,
-              "relative_perf": 0.4523
+              "relative_perf": 0.9687
             },
             {
               "lang": "julia",
@@ -21331,7 +21455,7 @@
               "os": "linux",
               "stddev": 0.005607,
               "sample_runs": 2,
-              "relative_perf": 0.4669
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -21339,8 +21463,8 @@
           "path": "benchmarks/workloads/tier2_physics/nbody_barnes_hut",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.2,
-          "ratio_vs_sota": 0.8333,
+          "ratio_vs_reference": 0.91,
+          "ratio_vs_sota": 1.0626,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -24952,7 +25076,7 @@
           "base_id": "advection_diffusion_2d",
           "title": "advection diffusion 2d (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -24960,19 +25084,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -25000,8 +25128,8 @@
           "path": "benchmarks/workloads/tier2_physics/advection_diffusion_2d",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -25069,7 +25197,7 @@
           "base_id": "auto_bicycle_model",
           "title": "auto bicycle model (N=N=256) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -25077,19 +25205,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -25117,8 +25249,8 @@
           "path": "benchmarks/workloads/tier2_physics/auto_bicycle_model",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -25186,7 +25318,7 @@
           "base_id": "auto_dyn_rk4",
           "title": "auto dyn rk4 (N=N=256) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -25194,19 +25326,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -25234,8 +25370,8 @@
           "path": "benchmarks/workloads/tier2_physics/auto_dyn_rk4",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -25303,7 +25439,7 @@
           "base_id": "auto_sensor_raycast",
           "title": "auto sensor raycast (N=N=256) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -25311,19 +25447,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -25351,8 +25491,8 @@
           "path": "benchmarks/workloads/tier2_physics/auto_sensor_raycast",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -28203,27 +28343,31 @@
           "base_id": "md_lennard_jones",
           "title": "md lennard jones (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "julia",
+          "sota_ref_lang": "julia",
           "series": [
             {
               "lang": "li",
-              "value": 1.2,
-              "unit": "x86_64",
+              "value": 2.0154,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.8333
+              "stddev": 0.0505,
+              "sample_runs": 2,
+              "relative_perf": 1.0626
             },
             {
               "lang": "cpp",
-              "value": 1.0,
-              "unit": "x86_64",
+              "value": 2.2147,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.017485,
+              "sample_runs": 2,
+              "relative_perf": 0.967
             },
             {
               "lang": "rust",
@@ -28233,7 +28377,7 @@
               "os": "linux",
               "stddev": 0.11109,
               "sample_runs": 2,
-              "relative_perf": 0.4523
+              "relative_perf": 0.9687
             },
             {
               "lang": "julia",
@@ -28243,7 +28387,7 @@
               "os": "linux",
               "stddev": 0.005607,
               "sample_runs": 2,
-              "relative_perf": 0.4669
+              "relative_perf": 1.0
             }
           ],
           "grouped": false,
@@ -28251,8 +28395,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_lennard_jones",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.2,
-          "ratio_vs_sota": 0.8333,
+          "ratio_vs_reference": 0.91,
+          "ratio_vs_sota": 1.0626,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -34370,43 +34514,51 @@
           "base_id": "robo_ik_jacobian",
           "title": "robo ik jacobian (N=steps=500000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -34414,8 +34566,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_integ_semi_implicit",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -34483,43 +34635,51 @@
           "base_id": "robo_multibody_step",
           "title": "robo multibody step (N=num_root_newton) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -34527,8 +34687,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_root_newton",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -34596,43 +34756,51 @@
           "base_id": "robo_plan_prm",
           "title": "robo plan prm (N=num_opt_bfgs) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -34640,8 +34808,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_opt_bfgs",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -34709,43 +34877,51 @@
           "base_id": "robo_plan_rrt",
           "title": "robo plan rrt (N=num_opt_line_search) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -34753,8 +34929,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_opt_line_search",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -34822,43 +34998,51 @@
           "base_id": "robo_traj_opt",
           "title": "robo traj opt (N=num_quadrature_gauss) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -34866,8 +35050,8 @@
           "path": "benchmarks/workloads/tier1_micro/num_quadrature_gauss",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -35056,7 +35240,7 @@
           "base_id": "sph_dam_break_2d",
           "title": "sph dam break 2d (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "julia",
@@ -35064,19 +35248,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 1.5,
-              "unit": "x86_64",
+              "value": 0.9576,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6377
+              "stddev": 0.00938,
+              "sample_runs": 20,
+              "relative_perf": 0.999
             },
             {
               "lang": "cpp",
-              "value": 1.4,
-              "unit": "x86_64",
+              "value": 1.0041,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6833
+              "stddev": 0.001311,
+              "sample_runs": 2,
+              "relative_perf": 0.9527
             },
             {
               "lang": "rust",
@@ -35104,8 +35292,8 @@
           "path": "benchmarks/workloads/tier2_physics/sph_dam_break_2d",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0714,
-          "ratio_vs_sota": 0.6377,
+          "ratio_vs_reference": 0.9537,
+          "ratio_vs_sota": 0.999,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -35173,43 +35361,51 @@
           "base_id": "three_body",
           "title": "three body (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
-          "sota_lang": "cpp",
-          "sota_ref_lang": "cpp",
+          "sota_lang": "rust",
+          "sota_ref_lang": "rust",
           "series": [
             {
               "lang": "li",
-              "value": 0.42,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9048
+              "stddev": 0.00168,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "cpp",
-              "value": 0.38,
-              "unit": "x86_64",
+              "value": 0.1817,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 1.0
+              "stddev": 0.001643,
+              "sample_runs": 20,
+              "relative_perf": 0.9945
             },
             {
               "lang": "rust",
-              "value": 0.41,
-              "unit": "x86_64",
+              "value": 0.1807,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.9268
+              "stddev": 0.001243,
+              "sample_runs": 20,
+              "relative_perf": 1.0
             },
             {
               "lang": "julia",
-              "value": 0.55,
-              "unit": "x86_64",
+              "value": 0.1818,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.6909
+              "stddev": 0.002064,
+              "sample_runs": 20,
+              "relative_perf": 0.9939
             }
           ],
           "grouped": false,
@@ -35217,8 +35413,8 @@
           "path": "benchmarks/workloads/tier2_physics/three_body",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.1053,
-          "ratio_vs_sota": 0.9048,
+          "ratio_vs_reference": 1.0,
+          "ratio_vs_sota": 0.9945,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -35528,7 +35724,7 @@
           "base_id": "wave_equation_2d",
           "title": "wave equation 2d (tier2 default grid) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -35536,19 +35732,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.9,
-              "unit": "x86_64",
+              "value": 0.1977,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.2261
+              "stddev": 0.009918,
+              "sample_runs": 20,
+              "relative_perf": 1.0293
             },
             {
               "lang": "cpp",
-              "value": 0.85,
-              "unit": "x86_64",
+              "value": 0.2117,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.2394
+              "stddev": 0.018503,
+              "sample_runs": 20,
+              "relative_perf": 0.9613
             },
             {
               "lang": "rust",
@@ -35576,8 +35776,8 @@
           "path": "benchmarks/workloads/tier2_physics/wave_equation_2d",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0588,
-          "ratio_vs_sota": 0.2261,
+          "ratio_vs_reference": 0.9339,
+          "ratio_vs_sota": 1.0293,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -36723,7 +36923,7 @@
           "base_id": "am_export_gcode_3mf",
           "title": "am export gcode 3mf (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -36731,19 +36931,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -36771,8 +36975,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_integrator_verlet",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -36840,7 +37044,7 @@
           "base_id": "am_infill_grid_lines",
           "title": "am infill grid lines (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -36848,19 +37052,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -36888,8 +37096,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_energy_drift",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -36957,7 +37165,7 @@
           "base_id": "am_infill_gyroid",
           "title": "am infill gyroid (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -36965,19 +37173,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37005,8 +37217,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_oracle_external",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37074,7 +37286,7 @@
           "base_id": "am_offset_perimeters",
           "title": "am offset perimeters (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37082,19 +37294,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37122,8 +37338,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_neighbor_cell_list",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37191,7 +37407,7 @@
           "base_id": "am_plane_mesh_intersect",
           "title": "am plane mesh intersect (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37199,19 +37415,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37239,8 +37459,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_neighbor_verlet_skin",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37308,7 +37528,7 @@
           "base_id": "am_polygon_clip",
           "title": "am polygon clip (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37316,19 +37536,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37356,8 +37580,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_integrator_leapfrog",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37425,7 +37649,7 @@
           "base_id": "am_slice_layers",
           "title": "am slice layers (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37433,19 +37657,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37473,8 +37701,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_thermostat_nose_hoover",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37542,7 +37770,7 @@
           "base_id": "am_support_tree",
           "title": "am support tree (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37550,19 +37778,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37590,8 +37822,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_thermostat_berendsen",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37659,7 +37891,7 @@
           "base_id": "am_thermal_warp",
           "title": "am thermal warp (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37667,19 +37899,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37707,8 +37943,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_barostat_parrinello_rahman",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -37776,7 +38012,7 @@
           "base_id": "am_toolpath_arcs",
           "title": "am toolpath arcs (N=N=256,steps=10000) (linux)",
           "metric": "wall_time",
-          "unit": "x86_64",
+          "unit": "s",
           "lower_is_better": true,
           "reference_lang": "cpp",
           "sota_lang": "rust",
@@ -37784,19 +38020,23 @@
           "series": [
             {
               "lang": "li",
-              "value": 0.65,
-              "unit": "x86_64",
+              "value": 0.0822,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1252
+              "stddev": 0.006669,
+              "sample_runs": 20,
+              "relative_perf": 0.9903
             },
             {
               "lang": "cpp",
-              "value": 0.6,
-              "unit": "x86_64",
+              "value": 0.0842,
+              "unit": "s",
               "variant": "release",
               "os": "linux",
-              "relative_perf": 0.1357
+              "stddev": 0.005097,
+              "sample_runs": 20,
+              "relative_perf": 0.9667
             },
             {
               "lang": "rust",
@@ -37824,8 +38064,8 @@
           "path": "benchmarks/workloads/tier2_physics/md_constraints_shake",
           "status": "green",
           "perf_status": "green",
-          "ratio_vs_reference": 1.0833,
-          "ratio_vs_sota": 0.1252,
+          "ratio_vs_reference": 0.9762,
+          "ratio_vs_sota": 0.9903,
           "validity_status": "pass",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
@@ -41071,18 +41311,18 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 1.2,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 1.0,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.2,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 1.0,
-      "ratio_vs_sota": 0.8333,
-      "unit": "x86_64",
+      "li_value": 2.0154,
+      "li_stddev": 0.0505,
+      "li_sample_runs": 2,
+      "cpp_value": 2.2147,
+      "cpp_stddev": 0.017485,
+      "cpp_sample_runs": 2,
+      "ratio_vs_cpp": 0.91,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0154,
+      "ratio_vs_sota": 1.0626,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -41098,19 +41338,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 1.2,
-          "unit": "x86_64",
+          "value": 2.0154,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.8333
+          "stddev": 0.0505,
+          "sample_runs": 2,
+          "relative_perf": 1.0626
         },
         {
           "lang": "cpp",
-          "value": 1.0,
-          "unit": "x86_64",
+          "value": 2.2147,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.017485,
+          "sample_runs": 2,
+          "relative_perf": 0.967
         },
         {
           "lang": "rust",
@@ -41120,7 +41364,7 @@
           "os": "linux",
           "stddev": 0.11109,
           "sample_runs": 2,
-          "relative_perf": 0.4523
+          "relative_perf": 0.9687
         },
         {
           "lang": "julia",
@@ -41130,7 +41374,7 @@
           "os": "linux",
           "stddev": 0.005607,
           "sample_runs": 2,
-          "relative_perf": 0.4669
+          "relative_perf": 1.0
         }
       ],
       "pillar": "numerics",
@@ -45388,18 +45632,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
       "validity_status": "pass",
@@ -45415,19 +45659,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -45462,18 +45710,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -45489,19 +45737,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -45536,18 +45788,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -45563,19 +45815,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -45610,18 +45866,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -45637,19 +45893,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -47478,18 +47738,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 1.2,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 1.0,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.2,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 1.0,
-      "ratio_vs_sota": 0.8333,
-      "unit": "x86_64",
+      "li_value": 2.0154,
+      "li_stddev": 0.0505,
+      "li_sample_runs": 2,
+      "cpp_value": 2.2147,
+      "cpp_stddev": 0.017485,
+      "cpp_sample_runs": 2,
+      "ratio_vs_cpp": 0.91,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 2.0154,
+      "ratio_vs_sota": 1.0626,
+      "unit": "s",
       "variant": null,
       "status": "green",
       "validity_status": "pass",
@@ -47505,19 +47765,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 1.2,
-          "unit": "x86_64",
+          "value": 2.0154,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.8333
+          "stddev": 0.0505,
+          "sample_runs": 2,
+          "relative_perf": 1.0626
         },
         {
           "lang": "cpp",
-          "value": 1.0,
-          "unit": "x86_64",
+          "value": 2.2147,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.017485,
+          "sample_runs": 2,
+          "relative_perf": 0.967
         },
         {
           "lang": "rust",
@@ -47527,7 +47791,7 @@
           "os": "linux",
           "stddev": 0.11109,
           "sample_runs": 2,
-          "relative_perf": 0.4523
+          "relative_perf": 0.9687
         },
         {
           "lang": "julia",
@@ -47537,7 +47801,7 @@
           "os": "linux",
           "stddev": 0.005607,
           "sample_runs": 2,
-          "relative_perf": 0.4669
+          "relative_perf": 1.0
         }
       ],
       "pillar": "physics",
@@ -51452,18 +51716,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.42,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.38,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.1053,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 0.38,
-      "ratio_vs_sota": 0.9048,
-      "unit": "x86_64",
+      "li_value": 0.1817,
+      "li_stddev": 0.00168,
+      "li_sample_runs": 20,
+      "cpp_value": 0.1817,
+      "cpp_stddev": 0.001643,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
+      "sota_lang": "rust",
+      "sota_value": 0.1807,
+      "ratio_vs_sota": 0.9945,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -51479,35 +51743,43 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.42,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9048
+          "stddev": 0.00168,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "cpp",
-          "value": 0.38,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.001643,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "rust",
-          "value": 0.41,
-          "unit": "x86_64",
+          "value": 0.1807,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9268
+          "stddev": 0.001243,
+          "sample_runs": 20,
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.55,
-          "unit": "x86_64",
+          "value": 0.1818,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6909
+          "stddev": 0.002064,
+          "sample_runs": 20,
+          "relative_perf": 0.9939
         }
       ],
       "pillar": "physics",
@@ -51522,18 +51794,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.42,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.38,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.1053,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 0.38,
-      "ratio_vs_sota": 0.9048,
-      "unit": "x86_64",
+      "li_value": 0.1817,
+      "li_stddev": 0.00168,
+      "li_sample_runs": 20,
+      "cpp_value": 0.1817,
+      "cpp_stddev": 0.001643,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
+      "sota_lang": "rust",
+      "sota_value": 0.1807,
+      "ratio_vs_sota": 0.9945,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -51549,35 +51821,43 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.42,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9048
+          "stddev": 0.00168,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "cpp",
-          "value": 0.38,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.001643,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "rust",
-          "value": 0.41,
-          "unit": "x86_64",
+          "value": 0.1807,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9268
+          "stddev": 0.001243,
+          "sample_runs": 20,
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.55,
-          "unit": "x86_64",
+          "value": 0.1818,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6909
+          "stddev": 0.002064,
+          "sample_runs": 20,
+          "relative_perf": 0.9939
         }
       ],
       "pillar": "physics",
@@ -51592,18 +51872,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.42,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.38,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.1053,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 0.38,
-      "ratio_vs_sota": 0.9048,
-      "unit": "x86_64",
+      "li_value": 0.1817,
+      "li_stddev": 0.00168,
+      "li_sample_runs": 20,
+      "cpp_value": 0.1817,
+      "cpp_stddev": 0.001643,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
+      "sota_lang": "rust",
+      "sota_value": 0.1807,
+      "ratio_vs_sota": 0.9945,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -51619,35 +51899,43 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.42,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9048
+          "stddev": 0.00168,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "cpp",
-          "value": 0.38,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.001643,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "rust",
-          "value": 0.41,
-          "unit": "x86_64",
+          "value": 0.1807,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9268
+          "stddev": 0.001243,
+          "sample_runs": 20,
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.55,
-          "unit": "x86_64",
+          "value": 0.1818,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6909
+          "stddev": 0.002064,
+          "sample_runs": 20,
+          "relative_perf": 0.9939
         }
       ],
       "pillar": "physics",
@@ -51662,18 +51950,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.42,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.38,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.1053,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 0.38,
-      "ratio_vs_sota": 0.9048,
-      "unit": "x86_64",
+      "li_value": 0.1817,
+      "li_stddev": 0.00168,
+      "li_sample_runs": 20,
+      "cpp_value": 0.1817,
+      "cpp_stddev": 0.001643,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
+      "sota_lang": "rust",
+      "sota_value": 0.1807,
+      "ratio_vs_sota": 0.9945,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -51689,35 +51977,43 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.42,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9048
+          "stddev": 0.00168,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "cpp",
-          "value": 0.38,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.001643,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "rust",
-          "value": 0.41,
-          "unit": "x86_64",
+          "value": 0.1807,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9268
+          "stddev": 0.001243,
+          "sample_runs": 20,
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.55,
-          "unit": "x86_64",
+          "value": 0.1818,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6909
+          "stddev": 0.002064,
+          "sample_runs": 20,
+          "relative_perf": 0.9939
         }
       ],
       "pillar": "physics",
@@ -51732,18 +52028,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.42,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.38,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.1053,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 0.38,
-      "ratio_vs_sota": 0.9048,
-      "unit": "x86_64",
+      "li_value": 0.1817,
+      "li_stddev": 0.00168,
+      "li_sample_runs": 20,
+      "cpp_value": 0.1817,
+      "cpp_stddev": 0.001643,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
+      "sota_lang": "rust",
+      "sota_value": 0.1807,
+      "ratio_vs_sota": 0.9945,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -51759,35 +52055,43 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.42,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9048
+          "stddev": 0.00168,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "cpp",
-          "value": 0.38,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.001643,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "rust",
-          "value": 0.41,
-          "unit": "x86_64",
+          "value": 0.1807,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9268
+          "stddev": 0.001243,
+          "sample_runs": 20,
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.55,
-          "unit": "x86_64",
+          "value": 0.1818,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6909
+          "stddev": 0.002064,
+          "sample_runs": 20,
+          "relative_perf": 0.9939
         }
       ],
       "pillar": "physics",
@@ -51880,18 +52184,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 1.5,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 1.4,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0714,
+      "li_value": 0.9576,
+      "li_stddev": 0.00938,
+      "li_sample_runs": 20,
+      "cpp_value": 1.0041,
+      "cpp_stddev": 0.001311,
+      "cpp_sample_runs": 2,
+      "ratio_vs_cpp": 0.9537,
       "sota_ref_lang": "julia",
       "sota_lang": "julia",
       "sota_value": 0.9566,
-      "ratio_vs_sota": 0.6377,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.999,
+      "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
       "validity_status": "pass",
@@ -51907,19 +52211,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 1.5,
-          "unit": "x86_64",
+          "value": 0.9576,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6377
+          "stddev": 0.00938,
+          "sample_runs": 20,
+          "relative_perf": 0.999
         },
         {
           "lang": "cpp",
-          "value": 1.4,
-          "unit": "x86_64",
+          "value": 1.0041,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6833
+          "stddev": 0.001311,
+          "sample_runs": 2,
+          "relative_perf": 0.9527
         },
         {
           "lang": "rust",
@@ -51954,18 +52262,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.42,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.38,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.1053,
-      "sota_ref_lang": "cpp",
-      "sota_lang": "cpp",
-      "sota_value": 0.38,
-      "ratio_vs_sota": 0.9048,
-      "unit": "x86_64",
+      "li_value": 0.1817,
+      "li_stddev": 0.00168,
+      "li_sample_runs": 20,
+      "cpp_value": 0.1817,
+      "cpp_stddev": 0.001643,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 1.0,
+      "sota_ref_lang": "rust",
+      "sota_lang": "rust",
+      "sota_value": 0.1807,
+      "ratio_vs_sota": 0.9945,
+      "unit": "s",
       "variant": null,
       "status": "green",
       "validity_status": "pass",
@@ -51981,35 +52289,43 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.42,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9048
+          "stddev": 0.00168,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "cpp",
-          "value": 0.38,
-          "unit": "x86_64",
+          "value": 0.1817,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 1.0
+          "stddev": 0.001643,
+          "sample_runs": 20,
+          "relative_perf": 0.9945
         },
         {
           "lang": "rust",
-          "value": 0.41,
-          "unit": "x86_64",
+          "value": 0.1807,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.9268
+          "stddev": 0.001243,
+          "sample_runs": 20,
+          "relative_perf": 1.0
         },
         {
           "lang": "julia",
-          "value": 0.55,
-          "unit": "x86_64",
+          "value": 0.1818,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.6909
+          "stddev": 0.002064,
+          "sample_runs": 20,
+          "relative_perf": 0.9939
         }
       ],
       "pillar": "physics",
@@ -52180,18 +52496,18 @@
       "tier": 2,
       "category": "physics",
       "metric": "wall_time",
-      "li_value": 0.9,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.85,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0588,
+      "li_value": 0.1977,
+      "li_stddev": 0.009918,
+      "li_sample_runs": 20,
+      "cpp_value": 0.2117,
+      "cpp_stddev": 0.018503,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9339,
       "sota_ref_lang": "rust",
-      "sota_lang": "rust",
-      "sota_value": 0.2035,
-      "ratio_vs_sota": 0.2261,
-      "unit": "x86_64",
+      "sota_lang": "li",
+      "sota_value": 0.1977,
+      "ratio_vs_sota": 1.0293,
+      "unit": "s",
       "variant": "shared_c_kernel",
       "status": "green",
       "validity_status": "pass",
@@ -52207,19 +52523,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.9,
-          "unit": "x86_64",
+          "value": 0.1977,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.2261
+          "stddev": 0.009918,
+          "sample_runs": 20,
+          "relative_perf": 1.0293
         },
         {
           "lang": "cpp",
-          "value": 0.85,
-          "unit": "x86_64",
+          "value": 0.2117,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.2394
+          "stddev": 0.018503,
+          "sample_runs": 20,
+          "relative_perf": 0.9613
         },
         {
           "lang": "rust",
@@ -52332,18 +52652,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52359,19 +52679,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52406,18 +52730,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52433,19 +52757,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52480,18 +52808,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52507,19 +52835,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52554,18 +52886,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52581,19 +52913,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52628,18 +52964,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52655,19 +52991,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52702,18 +53042,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52729,19 +53069,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52776,18 +53120,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52803,19 +53147,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52850,18 +53198,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52877,19 +53225,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52924,18 +53276,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -52951,19 +53303,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",
@@ -52998,18 +53354,18 @@
       "tier": 3,
       "category": "tooling",
       "metric": "wall_time",
-      "li_value": 0.65,
-      "li_stddev": null,
-      "li_sample_runs": null,
-      "cpp_value": 0.6,
-      "cpp_stddev": null,
-      "cpp_sample_runs": null,
-      "ratio_vs_cpp": 1.0833,
+      "li_value": 0.0822,
+      "li_stddev": 0.006669,
+      "li_sample_runs": 20,
+      "cpp_value": 0.0842,
+      "cpp_stddev": 0.005097,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9762,
       "sota_ref_lang": "rust",
       "sota_lang": "rust",
       "sota_value": 0.0814,
-      "ratio_vs_sota": 0.1252,
-      "unit": "x86_64",
+      "ratio_vs_sota": 0.9903,
+      "unit": "s",
       "variant": "algo_registry",
       "status": "green",
       "validity_status": "pass",
@@ -53025,19 +53381,23 @@
       "langs": [
         {
           "lang": "li",
-          "value": 0.65,
-          "unit": "x86_64",
+          "value": 0.0822,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1252
+          "stddev": 0.006669,
+          "sample_runs": 20,
+          "relative_perf": 0.9903
         },
         {
           "lang": "cpp",
-          "value": 0.6,
-          "unit": "x86_64",
+          "value": 0.0842,
+          "unit": "s",
           "variant": "release",
           "os": "linux",
-          "relative_perf": 0.1357
+          "stddev": 0.005097,
+          "sample_runs": 20,
+          "relative_perf": 0.9667
         },
         {
           "lang": "rust",

@@ -86,6 +86,7 @@ jobs:
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py
+          python3 scripts/check-summary-measurement-quality.py
           python3 scripts/catalog/audit-catalog-coverage.py
           python3 scripts/check-dashboard-invariants.py
           python3 scripts/audit-dashboard-gaps.py

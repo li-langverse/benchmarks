@@ -321,9 +321,12 @@ jobs:
           python3 scripts/record-benchmark-history.py || true
           ./scripts/regression-check.sh || true
       - name: Dashboard invariants
+        env:
+          MEASUREMENT_STRICT_PARITY: "1"
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py
+          python3 scripts/check-summary-measurement-quality.py
           python3 scripts/check-dashboard-invariants.py
           python3 scripts/check-summary-measurement-coverage.py || true
           python3 scripts/check-zero-missing-data.py
