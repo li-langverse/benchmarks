@@ -161,11 +161,74 @@ def parse_csv(path: Path) -> list[dict]:
         return list(csv.DictReader(f))
 
 
+def parse_sample_runs(row: dict) -> int | None:
+    """Numeric harness sample count, or None if missing / legacy git-sha column."""
+    raw = row.get("sample_runs", "")
+    if raw in ("", None):
+        return None
+    try:
+        n = int(float(str(raw).strip()))
+    except (TypeError, ValueError):
+        return None
+    return n if n >= 0 else None
+
+
+def measurement_row_score(row: dict) -> int:
+    """Prefer rows with valid timing stats over legacy mis-columned CSV lines."""
+    score = 0
+    runs = parse_sample_runs(row)
+    if runs is not None and runs >= 1:
+        score += 10_000 + runs
+    elif row.get("sample_runs") not in ("", None):
+        score -= 50_000
+    try:
+        float(row["value"])
+        score += 10
+    except (TypeError, ValueError):
+        score -= 100_000
+    std = row.get("stddev", "")
+    if std not in ("", None):
+        try:
+            float(std)
+            score += 50
+        except (TypeError, ValueError):
+            pass
+    if row.get("git_sha") not in ("", None):
+        score += 5
+    return score
+
+
+def csv_measurement_key(row: dict) -> tuple[str, ...]:
+    return (
+        row.get("benchmark") or "",
+        row.get("lang") or "",
+        row.get("variant") or "",
+        row.get("metric") or "",
+        normalize_os(row.get("os") or row.get("OS")),
+        str(row.get("threads") or ""),
+    )
+
+
+def dedupe_csv_rows(rows: list[dict]) -> list[dict]:
+    """When latest.csv appends re-runs, keep the row with the strongest timing metadata."""
+    best: dict[tuple[str, ...], dict] = {}
+    for row in rows:
+        key = csv_measurement_key(row)
+        prev = best.get(key)
+        if prev is None or measurement_row_score(row) > measurement_row_score(prev):
+            best[key] = row
+    return list(best.values())
+
+
+def pick_best_measurement_row(matches: list[dict]) -> dict:
+    return max(matches, key=measurement_row_score)
+
+
 def merge_csv_rows(paths: list[Path]) -> list[dict]:
     rows: list[dict] = []
     for p in paths:
         rows.extend(parse_csv(p))
-    return rows
+    return dedupe_csv_rows(rows)
 
 
 def status_for_ratio(ratio: float | None, threshold: float) -> str:
@@ -344,12 +407,9 @@ def timing_fields_from_row(r: dict) -> dict:
             out["stddev"] = float(std)
         except (TypeError, ValueError):
             pass
-    runs = r.get("sample_runs", "")
-    if runs not in ("", None):
-        try:
-            out["sample_runs"] = int(float(runs))
-        except (TypeError, ValueError):
-            pass
+    runs = parse_sample_runs(r)
+    if runs is not None:
+        out["sample_runs"] = runs
     return out
 
 
@@ -649,7 +709,7 @@ def lang_series(
                 matches = preferred
         if not matches:
             continue
-        r = matches[0]
+        r = pick_best_measurement_row(matches)
         try:
             val = float(r["value"])
         except (TypeError, ValueError):
@@ -712,10 +772,13 @@ def http_lang_series(
         if not matches:
             continue
         if lang == "li":
+            by_var: dict[str, list[dict]] = {}
             for r in matches:
-                append_row(r)
+                by_var.setdefault(r.get("variant") or "", []).append(r)
+            for group in by_var.values():
+                append_row(pick_best_measurement_row(group))
         else:
-            append_row(matches[0])
+            append_row(pick_best_measurement_row(matches))
     return out
 
 
