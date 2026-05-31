@@ -1,133 +1,113 @@
 {
-  "generated_at": "2026-05-31T01:52Z",
-  "agent_id": "docs_ui_tester",
-  "briefing_generated_at": "2026-05-31T01:46Z",
-  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-docs-ui.md",
+  "generated_at": "2026-05-31T01:55Z",
+  "agent_id": "tui_ux_tester",
+  "briefing_generated_at": "2026-05-31T01:00Z",
+  "digest_path": "docs/ecosystem/ux-digests/2026-05-31-tui-ux.md",
   "issues": [
     {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ux-audit] Docs CI strict build failing — GitHub Pages stale",
-      "problem": "Live Pages serves 5-tab legacy IA; local build has 12 tabs. Key paths 404; search index 248 vs 1956 local.",
-      "evidence": [
-        "data/latest-docs-ui-run/deep-scan.json live_paths",
-        "data/latest-docs-ui-run/artifacts/lic-docs-live/live-summary.json tabs: 5 vs 12",
-        "search_index live=248 local=1956"
-      ],
-      "sota_reference": "https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/",
-      "remediation_checklist": [
-        "[ ] Fix strict MkDocs CI build (nav, links, warnings-as-errors)",
-        "[ ] Deploy full 12-tab site to li-language Pages",
-        "[ ] Verify /guide/hello-world/, /ecosystem/overview/, /language/overview/ return 200",
-        "[ ] Acceptance: live search_index docs count within 5% of local"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P0",
-      "labels": ["ux-audit", "surface:docs"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/403"
-    },
-    {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ui-audit] lic-docs: axe color-contrast + link-in-text-block (Material theme)",
-      "problem": "Home desktop axe scan reports 12 color-contrast and 5 link-in-text-block serious violations.",
-      "evidence": [
-        "data/latest-docs-ui-run/artifacts/lic-docs/capture-summary.json axe array",
-        "data/latest-docs-ui-run/ui-audit.json axe_violations"
-      ],
-      "sota_reference": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
-      "remediation_checklist": [
-        "[ ] File: lic/docs/stylesheets/extra.css — raise muted text contrast + link underline",
-        "[ ] Re-run docs-ui-capture.mjs; axe violations = 0 on home desktop",
-        "[ ] Acceptance: WCAG 2.1 AA on home, hello-world, provability-gaps"
-      ],
-      "suggested_implementer": "code_implementer",
-      "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/426"
-    },
-    {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
+      "surface": "tui",
+      "kind": "ux",
+      "target_id": "tui-app-fixture",
       "repo": "li-cursor-agents",
-      "title": "[ui-audit] Seed baselines/docs + Playwright desktop/mobile capture for lic-docs",
-      "problem": "ux-harness/baselines/docs/ missing; pixel diff and baseline drift cannot fail CI.",
+      "title": "[ui-audit] tui-app-fixture blocks on read in non-interactive harness",
+      "problem": "tui-demo.sh uses blocking read -r; harness subprocess times out at 30s and run_audit.py crashes uncaught.",
       "evidence": [
-        "data/latest-docs-ui-run/ui-audit.json baseline_status: missing",
-        "ux-harness/adapters/docs.py — no Playwright wiring"
+        "data/latest-tui-ux-run/ux-audit.json harness_error TimeoutExpired",
+        "data/latest-tui-ux-run/captures/tui-app-fixture-piped.txt — piped stdin exits 0",
+        "li-cursor-agents/ux-harness/fixtures/tui-demo.sh lines 3-6"
       ],
-      "sota_reference": "https://playwright.dev/docs/test-snapshots",
+      "sota_reference": "https://textual.textualize.io/guide/input/",
       "remediation_checklist": [
-        "[ ] Add ux-harness/baselines/docs/ PNGs from proactive capture",
-        "[ ] Wire Playwright into docs.py adapter",
-        "[ ] Test: ui-audit fails when screenshot diff > 4%",
-        "[ ] Acceptance: docs_ui_tester proactive pass optional in CI"
+        "[ ] Add LI_TUI_NONINTERACTIVE=1 or stdin injection in adapters/tui.py",
+        "[ ] Catch subprocess.TimeoutExpired; emit fail row instead of crash",
+        "[ ] Acceptance: run_audit.py --target tui-app-fixture --mode ux exits 0 with status fail"
       ],
       "suggested_implementer": "code_implementer",
       "priority": "P1",
-      "labels": ["ui-audit", "surface:docs", "ready-for-implement"],
-      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/37"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/30"
     },
     {
-      "surface": "docs",
-      "kind": "ui",
-      "target_id": "lic-docs",
-      "repo": "lic",
-      "title": "[ui-audit] Built docs site contains raw .md hrefs",
-      "problem": "Deep scan finds 51 unique raw .md hrefs in built HTML; 37 broken .md-relative links.",
+      "surface": "tui",
+      "kind": "ux",
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ux-audit] TUI adapter does not execute journey steps (key_nav_help)",
+      "problem": "config/ux-targets.yaml defines key_nav_help journey but adapters/tui.py returns journeys: [] always.",
       "evidence": [
-        "data/latest-docs-ui-run/deep-scan.json raw_md_hrefs: 51",
-        "broken_md_unique: 37"
+        "data/latest-tui-ux-run/ux-audit.json friction_points key_nav_help not executed",
+        "li-cursor-agents/config/ux-targets.yaml journeys key_nav_help",
+        "li-cursor-agents/ux-harness/adapters/tui.py run_tui_ux journeys: []"
       ],
-      "sota_reference": "https://www.mkdocs.org/user-guide/writing-your-docs/#linking-to-pages",
+      "sota_reference": "https://textual.textualize.io/widgets/footer/",
       "remediation_checklist": [
-        "[ ] Audit source markdown for .md suffix links",
-        "[ ] Fix or exclude repo-path hrefs from site output",
-        "[ ] Acceptance: raw_md_hrefs = 0 in deep-scan.json"
+        "[ ] Execute launch/tab_help/quit steps with piped keys or env flags",
+        "[ ] Populate journeys array in ux-audit.json output",
+        "[ ] Derive rubric_scores from journey outcomes not hardcoded defaults",
+        "[ ] Acceptance: key_nav_help journey status pass or fail with step trace"
       ],
-      "suggested_implementer": "docs_maintainer",
+      "suggested_implementer": "code_implementer",
+      "priority": "P1",
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/33"
+    },
+    {
+      "surface": "tui",
+      "kind": "ux",
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "title": "[ux-audit] TUI fixtures lack error display and screen-reader plain-text export",
+      "problem": "Fixtures always show ok status; no LI_TUI_ERROR=1 branch or LI_TUI_EXPORT_A11Y structured plain snapshot.",
+      "evidence": [
+        "data/latest-tui-ux-run/ux-audit.json missing_states help_overlay error_display a11y_plain_export",
+        "li-cursor-agents/ux-harness/fixtures/tui-gen-demo.sh Status: ok only",
+        "li-cursor-agents/ux-harness/fixtures/tui-demo.sh ANSI clear without semantic export"
+      ],
+      "sota_reference": "https://www.mintlify.com/charmbracelet/bubbletea/guides/input-handling",
+      "remediation_checklist": [
+        "[ ] Add LI_TUI_ERROR=1 branch printing structured error to stderr",
+        "[ ] Add LI_TUI_EXPORT_A11Y=1 plain-text snapshot (headings/lists not box art)",
+        "[ ] Harness captures both states; rubric error_handling derived not 0.75 default",
+        "[ ] Acceptance: missing_states empty after fixture update"
+      ],
+      "suggested_implementer": "code_implementer",
       "priority": "P2",
-      "labels": ["ui-audit", "surface:docs"],
-      "issue_url": "https://github.com/li-langverse/lic/issues/404"
+      "labels": ["ux-audit", "surface:tui", "ready-for-implement"],
+      "issue_url": "https://github.com/li-langverse/li-cursor-agents/issues/34"
     }
   ],
   "implementation_queue": [
     {
-      "kind": "ui_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 403,
-      "priority": "P0",
-      "action": "Deploy 12-tab MkDocs site to GitHub Pages"
-    },
-    {
-      "kind": "ui_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 426,
-      "priority": "P1",
-      "action": "Fix axe color-contrast + link-in-text-block in Material theme CSS"
-    },
-    {
-      "kind": "ui_remediation",
+      "kind": "ux_remediation",
       "repo": "li-cursor-agents",
-      "surface": "docs",
-      "issue": 37,
+      "surface": "tui",
+      "issue": 30,
       "priority": "P1",
-      "action": "Seed baselines/docs + wire Playwright into harness"
+      "action": "Non-interactive harness: catch TimeoutExpired + stdin injection for tui-app-fixture"
     },
     {
-      "kind": "ui_remediation",
-      "repo": "lic",
-      "surface": "docs",
-      "issue": 404,
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 33,
+      "priority": "P1",
+      "action": "Execute key_nav_help and cli_to_tui journeys in tui adapter"
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "issue": 34,
       "priority": "P2",
-      "action": "Eliminate raw .md hrefs from built site"
+      "action": "Add error display + a11y plain export to TUI fixtures"
+    },
+    {
+      "kind": "ux_remediation",
+      "repo": "lic",
+      "surface": "tui",
+      "issue": null,
+      "priority": "P2",
+      "action": "Document TUI a11y export contract in llm-first spec (plain + JSON)"
     }
   ]
 }

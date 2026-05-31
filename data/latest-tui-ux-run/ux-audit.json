@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-30T21:46:12.000000+00:00",
+  "generated_at": "2026-05-31T01:55:00.000000+00:00",
   "platform": "Linux",
   "summary": {
     "total": 2,
@@ -42,7 +42,8 @@
       "status": "pass",
       "journeys": [],
       "friction_points": [
-        {"issue": "cli_to_tui journey defined but not executed — rubric scores are adapter defaults"}
+        {"issue": "cli_to_tui journey defined but not executed — rubric scores are adapter defaults"},
+        {"issue": "error_handling 0.75 hardcoded in adapters/tui.py — not derived from fixture states"}
       ],
       "sota_refs": ["textual", "bubbletea"],
       "rubric_scores": {
