@@ -24,7 +24,7 @@ CATALOG = ROOT / "catalog.toml"
 DEFAULT_LIC = ROOT.parent / "lic"
 DEFAULT_LIS = ROOT.parent / "lis"
 INGEST = ROOT / "scripts/ingest/build_summary.py"
-CSV_REL = Path("benchmarks/results/latest.csv")
+CSV_REL = Path("results/latest.csv")
 
 SKIP_PATH_PREFIXES = (
     "li-tests/",
@@ -87,38 +87,46 @@ def format_benchmark(b: dict) -> str:
     return "\n".join(lines)
 
 
-def scan_harness_index(lic_root: Path) -> dict[str, str]:
-    """Map harness directory stem -> path relative to lic repo root."""
+def scan_harness_index(lic_root: Path, bench_root: Path | None = None) -> dict[str, str]:
+    """Map harness directory stem -> catalog path (benchmarks/workloads/... preferred)."""
     index: dict[str, str] = {}
-    bench = lic_root / "benchmarks"
-    if not bench.is_dir():
+    bench_root = bench_root or ROOT
+    sources: list[tuple[Path, str]] = []
+    workloads = bench_root / "benchmarks" / "workloads"
+    if workloads.is_dir():
+        sources.append((workloads, "benchmarks/workloads"))
+    legacy = lic_root / "benchmarks"
+    if legacy.is_dir():
+        sources.append((legacy, "benchmarks"))
+    if not sources:
         return index
 
-    for tier in sorted(bench.glob("tier*")):
-        if not tier.is_dir():
-            continue
-        label = tier.name
-        if label == "tier5_http":
-            scen = tier / "scenarios"
-            if scen.is_dir():
-                for child in sorted(scen.iterdir()):
-                    if child.is_dir():
-                        rel = f"benchmarks/tier5_http/scenarios/{child.name}"
-                        index[child.name] = rel
-            continue
-        for child in sorted(tier.iterdir()):
-            if child.is_dir():
-                rel = f"benchmarks/{label}/{child.name}"
-                index[child.name] = rel
+    for bench, prefix in sources:
+        for tier in sorted(bench.glob("tier*")):
+            if not tier.is_dir():
+                continue
+            label = tier.name
+            if label == "tier5_http":
+                scen = tier / "scenarios"
+                if scen.is_dir():
+                    for child in sorted(scen.iterdir()):
+                        if child.is_dir():
+                            rel = f"{prefix}/tier5_http/scenarios/{child.name}"
+                            index.setdefault(child.name, rel)
+                continue
+            for child in sorted(tier.iterdir()):
+                if child.is_dir():
+                    rel = f"{prefix}/{label}/{child.name}"
+                    index.setdefault(child.name, rel)
 
-    for sub in ("ml", "viewport"):
-        pkg = bench / sub
-        if not pkg.is_dir():
-            continue
-        for child in sorted(pkg.iterdir()):
-            if child.is_dir():
-                rel = f"benchmarks/{sub}/{child.name}"
-                index[child.name] = rel
+        for sub in ("ml", "viewport"):
+            pkg = bench / sub
+            if not pkg.is_dir():
+                continue
+            for child in sorted(pkg.iterdir()):
+                if child.is_dir():
+                    rel = f"{prefix}/{sub}/{child.name}"
+                    index.setdefault(child.name, rel)
     return index
 
 
@@ -202,7 +210,9 @@ def sync_catalog_paths(
 
 
 def rebuild_summary(lic_root: Path, lis_root: Path) -> int:
-    csv_path = lic_root / CSV_REL
+    csv_path = ROOT / CSV_REL
+    if not csv_path.is_file():
+        csv_path = lic_root / Path("benchmarks/results/latest.csv")
     if not csv_path.is_file():
         print(f"skip summary rebuild: missing {csv_path}", file=sys.stderr)
         return 0
@@ -248,8 +258,8 @@ def main() -> int:
     sync_mod = load_sync_registry_module()
     text = CATALOG.read_text()
     benchmarks = [dict(b) for b in tomllib.loads(text).get("benchmark", [])]
-    harness_index = scan_harness_index(lic_root)
-    print(f"harness dirs indexed: {len(harness_index)} under {lic_root}/benchmarks")
+    harness_index = scan_harness_index(lic_root, bench_root=ROOT)
+    print(f"harness dirs indexed: {len(harness_index)} (benchmarks/workloads + legacy lic)")
 
     fixes = sync_catalog_paths(
         benchmarks,

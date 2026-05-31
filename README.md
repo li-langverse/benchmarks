@@ -1,12 +1,19 @@
 # li-langverse/benchmarks
 
-Aggregated **benchmark status** for the Li org. Harnesses and sources stay in each code repo (`lic/benchmarks/`, `lis/benchmarks/tier5_http/`, …).
+Aggregated **benchmark status** for the Li org. Workloads and harness drivers live **in this repo** (`harness/`, `benchmarks/workloads/`). `lic` is the compiler toolchain only (`LIC_ROOT=../lic`). See [benchmarks-single-repo-layout.md](docs/ecosystem/benchmarks-single-repo-layout.md).
 
 **Dashboard:** https://li-langverse.github.io/benchmarks/ (if 404, see [SETUP_GITHUB.md](SETUP_GITHUB.md#fix-dashboard-404-live_docs_down))
 
 **Handbook:** [docs/handbook/README.md](docs/handbook/README.md) · [plan cross-links](docs/ecosystem/plan-cross-links.md) · [benchmark honesty](docs/honesty/benchmark-dashboard.md)
 
 **Dashboard architecture:** [docs/dashboard/ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md) · [invariants (CI)](docs/dashboard/INVARIANTS.md) · [coverage gaps](docs/dashboard/coverage-gap-analysis.md) · [design system](docs/dashboard/design-system.md)
+
+## Run benchmarks
+
+```bash
+LIC_ROOT=../lic ./scripts/run-bench.sh --tier 1 --runs 3
+LIC_ROOT=../lic ./scripts/run-full-benchmark-suite.sh
+```
 
 ## Quick start
 
@@ -25,7 +32,7 @@ cd dashboard && npm install && npm run dev
 ## Add a benchmark
 
 1. Implement workload under `benchmarks/workloads/` (params.toml, reference kernel, optional `li/main.li`).
-2. Toolchain: `LIC_ROOT=../lic` — `lic build` only; harness driver lives in this repo (`harness/run_suite.py`).
+2. Toolchain: `LIC_ROOT=../lic` — `lic build` only; run `./scripts/run-bench.sh --tier 1`.
 2. Add a `[[benchmark]]` row to [`catalog.toml`](catalog.toml).
 3. Run ingest after CI produces CSV.
 
