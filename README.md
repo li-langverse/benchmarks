@@ -1,12 +1,12 @@
-# li-langverse/benchmarks
+﻿# li-langverse/benchmarks
 
 Aggregated **benchmark status** for the Li org. Workloads and harness drivers live **in this repo** (`harness/`, `benchmarks/workloads/`). `lic` is the compiler toolchain only (`LIC_ROOT=../lic`). See [benchmarks-single-repo-layout.md](docs/ecosystem/benchmarks-single-repo-layout.md).
 
 **Dashboard:** https://li-langverse.github.io/benchmarks/ (if 404, see [SETUP_GITHUB.md](SETUP_GITHUB.md#fix-dashboard-404-live_docs_down))
 
-**Handbook:** [docs/handbook/README.md](docs/handbook/README.md) · [plan cross-links](docs/ecosystem/plan-cross-links.md) · [benchmark honesty](docs/honesty/benchmark-dashboard.md)
+**Handbook:** [docs/handbook/README.md](docs/handbook/README.md) Â· [plan cross-links](docs/ecosystem/plan-cross-links.md) Â· [benchmark honesty](docs/honesty/benchmark-dashboard.md)
 
-**Dashboard architecture:** [docs/dashboard/ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md) · [invariants (CI)](docs/dashboard/INVARIANTS.md) · [coverage gaps](docs/dashboard/coverage-gap-analysis.md) · [design system](docs/dashboard/design-system.md)
+**Dashboard architecture:** [docs/dashboard/ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md) Â· [invariants (CI)](docs/dashboard/INVARIANTS.md) Â· [coverage gaps](docs/dashboard/coverage-gap-analysis.md) Â· [design system](docs/dashboard/design-system.md)
 
 ## Run benchmarks
 
@@ -17,13 +17,13 @@ LIC_ROOT=../lic ./scripts/run-full-benchmark-suite.sh
 
 ## Quick start
 
-**`data/latest/`:** `summary.json`, `benchmark-matrix.json`, and `tier-db-*.json` stay in git (dashboard + CI stubs). Agent preflight / ecosystem audit JSON under `data/latest/` is regenerated locally (`scripts/agent-preflight.sh`, `ecosystem-audit.py`, …) and is gitignored — do not commit.
+**`data/latest/`:** `summary.json`, `benchmark-matrix.json`, and `tier-db-*.json` stay in git (dashboard + CI stubs). Agent preflight / ecosystem audit JSON under `data/latest/` is regenerated locally (`scripts/agent-preflight.sh`, `ecosystem-audit.py`, â€¦) and is gitignored â€” do not commit.
 
 ```bash
 # Refresh summary from sibling lic checkout
 ./scripts/ingest/ingest-lic.sh
 
-# Static dashboard (PH-IO-5 — matches GitHub Pages)
+# Static dashboard (PH-IO-5 â€” matches GitHub Pages)
 LIC_ROOT=../lic ./scripts/dashboard/render-static.sh
 # Optional Vite dev (filters; not used on Pages deploy)
 cd dashboard && npm install && npm run dev
@@ -32,13 +32,13 @@ cd dashboard && npm install && npm run dev
 ## Add a benchmark
 
 1. Implement workload under `benchmarks/workloads/` (params.toml, reference kernel, optional `li/main.li`).
-2. Toolchain: `LIC_ROOT=../lic` — `lic build` only; run `./scripts/run-bench.sh --tier 1`.
+2. Toolchain: `LIC_ROOT=../lic` â€” `lic build` only; run `./scripts/run-bench.sh --tier 1`.
 2. Add a `[[benchmark]]` row to [`catalog.toml`](catalog.toml).
 3. Run ingest after CI produces CSV.
 
 ## Registry DB OLTP (tier_db_registry)
 
-Skeleton for **lidb vs Postgres 15+** registry publish/read P95 — see [tier-db-registry-benchmark.md](docs/ecosystem/tier-db-registry-benchmark.md).
+Skeleton for **lidb vs Postgres 15+** registry publish/read P95 â€” see [tier-db-registry-benchmark.md](docs/ecosystem/tier-db-registry-benchmark.md).
 
 ```bash
 ./scripts/run-db-registry-bench.sh
@@ -56,12 +56,12 @@ CI writes stub manifests under `data/latest/tier-db-*.json` (no GPU required on 
 
 ## GPU chip matrix (community hardware)
 
-Donate results from **your** GPU machine (M1, RTX 3090, RTX 3060, RX 7900, …). Each chip is a separate folder under `data/gpu-contributions/<chip-slug>/`.
+Donate results from **your** GPU machine (M1, RTX 3090, RTX 3060, RX 7900, â€¦). Each chip is a separate folder under `data/gpu-contributions/<chip-slug>/`.
 
-**Docs:** [gpu-chip-contributions.md](docs/ecosystem/gpu-chip-contributions.md) · **Dashboard:** `/gpu-matrix/`
+**Docs:** [gpu-chip-contributions.md](docs/ecosystem/gpu-chip-contributions.md) Â· **Dashboard:** `/gpu-matrix/`
 
 ```bash
-# One command — build lic, run suite on your machine, scaffold contribution folder:
+# One command â€” build lic, run suite on your machine, scaffold contribution folder:
 CONTRIBUTOR_GITHUB=you ./scripts/donate-gpu-chip.sh nvidia-rtx-3090-linux
 
 python3 scripts/ingest/validate-gpu-contribution.py   # also run by donate-gpu-chip.sh
@@ -76,7 +76,7 @@ python3 scripts/ingest/build-lig-gpu-matrix.py       # also run by donate-gpu-ch
 | `tier_db_memory` | RSS idle, peak under load | [tier-db-memory.md](docs/ecosystem/tier-db-memory.md) | `./scripts/run-db-memory-bench.sh` |
 | `tier_db_parallel` | concurrent readers/writers | [tier-db-parallel.md](docs/ecosystem/tier-db-parallel.md) | `./scripts/run-db-parallel-bench.sh` |
 | `tier_db_audit` | query log, tamper evidence | [tier-db-audit.md](docs/ecosystem/tier-db-audit.md) | `./scripts/run-db-audit-bench.sh` |
-| `tier_db_realtime` | WS publish→client latency | [tier-db-realtime.md](docs/ecosystem/tier-db-realtime.md) | `./scripts/run-db-realtime-bench.sh` |
+| `tier_db_realtime` | WS publishâ†’client latency | [tier-db-realtime.md](docs/ecosystem/tier-db-realtime.md) | `./scripts/run-db-realtime-bench.sh` |
 
 All five: `./scripts/run-db-full-spectrum-bench.sh`
 
@@ -95,3 +95,7 @@ LIC_ROOT=../lic ./scripts/run-benchmark-ci-nightly.sh   # CI entry
 ```
 
 Results CSV: `results/latest.csv` (ingest + dashboard). Multi-OS nightly: `.github/workflows/benchmark-nightly.yml`.
+
+## License
+
+Copyright (C) 2026 Julian. Licensed under the [GNU General Public License v3.0](LICENSE).
