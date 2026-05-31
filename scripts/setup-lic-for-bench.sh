@@ -22,8 +22,6 @@ case "$(uname -s)" in
       fi
       if [[ -n "$llvm_prefix" && -d "$llvm_prefix/lib/cmake/llvm" ]]; then
         export LLVM_DIR="$llvm_prefix/lib/cmake/llvm"
-        export CC="${CC:-$llvm_prefix/bin/clang}"
-        export CXX="${CXX:-$llvm_prefix/bin/clang++}"
       fi
     fi
     if [[ -z "${LLVM_DIR:-}" ]]; then
@@ -31,6 +29,8 @@ case "$(uname -s)" in
       echo "  export LLVM_DIR=\$(brew --prefix llvm@22)/lib/cmake/llvm" >&2
       exit 1
     fi
+    export CC="${CC:-clang}"
+    export CXX="${CXX:-clang++}"
     echo "==> lic compiler (macOS — skip apt)"
     (cd "$LIC_ROOT" && ./scripts/build.sh)
     echo "OK LIC_ROOT=$LIC_ROOT"
