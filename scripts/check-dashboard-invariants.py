@@ -114,7 +114,12 @@ def main() -> int:
 
     for row in rows:
         if row.get("sota_lang") == "li":
-            fail(f"sota_lang=li on {row['benchmark']}")
+            ref = row.get("sota_ref_lang")
+            ratio = row.get("ratio_vs_sota")
+            if not ref or ratio is None or ratio <= 1.0:
+                fail(
+                    f"sota_lang=li on {row['benchmark']} but sota_ref_lang/ratio_vs_sota invalid"
+                )
         for key in REQUIRED_ROW_KEYS:
             if key not in row:
                 fail(f"row {row['benchmark']} missing {key}")

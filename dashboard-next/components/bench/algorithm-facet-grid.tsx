@@ -45,8 +45,8 @@ export type AlgorithmFacetGridProps = {
 export function facetCellsFromSummaryRow(row: SummaryRow): Record<FacetId, FacetCell> {
   const claimable = row.validity_status === "pass";
   const perfLabel =
-    row.ratio_vs_sota != null && row.sota_lang
-      ? `${row.ratio_vs_sota.toFixed(3)} vs ${row.sota_lang} (rel.)`
+    row.ratio_vs_sota != null && (row.sota_ref_lang ?? row.sota_lang)
+      ? `${row.ratio_vs_sota.toFixed(3)} vs ${row.sota_ref_lang ?? row.sota_lang} (rel.)`
       : row.ratio_vs_cpp != null
         ? `${row.ratio_vs_cpp} vs ${row.compare_oracle ?? "oracle"}`
         : "—";

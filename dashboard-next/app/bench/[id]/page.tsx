@@ -156,7 +156,7 @@ export default async function BenchPage({ params }: PageProps) {
               <>
                 {row.ratio_vs_sota.toFixed(3)}{" "}
                 <span className="mono" style={{ color: "var(--muted)" }}>
-                  (1.0 = <code>{row.sota_lang ?? "best competitor"}</code> speed)
+                  (1.0 = <code>{row.sota_ref_lang ?? row.sota_lang ?? "best competitor"}</code> speed)
                 </span>
               </>
             ) : (
@@ -199,7 +199,7 @@ export default async function BenchPage({ params }: PageProps) {
         ) : null}
         <PerfRelativeBars
           series={series}
-          sotaLang={row.sota_lang}
+          sotaLang={row.sota_ref_lang ?? row.sota_lang}
           lowerIsBetter={lowerIsBetter}
           claimable={perfClaimable}
           pending={row.pending}

@@ -102,7 +102,7 @@ export default function HomePage() {
         <p>
           <strong>Li never SOTA; green perf requires validity</strong> — tier-0 stability or
           harness <code>passed</code> before wall-clock green is claimable. Best-competitor
-          ratios use <code>sota_lang</code> (never <code>li</code>).
+          charts pin the best competitor at 1.0; the table shows <code>li</code> when Li leads.
         </p>
         <p>
           Red or unknown perf when validity failed or is missing — even if wall time looks good.
