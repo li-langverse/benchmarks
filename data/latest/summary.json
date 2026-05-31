@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-31T11:44:35.052565+00:00",
+  "generated_at": "2026-05-31T14:47:41.141625+00:00",
   "provenance": {
-    "lic_sha": "5284df4a9d10c83b8692dc7fc41d2d2d9970c3e3",
+    "lic_sha": "d85cc13fd4e7f74fa176cb2f92abff91df747f1b",
     "lic_ref": "main",
-    "benchmarks_sha": "78a6c5e7b101dbf4542102df508d7748727fe006",
-    "lis_sha": "17ac6cfc8d9fa282580c75fc00a4afd6c7edb208",
+    "benchmarks_sha": "a7a712d1ecbcad6ec4a2f1033393a7e8c1dd97c9",
+    "lis_sha": "2e2fbbd743173f3ed5b0a8c81a8e1abd035e2e55",
     "llvm_version": "clang version 22.1.0 (https://github.com/llvm/llvm-project 4434dabb69916856b824f68a64b029c67175e532)",
     "workflow_run_id": "",
     "runner_os": "windows",
@@ -62,6 +62,7 @@
       "TLS static M15",
       "algo registry stub",
       "loopback wrk",
+      "stability suite",
       "tier2 default grid"
     ]
   },
@@ -13567,13 +13568,14 @@
           "grouped": true,
           "repo": "lic",
           "path": "benchmarks/tier0_correctness",
-          "status": "unknown",
+          "status": "green",
           "pillar": "proofs",
           "package": "lic",
-          "validity_status": "unknown",
+          "validity_status": "pass",
           "validity_source": "stability.csv",
           "base_id": "tier0_stability",
-          "os": "linux"
+          "os": "linux",
+          "size_label": "stability suite"
         },
         {
           "id": "tier0_stability@macos",
@@ -25730,13 +25732,14 @@
           "grouped": true,
           "repo": "lic",
           "path": "benchmarks/tier0_correctness",
-          "status": "unknown",
+          "status": "green",
           "pillar": "proofs",
           "package": "lic",
-          "validity_status": "unknown",
+          "validity_status": "pass",
           "validity_source": "stability.csv",
           "base_id": "tier0_stability",
-          "os": "linux"
+          "os": "linux",
+          "size_label": "stability suite"
         },
         {
           "id": "tier0_stability@macos",
@@ -27209,8 +27212,8 @@
       "ratio_vs_sota": null,
       "unit": "pass",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "green",
+      "validity_status": "pass",
       "validity_source": "stability.csv",
       "os": "linux",
       "ph_ids": [
@@ -27237,7 +27240,7 @@
       "pillar": "proofs",
       "package": "lic",
       "problem_size": null,
-      "size_label": null,
+      "size_label": "stability suite",
       "base_id": "tier0_stability"
     },
     {

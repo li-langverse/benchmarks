@@ -1184,6 +1184,12 @@ def main() -> int:
                             "base_id": chart_base_id(bench_id, cfg),
                             "os": "linux",
                             "id": chart_id_for_os(bench_id, "linux", multi=multi),
+                            "status": st,
+                            "validity_status": validity_status,
+                            "validity_source": validity_source,
+                            "size_label": chart.get("size_label")
+                            or cfg.get("size_label")
+                            or "stability suite",
                         }
                     )
                 else:
