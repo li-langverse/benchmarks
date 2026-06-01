@@ -8,7 +8,9 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[2]
+from paths import lic_root  # noqa: E402
+
+REPO = lic_root()
 SCRIPTS = REPO / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
