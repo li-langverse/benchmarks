@@ -248,6 +248,7 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
+      - uses: ilammy/msvc-dev-cmd@v1
       - uses: actions/cache@v4
         with:
           path: .llvm-cache
@@ -257,7 +258,15 @@ jobs:
         env:
           MSYS2_ARG_CONV_EXCL: "*"
         run: |
-          choco install cmake ninja -y
+          choco install cmake ninja llvm --version=22.1.0 -y || choco install cmake ninja llvm -y
+          echo "C:/Program Files/LLVM/bin" >> "$GITHUB_PATH"
+          set -euo pipefail
+          for d in "/c/Program Files/LLVM/lib/cmake/llvm" "/c/Program Files/LLVM/lib/cmake/llvm-22"; do
+            if [[ -f "$d/LLVMConfig.cmake" ]]; then
+              echo "LLVM_DIR=$d" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
           chmod +x scripts/ci-install-llvm-windows.sh
           ./scripts/ci-install-llvm-windows.sh
       - name: Run core benchmarks (Windows)

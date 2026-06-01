@@ -42,18 +42,13 @@ if [[ ! -f "${CMAKE_DIR}/LLVMConfig.cmake" ]]; then
 fi
 
 if [[ -n "${GITHUB_ENV:-}" ]]; then
-  {
-    echo "LLVM_DIR=${CMAKE_DIR}"
-    echo "CC=${ROOT}/bin/clang.exe"
-    echo "CXX=${ROOT}/bin/clang++.exe"
-  } >> "$GITHUB_ENV"
+  echo "LLVM_DIR=${CMAKE_DIR}" >> "$GITHUB_ENV"
   echo "${ROOT}/bin" >> "$GITHUB_PATH"
 fi
 
 export LLVM_DIR="${CMAKE_DIR}"
-export CC="${ROOT}/bin/clang.exe"
-export CXX="${ROOT}/bin/clang++.exe"
 export PATH="${ROOT}/bin:${PATH}"
+# Leave CC/CXX unset so MSVC/clang-cl from Chocolatey + vsdevcmd can build lic.
 
 echo "ci-install-llvm-windows: LLVM_DIR=${LLVM_DIR}"
-"${CC}" --version
+"${ROOT}/bin/clang.exe" --version
