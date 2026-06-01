@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T15:10:00.000Z",
+  "generated_at": "2026-06-01T15:20:11.313Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -850,16 +850,50 @@
         "checksum": "1"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 137489,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
-        "thinking_tokens_estimated": false,
-        "tool_calls": 0,
-        "token_source": "code_implementer",
+        "thinking_tokens": 1539,
+        "thinking_chars": 6154,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 67,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "fdtd_waveguide_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
         "status": "finished"
       },
       "harness_ok": true,
