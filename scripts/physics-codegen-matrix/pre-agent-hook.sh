@@ -16,8 +16,18 @@ if [[ "$goal" != *physics-codegen-matrix* && "${PHYSICS_CODEGEN_AUTO_CELL_PROMPT
   exit 0
 fi
 # Skip when caller already injected a cell prompt (e.g. run-matrix-live extraInstruction).
-if [[ -n "${LI_AGENT_EXTRA_INSTRUCTION:-}" ]] && [[ "$LI_AGENT_EXTRA_INSTRUCTION" == *"tier2_physics/"* ]]; then
-  exit 0
+# Reject stale "Benchmark | undefined" templates — they block export-next-cell-instruction.
+if [[ -n "${LI_AGENT_EXTRA_INSTRUCTION:-}" ]]; then
+  if [[ "$LI_AGENT_EXTRA_INSTRUCTION" == *"tier2_physics/"* ]]; then
+    exit 0
+  fi
+  if [[ "$LI_AGENT_EXTRA_INSTRUCTION" == *"| Benchmark |"* ]] \
+    && [[ "$LI_AGENT_EXTRA_INSTRUCTION" != *"| Benchmark | undefined"* ]]; then
+    exit 0
+  fi
+  if [[ "$LI_AGENT_EXTRA_INSTRUCTION" == *"| Benchmark | undefined"* ]]; then
+    unset LI_AGENT_EXTRA_INSTRUCTION
+  fi
 fi
 export PHYSICS_CODEGEN_LANG="${PHYSICS_CODEGEN_LANG:-li}"
 export PHYSICS_CODEGEN_ARM="${PHYSICS_CODEGEN_ARM:-A}"
