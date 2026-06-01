@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T14:29:46.132Z",
+  "generated_at": "2026-06-01T14:30:22.788Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -774,21 +774,46 @@
         "verify_within_1ulp": true,
         "checksum": "1"
       },
+      "llm": {
+        "duration_ms": 134891,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1887,
+        "thinking_chars": 7546,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 61,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
       "harness_ok": true,
-      "agent_status": "finished",
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
       "llm": {
         "duration_ms": 0,
         "input_tokens": 0,
         "output_tokens": 0,
         "thinking_tokens": 0,
         "thinking_chars": 0,
-        "thinking_tokens_estimated": true,
+        "thinking_tokens_estimated": false,
         "tool_calls": 0,
-        "token_source": "code_implementer",
+        "token_source": "agent",
         "model_label": "default",
         "sdk_model": "default",
         "status": "finished"
-      }
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
     }
   ]
 }
