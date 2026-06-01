@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T18:39:17.055Z",
+  "generated_at": "2026-06-01T18:53:24.377Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -1220,6 +1220,31 @@
       "model": "default",
       "bench_id": "euler_fluid_2d",
       "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
+      },
+      "llm": {
+        "duration_ms": 99071,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 968,
+        "thinking_chars": 3870,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 60,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "euler_fluid_2d",
+      "lang": "li",
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "0.7219958512987783"
