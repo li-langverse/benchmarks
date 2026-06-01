@@ -88,10 +88,15 @@ def audit(summary: dict) -> dict:
                 if not is_skip:
                     add("P1", "problem_size_null", base, "problem_size is null", cid)
 
-            if vs in (None, "", "unknown"):
+            series = ch.get("series") or []
+            competitor_only = bool(series) and not any(
+                s.get("lang") == "li" for s in series
+            )
+
+            if vs in (None, "", "unknown") and not competitor_only:
                 add("P0", "validity_unknown", base, f"validity_status={vs!r}", cid)
 
-            if st in (None, "", "unknown"):
+            if st in (None, "", "unknown") and not competitor_only:
                 add("P0", "status_unknown", base, f"status={st!r}", cid)
 
             metric = ch.get("metric") or ""
@@ -109,7 +114,6 @@ def audit(summary: dict) -> dict:
                     if r.get("benchmark") == base or r.get("benchmark") == cid:
                         tier = r.get("tier")
                         break
-            series = ch.get("series") or []
             if tier in (0, 1, 2, "0", "1", "2") and any(
                 s.get("lang") == "harness" for s in series
             ):
