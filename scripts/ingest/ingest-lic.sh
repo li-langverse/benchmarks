@@ -3,6 +3,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
 LIS_ROOT="${LIS_ROOT:-$ROOT/../lis}"
+export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
 chmod +x "$ROOT/scripts/ingest/ingest-csv-smoke.sh" "$ROOT/scripts/ingest/build-summary-li.sh"
 "$ROOT/scripts/ingest/ingest-csv-smoke.sh"
 if ! "$ROOT/scripts/ingest/build-summary-li.sh"; then
