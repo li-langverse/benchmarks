@@ -1,14 +1,17 @@
+/* wind_field_bc — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include <stdio.h>
+#include <string.h>
 
-extern void li_wind_field_kernel(void);
-extern double li_wind_field_checksum(void);
+void li_wind_field_kernel(void);
+double li_wind_field_checksum(void);
 
 int main(int argc, char** argv) {
-  if (argc > 1 && argv[1][0] == '-' && argv[1][1] == '-') {
-    li_wind_field_kernel();
-    printf("%.17g\n", li_wind_field_checksum());
+  li_wind_field_kernel();
+  const double checksum = li_wind_field_checksum();
+  if (argc > 1 && strcmp(argv[1], "--verify") == 0) {
+    printf("%.17g\n", checksum);
     return 0;
   }
-  li_wind_field_kernel();
+  (void)checksum;
   return 0;
 }

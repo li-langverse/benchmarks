@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T13:54:47.587Z",
+  "generated_at": "2026-06-01T14:29:46.132Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -750,13 +750,13 @@
         "checksum": "87.302804255705965"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 162578,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
+        "thinking_tokens": 1454,
+        "thinking_chars": 5816,
         "thinking_tokens_estimated": true,
-        "tool_calls": 0,
+        "tool_calls": 66,
         "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
@@ -764,6 +764,31 @@
       },
       "harness_ok": true,
       "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "harness_ok": true,
+      "agent_status": "finished",
+      "llm": {
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0,
+        "thinking_chars": 0,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 0,
+        "token_source": "code_implementer",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      }
     }
   ]
 }
