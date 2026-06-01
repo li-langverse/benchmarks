@@ -8,14 +8,14 @@ LLVM_ORG="llvmorg-${LLVM_VERSION}"
 ARCHIVE="clang+llvm-${LLVM_VERSION}-x86_64-pc-windows-msvc.tar.xz"
 URL="https://github.com/llvm/llvm-project/releases/download/${LLVM_ORG}/${ARCHIVE}"
 
-ROOT="${LLVM_WIN_ROOT:-${RUNNER_TEMP:-/tmp}/llvm-win-${LLVM_VERSION}}"
+ROOT="${LLVM_WIN_ROOT:-${GITHUB_WORKSPACE:-.}/.llvm-win-${LLVM_VERSION}}"
 CMAKE_DIR="${ROOT}/lib/cmake/llvm"
 
 if [[ -f "${CMAKE_DIR}/LLVMConfig.cmake" ]]; then
   echo "ci-install-llvm-windows: reuse ${CMAKE_DIR}"
 else
   echo "ci-install-llvm-windows: download ${ARCHIVE}"
-  cache_dir="${RUNNER_TEMP:-/tmp}/llvm-cache"
+  cache_dir="${GITHUB_WORKSPACE:-.}/.llvm-cache"
   mkdir -p "$cache_dir" "$(dirname "$ROOT")"
   archive_path="${cache_dir}/${ARCHIVE}"
   if [[ ! -s "$archive_path" ]]; then

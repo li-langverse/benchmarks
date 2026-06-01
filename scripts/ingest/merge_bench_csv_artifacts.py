@@ -10,12 +10,16 @@ from pathlib import Path
 DEFAULT_ORDER = ("linux", "macos", "windows")
 
 
-def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+def read_csv(path: Path, *, force_os: str | None = None) -> tuple[list[str], list[dict[str, str]]]:
     with path.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         if not reader.fieldnames:
             return [], []
-        return list(reader.fieldnames), list(reader)
+        rows = list(reader)
+        if force_os:
+            for row in rows:
+                row["os"] = force_os
+        return list(reader.fieldnames), rows
 
 
 def merge_into(
@@ -46,22 +50,33 @@ def merge_into(
 def main() -> int:
     if len(sys.argv) < 3:
         print(
-            "usage: merge_bench_csv_artifacts.py <out.csv> <linux.csv> [macos.csv] [windows.csv]",
+            "usage: merge_bench_csv_artifacts.py <out.csv> [linux.csv|linux:path] [macos:path] ...",
             file=sys.stderr,
         )
         return 2
     out = Path(sys.argv[1])
-    inputs = [Path(p) for p in sys.argv[2:] if Path(p).is_file()]
-    if not inputs:
+    raw_inputs = sys.argv[2:]
+    if not raw_inputs:
         print("no input CSV files", file=sys.stderr)
         return 1
 
     header: list[str] = []
     rows: list[dict[str, str]] = []
-    for path in inputs:
-        h, r = read_csv(path)
+    for spec in raw_inputs:
+        force_os: str | None = None
+        path_s = spec
+        if ":" in spec and not spec.endswith(".csv"):
+            force_os, path_s = spec.split(":", 1)
+        elif spec.count(":") == 1 and ".csv" in spec:
+            force_os, path_s = spec.rsplit(":", 1)
+        path = Path(path_s)
+        if not path.is_file():
+            print(f"skip missing {path_s}", file=sys.stderr)
+            continue
+        h, r = read_csv(path, force_os=force_os)
         merge_into(header, rows, h, r)
-        print(f"merged {path.name}: +{len(r)} rows", file=sys.stderr)
+        tag = f" (os={force_os})" if force_os else ""
+        print(f"merged {path.name}: +{len(r)} rows{tag}", file=sys.stderr)
 
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("w", newline="", encoding="utf-8") as f:

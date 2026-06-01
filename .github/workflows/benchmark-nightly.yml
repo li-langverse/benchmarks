@@ -219,9 +219,11 @@ jobs:
         run: |
           chmod +x scripts/*.sh lic/scripts/*.sh
           ./scripts/setup-lic-for-bench.sh
+          rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
-          test -s results/latest.csv
+          chmod +x scripts/finalize-nightly-os-csv.sh
+          ./scripts/finalize-nightly-os-csv.sh results
       - name: Upload macOS CSV
         uses: actions/upload-artifact@v4
         with:
@@ -258,9 +260,11 @@ jobs:
         run: |
           chmod +x scripts/*.sh
           ./scripts/setup-lic-for-bench.sh
+          rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
-          test -s results/latest.csv
+          chmod +x scripts/finalize-nightly-os-csv.sh
+          ./scripts/finalize-nightly-os-csv.sh results
       - name: Upload Windows CSV
         uses: actions/upload-artifact@v4
         with:
@@ -314,9 +318,14 @@ jobs:
           args=(artifacts/linux/latest.csv)
           test -f artifacts/macos/latest.csv
           test -f artifacts/windows/latest.csv
-          args+=(artifacts/macos/latest.csv artifacts/windows/latest.csv)
-          python3 scripts/ingest/merge_bench_csv_artifacts.py             "$GITHUB_WORKSPACE/results/latest.csv" "${args[@]}"
+          python3 scripts/ingest/merge_bench_csv_artifacts.py \
+            "$GITHUB_WORKSPACE/results/latest.csv" \
+            linux:"${args[0]}" \
+            macos:artifacts/macos/latest.csv \
+            windows:artifacts/windows/latest.csv
+          python3 scripts/check-merged-multi-os-csv.py "$GITHUB_WORKSPACE/results/latest.csv"
           ./scripts/ingest/ingest-lic.sh
+          python3 scripts/check-summary-multi-os-measured.py
           python3 scripts/benchmark-matrix-report.py
           python3 scripts/record-benchmark-history.py || true
           ./scripts/regression-check.sh || true
@@ -329,6 +338,7 @@ jobs:
           python3 scripts/check-summary-measurement-quality.py
           python3 scripts/check-dashboard-invariants.py
           python3 scripts/check-summary-measurement-coverage.py || true
+          python3 scripts/check-summary-multi-os-measured.py
           python3 scripts/check-zero-missing-data.py
       - name: Commit dashboard data
         run: |

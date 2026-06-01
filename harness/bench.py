@@ -22,6 +22,7 @@ if str(_HARNESS) not in sys.path:
     sys.path.insert(0, str(_HARNESS))
 from timing_stats import (
     TimingStats,
+    host_os_tag,
     time_command as _time_command_stats,
     time_commands_with_equal_runs as _time_commands_with_equal_runs,
 )
@@ -594,17 +595,6 @@ def verify_stdlib_benchmark(spec: BenchSpec, build_dir: Path) -> None:
 class BenchmarkVerifyOutcome:
     deviation_reports: list = field(default_factory=list)
     oracle_kind: str = "iterative"
-
-
-def host_os_tag() -> str:
-    sys_name = platform.system().lower()
-    if sys_name == "darwin":
-        return "darwin"
-    if sys_name == "windows":
-        return "windows"
-    if sys_name == "linux":
-        return "linux"
-    return "unknown"
 
 
 def verify_csv_rows(
