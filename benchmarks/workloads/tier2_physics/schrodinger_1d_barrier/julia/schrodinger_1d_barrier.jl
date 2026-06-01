@@ -1,23 +1,34 @@
-# Native Julia driver — links C oracle via ccall on prebuilt shared object fallback.
+# 1D TDSE barrier smoke — matches common/tdse_core.c oracle.
 using Printf
 
-const BENCH_DIR = @__DIR__
-const CORE_C = joinpath(BENCH_DIR, "../common/tdse_core.c")
+const N = 64
+const STEPS = 4000
+const DT = 0.0001
 
-function run_native_verify()::Float64
-    build_dir = joinpath(BENCH_DIR, "..", "..", "..", "..", "build", "native-verify", "schrodinger_1d_barrier")
-    mkpath(build_dir)
-    bin = joinpath(build_dir, "schrodinger_1d_barrier_julia")
-    cc = get(ENV, "CC", "clang")
-    core = abspath(CORE_C)
-    main_c = joinpath(BENCH_DIR, "..", "cpp", "main.c")
-    cmd = `$cc -O3 -march=native -ffast-math $(main_c) $(core) -lm -o $(bin)`
-    run(cmd)
-    out = read(`$(bin) --verify`, String)
-    parse(Float64, strip(out))
+function li_schrodinger_1d_barrier_kernel()::Float64
+    re = Vector{Float64}(undef, N)
+    im = Vector{Float64}(undef, N)
+    half = N ÷ 2
+    @inbounds for i in 1:N
+        d = (i - 1 - half) * 0.15
+        re[i] = exp(-0.5 * d * d)
+        im[i] = 0.0
+    end
+    @inbounds for _ in 1:STEPS
+        for i in 2:(N - 1)
+            lap = re[i + 1] - 2.0 * re[i] + re[i - 1]
+            re[i] += DT * lap
+            im[i] += DT * lap
+        end
+    end
+    n2 = 0.0
+    @inbounds for i in 1:N
+        n2 += re[i] * re[i] + im[i] * im[i]
+    end
+    return n2
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    checksum = run_native_verify()
+    checksum = li_schrodinger_1d_barrier_kernel()
     println(@sprintf("%.17g", checksum))
 end
