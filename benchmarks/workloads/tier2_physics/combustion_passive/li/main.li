@@ -1,3 +1,5 @@
+# combustion_passive — tier-2 Li driver (physics-codegen Arm B li; shared C oracle).
+
 extern proc li_combustion_passive_kernel()
   requires true
   ensures true

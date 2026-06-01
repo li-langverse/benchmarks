@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T15:42:15.903Z",
+  "generated_at": "2026-06-01T15:55:00.000Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -928,6 +928,31 @@
       "llm": {
         "token_source": "agent",
         "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0,
+        "thinking_chars": 0,
+        "thinking_tokens_estimated": false,
+        "tool_calls": 0,
+        "token_source": "code_implementer",
+        "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
