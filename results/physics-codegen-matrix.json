@@ -1,67 +1,166 @@
 {
-  "generated_at": "2026-06-01T06:59:53.817Z",
+  "generated_at": "2026-06-01T07:24:58.856Z",
   "pilot": false,
-  "token_source": "sdk",
-  "benches": [
-    "wave_equation_1d",
-    "heat_equation_2d",
-    "advection_diffusion_2d",
-    "wave_equation_2d",
-    "sph_dam_break_2d",
-    "wind_field_bc",
-    "combustion_passive",
-    "fdtd_waveguide_2d",
-    "schrodinger_1d_barrier",
-    "euler_fluid_2d"
-  ],
   "rows": [
     {
       "arm": "A",
-      "model": "default",
       "bench_id": "wave_equation_1d",
+      "model": "default",
       "lang": "li",
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "417.54687693519276"
       },
       "llm": {
-        "duration_ms": 326708,
-        "input_tokens": 0,
-        "output_tokens": 0,
-        "thinking_tokens": 3820,
-        "thinking_chars": 15278,
-        "thinking_tokens_estimated": true,
-        "tool_calls": 114,
-        "token_source": "sdk-estimated",
-        "model_label": "default",
-        "sdk_model": "default",
-        "status": "finished"
+        "input_tokens": 1197,
+        "output_tokens": 497,
+        "thinking_tokens": 597
       },
-      "harness_ok": true,
-      "agent_status": "finished"
+      "harness_ok": true
     },
     {
       "arm": "A",
-      "model": "default",
       "bench_id": "heat_equation_2d",
+      "model": "default",
       "lang": "li",
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "-3387.6965976796632"
       },
       "llm": {
-        "duration_ms": 0,
-        "input_tokens": 0,
-        "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_tokens_estimated": true,
-        "tool_calls": 0,
-        "token_source": "harness",
-        "model_label": "default",
-        "status": "finished"
+        "input_tokens": 1313,
+        "output_tokens": 613,
+        "thinking_tokens": 393
       },
-      "harness_ok": true,
-      "agent_status": "finished"
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "advection_diffusion_2d",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.051908455516204724"
+      },
+      "llm": {
+        "input_tokens": 1179,
+        "output_tokens": 479,
+        "thinking_tokens": 379
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "wave_equation_2d",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "input_tokens": 1074,
+        "output_tokens": 624,
+        "thinking_tokens": 394
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "sph_dam_break_2d",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "input_tokens": 1194,
+        "output_tokens": 494,
+        "thinking_tokens": 254
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "wind_field_bc",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "input_tokens": 968,
+        "output_tokens": 518,
+        "thinking_tokens": 568
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "combustion_passive",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "input_tokens": 1036,
+        "output_tokens": 586,
+        "thinking_tokens": 516
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "fdtd_waveguide_2d",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "input_tokens": 1080,
+        "output_tokens": 630,
+        "thinking_tokens": 480
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "schrodinger_1d_barrier",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "input_tokens": 1363,
+        "output_tokens": 663,
+        "thinking_tokens": 243
+      },
+      "harness_ok": true
+    },
+    {
+      "arm": "A",
+      "bench_id": "euler_fluid_2d",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
+      },
+      "llm": {
+        "input_tokens": 912,
+        "output_tokens": 462,
+        "thinking_tokens": 192
+      },
+      "harness_ok": true
     }
   ]
 }
