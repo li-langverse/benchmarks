@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T16:25:04.000Z",
+  "generated_at": "2026-06-01T16:42:55Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -1041,6 +1041,125 @@
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "schrodinger_1d_barrier",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "schrodinger_1d_barrier",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "schrodinger_1d_barrier",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "euler_fluid_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "euler_fluid_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "euler_fluid_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "euler_fluid_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
       },
       "llm": {
         "token_source": "agent",

@@ -1,4 +1,6 @@
 # Native Julia driver — links C oracle via ccall on prebuilt shared object fallback.
+using Printf
+
 const BENCH_DIR = @__DIR__
 const CORE_C = joinpath(BENCH_DIR, "../common/tdse_core.c")
 
@@ -17,5 +19,5 @@ end
 
 if abspath(PROGRAM_FILE) == @__FILE__
     checksum = run_native_verify()
-    println("%.17g" % checksum)
+    println(@sprintf("%.17g", checksum))
 end
