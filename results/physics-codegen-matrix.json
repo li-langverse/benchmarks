@@ -775,20 +775,20 @@
         "checksum": "1"
       },
       "llm": {
-        "duration_ms": 134891,
+        "duration_ms": 0,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 1887,
-        "thinking_chars": 7546,
+        "thinking_tokens": 0,
+        "thinking_chars": 0,
         "thinking_tokens_estimated": true,
-        "tool_calls": 61,
-        "token_source": "sdk-estimated",
+        "tool_calls": 0,
+        "token_source": "code_implementer",
         "model_label": "default",
         "sdk_model": "default",
-        "status": "incomplete"
+        "status": "finished"
       },
       "harness_ok": true,
-      "agent_status": "incomplete"
+      "agent_status": "finished"
     },
     {
       "arm": "B",
