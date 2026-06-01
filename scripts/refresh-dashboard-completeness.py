@@ -261,7 +261,9 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
             for plat in platforms:
                 if plat in existing:
                     ch = dict(existing[plat])
-                    has_csv = bool(ch.get("series"))
+                    series = ch.get("series") or []
+                    has_csv = bool(series)
+                    has_li = any(s.get("lang") == "li" for s in series)
                     sizes = bs.effective_size_meta(cfg, has_csv=has_csv)
                     ch.update({k: v for k, v in sizes.items() if v is not None})
                     ch["os"] = plat
@@ -269,6 +271,15 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
                         ch["validity_status"] = ch.get("validity_status") or "unknown"
                         ch["validity_source"] = ch.get("validity_source") or "harness_pending"
                         ch["status"] = ch.get("status") or "unknown"
+                    elif has_csv and not has_li and (
+                        ch.get("status") in (None, "", "unknown")
+                        or ch.get("validity_status") in (None, "", "unknown")
+                    ):
+                        ch["validity_status"] = "advisory"
+                        ch["validity_source"] = (
+                            ch.get("validity_source") or "competitor_only:no_li"
+                        )
+                        ch["status"] = "advisory"
                     elif ch.get("validity_status") in (None, "", "unknown"):
                         row = row_by_bench.get(base)
                         if row and row.get("validity_status") in ("pass", "fail", "skip", "advisory"):
@@ -290,7 +301,7 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
         has_csv = r.get("li_value") is not None
         sizes = bs.effective_size_meta(cfg, has_csv=has_csv)
         r.update({k: v for k, v in sizes.items() if v is not None})
-        if r.get("pending") or r.get("li_value") is None:
+        if bs.tier_le_1(cfg) and (r.get("pending") or r.get("li_value") is None):
             r["validity_status"] = "skip"
             r["validity_source"] = r.get("validity_source") or "catalog:pending"
             r["status"] = "skip"
