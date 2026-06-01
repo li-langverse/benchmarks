@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T14:30:22.788Z",
+  "generated_at": "2026-06-01T15:10:00.000Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -775,26 +775,76 @@
         "checksum": "1"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 134891,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
+        "thinking_tokens": 1887,
+        "thinking_chars": 7546,
         "thinking_tokens_estimated": true,
-        "tool_calls": 0,
-        "token_source": "code_implementer",
+        "tool_calls": 61,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
-        "status": "finished"
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
       "model": "default",
       "bench_id": "wind_field_bc",
       "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 160347,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1497,
+        "thinking_chars": 5986,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 73,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 124278,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1318,
+        "thinking_chars": 5272,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 55,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "li",
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "1"
@@ -807,7 +857,7 @@
         "thinking_chars": 0,
         "thinking_tokens_estimated": false,
         "tool_calls": 0,
-        "token_source": "agent",
+        "token_source": "code_implementer",
         "model_label": "default",
         "sdk_model": "default",
         "status": "finished"

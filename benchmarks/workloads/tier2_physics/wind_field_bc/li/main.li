@@ -1,3 +1,5 @@
+# wind_field_bc — tier-2 Li driver (physics-codegen Arm B li; shared C oracle).
+
 extern proc li_wind_field_kernel()
   requires true
   ensures true
