@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T10:45:36.858Z",
+  "generated_at": "2026-06-01T11:05:00.000Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -370,6 +370,31 @@
       "model": "default",
       "bench_id": "heat_equation_2d",
       "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "-3387.6965976796632"
+      },
+      "llm": {
+        "duration_ms": 116740,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1172,
+        "thinking_chars": 4686,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 58,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "heat_equation_2d",
+      "lang": "rust",
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "-3387.6965976796632"
