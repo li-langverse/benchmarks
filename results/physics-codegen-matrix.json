@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T13:40:00.000Z",
+  "generated_at": "2026-06-01T13:54:47.587Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -675,13 +675,88 @@
         "checksum": "87.302804255705965"
       },
       "llm": {
-        "duration_ms": 120000,
+        "duration_ms": 132205,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 800,
-        "thinking_chars": 3200,
+        "thinking_tokens": 953,
+        "thinking_chars": 3812,
         "thinking_tokens_estimated": true,
-        "tool_calls": 35,
+        "tool_calls": 52,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 172536,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1969,
+        "thinking_chars": 7876,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 72,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 222107,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 3226,
+        "thinking_chars": 12904,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 66,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0,
+        "thinking_chars": 0,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 0,
         "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
