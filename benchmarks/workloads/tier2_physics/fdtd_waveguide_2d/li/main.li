@@ -1,4 +1,4 @@
-# fdtd_waveguide_2d — tier-2 Li driver (physics-codegen Arm B li; shared C oracle).
+# fdtd_waveguide_2d — shared C oracle via LI_EXTRA_C (1D Yee FDTD waveguide, energy checksum).
 
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
