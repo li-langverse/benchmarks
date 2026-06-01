@@ -6,6 +6,7 @@ Use when a full lic CSV re-ingest is unavailable locally (Windows sprint host).
 from __future__ import annotations
 
 import json
+import os
 import sys
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -105,6 +106,79 @@ def chart_row_from_chart(
         "size_label": ch.get("size_label", cfg.get("size_label")),
         "base_id": ch.get("base_id", bs.chart_base_id(base, cfg)),
     }
+
+
+def is_tier5_http(cfg: dict | None) -> bool:
+    if not cfg:
+        return False
+    tier = cfg.get("tier")
+    return tier in (5, "5") and str(cfg.get("category") or "").lower() == "http"
+
+
+def is_stdlib_stub(cfg: dict | None) -> bool:
+    if not cfg:
+        return False
+    return str(cfg.get("workload_class") or "").lower() == "stub" and cfg.get("tier") in (
+        1,
+        "1",
+    )
+
+
+def apply_linux_li_pending_row(row: dict) -> None:
+    row["validity_status"] = "advisory"
+    row["validity_source"] = row.get("validity_source") or "oracle:li:not_measured"
+    row["status"] = "advisory"
+    row["pending"] = True
+
+
+def apply_linux_li_pending_chart(ch: dict) -> None:
+    ch["validity_status"] = "advisory"
+    ch["validity_source"] = ch.get("validity_source") or "oracle:li:not_measured"
+    ch["status"] = "advisory"
+    ch["pending"] = True
+
+
+def fix_linux_unknown_http_and_stdlib(
+    summary: dict,
+    catalog: dict[str, dict],
+) -> int:
+    """Clear P0 unknown rows/charts for tier-5 HTTP + tier-1 stdlib stubs without li data."""
+    changed = 0
+    for row in summary.get("rows") or []:
+        if bs.normalize_os(row.get("os")) != "linux":
+            continue
+        cfg = catalog.get(row.get("benchmark", ""))
+        if not (is_tier5_http(cfg) or is_stdlib_stub(cfg)):
+            continue
+        if row.get("status") not in (None, "", "unknown") and row.get("validity_status") not in (
+            None,
+            "",
+            "unknown",
+        ):
+            continue
+        if row.get("li_value") is not None:
+            continue
+        apply_linux_li_pending_row(row)
+        changed += 1
+
+    for cat in (summary.get("categories") or {}).values():
+        for ch in cat.get("charts") or []:
+            if chart_os(ch) != "linux":
+                continue
+            base = chart_base_id(ch)
+            cfg = catalog.get(base)
+            if not (is_tier5_http(cfg) or is_stdlib_stub(cfg)):
+                continue
+            if ch.get("status") not in (None, "", "unknown") and ch.get(
+                "validity_status"
+            ) not in (None, "", "unknown"):
+                continue
+            if any(s.get("lang") == "li" for s in ch.get("series") or []):
+                continue
+            apply_linux_li_pending_chart(ch)
+            changed += 1
+
+    return changed
 
 
 def expand_tier01_rows(
@@ -267,6 +341,7 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
         }
     )
     expand_tier01_rows(summary, catalog, catalog_defaults)
+    fix_linux_unknown_http_and_stdlib(summary, catalog)
     return summary
 
 
@@ -277,6 +352,19 @@ def main() -> int:
     catalog = bs.load_catalog()
     catalog_defaults = bs.load_catalog_defaults()
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    if os.environ.get("REFRESH_HTTP_STDlib_ONLY", "").strip().lower() in (
+        "1",
+        "true",
+        "yes",
+    ):
+        changed = fix_linux_unknown_http_and_stdlib(summary, catalog)
+        SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+        print(
+            f"refresh-dashboard-completeness: http/stdlib-only patched {SUMMARY} "
+            f"({changed} rows/charts)"
+        )
+        return 0
+
     refreshed = refresh(summary, catalog, catalog_defaults)
     SUMMARY.write_text(json.dumps(refreshed, indent=2) + "\n", encoding="utf-8")
     charts = sum(len(c.get("charts", [])) for c in refreshed.get("categories", {}).values())
