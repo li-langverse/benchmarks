@@ -51,6 +51,7 @@ export type ChartSpec = {
   status: string;
   ratio_vs_reference?: number | null;
   ratio_vs_sota?: number | null;
+  sota_ref_lang?: string | null;
   sota_lang?: string | null;
   validity_status?: ValidityStatus;
   validity_source?: string;
@@ -87,6 +88,9 @@ export type SummaryRow = {
   cpp_sample_runs?: number | null;
   ratio_vs_cpp: number | null;
   ratio_vs_sota?: number | null;
+  /** Best competitor for relative charts (always excludes li). */
+  sota_ref_lang?: string | null;
+  /** Table SOTA: li when Li beats competitors, else best competitor. */
   sota_lang?: string | null;
   sota_value?: number | null;
   unit: string | null;

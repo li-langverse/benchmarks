@@ -128,6 +128,8 @@ def row_matches_catalog(row: dict, bench_id: str, cfg: dict) -> bool:
     if cat_ps:
         if csv_ps:
             return csv_ps == cat_ps
+        if via_base:
+            return True
         return direct and not (base_id and bench_id != base_id)
     if csv_ps:
         return False
@@ -159,11 +161,74 @@ def parse_csv(path: Path) -> list[dict]:
         return list(csv.DictReader(f))
 
 
+def parse_sample_runs(row: dict) -> int | None:
+    """Numeric harness sample count, or None if missing / legacy git-sha column."""
+    raw = row.get("sample_runs", "")
+    if raw in ("", None):
+        return None
+    try:
+        n = int(float(str(raw).strip()))
+    except (TypeError, ValueError):
+        return None
+    return n if n >= 0 else None
+
+
+def measurement_row_score(row: dict) -> int:
+    """Prefer rows with valid timing stats over legacy mis-columned CSV lines."""
+    score = 0
+    runs = parse_sample_runs(row)
+    if runs is not None and runs >= 1:
+        score += 10_000 + runs
+    elif row.get("sample_runs") not in ("", None):
+        score -= 50_000
+    try:
+        float(row["value"])
+        score += 10
+    except (TypeError, ValueError):
+        score -= 100_000
+    std = row.get("stddev", "")
+    if std not in ("", None):
+        try:
+            float(std)
+            score += 50
+        except (TypeError, ValueError):
+            pass
+    if row.get("git_sha") not in ("", None):
+        score += 5
+    return score
+
+
+def csv_measurement_key(row: dict) -> tuple[str, ...]:
+    return (
+        row.get("benchmark") or "",
+        row.get("lang") or "",
+        row.get("variant") or "",
+        row.get("metric") or "",
+        normalize_os(row.get("os") or row.get("OS")),
+        str(row.get("threads") or ""),
+    )
+
+
+def dedupe_csv_rows(rows: list[dict]) -> list[dict]:
+    """When latest.csv appends re-runs, keep the row with the strongest timing metadata."""
+    best: dict[tuple[str, ...], dict] = {}
+    for row in rows:
+        key = csv_measurement_key(row)
+        prev = best.get(key)
+        if prev is None or measurement_row_score(row) > measurement_row_score(prev):
+            best[key] = row
+    return list(best.values())
+
+
+def pick_best_measurement_row(matches: list[dict]) -> dict:
+    return max(matches, key=measurement_row_score)
+
+
 def merge_csv_rows(paths: list[Path]) -> list[dict]:
     rows: list[dict] = []
     for p in paths:
         rows.extend(parse_csv(p))
-    return rows
+    return dedupe_csv_rows(rows)
 
 
 def status_for_ratio(ratio: float | None, threshold: float) -> str:
@@ -342,12 +407,9 @@ def timing_fields_from_row(r: dict) -> dict:
             out["stddev"] = float(std)
         except (TypeError, ValueError):
             pass
-    runs = r.get("sample_runs", "")
-    if runs not in ("", None):
-        try:
-            out["sample_runs"] = int(float(runs))
-        except (TypeError, ValueError):
-            pass
+    runs = parse_sample_runs(r)
+    if runs is not None:
+        out["sample_runs"] = runs
     return out
 
 
@@ -374,8 +436,6 @@ def ratio_li_vs_ref(
     ratio = li_val / ref_val
     if not lower_is_better and ratio > 0:
         ratio = 1.0 / ratio
-    if metric in ("rps", "throughput", "queries_per_sec") and ratio > 0:
-        ratio = 1.0 / ratio
     return ratio
 
 
@@ -391,6 +451,26 @@ def relative_perf_vs_sota(
     if lower_is_better:
         return sota_val / value
     return value / sota_val
+
+
+def table_sota_display(
+    li_val: float | None,
+    competitor_sota_lang: str | None,
+    competitor_sota_val: float | None,
+    *,
+    lower_is_better: bool,
+) -> tuple[str | None, float | None]:
+    """Table SOTA label: li when Li beats best competitor; charts still use competitor ref."""
+    if competitor_sota_lang is None or competitor_sota_val is None:
+        return competitor_sota_lang, competitor_sota_val
+    if li_val is None:
+        return competitor_sota_lang, competitor_sota_val
+    rel = relative_perf_vs_sota(
+        li_val, competitor_sota_val, lower_is_better=lower_is_better
+    )
+    if rel is not None and rel > 1.0:
+        return "li", li_val
+    return competitor_sota_lang, competitor_sota_val
 
 
 def enrich_series_relative_perf(
@@ -547,8 +627,19 @@ def make_summary_row(
     ref = chart.get("reference_lang", "cpp")
     ref_pt = next((s for s in series if s["lang"] == ref), None)
     ref_val = ref_pt["value"] if ref_pt else None
-    sota_lang = chart.get("sota_lang")
-    sota_val = next((s["value"] for s in series if s["lang"] == sota_lang), None) if sota_lang else None
+    sota_ref_lang = chart.get("sota_ref_lang") or chart.get("sota_lang")
+    sota_ref_val = (
+        next((s["value"] for s in series if s["lang"] == sota_ref_lang), None)
+        if sota_ref_lang
+        else None
+    )
+    lower = metric_lower_is_better(metric)
+    table_sota_lang, table_sota_val = table_sota_display(
+        li_val,
+        sota_ref_lang,
+        sota_ref_val,
+        lower_is_better=lower,
+    )
     bench_rows = rows_for_bench(raw_rows, bench_id, cfg)
     numeric_validity = extract_numeric_validity(bench_rows, cfg.get("variant"))
     row = {
@@ -564,8 +655,9 @@ def make_summary_row(
         "cpp_stddev": ref_pt.get("stddev") if ref_pt and ref == "cpp" else None,
         "cpp_sample_runs": ref_pt.get("sample_runs") if ref_pt and ref == "cpp" else None,
         "ratio_vs_cpp": chart.get("ratio_vs_reference"),
-        "sota_lang": sota_lang,
-        "sota_value": sota_val,
+        "sota_ref_lang": sota_ref_lang,
+        "sota_lang": table_sota_lang,
+        "sota_value": table_sota_val,
         "ratio_vs_sota": chart.get("ratio_vs_sota"),
         "unit": chart.get("unit"),
         "variant": cfg.get("variant"),
@@ -615,7 +707,7 @@ def lang_series(
                 matches = preferred
         if not matches:
             continue
-        r = matches[0]
+        r = pick_best_measurement_row(matches)
         try:
             val = float(r["value"])
         except (TypeError, ValueError):
@@ -678,10 +770,13 @@ def http_lang_series(
         if not matches:
             continue
         if lang == "li":
+            by_var: dict[str, list[dict]] = {}
             for r in matches:
-                append_row(r)
+                by_var.setdefault(r.get("variant") or "", []).append(r)
+            for group in by_var.values():
+                append_row(pick_best_measurement_row(group))
         else:
-            append_row(matches[0])
+            append_row(pick_best_measurement_row(matches))
     return out
 
 
@@ -879,6 +974,7 @@ def build_perf_chart(
         "lower_is_better": lower,
         "reference_lang": oracle,
         "sota_lang": sota_lang,
+        "sota_ref_lang": sota_lang,
         "series": series,
         "grouped": False,
         "repo": cfg.get("repo", "lic"),
@@ -921,8 +1017,9 @@ def append_benchmark_summary_rows(
     validity_source: str,
     primary_status: str | None = None,
 ) -> None:
-    """Emit one summary row per platform chart for tier 0/1; else primary only."""
-    if tier_le_1(cfg):
+    """Emit one summary row per platform chart when multi-OS reporting is enabled."""
+    distinct_os = {c.get("os") for c in bench_charts if c.get("os")}
+    if tier_le_1(cfg) or len(distinct_os) > 1:
         for chart in bench_charts:
             os_name = chart.get("os", "linux")
             scoped = rows_for_bench_os(raw, bench_id, cfg, os_name)
@@ -1156,6 +1253,8 @@ def main() -> int:
         charts_by_pillar[sec_chart["pillar"]].append(sec_chart)
 
     for bench_id, cfg in catalog.items():
+        if cfg.get("catalog_lifecycle") == "planned":
+            continue
         category = cfg.get("category", "micro")
         metric = cfg.get("metric", "wall_time")
         meta = row_meta(cfg)
@@ -1180,6 +1279,12 @@ def main() -> int:
                             "base_id": chart_base_id(bench_id, cfg),
                             "os": "linux",
                             "id": chart_id_for_os(bench_id, "linux", multi=multi),
+                            "status": st,
+                            "validity_status": validity_status,
+                            "validity_source": validity_source,
+                            "size_label": chart.get("size_label")
+                            or cfg.get("size_label")
+                            or "stability suite",
                         }
                     )
                 else:

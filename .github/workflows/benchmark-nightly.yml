@@ -187,7 +187,6 @@ jobs:
   bench-macos:
     runs-on: macos-14
     timeout-minutes: 120
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -195,6 +194,21 @@ jobs:
           repository: li-langverse/lic
           path: lic
           ref: main
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+          ref: main
+      - name: Install LLVM 22 (macOS)
+        run: |
+          brew install llvm@22
+          llvm_prefix="$(brew --prefix llvm@22)"
+          test -f "${llvm_prefix}/lib/cmake/llvm/LLVMConfig.cmake"
+          echo "LLVM_DIR=${llvm_prefix}/lib/cmake/llvm" >> "$GITHUB_ENV"
+          # Xcode clang for compile; Homebrew llvm@22 only for LLVM_DIR (see lic/scripts/local-ci.sh).
+          echo "CC=clang" >> "$GITHUB_ENV"
+          echo "CXX=clang++" >> "$GITHUB_ENV"
+          clang --version
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -205,20 +219,21 @@ jobs:
         run: |
           chmod +x scripts/*.sh lic/scripts/*.sh
           ./scripts/setup-lic-for-bench.sh
+          rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
+          chmod +x scripts/finalize-nightly-os-csv.sh
+          ./scripts/finalize-nightly-os-csv.sh results
       - name: Upload macOS CSV
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-macos
           path: results/latest.csv
-          if-no-files-found: warn
+          if-no-files-found: error
 
   bench-windows:
     runs-on: windows-latest
     timeout-minutes: 120
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -226,11 +241,17 @@ jobs:
           repository: li-langverse/lic
           path: lic
           ref: main
-      - name: Install LLVM 22 (Windows)
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+          ref: main
+      - name: Install LLVM 22 + build tools (Windows)
         shell: bash
         run: |
-          choco install llvm --version=22.1.0 -y || choco install llvm -y || true
-          echo "LLVM_DIR=C:/Program Files/LLVM/lib/cmake/llvm" >> "$GITHUB_ENV"
+          choco install cmake ninja -y
+          chmod +x scripts/ci-install-llvm-windows.sh
+          ./scripts/ci-install-llvm-windows.sh
       - name: Run core benchmarks (Windows)
         shell: bash
         env:
@@ -238,20 +259,28 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/*.sh
-          ./scripts/run-benchmark-ci-nightly.sh || true
+          ./scripts/setup-lic-for-bench.sh
+          rm -f results/latest.csv results/tier-*.csv
+          ./scripts/run-benchmark-ci-nightly.sh tier tier1
+          ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
+          chmod +x scripts/finalize-nightly-os-csv.sh
+          ./scripts/finalize-nightly-os-csv.sh results
       - name: Upload Windows CSV
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: bench-csv-windows
           path: results/latest.csv
-          if-no-files-found: warn
+          if-no-files-found: error
 
   publish-dashboard:
     needs: [bench-linux-merge, bench-linux, bench-macos, bench-windows]
     if: |
+      always() &&
+      !cancelled() &&
       github.ref == 'refs/heads/main' &&
-      (needs.bench-linux-merge.result == 'success' || needs.bench-linux.result == 'success')
+      (needs.bench-linux-merge.result == 'success' || needs.bench-linux.result == 'success') &&
+      needs.bench-macos.result == 'success' &&
+      needs.bench-windows.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -287,17 +316,29 @@ jobs:
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
           args=(artifacts/linux/latest.csv)
-          [[ -f artifacts/macos/latest.csv ]] && args+=(artifacts/macos/latest.csv)
-          [[ -f artifacts/windows/latest.csv ]] && args+=(artifacts/windows/latest.csv)
-          python3 scripts/ingest/merge_bench_csv_artifacts.py             "$GITHUB_WORKSPACE/results/latest.csv" "${args[@]}"
+          test -f artifacts/macos/latest.csv
+          test -f artifacts/windows/latest.csv
+          python3 scripts/ingest/merge_bench_csv_artifacts.py \
+            "$GITHUB_WORKSPACE/results/latest.csv" \
+            linux:"${args[0]}" \
+            macos:artifacts/macos/latest.csv \
+            windows:artifacts/windows/latest.csv
+          python3 scripts/check-merged-multi-os-csv.py "$GITHUB_WORKSPACE/results/latest.csv"
           ./scripts/ingest/ingest-lic.sh
+          python3 scripts/check-summary-multi-os-measured.py
           python3 scripts/benchmark-matrix-report.py
           python3 scripts/record-benchmark-history.py || true
           ./scripts/regression-check.sh || true
       - name: Dashboard invariants
+        env:
+          MEASUREMENT_STRICT_PARITY: "1"
         run: |
+          python3 scripts/check-reporting-platforms.py
+          python3 scripts/check-summary-skip-budget.py
+          python3 scripts/check-summary-measurement-quality.py
           python3 scripts/check-dashboard-invariants.py
           python3 scripts/check-summary-measurement-coverage.py || true
+          python3 scripts/check-summary-multi-os-measured.py
           python3 scripts/check-zero-missing-data.py
       - name: Commit dashboard data
         run: |

@@ -1,4 +1,4 @@
-name = "https_static"
+name = "https_tls_matrix"
 
 [server]
 listen = ":8443"
@@ -6,6 +6,7 @@ workers = 1
 
 [tls]
 enabled = true
+matrix = true
 wrk = true
 handshake = true
 
@@ -17,6 +18,6 @@ requests = [
 [load]
 tool = "wrk"
 url_path = "/"
-duration_sec = 10
-connections = 8
-threads = 2
+duration_sec = 15
+connections = 16
+threads = 4

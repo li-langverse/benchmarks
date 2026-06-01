@@ -20,7 +20,12 @@ from pathlib import Path
 _HARNESS = Path(__file__).resolve().parent
 if str(_HARNESS) not in sys.path:
     sys.path.insert(0, str(_HARNESS))
-from timing_stats import TimingStats, time_command as _time_command_stats
+from timing_stats import (
+    TimingStats,
+    host_os_tag,
+    time_command as _time_command_stats,
+    time_commands_with_equal_runs as _time_commands_with_equal_runs,
+)
 
 from paths import lic_root, results_csv, tier_dirs
 
@@ -592,17 +597,6 @@ class BenchmarkVerifyOutcome:
     oracle_kind: str = "iterative"
 
 
-def host_os_tag() -> str:
-    sys_name = platform.system().lower()
-    if sys_name == "darwin":
-        return "darwin"
-    if sys_name == "windows":
-        return "windows"
-    if sys_name == "linux":
-        return "linux"
-    return "unknown"
-
-
 def verify_csv_rows(
     spec: BenchSpec,
     outcome: BenchmarkVerifyOutcome,
@@ -904,13 +898,17 @@ def run_benchmark(spec: BenchSpec, *, runs: int) -> list[dict[str, object]]:
     build_native(spec, julia_bin)
     build_li(spec, li_bin)
 
-    for lang, bin_path, flags in (
+    lang_bins = (
         ("cpp", cpp_bin, NATIVE_FLAGS),
         ("rust", rust_bin, f"{NATIVE_FLAGS} (native C kernel)"),
         ("julia", julia_bin, f"{NATIVE_FLAGS} (native C kernel)"),
         ("li", li_bin, f"{'pure lic' if spec.li_pure else 'shared C kernel + lic'} {NATIVE_FLAGS}"),
-    ):
-        timing = time_command([str(bin_path)], runs=runs)
+    )
+    timings = _time_commands_with_equal_runs(
+        [[str(bin_path)] for _, bin_path, _ in lang_bins],
+        runs=runs,
+    )
+    for (lang, bin_path, flags), timing in zip(lang_bins, timings):
         rows.append(
             row_for(
                 benchmark=spec.name,
