@@ -1,3 +1,4 @@
+/* euler_fluid_2d — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include "../common/euler_fluid_core.h"
 #include <stdio.h>
 #include <string.h>
