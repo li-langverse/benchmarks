@@ -39,8 +39,12 @@ function pickNextCell() {
     }
   }
   const done = loadDone();
+  const langFilter = process.env.PHYSICS_CODEGEN_LANG?.trim();
+  const armFilter = process.env.PHYSICS_CODEGEN_ARM?.trim();
   for (const cell of iterateCells()) {
     if (!cell.bench_id) continue;
+    if (langFilter && cell.lang !== langFilter) continue;
+    if (armFilter && cell.arm !== armFilter) continue;
     if (!done.has(cellKey(cell))) return cell;
   }
   return null;
