@@ -1,3 +1,4 @@
+/* advection_diffusion_2d — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include "../common/advdiff_core.h"
 #include <stdio.h>
 #include <string.h>
