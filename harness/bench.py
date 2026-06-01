@@ -492,6 +492,15 @@ def time_command(cmd: list[str], *, cwd: Path | None = None, runs: int = 6) -> T
     return _time_command_stats(cmd, cwd=cwd, runs=runs)
 
 
+
+
+def require_native_lang_dirs(spec: BenchSpec) -> None:
+    """Physics-codegen matrix: each tier-2 bench must ship rust/ + julia/ drivers."""
+    root = bench_dir(spec)
+    missing = [name for name in ("rust", "julia") if not (root / name).is_dir()]
+    if missing:
+        raise RuntimeError(f"{spec.name}: missing native lang dirs: {', '.join(missing)}")
+
 def build_native(spec: BenchSpec, bin_path: Path) -> None:
     """Shared C perf binary — cpp/rust/julia labels use identical machine code."""
     root = bench_dir(spec)
@@ -1041,12 +1050,23 @@ def verify_checksum_match(spec: BenchSpec, build_dir: Path) -> None:
 
 
 def run_verify_results(
-    specs: tuple[BenchSpec, ...], *, label: str, only: set[str] | None = None
+    specs: tuple[BenchSpec, ...],
+    *,
+    label: str,
+    only: set[str] | None = None,
+    require_native_lang: bool = False,
 ) -> int:
     specs = filter_specs(specs, only)
     """Verify numerical results only (no timing CSV update)."""
     failures: list[str] = []
     for spec in specs:
+        if require_native_lang:
+            try:
+                require_native_lang_dirs(spec)
+            except RuntimeError as exc:
+                failures.append(str(exc))
+                print(f"FAIL verify {spec.name}: {exc}", file=sys.stderr)
+                continue
         build_dir = REPO / "build" / "bench" / spec.name
         build_dir.mkdir(parents=True, exist_ok=True)
         if spec.name == "md_lennard_jones":
@@ -1143,6 +1163,11 @@ def main() -> int:
         action="store_true",
         help="scope benches to packages touched in git worktree",
     )
+    parser.add_argument(
+        "--require-native-lang",
+        action="store_true",
+        help="fail when rust/ or julia/ driver dirs are missing (physics-codegen matrix)",
+    )
     args = parser.parse_args()
 
     only: set[str] | None = None
@@ -1183,7 +1208,7 @@ def main() -> int:
             if args.tier == 4:
                 return 0
         if args.tier in (2, 12):
-            return run_verify_results(TIER2_BENCHES, label="tier-2", only=only)
+            return run_verify_results(TIER2_BENCHES, label="tier-2", only=only, require_native_lang=args.require_native_lang)
         if args.tier == 0:
             print("verify-results: use --tier 1, 2, 4, or 12", file=sys.stderr)
             return 1
