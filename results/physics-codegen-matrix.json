@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T07:56:34.380Z",
+  "generated_at": "2026-06-01T10:08:10.512Z",
   "pilot": false,
   "models_arm_a": [
     "default"
@@ -233,12 +233,12 @@
         "checksum": "417.54687693519276"
       },
       "llm": {
-        "input_tokens": 1387,
-        "output_tokens": 687,
-        "thinking_tokens": 307,
-        "thinking_tokens_estimated": true
+        "token_source": "agent",
+        "status": "finished",
+        "tool_calls": 0
       },
-      "harness_ok": true
+      "harness_ok": true,
+      "agent_status": "finished"
     },
     {
       "arm": "B",

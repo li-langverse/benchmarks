@@ -1,21 +1,53 @@
-# Native Julia driver — links C oracle via ccall on prebuilt shared object fallback.
-const BENCH_DIR = @__DIR__
-const CORE_C = joinpath(BENCH_DIR, "../common/wave_core.c")
+# Native 1D wave equation (leapfrog) — matches common/wave_core.c oracle.
+using Printf
 
-function run_native_verify()::Float64
-    build_dir = joinpath(BENCH_DIR, "..", "..", "..", "..", "build", "native-verify", "wave_equation_1d")
-    mkpath(build_dir)
-    bin = joinpath(build_dir, "wave_equation_1d_julia")
-    cc = get(ENV, "CC", "clang")
-    core = abspath(CORE_C)
-    main_c = joinpath(BENCH_DIR, "..", "cpp", "main.c")
-    cmd = `$cc -O3 -march=native -ffast-math $(main_c) $(core) -lm -o $(bin)`
-    run(cmd)
-    out = read(`$(bin) --verify`, String)
-    parse(Float64, strip(out))
+const N = 8192
+const STEPS = 400_000
+const C = 1.0
+const DX = 0.01
+const DT = 0.004
+const R = C * DT / DX
+const R2 = R * R
+
+function li_wave_1d_kernel()::Float64
+    u0 = Vector{Float64}(undef, N)
+    u1 = Vector{Float64}(undef, N)
+    u2 = Vector{Float64}(undef, N)
+    center = 0.5 * (N - 1) * DX
+    width = 0.15
+    @inbounds for i in 1:N
+        x = (i - 1) * DX
+        d = (x - center) / width
+        val = exp(-d * d)
+        u1[i] = val
+        u0[i] = val
+        u2[i] = val
+    end
+    u0[1] = 0.0
+    u0[N] = 0.0
+    u1[1] = 0.0
+    u1[N] = 0.0
+
+    @inbounds for _ in 1:STEPS
+        for i in 2:(N - 1)
+            u2[i] = 2.0 * u1[i] - u0[i] + R2 * (u1[i + 1] - 2.0 * u1[i] + u1[i - 1])
+        end
+        u2[1] = 0.0
+        u2[N] = 0.0
+        u0 .= u1
+        u1 .= u2
+    end
+
+    energy = 0.0
+    @inbounds for i in 2:(N - 1)
+        v = (u1[i] - u0[i]) / DT
+        du = (u1[i + 1] - u1[i - 1]) / (2.0 * DX)
+        energy += 0.5 * (v * v + C * C * du * du)
+    end
+    return energy
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    checksum = run_native_verify()
-    println("%.17g" % checksum)
+    checksum = li_wave_1d_kernel()
+    println(@sprintf("%.17g", checksum))
 end
