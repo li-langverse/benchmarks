@@ -1,23 +1,31 @@
-# Native Julia driver — links C oracle via prebuilt verify binary.
+# 1D upwind advection smoke — matches common/euler_fluid_core.c oracle.
 using Printf
 
-const BENCH_DIR = @__DIR__
-const CORE_C = joinpath(BENCH_DIR, "../common/euler_fluid_core.c")
+const N = 64
+const STEPS = 2000
+const DT = 0.001
+const DX = 0.05
+const C = 0.5
 
-function run_native_verify()::Float64
-    build_dir = joinpath(BENCH_DIR, "..", "..", "..", "..", "build", "native-verify", "euler_fluid_2d")
-    mkpath(build_dir)
-    bin = joinpath(build_dir, "euler_fluid_2d_julia")
-    cc = get(ENV, "CC", "clang")
-    core = abspath(CORE_C)
-    main_c = joinpath(BENCH_DIR, "..", "cpp", "main.c")
-    cmd = `$cc -O3 -march=native -ffast-math $(main_c) $(core) -lm -o $(bin)`
-    run(cmd)
-    out = read(`$(bin) --verify`, String)
-    parse(Float64, strip(out))
+function li_euler_fluid_2d_kernel()::Float64
+    u = Vector{Float64}(undef, N)
+    un = Vector{Float64}(undef, N)
+    @inbounds for i in 0:(N - 1)
+        u[i + 1] = 0.5 + 0.5 * sin(0.2 * i)
+        un[i + 1] = u[i + 1]
+    end
+    @inbounds for _ in 1:STEPS
+        for i in 1:(N - 2)
+            un[i + 1] = u[i + 1] - C * DT / DX * (u[i + 1] - u[i])
+        end
+        @inbounds for i in 0:(N - 1)
+            u[i + 1] = un[i + 1]
+        end
+    end
+    return u[N ÷ 2 + 1]
 end
 
 if abspath(PROGRAM_FILE) == @__FILE__
-    checksum = run_native_verify()
+    checksum = li_euler_fluid_2d_kernel()
     println(@sprintf("%.17g", checksum))
 end
