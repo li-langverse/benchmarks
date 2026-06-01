@@ -589,6 +589,31 @@
       },
       "harness_ok": true,
       "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0,
+        "thinking_chars": 0,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 0,
+        "token_source": "agent-verified",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
     }
   ]
 }
