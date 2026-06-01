@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T16:42:55Z",
+  "generated_at": "2026-06-01T18:39:17.055Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -875,25 +875,16 @@
         "checksum": "363.24887451428492"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 145542,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 2785,
+        "thinking_chars": 11138,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 79,
+        "token_source": "sdk-estimated",
         "model_label": "default",
-        "status": "finished"
-      },
-      "harness_ok": true,
-      "agent_status": "finished"
-    },
-    {
-      "arm": "B",
-      "model": "default",
-      "bench_id": "fdtd_waveguide_2d",
-      "lang": "cpp",
-      "validity": {
-        "verify_within_1ulp": true,
-        "checksum": "1.0096662291650043"
-      },
-      "llm": {
-        "token_source": "agent",
-        "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
@@ -909,8 +900,16 @@
         "checksum": "363.24887451428492"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 102010,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 740,
+        "thinking_chars": 2958,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 49,
+        "token_source": "sdk-estimated",
         "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
@@ -926,8 +925,16 @@
         "checksum": "363.24887451428492"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 126478,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1474,
+        "thinking_chars": 5896,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 64,
+        "token_source": "sdk-estimated",
         "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
@@ -943,14 +950,39 @@
         "checksum": "363.24887451428492"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 186483,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
-        "thinking_tokens_estimated": false,
-        "tool_calls": 0,
-        "token_source": "code_implementer",
+        "thinking_tokens": 1892,
+        "thinking_chars": 7566,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 96,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "fdtd_waveguide_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "duration_ms": 157636,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1860,
+        "thinking_chars": 7438,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 84,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
         "status": "finished"
@@ -968,20 +1000,20 @@
         "checksum": "1.0096662291650043"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 211038,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
-        "thinking_tokens_estimated": false,
-        "tool_calls": 0,
-        "token_source": "code_implementer",
+        "thinking_tokens": 2529,
+        "thinking_chars": 10114,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 89,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
-        "status": "finished"
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
@@ -993,14 +1025,14 @@
         "checksum": "1.0096662291650043"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 164420,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
-        "thinking_tokens_estimated": false,
-        "tool_calls": 0,
-        "token_source": "code_implementer",
+        "thinking_tokens": 4183,
+        "thinking_chars": 16732,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 67,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
         "status": "finished"
@@ -1018,20 +1050,20 @@
         "checksum": "1.0096662291650043"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 127134,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "thinking_chars": 0,
-        "thinking_tokens_estimated": false,
-        "tool_calls": 0,
-        "token_source": "code_implementer",
+        "thinking_tokens": 1665,
+        "thinking_chars": 6658,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 49,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
-        "status": "finished"
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
@@ -1043,8 +1075,16 @@
         "checksum": "11.712397238151269"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 114543,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 2813,
+        "thinking_chars": 11252,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 62,
+        "token_source": "sdk-estimated",
         "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
@@ -1060,12 +1100,20 @@
         "checksum": "11.712397238151269"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 136707,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1773,
+        "thinking_chars": 7090,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 74,
+        "token_source": "sdk-estimated",
         "model_label": "default",
-        "status": "finished"
+        "sdk_model": "default",
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
@@ -1077,12 +1125,20 @@
         "checksum": "11.712397238151269"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 112383,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1654,
+        "thinking_chars": 6616,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 69,
+        "token_source": "sdk-estimated",
         "model_label": "default",
-        "status": "finished"
+        "sdk_model": "default",
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
@@ -1094,12 +1150,20 @@
         "checksum": "11.712397238151269"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 244429,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 3484,
+        "thinking_chars": 13936,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 116,
+        "token_source": "sdk-estimated",
         "model_label": "default",
-        "status": "finished"
+        "sdk_model": "default",
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
@@ -1111,8 +1175,16 @@
         "checksum": "0.7219958512987783"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 92706,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 987,
+        "thinking_chars": 3946,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 59,
+        "token_source": "sdk-estimated",
         "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
@@ -1128,12 +1200,20 @@
         "checksum": "0.7219958512987783"
       },
       "llm": {
-        "token_source": "agent",
+        "duration_ms": 134346,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1972,
+        "thinking_chars": 7886,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 80,
+        "token_source": "sdk-estimated",
         "model_label": "default",
-        "status": "finished"
+        "sdk_model": "default",
+        "status": "incomplete"
       },
       "harness_ok": true,
-      "agent_status": "finished"
+      "agent_status": "incomplete"
     },
     {
       "arm": "B",
@@ -1145,25 +1225,13 @@
         "checksum": "0.7219958512987783"
       },
       "llm": {
+        "duration_ms": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0,
         "token_source": "agent",
         "model_label": "default",
-        "status": "finished"
-      },
-      "harness_ok": true,
-      "agent_status": "finished"
-    },
-    {
-      "arm": "B",
-      "model": "default",
-      "bench_id": "euler_fluid_2d",
-      "lang": "li",
-      "validity": {
-        "verify_within_1ulp": true,
-        "checksum": "0.7219958512987783"
-      },
-      "llm": {
-        "token_source": "agent",
-        "model_label": "default",
+        "sdk_model": "default",
         "status": "finished"
       },
       "harness_ok": true,
