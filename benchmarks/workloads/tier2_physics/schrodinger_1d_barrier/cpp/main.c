@@ -1,14 +1,17 @@
+/* schrodinger_1d_barrier — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include <stdio.h>
+#include <string.h>
 
-extern void li_schrodinger_1d_barrier_kernel(void);
-extern double li_schrodinger_1d_barrier_checksum(void);
+void li_schrodinger_1d_barrier_kernel(void);
+double li_schrodinger_1d_barrier_checksum(void);
 
 int main(int argc, char** argv) {
-  if (argc > 1 && argv[1][0] == '-' && argv[1][1] == '-') {
-    li_schrodinger_1d_barrier_kernel();
-    printf("%.17g\n", li_schrodinger_1d_barrier_checksum());
+  li_schrodinger_1d_barrier_kernel();
+  const double checksum = li_schrodinger_1d_barrier_checksum();
+  if (argc > 1 && strcmp(argv[1], "--verify") == 0) {
+    printf("%.17g\n", checksum);
     return 0;
   }
-  li_schrodinger_1d_barrier_kernel();
+  (void)checksum;
   return 0;
 }

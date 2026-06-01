@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T15:55:00.000Z",
+  "generated_at": "2026-06-01T16:25:04.000Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -1028,6 +1028,23 @@
         "token_source": "code_implementer",
         "model_label": "default",
         "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "schrodinger_1d_barrier",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
         "status": "finished"
       },
       "harness_ok": true,
