@@ -26,6 +26,8 @@ jobs:
   setup-lic-linux:
     if: github.event_name != 'workflow_dispatch' || inputs.parallel_linux_tiers
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/li-langverse/lic-ci:ubuntu24-llvm22
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
@@ -39,10 +41,6 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
-      - name: Install LLVM 22 and bench deps
-        run: |
-          chmod +x lic/scripts/ci-install-llvm.sh
-          sudo LI_LLVM_MAJOR=22 bash lic/scripts/ci-install-llvm.sh
       - uses: actions/cache@v4
         id: lic-build-cache
         with:
@@ -205,10 +203,8 @@ jobs:
           llvm_prefix="$(brew --prefix llvm@22)"
           test -f "${llvm_prefix}/lib/cmake/llvm/LLVMConfig.cmake"
           echo "LLVM_DIR=${llvm_prefix}/lib/cmake/llvm" >> "$GITHUB_ENV"
-          # Xcode clang for compile; Homebrew llvm@22 only for LLVM_DIR (see lic/scripts/local-ci.sh).
-          echo "CC=clang" >> "$GITHUB_ENV"
-          echo "CXX=clang++" >> "$GITHUB_ENV"
-          clang --version
+          echo "LLVM22_PREFIX=${llvm_prefix}" >> "$GITHUB_ENV"
+          "${llvm_prefix}/bin/clang" --version
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -217,8 +213,14 @@ jobs:
           SKIP_TIER5_HTTP: "1"
           SKIP_EXPLOITS: "1"
         run: |
+          llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
           chmod +x scripts/*.sh lic/scripts/*.sh
-          ./scripts/setup-lic-for-bench.sh
+          export LLVM_DIR="${LLVM_DIR}"
+          CC=clang CXX=clang++ ./scripts/setup-lic-for-bench.sh
+          export PATH="${llvm_prefix}/bin:${PATH}"
+          export CC="${llvm_prefix}/bin/clang"
+          export CXX="${llvm_prefix}/bin/clang++"
+          "${CC}" --version
           rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
@@ -246,8 +248,14 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
+      - uses: actions/cache@v4
+        with:
+          path: .llvm-cache
+          key: llvm-win-22.1.0-${{ runner.os }}-${{ runner.arch }}
       - name: Install LLVM 22 + build tools (Windows)
         shell: bash
+        env:
+          MSYS2_ARG_CONV_EXCL: "*"
         run: |
           choco install cmake ninja -y
           chmod +x scripts/ci-install-llvm-windows.sh
