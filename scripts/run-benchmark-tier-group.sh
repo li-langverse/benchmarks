@@ -21,7 +21,7 @@ SKIP_BUILD="${SKIP_BUILD:-1}"
 SKIP_TIER0="${SKIP_TIER0:-1}"
 SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}"
 
-export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/tier-${GROUP}.csv}"
+export BENCHMARKS_CSV="$ROOT/results/tier-${GROUP}.csv"
 export LIC_ROOT LIS_ROOT LI_REPO_ROOT="$LIC_ROOT"
 export PATH="$LIC_ROOT/build/compiler/lic:$PATH"
 export LIC="$LIC_ROOT/build/compiler/lic/lic"

@@ -4,12 +4,10 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
 export LIC_ROOT LIS_ROOT="${LIS_ROOT:-$ROOT/../lis}"
-export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
 export LI_REPO_ROOT="$LIC_ROOT"
 export BENCH_JOBS="${BENCH_JOBS:-$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)}"
 export BENCH_MIN_RUNS="${BENCH_MIN_RUNS:-20}"
 export BENCH_ADAPTIVE_RUNS="${BENCH_ADAPTIVE_RUNS:-1}"
-mkdir -p "$(dirname "$BENCHMARKS_CSV")"
 
 if command -v clang-22 >/dev/null 2>&1; then
   export CC="${CC:-clang-22}"
@@ -30,7 +28,11 @@ esac
 
 export BENCH_NIGHTLY=1
 if [[ "${1:-}" == "tier" && -n "${2:-}" ]]; then
+  export BENCHMARKS_CSV="$ROOT/results/tier-${2}.csv"
+  mkdir -p "$(dirname "$BENCHMARKS_CSV")"
   exec "$ROOT/scripts/run-benchmark-tier-group.sh" "$2"
 fi
+export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
+mkdir -p "$(dirname "$BENCHMARKS_CSV")"
 exec "$ROOT/scripts/run-full-benchmark-suite.sh"
 
