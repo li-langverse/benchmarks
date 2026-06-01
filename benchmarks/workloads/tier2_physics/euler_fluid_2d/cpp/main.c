@@ -1,14 +1,14 @@
+#include "../common/euler_fluid_core.h"
 #include <stdio.h>
-
-extern void li_euler_fluid_2d_kernel(void);
-extern double li_euler_fluid_2d_checksum(void);
+#include <string.h>
 
 int main(int argc, char** argv) {
-  if (argc > 1 && argv[1][0] == '-' && argv[1][1] == '-') {
-    li_euler_fluid_2d_kernel();
-    printf("%.17g\n", li_euler_fluid_2d_checksum());
+  li_euler_fluid_2d_kernel();
+  const double checksum = li_euler_fluid_2d_checksum();
+  if (argc > 1 && strcmp(argv[1], "--verify") == 0) {
+    printf("%.17g\n", checksum);
     return 0;
   }
-  li_euler_fluid_2d_kernel();
+  (void)checksum;
   return 0;
 }
