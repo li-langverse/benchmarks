@@ -918,7 +918,7 @@ def launch_traefik(prefix: Path, static_conf: str, port: int) -> subprocess.Pope
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-    if not wait_for_port(port, timeout_sec=8.0):
+    if not wait_for_port(port, timeout_sec=15.0):
         proc.terminate()
         try:
             proc.wait(timeout=2)

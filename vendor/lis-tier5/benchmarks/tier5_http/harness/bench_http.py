@@ -674,8 +674,12 @@ def bench_tls_scenario(
                         rows.append(_harness_row(name, "li_tls_no_listen_hs"))
                     else:
                         hs_dur = min(duration, 5)
-                        hs_rps = openssl_s_client_handshake_rps(port, hs_dur)
-                        log_bits.append(f"--- li tls hs {spec.id} (s_client restart) ---\n{hs_rps}")
+                        hs_method = "openssl s_time https li_restart"
+                        hs_rps = openssl_https_rps(port, hs_dur)
+                        if hs_rps is None or hs_rps <= 0:
+                            hs_rps = openssl_s_client_handshake_rps(port, hs_dur)
+                            hs_method = "openssl s_client https li_restart"
+                        log_bits.append(f"--- li tls hs {spec.id} ({hs_method}) ---\n{hs_rps}")
                         if hs_rps is not None and hs_rps > 0:
                             rows.append(
                                 {
@@ -688,7 +692,7 @@ def bench_tls_scenario(
                                     "unit": "conn/s",
                                     "git_sha": git_sha_short(),
                                     "cpu_model": cpu_model(),
-                                    "flags": f"{cert_flags} openssl s_client https li_restart",
+                                    "flags": f"{cert_flags} {hs_method}",
                                 }
                             )
             finally:
