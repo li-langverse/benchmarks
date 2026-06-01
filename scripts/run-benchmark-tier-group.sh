@@ -145,7 +145,7 @@ esac
 
 
 _lic_csv="$LIC_ROOT/benchmarks/results/latest.csv"
-if [[ ! -s "$BENCHMARKS_CSV" ]] && [[ -s "$_lic_csv" ]]; then
+if [[ "${BENCH_NIGHTLY:-0}" != "1" ]] && [[ ! -s "$BENCHMARKS_CSV" ]] && [[ -s "$_lic_csv" ]]; then
   cp "$_lic_csv" "$BENCHMARKS_CSV"
   log "copied harness CSV from $_lic_csv"
 fi

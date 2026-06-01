@@ -26,7 +26,7 @@ class TimingStats:
 def host_os_tag() -> str:
     sys_name = platform.system().lower()
     if sys_name == "darwin":
-        return "darwin"
+        return "macos"
     if sys_name == "windows":
         return "windows"
     if sys_name == "linux":

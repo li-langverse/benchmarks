@@ -1017,8 +1017,9 @@ def append_benchmark_summary_rows(
     validity_source: str,
     primary_status: str | None = None,
 ) -> None:
-    """Emit one summary row per platform chart for tier 0/1; else primary only."""
-    if tier_le_1(cfg):
+    """Emit one summary row per platform chart when multi-OS reporting is enabled."""
+    distinct_os = {c.get("os") for c in bench_charts if c.get("os")}
+    if tier_le_1(cfg) or len(distinct_os) > 1:
         for chart in bench_charts:
             os_name = chart.get("os", "linux")
             scoped = rows_for_bench_os(raw, bench_id, cfg, os_name)
