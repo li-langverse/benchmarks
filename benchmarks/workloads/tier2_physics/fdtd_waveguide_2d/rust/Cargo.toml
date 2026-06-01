@@ -1,0 +1,9 @@
+[package]
+name = "fdtd-waveguide-2d"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[build-dependencies]
+cc = "1"
