@@ -436,8 +436,6 @@ def ratio_li_vs_ref(
     ratio = li_val / ref_val
     if not lower_is_better and ratio > 0:
         ratio = 1.0 / ratio
-    if metric in ("rps", "throughput", "queries_per_sec") and ratio > 0:
-        ratio = 1.0 / ratio
     return ratio
 
 

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { HonestyCallout } from "@/components/bench/honesty-callout";
 import { LangsTable } from "@/components/bench/langs-table";
 import { PerfRelativeBars } from "@/components/bench/perf-relative-bars";
+import { PerfRelativeBarsMultiOs } from "@/components/bench/perf-relative-bars-multi-os";
 import { OsTable } from "@/components/bench/os-table";
 import { PerfNotClaimable } from "@/components/bench/perf-not-claimable";
 import { NumericValidityPanel } from "@/components/bench/numeric-validity-panel";
@@ -36,6 +37,15 @@ export default async function BenchPage({ params }: PageProps) {
   const row = findRow(summary, id) ?? variants[0];
   if (!row) notFound();
   const series = getLangSeries(summary, row);
+  const seriesByOs: Record<string, typeof series> = {};
+  const sotaLangByOs: Record<string, string | null | undefined> = {};
+  for (const v of variants) {
+    const os = v.os ?? "unknown";
+    if (!os || os === "unknown") continue;
+    seriesByOs[os] = getLangSeries(summary, v);
+    sotaLangByOs[os] = v.sota_ref_lang ?? v.sota_lang;
+  }
+  const multiOsBars = Object.keys(seriesByOs).length >= 2;
   const sourceUrl = githubTreeUrl(row.repo, row.path);
   const phText = row.ph_ids.length > 0 ? row.ph_ids.join(", ") : "—";
   const deltas = deltasForBenchmark(loadHistoryIndex(), id);
@@ -197,13 +207,23 @@ export default async function BenchPage({ params }: PageProps) {
             Compare oracle: <code>{row.compare_oracle}</code>
           </p>
         ) : null}
-        <PerfRelativeBars
-          series={series}
-          sotaLang={row.sota_ref_lang ?? row.sota_lang}
-          lowerIsBetter={lowerIsBetter}
-          claimable={perfClaimable}
-          pending={row.pending}
-        />
+        {multiOsBars ? (
+          <PerfRelativeBarsMultiOs
+            seriesByOs={seriesByOs}
+            sotaLangByOs={sotaLangByOs}
+            lowerIsBetter={lowerIsBetter}
+            claimable={perfClaimable}
+            pending={row.pending}
+          />
+        ) : (
+          <PerfRelativeBars
+            series={series}
+            sotaLang={row.sota_ref_lang ?? row.sota_lang}
+            lowerIsBetter={lowerIsBetter}
+            claimable={perfClaimable}
+            pending={row.pending}
+          />
+        )}
 
         <h3 style={{ fontSize: "1rem", marginTop: "1.5rem", color: "var(--text)" }}>
           Absolute measurements
