@@ -19,15 +19,33 @@ const OUT =
   process.env.PHYSICS_CODEGEN_RESULTS ||
   path.join(BENCH_ROOT, "results", "physics-codegen-matrix.json");
 
-function loadDone() {
-  if (!existsSync(OUT)) return new Set();
+function loadMatrix() {
+  if (!existsSync(OUT)) return { done: new Set(), scope: null };
   const data = JSON.parse(readFileSync(OUT, "utf8"));
   const rows = data.rows || [];
-  return new Set(
+  const done = new Set(
     rows
       .filter((r) => r.validity?.verify_within_1ulp && r.bench_id && r.lang)
       .map((r) => cellKey(r)),
   );
+  if (!rows.length) return { done, scope: null };
+  const modelsArmA = (data.models_arm_a?.length
+    ? data.models_arm_a
+    : [...new Set(rows.filter((r) => r.arm === "A").map((r) => r.model).filter(Boolean))]
+  ).filter(Boolean);
+  const modelArmB =
+    data.model_arm_b?.trim() || rows.find((r) => r.arm === "B")?.model || null;
+  return {
+    done,
+    scope: { modelsArmA, modelArmB },
+  };
+}
+
+function cellInScope(cell, scope) {
+  if (!scope) return true;
+  if (cell.arm === "A") return scope.modelsArmA.includes(cell.model);
+  if (cell.arm === "B") return !scope.modelArmB || cell.model === scope.modelArmB;
+  return true;
 }
 
 function pickNextCell() {
@@ -38,11 +56,12 @@ function pickNextCell() {
       return { arm, model, bench_id, lang };
     }
   }
-  const done = loadDone();
+  const { done, scope } = loadMatrix();
   const langFilter = process.env.PHYSICS_CODEGEN_LANG?.trim();
   const armFilter = process.env.PHYSICS_CODEGEN_ARM?.trim();
   for (const cell of iterateCells()) {
     if (!cell.bench_id) continue;
+    if (!cellInScope(cell, scope)) continue;
     if (langFilter && cell.lang !== langFilter) continue;
     if (armFilter && cell.arm !== armFilter) continue;
     if (!done.has(cellKey(cell))) return cell;
