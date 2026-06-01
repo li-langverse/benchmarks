@@ -22,20 +22,61 @@ export const LANGS = ["cpp", "rust", "julia", "li"];
 
 export function pilotMode() {
   const raw = process.env.PHYSICS_CODEGEN_PILOT?.trim().toLowerCase();
-  return raw !== "0" && raw !== "false";
+  return raw === "1" || raw === "true" || raw === "yes";
 }
 
 export function modelsForArmA() {
   const raw = process.env.PHYSICS_CODEGEN_MODELS?.trim();
   if (raw) return raw.split(",").map((s) => s.trim()).filter(Boolean);
-  return ["composer-2.5-fast", "cursor-auto", "qwen-3.5-9b"];
+  return ["default", "qwen-3.5-9b", "qwen-3.5-20b"];
 }
 
 export function fixedModelArmB() {
+  const explicit = process.env.PHYSICS_CODEGEN_ARM_B_MODEL?.trim();
+  if (explicit) return explicit;
   const models = modelsForArmA();
-  return process.env.PHYSICS_CODEGEN_ARM_B_MODEL?.trim() || models[0] || "composer-2.5-fast";
+  return models.find((m) => m === "default") || models[0] || "default";
 }
 
 export function benches() {
   return pilotMode() ? PILOT_BENCHES : FULL_BENCHES;
+}
+
+
+export function sdkModelId(label) {
+  const key = label.trim();
+  const envKey = `PHYSICS_CODEGEN_MODEL_${key.replace(/[^a-zA-Z0-9]/g, "_").toUpperCase()}`;
+  if (process.env[envKey]?.trim()) return process.env[envKey].trim();
+  const map = {
+    default: process.env.PHYSICS_CODEGEN_MODEL_DEFAULT?.trim() || "default",
+    "qwen-3.5-9b": process.env.PHYSICS_CODEGEN_MODEL_QWEN_9B?.trim() || "qwen-3.5-9b",
+    "qwen-3.5-20b": process.env.PHYSICS_CODEGEN_MODEL_QWEN_20B?.trim() || "qwen-3.5-20b",
+  };
+  return map[key] || key;
+}
+
+export function cellKey(cell) {
+  return `${cell.arm}|${cell.model}|${cell.bench_id}|${cell.lang}`;
+}
+
+export function* iterateCells() {
+  const benchList = benches();
+  for (const model of modelsForArmA()) {
+    for (const bench_id of benchList) {
+      yield { arm: "A", model, bench_id, lang: "li" };
+    }
+  }
+  const modelB = fixedModelArmB();
+  for (const bench_id of benchList) {
+    for (const lang of LANGS) {
+      yield { arm: "B", model: modelB, bench_id, lang };
+    }
+  }
+}
+
+export function expectedRowCount() {
+  const n = benches().length;
+  const models = modelsForArmA();
+  if (pilotMode()) return models.length * n + n * LANGS.length;
+  return models.length * n + n * LANGS.length;
 }

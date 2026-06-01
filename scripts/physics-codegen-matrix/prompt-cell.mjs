@@ -1,5 +1,10 @@
 /** Build SDK prompt for one matrix cell. */
 export function buildCellPrompt({ arm, bench_id: benchId, lang, model }) {
+  if (!benchId || String(benchId) === "undefined") {
+    throw new Error(
+      `buildCellPrompt: missing bench_id (arm=${arm} model=${model} lang=${lang})`,
+    );
+  }
   const langDir =
     lang === "cpp"
       ? "cpp"
