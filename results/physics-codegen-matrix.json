@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T15:41:50.120Z",
+  "generated_at": "2026-06-01T15:42:15.903Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -904,6 +904,23 @@
       "model": "default",
       "bench_id": "combustion_passive",
       "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "token_source": "agent",
+        "model_label": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "julia",
       "validity": {
         "verify_within_1ulp": true,
         "checksum": "363.24887451428492"
