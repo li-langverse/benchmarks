@@ -1,3 +1,4 @@
+/* sph_dam_break_2d — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include "../common/sph_dam_core.h"
 #include <stdio.h>
 #include <string.h>
