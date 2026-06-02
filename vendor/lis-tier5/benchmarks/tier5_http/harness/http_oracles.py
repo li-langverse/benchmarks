@@ -918,7 +918,7 @@ def launch_traefik(prefix: Path, static_conf: str, port: int) -> subprocess.Pope
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
     )
-    if not wait_for_port(port, timeout_sec=8.0):
+    if not wait_for_port(port, timeout_sec=15.0):
         proc.terminate()
         try:
             proc.wait(timeout=2)
@@ -1001,7 +1001,7 @@ def write_li_tls_runtime_conf(
         f"tls_manual_cert={cert.resolve()}",
         f"tls_manual_key={key.resolve()}",
         "m2_tls_terminate=1",
-        "m2_http2_enabled=1",
+        f"m2_http2_enabled={os.environ.get('LI_HTTPD_M2_HTTP2', '1')}",
     ]
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 

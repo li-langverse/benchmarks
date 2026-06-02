@@ -502,6 +502,41 @@ def openssl_https_rps(port: int, duration_sec: int) -> float | None:
     return None
 
 
+def openssl_s_client_handshake_rps(port: int, duration_sec: int) -> float | None:
+    """Sequential TLS handshakes via openssl s_client (li-httpd-safe)."""
+    openssl = shutil.which("openssl")
+    if not openssl:
+        return None
+    start = time.time()
+    deadline = start + max(duration_sec, 1)
+    count = 0
+    cmd = [
+        openssl,
+        "s_client",
+        "-connect",
+        f"127.0.0.1:{port}",
+        "-brief",
+    ]
+    while time.time() < deadline:
+        try:
+            proc = subprocess.run(
+                cmd,
+                stdin=subprocess.DEVNULL,
+                capture_output=True,
+                text=True,
+                timeout=5,
+                check=False,
+            )
+        except subprocess.TimeoutExpired:
+            continue
+        blob = (proc.stdout or "") + (proc.stderr or "")
+        ok = "CONNECTION ESTABLISHED" in blob or "Verify return code" in blob
+        if ok:
+            count += 1
+    elapsed = max(time.time() - start, 0.001)
+    return count / elapsed if count > 0 else None
+
+
 def verify_https_get(port: int, path: str = "/") -> bool:
     import ssl
     import urllib.error
@@ -639,8 +674,12 @@ def bench_tls_scenario(
                         rows.append(_harness_row(name, "li_tls_no_listen_hs"))
                     else:
                         hs_dur = min(duration, 5)
+                        hs_method = "openssl s_time https li_restart"
                         hs_rps = openssl_https_rps(port, hs_dur)
-                        log_bits.append(f"--- li tls hs {spec.id} (restart) ---\n{hs_rps}")
+                        if hs_rps is None or hs_rps <= 0:
+                            hs_rps = openssl_s_client_handshake_rps(port, hs_dur)
+                            hs_method = "openssl s_client https li_restart"
+                        log_bits.append(f"--- li tls hs {spec.id} ({hs_method}) ---\n{hs_rps}")
                         if hs_rps is not None and hs_rps > 0:
                             rows.append(
                                 {
@@ -653,7 +692,7 @@ def bench_tls_scenario(
                                     "unit": "conn/s",
                                     "git_sha": git_sha_short(),
                                     "cpu_model": cpu_model(),
-                                    "flags": f"{cert_flags} openssl s_time https li_restart",
+                                    "flags": f"{cert_flags} {hs_method}",
                                 }
                             )
             finally:
