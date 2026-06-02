@@ -332,6 +332,7 @@ jobs:
       - name: Dashboard invariants
         env:
           MEASUREMENT_STRICT_PARITY: "1"
+          MULTI_OS_STRICT: "1"
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py

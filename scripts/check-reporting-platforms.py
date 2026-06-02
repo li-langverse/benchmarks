@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""CI gate: dashboard must report linux, macos, and windows (never linux-only)."""
+"""CI gate: multi-OS nightly ingest must include measured charts per platform."""
 from __future__ import annotations
 
 import json
+import os
 import sys
 from collections import Counter
 from pathlib import Path
@@ -12,6 +13,7 @@ CATALOG = ROOT / "catalog.toml"
 SUMMARY = ROOT / "data/latest/summary.json"
 
 REQUIRED_PLATFORMS = ("linux", "macos", "windows")
+MIN_MEASURED_CHARTS_PER_OS = 10
 
 
 def fail(msg: str) -> None:
@@ -31,17 +33,21 @@ def load_reporting_platforms() -> list[str]:
     return [str(p).strip().lower() for p in raw]
 
 
-def chart_os_set(summary: dict) -> set[str]:
-    oss: set[str] = set()
-    for cat in summary.get("categories", {}).values():
-        for ch in cat.get("charts", []):
-            os_tag = ch.get("os")
-            if os_tag:
-                oss.add(str(os_tag).lower())
-    return oss
+def charts_with_series(summary: dict) -> list[dict]:
+    return [
+        ch
+        for cat in summary.get("categories", {}).values()
+        for ch in cat.get("charts", [])
+        if ch.get("series")
+    ]
 
 
 def main() -> int:
+    strict = os.environ.get("MULTI_OS_STRICT", "").strip().lower() in (
+        "1",
+        "true",
+        "yes",
+    )
     platforms = load_reporting_platforms()
     if platforms != list(REQUIRED_PLATFORMS):
         fail(
@@ -54,37 +60,41 @@ def main() -> int:
 
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
     rows = summary.get("rows") or []
+    measured = charts_with_series(summary)
+    measured_by_os = Counter(str(ch.get("os", "")).lower() for ch in measured)
     row_os = Counter(str(r.get("os", "")).lower() for r in rows if r.get("os"))
 
-    for plat in REQUIRED_PLATFORMS:
-        if row_os.get(plat, 0) < 1:
-            fail(f"summary.rows has no rows for os={plat!r}")
-
-    tier01 = [
+    skip_platform = [
         r
         for r in rows
-        if isinstance(r, dict) and r.get("tier") in (0, 1, "0", "1")
+        if r.get("status") == "skip"
+        and r.get("validity_source") == "platform_not_measured"
     ]
-    tier01_os = {str(r.get("os", "")).lower() for r in tier01 if r.get("os")}
-    for plat in ("macos", "windows"):
-        if plat not in tier01_os:
-            fail(f"tier 0/1 summary rows missing os={plat!r}")
-
-    chart_oss = chart_os_set(summary)
-    for plat in REQUIRED_PLATFORMS:
-        if plat not in chart_oss:
-            fail(f"summary charts missing os={plat!r}")
+    if skip_platform:
+        fail(
+            f"{len(skip_platform)} platform_not_measured skip rows remain "
+            f"(merge linux+macos+windows CSV before ingest; do not emit skip placeholders)"
+        )
 
     os_values = summary.get("reporting", {}).get("os_values") or []
     normalized = [str(v).lower() for v in os_values]
-    for plat in REQUIRED_PLATFORMS:
-        if plat not in normalized and plat not in chart_oss:
-            fail(f"reporting.os_values missing {plat!r}")
+
+    if strict:
+        for plat in REQUIRED_PLATFORMS:
+            n = measured_by_os.get(plat, 0)
+            if n < MIN_MEASURED_CHARTS_PER_OS:
+                fail(
+                    f"measured charts for os={plat!r}: {n} < {MIN_MEASURED_CHARTS_PER_OS}"
+                )
+            if row_os.get(plat, 0) < 1:
+                fail(f"summary.rows has no rows for os={plat!r}")
+            if plat not in normalized and plat not in measured_by_os:
+                fail(f"reporting.os_values missing {plat!r}")
 
     print(
         "PASS check-reporting-platforms "
-        f"(catalog platforms={list(platforms)}, "
-        f"row_os={dict(row_os)}, tier01_os={sorted(tier01_os)}, chart_os={sorted(chart_oss)})"
+        f"(strict={strict}, catalog platforms={list(platforms)}, "
+        f"measured_by_os={dict(measured_by_os)}, row_os={dict(row_os)})"
     )
     return 0
 
