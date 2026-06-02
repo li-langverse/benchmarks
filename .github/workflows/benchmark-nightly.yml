@@ -205,10 +205,8 @@ jobs:
           llvm_prefix="$(brew --prefix llvm@22)"
           test -f "${llvm_prefix}/lib/cmake/llvm/LLVMConfig.cmake"
           echo "LLVM_DIR=${llvm_prefix}/lib/cmake/llvm" >> "$GITHUB_ENV"
-          # Xcode clang for compile; Homebrew llvm@22 only for LLVM_DIR (see lic/scripts/local-ci.sh).
-          echo "CC=clang" >> "$GITHUB_ENV"
-          echo "CXX=clang++" >> "$GITHUB_ENV"
-          clang --version
+          echo "LLVM22_PREFIX=${llvm_prefix}" >> "$GITHUB_ENV"
+          "${llvm_prefix}/bin/clang" --version
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -217,8 +215,14 @@ jobs:
           SKIP_TIER5_HTTP: "1"
           SKIP_EXPLOITS: "1"
         run: |
+          llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
           chmod +x scripts/*.sh lic/scripts/*.sh
-          ./scripts/setup-lic-for-bench.sh
+          export LLVM_DIR="${LLVM_DIR}"
+          CC=clang CXX=clang++ ./scripts/setup-lic-for-bench.sh
+          export PATH="${llvm_prefix}/bin:${PATH}"
+          export CC="${llvm_prefix}/bin/clang"
+          export CXX="${llvm_prefix}/bin/clang++"
+          "${CC}" --version
           rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
@@ -246,10 +250,25 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
+      - uses: ilammy/msvc-dev-cmd@v1
+      - uses: actions/cache@v4
+        with:
+          path: .llvm-cache
+          key: llvm-win-22.1.0-${{ runner.os }}-${{ runner.arch }}
       - name: Install LLVM 22 + build tools (Windows)
         shell: bash
+        env:
+          MSYS2_ARG_CONV_EXCL: "*"
         run: |
-          choco install cmake ninja -y
+          choco install cmake ninja llvm --version=22.1.0 -y || choco install cmake ninja llvm -y
+          echo "C:/Program Files/LLVM/bin" >> "$GITHUB_PATH"
+          set -euo pipefail
+          for d in "/c/Program Files/LLVM/lib/cmake/llvm" "/c/Program Files/LLVM/lib/cmake/llvm-22"; do
+            if [[ -f "$d/LLVMConfig.cmake" ]]; then
+              echo "LLVM_DIR=$d" >> "$GITHUB_ENV"
+              exit 0
+            fi
+          done
           chmod +x scripts/ci-install-llvm-windows.sh
           ./scripts/ci-install-llvm-windows.sh
       - name: Run core benchmarks (Windows)
