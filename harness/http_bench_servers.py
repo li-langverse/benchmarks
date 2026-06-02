@@ -22,17 +22,13 @@ from http_bench_toml import (
     scenario_backend_port,
     write_scenario_httpd_toml,
 )
+from httpd_flatten import flatten_httpd_config, httpd_config_pipeline
 
 NGINX_CANDIDATES = (
     "nginx",
     "/usr/sbin/nginx",
     "/usr/local/sbin/nginx",
 )
-
-
-def httpd_config_pipeline() -> str:
-    v = str(os.environ.get("LI_HTTPD_CONFIG_PIPELINE", "python")).strip().lower()
-    return v if v in ("python", "li") else "python"
 
 
 def resolve_nginx_binary() -> str | None:
@@ -217,19 +213,11 @@ def prepare_li_httpd_conf(name: str, port: int, *, cfg: dict[str, Any] | None = 
         toml_path = work / "httpd.toml"
         write_scenario_httpd_toml(merged, front_port=port, backend_port=backend_port, out_path=toml_path)
         conf = work / "runtime.conf"
-        pipeline = httpd_config_pipeline()
-        flatten = REPO / "scripts" / "flatten-httpd-config.py"
-        if pipeline == "li":
-            flatten = REPO / "scripts" / "flatten-httpd-config.py"
-        proc = subprocess.run(
-            [sys.executable, str(flatten), str(toml_path), "-o", str(conf)],
-            cwd=REPO,
-            capture_output=True,
-            text=True,
-        )
-        if proc.returncode != 0:
+        try:
+            flatten_httpd_config(toml_path, conf, cwd=REPO)
+        except RuntimeError as e:
             shutil.rmtree(work, ignore_errors=True)
-            raise RuntimeError(f"flatten-httpd-config failed: {proc.stderr.strip() or proc.stdout}")
+            raise RuntimeError(f"flatten-httpd-config failed: {e}") from e
         return conf, work
     doc_root = resolve_document_root(merged)
     conf = work / "runtime.conf"

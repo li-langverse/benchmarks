@@ -1,5 +1,7 @@
 {
-  "phase": "phase-0-prep",
-  "updated_at": "2026-06-02T00:00:00Z"
+  "sprint": "li-toml-config-migration",
+  "phase": "phase-d-done",
+  "branch": "feat/li-toml-config-pipeline",
+  "updated_at": "2026-06-02T13:45:00Z",
+  "notes": "Harness default LI_HTTPD_CONFIG_PIPELINE=li; Python flatten deprecated (rollback via env)."
 }
-
