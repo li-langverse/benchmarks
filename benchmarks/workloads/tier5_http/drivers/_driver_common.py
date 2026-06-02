@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -11,11 +12,20 @@ REPO = Path(__file__).resolve().parents[3]
 SCRIPTS = REPO / "scripts"
 
 
+def httpd_config_pipeline() -> str:
+    v = str(os.environ.get("LI_HTTPD_CONFIG_PIPELINE", "python")).strip().lower()
+    return v if v in ("python", "li") else "python"
+
+
 def flatten_config(server_config: Path) -> str:
     tmp = Path("/tmp") / f"li_exploit_flatten_{server_config.stem}.conf"
+    pipeline = httpd_config_pipeline()
+    script = SCRIPTS / "flatten-httpd-config.py"
+    if pipeline == "li":
+        script = SCRIPTS / "flatten-httpd-config.py"
     cmd = [
         sys.executable,
-        str(SCRIPTS / "flatten-httpd-config.py"),
+        str(script),
         str(server_config.resolve()),
         "-o",
         str(tmp),

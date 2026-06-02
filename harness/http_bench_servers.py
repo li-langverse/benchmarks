@@ -30,6 +30,11 @@ NGINX_CANDIDATES = (
 )
 
 
+def httpd_config_pipeline() -> str:
+    v = str(os.environ.get("LI_HTTPD_CONFIG_PIPELINE", "python")).strip().lower()
+    return v if v in ("python", "li") else "python"
+
+
 def resolve_nginx_binary() -> str | None:
     for cand in NGINX_CANDIDATES:
         if Path(cand).is_file() and os.access(cand, os.X_OK):
@@ -212,7 +217,10 @@ def prepare_li_httpd_conf(name: str, port: int, *, cfg: dict[str, Any] | None = 
         toml_path = work / "httpd.toml"
         write_scenario_httpd_toml(merged, front_port=port, backend_port=backend_port, out_path=toml_path)
         conf = work / "runtime.conf"
+        pipeline = httpd_config_pipeline()
         flatten = REPO / "scripts" / "flatten-httpd-config.py"
+        if pipeline == "li":
+            flatten = REPO / "scripts" / "flatten-httpd-config.py"
         proc = subprocess.run(
             [sys.executable, str(flatten), str(toml_path), "-o", str(conf)],
             cwd=REPO,
