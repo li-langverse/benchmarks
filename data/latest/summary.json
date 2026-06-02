@@ -4846,17 +4846,18 @@
           "grouped": false,
           "repo": "lic",
           "path": "benchmarks/workloads/tier1_stdlib/stdlib_binary_search",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "stdlib",
           "package": "lic",
           "problem_size": "200_000_queries",
-          "size_label": "1M sorted / 200k queries"
+          "size_label": "1M sorted / 200k queries",
+          "pending": true
         },
         {
           "id": "stdlib_binary_search@macos",
@@ -4937,17 +4938,18 @@
           "grouped": false,
           "repo": "lic",
           "path": "benchmarks/workloads/tier1_stdlib/stdlib_dict_insert_lookup",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "stdlib",
           "package": "lic",
           "problem_size": "500_000_ops",
-          "size_label": "500k insert+lookup"
+          "size_label": "500k insert+lookup",
+          "pending": true
         },
         {
           "id": "stdlib_dict_insert_lookup@macos",
@@ -5028,17 +5030,18 @@
           "grouped": false,
           "repo": "lic",
           "path": "benchmarks/workloads/tier1_stdlib/stdlib_sort_int",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "stdlib",
           "package": "lic",
           "problem_size": "1_000_000",
-          "size_label": "N=1_000_000 int sort"
+          "size_label": "N=1_000_000 int sort",
+          "pending": true
         },
         {
           "id": "stdlib_sort_int@macos",
@@ -16880,17 +16883,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/https_static",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "pass",
+          "validity_status": "advisory",
           "validity_source": "latest.csv:perf_present",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": "tls_static",
-          "size_label": "TLS static M15"
+          "size_label": "TLS static M15",
+          "pending": true
         },
         {
           "id": "https_static@macos",
@@ -16993,17 +16997,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/keepalive_pipelining",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": "pipeline_16",
-          "size_label": "16-pipeline keepalive"
+          "size_label": "16-pipeline keepalive",
+          "pending": true
         },
         {
           "id": "keepalive_pipelining@macos",
@@ -17098,17 +17103,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/lb_least_conn",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": null,
-          "size_label": "tier2 default grid"
+          "size_label": "tier2 default grid",
+          "pending": true
         },
         {
           "id": "lb_least_conn@macos",
@@ -17203,17 +17209,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/lb_peer_down",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": null,
-          "size_label": "tier2 default grid"
+          "size_label": "tier2 default grid",
+          "pending": true
         },
         {
           "id": "lb_peer_down@macos",
@@ -17308,17 +17315,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/lb_round_robin",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": null,
-          "size_label": "tier2 default grid"
+          "size_label": "tier2 default grid",
+          "pending": true
         },
         {
           "id": "lb_round_robin@macos",
@@ -17413,17 +17421,18 @@
           "grouped": false,
           "repo": "lic",
           "path": "packages/li-net-httpd",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lic",
           "problem_size": "loopback_wrk",
-          "size_label": "loopback wrk"
+          "size_label": "loopback wrk",
+          "pending": true
         },
         {
           "id": "proxy_loopback@macos",
@@ -17501,17 +17510,18 @@
           "grouped": false,
           "repo": "benchmarks",
           "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": null,
-          "size_label": "tier2 default grid"
+          "size_label": "tier2 default grid",
+          "pending": true
         },
         {
           "id": "rate_limit_429@macos",
@@ -17614,17 +17624,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/static_large",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": "payload_1mib",
-          "size_label": "1 MiB file.bin"
+          "size_label": "1 MiB file.bin",
+          "pending": true
         },
         {
           "id": "static_large@macos",
@@ -17727,17 +17738,18 @@
           "grouped": false,
           "repo": "lis",
           "path": "benchmarks/workloads/tier5_http/scenarios/static_small",
-          "status": "unknown",
+          "status": "advisory",
           "perf_status": "unknown",
           "ratio_vs_reference": null,
           "ratio_vs_sota": null,
-          "validity_status": "unknown",
+          "validity_status": "advisory",
           "validity_source": "none",
           "os": "linux",
           "pillar": "server",
           "package": "lis",
           "problem_size": "payload_1k",
-          "size_label": "1 KiB static /"
+          "size_label": "1 KiB static /",
+          "pending": true
         },
         {
           "id": "static_small@macos",
@@ -44215,8 +44227,8 @@
       "ratio_vs_sota": null,
       "unit": "s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -44242,7 +44254,8 @@
       "package": "lic",
       "problem_size": "200_000_queries",
       "size_label": "1M sorted / 200k queries",
-      "base_id": "stdlib_binary_search"
+      "base_id": "stdlib_binary_search",
+      "pending": true
     },
     {
       "benchmark": "stdlib_binary_search",
@@ -44337,8 +44350,8 @@
       "ratio_vs_sota": null,
       "unit": "s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -44364,7 +44377,8 @@
       "package": "lic",
       "problem_size": "500_000_ops",
       "size_label": "500k insert+lookup",
-      "base_id": "stdlib_dict_insert_lookup"
+      "base_id": "stdlib_dict_insert_lookup",
+      "pending": true
     },
     {
       "benchmark": "stdlib_dict_insert_lookup",
@@ -44459,8 +44473,8 @@
       "ratio_vs_sota": null,
       "unit": "s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -44486,7 +44500,8 @@
       "package": "lic",
       "problem_size": "1_000_000",
       "size_label": "N=1_000_000 int sort",
-      "base_id": "stdlib_sort_int"
+      "base_id": "stdlib_sort_int",
+      "pending": true
     },
     {
       "benchmark": "stdlib_sort_int",
@@ -53445,8 +53460,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": "tls_m15_pending",
-      "status": "unknown",
-      "validity_status": "pass",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "latest.csv:perf_present",
       "os": "linux",
       "ph_ids": [
@@ -53486,7 +53501,8 @@
       "package": "lis",
       "problem_size": "tls_static",
       "size_label": "TLS static M15",
-      "base_id": "https_static"
+      "base_id": "https_static",
+      "pending": true
     },
     {
       "benchmark": "keepalive_pipelining",
@@ -53507,8 +53523,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53556,7 +53572,8 @@
       "package": "lis",
       "problem_size": "pipeline_16",
       "size_label": "16-pipeline keepalive",
-      "base_id": "keepalive_pipelining"
+      "base_id": "keepalive_pipelining",
+      "pending": true
     },
     {
       "benchmark": "lb_least_conn",
@@ -53577,8 +53594,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53618,7 +53635,8 @@
       "package": "lis",
       "problem_size": null,
       "size_label": "tier2 default grid",
-      "base_id": "lb_least_conn"
+      "base_id": "lb_least_conn",
+      "pending": true
     },
     {
       "benchmark": "lb_peer_down",
@@ -53639,8 +53657,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53680,7 +53698,8 @@
       "package": "lis",
       "problem_size": null,
       "size_label": "tier2 default grid",
-      "base_id": "lb_peer_down"
+      "base_id": "lb_peer_down",
+      "pending": true
     },
     {
       "benchmark": "lb_round_robin",
@@ -53701,8 +53720,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53742,7 +53761,8 @@
       "package": "lis",
       "problem_size": null,
       "size_label": "tier2 default grid",
-      "base_id": "lb_round_robin"
+      "base_id": "lb_round_robin",
+      "pending": true
     },
     {
       "benchmark": "proxy_loopback",
@@ -53763,8 +53783,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": "li_epoll",
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53804,7 +53824,8 @@
       "package": "lic",
       "problem_size": "loopback_wrk",
       "size_label": "loopback wrk",
-      "base_id": "proxy_loopback"
+      "base_id": "proxy_loopback",
+      "pending": true
     },
     {
       "benchmark": "rate_limit_429",
@@ -53825,8 +53846,8 @@
       "ratio_vs_sota": null,
       "unit": "bool",
       "variant": "rate_limit",
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53849,7 +53870,8 @@
       "package": "lis",
       "problem_size": null,
       "size_label": "tier2 default grid",
-      "base_id": "rate_limit_429"
+      "base_id": "rate_limit_429",
+      "pending": true
     },
     {
       "benchmark": "static_large",
@@ -53870,8 +53892,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53919,7 +53941,8 @@
       "package": "lis",
       "problem_size": "payload_1mib",
       "size_label": "1 MiB file.bin",
-      "base_id": "static_large"
+      "base_id": "static_large",
+      "pending": true
     },
     {
       "benchmark": "static_small",
@@ -53940,8 +53963,8 @@
       "ratio_vs_sota": null,
       "unit": "req/s",
       "variant": null,
-      "status": "unknown",
-      "validity_status": "unknown",
+      "status": "advisory",
+      "validity_status": "advisory",
       "validity_source": "none",
       "os": "linux",
       "ph_ids": [
@@ -53989,7 +54012,8 @@
       "package": "lis",
       "problem_size": "payload_1k",
       "size_label": "1 KiB static /",
-      "base_id": "static_small"
+      "base_id": "static_small",
+      "pending": true
     }
   ]
 }
