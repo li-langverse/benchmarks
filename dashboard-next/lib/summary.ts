@@ -8,7 +8,7 @@ export type StatusCounts = {
   unknown: number;
 };
 
-export type ValidityStatus = "pass" | "fail" | "unknown";
+export type ValidityStatus = "pass" | "fail" | "unknown" | "skip";
 
 export type NumericValidity = {
   oracle: string;

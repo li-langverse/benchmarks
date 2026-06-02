@@ -1,8 +1,15 @@
 import type { StatusCounts, SummaryRow } from "@/lib/summary";
+import { groupByBenchmark, pickPrimaryRow } from "@/lib/benchmark-groups";
+
+/** Platform placeholder — catalog expects OS but nightly CSV has no measurements. */
+export function isPlatformSkip(row: SummaryRow): boolean {
+  return row.status === "skip" || row.validity_status === "skip";
+}
 
 /** Mirrors `scripts/ingest/build_summary.py` `is_pending_catalog_row` without catalog.toml at runtime. */
 export function isCatalogPending(row: SummaryRow): boolean {
   if (row.pending === true) return true;
+  if (isPlatformSkip(row)) return true;
   if (row.status !== "unknown") return false;
   if (row.li_value != null || row.cpp_value != null) return false;
   if (row.path === "unknown" || row.benchmark.endsWith("_stub")) return true;
@@ -23,9 +30,15 @@ export function isValidityFailed(row: SummaryRow): boolean {
   return row.validity_status === "fail";
 }
 
-export type RowCoverageKind = "measured" | "pending" | "validity_fail" | "validity_unknown";
+export type RowCoverageKind =
+  | "measured"
+  | "pending"
+  | "platform_skip"
+  | "validity_fail"
+  | "validity_unknown";
 
 export function rowCoverageKind(row: SummaryRow): RowCoverageKind {
+  if (isPlatformSkip(row)) return "platform_skip";
   if (isCatalogPending(row)) return "pending";
   if (isValidityFailed(row)) return "validity_fail";
   if (isMeasured(row) && row.validity_status !== "pass") return "validity_unknown";
@@ -39,7 +52,8 @@ export type TierCoverageSplit = {
 
 export function splitTierCounts(rows: SummaryRow[]): Record<string, TierCoverageSplit> {
   const out: Record<string, TierCoverageSplit> = {};
-  for (const row of rows) {
+  for (const group of groupByBenchmark(rows)) {
+    const row = pickPrimaryRow(group.variants);
     const tier = String(row.tier);
     if (!out[tier]) {
       out[tier] = {
@@ -47,7 +61,7 @@ export function splitTierCounts(rows: SummaryRow[]): Record<string, TierCoverage
         pending: 0,
       };
     }
-    if (isCatalogPending(row)) {
+    if (isCatalogPending(row) && !isMeasured(row)) {
       out[tier].pending += 1;
       continue;
     }
@@ -73,15 +87,17 @@ export type CoverageHonesty = {
 
 export function coverageHonesty(rows: SummaryRow[]): CoverageHonesty {
   const out: CoverageHonesty = {
-    total: rows.length,
+    total: 0,
     measured: 0,
     pending: 0,
     validityFail: 0,
     validityUnknown: 0,
   };
-  for (const row of rows) {
+  for (const group of groupByBenchmark(rows)) {
+    out.total += 1;
+    const row = pickPrimaryRow(group.variants);
     const kind = rowCoverageKind(row);
-    if (kind === "pending") out.pending += 1;
+    if (kind === "pending" || kind === "platform_skip") out.pending += 1;
     else if (kind === "validity_fail") {
       out.validityFail += 1;
       out.measured += 1;

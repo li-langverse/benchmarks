@@ -678,6 +678,8 @@ def make_summary_row(
     }
     if numeric_validity is not None:
         row["numeric_validity"] = numeric_validity
+    if chart.get("pending") or status == "skip":
+        row["pending"] = True
     return row
 
 

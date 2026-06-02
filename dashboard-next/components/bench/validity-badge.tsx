@@ -4,10 +4,11 @@ const VALIDITY_CLASS: Record<ValidityStatus, string> = {
   pass: "validity-pass",
   fail: "validity-fail",
   unknown: "validity-unknown",
+  skip: "validity-skip",
 };
 
 type ValidityBadgeProps = {
-  status: ValidityStatus;
+  status: ValidityStatus | string;
   source?: string;
 };
 
@@ -17,10 +18,16 @@ export function ValidityBadge({ status, source }: ValidityBadgeProps) {
       ? "validity pass"
       : status === "fail"
         ? "validity fail"
-        : "validity unknown";
+        : status === "skip"
+          ? "platform skip"
+          : "validity unknown";
+  const key =
+    status === "pass" || status === "fail" || status === "unknown" || status === "skip"
+      ? status
+      : "unknown";
   return (
     <span
-      className={`validity-badge ${VALIDITY_CLASS[status] ?? VALIDITY_CLASS.unknown}`}
+      className={`validity-badge ${VALIDITY_CLASS[key] ?? VALIDITY_CLASS.unknown}`}
       title={source ? `Source: ${source}` : undefined}
     >
       {label}
