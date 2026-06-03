@@ -271,6 +271,14 @@ jobs:
           echo "LLVM_DIR=/ucrt64/lib/cmake/llvm" >> "$GITHUB_ENV"
           echo "/ucrt64/bin" >> "$GITHUB_PATH"
           clang --version
+      - name: Patch lic for MSYS2 Windows build
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          chmod +x scripts/patch-lic-msys-windows.sh
+          ./scripts/patch-lic-msys-windows.sh
       - name: Run core benchmarks (Windows)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic

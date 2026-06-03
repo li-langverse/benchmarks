@@ -1,0 +1,59 @@
+﻿diff --git a/compiler/codegen/include/li/platform.hpp b/compiler/codegen/include/li/platform.hpp
+index 1f94b3f8..99bb6601 100644
+--- a/compiler/codegen/include/li/platform.hpp
++++ b/compiler/codegen/include/li/platform.hpp
+@@ -108,4 +108,14 @@ inline bool is_safe_link_path(const std::string& path) {
+   return true;
+ }
+ 
++/// Portable environment variable setter (POSIX setenv / Windows _putenv_s).
++inline void set_env_var(const char* name, const char* value, int overwrite = 1) {
++#if defined(_WIN32)
++  (void)overwrite;
++  _putenv_s(name, value);
++#else
++  setenv(name, value, overwrite);
++#endif
++}
++
+ }  // namespace li
+diff --git a/compiler/common/resource_options.cpp b/compiler/common/resource_options.cpp
+index 1440e520..a34b6172 100644
+--- a/compiler/common/resource_options.cpp
++++ b/compiler/common/resource_options.cpp
+@@ -1,4 +1,5 @@
+ #include "li/resource_options.hpp"
++#include "li/platform.hpp"
+ 
+ #include <cstdlib>
+ #include <iostream>
+@@ -214,7 +215,7 @@ void finalize_resource_options(ResourceOptions& opts) {
+ unsigned g_compile_jobs_reserved = 1;
+ void note_compile_jobs_reserved(const ResourceOptions& opts) {
+   g_compile_jobs_reserved = opts.effective_jobs();
+-  setenv("LI_COMPILE_JOBS", std::to_string(g_compile_jobs_reserved).c_str(), 1);
++  set_env_var("LI_COMPILE_JOBS", std::to_string(g_compile_jobs_reserved).c_str(), 1);
+ }
+ unsigned compile_jobs_reserved() { return g_compile_jobs_reserved; }
+ 
+diff --git a/compiler/lic/main.cpp b/compiler/lic/main.cpp
+index a6f89f85..9caf4406 100644
+--- a/compiler/lic/main.cpp
++++ b/compiler/lic/main.cpp
+@@ -253,13 +253,13 @@ int httpd_explain_config(int argc, char** argv) {
+ void apply_resource_options_to_env() {
+   const auto& opts = li::resource_options();
+   if (!opts.build_dir.empty()) {
+-    setenv("LI_BUILD_DIR", opts.build_dir.c_str(), 1);
++    li::set_env_var("LI_BUILD_DIR", opts.build_dir.c_str(), 1);
+   }
+   if (opts.jobs > 0) {
+-    setenv("LI_COMPILE_JOBS", std::to_string(opts.jobs).c_str(), 1);
++    li::set_env_var("LI_COMPILE_JOBS", std::to_string(opts.jobs).c_str(), 1);
+   }
+   if (opts.max_memory_mb > 0) {
+-    setenv("LI_MAX_MEMORY_MB", std::to_string(opts.max_memory_mb).c_str(), 1);
++    li::set_env_var("LI_MAX_MEMORY_MB", std::to_string(opts.max_memory_mb).c_str(), 1);
+   }
+ }
+ 
