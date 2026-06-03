@@ -38,6 +38,19 @@ def load_format_benchmark():
     return mod.format_benchmark, mod.load_header
 
 
+def load_footer(text: str) -> str:
+    """Preserve [reporting] and trailing sections after the last [[benchmark]] block."""
+    marker = "[[benchmark]]"
+    last = text.rfind(marker)
+    if last < 0:
+        return ""
+    tail = text[last:]
+    end = tail.find("\n\n[")
+    if end < 0:
+        return ""
+    return tail[end + 2 :]
+
+
 def is_vertical_stub_remap(bench_id: str, path: str) -> bool:
     if not bench_id.startswith(VERTICAL_STUB_PREFIXES):
         return False
@@ -113,6 +126,7 @@ def main() -> int:
 
     format_benchmark, load_header = load_format_benchmark()
     text = CATALOG.read_text(encoding="utf-8")
+    footer = load_footer(text)
     benchmarks = [dict(b) for b in tomllib.loads(text).get("benchmark", [])]
 
     changes = apply_fixes(benchmarks)
@@ -129,10 +143,10 @@ def main() -> int:
         return 1
 
     header = load_header(text)
-    CATALOG.write_text(
-        header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n",
-        encoding="utf-8",
-    )
+    body = header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n"
+    if footer:
+        body += footer if footer.endswith("\n") else footer + "\n"
+    CATALOG.write_text(body, encoding="utf-8")
     print(f"wrote {CATALOG}")
     return 0
 
