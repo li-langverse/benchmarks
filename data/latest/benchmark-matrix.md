@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-06-03T05:06:04.925840+00:00
+Generated: 2026-06-03T06:01:28.435625+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -27,23 +27,23 @@ Status: **green** — 0 failures / 36 cells
 
 | scenario | li | nginx | apache | lighttpd | caddy | traefik | node | bun | li/nginx |
 |---|---|---|---|---|---|---|---|---|---|
-| static_small | 6,191 | 122 | 643 | 6,440 | — | — | 2,689 | — | 50.60× |
-| keepalive_pipelining | 6,503 | 124 | 1,714 | 6,715 | — | — | 3,034 | — | 52.27× |
-| static_large | FAIL | 94 | 515 | 185 | — | — | 287 | — | — |
-| proxy_loopback | 33,683 | 125 | 126 | 105 | — | — | — | — | 268.94× |
-| lb_round_robin | 32,033 | 2,099 | 2,073 | 1,856 | — | — | — | — | 15.26× |
-| lb_least_conn | 32,790 | 2,056 | 1,920 | 1,853 | — | — | — | — | 15.95× |
-| lb_peer_down | 30,555 | 2,002 | 2,095 | 1,918 | — | — | — | — | 15.26× |
+| static_small | 4,030 | 109 | 660 | 5,171 | — | — | 1,759 | — | 37.00× |
+| keepalive_pipelining | 5,457 | 149 | 1,426 | 6,528 | — | — | 2,845 | — | 36.58× |
+| static_large | FAIL | 71 | 448 | 171 | — | — | 265 | — | — |
+| proxy_loopback | 32,327 | 120 | 120 | 120 | — | — | — | — | 268.83× |
+| lb_round_robin | 32,750 | 2,040 | 2,071 | 1,914 | — | — | — | — | 16.05× |
+| lb_least_conn | 30,280 | 2,010 | 1,958 | 1,804 | — | — | — | — | 15.07× |
+| lb_peer_down | 32,265 | 1,940 | 1,884 | 1,827 | — | — | — | — | 16.63× |
 
-**Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
+**Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `proxy_loopback`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
 
 ## HTTP verify / feature gates (non-RPS)
 
 | scenario | li | other oracles |
 |---|---|---|
 | rate_limit_429 | pass | other oracles N/A |
-| https_static | — | li=5,993; nginx=114; apache=1,049; lighttpd=6,074; caddy=2,064; traefik=120 |
-| https_tls_matrix | — | li=5,677; nginx=312; apache=1,780; lighttpd=5,541; caddy=2,484; traefik=515 |
+| https_static | — | li=5,868; nginx=112; apache=1,041; lighttpd=5,706; caddy=1,706; traefik=120 |
+| https_tls_matrix | — | li=5,688; nginx=119; apache=1,530; lighttpd=5,907; caddy=2,467; traefik=116 |
 
 ## Correctness
 

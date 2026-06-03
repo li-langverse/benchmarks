@@ -103,7 +103,6 @@ echo "==> lic compiler"
 ( cd "$LIC_ROOT" && ./scripts/build.sh )
 
 echo "==> li-httpd"
-( cd "$LIC_ROOT" && CC=clang-22 CXX=clang++-22 ./build/compiler/lic/lic build \
-  packages/li-net-httpd/src/lib.li -o build/li-httpd )
+( cd "$LIC_ROOT" && bash ./scripts/build-li-httpd.sh )
 test -x "$LIC_ROOT/build/li-httpd"
 echo "OK LIC_ROOT=$LIC_ROOT"
