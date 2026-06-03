@@ -77,6 +77,17 @@ for old, new in [
 ]:
     text = text.replace(old, new)
 main_cpp.write_text(text, encoding="utf-8")
+
+cmake_lists = lic / "CMakeLists.txt"
+cmake_text = cmake_lists.read_text(encoding="utf-8")
+needle = "include(HandleLLVMOptions)"
+if needle in cmake_text and "if(NOT WIN32)" not in cmake_text:
+    cmake_text = cmake_text.replace(
+        needle,
+        "if(NOT WIN32)\ninclude(HandleLLVMOptions)\nendif()",
+        1,
+    )
+    cmake_lists.write_text(cmake_text, encoding="utf-8")
 print("patch-lic-msys-windows: applied set_env_var shims")
 PY
 
