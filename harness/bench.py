@@ -263,7 +263,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         2,
         "wave_equation_1d",
         "cpp/main.c",
-        "common/wave_core.c",
+        "cpp/wave_kernel.c",
         "li/main.li",
     ),
     BenchSpec(
