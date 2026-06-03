@@ -1,14 +1,10 @@
-# euler_fluid_2d — shared C oracle via LI_EXTRA_C (WP3 smoke-scale).
-
-extern proc li_euler_fluid_2d_kernel()
-  requires true
-  ensures true
-
-extern proc li_euler_fluid_2d_checksum() -> float
-  requires true
-  ensures true
+# euler_fluid_2d — pure-Li 1D upwind advection (matches common/euler_fluid_core.c).
 
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
+  requires true
+  ensures true
+
+extern proc li_rt_sin(x: float) raises IO -> float
   requires true
   ensures true
 
@@ -17,6 +13,30 @@ def main() raises IO -> int
   ensures result == 0
   decreases 0
 =
-  li_euler_fluid_2d_kernel()
-  li_rt_volatile_sink_f64(li_euler_fluid_2d_checksum())
+  var steps: int = 2000
+  var coeff: float = 0.5 * 0.001 / 0.05
+  var u: array[64, array[1, float]]
+  var un: array[64, array[1, float]]
+  var i: int = 0
+  var fi: float = 0.0
+  while i < 64
+    u[i][0] = 0.5 + 0.5 * li_rt_sin(0.2 * fi)
+    un[i][0] = u[i][0]
+    fi = fi + 1.0
+    i = i + 1
+  var s: int = 0
+  while s < steps
+    var j: int = 1
+    var u_prev: float = u[0][0]
+    while j < 63
+      var u_curr: float = u[j][0]
+      un[j][0] = u_curr - coeff * (u_curr - u_prev)
+      u_prev = u_curr
+      j = j + 1
+    var k: int = 0
+    while k < 64
+      u[k][0] = un[k][0]
+      k = k + 1
+    s = s + 1
+  li_rt_volatile_sink_f64(u[32][0])
   return 0
