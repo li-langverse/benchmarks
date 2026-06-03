@@ -240,7 +240,7 @@ jobs:
     timeout-minutes: 120
     defaults:
       run:
-        shell: bash
+        shell: msys2 {0}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -253,43 +253,37 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
-      - uses: ilammy/msvc-dev-cmd@v1
-      - uses: actions/cache@v4
+      - uses: msys2/setup-msys2@v2
         with:
-          path: .llvm-cache
-          key: llvm-win-22.1.0-${{ runner.os }}-${{ runner.arch }}
-      - name: Install LLVM 22 + build tools (Windows)
-        env:
-          MSYS2_ARG_CONV_EXCL: "*"
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-llvm
+            mingw-w64-ucrt-x86_64-clang
+      - name: Resolve LLVM (MSYS2 UCRT64)
         run: |
-          choco install cmake ninja -y
-          chmod +x scripts/ci-install-llvm-windows.sh
-          ./scripts/ci-install-llvm-windows.sh
+          set -euo pipefail
+          test -f /ucrt64/lib/cmake/llvm/LLVMConfig.cmake
+          echo "LLVM_DIR=/ucrt64/lib/cmake/llvm" >> "$GITHUB_ENV"
+          echo "/ucrt64/bin" >> "$GITHUB_PATH"
+          clang --version
       - name: Run core benchmarks (Windows)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
-          MSYS2_ARG_CONV_EXCL: "*"
+          MSYSTEM: UCRT64
         run: |
           set -euo pipefail
-          if [[ -n "${LLVM_DIR:-}" ]]; then
-            llvm_root="$(cd "$(dirname "$LLVM_DIR")/../.." && pwd)"
-          else
-            llvm_root="${LLVM_WIN_ROOT:-${RUNNER_TEMP}/.llvm-win-22.1.0}"
-          fi
-          clang_exe="${llvm_root}/bin/clang.exe"
-          if [[ ! -f "$clang_exe" ]]; then
-            echo "missing LLVM clang: $clang_exe" >&2
-            ls -la "${llvm_root}/bin" 2>&1 || true
-            exit 1
-          fi
+          cd "$GITHUB_WORKSPACE"
+          export LLVM_DIR="${LLVM_DIR:-/ucrt64/lib/cmake/llvm}"
+          export CC=clang
+          export CXX=clang++
+          export PATH="/ucrt64/bin:$PATH"
           chmod +x scripts/*.sh lic/scripts/*.sh
-          export LLVM_DIR="${LLVM_DIR:-${llvm_root}/lib/cmake/llvm}"
-          export LLVM_WIN_ROOT="${llvm_root}"
-          export PATH="${llvm_root}/bin:${PATH}"
-          export CC="${llvm_root}/bin/clang.exe"
-          export CXX="${llvm_root}/bin/clang++.exe"
-          "${CC}" --version
           ./scripts/setup-lic-for-bench.sh
           rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1

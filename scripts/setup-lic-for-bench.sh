@@ -40,6 +40,7 @@ case "$(uname -s)" in
     export LI_REPO_ROOT="$LIC_ROOT"
     if [[ -z "${LLVM_DIR:-}" ]]; then
       for d in \
+        "/ucrt64/lib/cmake/llvm" \
         "${LLVM_WIN_ROOT:-}/lib/cmake/llvm" \
         "${RUNNER_TEMP:-/tmp}/.llvm-win-22.1.0/lib/cmake/llvm" \
         "/c/Program Files/LLVM/lib/cmake/llvm" \
