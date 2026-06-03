@@ -208,9 +208,29 @@ def expand_tier01_rows(
         chart_by_os = {chart_os(c): c for c in charts}
         row_by_bench = {base: group[0]}
         for plat in platforms:
+            existing_row = next(
+                (r for r in group if (r.get("os") or "linux") == plat),
+                None,
+            )
+            if existing_row and (
+                existing_row.get("li_value") is not None
+                or existing_row.get("status") not in (None, "", "unknown", "skip")
+            ):
+                expanded.append(existing_row)
+                continue
             ch = chart_by_os.get(plat)
             if ch:
                 expanded.append(chart_row_from_chart(base, cfg, ch, row_by_bench))
+            else:
+                skip = bs.build_platform_skip_chart(
+                    base,
+                    cfg,
+                    plat,
+                    chart_id=bs.chart_id_for_os(base, plat, multi=len(platforms) > 1),
+                    multi=len(platforms) > 1,
+                    validity_source=f"platform:{plat}:not_measured",
+                )
+                expanded.append(chart_row_from_chart(base, cfg, skip, row_by_bench))
     summary["rows"] = sorted(
         expanded, key=lambda row: (row["tier"], row["benchmark"], row.get("os", ""))
     )
@@ -261,22 +281,46 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
             for plat in platforms:
                 if plat in existing:
                     ch = dict(existing[plat])
-                    has_csv = bool(ch.get("series"))
+                    series = ch.get("series") or []
+                    has_csv = bool(series)
+                    has_li = any(s.get("lang") == "li" for s in series)
                     sizes = bs.effective_size_meta(cfg, has_csv=has_csv)
                     ch.update({k: v for k, v in sizes.items() if v is not None})
                     ch["os"] = plat
                     if ch.get("pending") or not has_csv:
-                        ch["validity_status"] = ch.get("validity_status") or "unknown"
-                        ch["validity_source"] = ch.get("validity_source") or "harness_pending"
-                        ch["status"] = ch.get("status") or "unknown"
+                        ch["validity_status"] = "skip"
+                        ch["validity_source"] = ch.get("validity_source") or "platform_not_measured"
+                        ch["status"] = "skip"
+                    elif has_csv and not has_li and (
+                        ch.get("status") in (None, "", "unknown")
+                        or ch.get("validity_status") in (None, "", "unknown")
+                    ):
+                        ch["validity_status"] = "advisory"
+                        ch["validity_source"] = (
+                            ch.get("validity_source") or "competitor_only:no_li"
+                        )
+                        ch["status"] = "advisory"
                     elif ch.get("validity_status") in (None, "", "unknown"):
                         row = row_by_bench.get(base)
                         if row and row.get("validity_status") in ("pass", "fail", "skip", "advisory"):
                             ch["validity_status"] = row["validity_status"]
                             ch["validity_source"] = row.get("validity_source") or "summary.row"
+                    if ch.get("status") in (None, "", "unknown") and ch.get("validity_status") == "skip":
+                        ch["status"] = "skip"
                     charts_out.append(ch)
                     charts_by_pillar[ch.get("pillar", "numerics")].append(ch)
                     continue
+
+                skip = bs.build_platform_skip_chart(
+                    base,
+                    cfg,
+                    plat,
+                    chart_id=bs.chart_id_for_os(base, plat, multi=multi),
+                    multi=multi,
+                    validity_source=f"platform:{plat}:not_measured",
+                )
+                charts_out.append(skip)
+                charts_by_pillar[skip["pillar"]].append(skip)
 
         new_categories[cat_name] = {
             **cat_data,
@@ -290,7 +334,12 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
         has_csv = r.get("li_value") is not None
         sizes = bs.effective_size_meta(cfg, has_csv=has_csv)
         r.update({k: v for k, v in sizes.items() if v is not None})
-        if r.get("pending") or r.get("li_value") is None:
+        measured_status = r.get("status") in ("green", "yellow", "red", "advisory")
+        if bs.tier_le_1(cfg) and r.get("pending") and not measured_status:
+            r["validity_status"] = "skip"
+            r["validity_source"] = r.get("validity_source") or "catalog:pending"
+            r["status"] = "skip"
+        elif bs.tier_le_1(cfg) and r.get("li_value") is None and r.get("status") in (None, "", "unknown"):
             r["validity_status"] = "skip"
             r["validity_source"] = r.get("validity_source") or "catalog:pending"
             r["status"] = "skip"
