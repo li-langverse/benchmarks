@@ -4,7 +4,7 @@ set -euo pipefail
 BUILD="${1:?build dir}"
 # shellcheck source=lib/bench-python.sh
 source "$(cd "$(dirname "$0")" && pwd)/lib/bench-python.sh"
-bench_python <<'PY'
+bench_python - "$BUILD" <<'PY'
 from __future__ import annotations
 
 import re
