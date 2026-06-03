@@ -1,0 +1,12 @@
+[package]
+name = "wave_equation_1d"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "wave_equation_1d"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
