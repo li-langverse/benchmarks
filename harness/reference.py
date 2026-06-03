@@ -313,6 +313,21 @@ def reduce_sum_spec(n: int) -> float:
 horner_spec = horner_iterative
 
 
+def schrodinger_1d_barrier_spec() -> float:
+    """``tdse_core.c``: 1D Gaussian packet + explicit Laplacian diffusion (N=64, 4000 steps)."""
+    n = 64
+    steps = 4000
+    dt = 0.0001
+    re = [math.exp(-0.5 * ((i - n // 2) * 0.15) ** 2) for i in range(n)]
+    im = [0.0] * n
+    for _ in range(steps):
+        for i in range(1, n - 1):
+            lap = re[i + 1] - 2.0 * re[i] + re[i - 1]
+            re[i] += dt * lap
+            im[i] += dt * lap
+    return sum(re[i] * re[i] + im[i] * im[i] for i in range(n))
+
+
 # --- tier-1 reference cases ---------------------------------------------------
 
 
@@ -431,6 +446,17 @@ TIER1_REFERENCE: dict[str, Tier1Reference] = {
         min_li_seconds=0.001,
         rtol=1e-10,
         atol=0.0,
+        oracle="iterative",
+    ),
+    "schrodinger_1d_barrier": Tier1Reference(
+        full_n=64,
+        small_n=64,
+        compute_full=schrodinger_1d_barrier_spec,
+        compute_small=schrodinger_1d_barrier_spec,
+        min_abs_full=1.0,
+        min_li_seconds=0.00005,
+        rtol=0.0,
+        atol=2e-15,
         oracle="iterative",
     ),
 }

@@ -361,6 +361,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  "cpp/main.c",
  "common/tdse_core.c",
  "li/main.li",
+ li_pure=True,
  ),
  BenchSpec(
  "euler_fluid_2d",
