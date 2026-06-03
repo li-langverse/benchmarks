@@ -1,3 +1,6 @@
+# heat_equation_2d — shared C oracle via LI_EXTRA_C (2D explicit Euler heat).
+# Pure-Li stencil blocked on E0201 (neighbor indices i±1/j±1); tracks common/heat_core.c.
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true
