@@ -22,6 +22,10 @@ concurrency:
   group: benchmark-nightly
   cancel-in-progress: false
 
+env:
+  # Until li-langverse/lic#??? merges: MSYS2 setenv + LLVM_DEFINITIONS fix.
+  LIC_BENCH_REF: fix/windows-msys2-build
+
 jobs:
   setup-lic-linux:
     if: github.event_name != 'workflow_dispatch' || inputs.parallel_linux_tiers
@@ -33,7 +37,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -74,7 +78,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -124,7 +128,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/download-artifact@v4
         with:
           path: artifacts/tiers
@@ -161,7 +165,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -193,7 +197,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -247,7 +251,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -322,7 +326,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
