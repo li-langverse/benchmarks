@@ -21,5 +21,7 @@ if [[ ${#tier_csvs[@]} -eq 0 ]]; then
 fi
 
 "$ROOT/scripts/merge-benchmark-tier-csvs.sh" "$TIER_DIR"
-python3 "$ROOT/scripts/check-csv-os-tags.py" "$OUT" --expect-os "$EXPECT_OS"
+# shellcheck source=lib/bench-python.sh
+source "$ROOT/scripts/lib/bench-python.sh"
+bench_python "$ROOT/scripts/check-csv-os-tags.py" "$OUT" --expect-os "$EXPECT_OS"
 echo "finalize-nightly-os-csv: OK ($OUT, expect_os=$EXPECT_OS, tiers=${#tier_csvs[@]})"

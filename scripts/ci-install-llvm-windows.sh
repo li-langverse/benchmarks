@@ -12,6 +12,15 @@ URL="https://github.com/llvm/llvm-project/releases/download/${LLVM_ORG}/${ARCHIV
 ROOT="${LLVM_WIN_ROOT:-${RUNNER_TEMP:-${GITHUB_WORKSPACE:-.}}/.llvm-win-${LLVM_VERSION}}"
 CMAKE_DIR="${ROOT}/lib/cmake/llvm"
 
+_env_path() {
+  local p="$1"
+  if command -v cygpath >/dev/null 2>&1; then
+    cygpath -u "$p"
+  else
+    echo "${p//\\//}"
+  fi
+}
+
 _extract_archive() {
   local archive="$1" parent="$2"
   rm -rf "$parent/clang+llvm-${LLVM_VERSION}-x86_64-pc-windows-msvc"
@@ -22,7 +31,9 @@ _extract_archive() {
     return 0
   fi
   echo "ci-install-llvm-windows: tar failed; extracting with python" >&2
-  python3 - "$archive" "$parent" <<'PY'
+  # shellcheck source=lib/bench-python.sh
+  source "$(cd "$(dirname "$0")" && pwd)/lib/bench-python.sh"
+  bench_python - "$archive" "$parent" <<'PY'
 import lzma
 import os
 import sys
@@ -65,16 +76,19 @@ if [[ ! -f "${CMAKE_DIR}/LLVMConfig.cmake" ]]; then
   exit 1
 fi
 
+env_root="$(_env_path "$ROOT")"
+env_cmake="${env_root}/lib/cmake/llvm"
+
 if [[ -n "${GITHUB_ENV:-}" ]]; then
   {
-    echo "LLVM_DIR=${CMAKE_DIR}"
-    echo "LLVM_WIN_ROOT=${ROOT}"
+    echo "LLVM_DIR=${env_cmake}"
+    echo "LLVM_WIN_ROOT=${env_root}"
   } >> "$GITHUB_ENV"
-  echo "${ROOT}/bin" >> "$GITHUB_PATH"
+  echo "${env_root}/bin" >> "$GITHUB_PATH"
 fi
 
-export LLVM_DIR="${CMAKE_DIR}"
-export LLVM_WIN_ROOT="${ROOT}"
+export LLVM_DIR="${env_cmake}"
+export LLVM_WIN_ROOT="${env_root}"
 export PATH="${ROOT}/bin:${PATH}"
 
 echo "ci-install-llvm-windows: LLVM_DIR=${LLVM_DIR}"

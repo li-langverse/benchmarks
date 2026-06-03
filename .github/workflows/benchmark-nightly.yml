@@ -271,10 +271,20 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
           MSYS2_ARG_CONV_EXCL: "*"
         run: |
-          llvm_root="${LLVM_WIN_ROOT:-${RUNNER_TEMP}/.llvm-win-22.1.0}"
-          test -x "${llvm_root}/bin/clang.exe"
+          set -euo pipefail
+          if [[ -n "${LLVM_DIR:-}" ]]; then
+            llvm_root="$(cd "$(dirname "$LLVM_DIR")/../.." && pwd)"
+          else
+            llvm_root="${LLVM_WIN_ROOT:-${RUNNER_TEMP}/.llvm-win-22.1.0}"
+          fi
+          clang_exe="${llvm_root}/bin/clang.exe"
+          if [[ ! -f "$clang_exe" ]]; then
+            echo "missing LLVM clang: $clang_exe" >&2
+            ls -la "${llvm_root}/bin" 2>&1 || true
+            exit 1
+          fi
           chmod +x scripts/*.sh lic/scripts/*.sh
-          export LLVM_DIR="${LLVM_DIR}"
+          export LLVM_DIR="${LLVM_DIR:-${llvm_root}/lib/cmake/llvm}"
           export LLVM_WIN_ROOT="${llvm_root}"
           export PATH="${llvm_root}/bin:${PATH}"
           export CC="${llvm_root}/bin/clang.exe"
