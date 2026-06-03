@@ -12,5 +12,7 @@ if grep -q 'set_env_var' "$LIC/compiler/codegen/include/li/platform.hpp" 2>/dev/
   echo "patch-lic-msys-windows: lic already patched"
   exit 0
 fi
-patch -d "$LIC" --forward -p1 < "$PATCH"
+if ! patch -d "$LIC" --forward -p1 < "$PATCH"; then
+  git -C "$LIC" apply "$PATCH"
+fi
 echo "patch-lic-msys-windows: OK"
