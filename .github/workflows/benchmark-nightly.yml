@@ -23,8 +23,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Until li-langverse/lic#739 merges: MSYS2 setenv + LLVM_DEFINITIONS fix.
-  LIC_BENCH_REF: fix/windows-msys2-build
+  LIC_BENCH_REF: main
 
 jobs:
   setup-lic-linux:
