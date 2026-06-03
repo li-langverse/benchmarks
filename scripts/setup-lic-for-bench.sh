@@ -63,7 +63,12 @@ case "$(uname -s)" in
     export CC="${CC:-clang}"
     export CXX="${CXX:-clang++}"
     echo "==> lic compiler (Windows — LLVM_DIR=$LLVM_DIR)"
-    (cd "$LIC_ROOT" && ./scripts/build.sh)
+    BUILD_DIR="$LIC_ROOT/build"
+    rm -rf "$BUILD_DIR"
+    (cd "$LIC_ROOT" && cmake -B build -G Ninja -DLLVM_DIR="$LLVM_DIR")
+    chmod +x "$ROOT/scripts/fix-lic-msys-cmake-flags.sh"
+    "$ROOT/scripts/fix-lic-msys-cmake-flags.sh" "$BUILD_DIR"
+    (cd "$LIC_ROOT" && cmake --build build -j "$(nproc 2>/dev/null || echo 4)")
     echo "OK LIC_ROOT=$LIC_ROOT"
     exit 0
     ;;
