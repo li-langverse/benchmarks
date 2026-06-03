@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Install LLVM 22 *development* tree on Windows (LLVMConfig.cmake).
-# Chocolatey's LLVM EXE is toolchain-only and lacks CMake package files.
+# Chocolatey's LLVM EXE is toolchain-only and lacks a reliable CMake dev package on GHA.
 set -euo pipefail
 export MSYS2_ARG_CONV_EXCL="*"
 
@@ -11,6 +11,33 @@ URL="https://github.com/llvm/llvm-project/releases/download/${LLVM_ORG}/${ARCHIV
 
 ROOT="${LLVM_WIN_ROOT:-${RUNNER_TEMP:-${GITHUB_WORKSPACE:-.}}/.llvm-win-${LLVM_VERSION}}"
 CMAKE_DIR="${ROOT}/lib/cmake/llvm"
+
+_extract_archive() {
+  local archive="$1" parent="$2"
+  rm -rf "$parent/clang+llvm-${LLVM_VERSION}-x86_64-pc-windows-msvc"
+  if tar --force-local -xf "$archive" -C "$parent" 2>/dev/null; then
+    return 0
+  fi
+  if tar -xf "$archive" -C "$parent" 2>/dev/null; then
+    return 0
+  fi
+  echo "ci-install-llvm-windows: tar failed; extracting with python" >&2
+  python3 - "$archive" "$parent" <<'PY'
+import lzma
+import os
+import sys
+import tarfile
+
+archive, parent = sys.argv[1], sys.argv[2]
+os.makedirs(parent, exist_ok=True)
+with lzma.open(archive) as raw:
+    with tarfile.open(fileobj=raw) as tf:
+        if hasattr(tarfile, "data_filter"):
+            tf.extractall(parent, filter="data")
+        else:
+            tf.extractall(parent)
+PY
+}
 
 if [[ -f "${CMAKE_DIR}/LLVMConfig.cmake" ]]; then
   echo "ci-install-llvm-windows: reuse ${CMAKE_DIR}"
@@ -24,10 +51,7 @@ else
   fi
   rm -rf "$ROOT"
   extract_parent="$(cd "$(dirname "$ROOT")" && pwd)"
-  (
-    cd "$extract_parent"
-    tar --force-local -xf "$archive_path"
-  )
+  _extract_archive "$archive_path" "$extract_parent"
   extracted="$extract_parent/clang+llvm-${LLVM_VERSION}-x86_64-pc-windows-msvc"
   if [[ ! -d "$extracted" ]]; then
     echo "ci-install-llvm-windows: expected extract dir missing: $extracted" >&2
@@ -42,13 +66,17 @@ if [[ ! -f "${CMAKE_DIR}/LLVMConfig.cmake" ]]; then
 fi
 
 if [[ -n "${GITHUB_ENV:-}" ]]; then
-  echo "LLVM_DIR=${CMAKE_DIR}" >> "$GITHUB_ENV"
+  {
+    echo "LLVM_DIR=${CMAKE_DIR}"
+    echo "LLVM_WIN_ROOT=${ROOT}"
+  } >> "$GITHUB_ENV"
   echo "${ROOT}/bin" >> "$GITHUB_PATH"
 fi
 
 export LLVM_DIR="${CMAKE_DIR}"
+export LLVM_WIN_ROOT="${ROOT}"
 export PATH="${ROOT}/bin:${PATH}"
-# Leave CC/CXX unset so MSVC/clang-cl from Chocolatey + vsdevcmd can build lic.
 
 echo "ci-install-llvm-windows: LLVM_DIR=${LLVM_DIR}"
+echo "ci-install-llvm-windows: LLVM_WIN_ROOT=${LLVM_WIN_ROOT}"
 "${ROOT}/bin/clang.exe" --version

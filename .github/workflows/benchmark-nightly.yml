@@ -238,6 +238,9 @@ jobs:
   bench-windows:
     runs-on: windows-latest
     timeout-minutes: 120
+    defaults:
+      run:
+        shell: bash
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -256,28 +259,27 @@ jobs:
           path: .llvm-cache
           key: llvm-win-22.1.0-${{ runner.os }}-${{ runner.arch }}
       - name: Install LLVM 22 + build tools (Windows)
-        shell: bash
         env:
           MSYS2_ARG_CONV_EXCL: "*"
         run: |
-          choco install cmake ninja llvm --version=22.1.0 -y || choco install cmake ninja llvm -y
-          echo "C:/Program Files/LLVM/bin" >> "$GITHUB_PATH"
-          set -euo pipefail
-          for d in "/c/Program Files/LLVM/lib/cmake/llvm" "/c/Program Files/LLVM/lib/cmake/llvm-22"; do
-            if [[ -f "$d/LLVMConfig.cmake" ]]; then
-              echo "LLVM_DIR=$d" >> "$GITHUB_ENV"
-              exit 0
-            fi
-          done
+          choco install cmake ninja -y
           chmod +x scripts/ci-install-llvm-windows.sh
           ./scripts/ci-install-llvm-windows.sh
       - name: Run core benchmarks (Windows)
-        shell: bash
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
+          MSYS2_ARG_CONV_EXCL: "*"
         run: |
-          chmod +x scripts/*.sh
+          llvm_root="${LLVM_WIN_ROOT:-${RUNNER_TEMP}/.llvm-win-22.1.0}"
+          test -x "${llvm_root}/bin/clang.exe"
+          chmod +x scripts/*.sh lic/scripts/*.sh
+          export LLVM_DIR="${LLVM_DIR}"
+          export LLVM_WIN_ROOT="${llvm_root}"
+          export PATH="${llvm_root}/bin:${PATH}"
+          export CC="${llvm_root}/bin/clang.exe"
+          export CXX="${llvm_root}/bin/clang++.exe"
+          "${CC}" --version
           ./scripts/setup-lic-for-bench.sh
           rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1

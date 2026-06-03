@@ -39,12 +39,21 @@ case "$(uname -s)" in
   MINGW*|MSYS*|CYGWIN*|Windows*)
     export LI_REPO_ROOT="$LIC_ROOT"
     if [[ -z "${LLVM_DIR:-}" ]]; then
-      for d in "${RUNNER_TEMP:-/tmp}/llvm-win-22.1.0/lib/cmake/llvm"         "/c/Program Files/LLVM/lib/cmake/llvm"; do
+      for d in \
+        "${LLVM_WIN_ROOT:-}/lib/cmake/llvm" \
+        "${RUNNER_TEMP:-/tmp}/.llvm-win-22.1.0/lib/cmake/llvm" \
+        "/c/Program Files/LLVM/lib/cmake/llvm" \
+        "/c/Program Files/LLVM/lib/cmake/llvm-22"; do
         if [[ -f "$d/LLVMConfig.cmake" ]]; then
           export LLVM_DIR="$d"
           break
         fi
       done
+    fi
+    if [[ -n "${LLVM_WIN_ROOT:-}" && -x "${LLVM_WIN_ROOT}/bin/clang.exe" ]]; then
+      export CC="${LLVM_WIN_ROOT}/bin/clang.exe"
+      export CXX="${LLVM_WIN_ROOT}/bin/clang++.exe"
+      export PATH="${LLVM_WIN_ROOT}/bin:${PATH}"
     fi
     if [[ -z "${LLVM_DIR:-}" ]]; then
       echo "LLVM 22 dev required on Windows: ./scripts/ci-install-llvm-windows.sh" >&2
