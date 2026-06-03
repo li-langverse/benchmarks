@@ -1,20 +1,35 @@
-extern proc li_wind_field_kernel()
-  requires true
-  ensures true
-
-extern proc li_wind_field_checksum() -> float
-  requires true
-  ensures true
+# wind_field_bc — tier-2 pure-Li 1D upwind advection (matches common/wind_core.c oracle).
 
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true
+
+def wind_field_kernel() -> float
+  requires true
+  ensures true
+  decreases 0
+=
+  var u: array[64, float]
+  var i: int = 0
+  while i < 64
+    u[i] = 1.0
+    i = i + 1
+  var s: int = 0
+  while s < 1000
+    var prev: float = u[0]
+    var j: int = 1
+    while j < 63
+      var cur: float = u[j]
+      u[j] = cur - 0.01 * (cur - prev)
+      prev = cur
+      j = j + 1
+    s = s + 1
+  return u[32]
 
 def main() raises IO -> int
   requires true
   ensures result == 0
   decreases 0
 =
-  li_wind_field_kernel()
-  li_rt_volatile_sink_f64(li_wind_field_checksum())
+  li_rt_volatile_sink_f64(wind_field_kernel())
   return 0
