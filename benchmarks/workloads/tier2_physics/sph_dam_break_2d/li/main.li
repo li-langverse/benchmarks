@@ -1,3 +1,5 @@
+# sph_dam_break_2d — shared C oracle via LI_EXTRA_C (2D dam-break SPH stub, sum-y checksum).
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true
