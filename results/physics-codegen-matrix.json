@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-01T18:53:24.377Z",
+  "generated_at": "2026-06-01T18:54:01.818Z",
   "pilot": false,
   "token_source": "sdk",
   "benches": [
@@ -1250,11 +1250,14 @@
         "checksum": "0.7219958512987783"
       },
       "llm": {
-        "duration_ms": 0,
+        "duration_ms": 92076,
         "input_tokens": 0,
         "output_tokens": 0,
-        "thinking_tokens": 0,
-        "token_source": "agent",
+        "thinking_tokens": 1073,
+        "thinking_chars": 4292,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 55,
+        "token_source": "sdk-estimated",
         "model_label": "default",
         "sdk_model": "default",
         "status": "finished"
