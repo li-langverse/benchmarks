@@ -2,6 +2,8 @@
 # Run one nightly tier group; writes results/tier-<group>.csv (parallel CI shards).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+# shellcheck source=lib/bench-python.sh
+source "$ROOT/scripts/lib/bench-python.sh"
 GROUP="${1:-${BENCH_TIER_GROUP:-}}"
 if [[ -z "$GROUP" ]]; then
   echo "usage: run-benchmark-tier-group.sh <tier0|tier12|tier7|tier3|tier5|tier5-exploits>" >&2
@@ -21,7 +23,7 @@ SKIP_BUILD="${SKIP_BUILD:-1}"
 SKIP_TIER0="${SKIP_TIER0:-1}"
 SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}"
 
-export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/tier-${GROUP}.csv}"
+export BENCHMARKS_CSV="$ROOT/results/tier-${GROUP}.csv"
 export LIC_ROOT LIS_ROOT LI_REPO_ROOT="$LIC_ROOT"
 export PATH="$LIC_ROOT/build/compiler/lic:$PATH"
 export LIC="$LIC_ROOT/build/compiler/lic/lic"
@@ -59,35 +61,35 @@ case "$GROUP" in
   tier1)
     log "tier 1 — micro (runs=$RUNS jobs=${BENCH_JOBS})"
     export BENCH_RUNS="$RUNS"
-    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 1 || {
+    bench_python "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 1 || {
       echo "WARN: tier 1 had failures" >&2
     }
     ;;
   tier2-md)
     log "tier 2 — MD physics shard (runs=$RUNS jobs=${BENCH_JOBS})"
     export BENCH_RUNS="$RUNS"
-    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group md || {
+    bench_python "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group md || {
       echo "WARN: tier2-md had failures" >&2
     }
     ;;
   tier2-pde)
     log "tier 2 — PDE physics shard (runs=$RUNS jobs=${BENCH_JOBS})"
     export BENCH_RUNS="$RUNS"
-    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group pde || {
+    bench_python "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group pde || {
       echo "WARN: tier2-pde had failures" >&2
     }
     ;;
   tier2-mech)
     log "tier 2 — mechanics physics shard (runs=$RUNS jobs=${BENCH_JOBS})"
     export BENCH_RUNS="$RUNS"
-    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group mech || {
+    bench_python "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier 2 --tier2-group mech || {
       echo "WARN: tier2-mech had failures" >&2
     }
     ;;
   tier12)
     log "tier 1+2 — micro + physics (runs=$RUNS jobs=${BENCH_JOBS})"
     export BENCH_RUNS="$RUNS"
-    python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier all || {
+    bench_python "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --tier all || {
       echo "WARN: tier 1+2 had failures" >&2
     }
     ;;
@@ -102,7 +104,7 @@ case "$GROUP" in
     ;;
   tier3)
     log "tier 3 — ecosystem (compile, security, async; jobs=${BENCH_JOBS})"
-    python3 "$ROOT/harness/bench_ecosystem.py" --runs "$RUNS" --jobs "$BENCH_JOBS"
+    bench_python "$ROOT/harness/bench_ecosystem.py" --runs "$RUNS" --jobs "$BENCH_JOBS"
     ;;
   tier5)
     if [[ "${SKIP_TIER5_HTTP:-0}" == "1" ]]; then
@@ -121,7 +123,7 @@ case "$GROUP" in
     export HTTP_BENCH_RUNS="${HTTP_BENCH_RUNS:-6}"
     export BENCH_MIN_RUNS="${BENCH_MIN_RUNS}"
     export BENCH_SUBSEC_MIN_RUNS="${BENCH_SUBSEC_MIN_RUNS}"
-    python3 "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "$HTTP_BENCH_RUNS" || {
+    bench_python "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "$HTTP_BENCH_RUNS" || {
       echo "WARN: tier5 supplemental http failed" >&2
     }
     ;;

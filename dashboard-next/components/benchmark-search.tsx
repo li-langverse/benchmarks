@@ -3,6 +3,12 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { CoverageStatusBadge } from "@/components/coverage-status-badge";
+import {
+  formatOsSummary,
+  groupByBenchmark,
+  groupMatchesQuery,
+  rowForOs,
+} from "@/lib/benchmark-groups";
 import { rowOracleKind, rowWithin1Ulp } from "@/lib/oracle";
 import {
   rowMatchesOracleFilter,
@@ -25,21 +31,6 @@ type BenchmarkSearchProps = {
   rows: SummaryRow[];
 };
 
-function rowMatchesQuery(row: SummaryRow, q: string): boolean {
-  const needle = q.trim().toLowerCase();
-  if (!needle) return true;
-  if (row.benchmark.toLowerCase().includes(needle)) return true;
-  if (row.package?.toLowerCase().includes(needle)) return true;
-  if (row.pillar?.toLowerCase().includes(needle)) return true;
-  if (row.ph_ids.some((id) => id.toLowerCase().includes(needle))) return true;
-  if (row.os?.toLowerCase().includes(needle)) return true;
-  if (row.sota_lang?.toLowerCase().includes(needle)) return true;
-  if (row.size_label?.toLowerCase().includes(needle)) return true;
-  if (row.problem_size?.toLowerCase().includes(needle)) return true;
-  if (row.base_id?.toLowerCase().includes(needle)) return true;
-  return false;
-}
-
 function rowMatchesSize(row: SummaryRow, size: string): boolean {
   if (!size) return true;
   const label = row.size_label ?? row.problem_size ?? "";
@@ -49,29 +40,41 @@ function rowMatchesSize(row: SummaryRow, size: string): boolean {
 export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
   const [query, setQuery] = useState("");
   const [sizeFilter, setSizeFilter] = useState("");
+  const [osFilter, setOsFilter] = useState("");
   const [validityFilter, setValidityFilter] = useState("");
   const [oracleFilter, setOracleFilter] = useState("");
   const [withinFilter, setWithinFilter] = useState("");
+  const groups = useMemo(() => groupByBenchmark(rows), [rows]);
   const sizeOptions = useMemo(() => uniqueSizeLabels(rows), [rows]);
+  const osOptions = useMemo(() => {
+    const tags = new Set<string>();
+    for (const row of rows) {
+      if (row.os && row.os !== "unknown") tags.add(row.os);
+    }
+    return [...tags].sort();
+  }, [rows]);
+
   const filtered = useMemo(
     () =>
-      rows.filter((row) => {
-        if (!rowMatchesQuery(row, query)) return false;
-        if (!rowMatchesSize(row, sizeFilter)) return false;
-        if (!rowMatchesValidityFilter(row, validityFilter || null)) return false;
-        if (!rowMatchesOracleFilter(row, oracleFilter || null)) return false;
-        if (!rowMatchesWithin1UlpFilter(row, withinFilter || null)) return false;
+      groups.filter((group) => {
+        if (!groupMatchesQuery(group, query)) return false;
+        const display = rowForOs(group, osFilter || null);
+        if (!rowMatchesSize(display, sizeFilter)) return false;
+        if (!rowMatchesValidityFilter(display, validityFilter || null)) return false;
+        if (!rowMatchesOracleFilter(display, oracleFilter || null)) return false;
+        if (!rowMatchesWithin1UlpFilter(display, withinFilter || null)) return false;
+        if (osFilter && !group.variants.some((v) => v.os === osFilter)) return false;
         return true;
       }),
-    [rows, query, sizeFilter, validityFilter, oracleFilter, withinFilter],
+    [groups, query, sizeFilter, osFilter, validityFilter, oracleFilter, withinFilter],
   );
 
   return (
     <section id="search" className="bench-search">
       <h2>Benchmarks</h2>
       <p className="bench-search-hint">
-        Filter by id, PH id, package, pillar, validity, analytical oracle, ULP gate, or
-        problem size (client-side).
+        One row per benchmark — OS breakdown on the drill-down page. Filter by id, PH id,
+        package, pillar, validity, oracle, ULP gate, or problem size (client-side).
       </p>
       <label className="bench-search-label" htmlFor="bench-filter">
         Search
@@ -106,6 +109,26 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
             </select>
           </>
         ) : null}
+        {osOptions.length > 0 ? (
+          <>
+            <label className="bench-search-label" htmlFor="bench-os-filter">
+              OS (drill-down slice)
+            </label>
+            <select
+              id="bench-os-filter"
+              className="bench-search-input"
+              value={osFilter}
+              onChange={(e) => setOsFilter(e.target.value)}
+            >
+              <option value="">Primary measured OS</option>
+              {osOptions.map((os) => (
+                <option key={os} value={os}>
+                  {os}
+                </option>
+              ))}
+            </select>
+          </>
+        ) : null}
         <label className="bench-search-label" htmlFor="bench-validity-filter">
           Validity
         </label>
@@ -119,6 +142,7 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
           <option value="pass">pass</option>
           <option value="fail">fail</option>
           <option value="unknown">unknown</option>
+          <option value="skip">skip (platform not measured)</option>
         </select>
         <label className="bench-search-label" htmlFor="bench-oracle-filter">
           Oracle
@@ -149,7 +173,7 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
         </select>
       </div>
       <p className="mono bench-search-count">
-        {filtered.length} of {rows.length} benchmarks
+        {filtered.length} of {groups.length} benchmarks
       </p>
       <div className="table-wrap">
         <table className="data-table">
@@ -162,7 +186,7 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
               <th>ULP</th>
               <th>Pillar</th>
               <th>Package</th>
-              <th>OS</th>
+              <th>Platforms</th>
               <th>SOTA</th>
               <th>Validity</th>
               <th>PH ids</th>
@@ -170,14 +194,17 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
             </tr>
           </thead>
           <tbody>
-            {filtered.map((row) => {
+            {filtered.map((group) => {
+              const row = rowForOs(group, osFilter || null);
               const oracle = rowOracleKind(row);
               const ulp = row.numeric_validity?.ulps;
               const within = rowWithin1Ulp(row);
+              const platforms =
+                group.variants.length > 1 ? formatOsSummary(group.variants) : row.os ?? "—";
               return (
-                <tr key={row.benchmark}>
+                <tr key={group.benchmark}>
                   <td>
-                    <Link href={`/bench/${row.benchmark}/`}>{row.benchmark}</Link>
+                    <Link href={`/bench/${group.benchmark}/`}>{group.benchmark}</Link>
                   </td>
                   <td className="mono">
                     {row.size_label ?? row.problem_size ?? "—"}
@@ -196,7 +223,9 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
                   </td>
                   <td>{row.pillar ?? "—"}</td>
                   <td>{row.package ?? "—"}</td>
-                  <td className="mono">{row.os ?? "—"}</td>
+                  <td className="mono matrix-platforms-cell" title={platforms}>
+                    {platforms}
+                  </td>
                   <td className="mono">{row.sota_lang ?? "—"}</td>
                   <td>
                     <CoverageStatusBadge row={row} showPerfStatus={false} />

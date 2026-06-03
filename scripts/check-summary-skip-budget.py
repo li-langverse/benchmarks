@@ -10,8 +10,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SUMMARY = ROOT / "data/latest/summary.json"
 
-# macOS/Windows tier 0/1 placeholders until nightly multi-OS CSV lands.
-MAX_TOTAL_SKIP_ROWS = 100
+# No synthetic platform skip rows — only measured OS from merged nightly CSV.
+MAX_TOTAL_SKIP_ROWS = 0
 MAX_LINUX_SKIP_ROWS = 0
 MIN_LINUX_GREEN_ROWS = 130
 MAX_LINUX_UNKNOWN_ROWS = 15

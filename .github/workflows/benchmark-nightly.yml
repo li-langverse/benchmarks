@@ -22,6 +22,9 @@ concurrency:
   group: benchmark-nightly
   cancel-in-progress: false
 
+env:
+  LIC_BENCH_REF: main
+
 jobs:
   setup-lic-linux:
     if: github.event_name != 'workflow_dispatch' || inputs.parallel_linux_tiers
@@ -33,7 +36,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -74,7 +77,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -124,7 +127,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/download-artifact@v4
         with:
           path: artifacts/tiers
@@ -161,7 +164,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -193,7 +196,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -205,10 +208,8 @@ jobs:
           llvm_prefix="$(brew --prefix llvm@22)"
           test -f "${llvm_prefix}/lib/cmake/llvm/LLVMConfig.cmake"
           echo "LLVM_DIR=${llvm_prefix}/lib/cmake/llvm" >> "$GITHUB_ENV"
-          # Xcode clang for compile; Homebrew llvm@22 only for LLVM_DIR (see lic/scripts/local-ci.sh).
-          echo "CC=clang" >> "$GITHUB_ENV"
-          echo "CXX=clang++" >> "$GITHUB_ENV"
-          clang --version
+          echo "LLVM22_PREFIX=${llvm_prefix}" >> "$GITHUB_ENV"
+          "${llvm_prefix}/bin/clang" --version
       - name: Run core benchmarks (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -217,8 +218,14 @@ jobs:
           SKIP_TIER5_HTTP: "1"
           SKIP_EXPLOITS: "1"
         run: |
+          llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
           chmod +x scripts/*.sh lic/scripts/*.sh
-          ./scripts/setup-lic-for-bench.sh
+          export LLVM_DIR="${LLVM_DIR}"
+          CC=clang CXX=clang++ ./scripts/setup-lic-for-bench.sh
+          export PATH="${llvm_prefix}/bin:${PATH}"
+          export CC="${llvm_prefix}/bin/clang"
+          export CXX="${llvm_prefix}/bin/clang++"
+          "${CC}" --version
           rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
           ./scripts/run-benchmark-ci-nightly.sh tier tier2-md
@@ -234,31 +241,60 @@ jobs:
   bench-windows:
     runs-on: windows-latest
     timeout-minutes: 120
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
           path: lis
           ref: main
-      - name: Install LLVM 22 + build tools (Windows)
-        shell: bash
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-llvm
+            mingw-w64-ucrt-x86_64-clang
+      - name: Resolve LLVM (MSYS2 UCRT64)
         run: |
-          choco install cmake ninja -y
-          chmod +x scripts/ci-install-llvm-windows.sh
-          ./scripts/ci-install-llvm-windows.sh
+          set -euo pipefail
+          test -f /ucrt64/lib/cmake/llvm/LLVMConfig.cmake
+          echo "LLVM_DIR=/ucrt64/lib/cmake/llvm" >> "$GITHUB_ENV"
+          echo "/ucrt64/bin" >> "$GITHUB_PATH"
+          clang --version
+      - name: Patch lic for MSYS2 Windows build
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: |
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          chmod +x scripts/patch-lic-msys-windows.sh
+          ./scripts/patch-lic-msys-windows.sh
       - name: Run core benchmarks (Windows)
-        shell: bash
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
           LIS_ROOT: ${{ github.workspace }}/lis
+          MSYSTEM: UCRT64
         run: |
-          chmod +x scripts/*.sh
+          set -euo pipefail
+          cd "$GITHUB_WORKSPACE"
+          export LLVM_DIR="${LLVM_DIR:-/ucrt64/lib/cmake/llvm}"
+          export CC=clang
+          export CXX=clang++
+          export PATH="/ucrt64/bin:$PATH"
+          chmod +x scripts/*.sh lic/scripts/*.sh
           ./scripts/setup-lic-for-bench.sh
           rm -f results/latest.csv results/tier-*.csv
           ./scripts/run-benchmark-ci-nightly.sh tier tier1
@@ -289,7 +325,7 @@ jobs:
         with:
           repository: li-langverse/lic
           path: lic
-          ref: main
+          ref: ${{ env.LIC_BENCH_REF }}
       - uses: actions/checkout@v4
         with:
           repository: li-langverse/lis
@@ -332,6 +368,7 @@ jobs:
       - name: Dashboard invariants
         env:
           MEASUREMENT_STRICT_PARITY: "1"
+          MULTI_OS_STRICT: "1"
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py

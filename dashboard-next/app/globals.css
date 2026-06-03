@@ -70,6 +70,11 @@ select:focus-visible,
   background: color-mix(in srgb, var(--muted) 25%, transparent);
   color: var(--muted);
 }
+.badge-skip {
+  background: color-mix(in srgb, var(--muted) 18%, transparent);
+  color: var(--muted);
+  border: 1px dashed color-mix(in srgb, var(--muted) 45%, transparent);
+}
 .badge-pending {
   border: 1px dashed var(--muted);
   font-style: italic;
@@ -262,6 +267,11 @@ main {
   background: color-mix(in srgb, var(--muted) 20%, transparent);
   color: var(--muted);
   border: 1px solid var(--border);
+}
+
+.validity-skip {
+  color: var(--muted);
+  font-style: italic;
 }
 
 .pillar-perf-counts {
