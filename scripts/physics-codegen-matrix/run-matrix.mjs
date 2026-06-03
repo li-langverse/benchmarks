@@ -57,24 +57,22 @@ function buildRows() {
     }
   }
 
-  if (pilotMode()) {
-    const model = fixedModelArmB();
-    for (const benchId of benchList) {
-      for (const lang of LANGS) {
-        const validity = verifyBench(benchId, { requireNativeLang: requireNative });
-        rows.push({
-          arm: "B",
-          bench_id: benchId,
-          model,
-          lang,
-          validity: {
-            verify_within_1ulp: validity.verify_within_1ulp,
-            checksum: validity.checksum,
-          },
-          llm: tokenFixture(model, benchId, lang),
-          harness_ok: validity.ok,
-        });
-      }
+  const modelB = fixedModelArmB();
+  for (const benchId of benchList) {
+    for (const lang of LANGS) {
+      const validity = verifyBench(benchId, { requireNativeLang: requireNative });
+      rows.push({
+        arm: "B",
+        bench_id: benchId,
+        model: modelB,
+        lang,
+        validity: {
+          verify_within_1ulp: validity.verify_within_1ulp,
+          checksum: validity.checksum,
+        },
+        llm: tokenFixture(modelB, benchId, lang),
+        harness_ok: validity.ok,
+      });
     }
   }
 
