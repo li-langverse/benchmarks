@@ -20,7 +20,6 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cfd_fvm_face_flux"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -30,12 +29,12 @@ path = "benchmarks/workloads/tier2_physics/cfd_fvm_face_flux"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cfd_pimple"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -45,12 +44,12 @@ path = "benchmarks/workloads/tier2_physics/cfd_pimple"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cfd_piso"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -60,12 +59,12 @@ path = "benchmarks/workloads/tier2_physics/cfd_piso"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cfd_simple"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -75,12 +74,12 @@ path = "benchmarks/workloads/tier2_physics/cfd_simple"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cfd_turbulence_k_epsilon"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -90,12 +89,12 @@ path = "benchmarks/workloads/tier2_physics/cfd_turbulence_k_epsilon"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "cfd_turbulence_k_omega_sst"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -105,12 +104,12 @@ path = "benchmarks/workloads/tier2_physics/cfd_turbulence_k_omega_sst"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "fea_gauss_quadrature"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -120,12 +119,12 @@ path = "benchmarks/workloads/tier2_physics/fea_gauss_quadrature"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "fea_linear_elasticity"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -135,12 +134,12 @@ path = "benchmarks/workloads/tier2_physics/fea_linear_elasticity"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "fea_mesh_tri_tet"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -150,12 +149,12 @@ path = "benchmarks/workloads/tier2_physics/fea_mesh_tri_tet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "fea_solver_direct"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -165,12 +164,12 @@ path = "benchmarks/workloads/tier2_physics/fea_solver_direct"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "fea_solver_iterative"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -180,12 +179,12 @@ path = "benchmarks/workloads/tier2_physics/fea_solver_iterative"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "fea_stiffness_assembly"
-problem_size = "nx=128,ny=128,steps=20000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -195,6 +194,7 @@ path = "benchmarks/workloads/tier2_physics/fea_stiffness_assembly"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "nx=128,ny=128,steps=20000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
@@ -295,7 +295,7 @@ pillar = "numerics"
 package = "li-math"
 tier = 1
 repo = "li-math"
-path = "benchmarks/ml/ml_conv2d_forward"
+path = "benchmarks/workloads/tier1_micro/ml_conv2d_forward"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
@@ -309,7 +309,7 @@ pillar = "numerics"
 package = "li-math"
 tier = 1
 repo = "li-math"
-path = "benchmarks/ml/ml_mlp_forward"
+path = "benchmarks/workloads/tier1_micro/ml_mlp_forward"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
@@ -323,7 +323,7 @@ pillar = "numerics"
 package = "li-math"
 tier = 1
 repo = "li-math"
-path = "benchmarks/ml/ml_mlp_train_step"
+path = "benchmarks/workloads/tier1_micro/ml_mlp_train_step"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
@@ -332,7 +332,6 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "nbody_barnes_hut"
-problem_size = "N=256,steps=10000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -342,12 +341,12 @@ path = "benchmarks/workloads/tier2_physics/nbody_barnes_hut"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_cg"
-problem_size = "n=64"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -357,12 +356,12 @@ path = "benchmarks/workloads/tier1_micro/num_cg"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=64"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_cholesky"
-problem_size = "n=64"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -372,12 +371,12 @@ path = "benchmarks/workloads/tier1_micro/num_cholesky"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=64"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_eig_symmetric"
-problem_size = "n=32"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -387,12 +386,12 @@ path = "benchmarks/workloads/tier1_micro/num_eig_symmetric"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=32"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_fft_r2c"
-problem_size = "n=512"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -402,12 +401,12 @@ path = "benchmarks/workloads/tier1_micro/num_fft_r2c"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=512"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_gmres"
-problem_size = "n=48"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -417,12 +416,12 @@ path = "benchmarks/workloads/tier1_micro/num_gmres"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=48"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_integ_euler"
-problem_size = "steps=500000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -432,12 +431,12 @@ path = "benchmarks/workloads/tier1_micro/num_integ_euler"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_integ_rk4"
-problem_size = "steps=200000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -447,12 +446,12 @@ path = "benchmarks/workloads/tier1_micro/num_integ_rk4"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=200000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_integ_semi_implicit"
-problem_size = "steps=500000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -462,12 +461,12 @@ path = "benchmarks/workloads/tier1_micro/num_integ_semi_implicit"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_integ_symplectic"
-problem_size = "steps=500000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -477,12 +476,12 @@ path = "benchmarks/workloads/tier1_micro/num_integ_symplectic"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_integ_verlet"
-problem_size = "steps=500000"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -492,12 +491,12 @@ path = "benchmarks/workloads/tier1_micro/num_integ_verlet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_opt_bfgs"
-problem_size = "num_opt_bfgs"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -507,12 +506,12 @@ path = "benchmarks/workloads/tier1_micro/num_opt_bfgs"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_opt_bfgs"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_opt_line_search"
-problem_size = "num_opt_line_search"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -522,12 +521,12 @@ path = "benchmarks/workloads/tier1_micro/num_opt_line_search"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_opt_line_search"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_quadrature_gauss"
-problem_size = "num_quadrature_gauss"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -537,12 +536,12 @@ path = "benchmarks/workloads/tier1_micro/num_quadrature_gauss"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_quadrature_gauss"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_rng_pcg"
-problem_size = "num_rng_pcg"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -552,12 +551,12 @@ path = "benchmarks/workloads/tier1_micro/num_rng_pcg"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_rng_pcg"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_root_newton"
-problem_size = "num_root_newton"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -567,12 +566,12 @@ path = "benchmarks/workloads/tier1_micro/num_root_newton"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_root_newton"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "num_sparse_mv"
-problem_size = "n=256"
 category = "micro"
 pillar = "numerics"
 package = "lic"
@@ -582,6 +581,7 @@ path = "benchmarks/workloads/tier1_micro/num_sparse_mv"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
@@ -614,11 +614,8 @@ problem_size = "10_000_000"
 size_label = "N=10_000_000"
 ph_ids = ["PH-5b", "PH-7e"]
 
-# --- stdlib ADT tier-1 (WP0-C; workload_class stub until WP1 Li drivers) ---
-
 [[benchmark]]
 id = "stdlib_list_push_pop"
-catalog_lifecycle = "planned"
 category = "micro"
 pillar = "stdlib"
 package = "lic"
@@ -627,8 +624,8 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_list_push_pop"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 size_label = "harness pending"
+catalog_lifecycle = "planned"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
@@ -641,14 +638,12 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_dict_insert_lookup"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 problem_size = "500_000_ops"
 size_label = "500k insert+lookup"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
 id = "stdlib_set_ops"
-catalog_lifecycle = "planned"
 category = "micro"
 pillar = "stdlib"
 package = "lic"
@@ -657,8 +652,8 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_set_ops"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 size_label = "harness pending"
+catalog_lifecycle = "planned"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
@@ -671,7 +666,6 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_sort_int"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 problem_size = "1_000_000"
 size_label = "N=1_000_000 int sort"
 ph_ids = ["AL-15"]
@@ -686,14 +680,12 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_binary_search"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 problem_size = "200_000_queries"
 size_label = "1M sorted / 200k queries"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
 id = "stdlib_heap_push_pop"
-catalog_lifecycle = "planned"
 category = "micro"
 pillar = "stdlib"
 package = "lic"
@@ -702,13 +694,12 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_heap_push_pop"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 size_label = "harness pending"
+catalog_lifecycle = "planned"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
 id = "stdlib_deque_rotate"
-catalog_lifecycle = "planned"
 category = "micro"
 pillar = "stdlib"
 package = "lic"
@@ -717,13 +708,12 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_deque_rotate"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 size_label = "harness pending"
+catalog_lifecycle = "planned"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
 id = "stdlib_hash_flood"
-catalog_lifecycle = "planned"
 category = "micro"
 pillar = "stdlib"
 package = "lic"
@@ -732,8 +722,8 @@ repo = "lic"
 path = "benchmarks/workloads/tier1_stdlib/stdlib_hash_flood"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
-workload_class = "stub"
 size_label = "harness pending"
+catalog_lifecycle = "planned"
 ph_ids = ["AL-15"]
 
 [[benchmark]]
@@ -743,11 +733,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_colormap"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -757,11 +748,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_decimate"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -771,11 +763,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_inspector_panels"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -785,11 +778,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_linked_views"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -799,11 +793,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_marching_cubes"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -813,11 +808,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_pipeline_graph"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -827,11 +823,12 @@ pillar = "graphics"
 package = "lig"
 tier = 1
 repo = "lig"
-path = "benchmarks/workloads/tier1_micro/viz_resample"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -851,7 +848,6 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "auto_bicycle_model"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -861,12 +857,12 @@ path = "benchmarks/workloads/tier2_physics/auto_bicycle_model"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "auto_dyn_rk4"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -876,12 +872,12 @@ path = "benchmarks/workloads/tier2_physics/auto_dyn_rk4"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "auto_sensor_raycast"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -891,67 +887,72 @@ path = "benchmarks/workloads/tier2_physics/auto_sensor_raycast"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "bio_proteinmpnn"
-problem_size = "n=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_sparse_mv"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=256"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "bio_rfdiffusion"
-problem_size = "n=64"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_cg"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=64"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "bio_rosetta_energy"
-problem_size = "n=48"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_gmres"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=48"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "bio_rotamer_packing"
-problem_size = "n=64"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_cholesky"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=64"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -1000,77 +1001,82 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "drug_docking_diffusion"
-problem_size = "n=32"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_eig_symmetric"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=32"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "drug_docking_score_vina"
-problem_size = "n=512"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_fft_r2c"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n=512"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "drug_fep_alchemical"
-problem_size = "num_rng_pcg"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_rng_pcg"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_rng_pcg"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "drug_litl_stages"
-problem_size = "steps=500000"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_integ_euler"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "drug_ml_retrain_loop"
-problem_size = "steps=200000"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_integ_rk4"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=200000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -1133,7 +1139,6 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_barostat_parrinello_rahman"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1143,12 +1148,12 @@ path = "benchmarks/workloads/tier2_physics/md_barostat_parrinello_rahman"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_constraints_rattle"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1158,12 +1163,12 @@ path = "benchmarks/workloads/tier2_physics/md_constraints_rattle"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_constraints_shake"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1173,12 +1178,12 @@ path = "benchmarks/workloads/tier2_physics/md_constraints_shake"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_energy_drift"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1188,12 +1193,12 @@ path = "benchmarks/workloads/tier2_physics/md_energy_drift"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_init_fcc_mb"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1203,12 +1208,12 @@ path = "benchmarks/workloads/tier2_physics/md_init_fcc_mb"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_integrator_leapfrog"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1218,12 +1223,12 @@ path = "benchmarks/workloads/tier2_physics/md_integrator_leapfrog"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_integrator_verlet"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1233,6 +1238,7 @@ path = "benchmarks/workloads/tier2_physics/md_integrator_verlet"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
@@ -1252,7 +1258,6 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_longrange_ewald"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1262,12 +1267,12 @@ path = "benchmarks/workloads/tier2_physics/md_longrange_ewald"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_longrange_pme"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1277,12 +1282,12 @@ path = "benchmarks/workloads/tier2_physics/md_longrange_pme"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_neighbor_cell_list"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1292,12 +1297,12 @@ path = "benchmarks/workloads/tier2_physics/md_neighbor_cell_list"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_neighbor_verlet_skin"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1307,12 +1312,12 @@ path = "benchmarks/workloads/tier2_physics/md_neighbor_verlet_skin"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_oracle_external"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1322,12 +1327,12 @@ path = "benchmarks/workloads/tier2_physics/md_oracle_external"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_thermostat_berendsen"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1337,12 +1342,12 @@ path = "benchmarks/workloads/tier2_physics/md_thermostat_berendsen"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "md_thermostat_nose_hoover"
-problem_size = "N=256,steps=10000"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1352,6 +1357,7 @@ path = "benchmarks/workloads/tier2_physics/md_thermostat_nose_hoover"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
 ph_ids = ["PH-5b"]
 
@@ -1386,37 +1392,38 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "pde_cfl_timestep"
-problem_size = "steps=500000"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_integ_verlet"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "pde_heat_implicit_jacobi"
-problem_size = "steps=500000"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_integ_symplectic"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_ase_calculator"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1426,12 +1433,12 @@ path = "benchmarks/workloads/tier2_physics/qm_ase_calculator"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_ccsd"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1441,12 +1448,12 @@ path = "benchmarks/workloads/tier2_physics/qm_ccsd"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_grid_becke"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1456,12 +1463,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_grid_becke"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_grid_lebedev"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1471,12 +1478,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_grid_lebedev"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_hybrid_exchange"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1486,12 +1493,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_hybrid_exchange"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_scf_energy"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1501,12 +1508,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_scf_energy"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_xc_gga"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1516,12 +1523,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_xc_gga"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_xc_lda"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1531,12 +1538,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_xc_lda"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dft_xc_mgga"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1546,12 +1553,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dft_xc_mgga"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_dispersion_d3"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1561,12 +1568,12 @@ path = "benchmarks/workloads/tier2_physics/qm_dispersion_d3"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_ecp"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1576,12 +1583,12 @@ path = "benchmarks/workloads/tier2_physics/qm_ecp"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_eri_density_fitting"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1591,12 +1598,12 @@ path = "benchmarks/workloads/tier2_physics/qm_eri_density_fitting"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_eri_os"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1606,12 +1613,12 @@ path = "benchmarks/workloads/tier2_physics/qm_eri_os"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_eri_screening"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1621,12 +1628,12 @@ path = "benchmarks/workloads/tier2_physics/qm_eri_screening"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_geom_opt_bfgs"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1636,12 +1643,12 @@ path = "benchmarks/workloads/tier2_physics/qm_geom_opt_bfgs"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_geom_opt_internal"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1651,12 +1658,12 @@ path = "benchmarks/workloads/tier2_physics/qm_geom_opt_internal"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_grad_analytical"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1666,12 +1673,12 @@ path = "benchmarks/workloads/tier2_physics/qm_grad_analytical"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_gto_eval"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1681,12 +1688,12 @@ path = "benchmarks/workloads/tier2_physics/qm_gto_eval"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_hf_canonical_ortho"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1696,12 +1703,12 @@ path = "benchmarks/workloads/tier2_physics/qm_hf_canonical_ortho"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_hf_diis"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1711,12 +1718,12 @@ path = "benchmarks/workloads/tier2_physics/qm_hf_diis"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_hf_fock_build"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1726,12 +1733,12 @@ path = "benchmarks/workloads/tier2_physics/qm_hf_fock_build"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_job_queue_io"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1741,12 +1748,12 @@ path = "benchmarks/workloads/tier2_physics/qm_job_queue_io"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_kinetic_integrals"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1756,12 +1763,12 @@ path = "benchmarks/workloads/tier2_physics/qm_kinetic_integrals"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_mp2"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1771,12 +1778,12 @@ path = "benchmarks/workloads/tier2_physics/qm_mp2"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_nuclear_attraction"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1786,12 +1793,12 @@ path = "benchmarks/workloads/tier2_physics/qm_nuclear_attraction"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_overlap_integrals"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1801,12 +1808,12 @@ path = "benchmarks/workloads/tier2_physics/qm_overlap_integrals"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_property_dipole"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1816,12 +1823,12 @@ path = "benchmarks/workloads/tier2_physics/qm_property_dipole"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_property_freq"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1831,12 +1838,12 @@ path = "benchmarks/workloads/tier2_physics/qm_property_freq"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_scf_solver"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1846,12 +1853,12 @@ path = "benchmarks/workloads/tier2_physics/qm_scf_solver"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_tddft_casida"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1861,12 +1868,12 @@ path = "benchmarks/workloads/tier2_physics/qm_tddft_casida"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_tddft_rpa"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1876,12 +1883,12 @@ path = "benchmarks/workloads/tier2_physics/qm_tddft_rpa"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "qm_xtb_gfn"
-problem_size = "N=256"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1891,6 +1898,7 @@ path = "benchmarks/workloads/tier2_physics/qm_xtb_gfn"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256"
 validity_required = true
 ph_ids = ["PH-5b"]
 
@@ -1926,7 +1934,6 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "rigid_broadphase_bvh"
-problem_size = "n={'value': 20}"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1936,12 +1943,12 @@ path = "benchmarks/workloads/tier2_physics/rigid_broadphase_bvh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n={'value': 20}"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "rigid_broadphase_sap"
-problem_size = "n={'value': 20}"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1951,12 +1958,12 @@ path = "benchmarks/workloads/tier2_physics/rigid_broadphase_sap"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n={'value': 20}"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "rigid_constraints"
-problem_size = "n={'value': 20}"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1966,12 +1973,12 @@ path = "benchmarks/workloads/tier2_physics/rigid_constraints"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n={'value': 20}"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "rigid_contact_solver"
-problem_size = "n={'value': 20}"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1981,12 +1988,12 @@ path = "benchmarks/workloads/tier2_physics/rigid_contact_solver"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n={'value': 20}"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "rigid_semi_implicit"
-problem_size = "n={'value': 20}"
 category = "physics"
 pillar = "physics"
 package = "lic"
@@ -1996,82 +2003,88 @@ path = "benchmarks/workloads/tier2_physics/rigid_semi_implicit"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "n={'value': 20}"
 validity_required = true
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "robo_ik_jacobian"
-problem_size = "steps=500000"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_integ_semi_implicit"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "steps=500000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "robo_multibody_step"
-problem_size = "num_root_newton"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_root_newton"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_root_newton"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "robo_plan_prm"
-problem_size = "num_opt_bfgs"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_opt_bfgs"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_opt_bfgs"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "robo_plan_rrt"
-problem_size = "num_opt_line_search"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_opt_line_search"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_opt_line_search"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "robo_traj_opt"
-problem_size = "num_quadrature_gauss"
 category = "physics"
 pillar = "physics"
 package = "lic"
 tier = 2
 repo = "lic"
-path = "benchmarks/workloads/tier1_micro/num_quadrature_gauss"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "num_quadrature_gauss"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
@@ -2179,157 +2192,166 @@ ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_export_gcode_3mf"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_integrator_verlet"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_infill_grid_lines"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_energy_drift"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_infill_gyroid"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_oracle_external"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_offset_perimeters"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_neighbor_cell_list"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_plane_mesh_intersect"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_neighbor_verlet_skin"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_polygon_clip"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_integrator_leapfrog"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_slice_layers"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_thermostat_nose_hoover"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_support_tree"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_thermostat_berendsen"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_thermal_warp"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_barostat_parrinello_rahman"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "am_toolpath_arcs"
-problem_size = "N=256,steps=10000"
 category = "tooling"
 pillar = "tooling"
 package = "lic"
 tier = 3
 repo = "lic"
-path = "benchmarks/workloads/tier2_physics/md_constraints_shake"
+path = "unknown"
 metric = "wall_time"
 threshold_ratio_cpp = 1.2
 variant = "algo_registry"
+problem_size = "N=256,steps=10000"
 validity_required = true
+catalog_lifecycle = "planned"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
 id = "lip_smoke"
-catalog_lifecycle = "planned"
 category = "tooling"
 pillar = "tooling"
 package = "lip"
@@ -2338,11 +2360,11 @@ repo = "lip"
 path = "scripts/ci.sh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.0
+catalog_lifecycle = "planned"
 ph_ids = ["PH-8b"]
 
 [[benchmark]]
 id = "lit_smoke"
-catalog_lifecycle = "planned"
 category = "tooling"
 pillar = "tooling"
 package = "lit"
@@ -2351,6 +2373,7 @@ repo = "lit"
 path = "scripts/ci.sh"
 metric = "wall_time"
 threshold_ratio_cpp = 1.0
+catalog_lifecycle = "planned"
 ph_ids = ["PH-8e"]
 
 [[benchmark]]
@@ -2430,13 +2453,14 @@ pillar = "server"
 package = "lic"
 tier = 5
 repo = "lic"
-path = "packages/li-net-httpd"
+path = "unknown"
 metric = "rps"
 threshold_ratio_cpp = 1.0
 compare_oracle = "nginx"
 variant = "li_epoll"
 problem_size = "loopback_wrk"
 size_label = "loopback wrk"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-H"]
 
 [[benchmark]]
@@ -2485,7 +2509,6 @@ ph_ids = ["PH-H"]
 
 [[benchmark]]
 id = "tier5_http_exploits"
-catalog_lifecycle = "planned"
 category = "security"
 pillar = "security"
 package = "lis"
@@ -2494,11 +2517,11 @@ repo = "lis"
 path = "benchmarks/workloads/tier5_http/harness/exploit_http.py"
 metric = "pass_rate"
 threshold_ratio_cpp = 1.0
+catalog_lifecycle = "planned"
 ph_ids = ["PH-H"]
 
 [[benchmark]]
 id = "ann_qps_10k"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2508,11 +2531,11 @@ metric = "queries_per_sec"
 threshold_ratio_cpp = 1.0
 compare_oracle = "faiss_cpu"
 variant = "vector_ann"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-8", "PH-DB-G2"]
 
 [[benchmark]]
 id = "ann_recall_at_10_10k"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2522,11 +2545,11 @@ metric = "recall_at_10"
 threshold_ratio_cpp = 1.0
 compare_oracle = "faiss_cpu"
 variant = "vector_ann"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-8", "PH-DB-G2"]
 
 [[benchmark]]
 id = "ann_recall_at_10_1m"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2536,11 +2559,11 @@ metric = "recall_at_10"
 threshold_ratio_cpp = 1.0
 compare_oracle = "faiss_cpu"
 variant = "vector_ann_nightly"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-8", "PH-DB-G2"]
 
 [[benchmark]]
 id = "gpu_ann_speedup_10k"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2550,11 +2573,11 @@ metric = "speedup_ratio"
 threshold_ratio_cpp = 1.5
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-G2"]
 
 [[benchmark]]
 id = "gpu_ann_speedup_1m"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2564,11 +2587,11 @@ metric = "speedup_ratio"
 threshold_ratio_cpp = 1.5
 compare_oracle = "lidb_cpu_hnsw"
 variant = "gpu_speedup_nightly"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-G2"]
 
 [[benchmark]]
 id = "graph_cycle_detect"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2578,11 +2601,11 @@ metric = "latency_p95"
 threshold_ratio_cpp = 1.2
 compare_oracle = "postgres_age"
 variant = "registry_graph"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-G1"]
 
 [[benchmark]]
 id = "graph_dep_closure"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2592,11 +2615,11 @@ metric = "latency_p95"
 threshold_ratio_cpp = 1.2
 compare_oracle = "postgres_age"
 variant = "registry_graph"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-G1"]
 
 [[benchmark]]
 id = "registry_publish"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2606,11 +2629,11 @@ metric = "latency_p95"
 threshold_ratio_cpp = 1.2
 compare_oracle = "postgres"
 variant = "registry_oltp"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-5"]
 
 [[benchmark]]
 id = "registry_read_by_name"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2620,11 +2643,11 @@ metric = "latency_p95"
 threshold_ratio_cpp = 1.2
 compare_oracle = "postgres"
 variant = "registry_oltp"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-5"]
 
 [[benchmark]]
 id = "registry_read_latest"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2634,11 +2657,11 @@ metric = "latency_p95"
 threshold_ratio_cpp = 1.2
 compare_oracle = "postgres"
 variant = "registry_oltp"
+catalog_lifecycle = "planned"
 ph_ids = ["PH-DB-5"]
 
 [[benchmark]]
 id = "injection_blocked"
-catalog_lifecycle = "planned"
 category = "security"
 pillar = "security"
 package = "lidb"
@@ -2649,11 +2672,11 @@ metric = "pass_rate"
 threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_security"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-SEC"]
 
 [[benchmark]]
 id = "rls_bypass_blocked"
-catalog_lifecycle = "planned"
 category = "security"
 pillar = "security"
 package = "lidb"
@@ -2664,11 +2687,11 @@ metric = "pass_rate"
 threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_security"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-SEC"]
 
 [[benchmark]]
 id = "rss_idle"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2678,11 +2701,11 @@ metric = "rss_mb"
 threshold_ratio_cpp = 1.1
 compare_oracle = "postgres"
 variant = "db_memory"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-MEM"]
 
 [[benchmark]]
 id = "rss_peak_load"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2692,11 +2715,11 @@ metric = "rss_mb"
 threshold_ratio_cpp = 1.1
 compare_oracle = "postgres"
 variant = "db_memory"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-MEM"]
 
 [[benchmark]]
 id = "concurrent_readers"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2706,11 +2729,11 @@ metric = "ops_per_sec"
 threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_parallel"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-PAR"]
 
 [[benchmark]]
 id = "concurrent_writers"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2720,11 +2743,11 @@ metric = "ops_per_sec"
 threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_parallel"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-PAR"]
 
 [[benchmark]]
 id = "query_log_complete"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2734,11 +2757,11 @@ metric = "completeness_ratio"
 threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_audit"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-AUD"]
 
 [[benchmark]]
 id = "tamper_evidence"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2748,11 +2771,11 @@ metric = "pass_rate"
 threshold_ratio_cpp = 1.0
 compare_oracle = "postgres"
 variant = "db_audit"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-AUD"]
 
 [[benchmark]]
 id = "ws_publish_latency"
-catalog_lifecycle = "planned"
 category = "database"
 package = "lidb"
 tier = 6
@@ -2762,7 +2785,13 @@ metric = "latency_p95"
 threshold_ratio_cpp = 1.2
 compare_oracle = "postgres"
 variant = "db_realtime"
+catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-RT"]
+
+[reporting]
+platforms = ["linux", "macos", "windows"]
+validity_required = true
+sota_policy = "best_competitor_lang_excludes_li"
 
 [reporting]
 platforms = ["linux", "macos", "windows"]

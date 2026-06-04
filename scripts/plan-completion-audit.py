@@ -220,51 +220,133 @@ def scan_physics_push() -> list[dict]:
     return out
 
 
+VENDOR_LIS = ROOT / "vendor/lis-tier5"
+
+INTENTIONAL_CATALOG_ID_PATH = {
+    "tier0_stability": "tier0_correctness",
+}
+
+VERTICAL_STUB_PREFIXES = (
+    "bio_",
+    "drug_",
+    "robo_",
+    "am_",
+    "pde_cfl_",
+    "pde_heat_implicit",
+)
+
+
 def _catalog_repo_root(repo: str) -> Path | None:
     """Resolve checkout root for catalog path checks."""
     if repo == "lic":
         return LIC
     if repo == "lis":
-        vendor = ROOT / "vendor/lis-tier5"
-        if vendor.is_dir():
-            return vendor
+        if VENDOR_LIS.is_dir():
+            return VENDOR_LIS
         return LIS if LIS.is_dir() else None
     if repo == "benchmarks":
         return ROOT
     return None
 
 
-def catalog_without_repo_path() -> list[dict]:
+def _catalog_path_candidates(repo: str, rel: str) -> list[Path]:
+    """Resolve catalog paths across lic tree, benchmarks workloads mirror, vendor lis."""
+    rel = rel.replace("\\", "/")
+    out: list[Path] = []
+    root = _catalog_repo_root(repo)
+    if root is not None:
+        out.append(root / rel)
+    if repo == "lic":
+        out.extend([LIC / rel, ROOT / rel])
+        if "/workloads/" in rel:
+            out.append(LIC / rel.replace("/workloads/", "/", 1))
+    elif repo == "lis":
+        if VENDOR_LIS.is_dir():
+            out.append(VENDOR_LIS / rel)
+            if "/workloads/" in rel:
+                out.append(VENDOR_LIS / rel.replace("/workloads/", "/", 1))
+    elif repo == "benchmarks":
+        out.append(ROOT / rel)
+    elif repo == "li-math":
+        tail = rel.rsplit("/", 1)[-1]
+        out.append(ROOT / "benchmarks/workloads/tier1_micro" / tail)
+    elif repo in ("lig", "lip", "lit"):
+        out.append(ROOT / rel)
+    seen: set[str] = set()
+    unique: list[Path] = []
+    for p in out:
+        key = str(p)
+        if key not in seen:
+            seen.add(key)
+            unique.append(p)
+    return unique
+
+
+def _catalog_path_exists(repo: str, rel: str) -> bool:
+    return any(p.is_dir() or p.is_file() for p in _catalog_path_candidates(repo, rel))
+
+
+def _catalog_bogus_remap(row: dict) -> bool:
+    bid = str(row.get("id", ""))
+    rel = str(row.get("path", "")).strip()
+    if not bid or not rel or rel == "unknown":
+        return False
+    intentional = INTENTIONAL_CATALOG_ID_PATH.get(bid)
+    if intentional and intentional in rel:
+        return False
+    tail = rel.rsplit("/", 1)[-1]
+    if bid == tail or bid.startswith(tail + "_"):
+        return False
+    if any(bid.startswith(p) for p in VERTICAL_STUB_PREFIXES):
+        return True
+    return bid != tail
+
+
+def catalog_without_repo_path() -> tuple[list[dict], list[dict], list[dict]]:
     import tomllib
 
     catalog = ROOT / "catalog.toml"
     if not catalog.is_file():
-        return []
+        return [], [], []
     data = tomllib.loads(catalog.read_text(encoding="utf-8"))
-    out: list[dict] = []
+    path_missing: list[dict] = []
+    bogus_remap: list[dict] = []
     for row in data.get("benchmark", []):
         rel = str(row.get("path", "")).strip()
         if not rel or rel == "unknown":
             continue
         if row.get("catalog_lifecycle") == "planned":
             continue
+        bid = str(row.get("id", ""))
         repo = str(row.get("repo", "lic"))
+        if _catalog_bogus_remap(row):
+            bogus_remap.append(
+                {
+                    "source": "benchmarks:catalog.toml",
+                    "kind": "bogus_remap",
+                    "item": (
+                        f"catalog id={bid} maps to unrelated harness path "
+                        f"(repo={repo}): {rel}"
+                    ),
+                }
+            )
+            continue
+        if _catalog_path_exists(repo, rel):
+            continue
         root = _catalog_repo_root(repo)
-        if root is None:
-            continue
-        bench_path = root / rel
-        if bench_path.is_dir() or bench_path.is_file():
-            continue
-        out.append(
+        root_name = root.name if root else repo
+        path_missing.append(
             {
                 "source": "benchmarks:catalog.toml",
+                "kind": "path_missing",
                 "item": (
-                    f"catalog id={row.get('id')} path missing under {repo} root "
-                    f"({root.name}): {rel}"
+                    f"catalog id={bid} path missing under {repo} root "
+                    f"({root_name}): {rel}"
                 ),
             }
         )
-    return out
+    actionable = path_missing + bogus_remap
+    return path_missing, bogus_remap, actionable
 
 
 def package_stubs() -> list[dict]:
@@ -290,7 +372,7 @@ def main() -> int:
     tracker_open_keys = {normalize_item_key(i["item"]) for i in master}
     gaps = scan_provability_gaps()
     plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
-    catalog = catalog_without_repo_path()
+    catalog_path_missing, catalog_bogus_remap, catalog = catalog_without_repo_path()
     stubs = package_stubs()
     physics = scan_physics_push()
 
@@ -316,6 +398,9 @@ def main() -> int:
             "provability_partial": len(gaps.get("partial", [])),
             "provability_missing": len(gaps.get("missing", [])),
             "catalog_gaps": len(catalog),
+            "catalog_gaps_path_missing": len(catalog_path_missing),
+            "catalog_gaps_bogus_remap": len(catalog_bogus_remap),
+            "catalog_gaps_actionable": len(catalog),
             "total_findings": len(open_items),
             "tracker_phases_complete": len(completed_phases),
         },
@@ -325,6 +410,8 @@ def main() -> int:
         "stale_spec_checklists": stale_spec,
         "provability_gaps": gaps,
         "catalog_gaps": catalog,
+        "catalog_gaps_path_missing": catalog_path_missing,
+        "catalog_gaps_bogus_remap": catalog_bogus_remap,
         "implementation_signals": stubs + physics,
         "recommended_actions": [],
     }
@@ -355,12 +442,22 @@ def main() -> int:
                 "missing": len(gaps.get("missing", [])),
             }
         )
-    if catalog:
+    if catalog_path_missing:
         report["recommended_actions"].append(
             {
                 "priority": "P2",
-                "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
-                "benchmarks": [c["item"] for c in catalog],
+                "action": "Implement lic benchmarks for catalog rows or mark catalog_lifecycle=planned",
+                "benchmarks": [c["item"] for c in catalog_path_missing[:40]],
+                "count": len(catalog_path_missing),
+            }
+        )
+    if catalog_bogus_remap:
+        report["recommended_actions"].append(
+            {
+                "priority": "P2",
+                "action": "Fix competitive vertical stub remaps (planned + path=unknown)",
+                "benchmarks": [c["item"] for c in catalog_bogus_remap[:40]],
+                "count": len(catalog_bogus_remap),
             }
         )
 
