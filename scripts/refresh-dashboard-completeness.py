@@ -207,10 +207,26 @@ def expand_tier01_rows(
         charts = charts_by_base.get(base, [])
         chart_by_os = {chart_os(c): c for c in charts}
         row_by_bench = {base: group[0]}
+        plat_rows: list[dict] = []
         for plat in platforms:
             ch = chart_by_os.get(plat)
-            if ch:
-                expanded.append(chart_row_from_chart(base, cfg, ch, row_by_bench))
+            if not ch:
+                continue
+            # Skip charts satisfy audit P0; rows stay linux-measured only (skip-budget).
+            if (
+                plat != "linux"
+                and (
+                    ch.get("validity_status") == "skip"
+                    or ch.get("status") == "skip"
+                    or not ch.get("series")
+                )
+            ):
+                continue
+            plat_rows.append(chart_row_from_chart(base, cfg, ch, row_by_bench))
+        if plat_rows:
+            expanded.extend(plat_rows)
+        else:
+            expanded.extend(group)
     summary["rows"] = sorted(
         expanded, key=lambda row: (row["tier"], row["benchmark"], row.get("os", ""))
     )
@@ -278,6 +294,17 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
                     charts_by_pillar[ch.get("pillar", "numerics")].append(ch)
                     continue
 
+                skip = bs.build_platform_skip_chart(
+                    base,
+                    cfg,
+                    plat,
+                    chart_id=bs.chart_id_for_os(base, plat, multi=multi),
+                    multi=multi,
+                    validity_source=f"platform:{plat}:not_measured",
+                )
+                charts_out.append(skip)
+                charts_by_pillar[skip["pillar"]].append(skip)
+
         new_categories[cat_name] = {
             **cat_data,
             "charts": sorted(charts_out, key=lambda c: c["id"]),
@@ -290,10 +317,15 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
         has_csv = r.get("li_value") is not None
         sizes = bs.effective_size_meta(cfg, has_csv=has_csv)
         r.update({k: v for k, v in sizes.items() if v is not None})
+        if r.get("status") == "advisory" or r.get("validity_status") == "advisory":
+            continue
         if r.get("pending") or r.get("li_value") is None:
-            r["validity_status"] = "skip"
-            r["validity_source"] = r.get("validity_source") or "catalog:pending"
-            r["status"] = "skip"
+            if is_tier5_http(cfg) or is_stdlib_stub(cfg):
+                apply_linux_li_pending_row(r)
+            else:
+                r["validity_status"] = "skip"
+                r["validity_source"] = r.get("validity_source") or "catalog:pending"
+                r["status"] = "skip"
         elif r.get("status") in (None, "", "unknown") and r.get("validity_status") == "skip":
             r["status"] = "skip"
 
