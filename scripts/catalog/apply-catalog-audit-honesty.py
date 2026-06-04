@@ -17,6 +17,9 @@ import argparse
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from catalog_io import load_benchmarks, write_catalog  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = ROOT / "catalog.toml"
 VENDOR_LIS = ROOT / "vendor/lis-tier5"
@@ -77,11 +80,6 @@ BENCHMARK_KEYS = (
 )
 
 
-def load_header(text: str) -> str:
-    idx = text.find("[[benchmark]]")
-    return text[:idx].rstrip() + "\n\n" if idx != -1 else ""
-
-
 def format_benchmark(b: dict) -> str:
     lines = ["[[benchmark]]", f'id = "{b["id"]}"']
     for key in BENCHMARK_KEYS:
@@ -116,10 +114,7 @@ def main() -> int:
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
 
-    import tomllib
-
-    text = CATALOG.read_text(encoding="utf-8")
-    benchmarks = [dict(b) for b in tomllib.loads(text).get("benchmark", [])]
+    header, benchmarks, footer = load_benchmarks(CATALOG)
     vertical = 0
     planned = 0
     tier5 = 0
@@ -156,10 +151,12 @@ def main() -> int:
         print("pass --write to update catalog.toml", file=sys.stderr)
         return 1
 
-    header = load_header(text)
-    CATALOG.write_text(
-        header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n",
-        encoding="utf-8",
+    write_catalog(
+        CATALOG,
+        header=header,
+        benchmarks=benchmarks,
+        footer=footer,
+        format_benchmark=format_benchmark,
     )
     print(f"wrote {CATALOG}")
     return 0

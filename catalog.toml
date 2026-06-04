@@ -2777,3 +2777,8 @@ compare_oracle = "postgres"
 variant = "db_realtime"
 catalog_lifecycle = "planned"
 ph_ids = ["WP-N4", "PH-DB-RT"]
+
+[reporting]
+platforms = ["linux", "macos", "windows"]
+validity_required = true
+sota_policy = "best_competitor_lang_excludes_li"
