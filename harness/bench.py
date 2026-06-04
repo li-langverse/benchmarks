@@ -301,14 +301,14 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         "li/main.li",
         li_core_c="li/wave2d_kernel.c",
     ),
- BenchSpec(
- "sph_dam_break_2d",
- 2,
- "sph_dam_break_2d",
- "cpp/main.c",
- "common/sph_dam_core.c",
- "li/main.li",
- ),
+    BenchSpec(
+        "sph_dam_break_2d",
+        2,
+        "sph_dam_break_2d",
+        "cpp/main.c",
+        "cpp/sph_dam_kernel.c",
+        "li/main.li",
+    ),
  BenchSpec(
  "rigid_body_stack",
  2,
