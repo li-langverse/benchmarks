@@ -68,4 +68,4 @@ Remediation: `data/latest/remediation_manifest.json` (P1 issues + acceptance che
 
 ## Automation
 
-`python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic` sibling checkout; CI `lic`. Skips path=unknown and catalog_lifecycle=planned.) Output: `data/latest/plan-completion-audit.json` (`master_plan_open` = tracker only; `stale_spec_checklists` = normative task bullets, not gates).
+`python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic` sibling checkout; CI `lic`. Skips path=unknown and catalog_lifecycle=planned.) Output: `data/latest/plan-completion-audit.json` (`master_plan_open` = tracker only; `stale_spec_checklists` = normative task bullets, not gates). After [benchmarks-only ADR](./benchmarks-single-repo-layout.md), audit JSON also reports `catalog_gaps_actionable` vs `catalog_gaps_repo_mismatch`; fix repo field via `scripts/catalog/fix-catalog-repo-field.py`. Workload paths sync from `benchmarks/workloads/` via `scripts/catalog/sync-paths-from-lic-tree.py` (benchmarks tree first, legacy lic walk optional).
