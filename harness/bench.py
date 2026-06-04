@@ -71,6 +71,7 @@ class BenchSpec:
     flops_per_run: float | None = None
     bytes_per_run: float | None = None
     li_pure: bool = False
+    li_core_c: str | None = None
     li_enabled: bool = True
 
 
@@ -289,6 +290,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         "cpp/main.c",
         "cpp/advdiff_kernel.c",
         "li/main.li",
+        li_core_c="li/advdiff_kernel.c",
     ),
     BenchSpec(
         "wave_equation_2d",
@@ -516,11 +518,14 @@ def build_li(spec: BenchSpec, bin_path: Path) -> None:
     env.setdefault("LIC_ROOT", str(lr))
     env.setdefault("LI_REPO_ROOT", str(lr))
     if not spec.li_pure:
-        li_extra = root / "li" / "heat_kernel.c"
-        if li_extra.is_file() and spec.name == "heat_equation_2d":
-            env["LI_EXTRA_C"] = str(li_extra)
+        if spec.li_core_c:
+            env["LI_EXTRA_C"] = str(root / spec.li_core_c)
         else:
-            env["LI_EXTRA_C"] = str(root / spec.core_c)
+            li_extra = root / "li" / "heat_kernel.c"
+            if li_extra.is_file() and spec.name == "heat_equation_2d":
+                env["LI_EXTRA_C"] = str(li_extra)
+            else:
+                env["LI_EXTRA_C"] = str(root / spec.core_c)
     subprocess.check_call(
         [
             str(lic),
