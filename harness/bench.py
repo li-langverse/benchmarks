@@ -299,6 +299,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         "cpp/main.c",
         "cpp/wave2d_kernel.c",
         "li/main.li",
+        li_core_c="li/wave2d_kernel.c",
     ),
  BenchSpec(
  "sph_dam_break_2d",

@@ -1,3 +1,6 @@
+# wave_equation_2d — Li driver; kernel in li/wave2d_kernel.c (LI_EXTRA_C Arm B track).
+# Pure-Li 5-point stencil blocked on E0201 (neighbor indices i±1/j±1); tracks common/wave2d_core.c.
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true
