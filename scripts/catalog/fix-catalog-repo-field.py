@@ -131,11 +131,21 @@ def apply_fixes(benchmarks: list[dict], *, verbose: bool) -> tuple[int, int, int
             am_fixes += 1
             continue
 
-        if repo == "lic" and rel and not is_lic_only_path(rel) and path_exists_in_repo(rel):
+        if repo in ("lic", "lis") and rel and not is_lic_only_path(rel) and path_exists_in_repo(rel):
             if verbose:
-                print(f"  repo {bench_id}: lic -> benchmarks")
+                print(f"  repo {bench_id}: {repo} -> benchmarks")
             b["repo"] = "benchmarks"
             repo_fixes += 1
+            continue
+
+        vendor_rel = f"vendor/lis-tier5/benchmarks/tier5_http/scenarios/{bench_id}"
+        if repo == "lis" and rel.startswith("benchmarks/workloads/tier5_http/"):
+            if path_exists_in_repo(vendor_rel):
+                if verbose:
+                    print(f"  tier5 vendor path {bench_id}: {rel} -> {vendor_rel}")
+                b["repo"] = "benchmarks"
+                b["path"] = vendor_rel
+                repo_fixes += 1
 
     return repo_fixes, remap_fixes, am_fixes
 
