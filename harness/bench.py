@@ -327,7 +327,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  2,
  "wind_field_bc",
  "cpp/main.c",
- "common/wind_core.c",
+ "cpp/wind_kernel.c",
  "li/main.li",
  ),
  BenchSpec(
