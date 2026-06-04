@@ -340,6 +340,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  "cpp/main.c",
  "common/combust_core.c",
  "li/main.li",
+ li_pure=True,
  ),
  BenchSpec(
  "orbit_two_body",
