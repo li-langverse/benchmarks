@@ -175,26 +175,31 @@ http {{
 """
 
 
+def _parse_wrk_abbrev_number(raw: str) -> float | None:
+    """Parse wrk summary numbers like ``12.34k`` or ``1.23m``."""
+    s = raw.strip().replace(",", "")
+    mult = 1.0
+    if s and s[-1] in "kKmM":
+        mult = 1000.0 if s[-1] in "kK" else 1_000_000.0
+        s = s[:-1]
+    try:
+        val = float(s) * mult
+        return val if val > 0 else None
+    except ValueError:
+        return None
+
+
 def parse_wrk_rps(text: str) -> float | None:
     # "Requests/sec:   12345.67" or with thousands separators rarely
     m = re.search(r"Requests/sec:\s*([\d,.]+)", text, re.IGNORECASE)
     if m:
-        raw = m.group(1).replace(",", "")
-        try:
-            val = float(raw)
-            if val > 0:
-                return val
-        except ValueError:
-            pass
-    # wrk may print summary only on stderr for some builds
-    m2 = re.search(r"Req/Sec\s+[\d.]+\s+([\d,.]+)", text)
+        val = _parse_wrk_abbrev_number(m.group(1))
+        if val is not None:
+            return val
+    # wrk may print summary only on stderr for some builds (Avg Req/Sec line)
+    m2 = re.search(r"Req/Sec\s+([\d,.]+[kKmM]?)", text)
     if m2:
-        try:
-            val = float(m2.group(1).replace(",", ""))
-            if val > 0:
-                return val
-        except ValueError:
-            pass
+        return _parse_wrk_abbrev_number(m2.group(1))
     return None
 
 
