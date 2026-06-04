@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Sync catalog.toml paths from lic benchmarks tree (tier1_micro, tier2_physics, …).
+"""Sync catalog.toml paths from benchmarks workloads (ADR) and optional legacy lic tree.
 
-Walks ``LIC_ROOT/benchmarks/tier*`` (and tier5 scenarios, package harness dirs),
-sets ``path`` for each catalog id when a matching harness directory exists.
-Optionally regenerates ``data/latest/summary.json`` via ``build_summary.py`` when
-``lic/benchmarks/results/latest.csv`` is present.
+Primary scan: ``benchmarks/workloads/tier*`` under this repo (benchmarks-only ADR).
+Legacy ``LIC_ROOT/benchmarks/tier*`` is opt-in via ``--include-legacy-lic`` (deprecated).
+Sets ``path`` and ``repo=benchmarks`` when a harness dir exists under workloads.
+Optionally regenerates ``data/latest/summary.json`` when ``results/latest.csv`` exists.
 
 Usage:
-  LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --dry-run
-  LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --write
-  LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --write --rebuild-summary
+  python3 scripts/catalog/sync-paths-from-lic-tree.py --dry-run
+  python3 scripts/catalog/sync-paths-from-lic-tree.py --write
+  LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --write --include-legacy-lic
 """
 from __future__ import annotations
 
@@ -87,7 +87,12 @@ def format_benchmark(b: dict) -> str:
     return "\n".join(lines)
 
 
-def scan_harness_index(lic_root: Path, bench_root: Path | None = None) -> dict[str, str]:
+def scan_harness_index(
+    lic_root: Path | None,
+    bench_root: Path | None = None,
+    *,
+    include_legacy_lic: bool = False,
+) -> dict[str, str]:
     """Map harness directory stem -> catalog path (benchmarks/workloads/... preferred)."""
     index: dict[str, str] = {}
     bench_root = bench_root or ROOT
@@ -95,9 +100,10 @@ def scan_harness_index(lic_root: Path, bench_root: Path | None = None) -> dict[s
     workloads = bench_root / "benchmarks" / "workloads"
     if workloads.is_dir():
         sources.append((workloads, "benchmarks/workloads"))
-    legacy = lic_root / "benchmarks"
-    if legacy.is_dir():
-        sources.append((legacy, "benchmarks"))
+    if include_legacy_lic and lic_root is not None:
+        legacy = lic_root / "benchmarks"
+        if legacy.is_dir():
+            sources.append((legacy, "benchmarks"))
     if not sources:
         return index
 
@@ -138,15 +144,25 @@ def registry_dir_stems(sync_mod) -> dict[str, str]:
     return out
 
 
+def path_exists(rel: str, *, bench_root: Path, lic_root: Path | None) -> bool:
+    """True when rel exists under benchmarks repo or legacy lic root."""
+    if rel.startswith("benchmarks/"):
+        return (bench_root / rel).is_dir() or (bench_root / rel).is_file()
+    if lic_root is not None:
+        return (lic_root / rel).is_dir() or (lic_root / rel).is_file()
+    return False
+
+
 def lookup_path(
     bench_id: str,
     base_id: str | None,
     *,
-    lic_root: Path,
+    bench_root: Path,
+    lic_root: Path | None,
     harness_index: dict[str, str],
     sync_mod,
 ) -> str | None:
-    """Return relative lic path when harness dir exists, else None."""
+    """Return relative catalog path when harness dir exists, else None."""
     candidates: list[str] = []
     lookup = base_id or bench_id
     candidates.append(lookup)
@@ -167,11 +183,14 @@ def lookup_path(
             continue
         seen.add(name)
         rel = harness_index.get(name)
-        if rel and (lic_root / rel).is_dir():
+        if rel and path_exists(rel, bench_root=bench_root, lic_root=lic_root):
             return rel
-        resolved = sync_mod.resolve_path(name, lic_root)
-        if resolved != "unknown" and (lic_root / resolved).is_dir():
-            return resolved
+        if lic_root is not None:
+            resolved = sync_mod.resolve_path(name, lic_root)
+            if resolved != "unknown" and path_exists(
+                resolved, bench_root=bench_root, lic_root=lic_root
+            ):
+                return resolved
     return None
 
 
@@ -184,28 +203,34 @@ def path_is_managed(path: str) -> bool:
 def sync_catalog_paths(
     benchmarks: list[dict],
     *,
-    lic_root: Path,
+    bench_root: Path,
+    lic_root: Path | None,
     harness_index: dict[str, str],
     sync_mod,
 ) -> list[tuple[str, str, str]]:
     fixes: list[tuple[str, str, str]] = []
     for b in benchmarks:
+        if b.get("catalog_lifecycle") == "planned" or b.get("variant") == "vertical_stub":
+            continue
         cur = str(b.get("path") or "unknown")
         if not path_is_managed(cur):
             continue
         new = lookup_path(
             b["id"],
             b.get("base_id"),
+            bench_root=bench_root,
             lic_root=lic_root,
             harness_index=harness_index,
             sync_mod=sync_mod,
         )
         if not new or cur == new:
             continue
-        if cur != "unknown" and (lic_root / cur).is_dir():
+        if cur != "unknown" and path_exists(cur, bench_root=bench_root, lic_root=lic_root):
             continue
         fixes.append((b["id"], cur, new))
         b["path"] = new
+        if new.startswith("benchmarks/workloads/"):
+            b["repo"] = "benchmarks"
     return fixes
 
 
@@ -247,23 +272,47 @@ def main() -> int:
         action="store_true",
         help="run build_summary.py when latest.csv exists (default with --write)",
     )
+    parser.add_argument(
+        "--include-legacy-lic",
+        action="store_true",
+        help="also scan LIC_ROOT/benchmarks (deprecated; workloads ADR is canonical)",
+    )
     args = parser.parse_args()
     lic_root = args.lic_root.resolve()
     lis_root = args.lis_root.resolve()
-    if not lic_root.is_dir():
-        raise SystemExit(f"LIC_ROOT not found: {lic_root}")
+    lic_usable = lic_root.is_dir()
+    workloads = ROOT / "benchmarks" / "workloads"
+    if not workloads.is_dir() and not lic_usable:
+        raise SystemExit(
+            f"no workloads under {workloads} and LIC_ROOT not found: {lic_root}"
+        )
+    if args.include_legacy_lic and not lic_usable:
+        raise SystemExit(f"--include-legacy-lic but LIC_ROOT not found: {lic_root}")
+    lic_for_scan = lic_root if (args.include_legacy_lic and lic_usable) else None
+    if args.include_legacy_lic and lic_usable:
+        print(
+            "warn: --include-legacy-lic scans deprecated lic/benchmarks; "
+            "prefer benchmarks/workloads only",
+            file=sys.stderr,
+        )
 
     import tomllib
 
     sync_mod = load_sync_registry_module()
     text = CATALOG.read_text()
     benchmarks = [dict(b) for b in tomllib.loads(text).get("benchmark", [])]
-    harness_index = scan_harness_index(lic_root, bench_root=ROOT)
-    print(f"harness dirs indexed: {len(harness_index)} (benchmarks/workloads + legacy lic)")
+    harness_index = scan_harness_index(
+        lic_for_scan, bench_root=ROOT, include_legacy_lic=args.include_legacy_lic
+    )
+    sources = "benchmarks/workloads"
+    if args.include_legacy_lic and lic_usable:
+        sources += " + legacy lic"
+    print(f"harness dirs indexed: {len(harness_index)} ({sources})")
 
     fixes = sync_catalog_paths(
         benchmarks,
-        lic_root=lic_root,
+        bench_root=ROOT,
+        lic_root=lic_for_scan if lic_usable else None,
         harness_index=harness_index,
         sync_mod=sync_mod,
     )
@@ -285,9 +334,12 @@ def main() -> int:
 
     do_summary = args.rebuild_summary or args.write
     if do_summary:
-        rc = rebuild_summary(lic_root, lis_root)
-        if rc != 0:
-            return rc
+        if lic_usable:
+            rc = rebuild_summary(lic_root, lis_root)
+            if rc != 0:
+                return rc
+        else:
+            print("skip summary rebuild: LIC_ROOT not available", file=sys.stderr)
     return 0
 
 
