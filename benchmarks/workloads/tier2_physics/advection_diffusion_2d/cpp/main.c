@@ -1,4 +1,5 @@
-#include "../common/advdiff_core.h"
+/* advection_diffusion_2d — tier-2 upwind advection + diffusion (physics-codegen Arm B cpp). */
+#include "advdiff_kernel.h"
 #include <stdio.h>
 #include <string.h>
 

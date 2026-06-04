@@ -287,7 +287,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         2,
         "advection_diffusion_2d",
         "cpp/main.c",
-        "common/advdiff_core.c",
+        "cpp/advdiff_kernel.c",
         "li/main.li",
     ),
     BenchSpec(
