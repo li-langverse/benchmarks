@@ -36,11 +36,17 @@ if [[ "$need_http" == "1" ]]; then
   command -v bun >/dev/null 2>&1 || echo "note: bun optional for tier5 (skipped when missing)" >&2
 fi
 
-if [[ -x "$LIC_ROOT/build/compiler/lic/lic" ]] && [[ "${SKIP_BUILD:-0}" == "1" ]]; then
-  if [[ "$need_http" != "1" ]] || [[ -x "$LIC_ROOT/build/li-httpd" ]]; then
-    echo "ci-setup-lic-nightly-linux: reuse existing lic build ($GROUP)"
-    exit 0
+if [[ "${SKIP_BUILD:-0}" == "1" ]]; then
+  if [[ ! -x "$LIC_ROOT/build/compiler/lic/lic" ]]; then
+    echo "ci-setup-lic-nightly-linux: SKIP_BUILD=1 but lic missing (run prepare-lic-linux first)" >&2
+    exit 1
   fi
+  if [[ "$need_http" == "1" ]] && [[ ! -x "$LIC_ROOT/build/li-httpd" ]]; then
+    echo "ci-setup-lic-nightly-linux: SKIP_BUILD=1 but li-httpd missing" >&2
+    exit 1
+  fi
+  echo "ci-setup-lic-nightly-linux: reuse lic build ($GROUP)"
+  exit 0
 fi
 
 if [[ "$need_http" == "1" ]]; then

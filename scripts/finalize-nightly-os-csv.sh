@@ -5,12 +5,14 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TIER_DIR="${1:-$ROOT/results}"
 OUT="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
 
-case "$(uname -s)" in
-  Darwin*) EXPECT_OS=macos ;;
-  MINGW*|MSYS*|CYGWIN*|Windows*) EXPECT_OS=windows ;;
-  Linux*) EXPECT_OS=linux ;;
-  *) EXPECT_OS=unknown ;;
-esac
+if [[ -z "${EXPECT_OS:-}" ]]; then
+  case "$(uname -s)" in
+    Darwin*) EXPECT_OS=macos ;;
+    MINGW*|MSYS*|CYGWIN*|Windows*) EXPECT_OS=windows ;;
+    Linux*) EXPECT_OS=linux ;;
+    *) EXPECT_OS=unknown ;;
+  esac
+fi
 
 rm -f "$OUT"
 shopt -s nullglob
