@@ -23,8 +23,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  # Pin until li-langverse/lic#XXX (fix/msys2-usleep-win) merges; then restore main.
-  LIC_BENCH_REF: fix/msys2-usleep-win
+  LIC_BENCH_REF: main
 
 jobs:
   setup-lic-linux:
