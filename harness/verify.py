@@ -17,11 +17,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-from paths import lic_root, results_csv
+from paths import lic_compiler_bin, lic_root, results_csv
 
 _HARNESS = Path(__file__).resolve().parent
 REPO = lic_root()
-LIC = REPO / "build" / "compiler" / "lic" / "lic"
+LIC = lic_compiler_bin(REPO)
 RESULTS = results_csv().parent
 
 # Wave B tier-2 verify: Lennard-Jones MD + one PDE (heat 2D).

@@ -2,8 +2,26 @@
 # CI nightly entry: full suite on Linux; core tiers on macOS/Windows.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
-export LIC_ROOT LIS_ROOT="${LIS_ROOT:-$ROOT/../lis}"
+REPO_PARENT="$(cd "$ROOT/.." && pwd)"
+if [[ -z "${LIC_ROOT:-}" ]]; then
+  if [[ -d "$ROOT/lic" ]]; then
+    LIC_ROOT="$ROOT/lic"
+  elif [[ -d "$REPO_PARENT/lic" ]]; then
+    LIC_ROOT="$REPO_PARENT/lic"
+  else
+    LIC_ROOT="$ROOT/lic"
+  fi
+fi
+if [[ -z "${LIS_ROOT:-}" ]]; then
+  if [[ -d "$ROOT/lis" ]]; then
+    LIS_ROOT="$ROOT/lis"
+  elif [[ -d "$REPO_PARENT/lis" ]]; then
+    LIS_ROOT="$REPO_PARENT/lis"
+  else
+    LIS_ROOT="$REPO_PARENT/lis"
+  fi
+fi
+export LIC_ROOT LIS_ROOT
 export LI_REPO_ROOT="$LIC_ROOT"
 export BENCH_JOBS="${BENCH_JOBS:-$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)}"
 export BENCH_MIN_RUNS="${BENCH_MIN_RUNS:-20}"
