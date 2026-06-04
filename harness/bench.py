@@ -270,7 +270,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         2,
         "heat_equation_2d",
         "cpp/main.c",
-        "common/heat_core.c",
+        "cpp/heat_kernel.c",
         "li/main.li",
     ),
     BenchSpec(
