@@ -2,6 +2,8 @@
 # Run the full Li org benchmark suite and refresh dashboard summary (agents: run after every implementation).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+# shellcheck source=lib/bench-python.sh
+source "$ROOT/scripts/lib/bench-python.sh"
 REPO_PARENT="$(cd "$ROOT/.." && pwd)"
 if [[ -z "${LIC_ROOT:-}" ]]; then
   if [[ -d "$ROOT/lic" ]]; then
@@ -70,12 +72,11 @@ python3 "$ROOT/scripts/run-lic-tier-benches.py" --runs "$RUNS" --jobs "$BENCH_JO
 }
 
 log "tier 7 — algo_registry family-template aliases"
-"$ROOT/scripts/run-bench.sh" --tier 7 --runs "$RUNS" --skip-verify || {
-  echo "WARN: tier7 registry aliases failed — continuing" >&2
-}
+export REGISTRY_RUN_TIMINGS="${REGISTRY_RUN_TIMINGS:-1}"
+"$ROOT/scripts/run-bench.sh" --tier 7 --runs "$RUNS" --skip-verify
 
 log "tier 3 — ecosystem (compile, security, async; jobs=${BENCH_JOBS})"
-python3 "$ROOT/harness/bench_ecosystem.py" --runs "$RUNS" --jobs "$BENCH_JOBS"
+bench_python "$ROOT/harness/bench_ecosystem.py" --runs "$RUNS" --jobs "$BENCH_JOBS" --latest "$BENCHMARKS_CSV"
 
 if [[ "${SKIP_TIER5_HTTP:-0}" == "1" ]]; then
   log "tier 5 — HTTP multi-oracle skipped (SKIP_TIER5_HTTP=1)"
@@ -102,15 +103,21 @@ if [[ "$SKIP_EXPLOITS" != "1" ]] && [[ -f "$ROOT/scripts/run-tier5-http-exploits
   log "tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
   export TIER5_EXPLOIT_PROFILE="${TIER5_EXPLOIT_PROFILE:-pr}"
   export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,apache,li}"
-  if ! "$ROOT/scripts/run-tier5-http-exploits.sh"; then
-    echo "WARN: tier5 HTTP exploits had failures (see exploit_report.csv)" >&2
+  "$ROOT/scripts/run-tier5-http-exploits.sh"
+  exploit_tmp="$ROOT/results/tier-tier5-exploits.csv"
+  bench_python "$ROOT/scripts/exploit-report-to-tier-csv.py" \
+    "$ROOT/vendor/lis-tier5/results/exploit_report.csv" "$exploit_tmp"
+  if [[ -s "$exploit_tmp" ]]; then
+    python3 "$ROOT/scripts/ingest/merge_bench_csv_artifacts.py" "$BENCHMARKS_CSV" "$exploit_tmp"
   fi
 else
   log "tier 5 — HTTP exploits skipped (SKIP_EXPLOITS=1)"
 fi
 
 # Merge tier-5 CSV rows into latest.csv for ingest
-python3 "$ROOT/scripts/merge-tier5-http-into-csv.py" "$ROOT" "$LIC_ROOT"
+export BENCHMARKS_CSV
+bench_python "$ROOT/scripts/merge-tier5-http-into-csv.py" "$ROOT" "$LIC_ROOT"
+test -s "$BENCHMARKS_CSV"
 
 cd "$ROOT"
 log "ingest + summary.json"

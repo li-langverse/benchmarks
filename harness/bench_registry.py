@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 from paths import competitive_registry_path
@@ -118,7 +119,13 @@ def clone_template_csv_rows(
     if added:
         write_csv(out, merged)
     print(f"registry: cloned {added} CSV rows for {len(specs)} aliases -> {out}")
-    return 0 if added else 1
+    import os
+
+    if added:
+        return 0
+    if os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes"):
+        return 1
+    return 1
 
 
 def run_registry_family_benches(
@@ -134,7 +141,11 @@ def run_registry_family_benches(
     if only:
         specs = tuple(s for s in specs if s.name in only)
     if not specs:
-        print("registry: no alias specs in scope")
+        print("registry: no alias specs in scope", file=sys.stderr)
+        import os
+
+        if os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes"):
+            return 1
         return 0
 
     if os.environ.get("REGISTRY_RUN_TIMINGS", "").strip() not in ("1", "true", "yes"):

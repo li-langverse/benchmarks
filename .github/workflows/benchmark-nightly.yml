@@ -105,7 +105,7 @@ jobs:
         with:
           name: bench-tier-${{ matrix.group }}
           path: results/tier-${{ matrix.group }}.csv
-          if-no-files-found: warn
+          if-no-files-found: error
       - name: Upload tier5 HTTP sidecars
         if: matrix.group == 'tier5'
         uses: actions/upload-artifact@v4
