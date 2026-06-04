@@ -77,141 +77,969 @@
       "path": "data/history/2026-05-30T153202Z.json",
       "lic_sha": "57f114cb05a86070565632e01aad48806a172e12",
       "benchmarks_sha": "06c68a91c550fc21eb1a48954e0defb5ef7d0f13"
+    },
+    {
+      "at": "2026-06-04T02:53:45.775864+00:00",
+      "path": "data/history/2026-06-04T025347Z.json",
+      "lic_sha": "a96233103f2fa0f3ca176481cfe84a19b3047c36",
+      "benchmarks_sha": "762bdc549ca5a03e781fc7884430ce44365f5b42"
     }
   ],
   "latest_deltas": [
     {
-      "benchmark": "fft_1d_fixed",
+      "benchmark": "tier0_stability",
       "field": "status",
       "from": "skip",
       "to": "green"
+    },
+    {
+      "benchmark": "cfd_fvm_face_flux",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "cfd_pimple",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "cfd_piso",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "cfd_simple",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "cfd_turbulence_k_epsilon",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "cfd_turbulence_k_omega_sst",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fea_gauss_quadrature",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fea_linear_elasticity",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fea_mesh_tri_tet",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fea_solver_direct",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fea_solver_iterative",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fea_stiffness_assembly",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
     },
     {
       "benchmark": "horner_pure_li",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "matmul_blocked",
       "field": "status",
       "from": "skip",
-      "to": "yellow"
+      "to": "unknown"
+    },
+    {
+      "benchmark": "matmul_blocked_N1024",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
     },
     {
       "benchmark": "matmul_naive",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
+    },
+    {
+      "benchmark": "matmul_naive_N1024",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "ml_conv2d_forward",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "ml_mlp_forward",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "ml_mlp_train_step",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "nbody_barnes_hut",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
     },
     {
       "benchmark": "num_cg",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_cholesky",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_eig_symmetric",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_fft_r2c",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_gmres",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_euler",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_rk4",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_semi_implicit",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_symplectic",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_verlet",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_opt_bfgs",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_opt_line_search",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_quadrature_gauss",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_rng_pcg",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_root_newton",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "num_sparse_mv",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "reduce_sum",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
     },
     {
       "benchmark": "simd_dot",
       "field": "status",
       "from": "skip",
-      "to": "green"
+      "to": "unknown"
+    },
+    {
+      "benchmark": "stdlib_binary_search",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "stdlib_dict_insert_lookup",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "stdlib_sort_int",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_colormap",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_decimate",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_inspector_panels",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_linked_views",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_marching_cubes",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_pipeline_graph",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "viz_resample",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "advection_diffusion_2d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "auto_bicycle_model",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "auto_dyn_rk4",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "auto_sensor_raycast",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "bio_proteinmpnn",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "bio_rfdiffusion",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "bio_rosetta_energy",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "bio_rotamer_packing",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "cloth_swing",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "combustion_passive",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "double_pendulum",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "drug_docking_diffusion",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "drug_docking_score_vina",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "drug_fep_alchemical",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "drug_litl_stages",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "drug_ml_retrain_loop",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "euler_fluid_2d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "fdtd_waveguide_2d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "harmonic_oscillator_chain",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "heat_equation_2d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_barostat_parrinello_rahman",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_constraints_rattle",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_constraints_shake",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_energy_drift",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_init_fcc_mb",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_integrator_leapfrog",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_integrator_verlet",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_lennard_jones",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_longrange_ewald",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_longrange_pme",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_neighbor_cell_list",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_neighbor_verlet_skin",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_oracle_external",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_thermostat_berendsen",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "md_thermostat_nose_hoover",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "nbody_gravity",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "orbit_two_body",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "pde_cfl_timestep",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "pde_heat_implicit_jacobi",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_ase_calculator",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_ccsd",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_grid_becke",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_grid_lebedev",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_hybrid_exchange",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_scf_energy",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_xc_gga",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_xc_lda",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dft_xc_mgga",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_dispersion_d3",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_ecp",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_eri_density_fitting",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_eri_os",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_eri_screening",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_geom_opt_bfgs",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_geom_opt_internal",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_grad_analytical",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_gto_eval",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_hf_canonical_ortho",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_hf_diis",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_hf_fock_build",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_job_queue_io",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_kinetic_integrals",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_mp2",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_nuclear_attraction",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_overlap_integrals",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_property_dipole",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_property_freq",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_scf_solver",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_tddft_casida",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_tddft_rpa",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "qm_xtb_gfn",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "ragdoll_chain",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rigid_body_stack",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rigid_broadphase_bvh",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rigid_broadphase_sap",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rigid_constraints",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rigid_contact_solver",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rigid_semi_implicit",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "robo_ik_jacobian",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "robo_multibody_step",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "robo_plan_prm",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "robo_plan_rrt",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "robo_traj_opt",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "schrodinger_1d_barrier",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "sph_dam_break_2d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "three_body",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "three_body_pure",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "wave_equation_1d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "wave_equation_2d",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "wind_field_bc",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_export_gcode_3mf",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_infill_grid_lines",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_infill_gyroid",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_offset_perimeters",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_plane_mesh_intersect",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_polygon_clip",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_slice_layers",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_support_tree",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_thermal_warp",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "am_toolpath_arcs",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "https_static",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "keepalive_pipelining",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "lb_least_conn",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "lb_peer_down",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "lb_round_robin",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "proxy_loopback",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "rate_limit_429",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "static_large",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
+    },
+    {
+      "benchmark": "static_small",
+      "field": "status",
+      "from": "skip",
+      "to": "unknown"
     }
   ],
-  "updated_at": "2026-05-30T15:32:02.819242+00:00"
+  "updated_at": "2026-06-04T02:53:47.917640+00:00"
 }
