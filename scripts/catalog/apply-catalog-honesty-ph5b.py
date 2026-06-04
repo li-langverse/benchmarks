@@ -28,7 +28,7 @@ def load_format_benchmark():
         raise SystemExit(f"cannot load {path}")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    return mod.format_benchmark, mod.load_header
+    return mod.format_benchmark, mod.load_header, mod.load_footer
 
 
 def main() -> int:
@@ -41,7 +41,7 @@ def main() -> int:
 
     text = CATALOG.read_text(encoding="utf-8")
     rows = tomllib.loads(text).get("benchmark", [])
-    format_benchmark, load_header = load_format_benchmark()
+    format_benchmark, load_header, load_footer = load_format_benchmark()
 
     changes: list[str] = []
     for row in rows:
@@ -69,7 +69,10 @@ def main() -> int:
         print(f"  ... and {len(changes) - 40} more")
 
     if args.write:
+        footer = load_footer(text)
         body = load_header(text) + "\n".join(format_benchmark(b) for b in rows) + "\n"
+        if footer:
+            body = body.rstrip() + "\n\n" + footer + "\n"
         CATALOG.write_text(body, encoding="utf-8")
         print(f"wrote {CATALOG}")
     return 0
