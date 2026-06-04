@@ -1,5 +1,7 @@
-# wave_equation_1d — Li driver over shared C kernel (wave_core.c via LI_EXTRA_C).
-# Pure-Li stencil at N=8192 is blocked until refinement-typed i±1 indices land (lic E0201).
+# wave_equation_1d — tier-2 Li driver (physics-codegen Arm B).
+# Kernel: shared C oracle via LI_EXTRA_C → common/wave_core.c (leapfrog + energy).
+# Pure-Li blocked on lic: E0201 (i±1 array indices), li_rt_exp broken inside while,
+# and release LLVM DCE on nested stencil loops (init-only energy without C oracle).
 
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
