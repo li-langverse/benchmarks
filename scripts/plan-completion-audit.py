@@ -220,8 +220,10 @@ def scan_physics_push() -> list[dict]:
     return out
 
 
-def _catalog_repo_root(repo: str) -> Path | None:
+def _catalog_repo_root(repo: str, rel: str = "") -> Path | None:
     """Resolve checkout root for catalog path checks."""
+    if rel.startswith("vendor/"):
+        return ROOT
     if repo == "lic":
         return LIC
     if repo == "lis":
@@ -234,14 +236,31 @@ def _catalog_repo_root(repo: str) -> Path | None:
     return None
 
 
-def catalog_without_repo_path() -> list[dict]:
+def _catalog_gap_item(row: dict, repo: str, root_name: str, rel: str, kind: str) -> dict:
+    return {
+        "source": "benchmarks:catalog.toml",
+        "kind": kind,
+        "id": row.get("id"),
+        "repo": repo,
+        "path": rel,
+        "item": (
+            f"catalog id={row.get('id')} [{kind}] "
+            f"repo={repo} root={root_name} path={rel}"
+        ),
+    }
+
+
+def catalog_gap_scan() -> tuple[list[dict], list[dict], list[dict]]:
+    """Return (all_gaps, actionable_gaps, repo_mismatch_gaps)."""
     import tomllib
 
     catalog = ROOT / "catalog.toml"
     if not catalog.is_file():
-        return []
+        return [], [], []
     data = tomllib.loads(catalog.read_text(encoding="utf-8"))
-    out: list[dict] = []
+    all_gaps: list[dict] = []
+    actionable: list[dict] = []
+    repo_mismatch: list[dict] = []
     for row in data.get("benchmark", []):
         rel = str(row.get("path", "")).strip()
         if not rel or rel == "unknown":
@@ -249,22 +268,27 @@ def catalog_without_repo_path() -> list[dict]:
         if row.get("catalog_lifecycle") == "planned":
             continue
         repo = str(row.get("repo", "lic"))
-        root = _catalog_repo_root(repo)
+        root = _catalog_repo_root(repo, rel)
         if root is None:
             continue
         bench_path = root / rel
         if bench_path.is_dir() or bench_path.is_file():
             continue
-        out.append(
-            {
-                "source": "benchmarks:catalog.toml",
-                "item": (
-                    f"catalog id={row.get('id')} path missing under {repo} root "
-                    f"({root.name}): {rel}"
-                ),
-            }
-        )
-    return out
+        # Workloads under benchmarks repo but catalog still says repo=lic/lis.
+        if repo in ("lic", "lis") and (ROOT / rel).is_dir():
+            entry = _catalog_gap_item(row, repo, repo, rel, "repo_mismatch")
+            all_gaps.append(entry)
+            repo_mismatch.append(entry)
+            continue
+        entry = _catalog_gap_item(row, repo, root.name, rel, "actionable")
+        all_gaps.append(entry)
+        actionable.append(entry)
+    return all_gaps, actionable, repo_mismatch
+
+
+def catalog_without_repo_path() -> list[dict]:
+    all_gaps, _, _ = catalog_gap_scan()
+    return all_gaps
 
 
 def package_stubs() -> list[dict]:
@@ -290,11 +314,12 @@ def main() -> int:
     tracker_open_keys = {normalize_item_key(i["item"]) for i in master}
     gaps = scan_provability_gaps()
     plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
-    catalog = catalog_without_repo_path()
+    catalog, catalog_actionable, catalog_repo_mismatch = catalog_gap_scan()
     stubs = package_stubs()
     physics = scan_physics_push()
+    lic_present = LIC.is_dir() and (LIC / "docs").is_dir()
 
-    open_items = master + plans + catalog + stubs + physics
+    open_items = master + plans + catalog_actionable + stubs + physics
     for g in gaps.get("partial", []):
         open_items.append({"source": "lic:provability-gaps", "item": f"Partial: {g}"})
     for g in gaps.get("missing", []):
@@ -307,6 +332,8 @@ def main() -> int:
             "lis": str(LIS),
             "benchmarks": str(ROOT),
             "roadmap": str(ROADMAP),
+            "lic_present": lic_present,
+            "benchmarks_root": str(ROOT),
         },
         "summary": {
             "open_tracker_items": len(master),
@@ -316,6 +343,8 @@ def main() -> int:
             "provability_partial": len(gaps.get("partial", [])),
             "provability_missing": len(gaps.get("missing", [])),
             "catalog_gaps": len(catalog),
+            "catalog_gaps_actionable": len(catalog_actionable),
+            "catalog_gaps_repo_mismatch": len(catalog_repo_mismatch),
             "total_findings": len(open_items),
             "tracker_phases_complete": len(completed_phases),
         },
@@ -325,6 +354,8 @@ def main() -> int:
         "stale_spec_checklists": stale_spec,
         "provability_gaps": gaps,
         "catalog_gaps": catalog,
+        "catalog_gaps_actionable": catalog_actionable,
+        "catalog_gaps_repo_mismatch": catalog_repo_mismatch,
         "implementation_signals": stubs + physics,
         "recommended_actions": [],
     }
@@ -355,12 +386,22 @@ def main() -> int:
                 "missing": len(gaps.get("missing", [])),
             }
         )
-    if catalog:
+    if catalog_repo_mismatch:
         report["recommended_actions"].append(
             {
                 "priority": "P2",
-                "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
-                "benchmarks": [c["item"] for c in catalog],
+                "action": "Fix catalog repo field (benchmarks ADR): set repo=benchmarks when path exists here",
+                "count": len(catalog_repo_mismatch),
+                "benchmarks": [c["item"] for c in catalog_repo_mismatch[:20]],
+            }
+        )
+    if catalog_actionable:
+        report["recommended_actions"].append(
+            {
+                "priority": "P2",
+                "action": "Implement benchmarks/lic harness for catalog rows or mark catalog_lifecycle=planned",
+                "count": len(catalog_actionable),
+                "benchmarks": [c["item"] for c in catalog_actionable],
             }
         )
 
