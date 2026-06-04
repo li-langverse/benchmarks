@@ -105,10 +105,11 @@ jobs:
         run: |
           llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
           chmod +x scripts/*.sh lic/scripts/*.sh
-          export LLVM_DIR="${LLVM_DIR}"
+          export SDKROOT="$(xcrun --show-sdk-path)"
+          export LLVM_DIR="${llvm_prefix}/lib/cmake/llvm"
+          export CC="$(xcrun -f clang)"
+          export CXX="$(xcrun -f clang++)"
           export PATH="${llvm_prefix}/bin:${PATH}"
-          export CC="${llvm_prefix}/bin/clang"
-          export CXX="${llvm_prefix}/bin/clang++"
           ./scripts/setup-lic-for-bench.sh
       - name: Verify lic build
         run: test -x lic/build/compiler/lic/lic
@@ -281,6 +282,8 @@ jobs:
       - name: Collect tier CSV shards
         run: |
           chmod +x scripts/collect-tier-csv-artifacts.sh
+          rm -rf results
+          mkdir -p results
           ./scripts/collect-tier-csv-artifacts.sh artifacts/tiers results
       - uses: actions/download-artifact@v4
         continue-on-error: true
@@ -373,6 +376,7 @@ jobs:
           EXPECT_OS: macos
         run: |
           chmod +x scripts/*.sh
+          rm -rf results
           mkdir -p results
           ./scripts/collect-tier-csv-artifacts.sh artifacts/tiers results
           ./scripts/finalize-nightly-os-csv.sh results
@@ -481,6 +485,7 @@ jobs:
           EXPECT_OS: windows
         run: |
           chmod +x scripts/*.sh
+          rm -rf results
           mkdir -p results
           ./scripts/collect-tier-csv-artifacts.sh artifacts/tiers results
           ./scripts/finalize-nightly-os-csv.sh results
