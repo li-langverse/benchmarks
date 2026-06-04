@@ -9,3 +9,8 @@ timing = false
 [profiles.nightly]
 include = ["static_small", "keepalive_pipelining", "static_large", "proxy_loopback", "lb_round_robin", "lb_least_conn", "lb_peer_down", "rate_limit_429", "https_static", "https_tls_matrix"]
 timing = true
+
+# Nightly wall-clock profile: core RPS + proxy smoke (oracles/scenarios trimmed in workflow env).
+[profiles.nightly-fast]
+include = ["static_small", "keepalive_pipelining", "proxy_loopback"]
+timing = true
