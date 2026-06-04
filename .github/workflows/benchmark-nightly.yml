@@ -36,6 +36,146 @@ env:
   HTTP_BENCH_RUNS: "3"
 
 jobs:
+  prepare-lic-linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lic
+          path: lic
+          ref: ${{ env.LIC_BENCH_REF }}
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+          ref: main
+      - name: Install LLVM 22 and bench deps
+        run: |
+          chmod +x lic/scripts/ci-install-llvm.sh
+          sudo LI_LLVM_MAJOR=22 bash lic/scripts/ci-install-llvm.sh
+      - uses: actions/cache@v4
+        id: lic-build-cache
+        with:
+          path: lic/build
+          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          restore-keys: |
+            lic-build-
+      - name: Build lic + li-httpd
+        if: steps.lic-build-cache.outputs.cache-hit != 'true'
+        run: |
+          chmod +x scripts/*.sh lic/scripts/*.sh
+          ./scripts/setup-lic-for-bench.sh
+      - name: Verify lic build
+        run: test -x lic/build/compiler/lic/lic && test -x lic/build/li-httpd
+
+  prepare-lic-macos:
+    runs-on: macos-14
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lic
+          path: lic
+          ref: ${{ env.LIC_BENCH_REF }}
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+          ref: main
+      - name: Install LLVM 22 (macOS)
+        run: |
+          brew install llvm@22
+          llvm_prefix="$(brew --prefix llvm@22)"
+          echo "LLVM_DIR=${llvm_prefix}/lib/cmake/llvm" >> "$GITHUB_ENV"
+          echo "LLVM22_PREFIX=${llvm_prefix}" >> "$GITHUB_ENV"
+      - uses: actions/cache@v4
+        id: lic-build-cache
+        with:
+          path: lic/build
+          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          restore-keys: |
+            lic-build-macos-
+      - name: Build lic (macOS)
+        if: steps.lic-build-cache.outputs.cache-hit != 'true'
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: |
+          llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
+          chmod +x scripts/*.sh lic/scripts/*.sh
+          export LLVM_DIR="${LLVM_DIR}"
+          export PATH="${llvm_prefix}/bin:${PATH}"
+          export CC="${llvm_prefix}/bin/clang"
+          export CXX="${llvm_prefix}/bin/clang++"
+          ./scripts/setup-lic-for-bench.sh
+      - name: Verify lic build
+        run: test -x lic/build/compiler/lic/lic
+
+  prepare-lic-windows:
+    runs-on: windows-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lic
+          path: lic
+          ref: ${{ env.LIC_BENCH_REF }}
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/lis
+          path: lis
+          ref: main
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-toolchain
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+            mingw-w64-ucrt-x86_64-python
+            mingw-w64-ucrt-x86_64-llvm
+            mingw-w64-ucrt-x86_64-clang
+      - name: Resolve LLVM (MSYS2 UCRT64)
+        run: |
+          set -euo pipefail
+          echo "LLVM_DIR=/ucrt64/lib/cmake/llvm" >> "$GITHUB_ENV"
+          echo "/ucrt64/bin" >> "$GITHUB_PATH"
+      - name: Patch lic for MSYS2 Windows build
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+        run: |
+          set -euo pipefail
+          chmod +x scripts/patch-lic-msys-windows.sh
+          ./scripts/patch-lic-msys-windows.sh
+      - uses: actions/cache@v4
+        id: lic-build-cache
+        with:
+          path: lic/build
+          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          restore-keys: |
+            lic-build-windows-
+      - name: Build lic (Windows)
+        if: steps.lic-build-cache.outputs.cache-hit != 'true'
+        env:
+          LIC_ROOT: ${{ github.workspace }}/lic
+          MSYSTEM: UCRT64
+        run: |
+          set -euo pipefail
+          export LLVM_DIR="${LLVM_DIR:-/ucrt64/lib/cmake/llvm}"
+          export CC=clang CXX=clang++
+          export PATH="/ucrt64/bin:$PATH"
+          chmod +x scripts/*.sh lic/scripts/*.sh
+          ./scripts/setup-lic-for-bench.sh
+      - name: Verify lic build
+        run: test -x lic/build/compiler/lic/lic.exe -o -x lic/build/compiler/lic/lic
+
   bench-matrix:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -51,7 +191,7 @@ jobs:
           echo "linux_groups=$groups" >> "$GITHUB_OUTPUT"
 
   bench-linux-tier:
-    needs: bench-matrix
+    needs: [bench-matrix, prepare-lic-linux]
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     strategy:
@@ -87,15 +227,14 @@ jobs:
             echo "TIER5_EXPLOIT_PROFILE=nightly-fast" >> "$GITHUB_ENV"
           fi
       - uses: actions/cache@v4
-        id: lic-build-cache
         with:
           path: lic/build
           key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
           restore-keys: |
             lic-build-
-      - name: Setup lic for tier ${{ matrix.group }}
+      - name: Setup tier deps ${{ matrix.group }}
         env:
-          SKIP_BUILD: ${{ steps.lic-build-cache.outputs.cache-hit == 'true' && '1' || '0' }}
+          SKIP_BUILD: "1"
         run: |
           chmod +x scripts/ci-setup-lic-nightly-linux.sh
           ./scripts/ci-setup-lic-nightly-linux.sh ${{ matrix.group }}
@@ -161,6 +300,7 @@ jobs:
           if-no-files-found: error
 
   bench-macos-tier:
+    needs: prepare-lic-macos
     runs-on: macos-14
     timeout-minutes: 90
     strategy:
@@ -195,19 +335,8 @@ jobs:
           key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
           restore-keys: |
             lic-build-macos-
-      - name: Build lic (macOS)
-        if: steps.lic-build-cache.outputs.cache-hit != 'true'
-        env:
-          LIC_ROOT: ${{ github.workspace }}/lic
-          LIS_ROOT: ${{ github.workspace }}/lis
-        run: |
-          llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
-          chmod +x scripts/*.sh lic/scripts/*.sh
-          export LLVM_DIR="${LLVM_DIR}"
-          export PATH="${llvm_prefix}/bin:${PATH}"
-          export CC="${llvm_prefix}/bin/clang"
-          export CXX="${llvm_prefix}/bin/clang++"
-          ./scripts/setup-lic-for-bench.sh
+      - name: Verify lic (macOS)
+        run: test -x lic/build/compiler/lic/lic
       - name: Run tier ${{ matrix.group }} (macOS)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -230,7 +359,7 @@ jobs:
   bench-macos-merge:
     needs: bench-macos-tier
     if: needs.bench-macos-tier.result == 'success'
-    runs-on: macos-14
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -240,6 +369,8 @@ jobs:
           pattern: bench-macos-*
           merge-multiple: true
       - name: Finalize macOS CSV
+        env:
+          EXPECT_OS: macos
         run: |
           chmod +x scripts/*.sh
           mkdir -p results
@@ -253,6 +384,7 @@ jobs:
           if-no-files-found: error
 
   bench-windows-tier:
+    needs: prepare-lic-windows
     runs-on: windows-latest
     timeout-minutes: 90
     strategy:
@@ -308,21 +440,8 @@ jobs:
           key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
           restore-keys: |
             lic-build-windows-
-      - name: Build lic (Windows)
-        if: steps.lic-build-cache.outputs.cache-hit != 'true'
-        env:
-          LIC_ROOT: ${{ github.workspace }}/lic
-          LIS_ROOT: ${{ github.workspace }}/lis
-          MSYSTEM: UCRT64
-        run: |
-          set -euo pipefail
-          cd "$GITHUB_WORKSPACE"
-          export LLVM_DIR="${LLVM_DIR:-/ucrt64/lib/cmake/llvm}"
-          export CC=clang
-          export CXX=clang++
-          export PATH="/ucrt64/bin:$PATH"
-          chmod +x scripts/*.sh lic/scripts/*.sh
-          ./scripts/setup-lic-for-bench.sh
+      - name: Verify lic (Windows)
+        run: test -x lic/build/compiler/lic/lic.exe -o -x lic/build/compiler/lic/lic
       - name: Run tier ${{ matrix.group }} (Windows)
         env:
           LIC_ROOT: ${{ github.workspace }}/lic
@@ -348,11 +467,8 @@ jobs:
   bench-windows-merge:
     needs: bench-windows-tier
     if: needs.bench-windows-tier.result == 'success'
-    runs-on: windows-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
-    defaults:
-      run:
-        shell: msys2 {0}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -361,9 +477,9 @@ jobs:
           pattern: bench-windows-*
           merge-multiple: true
       - name: Finalize Windows CSV
+        env:
+          EXPECT_OS: windows
         run: |
-          set -euo pipefail
-          cd "$GITHUB_WORKSPACE"
           chmod +x scripts/*.sh
           mkdir -p results
           ./scripts/collect-tier-csv-artifacts.sh artifacts/tiers results

@@ -11,7 +11,7 @@ if [[ -d "$ARTIFACTS_ROOT" ]]; then
   while IFS= read -r -d '' f; do
     cp "$f" "$OUT_DIR/$(basename "$f")"
     found=$((found + 1))
-  done < <(find "$ARTIFACTS_ROOT" -type f -name 'tier-*.csv' -print0 2>/dev/null || true)
+  done < <(find "$ARTIFACTS_ROOT" -type f \( -name 'tier-*.csv' -o -name 'tier-tier*.csv' \) -print0 2>/dev/null || true)
 fi
 echo "collect-tier-csv-artifacts: copied $found shard(s) into $OUT_DIR"
 ls -la "$OUT_DIR" || true
