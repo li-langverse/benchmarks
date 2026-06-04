@@ -6,6 +6,7 @@ from __future__ import annotations
 import math
 import os
 import platform
+from pathlib import Path
 import statistics
 from collections.abc import Callable
 import subprocess
@@ -24,12 +25,19 @@ class TimingStats:
 
 
 def host_os_tag() -> str:
+    if os.environ.get("MSYSTEM") or os.environ.get("MSYS"):
+        return "windows"
     sys_name = platform.system().lower()
     if sys_name == "darwin":
         return "macos"
     if sys_name == "windows":
         return "windows"
     if sys_name == "linux":
+        try:
+            if "microsoft" in Path("/proc/version").read_text(encoding="utf-8", errors="ignore").lower():
+                return "windows"
+        except OSError:
+            pass
         return "linux"
     return "unknown"
 

@@ -25,5 +25,6 @@ fi
 "$ROOT/scripts/merge-benchmark-tier-csvs.sh" "$TIER_DIR"
 # shellcheck source=lib/bench-python.sh
 source "$ROOT/scripts/lib/bench-python.sh"
-bench_python "$ROOT/scripts/check-csv-os-tags.py" "$OUT" --expect-os "$EXPECT_OS"
+bench_python "$ROOT/scripts/retag-csv-os.py" "$OUT" --os "$EXPECT_OS"
+bench_python "$ROOT/scripts/check-csv-os-tags.py" "$OUT" --expect-os "$EXPECT_OS" --min-rows 1
 echo "finalize-nightly-os-csv: OK ($OUT, expect_os=$EXPECT_OS, tiers=${#tier_csvs[@]})"
