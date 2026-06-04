@@ -1,4 +1,6 @@
-# sph_dam_break_2d — shared C oracle via LI_EXTRA_C (2D dam-break SPH stub, sum-y checksum).
+# sph_dam_break_2d — Arm B Li driver; SPH kernel via LI_EXTRA_C (common/sph_dam_core.c).
+# Pure-Li port of the 256×8000 pairwise SPH loop is blocked on bit-identical FP vs clang
+# under harness --verify-results (chaotic divergence after ~110 steps). Track: lic codegen.
 
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
