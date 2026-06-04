@@ -63,6 +63,18 @@ def load_header(text: str) -> str:
     return text[:idx].rstrip() + "\n\n" if idx != -1 else ""
 
 
+def load_footer(text: str) -> str:
+    """Preserve trailing non-benchmark tables (e.g. [reporting])."""
+    last = text.rfind("[[benchmark]]")
+    if last < 0:
+        return ""
+    tail = text[last:]
+    m = re.search(r"\n\[([a-z_]+)\]", tail)
+    if not m:
+        return ""
+    return "\n" + tail[m.start() + 1 :].lstrip()
+
+
 def format_benchmark(b: dict) -> str:
     lines = ["[[benchmark]]", f'id = "{b["id"]}"']
     for key in BENCHMARK_KEYS:
@@ -228,10 +240,11 @@ def main() -> int:
         return 0
 
     header = load_header(text)
-    CATALOG.write_text(
-        header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n",
-        encoding="utf-8",
-    )
+    footer = load_footer(text)
+    body = header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n"
+    if footer:
+        body += "\n" + footer.rstrip() + "\n"
+    CATALOG.write_text(body, encoding="utf-8")
     print(f"wrote {CATALOG}")
     return 0
 
