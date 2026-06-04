@@ -10,8 +10,19 @@ if [[ -z "$GROUP" ]]; then
   exit 2
 fi
 
-LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
-LIS_ROOT="${LIS_ROOT:-$ROOT/../lis}"
+REPO_PARENT="$(cd "$ROOT/.." && pwd)"
+if [[ -z "${LIC_ROOT:-}" ]]; then
+  if [[ -d "$ROOT/lic" ]]; then
+    LIC_ROOT="$ROOT/lic"
+  elif [[ -d "$REPO_PARENT/lic" ]]; then
+    LIC_ROOT="$REPO_PARENT/lic"
+  else
+    LIC_ROOT="$ROOT/lic"
+  fi
+fi
+LIS_ROOT="${LIS_ROOT:-$REPO_PARENT/lis}"
+# shellcheck source=lib/resolve-lic-bench.sh
+source "$ROOT/scripts/lib/resolve-lic-bench.sh"
 RUNS="${BENCH_RUNS:-6}"
 export BENCH_JOBS="${BENCH_JOBS:-$(nproc 2>/dev/null || echo 4)}"
 export BENCH_ADAPTIVE_RUNS="${BENCH_ADAPTIVE_RUNS:-1}"
@@ -24,10 +35,8 @@ SKIP_TIER0="${SKIP_TIER0:-1}"
 SKIP_EXPLOITS="${SKIP_EXPLOITS:-0}"
 
 export BENCHMARKS_CSV="$ROOT/results/tier-${GROUP}.csv"
-export LIC_ROOT LIS_ROOT LI_REPO_ROOT="$LIC_ROOT"
-export PATH="$LIC_ROOT/build/compiler/lic:$PATH"
-export LIC="$LIC_ROOT/build/compiler/lic/lic"
-export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
+export LIS_ROOT
+export_lic_bench_paths "$LIC_ROOT"
 export BENCH_NIGHTLY="${BENCH_NIGHTLY:-1}"
 
 log() { echo "==> [$GROUP] $*"; }

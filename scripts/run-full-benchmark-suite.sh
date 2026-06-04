@@ -2,8 +2,19 @@
 # Run the full Li org benchmark suite and refresh dashboard summary (agents: run after every implementation).
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-LIC_ROOT="${LIC_ROOT:-$ROOT/lic}"
-LIS_ROOT="${LIS_ROOT:-$ROOT/../lis}"
+REPO_PARENT="$(cd "$ROOT/.." && pwd)"
+if [[ -z "${LIC_ROOT:-}" ]]; then
+  if [[ -d "$ROOT/lic" ]]; then
+    LIC_ROOT="$ROOT/lic"
+  elif [[ -d "$REPO_PARENT/lic" ]]; then
+    LIC_ROOT="$REPO_PARENT/lic"
+  else
+    LIC_ROOT="$ROOT/lic"
+  fi
+fi
+LIS_ROOT="${LIS_ROOT:-$REPO_PARENT/lis}"
+# shellcheck source=lib/resolve-lic-bench.sh
+source "$ROOT/scripts/lib/resolve-lic-bench.sh"
 PROFILE="${BENCH_PROFILE:-full}"
 RUNS="${BENCH_RUNS:-6}"
 export BENCH_JOBS="${BENCH_JOBS:-$(nproc 2>/dev/null || echo 4)}"
@@ -24,16 +35,14 @@ if [[ ! -d "$LIC_ROOT" ]]; then
 fi
 
 export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
-export LIC_ROOT LIS_ROOT LI_REPO_ROOT="$LIC_ROOT"
-export PATH="$LIC_ROOT/build/compiler/lic:$PATH"
+export LIS_ROOT
 
 if [[ "$SKIP_BUILD" != "1" ]]; then
   log "setup lic + li-httpd"
   "$ROOT/scripts/setup-lic-for-bench.sh"
 fi
 
-export LIC="$LIC_ROOT/build/compiler/lic/lic"
-export LI_HTTPD_BIN="$LIC_ROOT/build/li-httpd"
+export_lic_bench_paths "$LIC_ROOT"
 if command -v clang-22 >/dev/null 2>&1; then
   export CC="${CC:-clang-22}"
   export CXX="${CXX:-clang++-22}"

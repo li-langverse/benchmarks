@@ -2,7 +2,18 @@
 # Build lic + li-httpd for local / agent benchmark runs (Debian/Ubuntu).
 set -euo pipefail
 SCRIPT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-LIC_ROOT="${LIC_ROOT:-$SCRIPT_ROOT/lic}"
+REPO_PARENT="$(cd "$SCRIPT_ROOT/.." && pwd)"
+if [[ -z "${LIC_ROOT:-}" ]]; then
+  if [[ -d "$SCRIPT_ROOT/lic" ]]; then
+    LIC_ROOT="$SCRIPT_ROOT/lic"
+  elif [[ -d "$REPO_PARENT/lic" ]]; then
+    LIC_ROOT="$REPO_PARENT/lic"
+  else
+    LIC_ROOT="$SCRIPT_ROOT/lic"
+  fi
+fi
+# shellcheck source=lib/resolve-lic-bench.sh
+source "$SCRIPT_ROOT/scripts/lib/resolve-lic-bench.sh"
 if [[ ! -d "$LIC_ROOT" ]]; then
   echo "missing LIC_ROOT=$LIC_ROOT" >&2
   exit 1
@@ -69,7 +80,11 @@ case "$(uname -s)" in
     chmod +x "$SCRIPT_ROOT/scripts/fix-lic-msys-cmake-flags.sh"
     "$SCRIPT_ROOT/scripts/fix-lic-msys-cmake-flags.sh" "$BUILD_DIR"
     (cd "$LIC_ROOT" && cmake --build build -j "$(nproc 2>/dev/null || echo 4)")
-    echo "OK LIC_ROOT=$LIC_ROOT"
+    win_lic_dir="$BUILD_DIR/compiler/lic"
+    if [[ -x "$win_lic_dir/lic.exe" && ! -e "$win_lic_dir/lic" ]]; then
+      (cd "$win_lic_dir" && ln -sf lic.exe lic)
+    fi
+    echo "OK LIC_ROOT=$LIC_ROOT LIC=$(resolve_lic_bench_bin "$LIC_ROOT")"
     exit 0
     ;;
 esac
