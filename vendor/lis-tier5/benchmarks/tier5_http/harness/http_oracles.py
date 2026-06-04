@@ -773,8 +773,9 @@ def start_li_proxy_bench(
         return None
     csv_ports = ",".join(str(p) for p in backend_ports)
     cmd = [str(li_bin), str(front_port), str(doc_root.resolve()), csv_ports]
-    if os.environ.get("BENCH_HTTP_LB_MODE", "").strip() == "least_conn":
-        cmd.append("least_conn")
+    lb = os.environ.get("BENCH_HTTP_LB_MODE", "").strip()
+    if lb in ("least_conn", "cookie", "ip_hash"):
+        cmd.append(lb)
     return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
@@ -798,6 +799,54 @@ def start_nginx_static_backends(
 def stop_nginx_static_backends(backends: list[tuple[tempfile.TemporaryDirectory[str], Path]]) -> None:
     for ctx in backends:
         stop_nginx_bench(ctx)
+
+
+def start_nginx_static_backends_multi_root(
+    backend_ports: list[int], doc_roots: list[Path]
+) -> list[tuple[tempfile.TemporaryDirectory[str], Path]]:
+    out: list[tuple[tempfile.TemporaryDirectory[str], Path]] = []
+    for bp, doc in zip(backend_ports, doc_roots, strict=False):
+        ctx = start_nginx_bench(bp, doc)
+        if ctx:
+            out.append(ctx)
+        else:
+            break
+    return out
+
+
+def _node_json_backend_script() -> Path | None:
+    env = os.environ.get("NODE_JSON_BACKEND_SCRIPT")
+    if env and Path(env).is_file():
+        return Path(env)
+    here = Path(__file__).resolve().parent
+    for candidate in (
+        here / "json_echo_backend.mjs",
+        here.parents[4] / "li-httpd/li-tests/hosting-matrix/backends/node-server.mjs",
+        here.parents[3] / "li-httpd/li-tests/hosting-matrix/backends/node-server.mjs",
+    ):
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def start_node_json_backend(port: int) -> subprocess.Popen[str] | None:
+    script = _node_json_backend_script()
+    node = shutil.which("node")
+    if not script or not node:
+        return None
+    env = os.environ.copy()
+    env["BACKEND_PORT"] = str(port)
+    env["BACKEND_HOST"] = "127.0.0.1"
+    return subprocess.Popen(
+        [node, str(script.resolve())],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        env=env,
+    )
+
+
+def stop_node_json_backend(proc: subprocess.Popen[str] | None) -> None:
+    stop_li_bench(proc)
 
 
 ProxyStarter = Callable[[int, Path, list[int]], Any]
