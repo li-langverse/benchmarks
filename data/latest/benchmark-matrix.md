@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-06-04T02:53:48.144778+00:00
+Generated: 2026-06-04T23:31:37.579841+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -31,9 +31,12 @@ Status: **green** — 0 failures / 36 cells
 | keepalive_pipelining | 5,457 | 149 | 1,426 | 6,528 | — | — | 2,845 | — | 36.58× |
 | static_large | FAIL | 71 | 448 | 171 | — | — | 265 | — | — |
 | proxy_loopback | 32,327 | 120 | 120 | 120 | — | — | — | — | 268.83× |
+| proxy_post_json | — | — | — | — | — | — | — | — | — |
 | lb_round_robin | 32,750 | 2,040 | 2,071 | 1,914 | — | — | — | — | 16.05× |
 | lb_least_conn | 30,280 | 2,010 | 1,958 | 1,804 | — | — | — | — | 15.07× |
+| lb_sticky_cookie | — | — | — | — | — | — | — | — | — |
 | lb_peer_down | 32,265 | 1,940 | 1,884 | 1,827 | — | — | — | — | 16.63× |
+| tls_dhe_handshake | — | — | — | — | — | — | — | — | — |
 
 **Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `proxy_loopback`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
 
@@ -68,33 +71,33 @@ Status: **green** — 0 failures / 36 cells
 | fea_solver_iterative | 1 | unknown | — | lic |
 | fea_stiffness_assembly | 1 | unknown | — | lic |
 | fft_1d_fixed | 1 | unknown | — | lic |
-| horner_pure_li | 1 | unknown | — | lic |
-| matmul_blocked | 1 | unknown | — | lic |
-| matmul_blocked_N1024 | 1 | unknown | — | lic |
-| matmul_naive | 1 | unknown | — | lic |
-| matmul_naive_N1024 | 1 | unknown | — | lic |
+| horner_pure_li | 1 | green | 0.946× | lic |
+| matmul_blocked | 1 | green | 0.156× | lic |
+| matmul_blocked_N1024 | 1 | green | 0.156× | lic |
+| matmul_naive | 1 | green | 0.926× | lic |
+| matmul_naive_N1024 | 1 | green | 0.926× | lic |
 | ml_conv2d_forward | 1 | unknown | — | li-math |
 | ml_mlp_forward | 1 | unknown | — | li-math |
 | ml_mlp_train_step | 1 | unknown | — | li-math |
 | nbody_barnes_hut | 1 | unknown | — | lic |
-| num_cg | 1 | unknown | — | lic |
-| num_cholesky | 1 | unknown | — | lic |
+| num_cg | 1 | green | 0.833× | lic |
+| num_cholesky | 1 | green | 0.599× | lic |
 | num_eig_symmetric | 1 | unknown | — | lic |
-| num_fft_r2c | 1 | unknown | — | lic |
-| num_gmres | 1 | unknown | — | lic |
-| num_integ_euler | 1 | unknown | — | lic |
-| num_integ_rk4 | 1 | unknown | — | lic |
-| num_integ_semi_implicit | 1 | unknown | — | lic |
-| num_integ_symplectic | 1 | unknown | — | lic |
-| num_integ_verlet | 1 | unknown | — | lic |
-| num_opt_bfgs | 1 | unknown | — | lic |
-| num_opt_line_search | 1 | unknown | — | lic |
-| num_quadrature_gauss | 1 | unknown | — | lic |
-| num_rng_pcg | 1 | unknown | — | lic |
-| num_root_newton | 1 | unknown | — | lic |
-| num_sparse_mv | 1 | unknown | — | lic |
-| reduce_sum | 1 | unknown | — | lic |
-| simd_dot | 1 | unknown | — | lic |
+| num_fft_r2c | 1 | green | 0.955× | lic |
+| num_gmres | 1 | green | 0.613× | lic |
+| num_integ_euler | 1 | green | 0.822× | lic |
+| num_integ_rk4 | 1 | green | 0.804× | lic |
+| num_integ_semi_implicit | 1 | green | 0.792× | lic |
+| num_integ_symplectic | 1 | green | 0.974× | lic |
+| num_integ_verlet | 1 | green | 0.731× | lic |
+| num_opt_bfgs | 1 | green | 0.728× | lic |
+| num_opt_line_search | 1 | green | 0.956× | lic |
+| num_quadrature_gauss | 1 | green | 0.853× | lic |
+| num_rng_pcg | 1 | green | 0.993× | lic |
+| num_root_newton | 1 | green | 0.857× | lic |
+| num_sparse_mv | 1 | green | 0.963× | lic |
+| reduce_sum | 1 | green | 0.766× | lic |
+| simd_dot | 1 | green | 1.128× | lic |
 | stdlib_binary_search | 1 | unknown | — | lic |
 | stdlib_deque_rotate | 1 | unknown | — | lic |
 | stdlib_dict_insert_lookup | 1 | unknown | — | lic |
@@ -135,21 +138,21 @@ Status: **green** — 0 failures / 36 cells
 | fdtd_waveguide_2d | 2 | unknown | — | lic |
 | harmonic_oscillator_chain | 2 | unknown | — | lic |
 | heat_equation_2d | 2 | unknown | — | lic |
-| md_barostat_parrinello_rahman | 2 | unknown | — | lic |
-| md_constraints_rattle | 2 | unknown | — | lic |
-| md_constraints_shake | 2 | unknown | — | lic |
-| md_energy_drift | 2 | unknown | — | lic |
-| md_init_fcc_mb | 2 | unknown | — | lic |
-| md_integrator_leapfrog | 2 | unknown | — | lic |
-| md_integrator_verlet | 2 | unknown | — | lic |
-| md_lennard_jones | 2 | unknown | — | lic |
-| md_longrange_ewald | 2 | unknown | — | lic |
-| md_longrange_pme | 2 | unknown | — | lic |
-| md_neighbor_cell_list | 2 | unknown | — | lic |
-| md_neighbor_verlet_skin | 2 | unknown | — | lic |
-| md_oracle_external | 2 | unknown | — | lic |
-| md_thermostat_berendsen | 2 | unknown | — | lic |
-| md_thermostat_nose_hoover | 2 | unknown | — | lic |
+| md_barostat_parrinello_rahman | 2 | green | 0.811× | lic |
+| md_constraints_rattle | 2 | green | 0.782× | lic |
+| md_constraints_shake | 2 | green | 1.012× | lic |
+| md_energy_drift | 2 | green | 1.001× | lic |
+| md_init_fcc_mb | 2 | green | 1.020× | lic |
+| md_integrator_leapfrog | 2 | green | 1.003× | lic |
+| md_integrator_verlet | 2 | green | 1.013× | lic |
+| md_lennard_jones | 2 | green | 0.798× | lic |
+| md_longrange_ewald | 2 | green | 1.014× | lic |
+| md_longrange_pme | 2 | green | 0.797× | lic |
+| md_neighbor_cell_list | 2 | green | 1.012× | lic |
+| md_neighbor_verlet_skin | 2 | green | 0.788× | lic |
+| md_oracle_external | 2 | green | 1.010× | lic |
+| md_thermostat_berendsen | 2 | green | 0.989× | lic |
+| md_thermostat_nose_hoover | 2 | green | 1.012× | lic |
 | nbody_gravity | 2 | unknown | — | lic |
 | orbit_two_body | 2 | unknown | — | lic |
 | pde_cfl_timestep | 2 | unknown | — | lic |
@@ -200,7 +203,7 @@ Status: **green** — 0 failures / 36 cells
 | robo_traj_opt | 2 | unknown | — | lic |
 | schrodinger_1d_barrier | 2 | unknown | — | lic |
 | sph_dam_break_2d | 2 | unknown | — | lic |
-| three_body | 2 | unknown | — | lic |
+| three_body | 2 | green | 0.825× | lic |
 | three_body_pure | 2 | unknown | — | lic |
 | wave_equation_1d | 2 | unknown | — | lic |
 | wave_equation_2d | 2 | unknown | — | lic |
