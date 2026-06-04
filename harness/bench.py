@@ -516,7 +516,11 @@ def build_li(spec: BenchSpec, bin_path: Path) -> None:
     env.setdefault("LIC_ROOT", str(lr))
     env.setdefault("LI_REPO_ROOT", str(lr))
     if not spec.li_pure:
-        env["LI_EXTRA_C"] = str(root / spec.core_c)
+        li_extra = root / "li" / "heat_kernel.c"
+        if li_extra.is_file() and spec.name == "heat_equation_2d":
+            env["LI_EXTRA_C"] = str(li_extra)
+        else:
+            env["LI_EXTRA_C"] = str(root / spec.core_c)
     subprocess.check_call(
         [
             str(lic),
