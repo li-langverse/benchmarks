@@ -1,0 +1,12 @@
+[package]
+name = "fdtd-waveguide-2d"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "fdtd_waveguide_2d"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
