@@ -1,73 +1,41 @@
 {
-  "generated_at": "2026-05-31T01:53:44Z",
+  "generated_at": "2026-06-07T10:07:47Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 77.0,
-  "grade": "C",
-  "unattended_safe": true,
+  "overall_score": 57.8,
+  "grade": "F",
+  "unattended_safe": false,
   "dimensions": {
     "briefing_health": {
-      "score": 77.0,
+      "score": 0.0,
       "weight": 0.15,
       "signals": {
-        "briefing_present": true,
-        "preflight_failed": 1,
-        "preflight_skipped": 8,
-        "recommended_agent_count": 12
+        "briefing_present": false
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "ecosystem_posture": {
-      "score": 100.0,
+      "score": 70.0,
       "weight": 0.25,
       "signals": {
-        "audit_present": true,
-        "open_prs": 1,
-        "failed_prs": 0,
-        "repos_missing_ci_main": 0,
-        "benchmark_red_count": 0
+        "audit_present": false
       },
       "finding_count": 0
     },
     "goal_directed_health": {
-      "score": 70.0,
+      "score": 75.0,
       "weight": 0.2,
       "signals": {
-        "snapshot_present": true,
-        "runner_count": 9,
-        "runners_stopped": 6,
-        "plan_todos_pending": 33,
-        "plan_todos_total": 99,
-        "agents_live": 0
+        "snapshot_present": false
       },
-      "finding_count": 1
+      "finding_count": 0
     },
     "swarm_execution": {
-      "score": 70.0,
+      "score": 65.0,
       "weight": 0.25,
       "signals": {
-        "runs_sampled": 120,
-        "terminal_runs": 24,
-        "error_count": 6,
-        "incomplete_count": 1,
-        "running_count": 96,
-        "error_rate": 0.25,
-        "incomplete_rate": 0.0417,
-        "top_error_agents": [
-          {
-            "agent": "code_implementer",
-            "count": 1
-          },
-          {
-            "agent": "gui_ui_tester",
-            "count": 1
-          },
-          {
-            "agent": "docs_maintainer",
-            "count": 1
-          }
-        ]
+        "runs_sampled": 0
       },
-      "finding_count": 2
+      "finding_count": 0
     },
     "gap_pressure": {
       "score": 60.0,
@@ -86,40 +54,16 @@
   },
   "findings": [
     {
-      "id": "goal-runners-stopped",
-      "severity": "high",
-      "message": "6 goal-directed runner(s) not running",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json"
-    },
-    {
-      "id": "swarm-error-rate",
-      "severity": "high",
-      "message": "Error rate 25% over last 24 terminal runs",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
+      "id": "briefing-missing",
+      "severity": "critical",
+      "message": "agent-briefing.json missing \u2014 run agent-briefing.py",
+      "evidence": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780826823674/repo/data/latest/agent-briefing.json"
     },
     {
       "id": "swarm-gap-backlog",
       "severity": "high",
       "message": "64 open gap(s) in registry apply pipeline",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
-    },
-    {
-      "id": "preflight-failures",
-      "severity": "medium",
-      "message": "1 preflight script(s) exited non-zero",
-      "evidence": "agent-briefing.preflight_runs"
-    },
-    {
-      "id": "preflight-skipped",
-      "severity": "medium",
-      "message": "8 preflight scripts skipped (--skip-slow)",
-      "evidence": "agent-briefing.preflight_runs"
-    },
-    {
-      "id": "swarm-many-running",
-      "severity": "medium",
-      "message": "96 runs still marked running (possible stuck SDK)",
-      "evidence": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs"
+      "evidence": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780826823674/repo/data/latest/swarm-gap-actions.json"
     },
     {
       "id": "plan-debt-gaps",
@@ -138,23 +82,19 @@
       "reason": "gap_pressure dimension below 80 \u2014 reconcile swarm-gap registry"
     },
     {
+      "agent": "ecosystem_grader",
+      "reason": "overall ecosystem quality below 70 \u2014 narrative grade + dispatch order"
+    },
+    {
       "agent": "plan_verifier",
       "reason": "briefing_health weak \u2014 refresh plan audit preflight"
-    },
-    {
-      "agent": "proof_gap_researcher",
-      "reason": "briefing P0: swarm: research goal provability_holes eligible (priority 9)"
-    },
-    {
-      "agent": "workspace_sweeper",
-      "reason": "briefing P0: 2 sibling repo(s) with uncommitted work \u2014 fallback sweep"
     }
   ],
   "inputs": {
-    "briefing": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/agent-briefing.json",
-    "goal_directed_snapshot": "/home/s4il0r/Documents/Cursor/li-langverse/lic/data/goal-directed-agents/snapshot.json",
-    "runs_dir": "/home/s4il0r/Documents/Cursor/li-langverse/li-cursor-agents/data/runs",
-    "runs_sampled": 120,
-    "swarm_gap_actions": "/home/s4il0r/Documents/Cursor/li-langverse/benchmarks/data/latest/swarm-gap-actions.json"
+    "briefing": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780826823674/repo/data/latest/agent-briefing.json",
+    "goal_directed_snapshot": null,
+    "runs_dir": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780826823674/li-cursor-agents/data/runs",
+    "runs_sampled": 0,
+    "swarm_gap_actions": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780826823674/repo/data/latest/swarm-gap-actions.json"
   }
 }
