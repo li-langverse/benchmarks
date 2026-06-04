@@ -1236,11 +1236,11 @@ def main() -> int:
         )
 
     if args.tier == 3:
-        print(
-            "tier 3 is HTTP (run from li-langverse/benchmarks: run-tier5-http-bench.sh)",
-            file=sys.stderr,
+        script = Path(__file__).resolve().parent / "bench_ecosystem.py"
+        out = args.out
+        return subprocess.call(
+            [sys.executable, str(script), "--runs", str(args.runs), "--latest", str(out)]
         )
-        return 0
 
     if args.tier == 5:
         script = Path(__file__).resolve().parent / "bench_ecosystem.py"
