@@ -142,7 +142,9 @@ case "$GROUP" in
     export HTTP_BENCH_RUNS="${HTTP_BENCH_RUNS:-6}"
     export BENCH_MIN_RUNS="${BENCH_MIN_RUNS}"
     export BENCH_SUBSEC_MIN_RUNS="${BENCH_SUBSEC_MIN_RUNS}"
-    bench_python "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "$HTTP_BENCH_RUNS"
+    bench_python "$ROOT/scripts/tier5-http-bench.py" --lic-root "$LIC_ROOT" --runs "$HTTP_BENCH_RUNS" || {
+      echo "WARN: supplemental tier5-http-bench failed (wrk/proxy); merging harness CSV only" >&2
+    }
     log "tier 5 — merge HTTP CSV into tier shard"
     export BENCHMARKS_CSV
     bench_python "$ROOT/scripts/merge-tier5-http-into-csv.py" "$ROOT" "$LIC_ROOT"
