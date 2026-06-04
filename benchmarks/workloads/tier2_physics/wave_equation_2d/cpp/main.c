@@ -1,4 +1,5 @@
-#include "../common/wave2d_core.h"
+/* wave_equation_2d — tier-2 explicit 2D wave equation (physics-codegen Arm B cpp). */
+#include "wave2d_kernel.h"
 #include <stdio.h>
 #include <string.h>
 
