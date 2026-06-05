@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-06-05T04:00:25.836573+00:00
+Generated: 2026-06-03T06:01:28.435625+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -31,12 +31,9 @@ Status: **green** — 0 failures / 36 cells
 | keepalive_pipelining | 5,457 | 149 | 1,426 | 6,528 | — | — | 2,845 | — | 36.58× |
 | static_large | FAIL | 71 | 448 | 171 | — | — | 265 | — | — |
 | proxy_loopback | 32,327 | 120 | 120 | 120 | — | — | — | — | 268.83× |
-| proxy_post_json | — | — | — | — | — | — | — | — | — |
 | lb_round_robin | 32,750 | 2,040 | 2,071 | 1,914 | — | — | — | — | 16.05× |
 | lb_least_conn | 30,280 | 2,010 | 1,958 | 1,804 | — | — | — | — | 15.07× |
-| lb_sticky_cookie | — | — | — | — | — | — | — | — | — |
 | lb_peer_down | 32,265 | 1,940 | 1,884 | 1,827 | — | — | — | — | 16.63× |
-| tls_dhe_handshake | — | — | — | — | — | — | — | — | — |
 
 **Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `proxy_loopback`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
 
@@ -52,67 +49,67 @@ Status: **green** — 0 failures / 36 cells
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| tier0_stability | 0 | skip | — | lic |
+| tier0_stability | 0 | green | — | lic |
 
 ## Micro
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| cfd_fvm_face_flux | 1 | skip | — | lic |
-| cfd_pimple | 1 | skip | — | lic |
-| cfd_piso | 1 | skip | — | lic |
-| cfd_simple | 1 | skip | — | lic |
-| cfd_turbulence_k_epsilon | 1 | skip | — | lic |
-| cfd_turbulence_k_omega_sst | 1 | skip | — | lic |
-| fea_gauss_quadrature | 1 | skip | — | lic |
-| fea_linear_elasticity | 1 | skip | — | lic |
-| fea_mesh_tri_tet | 1 | skip | — | lic |
-| fea_solver_direct | 1 | skip | — | lic |
-| fea_solver_iterative | 1 | skip | — | lic |
-| fea_stiffness_assembly | 1 | skip | — | lic |
+| cfd_fvm_face_flux | 1 | green | 0.942× | lic |
+| cfd_pimple | 1 | green | 0.942× | lic |
+| cfd_piso | 1 | green | 0.942× | lic |
+| cfd_simple | 1 | green | 0.942× | lic |
+| cfd_turbulence_k_epsilon | 1 | green | 0.942× | lic |
+| cfd_turbulence_k_omega_sst | 1 | green | 0.942× | lic |
+| fea_gauss_quadrature | 1 | green | 0.942× | lic |
+| fea_linear_elasticity | 1 | green | 0.942× | lic |
+| fea_mesh_tri_tet | 1 | green | 0.942× | lic |
+| fea_solver_direct | 1 | green | 0.942× | lic |
+| fea_solver_iterative | 1 | green | 0.942× | lic |
+| fea_stiffness_assembly | 1 | green | 0.942× | lic |
 | fft_1d_fixed | 1 | unknown | — | lic |
-| horner_pure_li | 1 | skip | — | lic |
-| matmul_blocked | 1 | skip | — | lic |
-| matmul_blocked_N1024 | 1 | skip | — | lic |
-| matmul_naive | 1 | skip | — | lic |
-| matmul_naive_N1024 | 1 | skip | — | lic |
-| ml_conv2d_forward | 1 | skip | — | li-math |
-| ml_mlp_forward | 1 | skip | — | li-math |
-| ml_mlp_train_step | 1 | skip | — | li-math |
-| nbody_barnes_hut | 1 | skip | — | lic |
-| num_cg | 1 | skip | — | lic |
-| num_cholesky | 1 | skip | — | lic |
-| num_eig_symmetric | 1 | skip | — | lic |
-| num_fft_r2c | 1 | skip | — | lic |
-| num_gmres | 1 | skip | — | lic |
-| num_integ_euler | 1 | skip | — | lic |
-| num_integ_rk4 | 1 | skip | — | lic |
-| num_integ_semi_implicit | 1 | skip | — | lic |
-| num_integ_symplectic | 1 | skip | — | lic |
-| num_integ_verlet | 1 | skip | — | lic |
-| num_opt_bfgs | 1 | skip | — | lic |
-| num_opt_line_search | 1 | skip | — | lic |
-| num_quadrature_gauss | 1 | skip | — | lic |
-| num_rng_pcg | 1 | skip | — | lic |
-| num_root_newton | 1 | skip | — | lic |
-| num_sparse_mv | 1 | skip | — | lic |
-| reduce_sum | 1 | skip | — | lic |
-| simd_dot | 1 | skip | — | lic |
-| stdlib_binary_search | 1 | skip | — | lic |
+| horner_pure_li | 1 | green | 0.648× | lic |
+| matmul_blocked | 1 | green | 0.361× | lic |
+| matmul_blocked_N1024 | 1 | green | 0.361× | lic |
+| matmul_naive | 1 | green | 1.167× | lic |
+| matmul_naive_N1024 | 1 | green | 1.167× | lic |
+| ml_conv2d_forward | 1 | green | 1.167× | li-math |
+| ml_mlp_forward | 1 | green | 1.167× | li-math |
+| ml_mlp_train_step | 1 | green | 1.167× | li-math |
+| nbody_barnes_hut | 1 | green | 0.910× | lic |
+| num_cg | 1 | green | 1.185× | lic |
+| num_cholesky | 1 | green | 0.989× | lic |
+| num_eig_symmetric | 1 | yellow | 1.228× | lic |
+| num_fft_r2c | 1 | green | 1.074× | lic |
+| num_gmres | 1 | green | 1.000× | lic |
+| num_integ_euler | 1 | green | 1.186× | lic |
+| num_integ_rk4 | 1 | green | 1.186× | lic |
+| num_integ_semi_implicit | 1 | green | 1.190× | lic |
+| num_integ_symplectic | 1 | green | 1.180× | lic |
+| num_integ_verlet | 1 | green | 1.183× | lic |
+| num_opt_bfgs | 1 | green | 1.198× | lic |
+| num_opt_line_search | 1 | green | 0.992× | lic |
+| num_quadrature_gauss | 1 | green | 1.107× | lic |
+| num_rng_pcg | 1 | green | 1.102× | lic |
+| num_root_newton | 1 | yellow | 1.220× | lic |
+| num_sparse_mv | 1 | green | 1.038× | lic |
+| reduce_sum | 1 | green | 0.902× | lic |
+| simd_dot | 1 | green | 0.823× | lic |
+| stdlib_binary_search | 1 | advisory | — | lic |
 | stdlib_deque_rotate | 1 | unknown | — | lic |
-| stdlib_dict_insert_lookup | 1 | skip | — | lic |
+| stdlib_dict_insert_lookup | 1 | advisory | — | lic |
 | stdlib_hash_flood | 1 | unknown | — | lic |
 | stdlib_heap_push_pop | 1 | unknown | — | lic |
 | stdlib_list_push_pop | 1 | unknown | — | lic |
 | stdlib_set_ops | 1 | unknown | — | lic |
-| stdlib_sort_int | 1 | skip | — | lic |
-| viz_colormap | 1 | skip | — | lig |
-| viz_decimate | 1 | skip | — | lig |
-| viz_inspector_panels | 1 | skip | — | lig |
-| viz_linked_views | 1 | skip | — | lig |
-| viz_marching_cubes | 1 | skip | — | lig |
-| viz_pipeline_graph | 1 | skip | — | lig |
-| viz_resample | 1 | skip | — | lig |
+| stdlib_sort_int | 1 | advisory | — | lic |
+| viz_colormap | 1 | green | 0.902× | lig |
+| viz_decimate | 1 | green | 0.902× | lig |
+| viz_inspector_panels | 1 | green | 0.902× | lig |
+| viz_linked_views | 1 | green | 0.902× | lig |
+| viz_marching_cubes | 1 | green | 0.902× | lig |
+| viz_pipeline_graph | 1 | green | 0.902× | lig |
+| viz_resample | 1 | green | 0.902× | lig |
 
 ## Physics
 
@@ -213,15 +210,15 @@ Status: **green** — 0 failures / 36 cells
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| https_static | 5 | unknown | — | lis |
-| keepalive_pipelining | 5 | unknown | — | lis |
-| lb_least_conn | 5 | unknown | — | lis |
-| lb_peer_down | 5 | unknown | — | lis |
-| lb_round_robin | 5 | unknown | — | lis |
-| proxy_loopback | 5 | unknown | — | lic |
-| rate_limit_429 | 5 | unknown | — | benchmarks |
-| static_large | 5 | unknown | — | lis |
-| static_small | 5 | unknown | — | lis |
+| https_static | 5 | advisory | — | lis |
+| keepalive_pipelining | 5 | advisory | — | lis |
+| lb_least_conn | 5 | advisory | — | lis |
+| lb_peer_down | 5 | advisory | — | lis |
+| lb_round_robin | 5 | advisory | — | lis |
+| proxy_loopback | 5 | advisory | — | lic |
+| rate_limit_429 | 5 | advisory | — | benchmarks |
+| static_large | 5 | advisory | — | lis |
+| static_small | 5 | advisory | — | lis |
 
 ## Security
 
