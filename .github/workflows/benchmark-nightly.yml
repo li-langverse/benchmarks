@@ -227,6 +227,7 @@ jobs:
             echo "BENCH_HTTP_ORACLES=nginx,li" >> "$GITHUB_ENV"
             echo "BENCH_HTTP_QUICK_SEC=3" >> "$GITHUB_ENV"
             echo "TIER5_EXPLOIT_PROFILE=nightly-fast" >> "$GITHUB_ENV"
+            echo "TIER5_EXPLOIT_LANGS=nginx,li" >> "$GITHUB_ENV"
           fi
       - uses: actions/cache@v4
         with:
