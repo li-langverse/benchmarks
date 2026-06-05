@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-03T06:01:28.435625+00:00",
+  "generated_at": "2026-06-05T04:04:00.226808+00:00",
   "sources": {
-    "summary_json": "/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/data/latest/summary.json",
-    "catalog_toml": "/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/catalog.toml",
-    "http_csv": "/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/vendor/lis-tier5/results/latest.csv",
-    "exploit_csv": "/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/vendor/lis-tier5/results/exploit_report.csv"
+    "summary_json": "C:\\Users\\Julian\\Documents\\Programming\\li\\benchmarks\\data\\latest\\summary.json",
+    "catalog_toml": "C:\\Users\\Julian\\Documents\\Programming\\li\\benchmarks\\catalog.toml",
+    "http_csv": "C:\\Users\\Julian\\Documents\\Programming\\li\\benchmarks\\vendor\\lis-tier5\\results\\latest.csv",
+    "exploit_csv": "C:\\Users\\Julian\\Documents\\Programming\\li\\benchmarks\\vendor\\lis-tier5\\results\\exploit_report.csv"
   },
   "tier_counts": {
     "0": {
@@ -3068,9 +3068,12 @@
     "keepalive_pipelining",
     "static_large",
     "proxy_loopback",
+    "proxy_post_json",
     "lb_round_robin",
     "lb_least_conn",
-    "lb_peer_down"
+    "lb_sticky_cookie",
+    "lb_peer_down",
+    "tls_dhe_handshake"
   ],
   "http_verify": {
     "rate_limit_429": {
