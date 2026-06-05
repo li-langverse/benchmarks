@@ -6,6 +6,8 @@ workers = 1
 
 [tls]
 enabled = true
+wrk = true
+handshake = true
 
 [verify]
 requests = [

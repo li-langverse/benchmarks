@@ -1,0 +1,23 @@
+name = "https_tls_matrix"
+
+[server]
+listen = ":8443"
+workers = 1
+
+[tls]
+enabled = true
+matrix = true
+wrk = true
+handshake = true
+
+[verify]
+requests = [
+  { method = "GET", path = "/", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/"
+duration_sec = 15
+connections = 16
+threads = 4

@@ -53,27 +53,36 @@ def chart_row_from_chart(
     li_pt = next((s for s in series if s.get("lang") == "li"), None)
     ref_lang = ch.get("reference_lang", ref)
     ref_pt = next((s for s in series if s.get("lang") == ref_lang), None)
-    sota_lang = ch.get("sota_lang")
-    sota_pt = (
-        next((s for s in series if s.get("lang") == sota_lang), None)
-        if sota_lang
+    sota_ref_lang = ch.get("sota_ref_lang") or ch.get("sota_lang")
+    sota_ref_pt = (
+        next((s for s in series if s.get("lang") == sota_ref_lang), None)
+        if sota_ref_lang
         else None
+    )
+    metric_name = ch.get("metric") or existing.get("metric") or cfg.get("metric", "wall_time")
+    li_val = li_pt.get("value") if li_pt else None
+    table_sota_lang, table_sota_val = bs.table_sota_display(
+        li_val,
+        sota_ref_lang,
+        sota_ref_pt.get("value") if sota_ref_pt else None,
+        lower_is_better=bs.metric_lower_is_better(metric_name),
     )
     return {
         "benchmark": base,
         "repo": cfg.get("repo", "lic"),
         "tier": cfg.get("tier", 0),
         "category": cfg.get("category", existing.get("category", "micro")),
-        "metric": ch.get("metric") or existing.get("metric") or cfg.get("metric", "wall_time"),
-        "li_value": li_pt.get("value") if li_pt else None,
+        "metric": metric_name,
+        "li_value": li_val,
         "li_stddev": li_pt.get("stddev") if li_pt else None,
         "li_sample_runs": li_pt.get("sample_runs") if li_pt else None,
         "cpp_value": ref_pt.get("value") if ref_pt and ref_lang == "cpp" else None,
         "cpp_stddev": ref_pt.get("stddev") if ref_pt and ref_lang == "cpp" else None,
         "cpp_sample_runs": ref_pt.get("sample_runs") if ref_pt and ref_lang == "cpp" else None,
         "ratio_vs_cpp": ch.get("ratio_vs_reference"),
-        "sota_lang": sota_lang,
-        "sota_value": sota_pt.get("value") if sota_pt else None,
+        "sota_ref_lang": sota_ref_lang,
+        "sota_lang": table_sota_lang,
+        "sota_value": table_sota_val,
         "ratio_vs_sota": ch.get("ratio_vs_sota"),
         "unit": ch.get("unit") or existing.get("unit"),
         "variant": cfg.get("variant"),

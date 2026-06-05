@@ -56,6 +56,12 @@ def main() -> int:
     catalog_ids = [b["id"] for b in benches]
     catalog_set = set(catalog_ids)
 
+    required_catalog_set = {
+        b["id"]
+        for b in benches
+        if str(b.get("catalog_lifecycle") or "").lower() != "planned"
+    }
+
     catalog_by_id = {b["id"]: b for b in benches}
     summary = json.loads(SUMMARY.read_text())
     rows = summary.get("rows", [])
@@ -73,7 +79,7 @@ def main() -> int:
     if len(rows) < MIN_ROWS:
         fail(f"summary rows {len(rows)} < minimum {MIN_ROWS}")
 
-    missing = catalog_set - set(rows_by_bench)
+    missing = required_catalog_set - set(rows_by_bench)
     if missing:
         fail(f"catalog ids missing from summary.rows: {sorted(missing)[:5]} … ({len(missing)} total)")
 
@@ -108,7 +114,12 @@ def main() -> int:
 
     for row in rows:
         if row.get("sota_lang") == "li":
-            fail(f"sota_lang=li on {row['benchmark']}")
+            ref = row.get("sota_ref_lang")
+            ratio = row.get("ratio_vs_sota")
+            if not ref or ratio is None or ratio <= 1.0:
+                fail(
+                    f"sota_lang=li on {row['benchmark']} but sota_ref_lang/ratio_vs_sota invalid"
+                )
         for key in REQUIRED_ROW_KEYS:
             if key not in row:
                 fail(f"row {row['benchmark']} missing {key}")
@@ -119,6 +130,8 @@ def main() -> int:
 
     charts = chart_index(summary)
     for b in benches:
+        if str(b.get("catalog_lifecycle") or "").lower() == "planned":
+            continue
         ps = str(b.get("problem_size") or "").strip()
         if not ps:
             continue

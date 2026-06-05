@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from paths import competitive_registry_path
 from bench import (
     REPO,
     TIER1_BENCHES,
@@ -18,7 +19,7 @@ from bench import (
     RESULTS,
 )
 
-REGISTRY_PATH = REPO / "benchmarks" / "competitive" / "algo_registry.json"
+REGISTRY_PATH = competitive_registry_path()
 
 # Registry family -> existing harness id (must exist in TIER1_BENCHES or TIER2_BENCHES).
 FAMILY_TEMPLATE: dict[str, str] = {

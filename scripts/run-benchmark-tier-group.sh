@@ -94,6 +94,7 @@ case "$GROUP" in
 
 
   tier7)
+    export BENCHMARKS_CSV="${BENCHMARKS_CSV:-$ROOT/results/latest.csv}"
     log "tier 7 — algo_registry family-template aliases"
     "$ROOT/scripts/run-bench.sh" --tier 7 --runs "$RUNS" --skip-verify || {
       echo "WARN: tier7 registry aliases failed" >&2
@@ -144,7 +145,7 @@ esac
 
 
 _lic_csv="$LIC_ROOT/benchmarks/results/latest.csv"
-if [[ ! -s "$BENCHMARKS_CSV" ]] && [[ -s "$_lic_csv" ]]; then
+if [[ "${BENCH_NIGHTLY:-0}" != "1" ]] && [[ ! -s "$BENCHMARKS_CSV" ]] && [[ -s "$_lic_csv" ]]; then
   cp "$_lic_csv" "$BENCHMARKS_CSV"
   log "copied harness CSV from $_lic_csv"
 fi
