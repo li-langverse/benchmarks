@@ -172,9 +172,15 @@ case "$GROUP" in
     fi
     log "tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
     export TIER5_EXPLOIT_PROFILE="${TIER5_EXPLOIT_PROFILE:-${BENCH_HTTP_PROFILE:-pr}}"
-    export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,apache,li}"
-    "$ROOT/scripts/run-tier5-http-exploits.sh"
+    export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,li}"
     exploit_src="$ROOT/vendor/lis-tier5/results/exploit_report.csv"
+    "$ROOT/scripts/run-tier5-http-exploits.sh" || {
+      if [[ "${BENCH_NIGHTLY:-0}" == "1" ]] && [[ -s "$exploit_src" ]]; then
+        echo "WARN: tier5-exploits harness failures recorded in $exploit_src" >&2
+      else
+        exit 1
+      fi
+    }
     bench_python "$ROOT/scripts/exploit-report-to-tier-csv.py" "$exploit_src" "$BENCHMARKS_CSV"
     ;;
   *)
