@@ -31,6 +31,7 @@ env:
   # Shared nightly timing (overridden when bench_profile=full on dispatch).
   BENCH_RUNS: "3"
   BENCH_MIN_RUNS: "6"
+  REGISTRY_SHARD_COUNT: "3"
   BENCH_ADAPTIVE_RUNS: "1"
   BENCH_SUBSEC_MIN_RUNS: "8"
   HTTP_BENCH_RUNS: "3"
@@ -185,7 +186,7 @@ jobs:
     steps:
       - id: groups
         run: |
-          groups='["tier0","tier1","tier2-md","tier2-pde","tier2-mech","tier7","tier3","tier5","tier5-exploits"]'
+          groups='["tier0","tier1","tier2-md","tier2-pde","tier2-mech","tier7-0","tier7-1","tier7-2","tier3","tier5","tier5-exploits"]'
           if [[ "${{ github.event_name }}" == "workflow_dispatch" && "${{ inputs.skip_exploits }}" == "true" ]]; then
             groups="$(echo "$groups" | jq 'map(select(. != "tier5-exploits"))')"
           fi
@@ -197,7 +198,7 @@ jobs:
     timeout-minutes: 90
     strategy:
       fail-fast: false
-      max-parallel: 9
+      max-parallel: 11
       matrix:
         group: ${{ fromJSON(needs.bench-matrix.outputs.linux_groups) }}
     steps:
