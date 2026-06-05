@@ -6,7 +6,7 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 source "$ROOT/scripts/lib/bench-python.sh"
 GROUP="${1:-${BENCH_TIER_GROUP:-}}"
 if [[ -z "$GROUP" ]]; then
-  echo "usage: run-benchmark-tier-group.sh <tier0|tier12|tier7|tier3|tier5|tier5-exploits>" >&2
+  echo "usage: run-benchmark-tier-group.sh <tier0|tier12|tier7|tier7-N|tier3|tier5|tier5-exploits>" >&2
   exit 2
 fi
 
@@ -115,10 +115,22 @@ case "$GROUP" in
     ;;
 
 
-  tier7)
-    log "tier 7 — algo_registry family-template aliases"
+  tier7|tier7-*)
+    REGISTRY_SHARD_COUNT="${REGISTRY_SHARD_COUNT:-1}"
+    REGISTRY_SHARD_ARGS=()
+    if [[ "$GROUP" =~ ^tier7-[0-9]+$ ]]; then
+      shard="${GROUP#tier7-}"
+      REGISTRY_SHARD_ARGS=(--registry-shard "$shard" --registry-shard-count "$REGISTRY_SHARD_COUNT")
+      # One CI worker per shard; scale wall clock via REGISTRY_SHARD_COUNT, not in-job oversubscription.
+      export BENCH_JOBS="${REGISTRY_BENCH_JOBS:-1}"
+      log "tier 7 — algo_registry shard $shard/$REGISTRY_SHARD_COUNT (runs=$RUNS jobs=${BENCH_JOBS})"
+    else
+      log "tier 7 — algo_registry all aliases (runs=$RUNS jobs=${BENCH_JOBS})"
+    fi
     export REGISTRY_RUN_TIMINGS="${REGISTRY_RUN_TIMINGS:-1}"
-    bench_python "$ROOT/harness/bench.py" --tier 7 --runs "$RUNS" --skip-verify
+    export BENCH_RUNS="$RUNS"
+    bench_python "$ROOT/scripts/run-registry-tier-benches.py" \
+      --runs "$RUNS" --jobs "$BENCH_JOBS" "${REGISTRY_SHARD_ARGS[@]}"
     ;;
   tier3)
     log "tier 3 — ecosystem (compile, security, async; jobs=${BENCH_JOBS})"
