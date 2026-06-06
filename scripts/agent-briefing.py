@@ -38,6 +38,7 @@ PREFLIGHT_SCRIPTS = [
     ("security_cwe_audit", ["python3", "scripts/security-cwe-audit.py"]),
     ("cwe_feed_sync", ["python3", "scripts/security-cwe-feed-sync.py"]),
     ("workspace_dirty_sweep", ["python3", "scripts/workspace-dirty-sweep.py"]),
+    ("ui_audit", ["python3", "scripts/ui-ux-audit.py", "--preflight"]),
 ]
 
 def _normalize_agent_skills(row: dict) -> list[str]:
@@ -412,6 +413,37 @@ def recommend_agents(data: dict) -> list[dict]:
             }
         )
 
+    ui_audit = data.get("ui_audit") or {}
+    if isinstance(ui_audit, dict):
+        targets = ui_audit.get("targets") or []
+        failing = [t for t in targets if t.get("status") == "fail"]
+        skipped_gui = [
+            t
+            for t in targets
+            if t.get("status") == "skip" and t.get("surface") == "gui"
+        ]
+        if failing or skipped_gui:
+            n = len(failing) + len(skipped_gui)
+            if not _has_agent(rec, "gui_ui_tester"):
+                rec.append(
+                    {
+                        "agent": "gui_ui_tester",
+                        "reason": f"ui-audit: {n} GUI target(s) failing or skipped",
+                    }
+                )
+            bench_rows = [
+                t
+                for t in failing + skipped_gui
+                if t.get("target_id") == "benchmarks-dashboard"
+            ]
+            if bench_rows and not _has_agent(rec, "code_implementer"):
+                rec.append(
+                    {
+                        "agent": "code_implementer",
+                        "reason": "benchmarks-dashboard ui-audit failing or skipped",
+                    }
+                )
+
     pr_prog = data.get("pr_program") or {}
     if isinstance(pr_prog, dict) and pr_prog.get("open", 0) > 0:
         if not _has_agent(rec, "pr_alignment"):
@@ -584,6 +616,8 @@ def main() -> int:
         "security_cwe_audit": load_json(LATEST / "security-cwe-audit.json"),
         "cwe_feed_delta": load_json(LATEST / "security-cwe-feed-delta.json"),
         "workspace_dirty_sweep": load_json(LATEST / "workspace-dirty-sweep.json"),
+        "ui_audit": load_json(LATEST / "ui-audit.json"),
+        "ux_audit": load_json(LATEST / "ux-audit.json"),
         "local_ci_results": load_json(LATEST / "local-ci-results.json"),
         "recommended_agents": [],
     }
