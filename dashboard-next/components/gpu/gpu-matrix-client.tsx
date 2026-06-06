@@ -3,7 +3,12 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { GpuChipDiagram } from "@/components/gpu/gpu-chip-diagram";
-import { GpuChipPicker, GpuCrossChipCompare } from "@/components/gpu/gpu-chip-picker";
+import {
+  GpuChipPicker,
+  GpuCrossChipCompare,
+  GPU_CHIP_TAB_PANEL_ID,
+  gpuChipTabId,
+} from "@/components/gpu/gpu-chip-picker";
 import { GpuMatrixTable } from "@/components/gpu/gpu-matrix-table";
 import type { LigGpuMatrix } from "@/lib/lig-gpu-matrix-types";
 import { formatTimingSec } from "@/lib/lig-gpu-matrix-types";
@@ -63,10 +68,14 @@ export function GpuMatrixClient({ matrix }: GpuMatrixClientProps) {
         policyUrl={matrix.contribution_policy_url}
       />
 
-      <section className="gpu-selected-chip-panel" aria-labelledby="selected-chip-heading">
-        <h3 id="selected-chip-heading" className="bench-panel-heading">
-          {selected.label}
-        </h3>
+      <section
+        id={GPU_CHIP_TAB_PANEL_ID}
+        role="tabpanel"
+        tabIndex={0}
+        aria-labelledby={gpuChipTabId(selected.chip_slug)}
+        className="gpu-selected-chip-panel"
+      >
+        <h3 className="bench-panel-heading">{selected.label}</h3>
         <dl className="mono gpu-chip-meta-grid">
           <dt>Slug</dt>
           <dd>{selected.chip_slug}</dd>
