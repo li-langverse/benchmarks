@@ -1,6 +1,6 @@
 # Dashboard invariants (regression gates)
 
-These rules are enforced in CI via `scripts/check-dashboard-invariants.py`, `scripts/check-summary-measurement-coverage.py`, and `scripts/check-dashboard-static-routes.sh`. A PR that breaks any invariant must be fixed before merge — do not weaken checks without human approval.
+These rules are enforced in CI via `scripts/check-dashboard-invariants.py`, `scripts/check-summary-measurement-coverage.py`, `scripts/check-summary-measurement-quality.py`, `scripts/check-summary-skip-budget.py`, and `scripts/check-dashboard-static-routes.sh`. A PR that breaks any invariant must be fixed before merge — **do not weaken checks without explicit human approval** (agents: see `.cursor/rules/li-measurement-quality-gates.mdc`).
 
 ## Must never break
 
