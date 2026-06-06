@@ -70,7 +70,7 @@ export function BenchmarkSearch({ rows }: BenchmarkSearchProps) {
   );
 
   return (
-    <section id="search" className="bench-search">
+    <section id="search" className="bench-search" data-testid="benchmark-search">
       <h2>Benchmarks</h2>
       <p className="bench-search-hint">
         One row per benchmark — OS breakdown on the drill-down page. Filter by id, PH id,
