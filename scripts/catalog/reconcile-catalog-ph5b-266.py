@@ -43,6 +43,17 @@ def load_format_helpers():
     return mod.load_header, mod.format_benchmark
 
 
+def load_footer(text: str) -> str:
+    """Preserve trailing top-level tables (e.g. [reporting]) after [[benchmark]] blocks."""
+    idx = text.rfind("\n[")
+    if idx == -1:
+        return ""
+    tail = text[idx + 1 :].lstrip("\n")
+    if not tail.startswith("["):
+        return ""
+    return tail if tail.endswith("\n") else tail + "\n"
+
+
 def path_exists_for_row(row: dict) -> bool:
     rel = str(row.get("path", "")).strip()
     if not rel or rel == "unknown":
@@ -141,7 +152,11 @@ def main() -> int:
         return 0
 
     header = load_header(text)
-    CATALOG.write_text(header + "\n\n".join(format_benchmark(b) for b in rows) + "\n")
+    footer = load_footer(text)
+    body = header + "\n\n".join(format_benchmark(b) for b in rows) + "\n"
+    if footer:
+        body += footer
+    CATALOG.write_text(body)
     print(f"wrote {CATALOG} ({total} row updates)")
     return 0
 
