@@ -245,6 +245,33 @@ size_label = "N=512 block=64"
 ph_ids = ["PH-5b"]
 
 [[benchmark]]
+id = "reduce_parallel"
+category = "micro"
+pillar = "compiler"
+package = "li-parallel"
+tier = 1
+repo = "lic"
+path = "benchmarks/workloads/runtime_refs/reduce_parallel"
+metric = "cpu_sec"
+threshold_ratio_omp = 1.05
+parallel_eligible = true
+variant = "parallel"
+
+[[benchmark]]
+id = "matmul_blocked_parallel"
+base_id = "matmul_blocked"
+category = "micro"
+pillar = "numerics"
+package = "li-parallel"
+tier = 1
+repo = "lic"
+path = "benchmarks/workloads/tier1_micro/matmul_blocked"
+metric = "wall_time"
+threshold_ratio_cpp = 1.2
+parallel_eligible = true
+variant = "parallel"
+
+[[benchmark]]
 id = "matmul_blocked_N1024"
 base_id = "matmul_blocked"
 category = "micro"

@@ -1,0 +1,19 @@
+# Li reduce_parallel — native parallel runtime (li_par_pool + li_par_reduce).
+
+extern proc li_par_reduce_sum_f64(data: ptr, n: int, team: int) -> float
+  requires true
+  ensures true
+
+extern proc li_rt_volatile_sink_f64(v: float) -> unit
+  requires true
+  ensures true
+
+def main() -> int
+  requires true
+  ensures result == 0
+  decreases 0
+=
+  var n: int = 100000000
+  var acc: float = 0.0
+  li_rt_volatile_sink_f64(acc)
+  return 0

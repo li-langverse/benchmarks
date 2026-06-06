@@ -59,10 +59,14 @@ def _run_one_bench(payload: tuple[str, int, str, str]) -> tuple[str, list[dict[s
 
 
 def _benchmark_complete(merged: list[dict[str, str]], name: str) -> bool:
+    if os.environ.get("BENCH_DUAL_MODE", "").strip().lower() in ("1", "true", "yes"):
+        langs = ("li_serial", "li_parallel")
+        found = {row.get("lang") for row in merged if row.get("benchmark") == name and row.get("metric") == "wall_time"}
+        return all(lang in found for lang in langs)
     for row in merged:
         if row.get("benchmark") != name:
             continue
-        if row.get("metric") == "wall_time" and row.get("lang") == "li":
+        if row.get("metric") == "wall_time" and row.get("lang") in ("li", "li_serial", "li_parallel"):
             return True
     return False
 
