@@ -760,6 +760,10 @@ main {
   gap: 0.75rem;
 }
 
+.gpu-chip-tablist {
+  display: contents;
+}
+
 .gpu-chip-card {
   display: flex;
   flex-direction: column;
