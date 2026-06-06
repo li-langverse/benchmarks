@@ -1,99 +1,3238 @@
 {
-  "generated_at": "2026-06-01T08:26:41.745304+00:00",
+  "generated_at": "2026-06-06T16:24:12.101040+00:00",
   "summary_path": "data/latest/summary.json",
-  "benchmark_bases": 157,
-  "chart_rows": 477,
-  "table_rows": 259,
-  "p0_count": 0,
-  "p1_count": 12,
+  "benchmark_bases": 148,
+  "chart_rows": 150,
+  "table_rows": 150,
+  "p0_count": 370,
+  "p1_count": 111,
   "issue_counts": {
-    "chart_pending": 12
+    "missing_os": 148,
+    "validity_unknown": 111,
+    "status_unknown": 111,
+    "chart_pending": 111
   },
-  "p0": [],
+  "p0": [
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "advection_diffusion_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "advection_diffusion_2d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "advection_diffusion_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "advection_diffusion_2d",
+      "detail": "status='unknown'",
+      "chart_id": "advection_diffusion_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_export_gcode_3mf",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_export_gcode_3mf",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_export_gcode_3mf"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_export_gcode_3mf",
+      "detail": "status='unknown'",
+      "chart_id": "am_export_gcode_3mf"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_infill_grid_lines",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_infill_grid_lines",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_infill_grid_lines"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_infill_grid_lines",
+      "detail": "status='unknown'",
+      "chart_id": "am_infill_grid_lines"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_infill_gyroid",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_infill_gyroid",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_infill_gyroid"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_infill_gyroid",
+      "detail": "status='unknown'",
+      "chart_id": "am_infill_gyroid"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_offset_perimeters",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_offset_perimeters",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_offset_perimeters"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_offset_perimeters",
+      "detail": "status='unknown'",
+      "chart_id": "am_offset_perimeters"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_plane_mesh_intersect",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_plane_mesh_intersect",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_plane_mesh_intersect"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_plane_mesh_intersect",
+      "detail": "status='unknown'",
+      "chart_id": "am_plane_mesh_intersect"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_polygon_clip",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_polygon_clip",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_polygon_clip"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_polygon_clip",
+      "detail": "status='unknown'",
+      "chart_id": "am_polygon_clip"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_slice_layers",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_slice_layers",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_slice_layers"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_slice_layers",
+      "detail": "status='unknown'",
+      "chart_id": "am_slice_layers"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_support_tree",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_support_tree",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_support_tree"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_support_tree",
+      "detail": "status='unknown'",
+      "chart_id": "am_support_tree"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_thermal_warp",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_thermal_warp",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_thermal_warp"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_thermal_warp",
+      "detail": "status='unknown'",
+      "chart_id": "am_thermal_warp"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "am_toolpath_arcs",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "am_toolpath_arcs",
+      "detail": "validity_status='unknown'",
+      "chart_id": "am_toolpath_arcs"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "am_toolpath_arcs",
+      "detail": "status='unknown'",
+      "chart_id": "am_toolpath_arcs"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "auto_bicycle_model",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "auto_bicycle_model",
+      "detail": "validity_status='unknown'",
+      "chart_id": "auto_bicycle_model"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "auto_bicycle_model",
+      "detail": "status='unknown'",
+      "chart_id": "auto_bicycle_model"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "auto_dyn_rk4",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "auto_dyn_rk4",
+      "detail": "validity_status='unknown'",
+      "chart_id": "auto_dyn_rk4"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "auto_dyn_rk4",
+      "detail": "status='unknown'",
+      "chart_id": "auto_dyn_rk4"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "auto_sensor_raycast",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "auto_sensor_raycast",
+      "detail": "validity_status='unknown'",
+      "chart_id": "auto_sensor_raycast"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "auto_sensor_raycast",
+      "detail": "status='unknown'",
+      "chart_id": "auto_sensor_raycast"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_proteinmpnn",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "bio_proteinmpnn",
+      "detail": "validity_status='unknown'",
+      "chart_id": "bio_proteinmpnn"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "bio_proteinmpnn",
+      "detail": "status='unknown'",
+      "chart_id": "bio_proteinmpnn"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_rfdiffusion",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "bio_rfdiffusion",
+      "detail": "validity_status='unknown'",
+      "chart_id": "bio_rfdiffusion"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "bio_rfdiffusion",
+      "detail": "status='unknown'",
+      "chart_id": "bio_rfdiffusion"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_rosetta_energy",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "bio_rosetta_energy",
+      "detail": "validity_status='unknown'",
+      "chart_id": "bio_rosetta_energy"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "bio_rosetta_energy",
+      "detail": "status='unknown'",
+      "chart_id": "bio_rosetta_energy"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "bio_rotamer_packing",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "bio_rotamer_packing",
+      "detail": "validity_status='unknown'",
+      "chart_id": "bio_rotamer_packing"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "bio_rotamer_packing",
+      "detail": "status='unknown'",
+      "chart_id": "bio_rotamer_packing"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cfd_fvm_face_flux"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "status='unknown'",
+      "chart_id": "cfd_fvm_face_flux"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_pimple",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cfd_pimple",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cfd_pimple"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cfd_pimple",
+      "detail": "status='unknown'",
+      "chart_id": "cfd_pimple"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_piso",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cfd_piso",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cfd_piso"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cfd_piso",
+      "detail": "status='unknown'",
+      "chart_id": "cfd_piso"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_simple",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cfd_simple",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cfd_simple"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cfd_simple",
+      "detail": "status='unknown'",
+      "chart_id": "cfd_simple"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cfd_turbulence_k_epsilon"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "status='unknown'",
+      "chart_id": "cfd_turbulence_k_epsilon"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cfd_turbulence_k_omega_sst"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "status='unknown'",
+      "chart_id": "cfd_turbulence_k_omega_sst"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "cloth_swing",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "cloth_swing",
+      "detail": "validity_status='unknown'",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "cloth_swing",
+      "detail": "status='unknown'",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "combustion_passive",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "combustion_passive",
+      "detail": "validity_status='unknown'",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "combustion_passive",
+      "detail": "status='unknown'",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "double_pendulum",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "double_pendulum",
+      "detail": "validity_status='unknown'",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "double_pendulum",
+      "detail": "status='unknown'",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_docking_diffusion",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "drug_docking_diffusion",
+      "detail": "validity_status='unknown'",
+      "chart_id": "drug_docking_diffusion"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "drug_docking_diffusion",
+      "detail": "status='unknown'",
+      "chart_id": "drug_docking_diffusion"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_docking_score_vina",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "drug_docking_score_vina",
+      "detail": "validity_status='unknown'",
+      "chart_id": "drug_docking_score_vina"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "drug_docking_score_vina",
+      "detail": "status='unknown'",
+      "chart_id": "drug_docking_score_vina"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_fep_alchemical",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "drug_fep_alchemical",
+      "detail": "validity_status='unknown'",
+      "chart_id": "drug_fep_alchemical"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "drug_fep_alchemical",
+      "detail": "status='unknown'",
+      "chart_id": "drug_fep_alchemical"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_litl_stages",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "drug_litl_stages",
+      "detail": "validity_status='unknown'",
+      "chart_id": "drug_litl_stages"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "drug_litl_stages",
+      "detail": "status='unknown'",
+      "chart_id": "drug_litl_stages"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "validity_status='unknown'",
+      "chart_id": "drug_ml_retrain_loop"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "status='unknown'",
+      "chart_id": "drug_ml_retrain_loop"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "euler_fluid_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "euler_fluid_2d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "euler_fluid_2d",
+      "detail": "status='unknown'",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fdtd_waveguide_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fdtd_waveguide_2d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fdtd_waveguide_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fdtd_waveguide_2d",
+      "detail": "status='unknown'",
+      "chart_id": "fdtd_waveguide_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fea_gauss_quadrature"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "status='unknown'",
+      "chart_id": "fea_gauss_quadrature"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_linear_elasticity",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fea_linear_elasticity",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fea_linear_elasticity"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fea_linear_elasticity",
+      "detail": "status='unknown'",
+      "chart_id": "fea_linear_elasticity"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fea_mesh_tri_tet"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "status='unknown'",
+      "chart_id": "fea_mesh_tri_tet"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_solver_direct",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fea_solver_direct",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fea_solver_direct"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fea_solver_direct",
+      "detail": "status='unknown'",
+      "chart_id": "fea_solver_direct"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_solver_iterative",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fea_solver_iterative",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fea_solver_iterative"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fea_solver_iterative",
+      "detail": "status='unknown'",
+      "chart_id": "fea_solver_iterative"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fea_stiffness_assembly"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "status='unknown'",
+      "chart_id": "fea_stiffness_assembly"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "validity_status='unknown'",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "status='unknown'",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "heat_equation_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "heat_equation_2d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "heat_equation_2d",
+      "detail": "status='unknown'",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "horner_pure_li",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "matmul_blocked",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "matmul_naive",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_barostat_parrinello_rahman",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_constraints_rattle",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_constraints_shake",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_energy_drift",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_init_fcc_mb",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_integrator_leapfrog",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_integrator_verlet",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_lennard_jones",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_longrange_ewald",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_longrange_pme",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_neighbor_cell_list",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_neighbor_verlet_skin",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_oracle_external",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_thermostat_berendsen",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "md_thermostat_nose_hoover",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ml_conv2d_forward",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ml_conv2d_forward",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ml_conv2d_forward"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ml_conv2d_forward",
+      "detail": "status='unknown'",
+      "chart_id": "ml_conv2d_forward"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ml_mlp_forward",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ml_mlp_forward",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ml_mlp_forward"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ml_mlp_forward",
+      "detail": "status='unknown'",
+      "chart_id": "ml_mlp_forward"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ml_mlp_train_step",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ml_mlp_train_step",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ml_mlp_train_step"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ml_mlp_train_step",
+      "detail": "status='unknown'",
+      "chart_id": "ml_mlp_train_step"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "nbody_barnes_hut",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "nbody_barnes_hut",
+      "detail": "validity_status='unknown'",
+      "chart_id": "nbody_barnes_hut"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "nbody_barnes_hut",
+      "detail": "status='unknown'",
+      "chart_id": "nbody_barnes_hut"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "nbody_gravity",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "nbody_gravity",
+      "detail": "validity_status='unknown'",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "nbody_gravity",
+      "detail": "status='unknown'",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_cg",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_cholesky",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_eig_symmetric",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "num_eig_symmetric",
+      "detail": "validity_status='unknown'",
+      "chart_id": "num_eig_symmetric"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "num_eig_symmetric",
+      "detail": "status='unknown'",
+      "chart_id": "num_eig_symmetric"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_fft_r2c",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_gmres",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_euler",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_rk4",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_semi_implicit",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_symplectic",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_integ_verlet",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_opt_bfgs",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_opt_line_search",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_quadrature_gauss",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_rng_pcg",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_root_newton",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "num_sparse_mv",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "orbit_two_body",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "orbit_two_body",
+      "detail": "validity_status='unknown'",
+      "chart_id": "orbit_two_body"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "orbit_two_body",
+      "detail": "status='unknown'",
+      "chart_id": "orbit_two_body"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "pde_cfl_timestep",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "pde_cfl_timestep",
+      "detail": "validity_status='unknown'",
+      "chart_id": "pde_cfl_timestep"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "pde_cfl_timestep",
+      "detail": "status='unknown'",
+      "chart_id": "pde_cfl_timestep"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "validity_status='unknown'",
+      "chart_id": "pde_heat_implicit_jacobi"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "status='unknown'",
+      "chart_id": "pde_heat_implicit_jacobi"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_ase_calculator",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_ase_calculator",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_ase_calculator"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_ase_calculator",
+      "detail": "status='unknown'",
+      "chart_id": "qm_ase_calculator"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_ccsd",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_ccsd",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_ccsd"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_ccsd",
+      "detail": "status='unknown'",
+      "chart_id": "qm_ccsd"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_grid_becke"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_grid_becke"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_grid_lebedev"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_grid_lebedev"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_hybrid_exchange"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_hybrid_exchange"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_scf_energy"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_scf_energy"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_xc_gga"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_xc_gga"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_xc_lda"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_xc_lda"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dft_xc_mgga"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dft_xc_mgga"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_dispersion_d3",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_dispersion_d3",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_dispersion_d3"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_dispersion_d3",
+      "detail": "status='unknown'",
+      "chart_id": "qm_dispersion_d3"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_ecp",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_ecp",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_ecp"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_ecp",
+      "detail": "status='unknown'",
+      "chart_id": "qm_ecp"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_eri_density_fitting"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "status='unknown'",
+      "chart_id": "qm_eri_density_fitting"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_eri_os",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_eri_os",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_eri_os"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_eri_os",
+      "detail": "status='unknown'",
+      "chart_id": "qm_eri_os"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_eri_screening",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_eri_screening",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_eri_screening"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_eri_screening",
+      "detail": "status='unknown'",
+      "chart_id": "qm_eri_screening"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_geom_opt_bfgs"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "status='unknown'",
+      "chart_id": "qm_geom_opt_bfgs"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_geom_opt_internal"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "status='unknown'",
+      "chart_id": "qm_geom_opt_internal"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_grad_analytical",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_grad_analytical",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_grad_analytical"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_grad_analytical",
+      "detail": "status='unknown'",
+      "chart_id": "qm_grad_analytical"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_gto_eval",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_gto_eval",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_gto_eval"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_gto_eval",
+      "detail": "status='unknown'",
+      "chart_id": "qm_gto_eval"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_hf_canonical_ortho"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "status='unknown'",
+      "chart_id": "qm_hf_canonical_ortho"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_hf_diis",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_hf_diis",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_hf_diis"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_hf_diis",
+      "detail": "status='unknown'",
+      "chart_id": "qm_hf_diis"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_hf_fock_build",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_hf_fock_build",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_hf_fock_build"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_hf_fock_build",
+      "detail": "status='unknown'",
+      "chart_id": "qm_hf_fock_build"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_job_queue_io",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_job_queue_io",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_job_queue_io"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_job_queue_io",
+      "detail": "status='unknown'",
+      "chart_id": "qm_job_queue_io"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_kinetic_integrals"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "status='unknown'",
+      "chart_id": "qm_kinetic_integrals"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_mp2",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_mp2",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_mp2"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_mp2",
+      "detail": "status='unknown'",
+      "chart_id": "qm_mp2"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_nuclear_attraction"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "status='unknown'",
+      "chart_id": "qm_nuclear_attraction"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_overlap_integrals",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_overlap_integrals",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_overlap_integrals"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_overlap_integrals",
+      "detail": "status='unknown'",
+      "chart_id": "qm_overlap_integrals"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_property_dipole",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_property_dipole",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_property_dipole"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_property_dipole",
+      "detail": "status='unknown'",
+      "chart_id": "qm_property_dipole"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_property_freq",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_property_freq",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_property_freq"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_property_freq",
+      "detail": "status='unknown'",
+      "chart_id": "qm_property_freq"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_scf_solver",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_scf_solver",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_scf_solver"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_scf_solver",
+      "detail": "status='unknown'",
+      "chart_id": "qm_scf_solver"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_tddft_casida",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_tddft_casida",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_tddft_casida"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_tddft_casida",
+      "detail": "status='unknown'",
+      "chart_id": "qm_tddft_casida"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_tddft_rpa",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_tddft_rpa",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_tddft_rpa"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_tddft_rpa",
+      "detail": "status='unknown'",
+      "chart_id": "qm_tddft_rpa"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "qm_xtb_gfn",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "qm_xtb_gfn",
+      "detail": "validity_status='unknown'",
+      "chart_id": "qm_xtb_gfn"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "qm_xtb_gfn",
+      "detail": "status='unknown'",
+      "chart_id": "qm_xtb_gfn"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ragdoll_chain",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ragdoll_chain",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ragdoll_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ragdoll_chain",
+      "detail": "status='unknown'",
+      "chart_id": "ragdoll_chain"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "reduce_sum",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_body_stack",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_body_stack",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_body_stack",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rigid_broadphase_bvh"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_broadphase_bvh"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rigid_broadphase_sap"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_broadphase_sap"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_constraints",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_constraints",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rigid_constraints"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_constraints",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_constraints"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_contact_solver",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_contact_solver",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rigid_contact_solver"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_contact_solver",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_contact_solver"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rigid_semi_implicit",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rigid_semi_implicit",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rigid_semi_implicit"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rigid_semi_implicit",
+      "detail": "status='unknown'",
+      "chart_id": "rigid_semi_implicit"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_ik_jacobian",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "robo_ik_jacobian",
+      "detail": "validity_status='unknown'",
+      "chart_id": "robo_ik_jacobian"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "robo_ik_jacobian",
+      "detail": "status='unknown'",
+      "chart_id": "robo_ik_jacobian"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_multibody_step",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "robo_multibody_step",
+      "detail": "validity_status='unknown'",
+      "chart_id": "robo_multibody_step"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "robo_multibody_step",
+      "detail": "status='unknown'",
+      "chart_id": "robo_multibody_step"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_plan_prm",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "robo_plan_prm",
+      "detail": "validity_status='unknown'",
+      "chart_id": "robo_plan_prm"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "robo_plan_prm",
+      "detail": "status='unknown'",
+      "chart_id": "robo_plan_prm"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_plan_rrt",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "robo_plan_rrt",
+      "detail": "validity_status='unknown'",
+      "chart_id": "robo_plan_rrt"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "robo_plan_rrt",
+      "detail": "status='unknown'",
+      "chart_id": "robo_plan_rrt"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "robo_traj_opt",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "robo_traj_opt",
+      "detail": "validity_status='unknown'",
+      "chart_id": "robo_traj_opt"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "robo_traj_opt",
+      "detail": "status='unknown'",
+      "chart_id": "robo_traj_opt"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "schrodinger_1d_barrier",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "schrodinger_1d_barrier",
+      "detail": "validity_status='unknown'",
+      "chart_id": "schrodinger_1d_barrier"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "schrodinger_1d_barrier",
+      "detail": "status='unknown'",
+      "chart_id": "schrodinger_1d_barrier"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "simd_dot",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "sph_dam_break_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "sph_dam_break_2d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "sph_dam_break_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "sph_dam_break_2d",
+      "detail": "status='unknown'",
+      "chart_id": "sph_dam_break_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_binary_search",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_binary_search",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_binary_search"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_binary_search",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_binary_search"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_dict_insert_lookup"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_dict_insert_lookup",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_dict_insert_lookup"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_sort_int",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_sort_int",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_sort_int"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_sort_int",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_sort_int"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "three_body",
+      "detail": "missing platforms: ['linux', 'macos']; have ['windows']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "three_body_pure",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "three_body_pure",
+      "detail": "validity_status='unknown'",
+      "chart_id": "three_body_pure"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "three_body_pure",
+      "detail": "status='unknown'",
+      "chart_id": "three_body_pure"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "tier0_stability",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_colormap",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_colormap",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_colormap"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_colormap",
+      "detail": "status='unknown'",
+      "chart_id": "viz_colormap"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_decimate",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_decimate",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_decimate"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_decimate",
+      "detail": "status='unknown'",
+      "chart_id": "viz_decimate"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_inspector_panels",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_inspector_panels",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_inspector_panels"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_inspector_panels",
+      "detail": "status='unknown'",
+      "chart_id": "viz_inspector_panels"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_linked_views",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_linked_views",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_linked_views"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_linked_views",
+      "detail": "status='unknown'",
+      "chart_id": "viz_linked_views"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_marching_cubes",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_marching_cubes",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_marching_cubes"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_marching_cubes",
+      "detail": "status='unknown'",
+      "chart_id": "viz_marching_cubes"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_pipeline_graph",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_pipeline_graph",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_pipeline_graph"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_pipeline_graph",
+      "detail": "status='unknown'",
+      "chart_id": "viz_pipeline_graph"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "viz_resample",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "viz_resample",
+      "detail": "validity_status='unknown'",
+      "chart_id": "viz_resample"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "viz_resample",
+      "detail": "status='unknown'",
+      "chart_id": "viz_resample"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "wave_equation_1d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "wave_equation_1d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "wave_equation_1d",
+      "detail": "status='unknown'",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "wave_equation_2d",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "wave_equation_2d",
+      "detail": "validity_status='unknown'",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "wave_equation_2d",
+      "detail": "status='unknown'",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "wind_field_bc",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "wind_field_bc",
+      "detail": "validity_status='unknown'",
+      "chart_id": "wind_field_bc"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "wind_field_bc",
+      "detail": "status='unknown'",
+      "chart_id": "wind_field_bc"
+    }
+  ],
   "p1": [
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "https_static",
+      "base_id": "advection_diffusion_2d",
       "detail": "chart marked pending",
-      "chart_id": "https_static@linux"
+      "chart_id": "advection_diffusion_2d"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "keepalive_pipelining",
+      "base_id": "am_export_gcode_3mf",
       "detail": "chart marked pending",
-      "chart_id": "keepalive_pipelining@linux"
+      "chart_id": "am_export_gcode_3mf"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "lb_least_conn",
+      "base_id": "am_infill_grid_lines",
       "detail": "chart marked pending",
-      "chart_id": "lb_least_conn@linux"
+      "chart_id": "am_infill_grid_lines"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "lb_peer_down",
+      "base_id": "am_infill_gyroid",
       "detail": "chart marked pending",
-      "chart_id": "lb_peer_down@linux"
+      "chart_id": "am_infill_gyroid"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "lb_round_robin",
+      "base_id": "am_offset_perimeters",
       "detail": "chart marked pending",
-      "chart_id": "lb_round_robin@linux"
+      "chart_id": "am_offset_perimeters"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "proxy_loopback",
+      "base_id": "am_plane_mesh_intersect",
       "detail": "chart marked pending",
-      "chart_id": "proxy_loopback@linux"
+      "chart_id": "am_plane_mesh_intersect"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "rate_limit_429",
+      "base_id": "am_polygon_clip",
       "detail": "chart marked pending",
-      "chart_id": "rate_limit_429@linux"
+      "chart_id": "am_polygon_clip"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "static_large",
+      "base_id": "am_slice_layers",
       "detail": "chart marked pending",
-      "chart_id": "static_large@linux"
+      "chart_id": "am_slice_layers"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "static_small",
+      "base_id": "am_support_tree",
       "detail": "chart marked pending",
-      "chart_id": "static_small@linux"
+      "chart_id": "am_support_tree"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "am_thermal_warp",
+      "detail": "chart marked pending",
+      "chart_id": "am_thermal_warp"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "am_toolpath_arcs",
+      "detail": "chart marked pending",
+      "chart_id": "am_toolpath_arcs"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "auto_bicycle_model",
+      "detail": "chart marked pending",
+      "chart_id": "auto_bicycle_model"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "auto_dyn_rk4",
+      "detail": "chart marked pending",
+      "chart_id": "auto_dyn_rk4"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "auto_sensor_raycast",
+      "detail": "chart marked pending",
+      "chart_id": "auto_sensor_raycast"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "bio_proteinmpnn",
+      "detail": "chart marked pending",
+      "chart_id": "bio_proteinmpnn"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "bio_rfdiffusion",
+      "detail": "chart marked pending",
+      "chart_id": "bio_rfdiffusion"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "bio_rosetta_energy",
+      "detail": "chart marked pending",
+      "chart_id": "bio_rosetta_energy"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "bio_rotamer_packing",
+      "detail": "chart marked pending",
+      "chart_id": "bio_rotamer_packing"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cfd_fvm_face_flux",
+      "detail": "chart marked pending",
+      "chart_id": "cfd_fvm_face_flux"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cfd_pimple",
+      "detail": "chart marked pending",
+      "chart_id": "cfd_pimple"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cfd_piso",
+      "detail": "chart marked pending",
+      "chart_id": "cfd_piso"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cfd_simple",
+      "detail": "chart marked pending",
+      "chart_id": "cfd_simple"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cfd_turbulence_k_epsilon",
+      "detail": "chart marked pending",
+      "chart_id": "cfd_turbulence_k_epsilon"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cfd_turbulence_k_omega_sst",
+      "detail": "chart marked pending",
+      "chart_id": "cfd_turbulence_k_omega_sst"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "cloth_swing",
+      "detail": "chart marked pending",
+      "chart_id": "cloth_swing"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "combustion_passive",
+      "detail": "chart marked pending",
+      "chart_id": "combustion_passive"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "double_pendulum",
+      "detail": "chart marked pending",
+      "chart_id": "double_pendulum"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "drug_docking_diffusion",
+      "detail": "chart marked pending",
+      "chart_id": "drug_docking_diffusion"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "drug_docking_score_vina",
+      "detail": "chart marked pending",
+      "chart_id": "drug_docking_score_vina"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "drug_fep_alchemical",
+      "detail": "chart marked pending",
+      "chart_id": "drug_fep_alchemical"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "drug_litl_stages",
+      "detail": "chart marked pending",
+      "chart_id": "drug_litl_stages"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "drug_ml_retrain_loop",
+      "detail": "chart marked pending",
+      "chart_id": "drug_ml_retrain_loop"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "euler_fluid_2d",
+      "detail": "chart marked pending",
+      "chart_id": "euler_fluid_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fdtd_waveguide_2d",
+      "detail": "chart marked pending",
+      "chart_id": "fdtd_waveguide_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fea_gauss_quadrature",
+      "detail": "chart marked pending",
+      "chart_id": "fea_gauss_quadrature"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fea_linear_elasticity",
+      "detail": "chart marked pending",
+      "chart_id": "fea_linear_elasticity"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fea_mesh_tri_tet",
+      "detail": "chart marked pending",
+      "chart_id": "fea_mesh_tri_tet"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fea_solver_direct",
+      "detail": "chart marked pending",
+      "chart_id": "fea_solver_direct"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fea_solver_iterative",
+      "detail": "chart marked pending",
+      "chart_id": "fea_solver_iterative"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fea_stiffness_assembly",
+      "detail": "chart marked pending",
+      "chart_id": "fea_stiffness_assembly"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "harmonic_oscillator_chain",
+      "detail": "chart marked pending",
+      "chart_id": "harmonic_oscillator_chain"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "heat_equation_2d",
+      "detail": "chart marked pending",
+      "chart_id": "heat_equation_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ml_conv2d_forward",
+      "detail": "chart marked pending",
+      "chart_id": "ml_conv2d_forward"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ml_mlp_forward",
+      "detail": "chart marked pending",
+      "chart_id": "ml_mlp_forward"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ml_mlp_train_step",
+      "detail": "chart marked pending",
+      "chart_id": "ml_mlp_train_step"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "nbody_barnes_hut",
+      "detail": "chart marked pending",
+      "chart_id": "nbody_barnes_hut"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "nbody_gravity",
+      "detail": "chart marked pending",
+      "chart_id": "nbody_gravity"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "num_eig_symmetric",
+      "detail": "chart marked pending",
+      "chart_id": "num_eig_symmetric"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "orbit_two_body",
+      "detail": "chart marked pending",
+      "chart_id": "orbit_two_body"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "pde_cfl_timestep",
+      "detail": "chart marked pending",
+      "chart_id": "pde_cfl_timestep"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "pde_heat_implicit_jacobi",
+      "detail": "chart marked pending",
+      "chart_id": "pde_heat_implicit_jacobi"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_ase_calculator",
+      "detail": "chart marked pending",
+      "chart_id": "qm_ase_calculator"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_ccsd",
+      "detail": "chart marked pending",
+      "chart_id": "qm_ccsd"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_grid_becke",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_grid_becke"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_grid_lebedev",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_grid_lebedev"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_hybrid_exchange",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_hybrid_exchange"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_scf_energy",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_scf_energy"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_xc_gga",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_xc_gga"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_xc_lda",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_xc_lda"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dft_xc_mgga",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dft_xc_mgga"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_dispersion_d3",
+      "detail": "chart marked pending",
+      "chart_id": "qm_dispersion_d3"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_ecp",
+      "detail": "chart marked pending",
+      "chart_id": "qm_ecp"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_eri_density_fitting",
+      "detail": "chart marked pending",
+      "chart_id": "qm_eri_density_fitting"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_eri_os",
+      "detail": "chart marked pending",
+      "chart_id": "qm_eri_os"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_eri_screening",
+      "detail": "chart marked pending",
+      "chart_id": "qm_eri_screening"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_geom_opt_bfgs",
+      "detail": "chart marked pending",
+      "chart_id": "qm_geom_opt_bfgs"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_geom_opt_internal",
+      "detail": "chart marked pending",
+      "chart_id": "qm_geom_opt_internal"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_grad_analytical",
+      "detail": "chart marked pending",
+      "chart_id": "qm_grad_analytical"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_gto_eval",
+      "detail": "chart marked pending",
+      "chart_id": "qm_gto_eval"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_hf_canonical_ortho",
+      "detail": "chart marked pending",
+      "chart_id": "qm_hf_canonical_ortho"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_hf_diis",
+      "detail": "chart marked pending",
+      "chart_id": "qm_hf_diis"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_hf_fock_build",
+      "detail": "chart marked pending",
+      "chart_id": "qm_hf_fock_build"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_job_queue_io",
+      "detail": "chart marked pending",
+      "chart_id": "qm_job_queue_io"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_kinetic_integrals",
+      "detail": "chart marked pending",
+      "chart_id": "qm_kinetic_integrals"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_mp2",
+      "detail": "chart marked pending",
+      "chart_id": "qm_mp2"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_nuclear_attraction",
+      "detail": "chart marked pending",
+      "chart_id": "qm_nuclear_attraction"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_overlap_integrals",
+      "detail": "chart marked pending",
+      "chart_id": "qm_overlap_integrals"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_property_dipole",
+      "detail": "chart marked pending",
+      "chart_id": "qm_property_dipole"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_property_freq",
+      "detail": "chart marked pending",
+      "chart_id": "qm_property_freq"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_scf_solver",
+      "detail": "chart marked pending",
+      "chart_id": "qm_scf_solver"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_tddft_casida",
+      "detail": "chart marked pending",
+      "chart_id": "qm_tddft_casida"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_tddft_rpa",
+      "detail": "chart marked pending",
+      "chart_id": "qm_tddft_rpa"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "qm_xtb_gfn",
+      "detail": "chart marked pending",
+      "chart_id": "qm_xtb_gfn"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ragdoll_chain",
+      "detail": "chart marked pending",
+      "chart_id": "ragdoll_chain"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rigid_body_stack",
+      "detail": "chart marked pending",
+      "chart_id": "rigid_body_stack"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rigid_broadphase_bvh",
+      "detail": "chart marked pending",
+      "chart_id": "rigid_broadphase_bvh"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rigid_broadphase_sap",
+      "detail": "chart marked pending",
+      "chart_id": "rigid_broadphase_sap"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rigid_constraints",
+      "detail": "chart marked pending",
+      "chart_id": "rigid_constraints"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rigid_contact_solver",
+      "detail": "chart marked pending",
+      "chart_id": "rigid_contact_solver"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rigid_semi_implicit",
+      "detail": "chart marked pending",
+      "chart_id": "rigid_semi_implicit"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "robo_ik_jacobian",
+      "detail": "chart marked pending",
+      "chart_id": "robo_ik_jacobian"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "robo_multibody_step",
+      "detail": "chart marked pending",
+      "chart_id": "robo_multibody_step"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "robo_plan_prm",
+      "detail": "chart marked pending",
+      "chart_id": "robo_plan_prm"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "robo_plan_rrt",
+      "detail": "chart marked pending",
+      "chart_id": "robo_plan_rrt"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "robo_traj_opt",
+      "detail": "chart marked pending",
+      "chart_id": "robo_traj_opt"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "schrodinger_1d_barrier",
+      "detail": "chart marked pending",
+      "chart_id": "schrodinger_1d_barrier"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "sph_dam_break_2d",
+      "detail": "chart marked pending",
+      "chart_id": "sph_dam_break_2d"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
       "base_id": "stdlib_binary_search",
       "detail": "chart marked pending",
-      "chart_id": "stdlib_binary_search@linux"
+      "chart_id": "stdlib_binary_search"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
       "base_id": "stdlib_dict_insert_lookup",
       "detail": "chart marked pending",
-      "chart_id": "stdlib_dict_insert_lookup@linux"
+      "chart_id": "stdlib_dict_insert_lookup"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
       "base_id": "stdlib_sort_int",
       "detail": "chart marked pending",
-      "chart_id": "stdlib_sort_int@linux"
+      "chart_id": "stdlib_sort_int"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "three_body_pure",
+      "detail": "chart marked pending",
+      "chart_id": "three_body_pure"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_colormap",
+      "detail": "chart marked pending",
+      "chart_id": "viz_colormap"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_decimate",
+      "detail": "chart marked pending",
+      "chart_id": "viz_decimate"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_inspector_panels",
+      "detail": "chart marked pending",
+      "chart_id": "viz_inspector_panels"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_linked_views",
+      "detail": "chart marked pending",
+      "chart_id": "viz_linked_views"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_marching_cubes",
+      "detail": "chart marked pending",
+      "chart_id": "viz_marching_cubes"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_pipeline_graph",
+      "detail": "chart marked pending",
+      "chart_id": "viz_pipeline_graph"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "viz_resample",
+      "detail": "chart marked pending",
+      "chart_id": "viz_resample"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "wave_equation_1d",
+      "detail": "chart marked pending",
+      "chart_id": "wave_equation_1d"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "wave_equation_2d",
+      "detail": "chart marked pending",
+      "chart_id": "wave_equation_2d"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "wind_field_bc",
+      "detail": "chart marked pending",
+      "chart_id": "wind_field_bc"
     }
   ]
 }
