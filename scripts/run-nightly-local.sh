@@ -107,7 +107,7 @@ case "$PROFILE" in
         ;;
     esac
     ./scripts/setup-lic-for-bench.sh
-    for g in tier0 tier1 tier2-md tier2-mech tier2-pde tier3 tier5 tier5-exploits tier7; do
+    for g in tier0 tier1 tier2-md tier2-mech tier2-pde tier3 tier5 tier5-exploits tier7-0 tier7-1 tier7-2; do
       ./scripts/run-benchmark-ci-nightly.sh tier "$g" || true
     done
     ./scripts/merge-benchmark-tier-csvs.sh results

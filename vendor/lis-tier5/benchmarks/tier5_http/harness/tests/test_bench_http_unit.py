@@ -8,6 +8,16 @@ sys.path.insert(0, str(ROOT / "harness"))
 import bench_http as bh  # noqa: E402
 
 
+def test_parse_wrk_rps_req_per_sec_fallback():
+    peak = """
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   500.00us    0.00us 500.00us  100.00%
+    Req/Sec     2.00k     0.00     2.00k    100.00%
+  6000 requests in 3.00s, 5.86GB read
+"""
+    assert bh.parse_wrk_rps(peak) == 2000.0
+
+
 def test_parse_wrk_rps():
     sample = """
 Running 2s test @ http://127.0.0.1:9/

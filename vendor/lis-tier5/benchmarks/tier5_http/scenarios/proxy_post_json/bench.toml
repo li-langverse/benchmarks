@@ -1,0 +1,21 @@
+name = "proxy_post_json"
+
+[proxy]
+enabled = true
+post_json = true
+
+[server]
+listen = ":8080"
+workers = 1
+
+[verify]
+requests = [
+  { method = "POST", path = "/api/rest/users", expect_status = 201 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/api/rest/users"
+duration_sec = 8
+connections = 4
+threads = 2

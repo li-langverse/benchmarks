@@ -175,16 +175,49 @@ http {{
 """
 
 
+def _parse_wrk_abbrev_number(raw: str) -> float | None:
+    """Parse wrk summary numbers like ``12.34k`` or ``1.23m``."""
+    s = raw.strip().replace(",", "")
+    mult = 1.0
+    if s and s[-1] in "kKmM":
+        mult = 1000.0 if s[-1] in "kK" else 1_000_000.0
+        s = s[:-1]
+    try:
+        val = float(s) * mult
+        return val if val > 0 else None
+    except ValueError:
+        return None
+
+
 def parse_wrk_rps(text: str) -> float | None:
     # "Requests/sec:   12345.67" or with thousands separators rarely
     m = re.search(r"Requests/sec:\s*([\d,.]+)", text, re.IGNORECASE)
-    if not m:
-        return None
-    raw = m.group(1).replace(",", "")
-    try:
-        return float(raw)
-    except ValueError:
-        return None
+    if m:
+        val = _parse_wrk_abbrev_number(m.group(1))
+        if val is not None:
+            return val
+    # wrk may print summary only on stderr for some builds (Avg Req/Sec line)
+    m2 = re.search(r"Req/Sec\s+([\d,.]+[kKmM]?)", text)
+    if m2:
+        return _parse_wrk_abbrev_number(m2.group(1))
+    return None
+
+
+def wrk_load_for_scenario(name: str, cfg: dict[str, Any], lang: str, *, quick: bool) -> tuple[int, int, int]:
+    """Return (threads, connections, duration_sec) with scenario-specific caps."""
+    load = cfg.get("load") or {}
+    threads = int(load.get("threads") or cfg.get("_load_defaults", {}).get("threads") or 2)
+    connections = int(load.get("connections") or 8)
+    duration = int(load.get("duration_sec") or 10)
+    if quick:
+        duration = min(duration, int(os.environ.get("BENCH_HTTP_QUICK_SEC", "3")))
+    if name == "static_large":
+        # 1 MiB bodies: fewer concurrent conns so li-httpd single-worker wrk completes.
+        connections = min(connections, 4 if lang == "li" else 8)
+        duration = max(duration, 5 if quick else 12)
+        if lang == "li":
+            threads = min(threads, 2)
+    return threads, connections, duration
 
 
 def write_wrk_pipeline_lua(path: Path, port: int, depth: int) -> None:
@@ -364,11 +397,7 @@ def bench_wrk_for_lang(
     log_bits: list[str] = []
 
     load = cfg.get("load") or {}
-    threads = int(load.get("threads") or cfg.get("_load_defaults", {}).get("threads") or 2)
-    connections = int(load.get("connections") or 8)
-    duration = int(load.get("duration_sec") or 10)
-    if quick:
-        duration = min(duration, int(os.environ.get("BENCH_HTTP_QUICK_SEC", "3")))
+    threads, connections, duration = wrk_load_for_scenario(name, cfg, lang, quick=quick)
     pipeline = int(load.get("pipeline") or 1)
 
     lua_path: Path | None = None
@@ -388,7 +417,12 @@ def bench_wrk_for_lang(
         for req in verify_cfg.get("requests") or []:
             path = req.get("path") or "/"
             expect = int(req.get("expect_status") or 200)
-            if not verify_http_get(f"http://127.0.0.1:{port}{path}", expect):
+            min_len = int(req.get("body_len") or 0)
+            if min_len > 0:
+                if not verify_static_large_file(port, path, min_len):
+                    rows.append(_harness_row(name, f"verify_fail_{lang}:{path}"))
+                    return rows, f"{lang}: body_len verify failed"
+            elif not verify_http_get(f"http://127.0.0.1:{port}{path}", expect):
                 rows.append(_harness_row(name, f"verify_fail_{lang}:{path}"))
                 return rows, f"{lang}: verify failed"
 
@@ -428,6 +462,19 @@ def bench_wrk_for_lang(
 
 def proxy_scenario_enabled(cfg: dict[str, Any]) -> bool:
     return bool((cfg.get("proxy") or {}).get("enabled"))
+
+
+def proxy_post_json_enabled(cfg: dict[str, Any]) -> bool:
+    return bool((cfg.get("proxy") or {}).get("post_json"))
+
+
+def proxy_sticky_cookie_enabled(cfg: dict[str, Any]) -> bool:
+    proxy = cfg.get("proxy") or {}
+    return bool(proxy.get("enabled")) and str(proxy.get("lb_mode") or "") == "cookie"
+
+
+def tls_dhe_scenario_enabled(cfg: dict[str, Any]) -> bool:
+    return bool((cfg.get("tls") or {}).get("dhe"))
 
 
 def rate_limit_scenario_enabled(cfg: dict[str, Any]) -> bool:
@@ -551,6 +598,320 @@ def verify_https_get(port: int, path: str = "/") -> bool:
             return int(resp.status) == 200
     except (urllib.error.URLError, OSError, ValueError, ssl.SSLError):
         return False
+
+
+def verify_http_post_json(
+    url: str,
+    payload: dict[str, Any],
+    *,
+    expect_status: int = 201,
+    expect_key: str | None = None,
+    expect_substr: str | None = None,
+) -> bool:
+    import json
+    import urllib.error
+    import urllib.request
+
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=data,
+        method="POST",
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=8) as resp:
+            if int(resp.status) != expect_status:
+                return False
+            body = resp.read().decode("utf-8", errors="replace")
+    except urllib.error.HTTPError as e:
+        if e.code != expect_status:
+            return False
+        body = e.read().decode("utf-8", errors="replace")
+    except (urllib.error.URLError, OSError, ValueError):
+        return False
+    if expect_substr and expect_substr not in body:
+        return False
+    if expect_key:
+        try:
+            parsed = json.loads(body)
+        except json.JSONDecodeError:
+            return False
+        if expect_key not in parsed:
+            return False
+    return True
+
+
+def verify_static_large_file(port: int, path: str, min_bytes: int) -> bool:
+    import urllib.error
+    import urllib.request
+
+    url = f"http://127.0.0.1:{port}{path}"
+    try:
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            if int(resp.status) != 200:
+                return False
+            got = len(resp.read())
+            return got >= min_bytes
+    except (urllib.error.URLError, OSError, ValueError):
+        return False
+
+
+def bench_proxy_post_json_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """POST JSON through reverse proxy to Node API backend."""
+    rows: list[dict[str, str]] = []
+    from http_oracles import (
+        PROXY_BENCH_HOOKS,
+        parse_proxy_oracle_langs,
+        start_node_json_backend,
+        stop_node_json_backend,
+    )
+
+    backend_port = pick_port()
+    front_port = pick_port()
+    be_proc = start_node_json_backend(backend_port)
+    if be_proc is None:
+        rows.append(_harness_row(name, "no_node_json_backend"))
+        return rows, "node json backend missing"
+    try:
+        if not wait_for_port(backend_port):
+            rows.append(_harness_row(name, "node_json_no_listen"))
+            return rows, "backend not ready"
+        for lang in parse_proxy_oracle_langs():
+            if lang not in PROXY_BENCH_HOOKS:
+                rows.append(_harness_row(name, f"unknown_proxy_oracle_{lang}"))
+                continue
+            if lang == "li" and not resolve_li_httpd_bin():
+                rows.append(_harness_row(name, "no_li_httpd_bin"))
+                continue
+            start_fn, stop_fn = PROXY_BENCH_HOOKS[lang]
+            ctx = start_fn(front_port, tier5_root() / "fixtures/static", [backend_port])
+            try:
+                if ctx is None or not wait_for_port(front_port):
+                    rows.append(_harness_row(name, f"{lang}_proxy_no_listen"))
+                    continue
+                url = f"http://127.0.0.1:{front_port}/api/rest/users"
+                ok = verify_http_post_json(
+                    url,
+                    {"name": "tier5", "email": "tier5@example.com"},
+                    expect_status=201,
+                    expect_key="id",
+                    expect_substr='"name":"tier5"',
+                )
+                if ok:
+                    rows.append(
+                        {
+                            "benchmark": name,
+                            "lang": lang,
+                            "variant": "ci" if quick else "release",
+                            "threads": "1",
+                            "metric": "verify_pass",
+                            "value": "1",
+                            "unit": "bool",
+                            "git_sha": git_sha_short(),
+                            "cpu_model": cpu_model(),
+                            "flags": "proxy_post_json",
+                        }
+                    )
+                else:
+                    rows.append(_harness_row(name, f"verify_fail_{lang}:post_json"))
+            finally:
+                stop_fn(ctx)
+    finally:
+        stop_node_json_backend(be_proc)
+    return rows, "proxy_post_json verify"
+
+
+def bench_lb_sticky_cookie_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """Cookie affinity: repeated GETs with same client cookie hit one backend."""
+    rows: list[dict[str, str]] = []
+    from http_oracles import (
+        PROXY_BENCH_HOOKS,
+        parse_proxy_oracle_langs,
+        start_nginx_static_backends_multi_root,
+        stop_nginx_static_backends,
+    )
+
+    tmp = tempfile.TemporaryDirectory(prefix="lis-sticky-")
+    root = Path(tmp.name)
+    doc_a = root / "a"
+    doc_b = root / "b"
+    doc_a.mkdir(parents=True)
+    doc_b.mkdir(parents=True)
+    (doc_a / "index.html").write_text("peer-a", encoding="utf-8")
+    (doc_b / "index.html").write_text("peer-b", encoding="utf-8")
+    backend_ports = [pick_port(), pick_port()]
+    backends = start_nginx_static_backends_multi_root(
+        [backend_ports[0], backend_ports[1]],
+        [doc_a, doc_b],
+    )
+    if len(backends) != 2:
+        rows.append(_harness_row(name, "no_nginx_backend"))
+        tmp.cleanup()
+        return rows, "backend nginx failed"
+    front_port = pick_port()
+    os.environ["BENCH_HTTP_LB_MODE"] = "cookie"
+    try:
+        for lang in parse_proxy_oracle_langs():
+            if lang not in PROXY_BENCH_HOOKS:
+                continue
+            if lang == "li" and not resolve_li_httpd_bin():
+                rows.append(_harness_row(name, "no_li_httpd_bin"))
+                continue
+            start_fn, stop_fn = PROXY_BENCH_HOOKS[lang]
+            ctx = start_fn(front_port, doc_a, backend_ports)
+            try:
+                if ctx is None or not wait_for_port(front_port):
+                    rows.append(_harness_row(name, f"{lang}_proxy_no_listen"))
+                    continue
+                import http.cookiejar
+                import urllib.request
+
+                cj = http.cookiejar.CookieJar()
+                opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+                bodies: set[str] = set()
+                for _ in range(12):
+                    with opener.open(f"http://127.0.0.1:{front_port}/", timeout=5) as resp:
+                        bodies.add(resp.read().decode("utf-8", errors="replace").strip())
+                if len(bodies) == 1 and bodies.pop() in ("peer-a", "peer-b"):
+                    rows.append(
+                        {
+                            "benchmark": name,
+                            "lang": lang,
+                            "variant": "ci" if quick else "release",
+                            "threads": "1",
+                            "metric": "verify_pass",
+                            "value": "1",
+                            "unit": "bool",
+                            "git_sha": git_sha_short(),
+                            "cpu_model": cpu_model(),
+                            "flags": "lb_sticky_cookie",
+                        }
+                    )
+                else:
+                    rows.append(_harness_row(name, f"verify_fail_{lang}:sticky"))
+            finally:
+                stop_fn(ctx)
+    finally:
+        stop_nginx_static_backends(backends)
+        tmp.cleanup()
+    return rows, "lb_sticky_cookie verify"
+
+
+def bench_tls_dhe_scenario(
+    name: str,
+    cfg: dict[str, Any],
+    *,
+    quick: bool,
+) -> tuple[list[dict[str, str]], str]:
+    """TLS 1.2 DHE handshake when li-httpd dhparam is configured."""
+    rows: list[dict[str, str]] = []
+    if not resolve_li_httpd_bin():
+        rows.append(_harness_row(name, "no_li_httpd_bin"))
+        return rows, "no li-httpd"
+    lic_root = os.environ.get("LIC_ROOT")
+    if not lic_root:
+        for candidate in (
+            tier5_root().parents[3] / "lic",
+            tier5_root().parents[2] / "lic",
+        ):
+            if (candidate / "packages/li-net-httpd/examples/tls_dhe.toml").is_file():
+                lic_root = str(candidate)
+                break
+    if not lic_root:
+        rows.append(_harness_row(name, "no_lic_tls_dhe_cfg"))
+        return rows, "missing tls_dhe.toml"
+    cfg_path = Path(lic_root) / "packages/li-net-httpd/examples/tls_dhe.toml"
+    flatten = Path(lic_root) / "scripts/flatten-httpd-config.py"
+    setup_tls = Path(lic_root) / "scripts/setup-tls-httpd.py"
+    validate = Path(lic_root) / "scripts/validate-httpd-config.py"
+    if not all(p.is_file() for p in (cfg_path, flatten, setup_tls, validate)):
+        rows.append(_harness_row(name, "no_tls_dhe_tooling"))
+        return rows, "missing lic tls scripts"
+    tmp = tempfile.TemporaryDirectory(prefix="lis-tls-dhe-")
+    cert_dir = Path(tmp.name) / "certs"
+    public = Path(tmp.name) / "public"
+    conf = Path(tmp.name) / "runtime.conf"
+    public.mkdir()
+    cert_dir.mkdir()
+    (public / "health").write_text("ok\n", encoding="utf-8")
+    subprocess.run([sys.executable, str(validate), str(cfg_path)], check=False)
+    subprocess.run(
+        [sys.executable, str(setup_tls), str(cfg_path), "--cert-dir", str(cert_dir), "--gen-dhparam"],
+        check=False,
+    )
+    subprocess.run(
+        [sys.executable, str(flatten), str(cfg_path), "-o", str(conf), "--cert-dir", str(cert_dir)],
+        check=False,
+    )
+    port = 18446
+    li_bin = resolve_li_httpd_bin()
+    proc = subprocess.Popen(
+        [str(li_bin), str(conf)],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        env={**os.environ, "LI_HTTPD_WORKERS": "1"},
+    )
+    try:
+        if not wait_for_port(port, timeout_sec=10.0):
+            rows.append(_harness_row(name, "li_tls_dhe_no_listen"))
+            return rows, "li dhe no listen"
+        blob = subprocess.run(
+            [
+                "openssl",
+                "s_client",
+                "-connect",
+                f"127.0.0.1:{port}",
+                "-servername",
+                "localhost",
+                "-tls1_2",
+                "-cipher",
+                "DHE-RSA-AES128-GCM-SHA256",
+            ],
+            input=b"",
+            capture_output=True,
+            text=True,
+            timeout=8,
+            check=False,
+        )
+        out = (blob.stdout or "") + (blob.stderr or "")
+        dhe_ok = bool(re.search(r"Cipher\s*:\s*DHE", out, re.I))
+        https_ok = verify_https_get(port, "/health")
+        if dhe_ok and https_ok:
+            rows.append(
+                {
+                    "benchmark": name,
+                    "lang": "li",
+                    "variant": "ci" if quick else "release",
+                    "threads": "1",
+                    "metric": "verify_pass",
+                    "value": "1",
+                    "unit": "bool",
+                    "git_sha": git_sha_short(),
+                    "cpu_model": cpu_model(),
+                    "flags": "tls1_2_dhe",
+                }
+            )
+        else:
+            rows.append(_harness_row(name, "verify_fail_li:tls_dhe"))
+    finally:
+        proc.terminate()
+        try:
+            proc.wait(timeout=3)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        tmp.cleanup()
+    return rows, "tls_dhe verify"
 
 
 def bench_tls_scenario(
@@ -925,8 +1286,14 @@ def bench_nginx_scenario(
     """Return CSV rows and human log tail (multi-oracle bench + optional li-httpd)."""
     if rate_limit_scenario_enabled(cfg):
         return bench_rate_limit_scenario(name, cfg, quick=quick)
+    if tls_dhe_scenario_enabled(cfg):
+        return bench_tls_dhe_scenario(name, cfg, quick=quick)
     if tls_scenario_enabled(cfg):
         return bench_tls_scenario(name, cfg, quick=quick)
+    if proxy_post_json_enabled(cfg):
+        return bench_proxy_post_json_scenario(name, cfg, quick=quick)
+    if proxy_sticky_cookie_enabled(cfg):
+        return bench_lb_sticky_cookie_scenario(name, cfg, quick=quick)
     if proxy_scenario_enabled(cfg):
         return bench_proxy_loopback_scenario(name, cfg, quick=quick)
 

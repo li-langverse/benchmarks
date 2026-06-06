@@ -1,0 +1,23 @@
+name = "tls_dhe_handshake"
+
+[server]
+listen = ":18446"
+workers = 1
+
+[tls]
+enabled = true
+dhe = true
+wrk = false
+handshake = true
+
+[verify]
+requests = [
+  { method = "GET", path = "/health", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/health"
+duration_sec = 8
+connections = 4
+threads = 2
