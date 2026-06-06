@@ -55,7 +55,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="bento">
+    <main className="bento" data-testid="benchmarks-dashboard-home">
       <p className="ingest-meta mono" aria-live="polite">
         Ingest: {summary.generated_at}
         {releaseIndex.updated_at ? (
