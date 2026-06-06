@@ -16600,7 +16600,7 @@
       ]
     },
     "http": {
-      "label": "HTTP / webserver (li-httpd · lis)",
+      "label": "HTTP / webserver (li-httpd \u00b7 lis)",
       "charts": [
         {
           "id": "https_static@linux",
@@ -17566,7 +17566,7 @@
       ]
     },
     "tooling": {
-      "label": "Ecosystem tooling (lip · lit · lic compile)",
+      "label": "Ecosystem tooling (lip \u00b7 lit \u00b7 lic compile)",
       "charts": [
         {
           "id": "am_export_gcode_3mf@linux",
