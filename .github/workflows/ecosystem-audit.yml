@@ -38,6 +38,17 @@ jobs:
           python3 scripts/issue-feature-triage.py || true
           python3 scripts/ecosystem-audit.py
 
+      - uses: actions/checkout@v4
+        with:
+          repository: li-langverse/li-cursor-agents
+          path: li-cursor-agents
+
+      - name: UI/UX audit preflight (mock matrix)
+        env:
+          LI_CURSOR_AGENTS_ROOT: ${{ github.workspace }}/li-cursor-agents
+          LI_UI_AUDIT_MOCK: "1"
+        run: python3 scripts/ui-ux-audit.py --preflight || true
+
       - name: Commit (main only)
         if: github.ref == 'refs/heads/main'
         run: |
