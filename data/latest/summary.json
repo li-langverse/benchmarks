@@ -33139,22 +33139,22 @@
       "tier": 1,
       "category": "micro",
       "metric": "wall_time",
-      "li_value": 0.0083,
-      "li_stddev": 0.003346,
-      "li_sample_runs": 89,
+      "li_value": null,
+      "li_stddev": null,
+      "li_sample_runs": null,
       "cpp_value": 0.023,
       "cpp_stddev": 0.001614,
       "cpp_sample_runs": 43,
-      "ratio_vs_cpp": 0.3609,
+      "ratio_vs_cpp": null,
       "sota_ref_lang": "rust",
-      "sota_lang": "li",
-      "sota_value": 0.0083,
-      "ratio_vs_sota": 2.6386,
+      "sota_lang": null,
+      "sota_value": null,
+      "ratio_vs_sota": null,
       "unit": "s",
       "variant": "parallel",
-      "status": "green",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "status": "advisory",
+      "validity_status": "advisory",
+      "validity_source": "harness_pending",
       "os": "linux",
       "ph_ids": [
         "PH-5b"
@@ -33164,16 +33164,6 @@
       "compare_oracle": "cpp",
       "ci_url": "",
       "langs": [
-        {
-          "lang": "li",
-          "value": 0.0083,
-          "unit": "s",
-          "variant": "release",
-          "os": "linux",
-          "stddev": 0.003346,
-          "sample_runs": 89,
-          "relative_perf": 2.6386
-        },
         {
           "lang": "cpp",
           "value": 0.023,
@@ -33209,7 +33199,8 @@
       "package": "li-parallel",
       "problem_size": "512",
       "size_label": "N=512 block=64",
-      "base_id": "matmul_blocked"
+      "base_id": "matmul_blocked",
+      "pending": true
     },
     {
       "benchmark": "reduce_parallel",
@@ -33217,22 +33208,22 @@
       "tier": 1,
       "category": "micro",
       "metric": "cpu_sec",
-      "li_value": 0.4287,
-      "li_stddev": 0.014701,
-      "li_sample_runs": 20,
+      "li_value": null,
+      "li_stddev": null,
+      "li_sample_runs": null,
       "cpp_value": 0.475,
       "cpp_stddev": 0.038125,
       "cpp_sample_runs": 20,
-      "ratio_vs_cpp": 0.9025,
+      "ratio_vs_cpp": null,
       "sota_ref_lang": "julia",
-      "sota_lang": "li",
-      "sota_value": 0.4287,
-      "ratio_vs_sota": 1.0012,
+      "sota_lang": null,
+      "sota_value": null,
+      "ratio_vs_sota": null,
       "unit": "s",
       "variant": "parallel",
-      "status": "green",
-      "validity_status": "pass",
-      "validity_source": "latest.csv:perf_present",
+      "status": "advisory",
+      "validity_status": "advisory",
+      "validity_source": "harness_pending",
       "os": "linux",
       "ph_ids": [
         "PH-5b"
@@ -33242,16 +33233,6 @@
       "compare_oracle": "cpp",
       "ci_url": "",
       "langs": [
-        {
-          "lang": "li",
-          "value": 0.4287,
-          "unit": "s",
-          "variant": "release",
-          "os": "linux",
-          "stddev": 0.014701,
-          "sample_runs": 20,
-          "relative_perf": 1.0012
-        },
         {
           "lang": "cpp",
           "value": 0.475,
@@ -33286,7 +33267,8 @@
       "pillar": "compiler",
       "package": "li-parallel",
       "problem_size": "100_000_000",
-      "size_label": "N=100_000_000"
+      "size_label": "N=100_000_000",
+      "pending": true
     }
   ]
 }
