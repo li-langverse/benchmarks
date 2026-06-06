@@ -1,7 +1,9 @@
 "use client";
 
+import { useCallback, useRef } from "react";
 import type { GpuChipContribution, GpuOpenSlot } from "@/lib/lig-gpu-matrix-types";
 import { backendLabel, formatTimingSec, vendorBadgeClass } from "@/lib/lig-gpu-matrix-types";
+import { chipPanelId, chipTabId, nextChipTabIndex } from "@/lib/gpu-chip-tab-ids";
 
 type GpuChipPickerProps = {
   contributions: GpuChipContribution[];
@@ -18,6 +20,27 @@ export function GpuChipPicker({
   onSelect,
   policyUrl,
 }: GpuChipPickerProps) {
+  const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  const focusTab = useCallback((slug: string) => {
+    tabRefs.current.get(slug)?.focus();
+  }, []);
+
+  const handleTabKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+      const nextIndex = nextChipTabIndex(index, contributions.length, event.key);
+      if (nextIndex == null) return;
+
+      event.preventDefault();
+      const nextSlug = contributions[nextIndex]?.chip_slug;
+      if (!nextSlug) return;
+
+      onSelect(nextSlug);
+      focusTab(nextSlug);
+    },
+    [contributions, focusTab, onSelect],
+  );
+
   return (
     <section className="gpu-chip-picker" aria-label="Select GPU chip">
       <div className="gpu-chip-picker-header">
@@ -29,17 +52,25 @@ export function GpuChipPicker({
         ) : null}
       </div>
       <div className="gpu-chip-cards" role="tablist" aria-label="Contributed GPUs">
-        {contributions.map((c) => {
+        {contributions.map((c, index) => {
           const active = c.chip_slug === selectedSlug;
           const s = c.summary;
           return (
             <button
               key={c.chip_slug}
+              ref={(node) => {
+                if (node) tabRefs.current.set(c.chip_slug, node);
+                else tabRefs.current.delete(c.chip_slug);
+              }}
               type="button"
               role="tab"
+              id={chipTabId(c.chip_slug)}
               aria-selected={active}
+              aria-controls={chipPanelId(c.chip_slug)}
+              tabIndex={active ? 0 : -1}
               className={`gpu-chip-card ${vendorBadgeClass(c.vendor)} ${active ? "gpu-chip-card-active" : ""}`}
               onClick={() => onSelect(c.chip_slug)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
             >
               <span className="gpu-chip-card-vendor">{c.vendor ?? "gpu"}</span>
               <strong className="gpu-chip-card-title">{c.label}</strong>
@@ -62,8 +93,7 @@ export function GpuChipPicker({
           <div
             key={slot.chip_slug}
             className={`gpu-chip-card gpu-chip-card-open ${vendorBadgeClass(slot.vendor)}`}
-            role="tab"
-            aria-disabled="true"
+            aria-hidden="true"
           >
             <span className="gpu-chip-card-vendor">{slot.vendor}</span>
             <strong className="gpu-chip-card-title">{slot.label}</strong>
