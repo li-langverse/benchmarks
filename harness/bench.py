@@ -195,6 +195,16 @@ TIER1_BENCHES: tuple[BenchSpec, ...] = (
         bytes_per_run=8.0 * 1e8,
     ),
     BenchSpec(
+        "num_dot_axpy",
+        1,
+        "num_dot_axpy",
+        "cpp/main.c",
+        "common/matmul_core.c",
+        "li/main.li",
+        flops_per_run=2.0 * 256**3,
+        li_pure=False,
+    ),
+    BenchSpec(
         "horner_pure_li",
         1,
         "horner_pure_li",
