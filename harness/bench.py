@@ -511,6 +511,9 @@ def build_li(spec: BenchSpec, bin_path: Path) -> None:
         raise RuntimeError(f"lic missing at {lic} — run ./scripts/build.sh")
     root = bench_dir(spec)
     env = dict(os.environ)
+    lr = lic_root()
+    env.setdefault("LIC_ROOT", str(lr))
+    env.setdefault("LI_REPO_ROOT", str(lr))
     if not spec.li_pure:
         env["LI_EXTRA_C"] = str(root / spec.core_c)
     subprocess.check_call(
