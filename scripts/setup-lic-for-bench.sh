@@ -123,6 +123,13 @@ echo "==> lic compiler"
 ( cd "$LIC_ROOT" && ./scripts/build.sh )
 
 echo "==> li-httpd"
-( cd "$LIC_ROOT" && bash ./scripts/build-li-httpd.sh )
+# lic link invokes clang -x ir; gcc cannot compile LLVM IR (BN1 nightly prepare-lic-linux).
+HTTPD_CC="${LI_HTTPD_CC:-clang-22}"
+HTTPD_CXX="${LI_HTTPD_CXX:-clang++-22}"
+if ! command -v "$HTTPD_CC" >/dev/null 2>&1; then
+  HTTPD_CC=clang
+  HTTPD_CXX=clang++
+fi
+( cd "$LIC_ROOT" && CC="$HTTPD_CC" CXX="$HTTPD_CXX" bash ./scripts/build-li-httpd.sh )
 test -x "$LIC_ROOT/build/li-httpd"
 echo "OK LIC_ROOT=$LIC_ROOT"

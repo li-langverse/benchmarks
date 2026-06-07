@@ -33,3 +33,4 @@
 | 2026-06-07 | code_implementer | Re-verified BN4: WSL progress gate PASS (lic link smoke tier3+registry, 13 unit tests); PR #439 CI green; BN5 awaits merge to `main` |
 | 2026-06-07 | code_implementer | BN5: dispatched `benchmark-nightly.yml` fast on `cursor/benchmark-nightly-green` (run 27091622764); re-verified BN4 progress gate PASS in WSL |
 | 2026-06-07 | code_implementer | BN1 follow-up: Linux lic cache key `lic-build-linux-*` — `restore-keys: lic-build-` was restoring macOS CMakeCache on Linux (run 27091622764) |
+| 2026-06-07 | code_implementer | BN1 follow-up: `setup-lic-for-bench.sh` builds li-httpd with clang (lic link uses `-x ir`; gcc-13 fails) |
