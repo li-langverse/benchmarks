@@ -89,237 +89,243 @@
       "path": "data/history/2026-06-05T044357Z.json",
       "lic_sha": "08b179c4fe89387612b51f73bb2e0a5ff4380bcc",
       "benchmarks_sha": "d69705b82bef1edbdc003839b779ea32d71d8c55"
+    },
+    {
+      "at": "2026-06-07T07:34:38.375711+00:00",
+      "path": "data/history/2026-06-07T073438Z.json",
+      "lic_sha": "f6abf64aac1264b8acadb81e135c646805ff9954",
+      "benchmarks_sha": "e13cdfceed7fbcd96061ebfae5901197959adbb8"
     }
   ],
   "latest_deltas": [
     {
       "benchmark": "horner_pure_li",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "matmul_blocked",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "matmul_blocked_N1024",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "matmul_naive",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "matmul_naive_N1024",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_cg",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_cholesky",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_fft_r2c",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_gmres",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_euler",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_rk4",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_semi_implicit",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_symplectic",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_integ_verlet",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_opt_bfgs",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_opt_line_search",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_quadrature_gauss",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_rng_pcg",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_root_newton",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "num_sparse_mv",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "reduce_sum",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "simd_dot",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_barostat_parrinello_rahman",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_constraints_rattle",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_constraints_shake",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_energy_drift",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_init_fcc_mb",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_integrator_leapfrog",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_integrator_verlet",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_lennard_jones",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_longrange_ewald",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_longrange_pme",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_neighbor_cell_list",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_neighbor_verlet_skin",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_oracle_external",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_thermostat_berendsen",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "md_thermostat_nose_hoover",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     },
     {
       "benchmark": "three_body",
       "field": "status",
-      "from": "unknown",
-      "to": "green"
+      "from": "green",
+      "to": "unknown"
     }
   ],
-  "updated_at": "2026-06-05T04:43:57.512740+00:00"
+  "updated_at": "2026-06-07T07:34:38.574299+00:00"
 }
