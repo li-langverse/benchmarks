@@ -7,7 +7,26 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 POLL="${BENCHMARK_NIGHTLY_GATE_POLL:-1}"
 DISPATCH="${BENCHMARK_NIGHTLY_GATE_DISPATCH:-0}"
 MAX_WAIT_SEC="${BENCHMARK_NIGHTLY_GATE_MAX_WAIT_SEC:-900}"
-GATE_BRANCH="${BENCHMARK_NIGHTLY_GATE_BRANCH:-main}"
+
+_resolve_gate_branch() {
+  if [[ -n "${BENCHMARK_NIGHTLY_GATE_BRANCH:-}" ]]; then
+    echo "$BENCHMARK_NIGHTLY_GATE_BRANCH"
+    return
+  fi
+  if [[ -n "${LI_REPO_WORKFLOW_BRANCH:-}" ]]; then
+    echo "$LI_REPO_WORKFLOW_BRANCH"
+    return
+  fi
+  local branch
+  branch="$(git -C "$ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+  if [[ -n "$branch" && "$branch" != "HEAD" && "$branch" != "main" && "$branch" != "master" ]]; then
+    echo "$branch"
+    return
+  fi
+  echo "main"
+}
+
+GATE_BRANCH="$(_resolve_gate_branch)"
 GATE_REF="${BENCHMARK_NIGHTLY_GATE_REF:-$GATE_BRANCH}"
 
 _gh_rate_limit_wait() {
