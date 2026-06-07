@@ -38,3 +38,4 @@
 | 2026-06-07 | code_implementer | BN5: run 27091754639 — all bench-linux-tier + bench-linux-merge SUCCESS; patch `li_rt_inference_sse.c` Winsock shim for prepare-lic-windows |
 | 2026-06-07 | code_implementer | BN5: Windows lic cache key includes `patch-lic-msys-windows.sh` (avoid stale restore after recv shim); unit test guards cache bust |
 | 2026-06-07 | code_implementer | Re-synced worker to `origin/cursor/benchmark-nightly-green` @7860d9e; WSL progress gate PASS (lic link smoke + 15 unit tests); PR #439 Benchmarks CI green; BN5 dispatch blocked by GH API rate limit — `publish-dashboard` requires merge to `main` |
+| 2026-06-07 | code_implementer | Progress gate includes `tests.test_patch_lic_msys_windows` (15 tests); re-verified BN4 PASS on worker run 1780836273922; BN5 dispatch still blocked by GH API rate limit |

@@ -54,6 +54,7 @@ python3 -m unittest \
   harness.test_timing_equalize \
   harness.test_csv_bench_io \
   tests.test_bench_registry_shard \
+  tests.test_patch_lic_msys_windows \
   -v
 
 if [[ -f "$ROOT/results/latest.csv" && -f "$ROOT/data/latest/summary.json" ]]; then
