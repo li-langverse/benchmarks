@@ -6,7 +6,7 @@ workers = 1
 
 [verify]
 requests = [
-  { method = "GET", path = "/file.bin", expect_status = 200 },
+  { method = "GET", path = "/file.bin", expect_status = 200, body_len = 1048576 },
 ]
 
 [load]

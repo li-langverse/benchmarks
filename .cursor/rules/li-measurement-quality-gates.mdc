@@ -1,0 +1,41 @@
+---
+description: Do not weaken dashboard measurement-quality or sample-run CI gates without explicit user approval
+alwaysApply: true
+---
+
+# Measurement quality gates (no easy relax)
+
+When nightly or dashboard CI fails on measurement-quality gates, **fix the measurements or harness** — do not relax checks unless the user **explicitly** says to.
+
+## Protected gates
+
+Never weaken, skip, or bypass without explicit user approval:
+
+| Script | What it guards |
+|--------|----------------|
+| `scripts/check-summary-measurement-quality.py` | Min sample runs; Li vs competitor rep parity |
+| `scripts/check-summary-skip-budget.py` | Skip-row budget on committed summary |
+| `scripts/check-dashboard-invariants.py` | Catalog/summary/dashboard regression invariants |
+| `scripts/check-summary-measurement-coverage.py` | Measured-row coverage on summary |
+| `scripts/check-merged-multi-os-csv.py` | Multi-OS CSV merge integrity |
+| `scripts/check-summary-multi-os-measured.py` | Per-OS measured coverage |
+
+Also protected: **Dashboard invariants** steps in `.github/workflows/ci.yml`, `pages.yml`, and `benchmark-nightly.yml` (`publish-dashboard`).
+
+## Forbidden without explicit user say-so
+
+- Raising thresholds, adding allowlists, env bypass flags, or profile-specific exemptions
+- `continue-on-error`, commenting out checks, or removing jobs to get green
+- Treating `bench_profile=fast` or nightly speed work as justification to lower measurement bar
+- Suggesting "relax the gate" as the default fix when `publish-dashboard` is red
+
+## Allowed fixes
+
+- Increase run counts (Li and/or competitors) so parity and `min_runs` are satisfied
+- Fix adaptive timing / harness so all languages reach required reps
+- Fix ingest, merge, or summary bugs that cause false failures
+- Parallelize CI (more workers) without cutting reps or gates
+
+## Escalation
+
+Explain the failure with evidence, propose measurement/harness fixes first. **Ask the user before** any PR that weakens a gate — see also `docs/dashboard/INVARIANTS.md`.
