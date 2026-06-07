@@ -23,13 +23,29 @@ LIC_BIN="$LIC_ROOT/build/compiler/lic/lic"
 [[ -x "$LIC_BIN" ]] || fail "missing lic binary at $LIC_BIN (run lic/scripts/build.sh)"
 mkdir -p "$LIC_ROOT/build/bench"
 
+smoke_build_li() {
+  local src="$1"
+  local out="$2"
+  local bench_root extra_c
+  bench_root="$(cd "$(dirname "$src")/.." && pwd)"
+  extra_c=""
+  if [[ -d "$bench_root/common" ]]; then
+    extra_c="$(find "$bench_root/common" -maxdepth 1 -name '*.c' -print -quit)"
+  fi
+  if [[ -n "$extra_c" ]]; then
+    LI_EXTRA_C="$extra_c" "$LIC_BIN" build "$src" -o "$out" --release --allow-open-vc --no-lean-verify
+  else
+    "$LIC_BIN" build "$src" -o "$out" --release --allow-open-vc --no-lean-verify
+  fi
+}
+
 WORKLOADS="$ROOT/benchmarks/workloads"
 tier3_li="$WORKLOADS/tier3_ecosystem/async_await_chain/li/main.li"
 registry_li="$WORKLOADS/tier2_physics/heat_equation_2d/li/main.li"
 for src in "$tier3_li" "$registry_li"; do
   [[ -f "$src" ]] || fail "missing harness source $src"
   out="$LIC_ROOT/build/bench/_gate_smoke_$(basename "$(dirname "$(dirname "$src")")").out"
-  "$LIC_BIN" build "$src" -o "$out" --release --allow-open-vc --no-lean-verify
+  smoke_build_li "$src" "$out"
   [[ -x "$out" ]] || fail "lic build did not produce executable for $src"
 done
 

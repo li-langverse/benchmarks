@@ -29,8 +29,9 @@ concurrency:
 env:
   LIC_BENCH_REF: main
   # Shared nightly timing (overridden when bench_profile=full on dispatch).
-  BENCH_RUNS: "3"
+  BENCH_RUNS: "6"
   BENCH_MIN_RUNS: "6"
+  BENCH_EQUALIZE_RUNS: "1"
   REGISTRY_SHARD_COUNT: "3"
   BENCH_ADAPTIVE_RUNS: "1"
   BENCH_SUBSEC_MIN_RUNS: "8"
