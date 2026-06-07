@@ -38,6 +38,9 @@ def _run_one_registry(payload: tuple[str, int, str, str]) -> tuple[str, list[dic
     harness = str(_HARNESS)
     if harness not in sys.path:
         sys.path.insert(0, harness)
+    from csv_bench_io import apply_bench_timing_env
+
+    apply_bench_timing_env(os.environ)
     from bench import run_benchmark
     from bench_registry import registry_spec_by_name
 
@@ -52,12 +55,15 @@ def _run_one_registry(payload: tuple[str, int, str, str]) -> tuple[str, list[dic
 
 
 def _benchmark_complete(merged: list[dict[str, str]], name: str) -> bool:
-    for row in merged:
-        if row.get("benchmark") != name:
-            continue
-        if row.get("metric") == "wall_time" and row.get("lang") == "li":
-            return True
-    return False
+    harness = str(_HARNESS)
+    if harness not in sys.path:
+        sys.path.insert(0, harness)
+    from csv_bench_io import benchmark_sample_runs_parity_ok
+    from timing_stats import equalize_runs_enabled
+
+    return benchmark_sample_runs_parity_ok(
+        merged, name, equalize=equalize_runs_enabled()
+    )
 
 
 def run_registry_specs(
@@ -71,6 +77,7 @@ def run_registry_specs(
     label: str,
 ) -> int:
     from bench import merge_rows, read_csv, write_csv
+    from csv_bench_io import merge_benchmark_csv_locked
 
     merged = read_csv(out)
     todo = [s for s in specs if not (resume and _benchmark_complete(merged, s.name))]
@@ -93,8 +100,14 @@ def run_registry_specs(
         for spec in todo:
             try:
                 rows = run_benchmark(spec, runs=runs)
-                merged = merge_rows(merged, rows, benchmark=spec.name)
-                write_csv(out, merged)
+                merge_benchmark_csv_locked(
+                    out,
+                    rows,
+                    benchmark=spec.name,
+                    read_csv=read_csv,
+                    merge_rows=merge_rows,
+                    write_csv=write_csv,
+                )
                 print(f"ok {spec.name}", flush=True)
             except Exception as exc:  # noqa: BLE001
                 failed.append(spec.name)
@@ -110,8 +123,14 @@ def run_registry_specs(
                     print(f"WARN skip {name}: {err}", file=sys.stderr, flush=True)
                     continue
                 assert rows is not None
-                merged = merge_rows(merged, rows, benchmark=name)
-                write_csv(out, merged)
+                merge_benchmark_csv_locked(
+                    out,
+                    rows,
+                    benchmark=name,
+                    read_csv=read_csv,
+                    merge_rows=merge_rows,
+                    write_csv=write_csv,
+                )
                 print(f"ok {name}", flush=True)
 
     if failed:

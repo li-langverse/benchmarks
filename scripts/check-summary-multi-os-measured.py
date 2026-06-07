@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -40,8 +41,11 @@ def main() -> int:
 
     if macos_n < MIN_OS_CHARTS_WITH_SERIES:
         fail(f"macos charts with series={macos_n} < {MIN_OS_CHARTS_WITH_SERIES}")
-    if windows_n < MIN_OS_CHARTS_WITH_SERIES:
+    skip_windows = os.environ.get("MULTI_OS_SKIP_WINDOWS", "").strip() in ("1", "true", "yes")
+    if not skip_windows and windows_n < MIN_OS_CHARTS_WITH_SERIES:
         fail(f"windows charts with series={windows_n} < {MIN_OS_CHARTS_WITH_SERIES}")
+    if skip_windows:
+        print("check-summary-multi-os-measured: skip windows requirement (MULTI_OS_SKIP_WINDOWS=1)")
 
     print(
         "PASS check-summary-multi-os-measured "

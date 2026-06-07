@@ -42,9 +42,13 @@ def _run_one_bench(payload: tuple[str, int, str, str]) -> tuple[str, list[dict[s
     spec_name, runs, lic_root, out_s = payload
     os.environ["BENCHMARKS_CSV"] = out_s
     os.environ.setdefault("LIC_ROOT", lic_root)
+    os.environ.setdefault("LI_REPO_ROOT", lic_root)
     harness = str(_bench_harness_dir())
     if harness not in sys.path:
         sys.path.insert(0, harness)
+    from csv_bench_io import apply_bench_timing_env
+
+    apply_bench_timing_env(os.environ)
     from bench import TIER1_BENCHES, TIER2_BENCHES, run_benchmark
 
     by_name = {s.name: s for s in (*TIER1_BENCHES, *TIER2_BENCHES)}
@@ -59,16 +63,28 @@ def _run_one_bench(payload: tuple[str, int, str, str]) -> tuple[str, list[dict[s
 
 
 def _benchmark_complete(merged: list[dict[str, str]], name: str) -> bool:
+    harness = str(_bench_harness_dir())
+    if harness not in sys.path:
+        sys.path.insert(0, harness)
+    from csv_bench_io import benchmark_sample_runs_parity_ok, wall_time_sample_runs
+    from timing_stats import equalize_runs_enabled
+
     if os.environ.get("BENCH_DUAL_MODE", "").strip().lower() in ("1", "true", "yes"):
         langs = ("li_serial", "li_parallel")
-        found = {row.get("lang") for row in merged if row.get("benchmark") == name and row.get("metric") == "wall_time"}
-        return all(lang in found for lang in langs)
-    for row in merged:
-        if row.get("benchmark") != name:
-            continue
-        if row.get("metric") == "wall_time" and row.get("lang") in ("li", "li_serial", "li_parallel"):
+        runs = wall_time_sample_runs(merged, name)
+        if not all(lang in runs for lang in langs):
+            return False
+        if not equalize_runs_enabled():
             return True
-    return False
+        comp = [n for lang, n in runs.items() if lang not in langs]
+        if not comp:
+            return True
+        target = max(comp)
+        return all(runs[lang] >= target for lang in langs)
+
+    return benchmark_sample_runs_parity_ok(
+        merged, name, equalize=equalize_runs_enabled()
+    )
 
 
 def run_specs(
@@ -83,7 +99,8 @@ def run_specs(
 ) -> int:
     harness = _bench_harness_dir()
     sys.path.insert(0, str(harness))
-    from bench import read_csv, write_csv, merge_rows
+    from bench import merge_rows, read_csv, write_csv
+    from csv_bench_io import merge_benchmark_csv_locked
 
     merged = read_csv(out)
     todo = [s for s in specs if not (resume and _benchmark_complete(merged, s.name))]
@@ -106,8 +123,14 @@ def run_specs(
         for spec in todo:
             try:
                 rows = run_benchmark(spec, runs=runs)
-                merged = merge_rows(merged, rows, benchmark=spec.name)
-                write_csv(out, merged)
+                merge_benchmark_csv_locked(
+                    out,
+                    rows,
+                    benchmark=spec.name,
+                    read_csv=read_csv,
+                    merge_rows=merge_rows,
+                    write_csv=write_csv,
+                )
                 print(f"ok {spec.name}", flush=True)
             except Exception as exc:  # noqa: BLE001
                 failed.append(spec.name)
@@ -123,8 +146,14 @@ def run_specs(
                     print(f"WARN skip {name}: {err}", file=sys.stderr, flush=True)
                     continue
                 assert rows is not None
-                merged = merge_rows(merged, rows, benchmark=name)
-                write_csv(out, merged)
+                merge_benchmark_csv_locked(
+                    out,
+                    rows,
+                    benchmark=name,
+                    read_csv=read_csv,
+                    merge_rows=merge_rows,
+                    write_csv=write_csv,
+                )
                 print(f"ok {name}", flush=True)
 
     if failed:

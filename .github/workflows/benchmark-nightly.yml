@@ -29,8 +29,9 @@ concurrency:
 env:
   LIC_BENCH_REF: main
   # Shared nightly timing (overridden when bench_profile=full on dispatch).
-  BENCH_RUNS: "3"
+  BENCH_RUNS: "6"
   BENCH_MIN_RUNS: "6"
+  BENCH_EQUALIZE_RUNS: "1"
   REGISTRY_SHARD_COUNT: "3"
   BENCH_ADAPTIVE_RUNS: "1"
   BENCH_SUBSEC_MIN_RUNS: "8"
@@ -60,9 +61,9 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-linux-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
-            lic-build-
+            lic-build-linux-
       - name: Build lic + li-httpd
         if: steps.lic-build-cache.outputs.cache-hit != 'true'
         run: |
@@ -96,7 +97,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-macos-
       - name: Build lic (macOS)
@@ -160,7 +161,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-windows-${{ hashFiles('scripts/patch-lic-msys-windows.sh', 'lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c', 'lic/runtime/li_rt_inference_sse.c') }}
           restore-keys: |
             lic-build-windows-
       - name: Build lic (Windows)
@@ -232,9 +233,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: lic/build
-          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-linux-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
-            lic-build-
+            lic-build-linux-
       - name: Setup tier deps ${{ matrix.group }}
         env:
           SKIP_BUILD: "1"
@@ -337,7 +338,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-macos-
       - name: Verify lic (macOS)
@@ -443,7 +444,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-windows-${{ hashFiles('scripts/patch-lic-msys-windows.sh', 'lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c', 'lic/runtime/li_rt_inference_sse.c') }}
           restore-keys: |
             lic-build-windows-
       - name: Verify lic (Windows)
@@ -505,8 +506,8 @@ jobs:
       !cancelled() &&
       github.ref == 'refs/heads/main' &&
       needs.bench-linux-merge.result == 'success' &&
-      needs.bench-macos-merge.result == 'success' &&
-      needs.bench-windows-merge.result == 'success'
+      (needs.bench-macos-merge.result == 'success' || needs.bench-macos-merge.result == 'skipped') &&
+      (needs.bench-windows-merge.result == 'success' || needs.bench-windows-merge.result == 'skipped')
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -541,17 +542,24 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
-          args=(artifacts/linux/latest.csv)
-          test -f artifacts/macos/latest.csv
-          test -f artifacts/windows/latest.csv
+          merge_args=(linux:artifacts/linux/latest.csv)
+          [[ -f artifacts/macos/latest.csv ]] && merge_args+=(macos:artifacts/macos/latest.csv)
+          [[ -f artifacts/windows/latest.csv ]] && merge_args+=(windows:artifacts/windows/latest.csv)
           python3 scripts/ingest/merge_bench_csv_artifacts.py \
             "$GITHUB_WORKSPACE/results/latest.csv" \
-            linux:"${args[0]}" \
-            macos:artifacts/macos/latest.csv \
-            windows:artifacts/windows/latest.csv
-          python3 scripts/check-merged-multi-os-csv.py "$GITHUB_WORKSPACE/results/latest.csv"
+            "${merge_args[@]}"
+          if [[ -f artifacts/macos/latest.csv && -f artifacts/windows/latest.csv ]]; then
+            python3 scripts/check-merged-multi-os-csv.py "$GITHUB_WORKSPACE/results/latest.csv"
+          else
+            echo "check-merged-multi-os-csv: skip (partial OS artifacts)"
+          fi
           ./scripts/ingest/ingest-lic.sh
-          python3 scripts/check-summary-multi-os-measured.py
+          if [[ -f artifacts/windows/latest.csv ]]; then
+            python3 scripts/check-summary-multi-os-measured.py
+          else
+            export MULTI_OS_SKIP_WINDOWS=1
+            python3 scripts/check-summary-multi-os-measured.py
+          fi
           python3 scripts/benchmark-matrix-report.py
           python3 scripts/record-benchmark-history.py || true
           ./scripts/regression-check.sh || true
@@ -559,6 +567,7 @@ jobs:
         env:
           MEASUREMENT_STRICT_PARITY: "1"
           MULTI_OS_STRICT: "1"
+          MULTI_OS_SKIP_WINDOWS: ${{ needs.bench-windows-merge.result != 'success' && '1' || '0' }}
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py

@@ -9,11 +9,6 @@ PLATFORM_HPP="$LIC/compiler/codegen/include/li/platform.hpp"
 RESOURCE_CPP="$LIC/compiler/common/resource_options.cpp"
 MAIN_CPP="$LIC/compiler/lic/main.cpp"
 
-if grep -q 'set_env_var' "$PLATFORM_HPP" 2>/dev/null; then
-  echo "patch-lic-msys-windows: lic already patched"
-  exit 0
-fi
-
 bench_python <<'PY'
 from __future__ import annotations
 
@@ -88,7 +83,22 @@ if needle in cmake_text and "if(NOT WIN32)" not in cmake_text:
         1,
     )
     cmake_lists.write_text(cmake_text, encoding="utf-8")
-print("patch-lic-msys-windows: applied set_env_var shims")
+
+# li_rt_inference_sse.c calls recv() on Windows; needs Winsock shim (run 27091754639).
+inference_sse = lic / "runtime/li_rt_inference_sse.c"
+inf_text = inference_sse.read_text(encoding="utf-8")
+inf_needle = '#include "li_rt_net.h"\n'
+if "li_rt_posix_compat.h" not in inf_text:
+    if inf_needle not in inf_text:
+        raise SystemExit(f"li_rt_inference_sse.c layout unexpected in {inference_sse}")
+    inf_text = inf_text.replace(
+        inf_needle,
+        inf_needle + '#include "li_rt_posix_compat.h"\n',
+        1,
+    )
+    inference_sse.write_text(inf_text, encoding="utf-8")
+
+print("patch-lic-msys-windows: applied Windows shims (idempotent)")
 PY
 
 echo "patch-lic-msys-windows: OK"

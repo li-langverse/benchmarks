@@ -24,7 +24,9 @@ fi
 export LIC_ROOT LIS_ROOT
 export LI_REPO_ROOT="$LIC_ROOT"
 export BENCH_JOBS="${BENCH_JOBS:-$(nproc 2>/dev/null || sysctl -n hw.ncpu 2>/dev/null || echo 4)}"
+export BENCH_RUNS="${BENCH_RUNS:-6}"
 export BENCH_MIN_RUNS="${BENCH_MIN_RUNS:-6}"
+export BENCH_EQUALIZE_RUNS="${BENCH_EQUALIZE_RUNS:-1}"
 export BENCH_ADAPTIVE_RUNS="${BENCH_ADAPTIVE_RUNS:-1}"
 
 if command -v clang-22 >/dev/null 2>&1; then

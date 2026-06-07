@@ -6,8 +6,15 @@ import csv
 import sys
 from pathlib import Path
 
-# Later paths win on duplicate (benchmark, lang, variant, metric, os) keys.
+# On duplicate (benchmark, lang, variant, metric, os) keys, keep the stronger row
+# (higher sample_runs / timing metadata). Registry tier7 aliases can share benchmark
+# ids with tier1 (e.g. matmul_naive); last-shard-wins used to drop equalized tier1 rows.
 DEFAULT_ORDER = ("linux", "macos", "windows")
+
+_ROOT = Path(__file__).resolve().parents[2]
+if str(_ROOT / "scripts" / "ingest") not in sys.path:
+    sys.path.insert(0, str(_ROOT / "scripts" / "ingest"))
+from build_summary import measurement_row_score  # noqa: E402
 
 
 def read_csv(path: Path, *, force_os: str | None = None) -> tuple[list[str], list[dict[str, str]]]:
@@ -42,7 +49,9 @@ def merge_into(
         key = tuple(row.get(c, "") for c in key_cols)
         normalized = {c: row.get(c, "") for c in header}
         if key in index:
-            rows[index[key]] = normalized
+            prev = rows[index[key]]
+            if measurement_row_score(normalized) >= measurement_row_score(prev):
+                rows[index[key]] = normalized
         else:
             rows.append(normalized)
 
