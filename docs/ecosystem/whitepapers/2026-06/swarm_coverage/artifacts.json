@@ -1,0 +1,14 @@
+{
+  "goal_id": "swarm_coverage",
+  "slug": "swarm_coverage-ux-2026-06-06",
+  "title": "Swarm gap orchestration — UX dimension audit",
+  "agent": "swarm_observer",
+  "run_id": "swarm_observer-1780722584331",
+  "generated_at": "2026-06-06T05:51:28Z",
+  "domains": ["ecosystem", "ai"],
+  "validity_grade": "B",
+  "status": "staging",
+  "markdown_path": "whitepapers/2026-06/swarm_coverage/README.md",
+  "dimension": "ux",
+  "north_star_fit": "ecosystem, ai — proof → easy → fast"
+}
