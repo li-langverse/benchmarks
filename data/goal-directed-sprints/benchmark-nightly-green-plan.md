@@ -13,7 +13,7 @@
 | **BN2** | Sample-run parity — equal `sample_runs` for li vs competitors in harness CSV | **done** — resume re-runs imbalanced benches; locked CSV merge in parallel tier runners |
 | **BN3** | Tier1 parallel CSV safety + workflow env (`BENCH_EQUALIZE_RUNS=1`, `BENCH_RUNS=6`) | **done** — workflow + tier-group runner export equalize env; `csv_bench_io` file locks |
 | **BN4** | Local progress + completion gates pass on worker | **done** — `./scripts/benchmark-nightly-green-progress-gate.sh` PASS (lic link smoke tier3+registry, 13 unit tests) |
-| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **pending** — blocked on PR #439 merge + dispatch on `main` |
+| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **in progress** — dispatched on branch ref (run 27091622764); merge PR #439 after green |
 
 ## Gates
 
@@ -31,3 +31,4 @@
 | 2026-06-07 | code_implementer | BN4: progress gate PASS locally (lic link smoke + 13 harness tests); BN5 deferred until PR merge |
 | 2026-06-07 | code_implementer | BN5 prep: progress gate warns on stale committed CSV; `run-benchmark-ci-nightly.sh` exports `BENCH_EQUALIZE_RUNS` |
 | 2026-06-07 | code_implementer | Re-verified BN4: WSL progress gate PASS (lic link smoke tier3+registry, 13 unit tests); PR #439 CI green; BN5 awaits merge to `main` |
+| 2026-06-07 | code_implementer | BN5: dispatched `benchmark-nightly.yml` fast on `cursor/benchmark-nightly-green` (run 27091622764); re-verified BN4 progress gate PASS in WSL |
