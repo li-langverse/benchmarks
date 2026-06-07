@@ -30,3 +30,4 @@
 | 2026-06-07 | code_implementer | BN1: lic cache key includes runtime link inputs; BN2: parity resume + locked CSV merge; `build_li` sets `LI_REPO_ROOT` |
 | 2026-06-07 | code_implementer | BN4: progress gate PASS locally (lic link smoke + 13 harness tests); BN5 deferred until PR merge |
 | 2026-06-07 | code_implementer | BN5 prep: progress gate warns on stale committed CSV; `run-benchmark-ci-nightly.sh` exports `BENCH_EQUALIZE_RUNS` |
+| 2026-06-07 | code_implementer | Re-verified BN4: WSL progress gate PASS (lic link smoke tier3+registry, 13 unit tests); PR #439 CI green; BN5 awaits merge to `main` |
