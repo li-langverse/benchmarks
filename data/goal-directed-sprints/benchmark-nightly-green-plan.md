@@ -13,7 +13,7 @@
 | **BN2** | Sample-run parity — equal `sample_runs` for li vs competitors in harness CSV | **done** — resume re-runs imbalanced benches; locked CSV merge in parallel tier runners |
 | **BN3** | Tier1 parallel CSV safety + workflow env (`BENCH_EQUALIZE_RUNS=1`, `BENCH_RUNS=6`) | **done** — workflow + tier-group runner export equalize env; `csv_bench_io` file locks |
 | **BN4** | Local progress + completion gates pass on worker | **done** — `./scripts/benchmark-nightly-green-progress-gate.sh` PASS (lic link smoke tier3+registry, 13 unit tests) |
-| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **in progress** — dispatched on branch ref (run 27091622764); merge PR #439 after green |
+| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **in progress** — run 27091754639: `prepare-lic-linux` green, tier jobs running |
 
 ## Gates
 
@@ -34,3 +34,4 @@
 | 2026-06-07 | code_implementer | BN5: dispatched `benchmark-nightly.yml` fast on `cursor/benchmark-nightly-green` (run 27091622764); re-verified BN4 progress gate PASS in WSL |
 | 2026-06-07 | code_implementer | BN1 follow-up: Linux lic cache key `lic-build-linux-*` — `restore-keys: lic-build-` was restoring macOS CMakeCache on Linux (run 27091622764) |
 | 2026-06-07 | code_implementer | BN1 follow-up: `setup-lic-for-bench.sh` builds li-httpd with clang (lic link uses `-x ir`; gcc-13 fails) |
+| 2026-06-07 | code_implementer | BN5: run 27091754639 — prepare-lic-linux PASS; bench-linux-tier jobs dispatched after cache + httpd fixes |
