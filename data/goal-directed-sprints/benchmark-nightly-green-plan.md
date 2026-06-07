@@ -13,7 +13,7 @@
 | **BN2** | Sample-run parity — equal `sample_runs` for li vs competitors in harness CSV | **done** — resume re-runs imbalanced benches; locked CSV merge in parallel tier runners |
 | **BN3** | Tier1 parallel CSV safety + workflow env (`BENCH_EQUALIZE_RUNS=1`, `BENCH_RUNS=6`) | **done** — workflow + tier-group runner export equalize env; `csv_bench_io` file locks |
 | **BN4** | Local progress + completion gates pass on worker | **done** — `./scripts/benchmark-nightly-green-progress-gate.sh` PASS (lic link smoke tier3+registry, 13 unit tests) |
-| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **in progress** — run 27091754639 Linux tiers green; Windows recv shim + cache key tracks `patch-lic-msys-windows.sh`; post-push re-dispatch pending; `publish-dashboard` awaits PR merge to `main` |
+| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **in progress** — branch nightly run 27091754639: Linux merge green; Windows recv shim + cache bust landed @66ee882; post-push re-dispatch blocked by GH REST rate limit (~14:42Z reset); `publish-dashboard` requires merge PR #439 → `main` |
 
 ## Gates
 
@@ -39,3 +39,4 @@
 | 2026-06-07 | code_implementer | BN5: Windows lic cache key includes `patch-lic-msys-windows.sh` (avoid stale restore after recv shim); unit test guards cache bust |
 | 2026-06-07 | code_implementer | Re-synced worker to `origin/cursor/benchmark-nightly-green` @7860d9e; WSL progress gate PASS (lic link smoke + 15 unit tests); PR #439 Benchmarks CI green; BN5 dispatch blocked by GH API rate limit — `publish-dashboard` requires merge to `main` |
 | 2026-06-07 | code_implementer | Progress gate includes `tests.test_patch_lic_msys_windows` (15 tests); re-verified BN4 PASS on worker run 1780836273922; BN5 dispatch still blocked by GH API rate limit |
+| 2026-06-07 | code_implementer | Run 1780839924661: BN4 progress + completion (poll=0) gates PASS; gate script rate-limit retry + branch merge polling; BN5 dispatch deferred (REST 403 until core reset) |
