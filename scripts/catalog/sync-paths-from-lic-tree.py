@@ -69,6 +69,18 @@ def load_header(text: str) -> str:
     return text[:idx].rstrip() + "\n\n" if idx != -1 else ""
 
 
+def load_footer(text: str) -> str:
+    """Preserve non-benchmark sections (e.g. [reporting]) after the last [[benchmark]] block."""
+    last = text.rfind("[[benchmark]]")
+    if last < 0:
+        return ""
+    tail = text[last:]
+    end = tail.find("\n\n[")
+    if end < 0:
+        return ""
+    return tail[end + 2 :].rstrip() + "\n"
+
+
 def format_benchmark(b: dict) -> str:
     lines = ["[[benchmark]]", f'id = "{b["id"]}"']
     for key in BENCHMARK_KEYS:
@@ -280,7 +292,11 @@ def main() -> int:
         return 1
 
     header = load_header(text)
-    CATALOG.write_text(header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n")
+    footer = load_footer(text)
+    body = header + "\n\n".join(format_benchmark(b) for b in benchmarks) + "\n"
+    if footer:
+        body = body.rstrip() + "\n\n" + footer + "\n"
+    CATALOG.write_text(body)
     print(f"wrote {CATALOG}")
 
     do_summary = args.rebuild_summary or args.write

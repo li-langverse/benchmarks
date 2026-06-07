@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Fixed
 
+- **PH-5b catalog honesty ([#266](https://github.com/li-langverse/benchmarks/issues/266)):** `catalog-gap-triage.py` + `apply-catalog-honesty-ph5b.py` set `repo=benchmarks` for workload mirrors, fix competitive vertical bogus remaps (e.g. `bio_proteinmpnn`), and extend `plan-completion-audit.py` with actionable gap counts — `catalog_gaps: 0` with `LIC_ROOT`.
 - **Tier-1 matmul workloads:** sync Li `matmul_naive` / `matmul_blocked` drivers with lic IKJ / blocked IKJ (pending CSV re-ingest) — [2026-05-29-tier1-matmul-dashboard-sprint.md](docs/release-notes/2026-05-29-tier1-matmul-dashboard-sprint.md).
 - **Nightly publish:** `publish-dashboard` depends on Linux bench success only (not macOS/Windows) — [2026-05-27-publish-dashboard-linux-only.md](docs/release-notes/2026-05-27-publish-dashboard-linux-only.md).
 
