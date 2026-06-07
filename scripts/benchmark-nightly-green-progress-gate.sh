@@ -52,6 +52,7 @@ done
 log "harness timing + registry shard tests"
 python3 -m unittest \
   harness.test_timing_equalize \
+  harness.test_csv_bench_io \
   tests.test_bench_registry_shard \
   -v
 

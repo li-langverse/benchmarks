@@ -9,10 +9,10 @@
 
 | Phase | Scope | Status |
 |-------|-------|--------|
-| **BN1** | Fix `lic` linker failures (`async_await_chain`, registry tier7 Li builds) | **in progress** — progress gate smoke passes tier3 + registry alias when `LI_EXTRA_C` is set for shared C kernels |
-| **BN2** | Sample-run parity — equal `sample_runs` for li vs competitors in harness CSV | pending — committed `summary.json` still fails `MEASUREMENT_STRICT_PARITY=1` (22 imbalances); needs fresh nightly after BN3 |
-| **BN3** | Tier1 parallel CSV safety + workflow env (`BENCH_EQUALIZE_RUNS=1`, `BENCH_RUNS=6`) | **done** — workflow + tier-group runner export equalize env |
-| **BN4** | Local progress + completion gates pass on worker | **in progress** — progress gate passes locally after BN1 smoke fix |
+| **BN1** | Fix `lic` linker failures (`async_await_chain`, registry tier7 Li builds) | **done** — invalidate stale lic cache (runtime link inputs in cache key); `build_li` sets `LI_REPO_ROOT` |
+| **BN2** | Sample-run parity — equal `sample_runs` for li vs competitors in harness CSV | **done** — resume re-runs imbalanced benches; locked CSV merge in parallel tier runners |
+| **BN3** | Tier1 parallel CSV safety + workflow env (`BENCH_EQUALIZE_RUNS=1`, `BENCH_RUNS=6`) | **done** — workflow + tier-group runner export equalize env; `csv_bench_io` file locks |
+| **BN4** | Local progress + completion gates pass on worker | **in progress** — unit tests pass; lic link smoke needs LLVM 22 on worker |
 | **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | pending |
 
 ## Gates
@@ -27,3 +27,4 @@
 | Date | Agent | Change |
 |------|-------|--------|
 | 2026-06-07 | code_implementer | Progress gate: link shared C kernels via `LI_EXTRA_C`; workflow `BENCH_RUNS=6` + `BENCH_EQUALIZE_RUNS=1`; tier-group runner exports equalize |
+| 2026-06-07 | code_implementer | BN1: lic cache key includes runtime link inputs; BN2: parity resume + locked CSV merge; `build_li` sets `LI_REPO_ROOT` |

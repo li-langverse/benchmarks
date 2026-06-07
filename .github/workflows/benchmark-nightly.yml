@@ -61,7 +61,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-
       - name: Build lic + li-httpd
@@ -97,7 +97,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-macos-
       - name: Build lic (macOS)
@@ -161,7 +161,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-windows-
       - name: Build lic (Windows)
@@ -233,7 +233,7 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: lic/build
-          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-
       - name: Setup tier deps ${{ matrix.group }}
@@ -338,7 +338,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-macos-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-macos-
       - name: Verify lic (macOS)
@@ -444,7 +444,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt') }}
+          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
             lic-build-windows-
       - name: Verify lic (Windows)
