@@ -68,7 +68,7 @@ def wall_time_sample_runs(rows: list[dict[str, str]], benchmark: str) -> dict[st
         except ValueError:
             continue
         if n >= 1:
-            runs[lang] = n
+            runs[lang] = max(runs.get(lang, 0), n)
     return runs
 
 
