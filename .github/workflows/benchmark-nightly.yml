@@ -161,7 +161,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c', 'lic/runtime/li_rt_inference_sse.c') }}
+          key: lic-build-windows-${{ hashFiles('scripts/patch-lic-msys-windows.sh', 'lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c', 'lic/runtime/li_rt_inference_sse.c') }}
           restore-keys: |
             lic-build-windows-
       - name: Build lic (Windows)
@@ -444,7 +444,7 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-windows-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c', 'lic/runtime/li_rt_inference_sse.c') }}
+          key: lic-build-windows-${{ hashFiles('scripts/patch-lic-msys-windows.sh', 'lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c', 'lic/runtime/li_rt_inference_sse.c') }}
           restore-keys: |
             lic-build-windows-
       - name: Verify lic (Windows)
