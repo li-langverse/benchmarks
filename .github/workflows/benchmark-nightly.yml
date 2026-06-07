@@ -61,9 +61,9 @@ jobs:
         id: lic-build-cache
         with:
           path: lic/build
-          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
+          key: lic-build-linux-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
-            lic-build-
+            lic-build-linux-
       - name: Build lic + li-httpd
         if: steps.lic-build-cache.outputs.cache-hit != 'true'
         run: |
@@ -233,9 +233,9 @@ jobs:
       - uses: actions/cache@v4
         with:
           path: lic/build
-          key: lic-build-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
+          key: lic-build-linux-${{ hashFiles('lic/scripts/build.sh', 'lic/compiler/**/CMakeLists.txt', 'lic/compiler/codegen/compile.cpp', 'lic/runtime/li_rt.c', 'lic/runtime/li_par_pool.c') }}
           restore-keys: |
-            lic-build-
+            lic-build-linux-
       - name: Setup tier deps ${{ matrix.group }}
         env:
           SKIP_BUILD: "1"
