@@ -21,4 +21,8 @@ if [[ -f "$ROOT/vendor/lis-tier5/results/latest.csv" ]] || [[ -f "$LIC_ROOT/benc
   python3 "$ROOT/scripts/merge-tier5-http-into-csv.py" "$ROOT" "$LIC_ROOT"
 fi
 
+export MEASUREMENT_STRICT_PARITY="${MEASUREMENT_STRICT_PARITY:-1}"
+export BENCH_EQUALIZE_RUNS="${BENCH_EQUALIZE_RUNS:-1}"
+python3 "$ROOT/scripts/check-csv-sample-run-parity.py" "$OUT"
+
 echo "merged ${#tier_csvs[@]} tier shards -> $OUT"

@@ -27,6 +27,14 @@ class CsvBenchIoTests(unittest.TestCase):
         rows = [_row("matmul_naive", "li", 30), _row("matmul_naive", "cpp", 30)]
         self.assertEqual(wall_time_sample_runs(rows, "matmul_naive"), {"li": 30, "cpp": 30})
 
+    def test_wall_time_sample_runs_uses_max_per_lang(self) -> None:
+        rows = [
+            _row("matmul_naive", "li", 73),
+            _row("matmul_naive", "li", 102),
+            _row("matmul_naive", "cpp", 102),
+        ]
+        self.assertEqual(wall_time_sample_runs(rows, "matmul_naive")["li"], 102)
+
     def test_parity_ok_when_equal(self) -> None:
         rows = [_row("matmul_naive", "li", 102), _row("matmul_naive", "cpp", 102)]
         self.assertTrue(benchmark_sample_runs_parity_ok(rows, "matmul_naive", equalize=True))
