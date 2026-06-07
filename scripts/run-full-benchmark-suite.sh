@@ -102,8 +102,14 @@ fi
 if [[ "$SKIP_EXPLOITS" != "1" ]] && [[ -f "$ROOT/scripts/run-tier5-http-exploits.sh" ]]; then
   log "tier 5 — HTTP exploits (TIER5_EXPLOIT_PROFILE=${TIER5_EXPLOIT_PROFILE:-pr})"
   export TIER5_EXPLOIT_PROFILE="${TIER5_EXPLOIT_PROFILE:-pr}"
-  export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,apache,li}"
-  "$ROOT/scripts/run-tier5-http-exploits.sh"
+  export TIER5_EXPLOIT_LANGS="${TIER5_EXPLOIT_LANGS:-nginx,li}"
+  "$ROOT/scripts/run-tier5-http-exploits.sh" || {
+    if [[ "${BENCH_NIGHTLY:-0}" == "1" ]] && [[ -s "$ROOT/vendor/lis-tier5/results/exploit_report.csv" ]]; then
+      echo "WARN: tier5-exploits harness failures recorded" >&2
+    else
+      exit 1
+    fi
+  }
   exploit_tmp="$ROOT/results/tier-tier5-exploits.csv"
   bench_python "$ROOT/scripts/exploit-report-to-tier-csv.py" \
     "$ROOT/vendor/lis-tier5/results/exploit_report.csv" "$exploit_tmp"

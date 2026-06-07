@@ -1,11 +1,11 @@
 # HTTP webserver RPS matrix (tier 5)
 
-Generated: 2026-06-03T06:01:28.435625+00:00
+Generated: 2026-06-05T04:00:25.836573+00:00
 
 **Mandatory after every li-httpd change:**
 `LIC_ROOT=… ./scripts/run-tier5-http-bench.sh` → `./scripts/benchmark-matrix-report.py`
 
-Source CSV: `/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/vendor/lis-tier5/results/latest.csv`
+Source CSV: `C:\Users\Julian\Documents\Programming\li\benchmarks\vendor\lis-tier5\results\latest.csv`
 
 Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenarios bench **nginx + li**; static scenarios bench all oracles.
 
@@ -17,9 +17,12 @@ Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenar
 | keepalive_pipelining | 5,457 | 149 | 1,426 | 6,528 | — | — | 2,845 | — | 36.58× |
 | static_large | FAIL | 71 | 448 | 171 | — | — | 265 | — | — |
 | proxy_loopback | 32,327 | 120 | 120 | 120 | — | — | — | — | 268.83× |
+| proxy_post_json | — | — | — | — | — | — | — | — | — |
 | lb_round_robin | 32,750 | 2,040 | 2,071 | 1,914 | — | — | — | — | 16.05× |
 | lb_least_conn | 30,280 | 2,010 | 1,958 | 1,804 | — | — | — | — | 15.07× |
+| lb_sticky_cookie | — | — | — | — | — | — | — | — | — |
 | lb_peer_down | 32,265 | 1,940 | 1,884 | 1,827 | — | — | — | — | 16.63× |
+| tls_dhe_handshake | — | — | — | — | — | — | — | — | — |
 
 **Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `proxy_loopback`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
 
