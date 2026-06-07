@@ -21,6 +21,7 @@ export BENCH_RUNS="${BENCH_RUNS:-6}"
 log "lic link smoke (tier3 + registry alias)"
 LIC_BIN="$LIC_ROOT/build/compiler/lic/lic"
 [[ -x "$LIC_BIN" ]] || fail "missing lic binary at $LIC_BIN (run lic/scripts/build.sh)"
+mkdir -p "$LIC_ROOT/build/bench"
 
 WORKLOADS="$ROOT/benchmarks/workloads"
 tier3_li="$WORKLOADS/tier3_ecosystem/async_await_chain/li/main.li"
