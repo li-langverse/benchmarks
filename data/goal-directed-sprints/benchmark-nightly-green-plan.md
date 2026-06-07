@@ -29,3 +29,4 @@
 | 2026-06-07 | code_implementer | Progress gate: link shared C kernels via `LI_EXTRA_C`; workflow `BENCH_RUNS=6` + `BENCH_EQUALIZE_RUNS=1`; tier-group runner exports equalize |
 | 2026-06-07 | code_implementer | BN1: lic cache key includes runtime link inputs; BN2: parity resume + locked CSV merge; `build_li` sets `LI_REPO_ROOT` |
 | 2026-06-07 | code_implementer | BN4: progress gate PASS locally (lic link smoke + 13 harness tests); BN5 deferred until PR merge |
+| 2026-06-07 | code_implementer | BN5 prep: progress gate warns on stale committed CSV; `run-benchmark-ci-nightly.sh` exports `BENCH_EQUALIZE_RUNS` |
