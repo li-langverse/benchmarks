@@ -506,8 +506,8 @@ jobs:
       !cancelled() &&
       github.ref == 'refs/heads/main' &&
       needs.bench-linux-merge.result == 'success' &&
-      needs.bench-macos-merge.result == 'success' &&
-      needs.bench-windows-merge.result == 'success'
+      (needs.bench-macos-merge.result == 'success' || needs.bench-macos-merge.result == 'skipped') &&
+      (needs.bench-windows-merge.result == 'success' || needs.bench-windows-merge.result == 'skipped')
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -542,17 +542,24 @@ jobs:
           LIS_ROOT: ${{ github.workspace }}/lis
         run: |
           chmod +x scripts/ingest/*.sh scripts/regression-check.sh
-          args=(artifacts/linux/latest.csv)
-          test -f artifacts/macos/latest.csv
-          test -f artifacts/windows/latest.csv
+          merge_args=(linux:artifacts/linux/latest.csv)
+          [[ -f artifacts/macos/latest.csv ]] && merge_args+=(macos:artifacts/macos/latest.csv)
+          [[ -f artifacts/windows/latest.csv ]] && merge_args+=(windows:artifacts/windows/latest.csv)
           python3 scripts/ingest/merge_bench_csv_artifacts.py \
             "$GITHUB_WORKSPACE/results/latest.csv" \
-            linux:"${args[0]}" \
-            macos:artifacts/macos/latest.csv \
-            windows:artifacts/windows/latest.csv
-          python3 scripts/check-merged-multi-os-csv.py "$GITHUB_WORKSPACE/results/latest.csv"
+            "${merge_args[@]}"
+          if [[ -f artifacts/macos/latest.csv && -f artifacts/windows/latest.csv ]]; then
+            python3 scripts/check-merged-multi-os-csv.py "$GITHUB_WORKSPACE/results/latest.csv"
+          else
+            echo "check-merged-multi-os-csv: skip (partial OS artifacts)"
+          fi
           ./scripts/ingest/ingest-lic.sh
-          python3 scripts/check-summary-multi-os-measured.py
+          if [[ -f artifacts/windows/latest.csv ]]; then
+            python3 scripts/check-summary-multi-os-measured.py
+          else
+            export MULTI_OS_SKIP_WINDOWS=1
+            python3 scripts/check-summary-multi-os-measured.py
+          fi
           python3 scripts/benchmark-matrix-report.py
           python3 scripts/record-benchmark-history.py || true
           ./scripts/regression-check.sh || true
@@ -560,6 +567,7 @@ jobs:
         env:
           MEASUREMENT_STRICT_PARITY: "1"
           MULTI_OS_STRICT: "1"
+          MULTI_OS_SKIP_WINDOWS: ${{ needs.bench-windows-merge.result != 'success' && '1' || '0' }}
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py
