@@ -12,8 +12,8 @@
 | **BN1** | Fix `lic` linker failures (`async_await_chain`, registry tier7 Li builds) | **done** — invalidate stale lic cache (runtime link inputs in cache key); `build_li` sets `LI_REPO_ROOT` |
 | **BN2** | Sample-run parity — equal `sample_runs` for li vs competitors in harness CSV | **done** — resume re-runs imbalanced benches; locked CSV merge in parallel tier runners |
 | **BN3** | Tier1 parallel CSV safety + workflow env (`BENCH_EQUALIZE_RUNS=1`, `BENCH_RUNS=6`) | **done** — workflow + tier-group runner export equalize env; `csv_bench_io` file locks |
-| **BN4** | Local progress + completion gates pass on worker | **in progress** — unit tests pass; lic link smoke needs LLVM 22 on worker |
-| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | pending |
+| **BN4** | Local progress + completion gates pass on worker | **done** — `./scripts/benchmark-nightly-green-progress-gate.sh` PASS (lic link smoke tier3+registry, 13 unit tests) |
+| **BN5** | Dispatch nightly fast; verify `publish-dashboard` on GitHub Actions | **pending** — blocked on PR #439 merge + dispatch on `main` |
 
 ## Gates
 
@@ -28,3 +28,4 @@
 |------|-------|--------|
 | 2026-06-07 | code_implementer | Progress gate: link shared C kernels via `LI_EXTRA_C`; workflow `BENCH_RUNS=6` + `BENCH_EQUALIZE_RUNS=1`; tier-group runner exports equalize |
 | 2026-06-07 | code_implementer | BN1: lic cache key includes runtime link inputs; BN2: parity resume + locked CSV merge; `build_li` sets `LI_REPO_ROOT` |
+| 2026-06-07 | code_implementer | BN4: progress gate PASS locally (lic link smoke + 13 harness tests); BN5 deferred until PR merge |
