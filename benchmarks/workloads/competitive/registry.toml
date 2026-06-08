@@ -6,7 +6,8 @@
 [meta]
 version = 1
 registry_review_days_warn = 90
-updated = "2026-05-16"
+updated = "2026-06-08"
+cadence_policy = "docs/ecosystem/hpc-reference-library-cadence.md"
 
 # track: watch | bench_tier0 | bench_tier1 | bench_tier2 | execution_resource_sweep
 # csv_lang: column in benchmarks/results/latest.csv (must match bench.py LANGS when bench_*)
@@ -68,8 +69,8 @@ repo_url = "https://github.com/chapel-lang/chapel"
 compare = ["md_lennard_jones", "matmul_blocked"]
 csv_lang = ""
 kernel_honesty = "n/a"
-last_reviewed = "2026-05-16"
-notes = "HPC PGAS reference; manual release-note review quarterly."
+last_reviewed = "2026-06-08"
+notes = "HPC PGAS reference; pin 2.8+ per hpc-reference-library-cadence.md; tooling axis CLS/chplcheck vs lic diagnose (not language bench)."
 
 [[ecosystem]]
 id = "kokkos"
@@ -78,8 +79,8 @@ repo_url = "https://github.com/kokkos/kokkos"
 compare = ["md_lennard_jones", "heat_2d"]
 csv_lang = ""
 kernel_honesty = "n/a"
-last_reviewed = "2026-05-16"
-notes = "Performance portability; watch Kokkos 4 OpenMP/SYCL backends."
+last_reviewed = "2026-06-08"
+notes = "Performance portability; pin 4.6+ / track 5.x per hpc-reference-library-cadence.md; capability checklist for lic#15."
 
 [[ecosystem]]
 id = "sycl_dpcpp"

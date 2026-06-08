@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-30T05:22:13.732674+00:00",
+  "generated_at": "2026-06-08T18:10:23.948033+00:00",
   "tier": "tier_db_registry",
   "profile": "ci",
-  "status": "unknown",
+  "status": "stub",
   "compare_oracle": "postgres",
   "postgres_min_version": "15",
   "nightly_optional": true,
-  "engine_mode": "lidb_only",
+  "engine_mode": null,
   "ph_plan": {
     "PH-DB-1": "lidb engine + 001_registry.sql (schema parity)",
     "PH-DB-4": "lip registry API + central registry DB",
@@ -29,15 +29,10 @@
       "unit": "ms",
       "lower_is_better": true,
       "threshold_ratio_vs_postgres": 1.2,
-      "status": "unknown",
+      "status": "stub",
       "engines": {
-        "lidb": {
-          "p95_ms": 6.4632,
-          "p50_ms": 6.1848
-        },
-        "postgres": {
-          "p95_ms": null
-        }
+        "lidb": null,
+        "postgres": null
       },
       "ratio_vs_postgres": null,
       "ph_ids": [
@@ -55,15 +50,10 @@
       "unit": "ms",
       "lower_is_better": true,
       "threshold_ratio_vs_postgres": 1.2,
-      "status": "unknown",
+      "status": "stub",
       "engines": {
-        "lidb": {
-          "p95_ms": 7.3103,
-          "p50_ms": 6.4182
-        },
-        "postgres": {
-          "p95_ms": null
-        }
+        "lidb": null,
+        "postgres": null
       },
       "ratio_vs_postgres": null,
       "ph_ids": [
@@ -81,15 +71,10 @@
       "unit": "ms",
       "lower_is_better": true,
       "threshold_ratio_vs_postgres": 1.2,
-      "status": "unknown",
+      "status": "stub",
       "engines": {
-        "lidb": {
-          "p95_ms": 8.8741,
-          "p50_ms": 7.1809
-        },
-        "postgres": {
-          "p95_ms": null
-        }
+        "lidb": null,
+        "postgres": null
       },
       "ratio_vs_postgres": null,
       "ph_ids": [

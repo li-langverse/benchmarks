@@ -3,7 +3,7 @@
 **Purpose:** Periodically discover **missing implementations**, **stdlib/package gaps**, **benchmark catalog holes**, and **language-design opportunities** by combining:
 
 1. **Local static scan** — `scripts/ecosystem-explorer.py` → `data/latest/ecosystem-explorer.json`
-2. **HPC rubric** — compare Li to Eigen, Kokkos, PETSc, FFTW, OpenMP, SUNDIALS, …
+2. **HPC rubric** — compare Li to Eigen, Kokkos, PETSc, FFTW, OpenMP, SUNDIALS, … (version pins: [hpc-reference-library-cadence.md](./hpc-reference-library-cadence.md))
 3. **External signals** — Cursor agent **web search** (Reddit, papers, GitHub discussions); the script does **not** scrape Reddit (ToS / rate limits).
 
 **Not a substitute for:** [ecosystem-health](../../.cursor/automations/ecosystem-health.md) (CI/PR reds) or [numerics-research-cycle](../../.cursor/automations/numerics-research-cycle.md) (kernel-level SOTA).

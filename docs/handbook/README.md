@@ -37,6 +37,8 @@ Detailed map: [plan-cross-links.md](../ecosystem/plan-cross-links.md).
 
 Dashboard rows are **measurements**, not proof certificates. Labels and thresholds: [benchmark-dashboard.md](../honesty/benchmark-dashboard.md).
 
+HPC reference library pins (Eigen, Kokkos, PETSc, Chapel) and bump schedule: [hpc-reference-library-cadence.md](../ecosystem/hpc-reference-library-cadence.md).
+
 ## Agents
 
 [AGENTS.md](../../AGENTS.md) · [Release notes policy](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) · Preflight: `./scripts/agent-preflight.sh`
