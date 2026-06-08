@@ -62,6 +62,16 @@ Maintainers: update this file when adding scripts, workflows, skills, or automat
 
 **`lic` (not duplicated here):** `./scripts/ci.sh`, `li-tests/run_all.sh`, `benchmarks/harness/bench.py`, `scripts/check-stdlib-coverage.sh`, …
 
+**Official package mirrors (`lic`):**
+
+| Script | Use for |
+|--------|---------|
+| `push-official-package-repo.sh <name> [--create]` | Sync `packages/<name>/` → `li-langverse/<name>` |
+| `push-physics-mirrors.sh [--create]` | Batch publish all 12 `li-physics-*` mirrors (lic#50) |
+| `ensure-package-ci.sh` | Ensure every monorepo package has `ci.yml` template |
+
+Published physics mirrors (2026-06-08): `li-physics-core`, `li-physics-rigid`, `li-physics-runtime`, `li-physics-particles`, `li-physics-fluids`, `li-physics-weather`, `li-physics-aero`, `li-physics-chem`, `li-physics-em`, `li-physics-quantum`, `li-physics-relativity`, `li-physics-hep`.
+
 **`lip` / `lit`:** `./scripts/ci.sh`, `lit test`, publish flows per repo `AGENTS.md`.
 
 ---

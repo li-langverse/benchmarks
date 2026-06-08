@@ -192,6 +192,19 @@ ORG_MIRROR_REPOS = [
     "li-std-core",
     "li-std-math",
     "li-demo",
+    # li-physics-* org mirrors (lic#50, 2026-06-08)
+    "li-physics-core",
+    "li-physics-rigid",
+    "li-physics-runtime",
+    "li-physics-particles",
+    "li-physics-fluids",
+    "li-physics-weather",
+    "li-physics-aero",
+    "li-physics-chem",
+    "li-physics-em",
+    "li-physics-quantum",
+    "li-physics-relativity",
+    "li-physics-hep",
 ]
 
 
