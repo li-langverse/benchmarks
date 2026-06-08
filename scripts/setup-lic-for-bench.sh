@@ -99,9 +99,6 @@ _linux_require_build_toolchain() {
   for pkg in ninja-build cmake llvm-22-dev clang-22; do
     dpkg -s "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
   done
-  if ! command -v clang++ >/dev/null 2>&1 && ! command -v g++ >/dev/null 2>&1; then
-    missing+=("clang++/g++")
-  fi
   if ((${#missing[@]})); then
     echo "setup-lic-for-bench: missing build packages (no sudo): ${missing[*]}" >&2
     exit 1
@@ -112,6 +109,7 @@ export DEBIAN_FRONTEND=noninteractive
 if _linux_skip_apt; then
   echo "==> lic compiler (Linux lic-ci — skip apt)"
   _linux_require_build_toolchain
+  export PATH="/usr/lib/llvm-22/bin:${PATH}"
 elif [[ -x "$LIC_ROOT/scripts/ci-install-llvm.sh" ]]; then
   sudo LI_LLVM_MAJOR=22 bash "$LIC_ROOT/scripts/ci-install-llvm.sh"
 else
