@@ -284,15 +284,30 @@ def package_stubs() -> list[dict]:
     return out
 
 
+def lic_scan_degraded() -> tuple[bool, str | None]:
+    if LIC.is_dir():
+        return False, None
+    return True, f"LIC_ROOT missing or not a directory: {LIC}"
+
+
 def main() -> int:
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-    master, completed_phases = scan_master_plan()
-    tracker_open_keys = {normalize_item_key(i["item"]) for i in master}
-    gaps = scan_provability_gaps()
-    plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
-    catalog = catalog_without_repo_path()
-    stubs = package_stubs()
-    physics = scan_physics_push()
+    lic_present = LIC.is_dir()
+    scan_degraded, degraded_reason = lic_scan_degraded()
+
+    if lic_present:
+        master, completed_phases = scan_master_plan()
+        tracker_open_keys = {normalize_item_key(i["item"]) for i in master}
+        gaps = scan_provability_gaps()
+        plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
+        catalog = catalog_without_repo_path()
+        stubs = package_stubs()
+        physics = scan_physics_push()
+    else:
+        master, completed_phases = [], set()
+        gaps = {"partial": [], "missing": []}
+        plans, suppressed, stale_spec = [], [], []
+        catalog, stubs, physics = [], [], []
 
     open_items = master + plans + catalog + stubs + physics
     for g in gaps.get("partial", []):
@@ -302,6 +317,9 @@ def main() -> int:
 
     report = {
         "generated_at": now,
+        "lic_present": lic_present,
+        "scan_degraded": scan_degraded,
+        "degraded_reason": degraded_reason,
         "roots": {
             "lic": str(LIC),
             "lis": str(LIS),
@@ -328,6 +346,15 @@ def main() -> int:
         "implementation_signals": stubs + physics,
         "recommended_actions": [],
     }
+
+    if scan_degraded:
+        report["recommended_actions"].append(
+            {
+                "priority": "P0",
+                "action": "Clone li-langverse/lic@dev and set LIC_ROOT before trusting catalog or master-plan findings",
+                "reason": degraded_reason,
+            }
+        )
 
     if master:
         report["recommended_actions"].append(

@@ -412,8 +412,13 @@ def build_digest_md(report: dict) -> str:
     lines = [
         f"# Ecosystem explorer digest\n",
         f"Generated: {report['generated_at']}\n",
-        "## Missing std modules (benchmarks expectations)\n",
     ]
+    if report.get("scan_degraded"):
+        lines.append(
+            f"\n> **Degraded scan:** {report.get('degraded_reason', 'LIC_ROOT missing')} "
+            "— clone `li-langverse/lic@dev` before acting on std-module or catalog gap counts.\n"
+        )
+    lines.append("## Missing std modules (benchmarks expectations)\n")
     for m in report.get("missing_std_modules", []):
         if m.get("status") == "missing":
             lines.append(f"- **{m['module']}** ({m['ph_id']}): {m['why']}\n")
@@ -440,8 +445,11 @@ def main() -> int:
 
     lic = lic_root()
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%MZ")
-    std_mods = scan_std_modules(lic) if lic.is_dir() else []
-    packages = scan_lic_packages(lic) if lic.is_dir() else []
+    lic_present = lic.is_dir()
+    scan_degraded = not lic_present
+    degraded_reason = None if lic_present else f"LIC_ROOT missing or not a directory: {lic}"
+    std_mods = scan_std_modules(lic) if lic_present else []
+    packages = scan_lic_packages(lic) if lic_present else []
     imports = scan_std_imports_in_repo(ROOT)
     missing_std = missing_std_report(std_mods)
     catalog = parse_catalog()
@@ -454,8 +462,16 @@ def main() -> int:
     kit = agent_kit_versions()
 
     recommended = []
+    if scan_degraded:
+        recommended.append(
+            {
+                "priority": "P0",
+                "action": "Clone li-langverse/lic@dev and set LIC_ROOT before std-module or catalog gap work",
+                "reason": degraded_reason,
+            }
+        )
     miss = [m for m in missing_std if m["status"] == "missing"]
-    if miss:
+    if miss and not scan_degraded:
         recommended.append(
             {
                 "priority": "P1",
@@ -490,7 +506,9 @@ def main() -> int:
     report = {
         "generated_at": now,
         "lic_root": str(lic),
-        "lic_present": lic.is_dir(),
+        "lic_present": lic_present,
+        "scan_degraded": scan_degraded,
+        "degraded_reason": degraded_reason,
         "std_modules_on_disk": std_mods,
         "missing_std_modules": missing_std,
         "std_imports_in_benchmarks": imports,
