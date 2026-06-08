@@ -77,141 +77,249 @@
       "path": "data/history/2026-05-30T153202Z.json",
       "lic_sha": "57f114cb05a86070565632e01aad48806a172e12",
       "benchmarks_sha": "06c68a91c550fc21eb1a48954e0defb5ef7d0f13"
+    },
+    {
+      "at": "2026-06-04T02:53:45.775864+00:00",
+      "path": "data/history/2026-06-04T025347Z.json",
+      "lic_sha": "a96233103f2fa0f3ca176481cfe84a19b3047c36",
+      "benchmarks_sha": "762bdc549ca5a03e781fc7884430ce44365f5b42"
+    },
+    {
+      "at": "2026-06-05T04:43:57.247958+00:00",
+      "path": "data/history/2026-06-05T044357Z.json",
+      "lic_sha": "08b179c4fe89387612b51f73bb2e0a5ff4380bcc",
+      "benchmarks_sha": "d69705b82bef1edbdc003839b779ea32d71d8c55"
     }
   ],
   "latest_deltas": [
     {
-      "benchmark": "fft_1d_fixed",
-      "field": "status",
-      "from": "skip",
-      "to": "green"
-    },
-    {
       "benchmark": "horner_pure_li",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "matmul_blocked",
       "field": "status",
-      "from": "skip",
-      "to": "yellow"
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "matmul_blocked_N1024",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
     },
     {
       "benchmark": "matmul_naive",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "matmul_naive_N1024",
+      "field": "status",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_cg",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_cholesky",
       "field": "status",
-      "from": "skip",
-      "to": "green"
-    },
-    {
-      "benchmark": "num_eig_symmetric",
-      "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_fft_r2c",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_gmres",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_integ_euler",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_integ_rk4",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_integ_semi_implicit",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_integ_symplectic",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_integ_verlet",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_opt_bfgs",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_opt_line_search",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_quadrature_gauss",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_rng_pcg",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_root_newton",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "num_sparse_mv",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "reduce_sum",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
       "to": "green"
     },
     {
       "benchmark": "simd_dot",
       "field": "status",
-      "from": "skip",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_barostat_parrinello_rahman",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_constraints_rattle",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_constraints_shake",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_energy_drift",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_init_fcc_mb",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_integrator_leapfrog",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_integrator_verlet",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_lennard_jones",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_longrange_ewald",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_longrange_pme",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_neighbor_cell_list",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_neighbor_verlet_skin",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_oracle_external",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_thermostat_berendsen",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "md_thermostat_nose_hoover",
+      "field": "status",
+      "from": "unknown",
+      "to": "green"
+    },
+    {
+      "benchmark": "three_body",
+      "field": "status",
+      "from": "unknown",
       "to": "green"
     }
   ],
-  "updated_at": "2026-05-30T15:32:02.819242+00:00"
+  "updated_at": "2026-06-05T04:43:57.512740+00:00"
 }

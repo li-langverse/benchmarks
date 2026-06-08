@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { MatrixCatalogTable } from "@/components/matrix-catalog-table";
+import { groupByBenchmark } from "@/lib/benchmark-groups";
 import { COVERAGE_GAP_DOC, coverageHonesty } from "@/lib/coverage";
 import { flattenMatrixSections, loadBenchmarkMatrix } from "@/lib/matrix";
 import { buildSummaryById, loadSummary } from "@/lib/summary";
@@ -27,6 +28,10 @@ export default function MatrixPage() {
   const summary = loadSummary();
   const honesty = coverageHonesty(summary.rows);
   const summaryById = buildSummaryById(summary.rows);
+  const benchmarkGroups = groupByBenchmark(summary.rows);
+  const groupsById = Object.fromEntries(
+    benchmarkGroups.map((g) => [g.benchmark, g]),
+  );
   const osValues =
     summary.reporting?.os_values?.filter((o) => o && o !== "unknown") ?? [];
   const exploitMatrix = matrix.http_exploits?.matrix;
@@ -58,7 +63,11 @@ export default function MatrixPage() {
         ) : null}
       </section>
       <Suspense fallback={<p className="mono">Loading matrix…</p>}>
-        <MatrixCatalogTable rows={rows} summaryById={summaryById} />
+        <MatrixCatalogTable
+          rows={rows}
+          summaryById={summaryById}
+          groupsById={groupsById}
+        />
       </Suspense>
       {exploitMatrix && exploitLangs.length > 0 ? (
         <section style={{ marginTop: "2rem" }}>

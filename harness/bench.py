@@ -27,10 +27,11 @@ from timing_stats import (
     time_commands_with_equal_runs as _time_commands_with_equal_runs,
 )
 
-from paths import lic_root, results_csv, tier_dirs
+from paths import lic_compiler_bin, lic_root, results_csv, tier_dirs
 
 LIC_ROOT = lic_root()
 REPO = LIC_ROOT  # builds, git sha, li-tests in lic checkout
+LIC_BIN = lic_compiler_bin(REPO)
 TIER1, TIER_STDLIB, TIER2 = tier_dirs()
 RESULTS = results_csv().parent
 RESULTS_CSV = results_csv()
@@ -514,11 +515,14 @@ def build_native(spec: BenchSpec, bin_path: Path) -> None:
 
 
 def build_li(spec: BenchSpec, bin_path: Path) -> None:
-    lic = REPO / "build" / "compiler" / "lic" / "lic"
+    lic = lic_compiler_bin(REPO)
     if not lic.is_file():
         raise RuntimeError(f"lic missing at {lic} — run ./scripts/build.sh")
     root = bench_dir(spec)
     env = dict(os.environ)
+    lr = lic_root()
+    env.setdefault("LIC_ROOT", str(lr))
+    env.setdefault("LI_REPO_ROOT", str(lr))
     if not spec.li_pure:
         env["LI_EXTRA_C"] = str(root / spec.core_c)
     subprocess.check_call(
@@ -1120,7 +1124,7 @@ def run_tier0() -> int:
     if not script.exists():
         print("li-tests harness missing", file=sys.stderr)
         return 1
-    env = {**os.environ, "LIC": str(REPO / "build" / "compiler" / "lic" / "lic")}
+    env = {**os.environ, "LIC": str(LIC_BIN)}
     return subprocess.call([str(script)], cwd=REPO / "li-tests", env=env)
 
 
@@ -1260,11 +1264,11 @@ def main() -> int:
         )
 
     if args.tier == 3:
-        print(
-            "tier 3 is HTTP (run from li-langverse/benchmarks: run-tier5-http-bench.sh)",
-            file=sys.stderr,
+        script = Path(__file__).resolve().parent / "bench_ecosystem.py"
+        out = args.out
+        return subprocess.call(
+            [sys.executable, str(script), "--runs", str(args.runs), "--latest", str(out)]
         )
-        return 0
 
     if args.tier == 5:
         script = Path(__file__).resolve().parent / "bench_ecosystem.py"

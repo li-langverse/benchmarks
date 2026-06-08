@@ -37,11 +37,9 @@ def _resolve_lic() -> Path:
         p = Path(lic_env)
         if p.is_file():
             return p
-    root = _lic_root()
-    p = root / "build/compiler/lic/lic"
-    if p.is_file():
-        return p
-    return p
+    from paths import lic_compiler_bin
+
+    return lic_compiler_bin(_lic_root())
 
 
 BENCH_ROOT = _bench_root()

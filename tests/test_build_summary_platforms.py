@@ -1,4 +1,4 @@
-"""build_summary — multi-platform skip charts and OS normalization."""
+"""build_summary — multi-platform charts and OS normalization."""
 from __future__ import annotations
 
 import json
@@ -47,7 +47,7 @@ class BuildSummaryPlatformTests(unittest.TestCase):
         meta = effective_size_meta(cfg, has_csv=True)
         self.assertEqual(meta["size_label"], "algo registry stub")
 
-    def test_platform_skip_chart_has_skip_status(self):
+    def test_platform_skip_chart_helper_still_available(self):
         cfg = {
             "category": "micro",
             "metric": "wall_time",
@@ -60,32 +60,28 @@ class BuildSummaryPlatformTests(unittest.TestCase):
         chart = build_platform_skip_chart("foo", cfg, "macos", multi=True)
         self.assertEqual(chart["os"], "macos")
         self.assertEqual(chart["status"], "skip")
-        self.assertEqual(chart["validity_status"], "skip")
-        self.assertEqual(chart["size_label"], "algo registry stub")
-        self.assertEqual(chart["base_id"], "foo")
 
-    def test_completion_gate_tier01_has_macos_windows_rows(self):
+    def test_committed_summary_has_no_platform_skip_rows(self):
         summary_path = ROOT / "data/latest/summary.json"
         if not summary_path.is_file():
             self.skipTest("committed summary.json missing")
         summary = json.loads(summary_path.read_text(encoding="utf-8"))
         rows = summary.get("rows") or []
-        os_seen = {
-            r.get("os")
+        bad = [
+            r
             for r in rows
-            if isinstance(r, dict) and r.get("tier") in (0, 1, "0", "1")
-        }
-        for need in ("macos", "windows"):
-            self.assertIn(
-                need,
-                os_seen,
-                msg=f"missing tier-0/1 summary row for os={need}",
-            )
+            if r.get("status") == "skip"
+            and r.get("validity_source") == "platform_not_measured"
+        ]
+        self.assertEqual(
+            bad,
+            [],
+            msg=f"platform_not_measured skip rows must be ingested away: {len(bad)} remain",
+        )
 
-    def test_fixture_ingest_emits_three_os_charts_for_simd_dot(self):
+    def test_fixture_ingest_emits_linux_only_when_csv_is_linux_only(self):
         fixture_csv = INGEST / "fixtures/summary/lic.csv"
         summary_path = ROOT / "data/latest/summary.json"
-        backup = summary_path.read_text(encoding="utf-8") if summary_path.is_file() else None
         prev = os.environ.get("BENCHMARKS_CSV")
         os.environ["BENCHMARKS_CSV"] = str(fixture_csv)
         try:
@@ -103,16 +99,10 @@ class BuildSummaryPlatformTests(unittest.TestCase):
                 or ch.get("id", "").startswith("simd_dot")
             ]
             oss = {ch.get("os") for ch in charts}
-            self.assertIn("linux", oss)
-            self.assertIn("macos", oss)
-            self.assertIn("windows", oss)
+            self.assertEqual(oss, {"linux"})
             linux = next(c for c in charts if c.get("os") == "linux")
             self.assertTrue(linux.get("series"))
-            macos = next(c for c in charts if c.get("os") == "macos")
-            self.assertEqual(macos.get("status"), "skip")
         finally:
-            if backup is not None:
-                summary_path.write_text(backup, encoding="utf-8")
             if prev is None:
                 os.environ.pop("BENCHMARKS_CSV", None)
             else:

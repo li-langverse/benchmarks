@@ -2,7 +2,18 @@
 # Build lic + li-httpd for local / agent benchmark runs (Debian/Ubuntu).
 set -euo pipefail
 SCRIPT_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-LIC_ROOT="${LIC_ROOT:-$SCRIPT_ROOT/lic}"
+REPO_PARENT="$(cd "$SCRIPT_ROOT/.." && pwd)"
+if [[ -z "${LIC_ROOT:-}" ]]; then
+  if [[ -d "$SCRIPT_ROOT/lic" ]]; then
+    LIC_ROOT="$SCRIPT_ROOT/lic"
+  elif [[ -d "$REPO_PARENT/lic" ]]; then
+    LIC_ROOT="$REPO_PARENT/lic"
+  else
+    LIC_ROOT="$SCRIPT_ROOT/lic"
+  fi
+fi
+# shellcheck source=lib/resolve-lic-bench.sh
+source "$SCRIPT_ROOT/scripts/lib/resolve-lic-bench.sh"
 if [[ ! -d "$LIC_ROOT" ]]; then
   echo "missing LIC_ROOT=$LIC_ROOT" >&2
   exit 1
@@ -39,12 +50,22 @@ case "$(uname -s)" in
   MINGW*|MSYS*|CYGWIN*|Windows*)
     export LI_REPO_ROOT="$LIC_ROOT"
     if [[ -z "${LLVM_DIR:-}" ]]; then
-      for d in "${RUNNER_TEMP:-/tmp}/llvm-win-22.1.0/lib/cmake/llvm"         "/c/Program Files/LLVM/lib/cmake/llvm"; do
+      for d in \
+        "/ucrt64/lib/cmake/llvm" \
+        "${LLVM_WIN_ROOT:-}/lib/cmake/llvm" \
+        "${RUNNER_TEMP:-/tmp}/.llvm-win-22.1.0/lib/cmake/llvm" \
+        "/c/Program Files/LLVM/lib/cmake/llvm" \
+        "/c/Program Files/LLVM/lib/cmake/llvm-22"; do
         if [[ -f "$d/LLVMConfig.cmake" ]]; then
           export LLVM_DIR="$d"
           break
         fi
       done
+    fi
+    if [[ -n "${LLVM_WIN_ROOT:-}" && -x "${LLVM_WIN_ROOT}/bin/clang.exe" ]]; then
+      export CC="${LLVM_WIN_ROOT}/bin/clang.exe"
+      export CXX="${LLVM_WIN_ROOT}/bin/clang++.exe"
+      export PATH="${LLVM_WIN_ROOT}/bin:${PATH}"
     fi
     if [[ -z "${LLVM_DIR:-}" ]]; then
       echo "LLVM 22 dev required on Windows: ./scripts/ci-install-llvm-windows.sh" >&2
@@ -53,8 +74,17 @@ case "$(uname -s)" in
     export CC="${CC:-clang}"
     export CXX="${CXX:-clang++}"
     echo "==> lic compiler (Windows — LLVM_DIR=$LLVM_DIR)"
-    (cd "$LIC_ROOT" && ./scripts/build.sh)
-    echo "OK LIC_ROOT=$LIC_ROOT"
+    BUILD_DIR="$LIC_ROOT/build"
+    rm -rf "$BUILD_DIR"
+    (cd "$LIC_ROOT" && cmake -B build -G Ninja -DLLVM_DIR="$LLVM_DIR")
+    chmod +x "$SCRIPT_ROOT/scripts/fix-lic-msys-cmake-flags.sh"
+    "$SCRIPT_ROOT/scripts/fix-lic-msys-cmake-flags.sh" "$BUILD_DIR"
+    (cd "$LIC_ROOT" && cmake --build build -j "$(nproc 2>/dev/null || echo 4)")
+    win_lic_dir="$BUILD_DIR/compiler/lic"
+    if [[ -x "$win_lic_dir/lic.exe" && ! -e "$win_lic_dir/lic" ]]; then
+      (cd "$win_lic_dir" && ln -sf lic.exe lic)
+    fi
+    echo "OK LIC_ROOT=$LIC_ROOT LIC=$(resolve_lic_bench_bin "$LIC_ROOT")"
     exit 0
     ;;
 esac
@@ -93,7 +123,13 @@ echo "==> lic compiler"
 ( cd "$LIC_ROOT" && ./scripts/build.sh )
 
 echo "==> li-httpd"
-( cd "$LIC_ROOT" && CC=clang-22 CXX=clang++-22 ./build/compiler/lic/lic build \
-  packages/li-net-httpd/src/lib.li -o build/li-httpd )
+# lic link invokes clang -x ir; gcc cannot compile LLVM IR (BN1 nightly prepare-lic-linux).
+HTTPD_CC="${LI_HTTPD_CC:-clang-22}"
+HTTPD_CXX="${LI_HTTPD_CXX:-clang++-22}"
+if ! command -v "$HTTPD_CC" >/dev/null 2>&1; then
+  HTTPD_CC=clang
+  HTTPD_CXX=clang++
+fi
+( cd "$LIC_ROOT" && CC="$HTTPD_CC" CXX="$HTTPD_CXX" bash ./scripts/build-li-httpd.sh )
 test -x "$LIC_ROOT/build/li-httpd"
 echo "OK LIC_ROOT=$LIC_ROOT"

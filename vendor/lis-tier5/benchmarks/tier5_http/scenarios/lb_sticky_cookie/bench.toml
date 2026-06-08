@@ -1,0 +1,22 @@
+name = "lb_sticky_cookie"
+
+[proxy]
+enabled = true
+backend_count = 2
+lb_mode = "cookie"
+
+[server]
+listen = ":8080"
+workers = 1
+
+[verify]
+requests = [
+  { method = "GET", path = "/", expect_status = 200 },
+]
+
+[load]
+tool = "wrk"
+url_path = "/"
+duration_sec = 8
+connections = 4
+threads = 2

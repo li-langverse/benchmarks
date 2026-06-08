@@ -1,10 +1,10 @@
 import type { SummaryRow } from "@/lib/summary";
 
-export type ValidityStatus = "pass" | "fail" | "unknown";
+export type ValidityStatus = "pass" | "fail" | "unknown" | "skip";
 
 export function rowValidityStatus(row: SummaryRow): ValidityStatus {
   const v = row.validity_status;
-  if (v === "pass" || v === "fail" || v === "unknown") return v;
+  if (v === "pass" || v === "fail" || v === "unknown" || v === "skip") return v;
   return "unknown";
 }
 
@@ -21,6 +21,9 @@ export function perfNotClaimableReason(row: SummaryRow): string | null {
   }
   if (v === "unknown") {
     return "Validity unknown — missing stability or harness pass signal.";
+  }
+  if (v === "skip") {
+    return "Platform not measured in this ingest — see drill-down for OS coverage.";
   }
   if (row.status !== "green") {
     return `Perf status is ${row.status} — green ratio requires passing validity first.`;

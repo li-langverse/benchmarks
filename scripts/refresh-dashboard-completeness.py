@@ -211,15 +211,6 @@ def expand_tier01_rows(
             ch = chart_by_os.get(plat)
             if ch:
                 expanded.append(chart_row_from_chart(base, cfg, ch, row_by_bench))
-            else:
-                skip = bs.build_platform_skip_chart(
-                    base,
-                    cfg,
-                    plat,
-                    chart_id=bs.chart_id_for_os(base, plat, multi=len(platforms) > 1),
-                    multi=len(platforms) > 1,
-                )
-                expanded.append(chart_row_from_chart(base, cfg, skip, row_by_bench))
     summary["rows"] = sorted(
         expanded, key=lambda row: (row["tier"], row["benchmark"], row.get("os", ""))
     )
@@ -275,30 +266,17 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
                     ch.update({k: v for k, v in sizes.items() if v is not None})
                     ch["os"] = plat
                     if ch.get("pending") or not has_csv:
-                        ch["validity_status"] = "skip"
-                        ch["validity_source"] = ch.get("validity_source") or "platform_not_measured"
-                        ch["status"] = "skip"
+                        ch["validity_status"] = ch.get("validity_status") or "unknown"
+                        ch["validity_source"] = ch.get("validity_source") or "harness_pending"
+                        ch["status"] = ch.get("status") or "unknown"
                     elif ch.get("validity_status") in (None, "", "unknown"):
                         row = row_by_bench.get(base)
                         if row and row.get("validity_status") in ("pass", "fail", "skip", "advisory"):
                             ch["validity_status"] = row["validity_status"]
                             ch["validity_source"] = row.get("validity_source") or "summary.row"
-                    if ch.get("status") in (None, "", "unknown") and ch.get("validity_status") == "skip":
-                        ch["status"] = "skip"
                     charts_out.append(ch)
                     charts_by_pillar[ch.get("pillar", "numerics")].append(ch)
                     continue
-
-                skip = bs.build_platform_skip_chart(
-                    base,
-                    cfg,
-                    plat,
-                    chart_id=bs.chart_id_for_os(base, plat, multi=multi),
-                    multi=multi,
-                    validity_source=f"platform:{plat}:not_measured",
-                )
-                charts_out.append(skip)
-                charts_by_pillar[skip["pillar"]].append(skip)
 
         new_categories[cat_name] = {
             **cat_data,

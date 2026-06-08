@@ -3,7 +3,9 @@ import type { SummaryRow } from "@/lib/summary";
 export type OracleKind = "analytical" | "iterative" | "pending";
 
 export function rowOracleKind(row: SummaryRow): OracleKind {
-  if (row.pending) return "pending";
+  if (row.pending || row.status === "skip" || row.validity_status === "skip") {
+    return "pending";
+  }
   const oracle = row.numeric_validity?.oracle;
   if (oracle === "analytical" || oracle === "iterative") return oracle;
   return "iterative";
