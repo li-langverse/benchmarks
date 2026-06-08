@@ -16,6 +16,7 @@ class SetupLicForBenchTests(unittest.TestCase):
         self.assertIn("_linux_skip_apt", text)
         self.assertIn("LIC_CI_CONTAINER", text)
         self.assertIn("Linux lic-ci — skip apt", text)
+        self.assertIn("clang++-22", text)
 
     def test_prepare_lic_linux_sets_lic_ci_container(self):
         workflow = WORKFLOW.read_text(encoding="utf-8")

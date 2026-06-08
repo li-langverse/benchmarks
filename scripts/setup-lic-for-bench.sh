@@ -99,8 +99,8 @@ _linux_require_build_toolchain() {
   for pkg in ninja-build cmake llvm-22-dev clang-22; do
     dpkg -s "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
   done
-  if ! command -v g++ >/dev/null 2>&1 && ! dpkg -s g++-13 >/dev/null 2>&1; then
-    missing+=("g++")
+  if ! command -v clang++ >/dev/null 2>&1 && ! command -v g++ >/dev/null 2>&1; then
+    missing+=("clang++/g++")
   fi
   if ((${#missing[@]})); then
     echo "setup-lic-for-bench: missing build packages (no sudo): ${missing[*]}" >&2
@@ -143,7 +143,10 @@ command -v bun >/dev/null 2>&1 || echo "note: install bun for tier-5 bun oracle 
 
 export LLVM_DIR="${LLVM_DIR:-/usr/lib/llvm-22/lib/cmake/llvm}"
 if _linux_skip_apt; then
-  export CXX="${CXX:-g++}" CC="${CC:-gcc}"
+  export CC="${CC:-clang-22}"
+  export CXX="${CXX:-clang++-22}"
+  command -v "$CC" >/dev/null 2>&1 || CC=clang
+  command -v "$CXX" >/dev/null 2>&1 || CXX=clang++
 else
   export CXX=g++-13 CC=gcc-13
 fi
