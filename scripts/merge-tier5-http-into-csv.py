@@ -67,8 +67,10 @@ def main() -> int:
 
     extend_csv(tier5_vendor)
     extend_csv(tier5_extra, supplemental=True)
-    if not header:
+    if not header or not rows:
         print("merge-tier5-http: no rows to write", file=sys.stderr)
+        if os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes"):
+            return 1
         return 0
 
     latest.parent.mkdir(parents=True, exist_ok=True)

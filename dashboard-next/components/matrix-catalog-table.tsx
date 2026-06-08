@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { CoverageStatusBadge } from "@/components/coverage-status-badge";
+import { formatOsSummary, rowForOs, type BenchmarkGroup } from "@/lib/benchmark-groups";
 import type { MatrixRow } from "@/lib/matrix";
 import { oracleLabel, rowOracleKind, rowWithin1Ulp } from "@/lib/oracle";
 import {
@@ -16,6 +17,7 @@ import type { SummaryRow } from "@/lib/summary";
 type MatrixCatalogTableProps = {
   rows: MatrixRow[];
   summaryById?: Record<string, SummaryRow>;
+  groupsById?: Record<string, BenchmarkGroup>;
 };
 
 const FACET_TIPS: Record<string, string> = {
@@ -40,7 +42,11 @@ function matrixHref(params: Record<string, string | undefined>): string {
   return s ? `/matrix/?${s}` : "/matrix/";
 }
 
-export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTableProps) {
+export function MatrixCatalogTable({
+  rows,
+  summaryById = {},
+  groupsById = {},
+}: MatrixCatalogTableProps) {
   const searchParams = useSearchParams();
   const tierFilter = searchParams.get("tier");
   const osFilter = searchParams.get("os");
@@ -156,7 +162,7 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
                   "Benchmark",
                   "Size",
                   "Tier",
-                  "OS",
+                  "Platforms",
                   "Category",
                   "Metric",
                   "Ratio",
@@ -174,9 +180,16 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
           </thead>
           <tbody>
             {filtered.map((row) => {
-              const summaryRow =
-                (osFilter ? summaryById[`${row.id}@${osFilter}`] : undefined) ??
-                summaryById[row.id];
+              const group = groupsById[row.id];
+              const summaryRow = group
+                ? rowForOs(group, osFilter || null)
+                : (osFilter ? summaryById[`${row.id}@${osFilter}`] : undefined) ??
+                  summaryById[row.id];
+              const platforms = group
+                ? group.variants.length > 1
+                  ? formatOsSummary(group.variants)
+                  : (summaryRow?.os ?? "—")
+                : (summaryRow?.os ?? "—");
               const oracleKind = summaryRow ? rowOracleKind(summaryRow) : "pending";
               const ulp = summaryRow?.numeric_validity?.ulps;
               const within = summaryRow ? rowWithin1Ulp(summaryRow) : null;
@@ -192,7 +205,9 @@ export function MatrixCatalogTable({ rows, summaryById = {} }: MatrixCatalogTabl
                   </td>
                   <td className="mono">{rowSizeLabel(row)}</td>
                   <td>{row.tier}</td>
-                  <td className="mono">{summaryRow?.os ?? "—"}</td>
+                  <td className="mono matrix-platforms-cell" title={platforms}>
+                    {platforms}
+                  </td>
                   <td>{row.category}</td>
                   <td>{row.metric}</td>
                   <td className="mono">

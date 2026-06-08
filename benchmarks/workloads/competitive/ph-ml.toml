@@ -1,6 +1,6 @@
 [meta]
 version = 1
-updated = "2026-05-31"
+updated = "2026-06-04"
 schema = "li_ph_ml_competitive_v1"
 
 [harness]
@@ -13,6 +13,15 @@ kernel = "ml.lkir.matmul_f32"
 workload_class = "pilot"
 incumbent = "PyTorch CPU / NumPy BLAS"
 competitors = ["cpp_openmp", "rust_ndarray_rayon", "python_numpy"]
+result_json = "results/ph-ml-lkir-matmul-32.json"
+
+[[row]]
+id = "matmul_lkir_dynamic"
+kernel = "ml.lkir.matmul_tiled_dynamic"
+workload_class = "pilot"
+incumbent = "PyTorch CPU / NumPy BLAS"
+competitors = ["cpp_openmp", "rust_ndarray_rayon", "python_numpy"]
+result_json = "results/ph-ml-lkir-matmul-dynamic.json"
 
 [[row]]
 id = "mlp_forward"
@@ -20,13 +29,25 @@ kernel = "ml.mlp_forward_f32"
 workload_class = "pilot"
 incumbent = "PyTorch nn.Linear"
 competitors = ["cpp_openmp", "python_numpy"]
+result_json = "results/ph-ml-mlp-forward.json"
+
+[[row]]
+id = "mlp_train_step"
+kernel = "ml.mlp_train_step_f32"
+workload_class = "pilot"
+incumbent = "PyTorch optim step"
+competitors = ["python_numpy"]
+result_json = "results/ph-ml-mlp-train-step.json"
 
 [[row]]
 id = "async_env_collect"
 kernel = "ml.rl.async_env_collect"
 workload_class = "pilot"
+workload = "async_env_collect_4"
+workload_note = "CartPole-v1 x4 collect (Li thread_pool; SB3/Ray honest drivers)"
 incumbent = "SB3 VecEnv / Ray RLlib"
 competitors = ["sb3_vecenv", "ray_rllib"]
+result_json = "results/ph-ml-async-env-collect.json"
 
 [[row]]
 id = "llm_forward"

@@ -1,0 +1,11 @@
+{
+  "suite": "ph-ml-lkir-matmul-dynamic",
+  "workload_class": "pilot",
+  "workload_note": "ml_matmul_tiled_dynamic single-tile pilot",
+  "compile_ok": true,
+  "executed": true,
+  "validity_gate_pass": true,
+  "validity_ratio": 1.0,
+  "cpu_sec": 0.013631,
+  "ratio_vs_li": 1.0
+}

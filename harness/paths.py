@@ -23,6 +23,22 @@ def lic_root() -> Path:
     return BENCH_REPO.resolve()
 
 
+def lic_compiler_bin(root: Path | None = None) -> Path:
+    """Built lic driver (lic.exe on MSYS2/Windows, lic elsewhere)."""
+    env = os.environ.get("LIC", "").strip()
+    if env:
+        p = Path(env)
+        if p.is_file():
+            return p.resolve()
+    base = (root or lic_root()).resolve()
+    d = base / "build" / "compiler" / "lic"
+    for name in ("lic.exe", "lic"):
+        p = d / name
+        if p.is_file():
+            return p.resolve()
+    return (d / "lic").resolve()
+
+
 def tier_dirs() -> tuple[Path, Path, Path]:
     if (WORKLOADS / "tier1_micro").is_dir():
         return (

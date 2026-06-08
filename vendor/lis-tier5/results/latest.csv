@@ -1,46 +1,143 @@
 benchmark,lang,variant,threads,metric,value,unit,git_sha,cpu_model,flags
-static_small,nginx,release,4,rps,12086.7000,req/s,409c3bd,arm,wrk
-static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_no_listen
-static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
-static_small,node,release,4,rps,4625.9800,req/s,409c3bd,arm,wrk v22.22.0
-static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_bun
-static_small,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li
-keepalive_pipelining,nginx,release,16,rps,22604.1100,req/s,409c3bd,arm,wrk pipeline=8
-keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_no_listen
-keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
-keepalive_pipelining,node,release,16,rps,15816.7900,req/s,409c3bd,arm,wrk pipeline=8 v22.22.0
-keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_bun
-keepalive_pipelining,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li
-static_large,nginx,release,8,rps,4148.7400,req/s,409c3bd,arm,wrk
-static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_no_listen
-static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
-static_large,node,release,8,rps,1805.3100,req/s,409c3bd,arm,wrk v22.22.0
-static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_bun
-static_large,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li
-proxy_loopback,nginx,release,8,rps,21414.6700,req/s,409c3bd,arm,wrk proxy_loopback
-proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,apache_proxy_start_fail
-proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_lighttpd
-proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_caddy
-proxy_loopback,harness,ci,1,verify_only,1,bool,409c3bd,arm,no_li_httpd_bin
-lb_round_robin,nginx,release,8,rps,24166.9600,req/s,4a3a0e2,arm,wrk proxy_lb
-lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_proxy_start_fail
-lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
-lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_caddy
-lb_round_robin,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
-lb_least_conn,nginx,release,8,rps,24309.0000,req/s,4a3a0e2,arm,wrk proxy_least_conn
-lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_proxy_start_fail
-lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
-lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_caddy
-lb_least_conn,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
-lb_peer_down,nginx,release,8,rps,25179.3700,req/s,4a3a0e2,arm,wrk proxy_lb
-lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_proxy_start_fail
-lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
-lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_caddy
-lb_peer_down,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
-rate_limit_429,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_li_httpd_bin
-https_static,nginx,release,8,rps,582.8000,req/s,4a3a0e2,arm,openssl s_time https
-https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,apache_tls_no_start
-https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_lighttpd
-https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_node_https
-https_static,harness,ci,1,verify_only,1,bool,4a3a0e2,arm,no_bun_https
-https_static,li,ci,1,verify_skip,1,bool,4a3a0e2,arm,tls_m15_pending
+static_small,nginx,release,4,rps,108.9200,req/s,f9d68c0,x86_64,wrk
+static_small,apache,release,4,rps,660.4600,req/s,f9d68c0,x86_64,wrk
+static_small,lighttpd,release,4,rps,5170.6100,req/s,f9d68c0,x86_64,wrk
+static_small,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,caddy_no_listen
+static_small,node,release,4,rps,1759.1300,req/s,f9d68c0,x86_64,wrk v22.22.2
+static_small,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,no_bun
+static_small,li,release,4,rps,4029.7800,req/s,f9d68c0,x86_64,wrk
+keepalive_pipelining,nginx,release,16,rps,149.2100,req/s,f9d68c0,x86_64,wrk pipeline=8
+keepalive_pipelining,apache,release,16,rps,1426.3200,req/s,f9d68c0,x86_64,wrk pipeline=8
+keepalive_pipelining,lighttpd,release,16,rps,6528.2400,req/s,f9d68c0,x86_64,wrk pipeline=8
+keepalive_pipelining,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,caddy_no_listen
+keepalive_pipelining,node,release,16,rps,2844.9900,req/s,f9d68c0,x86_64,wrk pipeline=8 v22.22.2
+keepalive_pipelining,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,no_bun
+keepalive_pipelining,li,release,16,rps,5457.4800,req/s,f9d68c0,x86_64,wrk pipeline=8
+static_large,nginx,release,8,rps,70.7200,req/s,f9d68c0,x86_64,wrk
+static_large,apache,release,8,rps,447.7800,req/s,f9d68c0,x86_64,wrk
+static_large,lighttpd,release,8,rps,171.1000,req/s,f9d68c0,x86_64,wrk
+static_large,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,caddy_no_listen
+static_large,node,release,8,rps,264.8500,req/s,f9d68c0,x86_64,wrk v22.22.2
+static_large,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,no_bun
+static_large,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,wrk_parse_fail_li
+proxy_loopback,nginx,release,8,rps,120.2500,req/s,f9d68c0,x86_64,wrk proxy_loopback
+proxy_loopback,apache,release,8,rps,120.0900,req/s,f9d68c0,x86_64,wrk proxy_loopback
+proxy_loopback,lighttpd,release,8,rps,119.5900,req/s,f9d68c0,x86_64,wrk proxy_loopback
+proxy_loopback,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,verify_fail_caddy:/
+proxy_loopback,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,unknown_proxy_oracle_traefik
+proxy_loopback,li,release,8,rps,32326.9600,req/s,f9d68c0,x86_64,wrk proxy_loopback
+lb_round_robin,nginx,release,8,rps,2040.0400,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_round_robin,apache,release,8,rps,2071.0300,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_round_robin,lighttpd,release,8,rps,1914.1900,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_round_robin,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,verify_fail_caddy:/
+lb_round_robin,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,unknown_proxy_oracle_traefik
+lb_round_robin,li,release,8,rps,32749.8100,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_least_conn,nginx,release,8,rps,2009.6300,req/s,f9d68c0,x86_64,wrk proxy_least_conn
+lb_least_conn,apache,release,8,rps,1958.1400,req/s,f9d68c0,x86_64,wrk proxy_least_conn
+lb_least_conn,lighttpd,release,8,rps,1804.1300,req/s,f9d68c0,x86_64,wrk proxy_least_conn
+lb_least_conn,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,verify_fail_caddy:/
+lb_least_conn,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,unknown_proxy_oracle_traefik
+lb_least_conn,li,release,8,rps,30279.9600,req/s,f9d68c0,x86_64,wrk proxy_least_conn
+lb_peer_down,nginx,release,8,rps,1940.0700,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_peer_down,apache,release,8,rps,1884.1100,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_peer_down,lighttpd,release,8,rps,1827.0100,req/s,f9d68c0,x86_64,wrk proxy_lb
+lb_peer_down,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,verify_fail_caddy:/
+lb_peer_down,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,unknown_proxy_oracle_traefik
+lb_peer_down,li,release,8,rps,32265.3300,req/s,f9d68c0,x86_64,wrk proxy_lb
+rate_limit_429,li,ci,1,verify_pass,1,bool,f9d68c0,x86_64,rate_limit rps=2 burst=1
+https_static,nginx,release,8,handshake_rps,81.1000,conn/s,f9d68c0,x86_64,cert=rsa2048-leaf openssl s_time https
+https_static,nginx,release,8,rps,111.9400,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_static,apache,release,8,handshake_rps,91.0000,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_static,apache,release,8,rps,1040.5900,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_static,lighttpd,release,8,handshake_rps,87.6000,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_static,lighttpd,release,8,rps,5706.1500,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_static,caddy,release,8,handshake_rps,99.1000,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_static,caddy,release,8,rps,1705.7600,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_static,traefik,release,8,handshake_rps,96.1000,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https traefik_terminate
+https_static,traefik,release,8,rps,119.5400,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https traefik_terminate
+https_static,li,release,8,rps,5868.3100,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_static,li,release,8,handshake_rps,103.6000,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,97.3333,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_tls_matrix,nginx,release,16,rps,115.9100,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_tls_matrix,apache,release,16,handshake_rps,73.9333,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_tls_matrix,apache,release,16,rps,1484.9700,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,99.0667,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,5906.5400,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,71.6667,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https
+https_tls_matrix,caddy,release,16,rps,2467.0300,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,78.5333,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,116.0700,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,5687.6300,req/s,029ae4a,x86_64,cert=rsa2048-leaf wrk https
+https_tls_matrix,li,release,16,handshake_rps,79.0000,conn/s,029ae4a,x86_64,cert=rsa2048-leaf openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,97.9333,conn/s,029ae4a,x86_64,cert=rsa4096-leaf openssl s_time https
+https_tls_matrix,nginx,release,16,rps,118.7700,req/s,029ae4a,x86_64,cert=rsa4096-leaf wrk https
+https_tls_matrix,apache,release,16,handshake_rps,96.2000,conn/s,029ae4a,x86_64,cert=rsa4096-leaf openssl s_time https
+https_tls_matrix,apache,release,16,rps,1530.1800,req/s,029ae4a,x86_64,cert=rsa4096-leaf wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,97.5333,conn/s,029ae4a,x86_64,cert=rsa4096-leaf openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,5613.8500,req/s,029ae4a,x86_64,cert=rsa4096-leaf wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,97.2667,conn/s,029ae4a,x86_64,cert=rsa4096-leaf openssl s_time https
+https_tls_matrix,caddy,release,16,rps,2384.6900,req/s,029ae4a,x86_64,cert=rsa4096-leaf wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,95.4667,conn/s,029ae4a,x86_64,cert=rsa4096-leaf openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,114.4000,req/s,029ae4a,x86_64,cert=rsa4096-leaf wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,5369.5600,req/s,029ae4a,x86_64,cert=rsa4096-leaf wrk https
+https_tls_matrix,li,release,16,handshake_rps,100.8000,conn/s,029ae4a,x86_64,cert=rsa4096-leaf openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,83.1333,conn/s,029ae4a,x86_64,cert=ecdsa-p256-leaf openssl s_time https
+https_tls_matrix,nginx,release,16,rps,78.8800,req/s,029ae4a,x86_64,cert=ecdsa-p256-leaf wrk https
+https_tls_matrix,apache,release,16,handshake_rps,80.8000,conn/s,029ae4a,x86_64,cert=ecdsa-p256-leaf openssl s_time https
+https_tls_matrix,apache,release,16,rps,884.2300,req/s,029ae4a,x86_64,cert=ecdsa-p256-leaf wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,66.0000,conn/s,029ae4a,x86_64,cert=ecdsa-p256-leaf openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,2902.8300,req/s,029ae4a,x86_64,cert=ecdsa-p256-leaf wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,59.6667,conn/s,029ae4a,x86_64,cert=ecdsa-p256-leaf openssl s_time https
+https_tls_matrix,caddy,release,16,rps,1318.9300,req/s,029ae4a,x86_64,cert=ecdsa-p256-leaf wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,84.3333,conn/s,029ae4a,x86_64,cert=ecdsa-p256-leaf openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,61.1000,req/s,029ae4a,x86_64,cert=ecdsa-p256-leaf wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,2636.2300,req/s,029ae4a,x86_64,cert=ecdsa-p256-leaf wrk https
+https_tls_matrix,li,release,16,handshake_rps,84.4000,conn/s,029ae4a,x86_64,cert=ecdsa-p256-leaf openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,86.2000,conn/s,029ae4a,x86_64,cert=ecdsa-p384-leaf openssl s_time https
+https_tls_matrix,nginx,release,16,rps,66.3800,req/s,029ae4a,x86_64,cert=ecdsa-p384-leaf wrk https
+https_tls_matrix,apache,release,16,handshake_rps,82.0667,conn/s,029ae4a,x86_64,cert=ecdsa-p384-leaf openssl s_time https
+https_tls_matrix,apache,release,16,rps,934.0800,req/s,029ae4a,x86_64,cert=ecdsa-p384-leaf wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,86.7333,conn/s,029ae4a,x86_64,cert=ecdsa-p384-leaf openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,3064.9800,req/s,029ae4a,x86_64,cert=ecdsa-p384-leaf wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,71.9333,conn/s,029ae4a,x86_64,cert=ecdsa-p384-leaf openssl s_time https
+https_tls_matrix,caddy,release,16,rps,1354.6600,req/s,029ae4a,x86_64,cert=ecdsa-p384-leaf wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,81.8000,conn/s,029ae4a,x86_64,cert=ecdsa-p384-leaf openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,63.7900,req/s,029ae4a,x86_64,cert=ecdsa-p384-leaf wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,2947.5200,req/s,ffa75e1,x86_64,cert=ecdsa-p384-leaf wrk https
+https_tls_matrix,li,release,16,handshake_rps,85.4000,conn/s,ffa75e1,x86_64,cert=ecdsa-p384-leaf openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,87.4000,conn/s,ffa75e1,x86_64,cert=ed25519-leaf openssl s_time https
+https_tls_matrix,nginx,release,16,rps,63.6100,req/s,ffa75e1,x86_64,cert=ed25519-leaf wrk https
+https_tls_matrix,apache,release,16,handshake_rps,84.2667,conn/s,ffa75e1,x86_64,cert=ed25519-leaf openssl s_time https
+https_tls_matrix,apache,release,16,rps,910.5600,req/s,ffa75e1,x86_64,cert=ed25519-leaf wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,87.6667,conn/s,ffa75e1,x86_64,cert=ed25519-leaf openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,2997.7700,req/s,ffa75e1,x86_64,cert=ed25519-leaf wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,83.4667,conn/s,ffa75e1,x86_64,cert=ed25519-leaf openssl s_time https
+https_tls_matrix,caddy,release,16,rps,1403.3600,req/s,ffa75e1,x86_64,cert=ed25519-leaf wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,90.5333,conn/s,ffa75e1,x86_64,cert=ed25519-leaf openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,85.7700,req/s,ffa75e1,x86_64,cert=ed25519-leaf wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,5374.3500,req/s,ffa75e1,x86_64,cert=ed25519-leaf wrk https
+https_tls_matrix,li,release,16,handshake_rps,91.4000,conn/s,ffa75e1,x86_64,cert=ed25519-leaf openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,84.2667,conn/s,ffa75e1,x86_64,cert=rsa2048-chain3 openssl s_time https
+https_tls_matrix,nginx,release,16,rps,65.6400,req/s,ffa75e1,x86_64,cert=rsa2048-chain3 wrk https
+https_tls_matrix,apache,release,16,handshake_rps,86.5333,conn/s,ffa75e1,x86_64,cert=rsa2048-chain3 openssl s_time https
+https_tls_matrix,apache,release,16,rps,936.5600,req/s,ffa75e1,x86_64,cert=rsa2048-chain3 wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,87.8667,conn/s,ffa75e1,x86_64,cert=rsa2048-chain3 openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,3048.3400,req/s,ffa75e1,x86_64,cert=rsa2048-chain3 wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,85.1333,conn/s,ffa75e1,x86_64,cert=rsa2048-chain3 openssl s_time https
+https_tls_matrix,caddy,release,16,rps,1369.2200,req/s,ffa75e1,x86_64,cert=rsa2048-chain3 wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,84.2667,conn/s,ffa75e1,x86_64,cert=rsa2048-chain3 openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,65.5500,req/s,ffa75e1,x86_64,cert=rsa2048-chain3 wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,3065.6200,req/s,ffa75e1,x86_64,cert=rsa2048-chain3 wrk https
+https_tls_matrix,li,release,16,handshake_rps,88.6000,conn/s,ffa75e1,x86_64,cert=rsa2048-chain3 openssl s_time https li_restart
+https_tls_matrix,nginx,release,16,handshake_rps,73.6000,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https
+https_tls_matrix,nginx,release,16,rps,64.6100,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https
+https_tls_matrix,apache,release,16,handshake_rps,86.6000,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https
+https_tls_matrix,apache,release,16,rps,963.0600,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https
+https_tls_matrix,lighttpd,release,16,handshake_rps,86.5333,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https
+https_tls_matrix,lighttpd,release,16,rps,3127.3200,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https
+https_tls_matrix,caddy,release,16,handshake_rps,51.0000,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https
+https_tls_matrix,caddy,release,16,rps,1383.1100,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https
+https_tls_matrix,traefik,release,16,handshake_rps,85.2667,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https traefik_terminate
+https_tls_matrix,traefik,release,16,rps,65.5300,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https traefik_terminate
+https_tls_matrix,li,release,16,rps,3101.6500,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https
+https_tls_matrix,li,release,16,handshake_rps,49.2000,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https li_restart

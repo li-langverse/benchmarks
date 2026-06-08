@@ -10,7 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from paths import lic_root, results_csv, tier_dirs
+from paths import lic_compiler_bin, lic_root, results_csv, tier_dirs
 
 REPO = lic_root()
 _, _, TIER2 = tier_dirs()
@@ -59,7 +59,7 @@ def build_native_stress(path: Path) -> None:
 
 
 def build_li_stress(path: Path) -> None:
-    lic = REPO / "build" / "compiler" / "lic" / "lic"
+    lic = lic_compiler_bin(REPO)
     if not lic.is_file():
         raise RuntimeError(f"lic missing at {lic} — run ./scripts/build.sh")
     env = {**os.environ, "LI_EXTRA_C": str(MD_DIR / "common" / "md_stress.c")}

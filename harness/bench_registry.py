@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 from paths import competitive_registry_path
@@ -48,6 +49,24 @@ def load_registry_names() -> list[dict]:
         return []
     doc = json.loads(REGISTRY_PATH.read_text())
     return list(doc.get("algorithms", []))
+
+
+def registry_spec_by_name(name: str, *, skip_existing: bool = True) -> BenchSpec | None:
+    for spec in registry_alias_specs(skip_existing=skip_existing):
+        if spec.name == name:
+            return spec
+    return None
+
+
+def shard_registry_alias_specs(
+    specs: tuple[BenchSpec, ...], *, shard: int, shard_count: int
+) -> tuple[BenchSpec, ...]:
+    """Round-robin split so heavy templates (e.g. heat_equation_2d) spread across shards."""
+    if shard_count <= 1:
+        return specs
+    if shard < 0 or shard >= shard_count:
+        raise ValueError(f"shard {shard} out of range for shard_count={shard_count}")
+    return tuple(s for i, s in enumerate(specs) if i % shard_count == shard)
 
 
 def registry_alias_specs(*, skip_existing: bool = True) -> tuple[BenchSpec, ...]:
@@ -118,7 +137,13 @@ def clone_template_csv_rows(
     if added:
         write_csv(out, merged)
     print(f"registry: cloned {added} CSV rows for {len(specs)} aliases -> {out}")
-    return 0 if added else 1
+    import os
+
+    if added:
+        return 0
+    if os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes"):
+        return 1
+    return 1
 
 
 def run_registry_family_benches(
@@ -127,20 +152,31 @@ def run_registry_family_benches(
     out: Path = RESULTS / "latest.csv",
     verify: bool = False,
     only: set[str] | None = None,
+    shard: int | None = None,
+    shard_count: int = 1,
 ) -> int:
     import os
 
     specs = registry_alias_specs()
     if only:
         specs = tuple(s for s in specs if s.name in only)
+    if shard is not None:
+        specs = shard_registry_alias_specs(specs, shard=shard, shard_count=shard_count)
     if not specs:
-        print("registry: no alias specs in scope")
+        print("registry: no alias specs in scope", file=sys.stderr)
+        import os
+
+        if os.environ.get("BENCH_NIGHTLY", "").strip() in ("1", "true", "yes"):
+            return 1
         return 0
 
     if os.environ.get("REGISTRY_RUN_TIMINGS", "").strip() not in ("1", "true", "yes"):
         return clone_template_csv_rows(specs, out=out)
 
-    print(f"registry: running {len(specs)} family-template timing aliases")
+    label = "registry-family"
+    if shard is not None and shard_count > 1:
+        label = f"registry-family-shard-{shard}/{shard_count}"
+    print(f"registry: running {len(specs)} family-template timing aliases ({label})")
     return run_tier_benches(
-        specs, runs=runs, out=out, verify=verify, label="registry-family"
+        specs, runs=runs, out=out, verify=verify, label=label
     )
