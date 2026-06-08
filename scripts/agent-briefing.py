@@ -220,6 +220,14 @@ def run_script(name: str, cmd: list[str], skip_slow: bool) -> dict:
         return {"skipped": True, "reason": "--skip-slow"}
     env = os.environ.copy()
     lic = Path(os.environ.get("LIC_ROOT", ROOT / "lic"))
+    if name == "plan_audit" and not lic.is_dir():
+        return {
+            "skipped": True,
+            "reason": (
+                f"LIC_ROOT missing ({lic}); clone li-langverse/lic@dev — "
+                "catalog and master-plan gaps would be phantom"
+            ),
+        }
     if lic.is_dir():
         env["LIC_ROOT"] = str(lic)
     proc = subprocess.run(cmd, cwd=ROOT, env=env, capture_output=True, text=True)
@@ -268,16 +276,24 @@ def build_agent_deliverable_gaps(data: dict) -> dict:
     }
 
 
+def _scan_degraded(block: dict | None) -> bool:
+    return isinstance(block, dict) and bool(block.get("scan_degraded"))
+
+
 def recommend_agents(data: dict) -> list[dict]:
     rec: list[dict] = []
 
     plan = data.get("plan_completion_audit") or {}
-    if isinstance(plan, dict) and plan.get("summary", {}).get("total_findings", 0) > 0:
+    if (
+        isinstance(plan, dict)
+        and not _scan_degraded(plan)
+        and plan.get("summary", {}).get("total_findings", 0) > 0
+    ):
         rec.append({"agent": "plan_verifier", "reason": "plan-completion-audit findings"})
         rec.append({"agent": "implementation_gaps", "reason": "cross-check plan vs implementation"})
 
     explorer = data.get("ecosystem_explorer") or {}
-    if isinstance(explorer, dict):
+    if isinstance(explorer, dict) and not _scan_degraded(explorer):
         miss = [m for m in explorer.get("missing_std_modules", []) if m.get("status") == "missing"]
         if miss:
             rec.append({"agent": "gap_explorer", "reason": f"{len(miss)} missing std modules"})
@@ -402,8 +418,11 @@ def recommend_agents(data: dict) -> list[dict]:
             )
 
     explorer = data.get("ecosystem_explorer") or {}
-    if isinstance(explorer, dict) and explorer.get("missing_std_modules") and not _has_agent(
-        rec, "code_implementer"
+    if (
+        isinstance(explorer, dict)
+        and explorer.get("missing_std_modules")
+        and not _scan_degraded(explorer)
+        and not _has_agent(rec, "code_implementer")
     ):
         rec.append(
             {
@@ -566,9 +585,15 @@ def main() -> int:
         "note": (
             "Intelligence (web, review, gaps) runs in Cursor Automations — not in this file. "
             "plan_audit needs LIC_ROOT (sibling ../lic or CI lic@dev checkout); "
-            "catalog path gaps skip path=unknown and catalog_lifecycle=planned."
+            "when lic is missing, plan_audit is skipped and explorer/plan JSON sets scan_degraded. "
+            "Catalog path gaps skip path=unknown and catalog_lifecycle=planned."
         ),
-        "lic_root": str(LIC) if LIC.is_dir() else None,
+        "lic_root": str(LIC) if LIC.is_dir() else str(LIC),
+        "lic_present": LIC.is_dir(),
+        "scan_degraded": not LIC.is_dir(),
+        "degraded_reason": None
+        if LIC.is_dir()
+        else f"LIC_ROOT missing or not a directory: {LIC}",
         "preflight_runs": runs,
         "issue_triage": load_json(LATEST / "issue-feature-triage.json"),
         "issue_backlog_hygiene": load_json(LATEST / "issue-backlog-hygiene.json"),

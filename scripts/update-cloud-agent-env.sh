@@ -192,6 +192,19 @@ install_python_tools() {
   fi
 }
 
+write_lic_root_profile() {
+  export LIC_ROOT="${REPOS_ROOT}/lic"
+  export LI_REPO_ROOT="${LIC_ROOT}"
+  local profile_d="${HOME}/.profile.d/li-langverse.sh"
+  mkdir -p "$(dirname "$profile_d")"
+  cat >"$profile_d" <<EOF
+# li-langverse cloud agent — sourced by login shells
+export LIC_ROOT="${REPOS_ROOT}/lic"
+export LI_REPO_ROOT="\${LIC_ROOT}"
+EOF
+  log "LIC_ROOT=${LIC_ROOT} (also ${profile_d})"
+}
+
 main() {
   [[ "$SKIP_PULL" == "1" ]] || pull_repos
   if [[ "$SKIP_LIC_BUILD" != "1" ]]; then
@@ -200,6 +213,7 @@ main() {
   fi
   [[ "$SKIP_DASHBOARD" == "1" ]] || dashboard_deps
   install_python_tools
+  write_lic_root_profile
   log "update-cloud-agent-env complete (LLVM ${LI_LLVM_MAJOR}, org=${ORG})"
 }
 

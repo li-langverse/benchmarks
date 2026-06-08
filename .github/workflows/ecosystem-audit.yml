@@ -1,5 +1,6 @@
 # Manual only — no schedule (saves Actions budget). Prefer Cursor Automations:
 # .cursor/automations/ecosystem-health.md
+# LIC_ROOT: checks out li-langverse/lic@dev beside benchmarks; local runs need sibling ../lic or export LIC_ROOT.
 name: Ecosystem audit (manual)
 
 on:
