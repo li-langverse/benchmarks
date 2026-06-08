@@ -96,9 +96,12 @@ _linux_skip_apt() {
 
 _linux_require_build_toolchain() {
   local missing=()
-  for pkg in ninja-build cmake llvm-22-dev clang-22 g++-13; do
+  for pkg in ninja-build cmake llvm-22-dev clang-22; do
     dpkg -s "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
   done
+  if ! command -v g++ >/dev/null 2>&1 && ! dpkg -s g++-13 >/dev/null 2>&1; then
+    missing+=("g++")
+  fi
   if ((${#missing[@]})); then
     echo "setup-lic-for-bench: missing build packages (no sudo): ${missing[*]}" >&2
     exit 1
@@ -139,7 +142,12 @@ fi
 command -v bun >/dev/null 2>&1 || echo "note: install bun for tier-5 bun oracle (optional)" >&2
 
 export LLVM_DIR="${LLVM_DIR:-/usr/lib/llvm-22/lib/cmake/llvm}"
-export CXX=g++-13 CC=gcc-13 LI_REPO_ROOT="$LIC_ROOT"
+if _linux_skip_apt; then
+  export CXX="${CXX:-g++}" CC="${CC:-gcc}"
+else
+  export CXX=g++-13 CC=gcc-13
+fi
+export LI_REPO_ROOT="$LIC_ROOT"
 echo "==> lic compiler"
 ( cd "$LIC_ROOT" && ./scripts/build.sh )
 
