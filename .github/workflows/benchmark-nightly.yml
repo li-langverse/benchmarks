@@ -64,6 +64,8 @@ jobs:
             lic-build-linux-
       - name: Build lic + li-httpd
         if: steps.lic-build-cache.outputs.cache-hit != 'true'
+        env:
+          LIC_CI_CONTAINER: "1"
         run: |
           chmod +x scripts/*.sh lic/scripts/*.sh
           ./scripts/setup-lic-for-bench.sh

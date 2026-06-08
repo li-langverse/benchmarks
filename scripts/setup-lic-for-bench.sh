@@ -89,8 +89,27 @@ case "$(uname -s)" in
     ;;
 esac
 
+_linux_skip_apt() {
+  [[ "${LIC_CI_CONTAINER:-}" == "1" ]] && return 0
+  ! command -v sudo >/dev/null 2>&1
+}
+
+_linux_require_build_toolchain() {
+  local missing=()
+  for pkg in ninja-build cmake llvm-22-dev clang-22 g++-13; do
+    dpkg -s "$pkg" >/dev/null 2>&1 || missing+=("$pkg")
+  done
+  if ((${#missing[@]})); then
+    echo "setup-lic-for-bench: missing build packages (no sudo): ${missing[*]}" >&2
+    exit 1
+  fi
+}
+
 export DEBIAN_FRONTEND=noninteractive
-if [[ -x "$LIC_ROOT/scripts/ci-install-llvm.sh" ]]; then
+if _linux_skip_apt; then
+  echo "==> lic compiler (Linux lic-ci — skip apt)"
+  _linux_require_build_toolchain
+elif [[ -x "$LIC_ROOT/scripts/ci-install-llvm.sh" ]]; then
   sudo LI_LLVM_MAJOR=22 bash "$LIC_ROOT/scripts/ci-install-llvm.sh"
 else
   need_apt=0
@@ -105,14 +124,16 @@ else
       wrk nginx apache2 lighttpd nodejs
   fi
 fi
-need_apt=0
-for pkg in g++-13 wrk nginx apache2 lighttpd nodejs; do
-  dpkg -s "$pkg" >/dev/null 2>&1 || need_apt=1
-done
-if [[ "$need_apt" == "1" ]]; then
-  sudo apt-get update -qq
-  sudo apt-get install -y -qq build-essential g++-13 gcc-13 libstdc++-13-dev \
-    wrk nginx apache2 lighttpd nodejs
+if ! _linux_skip_apt; then
+  need_apt=0
+  for pkg in g++-13 wrk nginx apache2 lighttpd nodejs; do
+    dpkg -s "$pkg" >/dev/null 2>&1 || need_apt=1
+  done
+  if [[ "$need_apt" == "1" ]]; then
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq build-essential g++-13 gcc-13 libstdc++-13-dev \
+      wrk nginx apache2 lighttpd nodejs
+  fi
 fi
 # Bun is optional (not in Debian main); tier-5 skips when `bun` is missing.
 command -v bun >/dev/null 2>&1 || echo "note: install bun for tier-5 bun oracle (optional)" >&2
