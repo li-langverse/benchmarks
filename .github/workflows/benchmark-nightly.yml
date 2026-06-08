@@ -40,7 +40,9 @@ env:
 jobs:
   prepare-lic-linux:
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    container:
+      image: ghcr.io/li-langverse/lic-ci:ubuntu24-llvm22
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -53,10 +55,6 @@ jobs:
           repository: li-langverse/lis
           path: lis
           ref: main
-      - name: Install LLVM 22 and bench deps
-        run: |
-          chmod +x lic/scripts/ci-install-llvm.sh
-          sudo LI_LLVM_MAJOR=22 bash lic/scripts/ci-install-llvm.sh
       - uses: actions/cache@v4
         id: lic-build-cache
         with:
@@ -66,6 +64,8 @@ jobs:
             lic-build-linux-
       - name: Build lic + li-httpd
         if: steps.lic-build-cache.outputs.cache-hit != 'true'
+        env:
+          LIC_CI_CONTAINER: "1"
         run: |
           chmod +x scripts/*.sh lic/scripts/*.sh
           ./scripts/setup-lic-for-bench.sh
@@ -353,6 +353,9 @@ jobs:
         run: |
           llvm_prefix="${LLVM22_PREFIX:-$(brew --prefix llvm@22)}"
           export PATH="${llvm_prefix}/bin:${PATH}"
+          export CC="${llvm_prefix}/bin/clang"
+          export CXX="${llvm_prefix}/bin/clang++"
+          "${CC}" --version
           chmod +x scripts/*.sh
           ./scripts/run-benchmark-ci-nightly.sh tier ${{ matrix.group }}
       - name: Upload macOS tier CSV

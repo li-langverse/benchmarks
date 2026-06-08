@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-01T08:26:41.745304+00:00",
+  "generated_at": "2026-06-08T22:17:05.034798+00:00",
   "summary_path": "data/latest/summary.json",
   "benchmark_bases": 157,
-  "chart_rows": 477,
-  "table_rows": 259,
+  "chart_rows": 471,
+  "table_rows": 159,
   "p0_count": 0,
   "p1_count": 12,
   "issue_counts": {
