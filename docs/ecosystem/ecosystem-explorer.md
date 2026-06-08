@@ -3,7 +3,7 @@
 **Purpose:** Periodically discover **missing implementations**, **stdlib/package gaps**, **benchmark catalog holes**, and **language-design opportunities** by combining:
 
 1. **Local static scan** — `scripts/ecosystem-explorer.py` → `data/latest/ecosystem-explorer.json`
-2. **HPC rubric** — compare Li to Eigen, Kokkos, PETSc, FFTW, OpenMP, SUNDIALS, …
+2. **HPC rubric** — compare Li to Eigen, Kokkos, PETSc, FFTW, OpenMP, SUNDIALS, … — normative **release pins** and bump cadence: [reference-baseline-versions.md](../honesty/reference-baseline-versions.md)
 3. **External signals** — Cursor agent **web search** (Reddit, papers, GitHub discussions); the script does **not** scrape Reddit (ToS / rate limits).
 
 **Not a substitute for:** [ecosystem-health](../../.cursor/automations/ecosystem-health.md) (CI/PR reds) or [numerics-research-cycle](../../.cursor/automations/numerics-research-cycle.md) (kernel-level SOTA).
@@ -91,8 +91,19 @@ Add label **`explorer-finding`** for triage. Planner automation picks up `ecosys
 
 ---
 
+## HPC rubric refresh
+
+When explorer passes cite new Eigen/Kokkos/PETSc/Chapel releases:
+
+1. Diff upstream release pages against [reference-baseline-versions.md](../honesty/reference-baseline-versions.md).
+2. If major/minor changed, open a **benchmarks** docs PR updating the pin table (`last_reviewed`, release URLs) within **30 days**.
+3. Do **not** duplicate pin tables in digests — link the normative doc; digests remain ephemeral evidence.
+
+---
+
 ## Related
 
+- [reference-baseline-versions.md](../honesty/reference-baseline-versions.md) — SOTA pin table + agent tooling parity
 - [tooling-catalog.md](./tooling-catalog.md)
 - [ecosystem-first.md](./ecosystem-first.md)
 - [agent-automations.md](./agent-automations.md)

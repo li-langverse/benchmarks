@@ -37,6 +37,8 @@ Detailed map: [plan-cross-links.md](../ecosystem/plan-cross-links.md).
 
 Dashboard rows are **measurements**, not proof certificates. Labels and thresholds: [benchmark-dashboard.md](../honesty/benchmark-dashboard.md).
 
+Reference C++ / HPC **SOTA version pins** and bump cadence (Eigen, Kokkos, PETSc, Chapel): [reference-baseline-versions.md](../honesty/reference-baseline-versions.md).
+
 ## Agents
 
 [AGENTS.md](../../AGENTS.md) · [Release notes policy](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/release-notes.md) · Preflight: `./scripts/agent-preflight.sh`

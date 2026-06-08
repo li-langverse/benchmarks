@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- **HPC reference baseline policy:** normative Eigen/Kokkos/PETSc/Chapel version pins, bump cadence, and agent tooling parity rubric — [2026-06-08-reference-baseline-versions.md](docs/release-notes/2026-06-08-reference-baseline-versions.md) ([#27](https://github.com/li-langverse/benchmarks/issues/27)).
 - **Plan cross-links:** open master-plan tracker table + **`ui_ux_quality`** handoff for `gui_ux_tester` / `docs_ui_tester` — [2026-05-30-docs-maintainer-cross-links.md](docs/release-notes/2026-05-30-docs-maintainer-cross-links.md).
 
 ### Changed
