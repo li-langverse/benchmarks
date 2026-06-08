@@ -51,6 +51,10 @@ Catalog default: `validity_required = true` in [`catalog.toml`](../../catalog.to
 | `pure_li` | Li-only codegen path — cite **PH-7e**; red here is compiler work |
 | `async_stub` | Tooling smoke — not HPC competitive |
 
+## HPC reference library pins
+
+SOTA stacks (Eigen, Kokkos, PETSc, Chapel) move on active release trains. Baseline versions for reference C++ builds, quarterly bump triggers, and AI-tooling parity notes live in [hpc-reference-library-cadence.md](../ecosystem/hpc-reference-library-cadence.md) ([benchmarks#27](https://github.com/li-langverse/benchmarks/issues/27)).
+
 ## Proof vs performance
 
 - **G-*** rows in [provability-gaps.md](https://github.com/li-langverse/lic/blob/main/docs/verification/provability-gaps.md) describe **proof wiring**, not bench color.

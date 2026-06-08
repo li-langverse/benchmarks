@@ -11,7 +11,7 @@ Agents use this map so **vision**, **PH trackers**, and **honest proof status** 
 | **Phase plans** | `lic` | [`docs/superpowers/plans/`](https://github.com/li-langverse/lic/tree/main/docs/superpowers/plans) (`2026-05-14-phase-*.md`, lip/lip/httpd/math plans) |
 | **Ecosystem governance** | `roadmap` | [`docs/ecosystem/vision-and-roadmap.md`](https://github.com/li-langverse/roadmap/blob/main/docs/ecosystem/vision-and-roadmap.md) |
 | **Milestones (themes)** | `roadmap` | [`docs/roadmap/milestones.md`](https://github.com/li-langverse/roadmap/blob/main/docs/roadmap/milestones.md) |
-| **Benchmark catalog & dashboard** | `benchmarks` | [`catalog.toml`](../../catalog.toml) · [handbook](../handbook/README.md) |
+| **Benchmark catalog & dashboard** | `benchmarks` | [`catalog.toml`](../../catalog.toml) · [handbook](../handbook/README.md) · [HPC reference cadence](./hpc-reference-library-cadence.md) |
 
 ## Edit rules
 

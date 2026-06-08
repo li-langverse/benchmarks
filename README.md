@@ -4,7 +4,7 @@ Aggregated **benchmark status** for the Li org. Workloads and harness drivers li
 
 **Dashboard:** https://li-langverse.github.io/benchmarks/ (if 404, see [SETUP_GITHUB.md](SETUP_GITHUB.md#fix-dashboard-404-live_docs_down))
 
-**Handbook:** [docs/handbook/README.md](docs/handbook/README.md) Â· [plan cross-links](docs/ecosystem/plan-cross-links.md) Â· [benchmark honesty](docs/honesty/benchmark-dashboard.md)
+**Handbook:** [docs/handbook/README.md](docs/handbook/README.md) Â· [plan cross-links](docs/ecosystem/plan-cross-links.md) Â· [benchmark honesty](docs/honesty/benchmark-dashboard.md) Â· [HPC reference cadence](docs/ecosystem/hpc-reference-library-cadence.md)
 
 **Dashboard architecture:** [docs/dashboard/ARCHITECTURE.md](docs/dashboard/ARCHITECTURE.md) Â· [invariants (CI)](docs/dashboard/INVARIANTS.md) Â· [coverage gaps](docs/dashboard/coverage-gap-analysis.md) Â· [design system](docs/dashboard/design-system.md)
 
