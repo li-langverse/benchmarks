@@ -19,7 +19,7 @@ export function GpuChipPicker({
   policyUrl,
 }: GpuChipPickerProps) {
   return (
-    <section className="gpu-chip-picker" aria-label="Select GPU chip">
+    <section className="gpu-chip-picker" aria-label="Select GPU chip" data-testid="gpu-chip-picker">
       <div className="gpu-chip-picker-header">
         <h3 className="bench-panel-heading">Chips in the matrix</h3>
         {policyUrl ? (
