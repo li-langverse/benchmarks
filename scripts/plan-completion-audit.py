@@ -234,6 +234,32 @@ def _catalog_repo_root(repo: str) -> Path | None:
     return None
 
 
+def _catalog_gap_triage_summary() -> dict:
+    """PH-5b actionable vs defer counts (uses scripts/catalog/catalog_honesty.py)."""
+    import sys
+
+    scripts = ROOT / "scripts"
+    if str(scripts) not in sys.path:
+        sys.path.insert(0, str(scripts))
+    try:
+        from catalog.catalog_honesty import triage_catalog  # noqa: WPS433
+    except ImportError:
+        return {}
+    import tomllib
+
+    catalog = ROOT / "catalog.toml"
+    if not catalog.is_file():
+        return {}
+    rows = tomllib.loads(catalog.read_text(encoding="utf-8")).get("benchmark", [])
+    triage = triage_catalog(rows)
+    return {
+        "catalog_gaps_actionable": triage["summary"].get("actionable_fixes", 0),
+        "catalog_gaps_defer": triage["summary"].get("defer_planned", 0),
+        "catalog_triage_fix_repo": triage["summary"].get("fix_repo", 0),
+        "catalog_triage_fix_path": triage["summary"].get("fix_path", 0),
+    }
+
+
 def catalog_without_repo_path() -> list[dict]:
     import tomllib
 
@@ -291,6 +317,7 @@ def main() -> int:
     gaps = scan_provability_gaps()
     plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
     catalog = catalog_without_repo_path()
+    ph5b = _catalog_gap_triage_summary()
     stubs = package_stubs()
     physics = scan_physics_push()
 
@@ -316,6 +343,7 @@ def main() -> int:
             "provability_partial": len(gaps.get("partial", [])),
             "provability_missing": len(gaps.get("missing", [])),
             "catalog_gaps": len(catalog),
+            **ph5b,
             "total_findings": len(open_items),
             "tracker_phases_complete": len(completed_phases),
         },

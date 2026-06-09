@@ -1,0 +1,1108 @@
+{
+  "summary": {
+    "ok": 159,
+    "skip": 28,
+    "actionable_fixes": 0,
+    "defer_planned": 0
+  },
+  "items": [
+    {
+      "id": "tier0_stability",
+      "action": "ok",
+      "repo": "lic",
+      "path": "li-tests/benchmarks/tier0_correctness"
+    },
+    {
+      "id": "cfd_fvm_face_flux",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cfd_fvm_face_flux"
+    },
+    {
+      "id": "cfd_pimple",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cfd_pimple"
+    },
+    {
+      "id": "cfd_piso",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cfd_piso"
+    },
+    {
+      "id": "cfd_simple",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cfd_simple"
+    },
+    {
+      "id": "cfd_turbulence_k_epsilon",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cfd_turbulence_k_epsilon"
+    },
+    {
+      "id": "cfd_turbulence_k_omega_sst",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cfd_turbulence_k_omega_sst"
+    },
+    {
+      "id": "fea_gauss_quadrature",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fea_gauss_quadrature"
+    },
+    {
+      "id": "fea_linear_elasticity",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fea_linear_elasticity"
+    },
+    {
+      "id": "fea_mesh_tri_tet",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fea_mesh_tri_tet"
+    },
+    {
+      "id": "fea_solver_direct",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fea_solver_direct"
+    },
+    {
+      "id": "fea_solver_iterative",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fea_solver_iterative"
+    },
+    {
+      "id": "fea_stiffness_assembly",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fea_stiffness_assembly"
+    },
+    {
+      "id": "horner_pure_li",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/horner_pure_li"
+    },
+    {
+      "id": "fft_1d_fixed",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "matmul_blocked",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/matmul_blocked"
+    },
+    {
+      "id": "matmul_blocked_N1024",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/matmul_blocked"
+    },
+    {
+      "id": "matmul_naive",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/matmul_naive"
+    },
+    {
+      "id": "matmul_naive_N1024",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/matmul_naive"
+    },
+    {
+      "id": "ml_conv2d_forward",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/ml_conv2d_forward"
+    },
+    {
+      "id": "ml_mlp_forward",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/ml_mlp_forward"
+    },
+    {
+      "id": "ml_mlp_train_step",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/ml_mlp_train_step"
+    },
+    {
+      "id": "nbody_barnes_hut",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/nbody_barnes_hut"
+    },
+    {
+      "id": "num_cg",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_cg"
+    },
+    {
+      "id": "num_cholesky",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_cholesky"
+    },
+    {
+      "id": "num_eig_symmetric",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_eig_symmetric"
+    },
+    {
+      "id": "num_fft_r2c",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_fft_r2c"
+    },
+    {
+      "id": "num_gmres",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_gmres"
+    },
+    {
+      "id": "num_integ_euler",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_euler"
+    },
+    {
+      "id": "num_integ_rk4",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_rk4"
+    },
+    {
+      "id": "num_integ_semi_implicit",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_semi_implicit"
+    },
+    {
+      "id": "num_integ_symplectic",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_symplectic"
+    },
+    {
+      "id": "num_integ_verlet",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_verlet"
+    },
+    {
+      "id": "num_opt_bfgs",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_opt_bfgs"
+    },
+    {
+      "id": "num_opt_line_search",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_opt_line_search"
+    },
+    {
+      "id": "num_quadrature_gauss",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_quadrature_gauss"
+    },
+    {
+      "id": "num_rng_pcg",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_rng_pcg"
+    },
+    {
+      "id": "num_root_newton",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_root_newton"
+    },
+    {
+      "id": "num_sparse_mv",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/num_sparse_mv"
+    },
+    {
+      "id": "reduce_sum",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/reduce_sum"
+    },
+    {
+      "id": "simd_dot",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/simd_dot"
+    },
+    {
+      "id": "stdlib_list_push_pop",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "stdlib_dict_insert_lookup",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_dict_insert_lookup"
+    },
+    {
+      "id": "stdlib_set_ops",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "stdlib_sort_int",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_sort_int"
+    },
+    {
+      "id": "stdlib_binary_search",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_binary_search"
+    },
+    {
+      "id": "stdlib_heap_push_pop",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "stdlib_deque_rotate",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "stdlib_hash_flood",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "viz_colormap",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_colormap"
+    },
+    {
+      "id": "viz_decimate",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_decimate"
+    },
+    {
+      "id": "viz_inspector_panels",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_inspector_panels"
+    },
+    {
+      "id": "viz_linked_views",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_linked_views"
+    },
+    {
+      "id": "viz_marching_cubes",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_marching_cubes"
+    },
+    {
+      "id": "viz_pipeline_graph",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_pipeline_graph"
+    },
+    {
+      "id": "viz_resample",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier1_micro/viz_resample"
+    },
+    {
+      "id": "advection_diffusion_2d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/advection_diffusion_2d"
+    },
+    {
+      "id": "auto_bicycle_model",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/auto_bicycle_model"
+    },
+    {
+      "id": "auto_dyn_rk4",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/auto_dyn_rk4"
+    },
+    {
+      "id": "auto_sensor_raycast",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/auto_sensor_raycast"
+    },
+    {
+      "id": "bio_proteinmpnn",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/bio_proteinmpnn"
+    },
+    {
+      "id": "bio_rfdiffusion",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/bio_rfdiffusion"
+    },
+    {
+      "id": "bio_rosetta_energy",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/bio_rosetta_energy"
+    },
+    {
+      "id": "bio_rotamer_packing",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/bio_rotamer_packing"
+    },
+    {
+      "id": "cloth_swing",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/cloth_swing"
+    },
+    {
+      "id": "combustion_passive",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/combustion_passive"
+    },
+    {
+      "id": "double_pendulum",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/double_pendulum"
+    },
+    {
+      "id": "drug_docking_diffusion",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/drug_docking_diffusion"
+    },
+    {
+      "id": "drug_docking_score_vina",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/drug_docking_score_vina"
+    },
+    {
+      "id": "drug_fep_alchemical",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/drug_fep_alchemical"
+    },
+    {
+      "id": "drug_litl_stages",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/drug_litl_stages"
+    },
+    {
+      "id": "drug_ml_retrain_loop",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/drug_ml_retrain_loop"
+    },
+    {
+      "id": "euler_fluid_2d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/euler_fluid_2d"
+    },
+    {
+      "id": "fdtd_waveguide_2d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/fdtd_waveguide_2d"
+    },
+    {
+      "id": "harmonic_oscillator_chain",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/harmonic_oscillator_chain"
+    },
+    {
+      "id": "heat_equation_2d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/heat_equation_2d"
+    },
+    {
+      "id": "md_barostat_parrinello_rahman",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_barostat_parrinello_rahman"
+    },
+    {
+      "id": "md_constraints_rattle",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_constraints_rattle"
+    },
+    {
+      "id": "md_constraints_shake",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_constraints_shake"
+    },
+    {
+      "id": "md_energy_drift",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_energy_drift"
+    },
+    {
+      "id": "md_init_fcc_mb",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_init_fcc_mb"
+    },
+    {
+      "id": "md_integrator_leapfrog",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_integrator_leapfrog"
+    },
+    {
+      "id": "md_integrator_verlet",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_integrator_verlet"
+    },
+    {
+      "id": "md_lennard_jones",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_lennard_jones"
+    },
+    {
+      "id": "md_longrange_ewald",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_longrange_ewald"
+    },
+    {
+      "id": "md_longrange_pme",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_longrange_pme"
+    },
+    {
+      "id": "md_neighbor_cell_list",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_neighbor_cell_list"
+    },
+    {
+      "id": "md_neighbor_verlet_skin",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_neighbor_verlet_skin"
+    },
+    {
+      "id": "md_oracle_external",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_oracle_external"
+    },
+    {
+      "id": "md_thermostat_berendsen",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_thermostat_berendsen"
+    },
+    {
+      "id": "md_thermostat_nose_hoover",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/md_thermostat_nose_hoover"
+    },
+    {
+      "id": "nbody_gravity",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/nbody_gravity"
+    },
+    {
+      "id": "orbit_two_body",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/orbit_two_body"
+    },
+    {
+      "id": "pde_cfl_timestep",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/pde_cfl_timestep"
+    },
+    {
+      "id": "pde_heat_implicit_jacobi",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/pde_heat_implicit_jacobi"
+    },
+    {
+      "id": "qm_ase_calculator",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_ase_calculator"
+    },
+    {
+      "id": "qm_ccsd",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_ccsd"
+    },
+    {
+      "id": "qm_dft_grid_becke",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_grid_becke"
+    },
+    {
+      "id": "qm_dft_grid_lebedev",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_grid_lebedev"
+    },
+    {
+      "id": "qm_dft_hybrid_exchange",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_hybrid_exchange"
+    },
+    {
+      "id": "qm_dft_scf_energy",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_scf_energy"
+    },
+    {
+      "id": "qm_dft_xc_gga",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_xc_gga"
+    },
+    {
+      "id": "qm_dft_xc_lda",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_xc_lda"
+    },
+    {
+      "id": "qm_dft_xc_mgga",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_xc_mgga"
+    },
+    {
+      "id": "qm_dispersion_d3",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_dispersion_d3"
+    },
+    {
+      "id": "qm_ecp",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_ecp"
+    },
+    {
+      "id": "qm_eri_density_fitting",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_eri_density_fitting"
+    },
+    {
+      "id": "qm_eri_os",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_eri_os"
+    },
+    {
+      "id": "qm_eri_screening",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_eri_screening"
+    },
+    {
+      "id": "qm_geom_opt_bfgs",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_geom_opt_bfgs"
+    },
+    {
+      "id": "qm_geom_opt_internal",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_geom_opt_internal"
+    },
+    {
+      "id": "qm_grad_analytical",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_grad_analytical"
+    },
+    {
+      "id": "qm_gto_eval",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_gto_eval"
+    },
+    {
+      "id": "qm_hf_canonical_ortho",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_hf_canonical_ortho"
+    },
+    {
+      "id": "qm_hf_diis",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_hf_diis"
+    },
+    {
+      "id": "qm_hf_fock_build",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_hf_fock_build"
+    },
+    {
+      "id": "qm_job_queue_io",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_job_queue_io"
+    },
+    {
+      "id": "qm_kinetic_integrals",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_kinetic_integrals"
+    },
+    {
+      "id": "qm_mp2",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_mp2"
+    },
+    {
+      "id": "qm_nuclear_attraction",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_nuclear_attraction"
+    },
+    {
+      "id": "qm_overlap_integrals",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_overlap_integrals"
+    },
+    {
+      "id": "qm_property_dipole",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_property_dipole"
+    },
+    {
+      "id": "qm_property_freq",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_property_freq"
+    },
+    {
+      "id": "qm_scf_solver",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_scf_solver"
+    },
+    {
+      "id": "qm_tddft_casida",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_tddft_casida"
+    },
+    {
+      "id": "qm_tddft_rpa",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_tddft_rpa"
+    },
+    {
+      "id": "qm_xtb_gfn",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/qm_xtb_gfn"
+    },
+    {
+      "id": "ragdoll_chain",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/ragdoll_chain"
+    },
+    {
+      "id": "rigid_body_stack",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/rigid_body_stack"
+    },
+    {
+      "id": "rigid_broadphase_bvh",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/rigid_broadphase_bvh"
+    },
+    {
+      "id": "rigid_broadphase_sap",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/rigid_broadphase_sap"
+    },
+    {
+      "id": "rigid_constraints",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/rigid_constraints"
+    },
+    {
+      "id": "rigid_contact_solver",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/rigid_contact_solver"
+    },
+    {
+      "id": "rigid_semi_implicit",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/rigid_semi_implicit"
+    },
+    {
+      "id": "robo_ik_jacobian",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/robo_ik_jacobian"
+    },
+    {
+      "id": "robo_multibody_step",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/robo_multibody_step"
+    },
+    {
+      "id": "robo_plan_prm",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/robo_plan_prm"
+    },
+    {
+      "id": "robo_plan_rrt",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/robo_plan_rrt"
+    },
+    {
+      "id": "robo_traj_opt",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/robo_traj_opt"
+    },
+    {
+      "id": "schrodinger_1d_barrier",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/schrodinger_1d_barrier"
+    },
+    {
+      "id": "sph_dam_break_2d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/sph_dam_break_2d"
+    },
+    {
+      "id": "three_body",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/three_body"
+    },
+    {
+      "id": "three_body_pure",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/three_body_pure"
+    },
+    {
+      "id": "wave_equation_1d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/wave_equation_1d"
+    },
+    {
+      "id": "wave_equation_2d",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/wave_equation_2d"
+    },
+    {
+      "id": "wind_field_bc",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/wind_field_bc"
+    },
+    {
+      "id": "am_export_gcode_3mf",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_export_gcode_3mf"
+    },
+    {
+      "id": "am_infill_grid_lines",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_infill_grid_lines"
+    },
+    {
+      "id": "am_infill_gyroid",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_infill_gyroid"
+    },
+    {
+      "id": "am_offset_perimeters",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_offset_perimeters"
+    },
+    {
+      "id": "am_plane_mesh_intersect",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_plane_mesh_intersect"
+    },
+    {
+      "id": "am_polygon_clip",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_polygon_clip"
+    },
+    {
+      "id": "am_slice_layers",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_slice_layers"
+    },
+    {
+      "id": "am_support_tree",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_support_tree"
+    },
+    {
+      "id": "am_thermal_warp",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_thermal_warp"
+    },
+    {
+      "id": "am_toolpath_arcs",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "benchmarks/workloads/tier2_physics/am_toolpath_arcs"
+    },
+    {
+      "id": "lip_smoke",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "lit_smoke",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "https_static",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/https_static"
+    },
+    {
+      "id": "keepalive_pipelining",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/keepalive_pipelining"
+    },
+    {
+      "id": "lb_least_conn",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/lb_least_conn"
+    },
+    {
+      "id": "lb_peer_down",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/lb_peer_down"
+    },
+    {
+      "id": "lb_round_robin",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/lb_round_robin"
+    },
+    {
+      "id": "proxy_loopback",
+      "action": "ok",
+      "repo": "lic",
+      "path": "packages/li-net-httpd"
+    },
+    {
+      "id": "rate_limit_429",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429"
+    },
+    {
+      "id": "static_large",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/static_large"
+    },
+    {
+      "id": "static_small",
+      "action": "ok",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/static_small"
+    },
+    {
+      "id": "tier5_http_exploits",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "ann_qps_10k",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "ann_recall_at_10_10k",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "ann_recall_at_10_1m",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "gpu_ann_speedup_10k",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "gpu_ann_speedup_1m",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "graph_cycle_detect",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "graph_dep_closure",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "registry_publish",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "registry_read_by_name",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "registry_read_latest",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "injection_blocked",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "rls_bypass_blocked",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "rss_idle",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "rss_peak_load",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "concurrent_readers",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "concurrent_writers",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "query_log_complete",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "tamper_evidence",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    },
+    {
+      "id": "ws_publish_latency",
+      "action": "skip",
+      "reason": "planned_or_unknown_path"
+    }
+  ],
+  "actionable": [],
+  "defer_planned": [],
+  "schema": "benchmarks/catalog-gap-triage/v1",
+  "catalog": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780589598571/repo/catalog.toml"
+}
