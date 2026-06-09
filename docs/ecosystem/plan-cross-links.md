@@ -68,4 +68,4 @@ Remediation: `data/latest/remediation_manifest.json` (P1 issues + acceptance che
 
 ## Automation
 
-`python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic` sibling checkout; CI `lic`. Skips path=unknown and catalog_lifecycle=planned.) Output: `data/latest/plan-completion-audit.json` (`master_plan_open` = tracker only; `stale_spec_checklists` = normative task bullets, not gates).
+`python3 scripts/plan-completion-audit.py` reads **LIC_ROOT** (default `../lic` sibling checkout; CI `lic`. Skips path=unknown and catalog_lifecycle=planned.) Output: `data/latest/plan-completion-audit.json` (`master_plan_open` = tracker only; `stale_spec_checklists` = normative task bullets, not gates). Catalog debt splits into `catalog_gaps_actionable` (true missing harness) vs `catalog_gaps_repo_mismatch` (`repo=lic` but path under benchmarks — fix via `scripts/catalog/fix-catalog-repo-field.py`).

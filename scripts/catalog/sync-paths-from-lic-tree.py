@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Sync catalog.toml paths from lic benchmarks tree (tier1_micro, tier2_physics, …).
+"""Sync catalog.toml paths from benchmarks workloads (ADR) with legacy lic fallback.
 
-Walks ``LIC_ROOT/benchmarks/tier*`` (and tier5 scenarios, package harness dirs),
-sets ``path`` for each catalog id when a matching harness directory exists.
-Optionally regenerates ``data/latest/summary.json`` via ``build_summary.py`` when
-``lic/benchmarks/results/latest.csv`` is present.
+Primary index: ``benchmarks/workloads/tier*`` in this repo. Optionally walks
+legacy ``LIC_ROOT/benchmarks/tier*`` when present. Sets ``path`` and ``repo`` when
+a matching harness directory exists.
 
 Usage:
-  LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --dry-run
-  LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --write
+  python3 scripts/catalog/sync-paths-from-lic-tree.py --dry-run
+  python3 scripts/catalog/sync-paths-from-lic-tree.py --write
   LIC_ROOT=../lic python3 scripts/catalog/sync-paths-from-lic-tree.py --write --rebuild-summary
 """
 from __future__ import annotations
@@ -138,15 +137,25 @@ def registry_dir_stems(sync_mod) -> dict[str, str]:
     return out
 
 
+def resolve_path_root(rel: str, *, lic_root: Path, bench_root: Path) -> Path:
+    """Return checkout root where ``rel`` exists."""
+    if (bench_root / rel).is_dir():
+        return bench_root
+    if (lic_root / rel).is_dir():
+        return lic_root
+    return bench_root
+
+
 def lookup_path(
     bench_id: str,
     base_id: str | None,
     *,
     lic_root: Path,
+    bench_root: Path,
     harness_index: dict[str, str],
     sync_mod,
 ) -> str | None:
-    """Return relative lic path when harness dir exists, else None."""
+    """Return relative workload path when harness dir exists, else None."""
     candidates: list[str] = []
     lookup = base_id or bench_id
     candidates.append(lookup)
@@ -167,10 +176,14 @@ def lookup_path(
             continue
         seen.add(name)
         rel = harness_index.get(name)
-        if rel and (lic_root / rel).is_dir():
+        if rel and resolve_path_root(rel, lic_root=lic_root, bench_root=bench_root).joinpath(
+            rel
+        ).is_dir():
             return rel
         resolved = sync_mod.resolve_path(name, lic_root)
-        if resolved != "unknown" and (lic_root / resolved).is_dir():
+        if resolved != "unknown" and resolve_path_root(
+            resolved, lic_root=lic_root, bench_root=bench_root
+        ).joinpath(resolved).is_dir():
             return resolved
     return None
 
@@ -185,6 +198,7 @@ def sync_catalog_paths(
     benchmarks: list[dict],
     *,
     lic_root: Path,
+    bench_root: Path,
     harness_index: dict[str, str],
     sync_mod,
 ) -> list[tuple[str, str, str]]:
@@ -197,15 +211,20 @@ def sync_catalog_paths(
             b["id"],
             b.get("base_id"),
             lic_root=lic_root,
+            bench_root=bench_root,
             harness_index=harness_index,
             sync_mod=sync_mod,
         )
         if not new or cur == new:
             continue
-        if cur != "unknown" and (lic_root / cur).is_dir():
+        if cur != "unknown" and resolve_path_root(
+            cur, lic_root=lic_root, bench_root=bench_root
+        ).joinpath(cur).is_dir():
             continue
         fixes.append((b["id"], cur, new))
         b["path"] = new
+        if new.startswith("benchmarks/"):
+            b["repo"] = "benchmarks"
     return fixes
 
 
@@ -250,20 +269,24 @@ def main() -> int:
     args = parser.parse_args()
     lic_root = args.lic_root.resolve()
     lis_root = args.lis_root.resolve()
-    if not lic_root.is_dir():
-        raise SystemExit(f"LIC_ROOT not found: {lic_root}")
+    bench_root = ROOT
+    lic_optional = lic_root.is_dir()
 
     import tomllib
 
     sync_mod = load_sync_registry_module()
     text = CATALOG.read_text()
     benchmarks = [dict(b) for b in tomllib.loads(text).get("benchmark", [])]
-    harness_index = scan_harness_index(lic_root, bench_root=ROOT)
-    print(f"harness dirs indexed: {len(harness_index)} (benchmarks/workloads + legacy lic)")
+    harness_index = scan_harness_index(lic_root if lic_optional else bench_root, bench_root=bench_root)
+    print(
+        f"harness dirs indexed: {len(harness_index)} "
+        f"(benchmarks/workloads{' + legacy lic' if lic_optional else ''})"
+    )
 
     fixes = sync_catalog_paths(
         benchmarks,
-        lic_root=lic_root,
+        lic_root=lic_root if lic_optional else bench_root,
+        bench_root=bench_root,
         harness_index=harness_index,
         sync_mod=sync_mod,
     )

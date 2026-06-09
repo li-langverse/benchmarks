@@ -132,6 +132,10 @@ def main() -> int:
     for b in benches:
         if str(b.get("catalog_lifecycle") or "").lower() == "planned":
             continue
+        path = str(b.get("path") or "")
+        repo = str(b.get("repo") or "lic")
+        if path.startswith("benchmarks/") and repo in ("lic", "lis"):
+            fail(f"{b['id']}: repo={repo} but path is benchmarks-repo layout ({path})")
         ps = str(b.get("problem_size") or "").strip()
         if not ps:
             continue

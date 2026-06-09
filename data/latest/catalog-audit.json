@@ -1,30 +1,15 @@
 {
   "schema": "benchmarks/catalog-audit/v1",
   "catalog_rows": 187,
-  "harness_pending_count": 114,
+  "harness_pending_count": 5,
   "harness_pending_sample": [
-    "cfd_fvm_face_flux",
-    "cfd_pimple",
-    "cfd_piso",
-    "cfd_simple",
-    "cfd_turbulence_k_epsilon",
-    "cfd_turbulence_k_omega_sst",
-    "fea_gauss_quadrature",
-    "fea_linear_elasticity",
-    "fea_mesh_tri_tet",
-    "fea_solver_direct",
-    "fea_solver_iterative",
-    "fea_stiffness_assembly",
-    "nbody_barnes_hut",
-    "num_cg",
-    "num_cholesky",
-    "num_eig_symmetric",
-    "num_fft_r2c",
-    "num_gmres",
-    "num_integ_euler",
-    "num_integ_rk4"
+    "stdlib_list_push_pop",
+    "stdlib_set_ops",
+    "stdlib_heap_push_pop",
+    "stdlib_deque_rotate",
+    "stdlib_hash_flood"
   ],
-  "missing_problem_size_count": 37,
+  "missing_problem_size_count": 15,
   "missing_problem_size_sample": [
     "tier0_stability",
     "ml_conv2d_forward",
@@ -37,59 +22,14 @@
     "viz_marching_cubes",
     "viz_pipeline_graph",
     "viz_resample",
-    "lip_smoke",
-    "lit_smoke",
     "lb_least_conn",
     "lb_peer_down",
     "lb_round_robin",
-    "rate_limit_429",
-    "tier5_http_exploits",
-    "ann_qps_10k",
-    "ann_recall_at_10_10k"
+    "rate_limit_429"
   ],
-  "workload_dir_present_count": 165,
-  "workload_dir_missing_count": 21,
+  "workload_dir_present_count": 163,
+  "workload_dir_missing_count": 23,
   "workload_dir_missing_sample": [
-    {
-      "id": "matmul_blocked_N1024",
-      "path": "benchmarks/tier1_micro/matmul_blocked"
-    },
-    {
-      "id": "matmul_naive_N1024",
-      "path": "benchmarks/tier1_micro/matmul_naive"
-    },
-    {
-      "id": "stdlib_list_push_pop",
-      "path": "benchmarks/tier1_stdlib/stdlib_list_push_pop"
-    },
-    {
-      "id": "stdlib_dict_insert_lookup",
-      "path": "benchmarks/tier1_stdlib/stdlib_dict_insert_lookup"
-    },
-    {
-      "id": "stdlib_set_ops",
-      "path": "benchmarks/tier1_stdlib/stdlib_set_ops"
-    },
-    {
-      "id": "stdlib_sort_int",
-      "path": "benchmarks/tier1_stdlib/stdlib_sort_int"
-    },
-    {
-      "id": "stdlib_binary_search",
-      "path": "benchmarks/tier1_stdlib/stdlib_binary_search"
-    },
-    {
-      "id": "stdlib_heap_push_pop",
-      "path": "benchmarks/tier1_stdlib/stdlib_heap_push_pop"
-    },
-    {
-      "id": "stdlib_deque_rotate",
-      "path": "benchmarks/tier1_stdlib/stdlib_deque_rotate"
-    },
-    {
-      "id": "stdlib_hash_flood",
-      "path": "benchmarks/tier1_stdlib/stdlib_hash_flood"
-    },
     {
       "id": "lip_smoke",
       "path": "scripts/ci.sh"
@@ -99,40 +39,88 @@
       "path": "scripts/ci.sh"
     },
     {
-      "id": "https_static",
-      "path": "benchmarks/tier5_http/scenarios/https_static"
-    },
-    {
-      "id": "keepalive_pipelining",
-      "path": "benchmarks/tier5_http/scenarios/keepalive_pipelining"
-    },
-    {
-      "id": "lb_least_conn",
-      "path": "benchmarks/tier5_http/scenarios/lb_least_conn"
-    },
-    {
-      "id": "lb_peer_down",
-      "path": "benchmarks/tier5_http/scenarios/lb_peer_down"
-    },
-    {
-      "id": "lb_round_robin",
-      "path": "benchmarks/tier5_http/scenarios/lb_round_robin"
-    },
-    {
       "id": "proxy_loopback",
       "path": "packages/li-net-httpd"
     },
     {
-      "id": "static_large",
-      "path": "benchmarks/tier5_http/scenarios/static_large"
-    },
-    {
-      "id": "static_small",
-      "path": "benchmarks/tier5_http/scenarios/static_small"
-    },
-    {
       "id": "tier5_http_exploits",
-      "path": "benchmarks/tier5_http/harness/exploit_http.py"
+      "path": "benchmarks/workloads/tier5_http/harness/exploit_http.py"
+    },
+    {
+      "id": "ann_qps_10k",
+      "path": "benchmarks/workloads/tier_db_vector_ann/scenarios/ann_qps_10k"
+    },
+    {
+      "id": "ann_recall_at_10_10k",
+      "path": "benchmarks/workloads/tier_db_vector_ann/scenarios/ann_recall_at_10_10k"
+    },
+    {
+      "id": "ann_recall_at_10_1m",
+      "path": "benchmarks/workloads/tier_db_vector_ann/scenarios/ann_recall_at_10_1m"
+    },
+    {
+      "id": "gpu_ann_speedup_10k",
+      "path": "benchmarks/workloads/tier_db_gpu_speedup/scenarios/gpu_ann_speedup_10k"
+    },
+    {
+      "id": "gpu_ann_speedup_1m",
+      "path": "benchmarks/workloads/tier_db_gpu_speedup/scenarios/gpu_ann_speedup_1m"
+    },
+    {
+      "id": "graph_cycle_detect",
+      "path": "benchmarks/workloads/tier_db_graph_registry/scenarios/graph_cycle_detect"
+    },
+    {
+      "id": "graph_dep_closure",
+      "path": "benchmarks/workloads/tier_db_graph_registry/scenarios/graph_dep_closure"
+    },
+    {
+      "id": "registry_publish",
+      "path": "benchmarks/workloads/tier_db_registry/scenarios/registry_publish"
+    },
+    {
+      "id": "registry_read_by_name",
+      "path": "benchmarks/workloads/tier_db_registry/scenarios/registry_read_by_name"
+    },
+    {
+      "id": "registry_read_latest",
+      "path": "benchmarks/workloads/tier_db_registry/scenarios/registry_read_latest"
+    },
+    {
+      "id": "injection_blocked",
+      "path": "benchmarks/workloads/tier_db_security/scenarios/injection_blocked"
+    },
+    {
+      "id": "rls_bypass_blocked",
+      "path": "benchmarks/workloads/tier_db_security/scenarios/rls_bypass_blocked"
+    },
+    {
+      "id": "rss_idle",
+      "path": "benchmarks/workloads/tier_db_memory/scenarios/rss_idle"
+    },
+    {
+      "id": "rss_peak_load",
+      "path": "benchmarks/workloads/tier_db_memory/scenarios/rss_peak_load"
+    },
+    {
+      "id": "concurrent_readers",
+      "path": "benchmarks/workloads/tier_db_parallel/scenarios/concurrent_readers"
+    },
+    {
+      "id": "concurrent_writers",
+      "path": "benchmarks/workloads/tier_db_parallel/scenarios/concurrent_writers"
+    },
+    {
+      "id": "query_log_complete",
+      "path": "benchmarks/workloads/tier_db_audit/scenarios/query_log_complete"
+    },
+    {
+      "id": "tamper_evidence",
+      "path": "benchmarks/workloads/tier_db_audit/scenarios/tamper_evidence"
+    },
+    {
+      "id": "ws_publish_latency",
+      "path": "benchmarks/workloads/tier_db_realtime/scenarios/ws_publish_latency"
     }
   ]
 }
