@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-31T01:45:58.470482+00:00",
+  "generated_at": "2026-06-07T19:02:43.391552+00:00",
   "dry_run": false,
-  "open_gaps": 64,
+  "open_gaps": 62,
   "by_kind": {
-    "missing_package": 3,
+    "missing_package": 1,
     "plan_debt": 31,
     "competitor_feature": 30
   },
@@ -12,84 +12,70 @@
       "gap_id": "gap-line-profiler-001",
       "gap_kind": "missing_package",
       "title": "li-line-profiler \u2014 line-level profiling package (seed)",
-      "at": "2026-05-31T01:45:58.465944+00:00",
+      "at": "2026-06-07T19:02:43.386281+00:00",
       "patch": "patched pkg-line-profiler \u2192 pending in ecosystem-package-backlog.md"
-    },
-    {
-      "gap_id": "gap-missing-std-std-summary",
-      "gap_kind": "missing_package",
-      "title": "Missing std module std.summary",
-      "at": "2026-05-31T01:45:58.466299+00:00",
-      "patch": "patched pkg-std-summary \u2192 pending in ecosystem-package-backlog.md"
-    },
-    {
-      "gap_id": "gap-missing-std-std-plot",
-      "gap_kind": "missing_package",
-      "title": "Missing std module std.plot",
-      "at": "2026-05-31T01:45:58.466493+00:00",
-      "patch": "patched pkg-std-plot \u2192 pending in ecosystem-package-backlog.md"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-doc-c-phase-plan-files-02-03-07-",
       "gap_kind": "plan_debt",
       "title": "**Doc-c** \u2014 phase plan files (02, 03, 07) link **G-*** in exit gates",
-      "at": "2026-05-31T01:45:58.466659+00:00",
+      "at": "2026-06-07T19:02:43.386893+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-2i-math-linalg-surface-par",
       "gap_kind": "plan_debt",
       "title": "Phase 2i \u2014 Math / linalg surface \u2014 **partial:** 1d `float` `@`, `sum(array)`; matrix `@` deferred",
-      "at": "2026-05-31T01:45:58.466665+00:00",
+      "at": "2026-06-07T19:02:43.386903+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-2e-contracts-refinements-p",
       "gap_kind": "plan_debt",
       "title": "Phase 2e \u2014 Contracts + refinements \u2014 **partial:** typed `AutoVC.lean`; `lic verify` prints `witnessed_ensures=` + `mir_r",
-      "at": "2026-05-31T01:45:58.466668+00:00",
+      "at": "2026-06-07T19:02:43.386906+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-2f-lean-4-verify-partial-a",
       "gap_kind": "plan_debt",
       "title": "Phase 2f \u2014 Lean 4 verify \u2014 **partial:** auto-discharge (`True`, `decreases`, return/const/mirror `ensures`); `sqrt_contr",
-      "at": "2026-05-31T01:45:58.466671+00:00",
+      "at": "2026-06-07T19:02:43.386909+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-7d-execution-decorators-pa",
       "gap_kind": "plan_debt",
       "title": "Phase 7d \u2014 Execution decorators \u2014 **partial (7d-a/b/d/e/c):** AST `check_module_policies` for disjoint; string heuristic",
-      "at": "2026-05-31T01:45:58.466673+00:00",
+      "at": "2026-06-07T19:02:43.386912+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-7e-math-simd-parallel-lowe",
       "gap_kind": "plan_debt",
       "title": "Phase 7e \u2014 Math \u2192 SIMD/parallel lowering \u2014 **partial:** `ArrayDotF64` for 1d `float` `@`; SIMD matmul deferred",
-      "at": "2026-05-31T01:45:58.466676+00:00",
+      "at": "2026-06-07T19:02:43.386917+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-h-li-httpd-m1-li-after-2e-",
       "gap_kind": "plan_debt",
       "title": "Phase H \u2014 li-httpd M1 `.li` \u2014 after **2e\u20132f** + bytes/async ([httpd-prerequisites](../ecosystem/httpd-prerequisites.md))",
-      "at": "2026-05-31T01:45:58.466678+00:00",
+      "at": "2026-06-07T19:02:43.386922+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-vision-llm-llm-first-agent-json-",
       "gap_kind": "plan_debt",
       "title": "**Vision-LLM** \u2014 LLM-first + agent JSON diagnostics \u2014 **partial:** `lic check --format=json`, `lic diagnose`, `diagnosti",
-      "at": "2026-05-31T01:45:58.466680+00:00",
+      "at": "2026-06-07T19:02:43.386925+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-sim-sim-p1-num-dot-axpy",
       "gap_kind": "plan_debt",
       "title": "sim: pending plan todo sim-p1-num-dot-axpy",
-      "at": "2026-05-31T01:45:58.466682+00:00",
+      "at": "2026-06-07T19:02:43.386929+00:00",
       "patch": "patched sim-p1-num-dot-axpy \u2192 pending in sim-algorithm-backlog.md",
       "suggest_systemd_loop": "sim"
     },
@@ -97,56 +83,56 @@
       "gap_id": "gap-plan-pending-sim-sim-p1-md-neighbor-cell",
       "gap_kind": "plan_debt",
       "title": "sim: pending plan todo sim-p1-md-neighbor-cell",
-      "at": "2026-05-31T01:45:58.466863+00:00",
+      "at": "2026-06-07T19:02:43.387278+00:00",
       "patch": "patched sim-p1-md-neighbor-cell \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-sim-p2-qm-dft-scf",
       "gap_kind": "plan_debt",
       "title": "sim: pending plan todo sim-p2-qm-dft-scf",
-      "at": "2026-05-31T01:45:58.467040+00:00",
+      "at": "2026-06-07T19:02:43.387613+00:00",
       "patch": "patched sim-p2-qm-dft-scf \u2192 pending in sim-algorithm-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-md-research-md-r3-oracle-plan",
       "gap_kind": "plan_debt",
       "title": "sim-md-research: pending plan todo md-r3-oracle-plan",
-      "at": "2026-05-31T01:45:58.467205+00:00",
+      "at": "2026-06-07T19:02:43.387932+00:00",
       "patch": "patched md-r3-oracle-plan \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-chem-research-chem-r2-dft-scf-gap",
       "gap_kind": "plan_debt",
       "title": "sim-chem-research: pending plan todo chem-r2-dft-scf-gap",
-      "at": "2026-05-31T01:45:58.467374+00:00",
+      "at": "2026-06-07T19:02:43.388218+00:00",
       "patch": "patched chem-r2-dft-scf-gap \u2192 pending in sim-chem-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-sim-chem-research-chem-r3-package-placement",
       "gap_kind": "plan_debt",
       "title": "sim-chem-research: pending plan todo chem-r3-package-placement",
-      "at": "2026-05-31T01:45:58.467572+00:00",
+      "at": "2026-06-07T19:02:43.388470+00:00",
       "patch": "patched chem-r3-package-placement \u2192 pending in sim-chem-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-swarm-observer-orch-r3-missing-package-sweep",
       "gap_kind": "plan_debt",
       "title": "swarm-observer: pending plan todo orch-r3-missing-package-sweep",
-      "at": "2026-05-31T01:45:58.467748+00:00",
+      "at": "2026-06-07T19:02:43.388717+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-swarm-observer-orch-r4-ui-ux-signals",
       "gap_kind": "plan_debt",
       "title": "swarm-observer: pending plan todo orch-r4-ui-ux-signals",
-      "at": "2026-05-31T01:45:58.467752+00:00",
+      "at": "2026-06-07T19:02:43.388725+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-security-research-sec-r1-httpd-fuzz-smoke",
       "gap_kind": "plan_debt",
       "title": "security-research: pending plan todo sec-r1-httpd-fuzz-smoke",
-      "at": "2026-05-31T01:45:58.467755+00:00",
+      "at": "2026-06-07T19:02:43.388729+00:00",
       "patch": "patched sec-r1-httpd-fuzz-smoke \u2192 pending in security-research-backlog.md",
       "suggest_systemd_loop": "security-research"
     },
@@ -154,217 +140,231 @@
       "gap_id": "gap-plan-pending-security-research-sec-r2-tier5-gap-exploit",
       "gap_kind": "plan_debt",
       "title": "security-research: pending plan todo sec-r2-tier5-gap-exploit",
-      "at": "2026-05-31T01:45:58.467926+00:00",
+      "at": "2026-06-07T19:02:43.388965+00:00",
       "patch": "patched sec-r2-tier5-gap-exploit \u2192 pending in security-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-pending-security-research-sec-r3-runtime-surface",
       "gap_kind": "plan_debt",
       "title": "security-research: pending plan todo sec-r3-runtime-surface",
-      "at": "2026-05-31T01:45:58.468096+00:00",
+      "at": "2026-06-07T19:02:43.389180+00:00",
       "patch": "patched sec-r3-runtime-surface \u2192 pending in security-research-backlog.md"
     },
     {
       "gap_id": "gap-plan-debt-lic-master-plan-phase-8p-parallel-compile-ci-thr",
       "gap_kind": "plan_debt",
       "title": "Phase 8p \u2014 Parallel compile + CI throughput \u2014 **partial (8p-a/b/c/d):** 8p-a parallel `run_all` + isolated `LI_BUILD_DIR",
-      "at": "2026-05-31T01:45:58.468265+00:00",
+      "at": "2026-06-07T19:02:43.389384+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-competitor-pure-li-ph7e-catalog",
       "gap_kind": "competitor_feature",
       "title": "Increase pure_li catalog variants for PH-7e codegen proof",
-      "at": "2026-05-31T01:45:58.468270+00:00"
+      "at": "2026-06-07T19:02:43.389390+00:00"
     },
     {
       "gap_id": "gap-hpc-kokkos-execution-memory-spaces",
       "gap_kind": "competitor_feature",
       "title": "Kokkos-class execution model: parallel_for, Views, GPU memory spaces",
-      "at": "2026-05-31T01:45:58.468272+00:00"
+      "at": "2026-06-07T19:02:43.389394+00:00"
     },
     {
       "gap_id": "gap-hpc-petsc-kokkos-implicit-pde",
       "gap_kind": "competitor_feature",
       "title": "PETSc 3.25 Kokkos-native KSP/PC (aijkokkos, PCBJKOKKOS) implicit PDE stack",
-      "at": "2026-05-31T01:45:58.468275+00:00"
+      "at": "2026-06-07T19:02:43.389400+00:00"
     },
     {
       "gap_id": "gap-hpc-fftw-roofline-catalog-row",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 FFT micro-bench: FFTW vs vendor GPU roofline (cuFFT/VkFFT/heFFTe)",
-      "at": "2026-05-31T01:45:58.468277+00:00"
+      "at": "2026-06-07T19:02:43.389414+00:00"
     },
     {
       "gap_id": "gap-hpc-hypre-boomeramg-tier2-pde",
       "gap_kind": "competitor_feature",
       "title": "hypre BoomerAMG + parallel CSR for large-scale implicit PDE",
-      "at": "2026-05-31T01:45:58.468280+00:00"
+      "at": "2026-06-07T19:02:43.389416+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-matmul-naive-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: matmul_naive 1.73x vs cpp (Eigen/MKL class)",
-      "at": "2026-05-31T01:45:58.468281+00:00"
+      "at": "2026-06-07T19:02:43.389420+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-gmres-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_gmres 1.68x vs cpp (iterative solver class)",
-      "at": "2026-05-31T01:45:58.468282+00:00"
+      "at": "2026-06-07T19:02:43.389422+00:00"
     },
     {
       "gap_id": "gap-vertical-stub-md-lennard-jones",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: md_lennard_jones (LAMMPS/GROMACS)",
-      "at": "2026-05-31T01:45:58.468284+00:00",
+      "at": "2026-06-07T19:02:43.389426+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-md-lennard-jones \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-pde-heat-2d",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: pde_heat_2d (OpenFOAM/PETSc)",
-      "at": "2026-05-31T01:45:58.468508+00:00"
+      "at": "2026-06-07T19:02:43.389696+00:00"
     },
     {
       "gap_id": "gap-vertical-stub-fea-linear-elasticity",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: fea_linear_elasticity (CalculiX/ANSYS)",
-      "at": "2026-05-31T01:45:58.468512+00:00"
+      "at": "2026-06-07T19:02:43.389701+00:00"
     },
     {
       "gap_id": "gap-vertical-stub-cfd-lid-driven-cavity",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cfd_lid_driven_cavity (OpenFOAM/COMSOL)",
-      "at": "2026-05-31T01:45:58.468515+00:00"
+      "at": "2026-06-07T19:02:43.389704+00:00"
     },
     {
       "gap_id": "gap-infra-verticals-toml-missing-benchmarks-main",
       "gap_kind": "competitor_feature",
       "title": "benchmarks/competitive/verticals.toml missing on main \u2014 blocks swarm-gap vertical ingest",
-      "at": "2026-05-31T01:45:58.468516+00:00"
+      "at": "2026-06-07T19:02:43.389707+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-integ-euler-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_integ_euler 1.40x vs cpp (explicit integrator class)",
-      "at": "2026-05-31T01:45:58.468518+00:00"
+      "at": "2026-06-07T19:02:43.389711+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-integ-verlet-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_integ_verlet 1.35x vs cpp (symplectic integrator class)",
-      "at": "2026-05-31T01:45:58.468521+00:00"
+      "at": "2026-06-07T19:02:43.389713+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-num-opt-line-search-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: num_opt_line_search 2.00x vs cpp (optimization microbench)",
-      "at": "2026-05-31T01:45:58.468523+00:00"
+      "at": "2026-06-07T19:02:43.389717+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-cloth-swing-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: cloth_swing 1.37x vs cpp (physics tier-2)",
-      "at": "2026-05-31T01:45:58.468525+00:00"
+      "at": "2026-06-07T19:02:43.389719+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-orbit-two-body-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: orbit_two_body 1.69x vs cpp (N-body integrator)",
-      "at": "2026-05-31T01:45:58.468527+00:00"
+      "at": "2026-06-07T19:02:43.389721+00:00"
     },
     {
       "gap_id": "gap-benchmark-red-schrodinger-1d-barrier-tier1",
       "gap_kind": "competitor_feature",
       "title": "Tier-1 red: schrodinger_1d_barrier 1.77x vs cpp (quantum PDE stub)",
-      "at": "2026-05-31T01:45:58.468528+00:00"
+      "at": "2026-06-07T19:02:43.389724+00:00"
     },
     {
       "gap_id": "gap-hpc-raja-execution-policies",
       "gap_kind": "competitor_feature",
       "title": "RAJA policy-based loop abstractions vs Li std/execution decorators",
-      "at": "2026-05-31T01:45:58.468530+00:00"
+      "at": "2026-06-07T19:02:43.389726+00:00"
     },
     {
       "gap_id": "gap-hpc-sundials-stiff-ode-sensitivity",
       "gap_kind": "competitor_feature",
       "title": "SUNDIALS-class stiff ODE + sensitivity vs tier-2 Li integrators",
-      "at": "2026-05-31T01:45:58.468533+00:00"
+      "at": "2026-06-07T19:02:43.389728+00:00"
     },
     {
       "gap_id": "gap-hpc-openmp-llvm-lowering-rubric",
       "gap_kind": "competitor_feature",
       "title": "OpenMP prescriptive vs descriptive lowering rubric for portable codegen",
-      "at": "2026-05-31T01:45:58.468534+00:00"
+      "at": "2026-06-07T19:02:43.389731+00:00"
     },
     {
       "gap_id": "gap-competitor-chapel-hpsf-productivity",
       "gap_kind": "competitor_feature",
       "title": "Chapel 2.x HPSF productivity parallel language vs Li PH-7d execution",
-      "at": "2026-05-31T01:45:58.468535+00:00"
+      "at": "2026-06-07T19:02:43.389732+00:00"
     },
     {
       "gap_id": "gap-vertical-stub-drug-litl",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: drug_litl",
-      "at": "2026-05-31T01:45:58.468537+00:00",
+      "at": "2026-06-07T19:02:43.389736+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-drug-litl \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-bio-litl",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: bio_litl",
-      "at": "2026-05-31T01:45:58.468730+00:00",
+      "at": "2026-06-07T19:02:43.389955+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-bio-litl \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-scientific-viz",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: scientific_viz",
-      "at": "2026-05-31T01:45:58.468916+00:00",
+      "at": "2026-06-07T19:02:43.390171+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-scientific-viz \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cinematic-encode",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cinematic_encode",
-      "at": "2026-05-31T01:45:58.469105+00:00",
+      "at": "2026-06-07T19:02:43.390377+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-cinematic-encode \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cinematic-color-grade",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cinematic_color_grade",
-      "at": "2026-05-31T01:45:58.469298+00:00",
+      "at": "2026-06-07T19:02:43.390587+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-cinematic-color-grade \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-cinematic-audio-sync",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: cinematic_audio_sync",
-      "at": "2026-05-31T01:45:58.469494+00:00",
+      "at": "2026-06-07T19:02:43.390790+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-cinematic-audio-sync \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-mmo-shard",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: mmo_shard",
-      "at": "2026-05-31T01:45:58.469689+00:00",
+      "at": "2026-06-07T19:02:43.391006+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-mmo-shard \u2192 pending in sim-md-research-backlog.md"
     },
     {
       "gap_id": "gap-vertical-stub-qm-dft",
       "gap_kind": "competitor_feature",
       "title": "verticals.toml stub/honesty: qm_dft",
-      "at": "2026-05-31T01:45:58.469882+00:00",
+      "at": "2026-06-07T19:02:43.391207+00:00",
       "patch": "patched gap-competitor-gap-vertical-stub-qm-dft \u2192 pending in sim-md-research-backlog.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-studio-ui-ux-studio-ux-16-palette-search-latency",
+      "gap_kind": "plan_debt",
+      "title": "studio-ui-ux: pending plan todo studio-ux-16-palette-search-latency",
+      "at": "2026-06-07T19:02:43.391432+00:00",
+      "patch": "skip missing backlog /workspace/lic-studio-ui/docs/superpowers/plans/2026-05-24-studio-ui-ux-plan-loop.md"
+    },
+    {
+      "gap_id": "gap-plan-pending-studio-ui-ux-studio-ux-17-gpu-fail-recovery",
+      "gap_kind": "plan_debt",
+      "title": "studio-ui-ux: pending plan todo studio-ux-17-gpu-fail-recovery",
+      "at": "2026-06-07T19:02:43.391500+00:00",
+      "patch": "skip missing backlog /workspace/lic-studio-ui/docs/superpowers/plans/2026-05-24-studio-ui-ux-plan-loop.md"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-g-ci-cross-repo",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-g-ci-cross-repo",
-      "at": "2026-05-31T01:45:58.470066+00:00",
+      "at": "2026-06-07T19:02:43.391517+00:00",
       "patch": "deferred (no runner backlog mapping)",
       "suggest_systemd_loop": "ph-db"
     },
@@ -372,71 +372,57 @@
       "gap_id": "gap-plan-pending-ph-db-wp-h-containers",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-h-containers",
-      "at": "2026-05-31T01:45:58.470072+00:00",
+      "at": "2026-06-07T19:02:43.391522+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-k-postgres-nightly",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-k-postgres-nightly",
-      "at": "2026-05-31T01:45:58.470075+00:00",
+      "at": "2026-06-07T19:02:43.391526+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-pr-merge-wave",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-pr-merge-wave",
-      "at": "2026-05-31T01:45:58.470077+00:00",
+      "at": "2026-06-07T19:02:43.391531+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-h0-default-main",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-h0-default-main",
-      "at": "2026-05-31T01:45:58.470080+00:00",
+      "at": "2026-06-07T19:02:43.391534+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-n3-realtime",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-n3-realtime",
-      "at": "2026-05-31T01:45:58.470082+00:00",
+      "at": "2026-06-07T19:02:43.391538+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-n5-security-bench",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-n5-security-bench",
-      "at": "2026-05-31T01:45:58.470084+00:00",
+      "at": "2026-06-07T19:02:43.391541+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-d-registry-v2",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-d-registry-v2",
-      "at": "2026-05-31T01:45:58.470087+00:00",
+      "at": "2026-06-07T19:02:43.391545+00:00",
       "patch": "deferred (no runner backlog mapping)"
     },
     {
       "gap_id": "gap-plan-pending-ph-db-wp-prod-lidb-default",
       "gap_kind": "plan_debt",
       "title": "ph-db: pending plan todo wp-prod-lidb-default",
-      "at": "2026-05-31T01:45:58.470089+00:00",
+      "at": "2026-06-07T19:02:43.391549+00:00",
       "patch": "deferred (no runner backlog mapping)"
-    },
-    {
-      "gap_id": "gap-plan-pending-studio-ui-ux-studio-ux-21-wgpu-swapchain-gpu-runner",
-      "gap_kind": "plan_debt",
-      "title": "studio-ui-ux: pending plan todo studio-ux-21-wgpu-swapchain-gpu-runner",
-      "at": "2026-05-31T01:45:58.470091+00:00",
-      "patch": "patched studio-ux-21-wgpu-swapchain-gpu-runner \u2192 pending in 2026-05-24-studio-ui-ux-plan-loop.md"
-    },
-    {
-      "gap_id": "gap-plan-pending-studio-ui-ux-studio-ux-24-gpu-runner-deps",
-      "gap_kind": "plan_debt",
-      "title": "studio-ui-ux: pending plan todo studio-ux-24-gpu-runner-deps",
-      "at": "2026-05-31T01:45:58.470297+00:00",
-      "patch": "patched studio-ux-24-gpu-runner-deps \u2192 pending in 2026-05-24-studio-ui-ux-plan-loop.md"
     }
   ],
   "suggested_new_loops": [
@@ -446,8 +432,6 @@
   ],
   "patches": [
     "patched pkg-line-profiler \u2192 pending in ecosystem-package-backlog.md",
-    "patched pkg-std-summary \u2192 pending in ecosystem-package-backlog.md",
-    "patched pkg-std-plot \u2192 pending in ecosystem-package-backlog.md",
     "patched sim-p1-num-dot-axpy \u2192 pending in sim-algorithm-backlog.md",
     "patched sim-p1-md-neighbor-cell \u2192 pending in sim-algorithm-backlog.md",
     "patched sim-p2-qm-dft-scf \u2192 pending in sim-algorithm-backlog.md",
@@ -466,7 +450,7 @@
     "patched gap-competitor-gap-vertical-stub-cinematic-audio-sync \u2192 pending in sim-md-research-backlog.md",
     "patched gap-competitor-gap-vertical-stub-mmo-shard \u2192 pending in sim-md-research-backlog.md",
     "patched gap-competitor-gap-vertical-stub-qm-dft \u2192 pending in sim-md-research-backlog.md",
-    "patched studio-ux-21-wgpu-swapchain-gpu-runner \u2192 pending in 2026-05-24-studio-ui-ux-plan-loop.md",
-    "patched studio-ux-24-gpu-runner-deps \u2192 pending in 2026-05-24-studio-ui-ux-plan-loop.md"
+    "skip missing backlog /workspace/lic-studio-ui/docs/superpowers/plans/2026-05-24-studio-ui-ux-plan-loop.md",
+    "skip missing backlog /workspace/lic-studio-ui/docs/superpowers/plans/2026-05-24-studio-ui-ux-plan-loop.md"
   ]
 }
