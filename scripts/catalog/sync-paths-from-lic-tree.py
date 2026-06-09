@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Sync catalog.toml paths from lic benchmarks tree (tier1_micro, tier2_physics, …).
+"""Sync catalog.toml paths from benchmarks workloads + legacy lic tree.
 
-Walks ``LIC_ROOT/benchmarks/tier*`` (and tier5 scenarios, package harness dirs),
-sets ``path`` for each catalog id when a matching harness directory exists.
+Prefers ``benchmarks/workloads/tier*`` under this repo (ADR: workloads live in
+benchmarks). Falls back to ``LIC_ROOT/benchmarks/tier*`` for tier-0 proofs only.
+Sets ``path`` and ``repo`` when a matching harness directory exists.
 Optionally regenerates ``data/latest/summary.json`` via ``build_summary.py`` when
 ``lic/benchmarks/results/latest.csv`` is present.
 
