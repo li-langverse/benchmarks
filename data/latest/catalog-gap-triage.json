@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-06-04T18:01Z",
+  "roots": {
+    "lic": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780595989085/lic",
+    "benchmarks": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780595989085/repo"
+  },
+  "summary": {
+    "bogus_remap": 0,
+    "planned": 0,
+    "lic_impl": 0,
+    "fix_path": 0
+  },
+  "buckets": {
+    "bogus_remap": [],
+    "planned": [],
+    "lic_impl": [],
+    "fix_path": []
+  }
+}
