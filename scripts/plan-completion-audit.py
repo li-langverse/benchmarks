@@ -234,6 +234,33 @@ def _catalog_repo_root(repo: str) -> Path | None:
     return None
 
 
+def _catalog_path_candidates(rel: str) -> list[Path]:
+    """Resolve catalog path under benchmarks checkout (workloads + vendor mirrors)."""
+    rel = rel.replace("\\", "/")
+    out: list[Path] = [ROOT / rel]
+    if rel.startswith("benchmarks/workloads/tier5_http/"):
+        out.append(
+            ROOT
+            / rel.replace(
+                "benchmarks/workloads/tier5_http/",
+                "vendor/lis-tier5/benchmarks/tier5_http/",
+            )
+        )
+    return out
+
+
+def catalog_path_exists(rel: str, repo: str) -> bool:
+    root = _catalog_repo_root(repo)
+    if root is not None:
+        primary = root / rel
+        if primary.is_dir() or primary.is_file():
+            return True
+    for candidate in _catalog_path_candidates(rel):
+        if candidate.is_dir() or candidate.is_file():
+            return True
+    return False
+
+
 def catalog_without_repo_path() -> list[dict]:
     import tomllib
 
@@ -249,18 +276,16 @@ def catalog_without_repo_path() -> list[dict]:
         if row.get("catalog_lifecycle") == "planned":
             continue
         repo = str(row.get("repo", "lic"))
+        if catalog_path_exists(rel, repo):
+            continue
         root = _catalog_repo_root(repo)
-        if root is None:
-            continue
-        bench_path = root / rel
-        if bench_path.is_dir() or bench_path.is_file():
-            continue
+        root_label = root.name if root else repo
         out.append(
             {
                 "source": "benchmarks:catalog.toml",
                 "item": (
                     f"catalog id={row.get('id')} path missing under {repo} root "
-                    f"({root.name}): {rel}"
+                    f"({root_label}): {rel}"
                 ),
             }
         )
