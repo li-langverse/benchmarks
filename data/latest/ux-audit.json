@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-05-30T21:49:05.295083+00:00",
+  "generated_at": "2026-06-06T22:12:38.352274+00:00",
   "platform": "Linux",
   "summary": {
-    "total": 1,
-    "failing": 0,
-    "passing": 1,
+    "total": 9,
+    "failing": 1,
+    "passing": 8,
     "skipped": 0
   },
   "targets": [
@@ -37,7 +37,9 @@
       ],
       "friction_points": [],
       "sota_refs": [
-        "mkdocs-material"
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
       ],
       "rubric_scores": {
         "nav_clarity": 0.85,
@@ -48,9 +50,353 @@
       },
       "rubric_threshold": 0.6,
       "missing_states": [],
-      "artifacts": [],
-      "mode": "static_site",
-      "rubric_min": 0.7
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/lic-docs/journey-log.json"
+      ]
+    },
+    {
+      "target_id": "agents-dashboard",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "agents_list_empty",
+          "steps": [
+            "open_agents",
+            "check_empty_state"
+          ],
+          "completed": true,
+          "step_count": 2
+        },
+        {
+          "id": "live_stream",
+          "steps": [
+            "open_run",
+            "read_stream"
+          ],
+          "completed": true,
+          "step_count": 2
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/agents-dashboard/journey-log.json"
+      ]
+    },
+    {
+      "target_id": "benchmarks-dashboard",
+      "repo": "benchmarks",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "dashboard_home",
+          "steps": [
+            "dashboard_home",
+            "overview_search"
+          ],
+          "completed": true,
+          "step_count": 2
+        },
+        {
+          "id": "gpu_matrix",
+          "steps": [
+            "gpu_matrix",
+            "chip_picker"
+          ],
+          "completed": true,
+          "step_count": 2
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/benchmarks-dashboard/journey-log.json"
+      ]
+    },
+    {
+      "target_id": "lic-tetris",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "play_session",
+          "steps": [
+            "start",
+            "mid_game",
+            "game_over"
+          ],
+          "completed": true,
+          "step_count": 3
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/lic-tetris/journey-log.json"
+      ],
+      "mode": "native_gui",
+      "native_pixels": false
+    },
+    {
+      "target_id": "world-studio-demo",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "studio_workspace",
+          "steps": [
+            "viewport",
+            "timeline",
+            "inspector"
+          ],
+          "completed": true,
+          "step_count": 3
+        },
+        {
+          "id": "command_palette",
+          "steps": [
+            "open_palette",
+            "filter",
+            "run_command"
+          ],
+          "completed": true,
+          "step_count": 3
+        },
+        {
+          "id": "vertical_profile",
+          "steps": [
+            "switch_profile",
+            "read_metrics"
+          ],
+          "completed": true,
+          "step_count": 2
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual",
+        "cursor-agent",
+        "linear-app",
+        "github-copilot-workspace"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/world-studio-demo/journey-log.json"
+      ]
+    },
+    {
+      "target_id": "world-studio-native",
+      "repo": "lic",
+      "surface": "gui",
+      "surface_class": "gui_app",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "studio_viewport_pixels",
+          "steps": [
+            "xvfb",
+            "sdl_draw",
+            "png_capture"
+          ],
+          "completed": true,
+          "step_count": 3
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/world-studio-native/journey-log.json"
+      ],
+      "mode": "native_gui",
+      "native_pixels": true
+    },
+    {
+      "target_id": "gui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "gui",
+      "surface_class": "gui_gen",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "gen_preview_loop",
+          "steps": [
+            "prompt",
+            "preview",
+            "edit"
+          ],
+          "completed": true,
+          "step_count": 3
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/gui-gen-fixture/journey-log.json"
+      ]
+    },
+    {
+      "target_id": "tui-app-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_app",
+      "status": "fail",
+      "journeys": [
+        {
+          "id": "key_nav_help",
+          "steps": [
+            "launch",
+            "tab_help",
+            "quit"
+          ],
+          "completed": false,
+          "step_count": 3
+        }
+      ],
+      "friction_points": [
+        {
+          "journey": "agents_list_empty",
+          "issue": "No empty state when zero runs"
+        }
+      ],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.45,
+        "task_efficiency": 0.5,
+        "empty_states": 0.35,
+        "error_handling": 0.75,
+        "cognitive_load": 0.55
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [
+        "empty"
+      ],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/tui-app-fixture/journey-log.json"
+      ]
+    },
+    {
+      "target_id": "tui-gen-fixture",
+      "repo": "li-cursor-agents",
+      "surface": "tui",
+      "surface_class": "tui_gen",
+      "status": "pass",
+      "journeys": [
+        {
+          "id": "cli_to_tui",
+          "steps": [
+            "run_generator",
+            "capture_screen"
+          ],
+          "completed": true,
+          "step_count": 2
+        }
+      ],
+      "friction_points": [],
+      "sota_refs": [
+        "mkdocs-material",
+        "shadcn-ui",
+        "textual"
+      ],
+      "rubric_scores": {
+        "nav_clarity": 0.85,
+        "task_efficiency": 0.8,
+        "empty_states": 0.9,
+        "error_handling": 0.75,
+        "cognitive_load": 0.7
+      },
+      "rubric_threshold": 0.6,
+      "missing_states": [],
+      "artifacts": [
+        "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780783439989/li-cursor-agents/ux-harness/artifacts/tui-gen-fixture/journey-log.json"
+      ]
     }
   ]
 }
