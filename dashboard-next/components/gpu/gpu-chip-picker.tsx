@@ -1,7 +1,13 @@
 "use client";
 
+import { useCallback, useRef, type KeyboardEvent } from "react";
 import type { GpuChipContribution, GpuOpenSlot } from "@/lib/lig-gpu-matrix-types";
 import { backendLabel, formatTimingSec, vendorBadgeClass } from "@/lib/lig-gpu-matrix-types";
+import {
+  GPU_CHIP_TAB_PANEL_ID,
+  gpuChipTabId,
+  nextChipTabIndex,
+} from "@/lib/gpu-chip-picker-a11y";
 
 type GpuChipPickerProps = {
   contributions: GpuChipContribution[];
@@ -18,6 +24,25 @@ export function GpuChipPicker({
   onSelect,
   policyUrl,
 }: GpuChipPickerProps) {
+  const tabRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  const focusTab = useCallback((slug: string) => {
+    tabRefs.current.get(slug)?.focus();
+  }, []);
+
+  const handleTabKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+      const nextIndex = nextChipTabIndex(event.key, index, contributions.length);
+      if (nextIndex == null) return;
+      event.preventDefault();
+      const slug = contributions[nextIndex]?.chip_slug;
+      if (!slug) return;
+      focusTab(slug);
+      onSelect(slug);
+    },
+    [contributions, focusTab, onSelect],
+  );
+
   return (
     <section className="gpu-chip-picker" aria-label="Select GPU chip">
       <div className="gpu-chip-picker-header">
@@ -29,17 +54,25 @@ export function GpuChipPicker({
         ) : null}
       </div>
       <div className="gpu-chip-cards" role="tablist" aria-label="Contributed GPUs">
-        {contributions.map((c) => {
+        {contributions.map((c, index) => {
           const active = c.chip_slug === selectedSlug;
           const s = c.summary;
           return (
             <button
               key={c.chip_slug}
+              ref={(node) => {
+                if (node) tabRefs.current.set(c.chip_slug, node);
+                else tabRefs.current.delete(c.chip_slug);
+              }}
               type="button"
               role="tab"
+              id={gpuChipTabId(c.chip_slug)}
+              aria-controls={GPU_CHIP_TAB_PANEL_ID}
               aria-selected={active}
+              tabIndex={active ? 0 : -1}
               className={`gpu-chip-card ${vendorBadgeClass(c.vendor)} ${active ? "gpu-chip-card-active" : ""}`}
               onClick={() => onSelect(c.chip_slug)}
+              onKeyDown={(event) => handleTabKeyDown(event, index)}
             >
               <span className="gpu-chip-card-vendor">{c.vendor ?? "gpu"}</span>
               <strong className="gpu-chip-card-title">{c.label}</strong>
@@ -58,27 +91,30 @@ export function GpuChipPicker({
             </button>
           );
         })}
-        {openSlots.map((slot) => (
-          <div
-            key={slot.chip_slug}
-            className={`gpu-chip-card gpu-chip-card-open ${vendorBadgeClass(slot.vendor)}`}
-            role="tab"
-            aria-disabled="true"
-          >
-            <span className="gpu-chip-card-vendor">{slot.vendor}</span>
-            <strong className="gpu-chip-card-title">{slot.label}</strong>
-            <span className="mono gpu-chip-card-meta">
-              {slot.host_os} · {backendLabel(slot.primary_backend)}
-            </span>
-            <span className="gpu-chip-card-open-badge">Open slot</span>
-            {policyUrl ? (
-              <a href={policyUrl} target="_blank" rel="noopener noreferrer" className="gpu-chip-card-donate">
-                How to contribute
-              </a>
-            ) : null}
-          </div>
-        ))}
       </div>
+      {openSlots.length > 0 ? (
+        <div className="gpu-chip-cards gpu-chip-cards-open" aria-label="Open contribution slots">
+          {openSlots.map((slot) => (
+            <div
+              key={slot.chip_slug}
+              className={`gpu-chip-card gpu-chip-card-open ${vendorBadgeClass(slot.vendor)}`}
+              aria-disabled="true"
+            >
+              <span className="gpu-chip-card-vendor">{slot.vendor}</span>
+              <strong className="gpu-chip-card-title">{slot.label}</strong>
+              <span className="mono gpu-chip-card-meta">
+                {slot.host_os} · {backendLabel(slot.primary_backend)}
+              </span>
+              <span className="gpu-chip-card-open-badge">Open slot</span>
+              {policyUrl ? (
+                <a href={policyUrl} target="_blank" rel="noopener noreferrer" className="gpu-chip-card-donate">
+                  How to contribute
+                </a>
+              ) : null}
+            </div>
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }
