@@ -1,4 +1,5 @@
-#include "../common/heat_core.h"
+/* heat_equation_2d — tier-2 explicit 2D heat equation (physics-codegen Arm B cpp). */
+#include "heat_kernel.h"
 #include <stdio.h>
 #include <string.h>
 
