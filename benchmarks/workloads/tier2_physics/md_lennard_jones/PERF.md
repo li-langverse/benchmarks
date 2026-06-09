@@ -12,6 +12,8 @@
 
 Li links `md_core.c` via `LI_EXTRA_C` plus a thin `lic` driver (`li/main.li`).
 
+**PH-7d decorator showcase:** `li/kernel.li` defines `lj_force_step` with `@cpu` `@parallel(disjoint=disjoint_elem)` `@vectorized(lanes=4)` on `def`; `main.li` calls `lj_decorator_showcase()` before the C oracle checksum path. Published tier-2 speed rows still use the shared C kernel until pure-Li parity lands.
+
 ```bash
 python3 benchmarks/harness/bench.py --tier 2 --runs 5
 ```
