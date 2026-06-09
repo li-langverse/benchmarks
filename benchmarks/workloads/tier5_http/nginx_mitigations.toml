@@ -40,6 +40,16 @@ exploit = "exploits/oversized_request_line.toml"
 li_invariant = "request line and header aggregate size capped"
 
 [[mitigation]]
+id = "invalid_method_reject"
+cve = []
+nginx_version_fixed = "0.1.0"
+src = "src/http/ngx_http_request.c"
+symbol = "ngx_http_process_request"
+notes = "unknown or malformed HTTP methods rejected (CWE-20 input validation)"
+exploit = "exploits/bad_method.toml"
+li_invariant = "invalid method rejected without crash; legitimate GET still OK"
+
+[[mitigation]]
 id = "client_max_body_size"
 cve = []
 nginx_version_fixed = "0.1.0"

@@ -91,16 +91,30 @@ def _canary_listener(host: str = "127.0.0.1"):
         sock.close()
 
 
-def legitimate_get(host: str, port: int, path: str = "/") -> bool:
-    try:
-        s = _connect(host, port, 1.0)
-        req = f"GET {path} HTTP/1.1\r\nHost: {host}:{port}\r\nConnection: close\r\n\r\n"
-        s.sendall(req.encode())
-        data = s.recv(4096)
-        s.close()
-        return b"200" in data.split(b"\r\n", 1)[0]
-    except OSError:
-        return False
+def legitimate_get(
+    host: str,
+    port: int,
+    path: str = "/",
+    *,
+    retries: int = 1,
+    retry_delay_sec: float = 0.0,
+) -> bool:
+    """Probe a normal GET; retry when nginx is still draining slowloris sockets."""
+    attempts = max(1, int(retries))
+    for attempt in range(attempts):
+        if attempt and retry_delay_sec > 0:
+            time.sleep(retry_delay_sec * attempt)
+        try:
+            s = _connect(host, port, 1.0)
+            req = f"GET {path} HTTP/1.1\r\nHost: {host}:{port}\r\nConnection: close\r\n\r\n"
+            s.sendall(req.encode())
+            data = s.recv(4096)
+            s.close()
+            if b"200" in data.split(b"\r\n", 1)[0]:
+                return True
+        except OSError:
+            pass
+    return False
 
 
 def attack_slowloris(host: str, port: int, attack: dict[str, Any]) -> dict[str, Any]:
@@ -131,7 +145,9 @@ def attack_slowloris(host: str, port: int, attack: dict[str, Any]) -> dict[str, 
                 s.close()
             except OSError:
                 pass
-    legit = legitimate_get(host, port)
+    # nginx may need a beat to accept new clients after many half-open conns.
+    time.sleep(0.35)
+    legit = legitimate_get(host, port, retries=5, retry_delay_sec=0.2)
     return {
         "attack_closed": attack_closed,
         "legitimate_client_ok": legit,

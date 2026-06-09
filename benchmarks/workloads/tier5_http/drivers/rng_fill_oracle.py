@@ -6,14 +6,16 @@ import sys
 from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[3]
+from paths import BENCH_REPO, lic_root
+
+REPO = lic_root()
 SCRIPTS = REPO / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
 from httpd_bad_rng import oracle_outcome, driver_from_rng_table  # noqa: E402
 
-HARNESS = REPO / "benchmarks" / "harness"
+HARNESS = BENCH_REPO / "harness"
 if str(HARNESS) not in sys.path:
     sys.path.insert(0, str(HARNESS))
 

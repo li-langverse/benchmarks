@@ -6,9 +6,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-from _driver_common import leak_censor_enabled_in_flatten, resolve_server_config
-
-REPO = Path(__file__).resolve().parents[3]
+from _driver_common import REPO, leak_censor_enabled_in_flatten, resolve_server_config
 
 
 def run(cfg: dict[str, Any], *, lang: str, stub: bool, port: int) -> dict[str, Any]:
