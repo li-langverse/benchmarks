@@ -1,3 +1,7 @@
+# fdtd_waveguide_2d — Li driver over shared C kernel (fdtd_core.c via LI_EXTRA_C).
+# Pure-Li Yee stencil at N=32 hits E0201 on hz[i+1] neighbors; scalar unroll lands ~4 ULP
+# vs clang -ffast-math native (1.0096662291650051 vs 1.0096662291650043).
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true

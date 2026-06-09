@@ -1,0 +1,1067 @@
+{
+  "generated_at": "2026-06-04T07:51:54Z",
+  "pilot": false,
+  "token_source": "sdk",
+  "benches": [
+    "wave_equation_1d",
+    "heat_equation_2d",
+    "advection_diffusion_2d",
+    "wave_equation_2d",
+    "sph_dam_break_2d",
+    "wind_field_bc",
+    "combustion_passive",
+    "fdtd_waveguide_2d",
+    "schrodinger_1d_barrier",
+    "euler_fluid_2d"
+  ],
+  "rows": [
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "wave_equation_1d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "417.54687693519276"
+      },
+      "llm": {
+        "duration_ms": 209909,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 11660,
+        "thinking_chars": 46638,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 119,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "heat_equation_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "-3387.6965976796632"
+      },
+      "llm": {
+        "duration_ms": 163790,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 6541,
+        "thinking_chars": 26162,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 103,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "advection_diffusion_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.051908455516204724"
+      },
+      "llm": {
+        "duration_ms": 197426,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1205,
+        "thinking_chars": 4820,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 79,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "wave_equation_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "duration_ms": 200146,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 3707,
+        "thinking_chars": 14828,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 99,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "error"
+      },
+      "harness_ok": true,
+      "agent_status": "error"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 276474,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 4719,
+        "thinking_chars": 18876,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 148,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 110757,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 2112,
+        "thinking_chars": 8446,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 73,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "duration_ms": 104566,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1679,
+        "thinking_chars": 6716,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 58,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "fdtd_waveguide_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "duration_ms": 312726,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 8629,
+        "thinking_chars": 34514,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 155,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "schrodinger_1d_barrier",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "11.712397238151269"
+      },
+      "llm": {
+        "duration_ms": 215900,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 4090,
+        "thinking_chars": 16358,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 118,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "A",
+      "model": "default",
+      "bench_id": "euler_fluid_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.7219958512987783"
+      },
+      "llm": {
+        "duration_ms": 104508,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 762,
+        "thinking_chars": 3048,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 87,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_1d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "417.54687693519276"
+      },
+      "llm": {
+        "duration_ms": 119408,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 4956,
+        "thinking_chars": 19824,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 85,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_1d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "417.54687693519276"
+      },
+      "llm": {
+        "duration_ms": 161438,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 2299,
+        "thinking_chars": 9196,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 69,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_1d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "417.54687693519276"
+      },
+      "llm": {
+        "duration_ms": 120026,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 664,
+        "thinking_chars": 2654,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 55,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_1d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "417.54687693519276"
+      },
+      "llm": {
+        "duration_ms": 1292896,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 15086,
+        "thinking_chars": 60344,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 196,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "heat_equation_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "-3387.6965976796632"
+      },
+      "llm": {
+        "duration_ms": 85202,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 3105,
+        "thinking_chars": 12418,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 75,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "heat_equation_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "-3387.6965976796632"
+      },
+      "llm": {
+        "duration_ms": 108919,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 849,
+        "thinking_chars": 3394,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 59,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "heat_equation_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "-3387.6965976796632"
+      },
+      "llm": {
+        "duration_ms": 145545,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 818,
+        "thinking_chars": 3272,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 70,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "heat_equation_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "-3387.6965976796632"
+      },
+      "llm": {
+        "duration_ms": 727203,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 8560,
+        "thinking_chars": 34240,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 181,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "advection_diffusion_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.051908455516204724"
+      },
+      "llm": {
+        "duration_ms": 64132,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 518,
+        "thinking_chars": 2072,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 41,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "advection_diffusion_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.051908455516204724"
+      },
+      "llm": {
+        "duration_ms": 68496,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 493,
+        "thinking_chars": 1972,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 61,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "advection_diffusion_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.051908455516204724"
+      },
+      "llm": {
+        "duration_ms": 312091,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 864,
+        "thinking_chars": 3454,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 61,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "advection_diffusion_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "0.051908455516204724"
+      },
+      "llm": {
+        "duration_ms": 846985,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 9247,
+        "thinking_chars": 36988,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 163,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "duration_ms": 86856,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 539,
+        "thinking_chars": 2156,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 69,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "duration_ms": 82437,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 877,
+        "thinking_chars": 3508,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 69,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "duration_ms": 73506,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 281,
+        "thinking_chars": 1122,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 60,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wave_equation_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "15553.018841049559"
+      },
+      "llm": {
+        "duration_ms": 193299,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 5415,
+        "thinking_chars": 21658,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 126,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 69464,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 270,
+        "thinking_chars": 1078,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 53,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 128040,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 2531,
+        "thinking_chars": 10122,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 67,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 186806,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 2545,
+        "thinking_chars": 10178,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 87,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "sph_dam_break_2d",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "87.302804255705965"
+      },
+      "llm": {
+        "duration_ms": 960657,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 15087,
+        "thinking_chars": 60348,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 179,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 59397,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 264,
+        "thinking_chars": 1054,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 47,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 73229,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1096,
+        "thinking_chars": 4382,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 58,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 64332,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 502,
+        "thinking_chars": 2006,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 53,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "wind_field_bc",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1"
+      },
+      "llm": {
+        "duration_ms": 111380,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1457,
+        "thinking_chars": 5828,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 76,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "duration_ms": 118715,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1161,
+        "thinking_chars": 4642,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 81,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "duration_ms": 68578,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 616,
+        "thinking_chars": 2462,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 62,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "duration_ms": 79316,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 514,
+        "thinking_chars": 2056,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 59,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "combustion_passive",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "363.24887451428492"
+      },
+      "llm": {
+        "duration_ms": 101941,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 530,
+        "thinking_chars": 2118,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 57,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "fdtd_waveguide_2d",
+      "lang": "cpp",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "duration_ms": 103681,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1118,
+        "thinking_chars": 4472,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 58,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "fdtd_waveguide_2d",
+      "lang": "rust",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "duration_ms": 104365,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 1317,
+        "thinking_chars": 5268,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 75,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "incomplete"
+      },
+      "harness_ok": true,
+      "agent_status": "incomplete"
+    },
+    {
+      "arm": "B",
+      "model": "default",
+      "bench_id": "fdtd_waveguide_2d",
+      "lang": "julia",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "duration_ms": 127547,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 705,
+        "thinking_chars": 2818,
+        "thinking_tokens_estimated": true,
+        "tool_calls": 72,
+        "token_source": "sdk-estimated",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    },
+    {
+      "arm": "B",
+      "bench_id": "fdtd_waveguide_2d",
+      "model": "default",
+      "lang": "li",
+      "validity": {
+        "verify_within_1ulp": true,
+        "checksum": "1.0096662291650043"
+      },
+      "llm": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "thinking_tokens": 0,
+        "thinking_tokens_estimated": false,
+        "tool_calls": 0,
+        "token_source": "code_implementer",
+        "model_label": "default",
+        "sdk_model": "default",
+        "status": "finished"
+      },
+      "harness_ok": true,
+      "agent_status": "finished"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
-#include "../common/sph_dam_core.h"
+/* sph_dam_break_2d — tier-2 2D dam-break SPH (physics-codegen Arm B cpp). */
+#include "sph_dam_kernel.h"
 #include <stdio.h>
 #include <string.h>
 

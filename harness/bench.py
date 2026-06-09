@@ -71,6 +71,7 @@ class BenchSpec:
     flops_per_run: float | None = None
     bytes_per_run: float | None = None
     li_pure: bool = False
+    li_core_c: str | None = None
     li_enabled: bool = True
 
 
@@ -263,7 +264,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         2,
         "wave_equation_1d",
         "cpp/main.c",
-        "common/wave_core.c",
+        "cpp/wave_kernel.c",
         "li/main.li",
     ),
     BenchSpec(
@@ -287,25 +288,27 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
         2,
         "advection_diffusion_2d",
         "cpp/main.c",
-        "common/advdiff_core.c",
+        "cpp/advdiff_kernel.c",
         "li/main.li",
+        li_core_c="li/advdiff_kernel.c",
     ),
     BenchSpec(
         "wave_equation_2d",
         2,
         "wave_equation_2d",
         "cpp/main.c",
-        "common/wave2d_core.c",
+        "cpp/wave2d_kernel.c",
+        "li/main.li",
+        li_core_c="li/wave2d_kernel.c",
+    ),
+    BenchSpec(
+        "sph_dam_break_2d",
+        2,
+        "sph_dam_break_2d",
+        "cpp/main.c",
+        "cpp/sph_dam_kernel.c",
         "li/main.li",
     ),
- BenchSpec(
- "sph_dam_break_2d",
- 2,
- "sph_dam_break_2d",
- "cpp/main.c",
- "common/sph_dam_core.c",
- "li/main.li",
- ),
  BenchSpec(
  "rigid_body_stack",
  2,
@@ -337,6 +340,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  "cpp/main.c",
  "common/combust_core.c",
  "li/main.li",
+ li_pure=True,
  ),
  BenchSpec(
  "orbit_two_body",
@@ -361,6 +365,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  "cpp/main.c",
  "common/tdse_core.c",
  "li/main.li",
+ li_pure=True,
  ),
  BenchSpec(
  "euler_fluid_2d",
@@ -515,7 +520,14 @@ def build_li(spec: BenchSpec, bin_path: Path) -> None:
     env.setdefault("LIC_ROOT", str(lr))
     env.setdefault("LI_REPO_ROOT", str(lr))
     if not spec.li_pure:
-        env["LI_EXTRA_C"] = str(root / spec.core_c)
+        if spec.li_core_c:
+            env["LI_EXTRA_C"] = str(root / spec.li_core_c)
+        else:
+            li_extra = root / "li" / "heat_kernel.c"
+            if li_extra.is_file() and spec.name == "heat_equation_2d":
+                env["LI_EXTRA_C"] = str(li_extra)
+            else:
+                env["LI_EXTRA_C"] = str(root / spec.core_c)
     subprocess.check_call(
         [
             str(lic),

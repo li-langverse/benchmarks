@@ -1,20 +1,319 @@
+# schrodinger_1d_barrier — pure-Li 1D TDSE barrier smoke (matches common/tdse_core.c).
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true
 
-extern proc li_schrodinger_1d_barrier_kernel()
+
+def gaussian_init(i: int) -> float
+  requires i >= 0
+  requires i < 64
+  ensures true
+  decreases i
+=
+  if i == 0:
+    return 9.9295043058510811e-06
+  if i == 1:
+    return 2.0171295076558206e-05
+  if i == 2:
+    return 4.0065297392951069e-05
+  if i == 3:
+    return 7.7809268615537772e-05
+  if i == 4:
+    return 0.00014774836023203364
+  if i == 5:
+    return 0.00027431046749340119
+  if i == 6:
+    return 0.00049795542150327392
+  if i == 7:
+    return 0.00088382630693504996
+  if i == 8:
+    return 0.0015338106793244659
+  if i == 9:
+    return 0.002602585252725405
+  if i == 10:
+    return 0.0043178400076330815
+  if i == 11:
+    return 0.0070041671493624221
+  if i == 12:
+    return 0.011108996538242306
+  if i == 13:
+    return 0.017227471311635108
+  if i == 14:
+    return 0.026121409853918257
+  if i == 15:
+    return 0.038725770351664364
+  if i == 16:
+    return 0.056134762834133725
+  if i == 17:
+    return 0.079559508718227687
+  if i == 18:
+    return 0.11025052530448522
+  if i == 19:
+    return 0.14938177525041804
+  if i == 20:
+    return 0.19789869908361474
+  if i == 21:
+    return 0.25634015141507366
+  if i == 22:
+    return 0.32465246735834974
+  if i == 23:
+    return 0.40202138309465496
+  if i == 24:
+    return 0.48675225595997168
+  if i == 25:
+    return 0.57622907367179987
+  if i == 26:
+    return 0.66697681085847449
+  if i == 27:
+    return 0.75483960198900735
+  if i == 28:
+    return 0.835270211411272
+  if i == 29:
+    return 0.90370707787319604
+  if i == 30:
+    return 0.95599748183309996
+  if i == 31:
+    return 0.98881304461123309
+  if i == 32:
+    return 1.0
+  if i == 33:
+    return 0.98881304461123309
+  if i == 34:
+    return 0.95599748183309996
+  if i == 35:
+    return 0.90370707787319604
+  if i == 36:
+    return 0.835270211411272
+  if i == 37:
+    return 0.75483960198900735
+  if i == 38:
+    return 0.66697681085847449
+  if i == 39:
+    return 0.57622907367179987
+  if i == 40:
+    return 0.48675225595997168
+  if i == 41:
+    return 0.40202138309465496
+  if i == 42:
+    return 0.32465246735834974
+  if i == 43:
+    return 0.25634015141507366
+  if i == 44:
+    return 0.19789869908361474
+  if i == 45:
+    return 0.14938177525041804
+  if i == 46:
+    return 0.11025052530448522
+  if i == 47:
+    return 0.079559508718227687
+  if i == 48:
+    return 0.056134762834133725
+  if i == 49:
+    return 0.038725770351664364
+  if i == 50:
+    return 0.026121409853918257
+  if i == 51:
+    return 0.017227471311635108
+  if i == 52:
+    return 0.011108996538242306
+  if i == 53:
+    return 0.0070041671493624221
+  if i == 54:
+    return 0.0043178400076330815
+  if i == 55:
+    return 0.002602585252725405
+  if i == 56:
+    return 0.0015338106793244659
+  if i == 57:
+    return 0.00088382630693504996
+  if i == 58:
+    return 0.00049795542150327392
+  if i == 59:
+    return 0.00027431046749340119
+  if i == 60:
+    return 0.00014774836023203364
+  if i == 61:
+    return 7.7809268615537772e-05
+  if i == 62:
+    return 4.0065297392951069e-05
+  if i == 63:
+    return 2.0171295076558206e-05
+
+def re_at(re: array[64, float], idx: int) -> float
+  requires idx >= 0
+  requires idx < 64
+  ensures true
+  decreases idx
+=
+  if idx == 0:
+    return re[0]
+  if idx == 1:
+    return re[1]
+  if idx == 2:
+    return re[2]
+  if idx == 3:
+    return re[3]
+  if idx == 4:
+    return re[4]
+  if idx == 5:
+    return re[5]
+  if idx == 6:
+    return re[6]
+  if idx == 7:
+    return re[7]
+  if idx == 8:
+    return re[8]
+  if idx == 9:
+    return re[9]
+  if idx == 10:
+    return re[10]
+  if idx == 11:
+    return re[11]
+  if idx == 12:
+    return re[12]
+  if idx == 13:
+    return re[13]
+  if idx == 14:
+    return re[14]
+  if idx == 15:
+    return re[15]
+  if idx == 16:
+    return re[16]
+  if idx == 17:
+    return re[17]
+  if idx == 18:
+    return re[18]
+  if idx == 19:
+    return re[19]
+  if idx == 20:
+    return re[20]
+  if idx == 21:
+    return re[21]
+  if idx == 22:
+    return re[22]
+  if idx == 23:
+    return re[23]
+  if idx == 24:
+    return re[24]
+  if idx == 25:
+    return re[25]
+  if idx == 26:
+    return re[26]
+  if idx == 27:
+    return re[27]
+  if idx == 28:
+    return re[28]
+  if idx == 29:
+    return re[29]
+  if idx == 30:
+    return re[30]
+  if idx == 31:
+    return re[31]
+  if idx == 32:
+    return re[32]
+  if idx == 33:
+    return re[33]
+  if idx == 34:
+    return re[34]
+  if idx == 35:
+    return re[35]
+  if idx == 36:
+    return re[36]
+  if idx == 37:
+    return re[37]
+  if idx == 38:
+    return re[38]
+  if idx == 39:
+    return re[39]
+  if idx == 40:
+    return re[40]
+  if idx == 41:
+    return re[41]
+  if idx == 42:
+    return re[42]
+  if idx == 43:
+    return re[43]
+  if idx == 44:
+    return re[44]
+  if idx == 45:
+    return re[45]
+  if idx == 46:
+    return re[46]
+  if idx == 47:
+    return re[47]
+  if idx == 48:
+    return re[48]
+  if idx == 49:
+    return re[49]
+  if idx == 50:
+    return re[50]
+  if idx == 51:
+    return re[51]
+  if idx == 52:
+    return re[52]
+  if idx == 53:
+    return re[53]
+  if idx == 54:
+    return re[54]
+  if idx == 55:
+    return re[55]
+  if idx == 56:
+    return re[56]
+  if idx == 57:
+    return re[57]
+  if idx == 58:
+    return re[58]
+  if idx == 59:
+    return re[59]
+  if idx == 60:
+    return re[60]
+  if idx == 61:
+    return re[61]
+  if idx == 62:
+    return re[62]
+  if idx == 63:
+    return re[63]
+  return re[63]
+
+def li_schrodinger_1d_barrier_kernel() -> float
   requires true
   ensures true
+  decreases 4000
+=
+  var re: array[64, float]
+  var im: array[64, float]
+  var i: int = 0
+  while i < 64
+    re[i] = gaussian_init(i)
+    im[i] = 0.0
+    i = i + 1
+  var s: int = 0
+  while s < 4000
+    var j: int = 1
+    while j < 63
+      var rjm1: float = re_at(re, j - 1)
+      var rj: float = re_at(re, j)
+      var rjp1: float = re_at(re, j + 1)
+      var lap: float = rjp1 - 2.0 * rj + rjm1
+      re[j] = rj + 0.0001 * lap
+      im[j] = re_at(im, j) + 0.0001 * lap
+      j = j + 1
+    s = s + 1
+  var n2: float = 0.0
+  var k: int = 0
+  while k < 64
+    var rv: float = re_at(re, k)
+    var iv: float = re_at(im, k)
+    n2 = n2 + rv * rv + iv * iv
+    k = k + 1
+  return n2
 
-extern proc li_schrodinger_1d_barrier_checksum() -> float
-  requires true
-  ensures true
-
-def main() raises IO -> int
+def main() -> int
   requires true
   ensures result == 0
   decreases 0
 =
-  li_schrodinger_1d_barrier_kernel()
-  li_rt_volatile_sink_f64(li_schrodinger_1d_barrier_checksum())
+  var checksum: float = li_schrodinger_1d_barrier_kernel()
+  li_rt_volatile_sink_f64(checksum)
   return 0

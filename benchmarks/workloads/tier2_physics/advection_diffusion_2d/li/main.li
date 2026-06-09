@@ -1,3 +1,6 @@
+# advection_diffusion_2d — Li driver; Arm B kernel in li/advdiff_kernel.c (oracle: common/).
+# Pure-Li stencil blocked on E0201 (neighbor indices i±1/j±1); li-local C matches common/advdiff_core.c.
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true

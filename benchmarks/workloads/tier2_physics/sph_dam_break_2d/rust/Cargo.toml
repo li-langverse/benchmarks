@@ -1,0 +1,15 @@
+[package]
+name = "sph-dam-break-2d"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "sph_dam_break_2d"
+path = "src/main.rs"
+
+[build-dependencies]
+cc = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
