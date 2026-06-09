@@ -1,0 +1,74 @@
+{
+  "generated_at": "2026-06-04T11:52Z",
+  "roots": {
+    "lic": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/lic",
+    "lis": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/lis",
+    "benchmarks": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/repo",
+    "roadmap": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/roadmap"
+  },
+  "summary": {
+    "open_tracker_items": 1,
+    "open_plan_checkboxes": 0,
+    "plan_checkboxes_suppressed": 0,
+    "stale_spec_checklists": 0,
+    "provability_partial": 0,
+    "provability_missing": 0,
+    "catalog_gaps": 1,
+    "catalog_gaps_actionable": 1,
+    "catalog_gaps_repo_mismatch": 0,
+    "lic_present": false,
+    "total_findings": 2,
+    "tracker_phases_complete": 0
+  },
+  "master_plan_open": [
+    {
+      "source": "master_plan",
+      "item": "missing file: /app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/lic/docs/superpowers/plans/2026-05-14-li-master-plan.md"
+    }
+  ],
+  "plan_files_open": [],
+  "plan_files_suppressed": [],
+  "stale_spec_checklists": [],
+  "provability_gaps": {
+    "missing_file": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/lic/docs/verification/provability-gaps.md",
+    "partial": [],
+    "missing": []
+  },
+  "catalog_gaps": [
+    {
+      "source": "benchmarks:catalog.toml",
+      "kind": "actionable",
+      "id": "tier0_stability",
+      "repo": "lic",
+      "path": "li-tests/benchmarks/tier0_correctness",
+      "item": "catalog id=tier0_stability [actionable] path missing under lic root (lic): li-tests/benchmarks/tier0_correctness"
+    }
+  ],
+  "catalog_gaps_actionable": [
+    {
+      "source": "benchmarks:catalog.toml",
+      "kind": "actionable",
+      "id": "tier0_stability",
+      "repo": "lic",
+      "path": "li-tests/benchmarks/tier0_correctness",
+      "item": "catalog id=tier0_stability [actionable] path missing under lic root (lic): li-tests/benchmarks/tier0_correctness"
+    }
+  ],
+  "catalog_gaps_repo_mismatch": [],
+  "benchmarks_root": "/app/data/workspaces/li-langverse/benchmarks/code_implementer-1780573769662/repo",
+  "implementation_signals": [],
+  "recommended_actions": [
+    {
+      "priority": "P1",
+      "action": "Close or update master plan phase tracker rows",
+      "count": 1
+    },
+    {
+      "priority": "P2",
+      "action": "Implement benchmarks harness for catalog rows or mark catalog_lifecycle=planned",
+      "benchmarks": [
+        "catalog id=tier0_stability [actionable] path missing under lic root (lic): li-tests/benchmarks/tier0_correctness"
+      ]
+    }
+  ]
+}

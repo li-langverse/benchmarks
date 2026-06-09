@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Sync catalog.toml paths from lic benchmarks tree (tier1_micro, tier2_physics, …).
+"""Sync catalog.toml paths from benchmarks workloads (ADR) with legacy lic fallback.
 
-Walks ``LIC_ROOT/benchmarks/tier*`` (and tier5 scenarios, package harness dirs),
-sets ``path`` for each catalog id when a matching harness directory exists.
+Primary index: ``benchmarks/workloads/tier*`` under this repo. When a harness exists
+only under ``LIC_ROOT/benchmarks`` (deprecated), paths are still discovered but
+``repo`` should be corrected via ``fix-catalog-repo-field.py``.
 Optionally regenerates ``data/latest/summary.json`` via ``build_summary.py`` when
 ``lic/benchmarks/results/latest.csv`` is present.
 
@@ -167,11 +168,17 @@ def lookup_path(
             continue
         seen.add(name)
         rel = harness_index.get(name)
-        if rel and (lic_root / rel).is_dir():
-            return rel
+        if rel:
+            if rel.startswith("benchmarks/workloads") and (ROOT / rel).is_dir():
+                return rel
+            if (lic_root / rel).is_dir():
+                return rel
         resolved = sync_mod.resolve_path(name, lic_root)
-        if resolved != "unknown" and (lic_root / resolved).is_dir():
-            return resolved
+        if resolved != "unknown":
+            if resolved.startswith("benchmarks/workloads") and (ROOT / resolved).is_dir():
+                return resolved
+            if (lic_root / resolved).is_dir():
+                return resolved
     return None
 
 
@@ -202,10 +209,15 @@ def sync_catalog_paths(
         )
         if not new or cur == new:
             continue
-        if cur != "unknown" and (lic_root / cur).is_dir():
+        cur_ok = (ROOT / cur).is_dir() if cur.startswith("benchmarks/workloads") else (
+            lic_root / cur
+        ).is_dir()
+        if cur != "unknown" and cur_ok:
             continue
         fixes.append((b["id"], cur, new))
         b["path"] = new
+        if new.startswith("benchmarks/workloads"):
+            b["repo"] = "benchmarks"
     return fixes
 
 
