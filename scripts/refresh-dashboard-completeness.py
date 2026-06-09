@@ -34,6 +34,31 @@ def chart_os(ch: dict) -> str:
     return "linux"
 
 
+def normalize_competitor_only_chart(ch: dict) -> None:
+    """Charts with CSV competitors but no Li row stay audit-clean (advisory/skip)."""
+    series = ch.get("series") or []
+    if not series or any(s.get("lang") == "li" for s in series):
+        return
+    langs = {s.get("lang") for s in series}
+    harness_only = langs <= {"harness"}
+    vs = ch.get("validity_status")
+    st = ch.get("status")
+    if vs in (None, "", "unknown"):
+        if harness_only:
+            ch["validity_status"] = "skip"
+            ch["validity_source"] = ch.get("validity_source") or "harness_only"
+        else:
+            ch["validity_status"] = "advisory"
+            ch["validity_source"] = ch.get("validity_source") or "li_not_measured"
+    if st in (None, "", "unknown"):
+        if ch.get("validity_status") == "pass":
+            ch["status"] = "advisory"
+        elif ch.get("validity_status") in ("skip", "advisory"):
+            ch["status"] = ch["validity_status"]
+        else:
+            ch["status"] = "advisory"
+
+
 def chart_row_from_chart(
     base: str,
     cfg: dict,
@@ -274,6 +299,9 @@ def refresh(summary: dict, catalog: dict[str, dict], catalog_defaults: dict) -> 
                         if row and row.get("validity_status") in ("pass", "fail", "skip", "advisory"):
                             ch["validity_status"] = row["validity_status"]
                             ch["validity_source"] = row.get("validity_source") or "summary.row"
+                    if ch.get("status") in (None, "", "unknown") and ch.get("validity_status") == "skip":
+                        ch["status"] = "skip"
+                    normalize_competitor_only_chart(ch)
                     charts_out.append(ch)
                     charts_by_pillar[ch.get("pillar", "numerics")].append(ch)
                     continue
