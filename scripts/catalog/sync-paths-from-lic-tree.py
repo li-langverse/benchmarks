@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Sync catalog.toml paths from lic benchmarks tree (tier1_micro, tier2_physics, …).
+"""Sync catalog.toml paths from benchmarks workloads (ADR) and legacy lic tree.
 
-Walks ``LIC_ROOT/benchmarks/tier*`` (and tier5 scenarios, package harness dirs),
-sets ``path`` for each catalog id when a matching harness directory exists.
+Walks ``benchmarks/workloads/tier*`` in this repo first, then optional
+``LIC_ROOT/benchmarks/tier*`` for migration, and sets ``path`` / ``repo`` when a
+matching harness directory exists.
 Optionally regenerates ``data/latest/summary.json`` via ``build_summary.py`` when
 ``lic/benchmarks/results/latest.csv`` is present.
 
@@ -138,15 +139,20 @@ def registry_dir_stems(sync_mod) -> dict[str, str]:
     return out
 
 
+def _path_on_disk(root: Path, rel: str) -> bool:
+    return bool(rel and rel != "unknown" and (root / rel).is_dir())
+
+
 def lookup_path(
     bench_id: str,
     base_id: str | None,
     *,
     lic_root: Path,
+    bench_root: Path,
     harness_index: dict[str, str],
     sync_mod,
 ) -> str | None:
-    """Return relative lic path when harness dir exists, else None."""
+    """Return relative workload path when harness dir exists under benchmarks or lic."""
     candidates: list[str] = []
     lookup = base_id or bench_id
     candidates.append(lookup)
@@ -167,10 +173,12 @@ def lookup_path(
             continue
         seen.add(name)
         rel = harness_index.get(name)
-        if rel and (lic_root / rel).is_dir():
+        if rel and (_path_on_disk(bench_root, rel) or _path_on_disk(lic_root, rel)):
             return rel
         resolved = sync_mod.resolve_path(name, lic_root)
-        if resolved != "unknown" and (lic_root / resolved).is_dir():
+        if resolved != "unknown" and (
+            _path_on_disk(bench_root, resolved) or _path_on_disk(lic_root, resolved)
+        ):
             return resolved
     return None
 
@@ -185,6 +193,7 @@ def sync_catalog_paths(
     benchmarks: list[dict],
     *,
     lic_root: Path,
+    bench_root: Path,
     harness_index: dict[str, str],
     sync_mod,
 ) -> list[tuple[str, str, str]]:
@@ -197,15 +206,20 @@ def sync_catalog_paths(
             b["id"],
             b.get("base_id"),
             lic_root=lic_root,
+            bench_root=bench_root,
             harness_index=harness_index,
             sync_mod=sync_mod,
         )
         if not new or cur == new:
             continue
-        if cur != "unknown" and (lic_root / cur).is_dir():
+        if cur != "unknown" and (
+            _path_on_disk(bench_root, cur) or _path_on_disk(lic_root, cur)
+        ):
             continue
         fixes.append((b["id"], cur, new))
         b["path"] = new
+        if _path_on_disk(bench_root, new):
+            b["repo"] = "benchmarks"
     return fixes
 
 
@@ -264,6 +278,7 @@ def main() -> int:
     fixes = sync_catalog_paths(
         benchmarks,
         lic_root=lic_root,
+        bench_root=ROOT,
         harness_index=harness_index,
         sync_mod=sync_mod,
     )
