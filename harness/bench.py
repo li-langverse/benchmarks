@@ -329,6 +329,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  "cpp/main.c",
  "common/wind_core.c",
  "li/main.li",
+ li_pure=True,
  ),
  BenchSpec(
  "combustion_passive",
