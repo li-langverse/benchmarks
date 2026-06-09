@@ -3,22 +3,15 @@
 from __future__ import annotations
 
 import sys
-from pathlib import Path
 from typing import Any
 
-from paths import BENCH_REPO, lic_root
+from _driver_common import HARNESS, SCRIPTS
 
-REPO = lic_root()
-SCRIPTS = REPO / "scripts"
-if str(SCRIPTS) not in sys.path:
-    sys.path.insert(0, str(SCRIPTS))
+for p in (str(SCRIPTS), str(HARNESS)):
+    if p not in sys.path:
+        sys.path.insert(0, p)
 
-from httpd_bad_rng import oracle_outcome, driver_from_rng_table  # noqa: E402
-
-HARNESS = BENCH_REPO / "harness"
-if str(HARNESS) not in sys.path:
-    sys.path.insert(0, str(HARNESS))
-
+from httpd_bad_rng import driver_from_rng_table, oracle_outcome  # noqa: E402
 from rng_inject import rng_driver_for_exploit  # noqa: E402
 
 
