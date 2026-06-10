@@ -1,4 +1,4 @@
-# num_quadrature_gauss — shared C oracle via LI_EXTRA_C (smoke-scale).
+# num_quadrature_gauss — hoisted C oracle via LI_EXTRA_C.
 
 extern proc li_num_quadrature_gauss_kernel()
   requires true

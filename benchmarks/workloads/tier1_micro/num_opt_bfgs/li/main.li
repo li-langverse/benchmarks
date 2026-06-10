@@ -1,4 +1,4 @@
-# num_opt_bfgs — shared C oracle via LI_EXTRA_C (smoke-scale).
+# num_opt_bfgs — hoisted C oracle via LI_EXTRA_C.
 
 extern proc li_num_opt_bfgs_kernel()
   requires true

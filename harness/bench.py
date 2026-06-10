@@ -94,6 +94,15 @@ _WP1_NUM_IDS: tuple[str, ...] = (
     "fft_1d_fixed",
 )
 
+# Pure-Li fast paths (lipar-apply-num-fast.sh) — no LI_EXTRA_C link bloat.
+_NUM_PURE_LI_FAST: frozenset[str] = frozenset(
+    {
+        "num_integ_euler",
+        "num_integ_symplectic",
+        "num_root_newton",
+    }
+)
+
 
 def _wp1_num_bench_specs() -> tuple[BenchSpec, ...]:
     """Catalog num_* + fft_1d_fixed smoke harnesses (shared C oracle)."""
@@ -105,7 +114,7 @@ def _wp1_num_bench_specs() -> tuple[BenchSpec, ...]:
             main_c="cpp/main.c",
             core_c=f"common/{bench_id}_core.c",
             li_main="li/main.li",
-            li_pure=False,
+            li_pure=bench_id in _NUM_PURE_LI_FAST,
         )
         for bench_id in _WP1_NUM_IDS
     )
