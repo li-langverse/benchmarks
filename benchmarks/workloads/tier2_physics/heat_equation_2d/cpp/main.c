@@ -1,3 +1,4 @@
+/* heat_equation_2d — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include "../common/heat_core.h"
 #include <stdio.h>
 #include <string.h>

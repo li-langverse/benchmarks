@@ -1,3 +1,4 @@
+/* wave_equation_2d — tier-2 C oracle entry (physics-codegen Arm B cpp). */
 #include "../common/wave2d_core.h"
 #include <stdio.h>
 #include <string.h>

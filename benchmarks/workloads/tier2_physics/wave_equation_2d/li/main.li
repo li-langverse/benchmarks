@@ -1,3 +1,5 @@
+# wave_equation_2d — shared C oracle via LI_EXTRA_C (2D leapfrog wave, energy checksum).
+
 extern proc li_rt_volatile_sink_f64(v: float) -> unit
   requires true
   ensures true
