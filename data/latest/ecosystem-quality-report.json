@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T03:54:53Z",
+  "generated_at": "2026-06-10T06:28:49Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 67.3,
   "grade": "D",
@@ -23,7 +23,7 @@
         "audit_present": true,
         "open_prs": 91,
         "failed_prs": 2,
-        "repos_missing_ci_main": 9,
+        "repos_missing_ci_main": 11,
         "benchmark_red_count": 0
       },
       "finding_count": 2
@@ -74,7 +74,7 @@
     {
       "id": "repos-missing-ci",
       "severity": "high",
-      "message": "9 repos missing CI on main",
+      "message": "11 repos missing CI on main",
       "evidence": "ecosystem-audit.metrics.repos_missing_ci_main"
     },
     {
@@ -127,7 +127,7 @@
     },
     {
       "agent": "ci_maintainer",
-      "reason": "briefing P0: 9 repos missing CI (audit)"
+      "reason": "briefing P0: 11 repos missing CI (audit)"
     },
     {
       "agent": "security_auditor",
