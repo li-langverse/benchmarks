@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T14:44:25Z",
+  "generated_at": "2026-06-10T18:09:53Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 75.6,
   "grade": "C",
@@ -21,7 +21,7 @@
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 90,
+        "open_prs": 91,
         "failed_prs": 3,
         "repos_missing_ci_main": 28,
         "benchmark_red_count": 0
