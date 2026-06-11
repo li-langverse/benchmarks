@@ -781,8 +781,13 @@ def bench_lb_sticky_cookie_scenario(
                 opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
                 bodies: set[str] = set()
                 for _ in range(12):
-                    with opener.open(f"http://127.0.0.1:{front_port}/", timeout=5) as resp:
-                        bodies.add(resp.read().decode("utf-8", errors="replace").strip())
+                    try:
+                        with opener.open(f"http://127.0.0.1:{front_port}/", timeout=5) as resp:
+                            bodies.add(resp.read().decode("utf-8", errors="replace").strip())
+                    except urllib.error.HTTPError:
+                        break
+                    except (urllib.error.URLError, OSError, ValueError):
+                        break
                 if len(bodies) == 1 and bodies.pop() in ("peer-a", "peer-b"):
                     rows.append(
                         {
@@ -878,7 +883,7 @@ def bench_tls_dhe_scenario(
                 "-cipher",
                 "DHE-RSA-AES128-GCM-SHA256",
             ],
-            input=b"",
+            input="",
             capture_output=True,
             text=True,
             timeout=8,

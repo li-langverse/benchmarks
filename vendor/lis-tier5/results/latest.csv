@@ -13,13 +13,6 @@ keepalive_pipelining,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,caddy_no_lis
 keepalive_pipelining,node,release,16,rps,2844.9900,req/s,f9d68c0,x86_64,wrk pipeline=8 v22.22.2
 keepalive_pipelining,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,no_bun
 keepalive_pipelining,li,release,16,rps,5457.4800,req/s,f9d68c0,x86_64,wrk pipeline=8
-static_large,nginx,release,8,rps,70.7200,req/s,f9d68c0,x86_64,wrk
-static_large,apache,release,8,rps,447.7800,req/s,f9d68c0,x86_64,wrk
-static_large,lighttpd,release,8,rps,171.1000,req/s,f9d68c0,x86_64,wrk
-static_large,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,caddy_no_listen
-static_large,node,release,8,rps,264.8500,req/s,f9d68c0,x86_64,wrk v22.22.2
-static_large,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,no_bun
-static_large,harness,ci,1,verify_only,1,bool,f9d68c0,x86_64,wrk_parse_fail_li
 proxy_loopback,nginx,release,8,rps,120.2500,req/s,f9d68c0,x86_64,wrk proxy_loopback
 proxy_loopback,apache,release,8,rps,120.0900,req/s,f9d68c0,x86_64,wrk proxy_loopback
 proxy_loopback,lighttpd,release,8,rps,119.5900,req/s,f9d68c0,x86_64,wrk proxy_loopback
@@ -141,3 +134,22 @@ https_tls_matrix,traefik,release,16,handshake_rps,85.2667,conn/s,ffa75e1,x86_64,
 https_tls_matrix,traefik,release,16,rps,65.5300,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https traefik_terminate
 https_tls_matrix,li,release,16,rps,3101.6500,req/s,ffa75e1,x86_64,cert=rsa2048-long-subject wrk https
 https_tls_matrix,li,release,16,handshake_rps,49.2000,conn/s,ffa75e1,x86_64,cert=rsa2048-long-subject openssl s_time https li_restart
+static_large,nginx,release,8,rps,142.8800,req/s,eb19059,x86_64,wrk
+static_large,apache,release,8,rps,661.6300,req/s,eb19059,x86_64,wrk
+static_large,lighttpd,release,8,rps,204.5500,req/s,eb19059,x86_64,wrk
+static_large,harness,ci,1,verify_only,1,bool,eb19059,x86_64,caddy_no_listen
+static_large,node,release,8,rps,320.1200,req/s,eb19059,x86_64,wrk v22.22.2
+static_large,harness,ci,1,verify_only,1,bool,eb19059,x86_64,no_bun
+static_large,li,release,4,rps,132.2300,req/s,eb19059,x86_64,wrk
+proxy_post_json,nginx,release,1,verify_pass,1,bool,eb19059,x86_64,proxy_post_json
+proxy_post_json,apache,release,1,verify_pass,1,bool,eb19059,x86_64,proxy_post_json
+proxy_post_json,lighttpd,release,1,verify_pass,1,bool,eb19059,x86_64,proxy_post_json
+proxy_post_json,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_caddy:post_json
+proxy_post_json,harness,ci,1,verify_only,1,bool,eb19059,x86_64,unknown_proxy_oracle_traefik
+proxy_post_json,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_li:post_json
+lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_nginx:sticky
+lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_apache:sticky
+lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_lighttpd:sticky
+lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_caddy:sticky
+lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_li:sticky
+tls_dhe_handshake,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_li:tls_dhe
