@@ -1,78 +1,1065 @@
 {
-  "generated_at": "2026-06-01T08:26:41.745304+00:00",
-  "summary_path": "data/latest/summary.json",
-  "benchmark_bases": 157,
-  "chart_rows": 477,
-  "table_rows": 259,
-  "p0_count": 0,
-  "p1_count": 12,
+  "generated_at": "2026-06-11T03:38:01.231200+00:00",
+  "summary_path": "data\\latest\\summary.json",
+  "benchmark_bases": 185,
+  "chart_rows": 499,
+  "table_rows": 189,
+  "p0_count": 114,
+  "p1_count": 58,
   "issue_counts": {
-    "chart_pending": 12
+    "missing_os": 28,
+    "bad_size_label": 27,
+    "problem_size_null": 27,
+    "validity_unknown": 29,
+    "status_unknown": 29,
+    "chart_pending": 31,
+    "sota_empty": 1
   },
-  "p0": [],
-  "p1": [
+  "p0": [
     {
-      "severity": "P1",
-      "code": "chart_pending",
-      "base_id": "https_static",
-      "detail": "chart marked pending",
-      "chart_id": "https_static@linux"
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ann_qps_10k",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
-      "base_id": "keepalive_pipelining",
-      "detail": "chart marked pending",
-      "chart_id": "keepalive_pipelining@linux"
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ann_qps_10k",
+      "detail": "size_label=None",
+      "chart_id": "ann_qps_10k"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
-      "base_id": "lb_least_conn",
-      "detail": "chart marked pending",
-      "chart_id": "lb_least_conn@linux"
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ann_qps_10k",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ann_qps_10k"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
-      "base_id": "lb_peer_down",
-      "detail": "chart marked pending",
-      "chart_id": "lb_peer_down@linux"
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ann_qps_10k",
+      "detail": "status='unknown'",
+      "chart_id": "ann_qps_10k"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
-      "base_id": "lb_round_robin",
-      "detail": "chart marked pending",
-      "chart_id": "lb_round_robin@linux"
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
-      "base_id": "proxy_loopback",
-      "detail": "chart marked pending",
-      "chart_id": "proxy_loopback@linux"
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "size_label=None",
+      "chart_id": "ann_recall_at_10_10k"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "status='unknown'",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "size_label=None",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "status='unknown'",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "concurrent_readers",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "concurrent_readers",
+      "detail": "size_label=None",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "concurrent_readers",
+      "detail": "validity_status='unknown'",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "concurrent_readers",
+      "detail": "status='unknown'",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "concurrent_writers",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "concurrent_writers",
+      "detail": "size_label=None",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "concurrent_writers",
+      "detail": "validity_status='unknown'",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "concurrent_writers",
+      "detail": "status='unknown'",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "fft_1d_fixed",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "fft_1d_fixed",
+      "detail": "validity_status='unknown'",
+      "chart_id": "fft_1d_fixed"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "fft_1d_fixed",
+      "detail": "status='unknown'",
+      "chart_id": "fft_1d_fixed"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "size_label=None",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "validity_status='unknown'",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "status='unknown'",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "size_label=None",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "validity_status='unknown'",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "status='unknown'",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "graph_cycle_detect",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "graph_cycle_detect",
+      "detail": "size_label=None",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "graph_cycle_detect",
+      "detail": "validity_status='unknown'",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "graph_cycle_detect",
+      "detail": "status='unknown'",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "graph_dep_closure",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "graph_dep_closure",
+      "detail": "size_label=None",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "graph_dep_closure",
+      "detail": "validity_status='unknown'",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "graph_dep_closure",
+      "detail": "status='unknown'",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "injection_blocked",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "injection_blocked",
+      "detail": "size_label=None",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "injection_blocked",
+      "detail": "validity_status='unknown'",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "injection_blocked",
+      "detail": "status='unknown'",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lip_smoke",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lip_smoke",
+      "detail": "size_label=None",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lip_smoke",
+      "detail": "validity_status='unknown'",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lip_smoke",
+      "detail": "status='unknown'",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "lit_smoke",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "lit_smoke",
+      "detail": "size_label=None",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "lit_smoke",
+      "detail": "validity_status='unknown'",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "lit_smoke",
+      "detail": "status='unknown'",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "query_log_complete",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "query_log_complete",
+      "detail": "size_label=None",
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "query_log_complete",
+      "detail": "validity_status='unknown'",
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "query_log_complete",
+      "detail": "status='unknown'",
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P0",
+      "code": "sota_empty",
       "base_id": "rate_limit_429",
-      "detail": "chart marked pending",
+      "detail": "no sota_lang/sota_value",
       "chart_id": "rate_limit_429@linux"
     },
     {
-      "severity": "P1",
-      "code": "chart_pending",
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "registry_publish",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "registry_publish",
+      "detail": "size_label=None",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "registry_publish",
+      "detail": "validity_status='unknown'",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "registry_publish",
+      "detail": "status='unknown'",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "registry_read_by_name",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "registry_read_by_name",
+      "detail": "size_label=None",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "registry_read_by_name",
+      "detail": "validity_status='unknown'",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "registry_read_by_name",
+      "detail": "status='unknown'",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "registry_read_latest",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "registry_read_latest",
+      "detail": "size_label=None",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "registry_read_latest",
+      "detail": "validity_status='unknown'",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "registry_read_latest",
+      "detail": "status='unknown'",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rls_bypass_blocked",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rls_bypass_blocked",
+      "detail": "size_label=None",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rls_bypass_blocked",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rls_bypass_blocked",
+      "detail": "status='unknown'",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rss_idle",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rss_idle",
+      "detail": "size_label=None",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rss_idle",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rss_idle",
+      "detail": "status='unknown'",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "rss_peak_load",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "rss_peak_load",
+      "detail": "size_label=None",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "rss_peak_load",
+      "detail": "validity_status='unknown'",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "rss_peak_load",
+      "detail": "status='unknown'",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
       "base_id": "static_large",
-      "detail": "chart marked pending",
+      "detail": "validity_status='unknown'",
       "chart_id": "static_large@linux"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "static_large",
+      "detail": "status='unknown'",
+      "chart_id": "static_large@linux"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_hash_flood",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_hash_flood",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_hash_flood",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_hash_flood",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "stdlib_set_ops",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "stdlib_set_ops",
+      "detail": "size_label='harness pending'",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "stdlib_set_ops",
+      "detail": "validity_status='unknown'",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "stdlib_set_ops",
+      "detail": "status='unknown'",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "tamper_evidence",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "tamper_evidence",
+      "detail": "size_label=None",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "tamper_evidence",
+      "detail": "validity_status='unknown'",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "tamper_evidence",
+      "detail": "status='unknown'",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "tier5_http_exploits",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "tier5_http_exploits",
+      "detail": "size_label=None",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "tier5_http_exploits",
+      "detail": "validity_status='unknown'",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "tier5_http_exploits",
+      "detail": "status='unknown'",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P0",
+      "code": "missing_os",
+      "base_id": "ws_publish_latency",
+      "detail": "missing platforms: ['macos', 'windows']; have ['linux']"
+    },
+    {
+      "severity": "P0",
+      "code": "bad_size_label",
+      "base_id": "ws_publish_latency",
+      "detail": "size_label=None",
+      "chart_id": "ws_publish_latency"
+    },
+    {
+      "severity": "P0",
+      "code": "validity_unknown",
+      "base_id": "ws_publish_latency",
+      "detail": "validity_status='unknown'",
+      "chart_id": "ws_publish_latency"
+    },
+    {
+      "severity": "P0",
+      "code": "status_unknown",
+      "base_id": "ws_publish_latency",
+      "detail": "status='unknown'",
+      "chart_id": "ws_publish_latency"
+    }
+  ],
+  "p1": [
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ann_qps_10k",
+      "detail": "problem_size is null",
+      "chart_id": "ann_qps_10k"
     },
     {
       "severity": "P1",
       "code": "chart_pending",
-      "base_id": "static_small",
+      "base_id": "ann_qps_10k",
       "detail": "chart marked pending",
-      "chart_id": "static_small@linux"
+      "chart_id": "ann_qps_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "problem_size is null",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ann_recall_at_10_10k",
+      "detail": "chart marked pending",
+      "chart_id": "ann_recall_at_10_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "problem_size is null",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ann_recall_at_10_1m",
+      "detail": "chart marked pending",
+      "chart_id": "ann_recall_at_10_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "concurrent_readers",
+      "detail": "problem_size is null",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "concurrent_readers",
+      "detail": "chart marked pending",
+      "chart_id": "concurrent_readers"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "concurrent_writers",
+      "detail": "problem_size is null",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "concurrent_writers",
+      "detail": "chart marked pending",
+      "chart_id": "concurrent_writers"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "fft_1d_fixed",
+      "detail": "chart marked pending",
+      "chart_id": "fft_1d_fixed"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "problem_size is null",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "gpu_ann_speedup_10k",
+      "detail": "chart marked pending",
+      "chart_id": "gpu_ann_speedup_10k"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "problem_size is null",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "gpu_ann_speedup_1m",
+      "detail": "chart marked pending",
+      "chart_id": "gpu_ann_speedup_1m"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "graph_cycle_detect",
+      "detail": "problem_size is null",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "graph_cycle_detect",
+      "detail": "chart marked pending",
+      "chart_id": "graph_cycle_detect"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "graph_dep_closure",
+      "detail": "problem_size is null",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "graph_dep_closure",
+      "detail": "chart marked pending",
+      "chart_id": "graph_dep_closure"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "injection_blocked",
+      "detail": "problem_size is null",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "injection_blocked",
+      "detail": "chart marked pending",
+      "chart_id": "injection_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lip_smoke",
+      "detail": "problem_size is null",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lip_smoke",
+      "detail": "chart marked pending",
+      "chart_id": "lip_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "lit_smoke",
+      "detail": "problem_size is null",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "lit_smoke",
+      "detail": "chart marked pending",
+      "chart_id": "lit_smoke"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "query_log_complete",
+      "detail": "problem_size is null",
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "query_log_complete",
+      "detail": "chart marked pending",
+      "chart_id": "query_log_complete"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "registry_publish",
+      "detail": "problem_size is null",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "registry_publish",
+      "detail": "chart marked pending",
+      "chart_id": "registry_publish"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "registry_read_by_name",
+      "detail": "problem_size is null",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "registry_read_by_name",
+      "detail": "chart marked pending",
+      "chart_id": "registry_read_by_name"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "registry_read_latest",
+      "detail": "problem_size is null",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "registry_read_latest",
+      "detail": "chart marked pending",
+      "chart_id": "registry_read_latest"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rls_bypass_blocked",
+      "detail": "problem_size is null",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rls_bypass_blocked",
+      "detail": "chart marked pending",
+      "chart_id": "rls_bypass_blocked"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rss_idle",
+      "detail": "problem_size is null",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rss_idle",
+      "detail": "chart marked pending",
+      "chart_id": "rss_idle"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "rss_peak_load",
+      "detail": "problem_size is null",
+      "chart_id": "rss_peak_load"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "rss_peak_load",
+      "detail": "chart marked pending",
+      "chart_id": "rss_peak_load"
     },
     {
       "severity": "P1",
@@ -83,6 +1070,20 @@
     },
     {
       "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_deque_rotate",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_deque_rotate"
+    },
+    {
+      "severity": "P1",
       "code": "chart_pending",
       "base_id": "stdlib_dict_insert_lookup",
       "detail": "chart marked pending",
@@ -90,10 +1091,108 @@
     },
     {
       "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_hash_flood",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_hash_flood",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_hash_flood"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_heap_push_pop",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_heap_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_list_push_pop",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_list_push_pop"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "stdlib_set_ops",
+      "detail": "problem_size is null",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "stdlib_set_ops",
+      "detail": "chart marked pending",
+      "chart_id": "stdlib_set_ops"
+    },
+    {
+      "severity": "P1",
       "code": "chart_pending",
       "base_id": "stdlib_sort_int",
       "detail": "chart marked pending",
       "chart_id": "stdlib_sort_int@linux"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "tamper_evidence",
+      "detail": "problem_size is null",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "tamper_evidence",
+      "detail": "chart marked pending",
+      "chart_id": "tamper_evidence"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "tier5_http_exploits",
+      "detail": "problem_size is null",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "tier5_http_exploits",
+      "detail": "chart marked pending",
+      "chart_id": "tier5_http_exploits"
+    },
+    {
+      "severity": "P1",
+      "code": "problem_size_null",
+      "base_id": "ws_publish_latency",
+      "detail": "problem_size is null",
+      "chart_id": "ws_publish_latency"
+    },
+    {
+      "severity": "P1",
+      "code": "chart_pending",
+      "base_id": "ws_publish_latency",
+      "detail": "chart marked pending",
+      "chart_id": "ws_publish_latency"
     }
   ]
 }

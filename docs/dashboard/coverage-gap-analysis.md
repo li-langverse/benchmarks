@@ -1,6 +1,6 @@
 # Benchmark dashboard coverage gap analysis
 
-**Date:** 2026-05-26 · **Branch:** `feat/benchmark-ship-integration` → `main` after PR #85  
+**Date:** 2026-06-02 · **Branch:** `main`  
 **Live target:** https://li-langverse.github.io/benchmarks/  
 **Regression gates:** [INVARIANTS.md](./INVARIANTS.md) · `scripts/check-dashboard-invariants.py`
 
@@ -8,8 +8,8 @@
 
 | Metric | Current | Target | Status |
 |--------|---------|--------|--------|
-| Catalog rows | **170** | ≥126 registry + HTTP/DB + sizes | ✅ |
-| `summary.json` rows | **169–170** | Match catalog | ✅ fixture ingest |
+| Catalog rows | **189** | Full registry + HTTP/DB + planned | ✅ |
+| `summary.json` rows | **189** | Match catalog (28 planned `unknown`) | ✅ `patch-summary-oracle-csv.py` |
 | Package `*_stub` rows | **0** | 0 | ✅ removed |
 | Rows with `problem_size` / `size_label` | **31+** harness + **140** pending labels | All tier1 + HTTP measured | Partial |
 | Size variant rows (`base_id`) | **2** (`matmul_*_N1024`) | Multi-size sweeps per family | Started |
