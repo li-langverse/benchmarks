@@ -213,6 +213,15 @@ TIER1_BENCHES: tuple[BenchSpec, ...] = (
         flops_per_run=2.0 * 5e6,
         li_pure=True,
     ),
+    BenchSpec(
+        "fft_1d_fixed_pure_li",
+        1,
+        "fft_1d_fixed",
+        "cpp/main.c",
+        "common/fft_1d_fixed_core.c",
+        "li/main_pure.li",
+        li_pure=True,
+    ),
 ) + _wp1_num_bench_specs()
 
 # Stdlib ADT tier-1 (WP0-C): native oracles only until WP1 Li drivers land.
@@ -545,14 +554,36 @@ def time_command(cmd: list[str], *, cwd: Path | None = None, runs: int = 6) -> T
     return _time_command_stats(cmd, cwd=cwd, runs=runs)
 
 
+def _native_compile_flags(spec: BenchSpec) -> tuple[list[str], list[str]]:
+    """Extra (pre) flags and trailing link libs for native oracle builds."""
+    if spec.name not in ("fft_1d_fixed", "fft_1d_fixed_pure_li"):
+        return [], []
+    if os.environ.get("LI_BENCH_FFTW", "").strip().lower() not in ("1", "true", "yes"):
+        return [], []
+    return ["-DLI_BENCH_FFTW"], ["-lfftw3"]
+
+
 def build_native(spec: BenchSpec, bin_path: Path) -> None:
     """Shared C perf binary — cpp/rust/julia labels use identical machine code."""
     root = bench_dir(spec)
     main_c = root / spec.main_c
     core = root / spec.core_c
     cc = os.environ.get("CC", "clang")
+    pre_flags, link_libs = _native_compile_flags(spec)
     subprocess.check_call(
-        [cc, "-O3", "-march=native", "-ffast-math", str(main_c), str(core), "-lm", "-o", str(bin_path)],
+        [
+            cc,
+            "-O3",
+            "-march=native",
+            "-ffast-math",
+            *pre_flags,
+            str(main_c),
+            str(core),
+            "-lm",
+            *link_libs,
+            "-o",
+            str(bin_path),
+        ],
         cwd=REPO,
     )
 

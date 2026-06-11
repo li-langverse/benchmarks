@@ -51,6 +51,7 @@ ingest-smoke:
   script:
     - cd lic && ./scripts/build.sh
     - |
+      cd "$CI_PROJECT_DIR"
       export LIC_ROOT="$CI_PROJECT_DIR/lic"
       export LIS_ROOT="$CI_PROJECT_DIR/lis"
       chmod +x scripts/ingest/*.sh scripts/regression-check.sh

@@ -20,6 +20,7 @@ TEMPLATE_BUILD: dict[str, tuple[int, str | None, str | None]] = {
     "euler_fluid_2d": (2, "li_euler_fluid_2d_kernel", "common/euler_fluid_core.c"),
     "matmul_naive": (1, None, None),
     "horner_pure_li": (1, None, None),
+    "fft_1d_fixed_pure_li": (1, None, None),
 }
 
 PURE_LI_MAIN = """# WP4 catalog smoke ({bench_id}); family template {template}.

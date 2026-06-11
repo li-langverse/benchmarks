@@ -1,1 +1,3 @@
-n = 1024
+# Effective N: 4096 with LI_BENCH_FFTW (FFTW oracle); 1024 naive DFT fallback.
+n = 4096
+reps = 64

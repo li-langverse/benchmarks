@@ -1,0 +1,3 @@
+# Tier-1 FFT micro-bench — shared C oracle; optional FFTW via LI_BENCH_FFTW=1.
+template = "matmul_naive"
+family = "num"
