@@ -190,6 +190,20 @@ def exploit_matrix(rows: list[dict]) -> dict[str, dict[str, str]]:
 
 
 def build_matrix(summary: dict, catalog: dict[str, dict]) -> dict:
+    csv_rows = parse_csv(ROOT / "results" / "latest.csv")
+    li_wall: dict[str, dict[str, float]] = defaultdict(dict)
+    for r in csv_rows:
+        if r.get("metric") != "wall_time":
+            continue
+        lang = r.get("lang") or ""
+        if lang not in ("li_serial", "li_parallel", "li"):
+            continue
+        try:
+            val = float(r["value"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        li_wall[r.get("benchmark") or ""][lang] = val
+
     http_rows = merge_http_csv_rows()
     exploit_rows = parse_csv(EXPLOIT_CSV)
     http_perf = http_perf_matrix(http_rows)
@@ -214,11 +228,19 @@ def build_matrix(summary: dict, catalog: dict[str, dict]) -> dict:
             "ratio_vs_reference": row.get("ratio_vs_cpp"),
             "reference_lang": cfg.get("compare_oracle", "cpp"),
             "li_value": row.get("li_value"),
+            "li_serial": li_wall.get(bid, {}).get("li_serial") or li_wall.get(bid, {}).get("li"),
+            "li_parallel": li_wall.get(bid, {}).get("li_parallel"),
             "ph_ids": cfg.get("ph_ids", []),
             "problem_size": row.get("problem_size") or cfg.get("problem_size"),
             "size_label": row.get("size_label") or cfg.get("size_label"),
             "base_id": cfg.get("base_id"),
+            "variant": cfg.get("variant"),
+            "parallel_eligible": cfg.get("parallel_eligible"),
         }
+        serial_v = entry.get("li_serial")
+        par_v = entry.get("li_parallel")
+        if serial_v and par_v and serial_v > 0 and par_v > 0:
+            entry["speedup_vs_serial"] = round(serial_v / par_v, 4)
         if cat == "http" and bid in http_perf:
             entry["rps_by_lang"] = {
                 lang: http_perf[bid].get(lang)

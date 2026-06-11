@@ -59,6 +59,49 @@ CSV_HEADER = [
 NATIVE_FLAGS = "-O3 -march=native -ffast-math"
 LANGS = ("cpp", "rust", "julia", "li")
 
+PARALLEL_CLASS_A: frozenset[str] = frozenset({
+    "matmul_blocked",
+    "reduce_sum",
+    "simd_dot",
+    "num_dot_axpy",
+    "md_lennard_jones",
+    "fea_stiffness_assembly",
+})
+
+
+def _bench_dual_mode() -> bool:
+    return os.environ.get("BENCH_DUAL_MODE", "").strip().lower() in ("1", "true", "yes")
+
+
+def _li_parallel_runtime() -> bool:
+    return os.environ.get("LI_PARALLEL", "").strip() in ("1", "true", "yes")
+
+
+def _li_lang_label() -> str:
+    if _bench_dual_mode():
+        return "li_parallel" if _li_parallel_runtime() else "li_serial"
+    return "li"
+
+
+def _li_build_cores_flag() -> list[str]:
+    if not _li_parallel_runtime():
+        return []
+    cores = os.environ.get("LIPAR_CORES", os.environ.get("BENCH_CORES", "8")).strip()
+    if cores.isdigit() and int(cores) > 0:
+        return [f"--cores={cores}", "--threads-per-core=1"]
+    extra = os.environ.get("LIC_BUILD_FLAGS", "")
+    if extra:
+        return extra.split()
+    return ["--cores=8", "--threads-per-core=1"]
+
+
+def _resolve_li_main(spec: BenchSpec, root: Path) -> Path:
+    if _li_parallel_runtime():
+        par = root / "li" / "main_parallel.li"
+        if par.is_file():
+            return par
+    return root / spec.li_main
+
 
 @dataclass(frozen=True)
 class BenchSpec:
@@ -514,34 +557,33 @@ def build_native(spec: BenchSpec, bin_path: Path) -> None:
     )
 
 
-def build_li(spec: BenchSpec, bin_path: Path) -> None:
+def build_li(spec: BenchSpec, bin_path: Path, *, li_main: Path | None = None) -> None:
     lic = lic_compiler_bin(REPO)
     if not lic.is_file():
         raise RuntimeError(f"lic missing at {lic} — run ./scripts/build.sh")
     root = bench_dir(spec)
+    main_path = li_main or _resolve_li_main(spec, root)
     env = dict(os.environ)
     lr = lic_root()
     env.setdefault("LIC_ROOT", str(lr))
     env.setdefault("LI_REPO_ROOT", str(lr))
     if not spec.li_pure:
         env["LI_EXTRA_C"] = str(root / spec.core_c)
-    subprocess.check_call(
-        [
-            str(lic),
-            "build",
-            str(root / spec.li_main),
-            "-o",
-            str(bin_path),
-            "--allow-open-vc",
-            "--no-lean-verify",
-            "--release",
-            "-O3",
-            "-ffast-math",
-            "-march=native",
-        ],
-        cwd=REPO,
-        env=env,
-    )
+    cmd = [
+        str(lic),
+        "build",
+        str(main_path),
+        "-o",
+        str(bin_path),
+        "--allow-open-vc",
+        "--no-lean-verify",
+        "--release",
+        "-O3",
+        "-ffast-math",
+        "-march=native",
+        *_li_build_cores_flag(),
+    ]
+    subprocess.check_call(cmd, cwd=REPO, env=env)
 
 
 # Li and native are different programs (e.g. reduced steps); only check native reproducibility.
@@ -905,7 +947,10 @@ def run_benchmark(spec: BenchSpec, *, runs: int) -> list[dict[str, object]]:
 
     rust_bin = build_dir / f"{spec.name}_rust"
     julia_bin = build_dir / f"{spec.name}_julia"
-    li_bin = build_dir / f"{spec.name}_li"
+    li_label = _li_lang_label()
+    li_variant = "parallel" if li_label == "li_parallel" else "serial"
+    li_threads = int(os.environ.get("LIPAR_CORES", "8")) if li_label == "li_parallel" else 1
+    li_bin = build_dir / f"{spec.name}_{li_label}"
 
     build_native(spec, rust_bin)
     build_native(spec, julia_bin)
@@ -915,54 +960,55 @@ def run_benchmark(spec: BenchSpec, *, runs: int) -> list[dict[str, object]]:
         ("cpp", cpp_bin, NATIVE_FLAGS),
         ("rust", rust_bin, f"{NATIVE_FLAGS} (native C kernel)"),
         ("julia", julia_bin, f"{NATIVE_FLAGS} (native C kernel)"),
-        ("li", li_bin, f"{'pure lic' if spec.li_pure else 'shared C kernel + lic'} {NATIVE_FLAGS}"),
+        (li_label, li_bin, f"{'pure lic' if spec.li_pure else 'shared C kernel + lic'} {NATIVE_FLAGS}"),
     )
     timings = _time_commands_with_equal_runs(
         [[str(bin_path)] for _, bin_path, _ in lang_bins],
         runs=runs,
     )
     for (lang, bin_path, flags), timing in zip(lang_bins, timings):
-        rows.append(
-            row_for(
+        row = row_for(
+            benchmark=spec.name,
+            lang=lang,
+            value=timing.mean,
+            metric="wall_time",
+            unit="s",
+            sha=sha,
+            cpu=cpu,
+            flags=flags,
+            **_timing_row_fields(timing),
+        )
+        row["variant"] = li_variant if lang.startswith("li_") else "release"
+        row["threads"] = li_threads if lang == "li_parallel" else 1
+        rows.append(row)
+        if spec.flops_per_run is not None and timing.mean > 0:
+            gflops = spec.flops_per_run / timing.mean / 1e9
+            gf_row = row_for(
                 benchmark=spec.name,
                 lang=lang,
-                value=timing.mean,
-                metric="wall_time",
-                unit="s",
+                value=gflops,
+                metric="throughput",
+                unit="GFLOPS",
                 sha=sha,
                 cpu=cpu,
                 flags=flags,
-                **_timing_row_fields(timing),
             )
-        )
-        if spec.flops_per_run is not None and timing.mean > 0:
-            gflops = spec.flops_per_run / timing.mean / 1e9
-            rows.append(
-                row_for(
-                    benchmark=spec.name,
-                    lang=lang,
-                    value=gflops,
-                    metric="throughput",
-                    unit="GFLOPS",
-                    sha=sha,
-                    cpu=cpu,
-                    flags=flags,
-                )
-            )
+            gf_row["variant"] = li_variant if lang.startswith("li_") else "release"
+            rows.append(gf_row)
         if spec.bytes_per_run is not None and timing.mean > 0:
             gbps = spec.bytes_per_run / timing.mean / 1e9
-            rows.append(
-                row_for(
-                    benchmark=spec.name,
-                    lang=lang,
-                    value=gbps,
-                    metric="bandwidth",
-                    unit="GB/s",
-                    sha=sha,
-                    cpu=cpu,
-                    flags=flags,
-                )
+            bw_row = row_for(
+                benchmark=spec.name,
+                lang=lang,
+                value=gbps,
+                metric="bandwidth",
+                unit="GB/s",
+                sha=sha,
+                cpu=cpu,
+                flags=flags,
             )
+            bw_row["variant"] = li_variant if lang.startswith("li_") else "release"
+            rows.append(bw_row)
         print(
             f"{spec.name} {lang} wall_time={timing.mean:.4f}s ± {timing.stddev:.4f}s "
             f"(n={timing.sample_runs})"

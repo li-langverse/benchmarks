@@ -66,8 +66,21 @@ def _benchmark_complete(merged: list[dict[str, str]], name: str) -> bool:
     harness = str(_bench_harness_dir())
     if harness not in sys.path:
         sys.path.insert(0, harness)
-    from csv_bench_io import benchmark_sample_runs_parity_ok
+    from csv_bench_io import benchmark_sample_runs_parity_ok, wall_time_sample_runs
     from timing_stats import equalize_runs_enabled
+
+    if os.environ.get("BENCH_DUAL_MODE", "").strip().lower() in ("1", "true", "yes"):
+        langs = ("li_serial", "li_parallel")
+        runs = wall_time_sample_runs(merged, name)
+        if not all(lang in runs for lang in langs):
+            return False
+        if not equalize_runs_enabled():
+            return True
+        comp = [n for lang, n in runs.items() if lang not in langs]
+        if not comp:
+            return True
+        target = max(comp)
+        return all(runs[lang] >= target for lang in langs)
 
     return benchmark_sample_runs_parity_ok(
         merged, name, equalize=equalize_runs_enabled()
