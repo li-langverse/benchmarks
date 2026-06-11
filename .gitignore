@@ -39,6 +39,7 @@ static-dashboard/latest/
 build/compare/
 build/ingest_summary_li_*
 build/summary_*
+build/test-fft-oracle/
 lic
 lip/
 lit/
