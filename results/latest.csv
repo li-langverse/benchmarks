@@ -494,5 +494,5 @@ lb_sticky_cookie,harness,ci,1,verify_only,1,,,bool,eb19059,x86_64,verify_fail_ng
 lb_sticky_cookie,harness,ci,1,verify_only,1,,,bool,eb19059,x86_64,verify_fail_apache:sticky,,,,,,,
 lb_sticky_cookie,harness,ci,1,verify_only,1,,,bool,eb19059,x86_64,verify_fail_lighttpd:sticky,,,,,,,
 lb_sticky_cookie,harness,ci,1,verify_only,1,,,bool,eb19059,x86_64,verify_fail_caddy:sticky,,,,,,,
-lb_sticky_cookie,harness,ci,1,verify_only,1,,,bool,eb19059,x86_64,verify_fail_li:sticky,,,,,,,
-tls_dhe_handshake,harness,ci,1,verify_only,1,,,bool,eb19059,x86_64,verify_fail_li:tls_dhe,,,,,,,
+lb_sticky_cookie,li,ci,1,verify_pass,1,,,bool,eb580f7,x86_64,lb_sticky_cookie,,,,,,,
+tls_dhe_handshake,li,ci,1,verify_pass,1,,,bool,eb580f7,x86_64,tls1_2_dhe,,,,,,,
