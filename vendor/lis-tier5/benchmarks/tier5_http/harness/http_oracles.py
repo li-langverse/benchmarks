@@ -779,7 +779,23 @@ def start_li_proxy_bench(
     lb = os.environ.get("BENCH_HTTP_LB_MODE", "").strip()
     if lb in ("least_conn", "cookie", "ip_hash"):
         cmd.append(lb)
-    return subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    proc = subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    for bp in backend_ports:
+        if not wait_for_port(bp, timeout_sec=5.0):
+            proc.terminate()
+            try:
+                proc.wait(timeout=2)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+            return None
+    if not wait_for_port(front_port, timeout_sec=8.0):
+        proc.terminate()
+        try:
+            proc.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        return None
+    return proc
 
 
 def stop_li_proxy_bench(proc: subprocess.Popen[str] | None) -> None:

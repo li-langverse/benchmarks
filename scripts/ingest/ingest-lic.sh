@@ -9,6 +9,7 @@ chmod +x "$ROOT/scripts/ingest/ingest-csv-smoke.sh" "$ROOT/scripts/ingest/build-
 if ! "$ROOT/scripts/ingest/build-summary-li.sh"; then
   python3 "$ROOT/scripts/ingest/build_summary.py" "$LIC_ROOT" "$LIS_ROOT"
 fi
+python3 "$ROOT/scripts/patch-summary-oracle-csv.py" || true
 python3 "$ROOT/scripts/ingest/validate-gpu-contribution.py" || true
 python3 "$ROOT/scripts/ingest/build-lig-gpu-matrix.py" "${LIC_ROOT:-}" || true
 python3 "$ROOT/scripts/record-benchmark-history.py" || true

@@ -1,6 +1,6 @@
 # Benchmark matrix (full)
 
-Generated: 2026-06-03T06:01:28.435625+00:00
+Generated: 2026-06-11T04:23:57.116579+00:00
 
 Run: `./scripts/run-full-benchmark-suite.sh` then `./scripts/benchmark-matrix-report.py`
 
@@ -29,13 +29,16 @@ Status: **green** — 0 failures / 36 cells
 |---|---|---|---|---|---|---|---|---|---|
 | static_small | 4,030 | 109 | 660 | 5,171 | — | — | 1,759 | — | 37.00× |
 | keepalive_pipelining | 5,457 | 149 | 1,426 | 6,528 | — | — | 2,845 | — | 36.58× |
-| static_large | FAIL | 71 | 448 | 171 | — | — | 265 | — | — |
+| static_large | 132 | 143 | 662 | 205 | — | — | 320 | — | 0.93× |
 | proxy_loopback | 32,327 | 120 | 120 | 120 | — | — | — | — | 268.83× |
+| proxy_post_json | FAIL | — | — | — | — | — | — | — | — |
 | lb_round_robin | 32,750 | 2,040 | 2,071 | 1,914 | — | — | — | — | 16.05× |
 | lb_least_conn | 30,280 | 2,010 | 1,958 | 1,804 | — | — | — | — | 15.07× |
+| lb_sticky_cookie | FAIL | — | — | — | — | — | — | — | — |
 | lb_peer_down | 32,265 | 1,940 | 1,884 | 1,827 | — | — | — | — | 16.63× |
+| tls_dhe_handshake | FAIL | — | — | — | — | — | — | — | — |
 
-**Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `proxy_loopback`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
+**Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `lb_sticky_cookie`: verify_fail_li:sticky; `proxy_loopback`: verify_fail_caddy:/; `proxy_post_json`: verify_fail_li:post_json; `tls_dhe_handshake`: verify_fail_li:tls_dhe
 
 ## HTTP verify / feature gates (non-RPS)
 
@@ -71,6 +74,7 @@ Status: **green** — 0 failures / 36 cells
 | horner_pure_li | 1 | green | 0.648× | lic |
 | matmul_blocked | 1 | green | 0.361× | lic |
 | matmul_blocked_N1024 | 1 | green | 0.361× | lic |
+| matmul_blocked_parallel | 1 | advisory | — | lic |
 | matmul_naive | 1 | green | 1.167× | lic |
 | matmul_naive_N1024 | 1 | green | 1.167× | lic |
 | ml_conv2d_forward | 1 | green | 1.167× | li-math |
@@ -93,6 +97,7 @@ Status: **green** — 0 failures / 36 cells
 | num_rng_pcg | 1 | green | 1.102× | lic |
 | num_root_newton | 1 | yellow | 1.220× | lic |
 | num_sparse_mv | 1 | green | 1.038× | lic |
+| reduce_parallel | 1 | advisory | 0.902× | lic |
 | reduce_sum | 1 | green | 0.902× | lic |
 | simd_dot | 1 | green | 0.823× | lic |
 | stdlib_binary_search | 1 | advisory | — | lic |
@@ -210,15 +215,15 @@ Status: **green** — 0 failures / 36 cells
 
 | benchmark | tier | status | ratio | repo |
 |---|---|---|---|---|
-| https_static | 5 | advisory | — | lis |
-| keepalive_pipelining | 5 | advisory | — | lis |
-| lb_least_conn | 5 | advisory | — | lis |
-| lb_peer_down | 5 | advisory | — | lis |
-| lb_round_robin | 5 | advisory | — | lis |
-| proxy_loopback | 5 | advisory | — | lic |
-| rate_limit_429 | 5 | advisory | — | benchmarks |
-| static_large | 5 | advisory | — | lis |
-| static_small | 5 | advisory | — | lis |
+| https_static | 5 | green | 1.000× | lis |
+| keepalive_pipelining | 5 | green | 0.027× | lis |
+| lb_least_conn | 5 | green | 0.066× | lis |
+| lb_peer_down | 5 | green | 0.060× | lis |
+| lb_round_robin | 5 | green | 0.062× | lis |
+| proxy_loopback | 5 | green | 0.004× | lic |
+| rate_limit_429 | 5 | green | 1.000× | benchmarks |
+| static_large | 5 | unknown | — | lis |
+| static_small | 5 | green | 0.027× | lis |
 
 ## Security
 

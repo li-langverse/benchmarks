@@ -1,11 +1,11 @@
 # HTTP webserver RPS matrix (tier 5)
 
-Generated: 2026-06-05T04:00:25.836573+00:00
+Generated: 2026-06-11T04:23:57.116579+00:00
 
 **Mandatory after every li-httpd change:**
 `LIC_ROOT=… ./scripts/run-tier5-http-bench.sh` → `./scripts/benchmark-matrix-report.py`
 
-Source CSV: `C:\Users\Julian\Documents\Programming\li\benchmarks\vendor\lis-tier5\results\latest.csv`
+Source CSV: `/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/vendor/lis-tier5/results/latest.csv`
 
 Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenarios bench **nginx + li**; static scenarios bench all oracles.
 
@@ -15,16 +15,16 @@ Oracles: `BENCH_HTTP_ORACLES=nginx,apache,lighttpd,node,bun,li`. Proxy/LB scenar
 |---|---|---|---|---|---|---|---|---|---|
 | static_small | 4,030 | 109 | 660 | 5,171 | — | — | 1,759 | — | 37.00× |
 | keepalive_pipelining | 5,457 | 149 | 1,426 | 6,528 | — | — | 2,845 | — | 36.58× |
-| static_large | FAIL | 71 | 448 | 171 | — | — | 265 | — | — |
+| static_large | 132 | 143 | 662 | 205 | — | — | 320 | — | 0.93× |
 | proxy_loopback | 32,327 | 120 | 120 | 120 | — | — | — | — | 268.83× |
-| proxy_post_json | — | — | — | — | — | — | — | — | — |
+| proxy_post_json | FAIL | — | — | — | — | — | — | — | — |
 | lb_round_robin | 32,750 | 2,040 | 2,071 | 1,914 | — | — | — | — | 16.05× |
 | lb_least_conn | 30,280 | 2,010 | 1,958 | 1,804 | — | — | — | — | 15.07× |
-| lb_sticky_cookie | — | — | — | — | — | — | — | — | — |
+| lb_sticky_cookie | FAIL | — | — | — | — | — | — | — | — |
 | lb_peer_down | 32,265 | 1,940 | 1,884 | 1,827 | — | — | — | — | 16.63× |
-| tls_dhe_handshake | — | — | — | — | — | — | — | — | — |
+| tls_dhe_handshake | FAIL | — | — | — | — | — | — | — | — |
 
-**Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `proxy_loopback`: verify_fail_caddy:/; `static_large`: wrk_parse_fail_li
+**Li notes:** `lb_least_conn`: verify_fail_caddy:/; `lb_peer_down`: verify_fail_caddy:/; `lb_round_robin`: verify_fail_caddy:/; `lb_sticky_cookie`: verify_fail_li:sticky; `proxy_loopback`: verify_fail_caddy:/; `proxy_post_json`: verify_fail_li:post_json; `tls_dhe_handshake`: verify_fail_li:tls_dhe
 
 ## HTTP verify / feature gates (non-RPS)
 

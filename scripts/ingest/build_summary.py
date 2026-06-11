@@ -375,17 +375,23 @@ def os_tags_for_bench(
     return ["unknown"]
 
 
+def effective_row_os(row: dict) -> str:
+    """Legacy harness CSVs often omit os; treat as linux for ingest."""
+    os = normalize_os(row.get("os") or row.get("OS"))
+    return "linux" if os == "unknown" else os
+
+
 def rows_for_bench_os(
     rows: list[dict], bench_id: str, cfg: dict, os_tag: str
 ) -> list[dict]:
     bench_rows = rows_for_bench(rows, bench_id, cfg)
     if os_tag == "unknown":
-        return [r for r in bench_rows if normalize_os(r.get("os") or r.get("OS")) == "unknown"]
-    return [
-        r
-        for r in bench_rows
-        if normalize_os(r.get("os") or r.get("OS")) == os_tag
-    ]
+        return [
+            r
+            for r in bench_rows
+            if normalize_os(r.get("os") or r.get("OS")) == "unknown"
+        ]
+    return [r for r in bench_rows if effective_row_os(r) == os_tag]
 
 
 def chart_id_for_os(bench_id: str, os_tag: str, *, multi: bool) -> str:
@@ -1246,12 +1252,14 @@ def main() -> int:
     if not lic_csv.is_file() and lic_legacy.is_file():
         lic_csv = lic_legacy
     lis_csv = lis_root / "results/latest.csv"
+    lis_vendor_csv = ROOT / "vendor/lis-tier5/results/latest.csv"
     stability_csv = lic_root / "benchmarks/results/stability.csv"
     security_csv = lic_root / "benchmarks/results/security.csv"
 
     catalog_defaults = load_catalog_defaults()
     catalog = load_catalog()
-    raw = merge_csv_rows([lic_csv, lis_csv])
+    csv_sources = [p for p in (lic_csv, lis_csv, lis_vendor_csv) if p.is_file()]
+    raw = merge_csv_rows(csv_sources)
     stability_index = load_stability_index(stability_csv)
 
     by_bench: dict[str, list[dict]] = defaultdict(list)
@@ -1272,6 +1280,17 @@ def main() -> int:
 
     for bench_id, cfg in catalog.items():
         if cfg.get("catalog_lifecycle") == "planned":
+            append_pending_row(
+                bench_id=bench_id,
+                cfg=cfg,
+                category=cfg.get("category", "micro"),
+                metric=cfg.get("metric", "wall_time"),
+                charts_by_cat=charts_by_cat,
+                charts_by_pillar=charts_by_pillar,
+                tier_counts=tier_counts,
+                results=results,
+                catalog_defaults=catalog_defaults,
+            )
             continue
         category = cfg.get("category", "micro")
         metric = cfg.get("metric", "wall_time")
