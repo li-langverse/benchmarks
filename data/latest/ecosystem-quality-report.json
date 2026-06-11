@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T08:27:32Z",
+  "generated_at": "2026-06-11T09:29:57Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 76.1,
   "grade": "C",
@@ -23,7 +23,7 @@
         "audit_present": true,
         "open_prs": 91,
         "failed_prs": 2,
-        "repos_missing_ci_main": 33,
+        "repos_missing_ci_main": 36,
         "benchmark_red_count": 0
       },
       "finding_count": 2
@@ -81,7 +81,7 @@
     {
       "id": "repos-missing-ci",
       "severity": "high",
-      "message": "33 repos missing CI on main",
+      "message": "36 repos missing CI on main",
       "evidence": "ecosystem-audit.metrics.repos_missing_ci_main"
     },
     {
