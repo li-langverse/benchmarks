@@ -41478,6 +41478,144 @@
       "size_label": "1 KiB static /",
       "base_id": "static_small",
       "pending": true
+    },
+    {
+      "benchmark": "matmul_blocked_parallel",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": null,
+      "li_stddev": null,
+      "li_sample_runs": null,
+      "cpp_value": 0.023,
+      "cpp_stddev": 0.001614,
+      "cpp_sample_runs": 43,
+      "ratio_vs_cpp": null,
+      "sota_ref_lang": "rust",
+      "sota_lang": null,
+      "sota_value": null,
+      "ratio_vs_sota": null,
+      "unit": "s",
+      "variant": "parallel",
+      "status": "advisory",
+      "validity_status": "advisory",
+      "validity_source": "harness_pending",
+      "os": "linux",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/workloads/tier1_micro/matmul_blocked",
+      "threshold_ratio_cpp": 1.2,
+      "compare_oracle": "cpp",
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "cpp",
+          "value": 0.023,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.001614,
+          "sample_runs": 43,
+          "relative_perf": 0.9522
+        },
+        {
+          "lang": "rust",
+          "value": 0.0219,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.00169,
+          "sample_runs": 48,
+          "relative_perf": 1.0
+        },
+        {
+          "lang": "julia",
+          "value": 0.0236,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.001799,
+          "sample_runs": 47,
+          "relative_perf": 0.928
+        }
+      ],
+      "pillar": "numerics",
+      "package": "li-parallel",
+      "problem_size": "512",
+      "size_label": "N=512 block=64",
+      "base_id": "matmul_blocked",
+      "pending": true
+    },
+    {
+      "benchmark": "reduce_parallel",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "cpu_sec",
+      "li_value": null,
+      "li_stddev": 0.014701,
+      "li_sample_runs": 20,
+      "cpp_value": 0.475,
+      "cpp_stddev": 0.038125,
+      "cpp_sample_runs": 20,
+      "ratio_vs_cpp": 0.9025,
+      "sota_ref_lang": "julia",
+      "sota_lang": "li",
+      "sota_value": 0.4287,
+      "ratio_vs_sota": 1.0012,
+      "unit": "s",
+      "variant": "parallel",
+      "status": "advisory",
+      "validity_status": "advisory",
+      "validity_source": "harness_pending",
+      "os": "linux",
+      "ph_ids": [
+        "PH-5b"
+      ],
+      "path": "benchmarks/workloads/runtime_refs/reduce_parallel",
+      "threshold_ratio_cpp": 1.2,
+      "compare_oracle": "cpp",
+      "ci_url": "",
+      "langs": [
+        {
+          "lang": "cpp",
+          "value": 0.475,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.038125,
+          "sample_runs": 20,
+          "relative_perf": 0.9036
+        },
+        {
+          "lang": "rust",
+          "value": 0.438,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.019584,
+          "sample_runs": 20,
+          "relative_perf": 0.9799
+        },
+        {
+          "lang": "julia",
+          "value": 0.4292,
+          "unit": "s",
+          "variant": "release",
+          "os": "linux",
+          "stddev": 0.017753,
+          "sample_runs": 20,
+          "relative_perf": 1.0
+        }
+      ],
+      "pillar": "compiler",
+      "package": "li-parallel",
+      "problem_size": "100_000_000",
+      "size_label": "N=100_000_000",
+      "base_id": "reduce_sum",
+      "pending": true
     }
   ]
 }
