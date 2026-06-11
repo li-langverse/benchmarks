@@ -1,0 +1,1755 @@
+{
+  "generated_at": "2026-06-11T15:21Z",
+  "lic_root": "/tmp",
+  "lic_present": true,
+  "summary": {
+    "catalog_rows": 189,
+    "by_action": {
+      "already_planned": 141,
+      "defer_planned": 1,
+      "lic_impl": 28,
+      "missing_both": 1,
+      "other_repo": 18
+    },
+    "remediations": {
+      "planned_keep_path": 1
+    },
+    "bogus_remap": [],
+    "defer_planned": [
+      "proxy_loopback"
+    ],
+    "lic_impl": [
+      "horner_pure_li",
+      "matmul_blocked",
+      "reduce_parallel",
+      "matmul_blocked_parallel",
+      "matmul_blocked_N1024",
+      "matmul_naive",
+      "matmul_naive_N1024",
+      "num_cg",
+      "num_cholesky",
+      "num_eig_symmetric",
+      "num_fft_r2c",
+      "num_gmres",
+      "num_integ_euler",
+      "num_integ_rk4",
+      "num_integ_semi_implicit",
+      "num_integ_symplectic",
+      "num_integ_verlet",
+      "num_opt_bfgs",
+      "num_opt_line_search",
+      "num_quadrature_gauss",
+      "num_rng_pcg",
+      "num_root_newton",
+      "num_sparse_mv",
+      "reduce_sum",
+      "simd_dot",
+      "stdlib_dict_insert_lookup",
+      "stdlib_sort_int",
+      "stdlib_binary_search"
+    ]
+  },
+  "rows": [
+    {
+      "id": "tier0_stability",
+      "repo": "lic",
+      "path": "li-tests/benchmarks/tier0_correctness",
+      "tier": 0,
+      "catalog_lifecycle": null,
+      "action": "missing_both",
+      "remediation": null
+    },
+    {
+      "id": "cfd_fvm_face_flux",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cfd_fvm_face_flux",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "cfd_pimple",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cfd_pimple",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "cfd_piso",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cfd_piso",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "cfd_simple",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cfd_simple",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "cfd_turbulence_k_epsilon",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cfd_turbulence_k_epsilon",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "cfd_turbulence_k_omega_sst",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cfd_turbulence_k_omega_sst",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fea_gauss_quadrature",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fea_gauss_quadrature",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fea_linear_elasticity",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fea_linear_elasticity",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fea_mesh_tri_tet",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fea_mesh_tri_tet",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fea_solver_direct",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fea_solver_direct",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fea_solver_iterative",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fea_solver_iterative",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fea_stiffness_assembly",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fea_stiffness_assembly",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "horner_pure_li",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/horner_pure_li",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "fft_1d_fixed",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/fft_1d_fixed",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "matmul_blocked",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/matmul_blocked",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "reduce_parallel",
+      "repo": "lic",
+      "path": "benchmarks/workloads/runtime_refs/reduce_parallel",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "matmul_blocked_parallel",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/matmul_blocked",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "matmul_blocked_N1024",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/matmul_blocked",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "matmul_naive",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/matmul_naive",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "matmul_naive_N1024",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/matmul_naive",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "ml_conv2d_forward",
+      "repo": "li-math",
+      "path": "benchmarks/ml/ml_conv2d_forward",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "ml_mlp_forward",
+      "repo": "li-math",
+      "path": "benchmarks/ml/ml_mlp_forward",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "ml_mlp_train_step",
+      "repo": "li-math",
+      "path": "benchmarks/ml/ml_mlp_train_step",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "nbody_barnes_hut",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/nbody_barnes_hut",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "num_cg",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_cg",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_cholesky",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_cholesky",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_eig_symmetric",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_eig_symmetric",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_fft_r2c",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_fft_r2c",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_gmres",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_gmres",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_integ_euler",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_euler",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_integ_rk4",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_rk4",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_integ_semi_implicit",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_semi_implicit",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_integ_symplectic",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_symplectic",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_integ_verlet",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_verlet",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_opt_bfgs",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_opt_bfgs",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_opt_line_search",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_opt_line_search",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_quadrature_gauss",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_quadrature_gauss",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_rng_pcg",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_rng_pcg",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_root_newton",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_root_newton",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "num_sparse_mv",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_sparse_mv",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "reduce_sum",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/reduce_sum",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "simd_dot",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/simd_dot",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_list_push_pop",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_list_push_pop",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_dict_insert_lookup",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_dict_insert_lookup",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_set_ops",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_set_ops",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_sort_int",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_sort_int",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_binary_search",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_binary_search",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "lic_impl",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_heap_push_pop",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_heap_push_pop",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_deque_rotate",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_deque_rotate",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "stdlib_hash_flood",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_stdlib/stdlib_hash_flood",
+      "tier": 1,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "viz_colormap",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_colormap",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "viz_decimate",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_decimate",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "viz_inspector_panels",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_inspector_panels",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "viz_linked_views",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_linked_views",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "viz_marching_cubes",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_marching_cubes",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "viz_pipeline_graph",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_pipeline_graph",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "viz_resample",
+      "repo": "lig",
+      "path": "benchmarks/workloads/tier1_micro/viz_resample",
+      "tier": 1,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "advection_diffusion_2d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/advection_diffusion_2d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "auto_bicycle_model",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/auto_bicycle_model",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "auto_dyn_rk4",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/auto_dyn_rk4",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "auto_sensor_raycast",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/auto_sensor_raycast",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "bio_proteinmpnn",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "bio_rfdiffusion",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "bio_rosetta_energy",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "bio_rotamer_packing",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "cloth_swing",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/cloth_swing",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "combustion_passive",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/combustion_passive",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "double_pendulum",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/double_pendulum",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "drug_docking_diffusion",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "drug_docking_score_vina",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "drug_fep_alchemical",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "drug_litl_stages",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "drug_ml_retrain_loop",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "euler_fluid_2d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/euler_fluid_2d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "fdtd_waveguide_2d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/fdtd_waveguide_2d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "harmonic_oscillator_chain",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/harmonic_oscillator_chain",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "heat_equation_2d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/heat_equation_2d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_barostat_parrinello_rahman",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_barostat_parrinello_rahman",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_constraints_rattle",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_constraints_rattle",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_constraints_shake",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_constraints_shake",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_energy_drift",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_energy_drift",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_init_fcc_mb",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_init_fcc_mb",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_integrator_leapfrog",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_integrator_leapfrog",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_integrator_verlet",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_integrator_verlet",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_lennard_jones",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_lennard_jones",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_longrange_ewald",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_longrange_ewald",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_longrange_pme",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_longrange_pme",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_neighbor_cell_list",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_neighbor_cell_list",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_neighbor_verlet_skin",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_neighbor_verlet_skin",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_oracle_external",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_oracle_external",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_thermostat_berendsen",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_thermostat_berendsen",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "md_thermostat_nose_hoover",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/md_thermostat_nose_hoover",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "nbody_gravity",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/nbody_gravity",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "orbit_two_body",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/orbit_two_body",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "pde_cfl_timestep",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_verlet",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "pde_heat_implicit_jacobi",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier1_micro/num_integ_symplectic",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_ase_calculator",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_ase_calculator",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_ccsd",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_ccsd",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_grid_becke",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_grid_becke",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_grid_lebedev",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_grid_lebedev",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_hybrid_exchange",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_hybrid_exchange",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_scf_energy",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_scf_energy",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_xc_gga",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_xc_gga",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_xc_lda",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_xc_lda",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dft_xc_mgga",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dft_xc_mgga",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_dispersion_d3",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_dispersion_d3",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_ecp",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_ecp",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_eri_density_fitting",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_eri_density_fitting",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_eri_os",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_eri_os",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_eri_screening",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_eri_screening",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_geom_opt_bfgs",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_geom_opt_bfgs",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_geom_opt_internal",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_geom_opt_internal",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_grad_analytical",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_grad_analytical",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_gto_eval",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_gto_eval",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_hf_canonical_ortho",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_hf_canonical_ortho",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_hf_diis",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_hf_diis",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_hf_fock_build",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_hf_fock_build",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_job_queue_io",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_job_queue_io",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_kinetic_integrals",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_kinetic_integrals",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_mp2",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_mp2",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_nuclear_attraction",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_nuclear_attraction",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_overlap_integrals",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_overlap_integrals",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_property_dipole",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_property_dipole",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_property_freq",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_property_freq",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_scf_solver",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_scf_solver",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_tddft_casida",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_tddft_casida",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_tddft_rpa",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_tddft_rpa",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "qm_xtb_gfn",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/qm_xtb_gfn",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "ragdoll_chain",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/ragdoll_chain",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rigid_body_stack",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/rigid_body_stack",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rigid_broadphase_bvh",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/rigid_broadphase_bvh",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rigid_broadphase_sap",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/rigid_broadphase_sap",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rigid_constraints",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/rigid_constraints",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rigid_contact_solver",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/rigid_contact_solver",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rigid_semi_implicit",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/rigid_semi_implicit",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "robo_ik_jacobian",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "robo_multibody_step",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "robo_plan_prm",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "robo_plan_rrt",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "robo_traj_opt",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "schrodinger_1d_barrier",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/schrodinger_1d_barrier",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "sph_dam_break_2d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/sph_dam_break_2d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "three_body",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/three_body",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "three_body_pure",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/three_body_pure",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "wave_equation_1d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/wave_equation_1d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "wave_equation_2d",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/wave_equation_2d",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "wind_field_bc",
+      "repo": "lic",
+      "path": "benchmarks/workloads/tier2_physics/wind_field_bc",
+      "tier": 2,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_export_gcode_3mf",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_infill_grid_lines",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_infill_gyroid",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_offset_perimeters",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_plane_mesh_intersect",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_polygon_clip",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_slice_layers",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_support_tree",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_thermal_warp",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "am_toolpath_arcs",
+      "repo": "lic",
+      "path": "unknown",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "lip_smoke",
+      "repo": "lip",
+      "path": "scripts/ci.sh",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "lit_smoke",
+      "repo": "lit",
+      "path": "scripts/ci.sh",
+      "tier": 3,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "https_static",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/https_static",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "keepalive_pipelining",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/keepalive_pipelining",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "lb_least_conn",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/lb_least_conn",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "lb_peer_down",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/lb_peer_down",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "lb_round_robin",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/lb_round_robin",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "proxy_loopback",
+      "repo": "lic",
+      "path": "packages/li-net-httpd",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "defer_planned",
+      "remediation": "planned_keep_path"
+    },
+    {
+      "id": "rate_limit_429",
+      "repo": "benchmarks",
+      "path": "vendor/lis-tier5/benchmarks/tier5_http/scenarios/rate_limit_429",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "static_large",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/static_large",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "static_small",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/scenarios/static_small",
+      "tier": 5,
+      "catalog_lifecycle": null,
+      "action": "other_repo",
+      "remediation": null
+    },
+    {
+      "id": "tier5_http_exploits",
+      "repo": "lis",
+      "path": "benchmarks/workloads/tier5_http/harness/exploit_http.py",
+      "tier": 5,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "ann_qps_10k",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_vector_ann/scenarios/ann_qps_10k",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "ann_recall_at_10_10k",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_vector_ann/scenarios/ann_recall_at_10_10k",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "ann_recall_at_10_1m",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_vector_ann/scenarios/ann_recall_at_10_1m",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "gpu_ann_speedup_10k",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_gpu_speedup/scenarios/gpu_ann_speedup_10k",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "gpu_ann_speedup_1m",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_gpu_speedup/scenarios/gpu_ann_speedup_1m",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "graph_cycle_detect",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_graph_registry/scenarios/graph_cycle_detect",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "graph_dep_closure",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_graph_registry/scenarios/graph_dep_closure",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "registry_publish",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_registry/scenarios/registry_publish",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "registry_read_by_name",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_registry/scenarios/registry_read_by_name",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "registry_read_latest",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_registry/scenarios/registry_read_latest",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "injection_blocked",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_security/scenarios/injection_blocked",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rls_bypass_blocked",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_security/scenarios/rls_bypass_blocked",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rss_idle",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_memory/scenarios/rss_idle",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "rss_peak_load",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_memory/scenarios/rss_peak_load",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "concurrent_readers",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_parallel/scenarios/concurrent_readers",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "concurrent_writers",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_parallel/scenarios/concurrent_writers",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "query_log_complete",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_audit/scenarios/query_log_complete",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "tamper_evidence",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_audit/scenarios/tamper_evidence",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    },
+    {
+      "id": "ws_publish_latency",
+      "repo": "lidb",
+      "path": "benchmarks/workloads/tier_db_realtime/scenarios/ws_publish_latency",
+      "tier": 6,
+      "catalog_lifecycle": "planned",
+      "action": "already_planned",
+      "remediation": null
+    }
+  ]
+}

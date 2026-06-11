@@ -234,19 +234,37 @@ def _catalog_repo_root(repo: str) -> Path | None:
     return None
 
 
-def catalog_without_repo_path() -> list[dict]:
+def catalog_without_repo_path() -> tuple[list[dict], list[dict], list[dict]]:
     import tomllib
+
+    import importlib.util
+
+    gap_policy_path = ROOT / "scripts/catalog/gap_policy.py"
+    spec = importlib.util.spec_from_file_location("gap_policy", gap_policy_path)
+    if spec is None or spec.loader is None:
+        raise SystemExit(f"cannot load {gap_policy_path}")
+    gap_policy = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gap_policy)
 
     catalog = ROOT / "catalog.toml"
     if not catalog.is_file():
-        return []
+        return [], [], []
     data = tomllib.loads(catalog.read_text(encoding="utf-8"))
-    out: list[dict] = []
+    actionable: list[dict] = []
+    planned_skipped: list[dict] = []
+    triage_deferred: list[dict] = []
     for row in data.get("benchmark", []):
         rel = str(row.get("path", "")).strip()
         if not rel or rel == "unknown":
             continue
         if row.get("catalog_lifecycle") == "planned":
+            planned_skipped.append(
+                {
+                    "source": "benchmarks:catalog.toml",
+                    "item": f"catalog id={row.get('id')} lifecycle=planned (audit skip)",
+                    "id": row.get("id"),
+                }
+            )
             continue
         repo = str(row.get("repo", "lic"))
         root = _catalog_repo_root(repo)
@@ -255,16 +273,25 @@ def catalog_without_repo_path() -> list[dict]:
         bench_path = root / rel
         if bench_path.is_dir() or bench_path.is_file():
             continue
-        out.append(
-            {
-                "source": "benchmarks:catalog.toml",
-                "item": (
-                    f"catalog id={row.get('id')} path missing under {repo} root "
-                    f"({root.name}): {rel}"
-                ),
-            }
+        action = gap_policy.classify_catalog_row(
+            row,
+            lic_root=LIC if repo == "lic" else None,
+            bench_root=ROOT,
         )
-    return out
+        item = {
+            "source": "benchmarks:catalog.toml",
+            "item": (
+                f"catalog id={row.get('id')} path missing under {repo} root "
+                f"({root.name}): {rel}"
+            ),
+            "id": row.get("id"),
+            "triage_action": action,
+        }
+        if action in ("bogus_remap", "defer_planned", "already_planned", "unknown_path"):
+            triage_deferred.append(item)
+            continue
+        actionable.append(item)
+    return actionable, planned_skipped, triage_deferred
 
 
 def package_stubs() -> list[dict]:
@@ -290,7 +317,7 @@ def main() -> int:
     tracker_open_keys = {normalize_item_key(i["item"]) for i in master}
     gaps = scan_provability_gaps()
     plans, suppressed, stale_spec = scan_plan_dir(completed_phases, tracker_open_keys)
-    catalog = catalog_without_repo_path()
+    catalog, catalog_planned_skipped, catalog_triage_deferred = catalog_without_repo_path()
     stubs = package_stubs()
     physics = scan_physics_push()
 
@@ -308,6 +335,7 @@ def main() -> int:
             "benchmarks": str(ROOT),
             "roadmap": str(ROADMAP),
         },
+        "lic_present": LIC.is_dir(),
         "summary": {
             "open_tracker_items": len(master),
             "open_plan_checkboxes": len(plans),
@@ -316,6 +344,9 @@ def main() -> int:
             "provability_partial": len(gaps.get("partial", [])),
             "provability_missing": len(gaps.get("missing", [])),
             "catalog_gaps": len(catalog),
+            "catalog_gaps_actionable": len(catalog),
+            "catalog_gaps_planned_skipped": len(catalog_planned_skipped),
+            "catalog_gaps_triage_deferred": len(catalog_triage_deferred),
             "total_findings": len(open_items),
             "tracker_phases_complete": len(completed_phases),
         },
@@ -325,6 +356,8 @@ def main() -> int:
         "stale_spec_checklists": stale_spec,
         "provability_gaps": gaps,
         "catalog_gaps": catalog,
+        "catalog_gaps_planned_skipped": catalog_planned_skipped,
+        "catalog_gaps_triage_deferred": catalog_triage_deferred,
         "implementation_signals": stubs + physics,
         "recommended_actions": [],
     }
@@ -359,8 +392,10 @@ def main() -> int:
         report["recommended_actions"].append(
             {
                 "priority": "P2",
-                "action": "Implement lic benchmarks for catalog rows or remove catalog entry",
+                "action": "Implement lic benchmarks for actionable catalog rows or mark catalog_lifecycle=planned",
                 "benchmarks": [c["item"] for c in catalog],
+                "actionable_count": len(catalog),
+                "planned_skipped": len(catalog_planned_skipped),
             }
         )
 
