@@ -18,6 +18,10 @@ TIER5_HTTP_STUB=1 ./benchmarks/harness/bench_http.py --profile ci
 # Single scenario + override
 ./benchmarks/harness/bench_http.py static_small --set load.connections=500
 
+# Access-log A/B (li only): static_small (log off) vs static_small_log_on (LI_HTTPD_ACCESS_LOG=1)
+./benchmarks/harness/bench_http.py --profile logging_ab
+# Expect log_on RPS ~5–15% below log_off at c200 until async bounded queue (li-log M2).
+
 # Render nginx.conf from merged TOML
 ./benchmarks/harness/bench_http.py static_small --render-nginx-only /tmp/nginx.conf
 ```

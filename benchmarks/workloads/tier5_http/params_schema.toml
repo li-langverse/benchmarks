@@ -13,6 +13,9 @@ sendfile = "bool — nginx sendfile parity label"
 backend = "nextjs_toy | streaming_soak — proxy backend fixture (proxy kind)"
 backend_port = "int — loopback port for toy backend (proxy kind)"
 
+[server.env]
+LI_HTTPD_ACCESS_LOG = "0|1 — li-httpd bench only; harness default 0 (nginx access_log off parity)"
+
 [verify]
 target = "edge | backend — hit proxy front or toy backend directly (streaming smoke)"
 requests = "array of { method, path, expect_status, body_sha256?, body_len?, body_contains? }"

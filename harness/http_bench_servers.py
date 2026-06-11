@@ -225,6 +225,19 @@ def prepare_li_httpd_conf(name: str, port: int, *, cfg: dict[str, Any] | None = 
     return conf, work
 
 
+def li_httpd_process_env(cfg: dict[str, Any] | None = None) -> dict[str, str]:
+    """Bench startup env for li-httpd — default access log off for nginx parity."""
+    env = os.environ.copy()
+    env.setdefault("LI_HTTPD_ACCESS_LOG", "0")
+    if cfg is not None:
+        server = cfg.get("server") or {}
+        server_env = server.get("env")
+        if isinstance(server_env, dict):
+            for key, val in server_env.items():
+                env[str(key)] = str(val)
+    return env
+
+
 def start_li_httpd(
     name: str,
     port: int,
@@ -235,8 +248,7 @@ def start_li_httpd(
     if not os.path.isfile(bin_path) or not os.access(bin_path, os.X_OK):
         return None, None
     conf_path, work_dir = prepare_li_httpd_conf(name, port, cfg=cfg)
-    env = os.environ.copy()
-    env.setdefault("LI_HTTPD_ACCESS_LOG", "0")
+    env = li_httpd_process_env(cfg)
     proc = subprocess.Popen(
         [bin_path, str(conf_path)],
         env=env,

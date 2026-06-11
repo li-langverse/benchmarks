@@ -1,0 +1,32 @@
+name = "static_small_log_on"
+phase = "m1"
+enabled = true
+# A/B pair with static_small: same 1 KiB static wrk load; only access-log env differs.
+# Expect log_on li RPS ~5–15% below log_off (LI_HTTPD_ACCESS_LOG=0, harness default) at c200;
+# p99 tail may widen until async bounded queue lands (lic/docs/superpowers/specs/li-log.md).
+langs = ["li"]
+
+[server]
+kind = "static"
+document_root = "fixtures/static/1k"
+sendfile = true
+
+[server.env]
+LI_HTTPD_ACCESS_LOG = "1"
+
+[verify]
+requests = [
+  { method = "GET", path = "/file.bin", expect_status = 200, body_len = 1024 },
+]
+
+[load]
+tool = "wrk"
+threads = 8
+connections = 200
+
+[[load.sweep]]
+connections = [50, 200, 1000]
+variant_prefix = "c"
+
+[metrics]
+collect = ["rps", "p50_latency_ms", "p99_latency_ms"]

@@ -39,6 +39,16 @@ langs = ["li"]
 scenarios = ["static_small", "keepalive_pipelining"]
 timing = false
 
+[profiles.logging_ab]
+scenarios = ["static_small", "static_small_log_on"]
+timing = true
+langs = ["li"]
+
+[profiles.nightly]
+scenarios = ["static_small", "static_small_log_on", "keepalive_pipelining", "static_large"]
+timing = true
+langs = ["nginx", "li"]
+
 [default]
 include = ["static_small", "static_large", "keepalive_pipelining"]
 exclude = ["h2_static", "tcp_echo", "proxy_loopback", "nextjs_api", "nextjs_ssr", "nextjs_sse", "nextjs_ws", "sse_long_stream", "ws_fanout"]
