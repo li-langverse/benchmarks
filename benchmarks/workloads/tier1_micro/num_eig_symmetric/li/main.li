@@ -1,4 +1,4 @@
-# num_eig_symmetric — shared C oracle via LI_EXTRA_C (smoke-scale).
+# num_eig_symmetric — shared C oracle via LI_EXTRA_C.
 
 extern proc li_num_eig_symmetric_kernel()
   requires true

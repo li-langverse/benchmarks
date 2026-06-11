@@ -137,6 +137,15 @@ _WP1_NUM_IDS: tuple[str, ...] = (
     "fft_1d_fixed",
 )
 
+# Pure-Li fast paths (lipar-apply-num-fast.sh) — no LI_EXTRA_C link bloat.
+_NUM_PURE_LI_FAST: frozenset[str] = frozenset(
+    {
+        "num_integ_euler",
+        "num_integ_symplectic",
+        "num_root_newton",
+    }
+)
+
 
 def _wp1_num_bench_specs() -> tuple[BenchSpec, ...]:
     """Catalog num_* + fft_1d_fixed smoke harnesses (shared C oracle)."""
@@ -148,7 +157,7 @@ def _wp1_num_bench_specs() -> tuple[BenchSpec, ...]:
             main_c="cpp/main.c",
             core_c=f"common/{bench_id}_core.c",
             li_main="li/main.li",
-            li_pure=False,
+            li_pure=bench_id in _NUM_PURE_LI_FAST,
         )
         for bench_id in _WP1_NUM_IDS
     )
@@ -193,16 +202,6 @@ TIER1_BENCHES: tuple[BenchSpec, ...] = (
         "common/reduce_core.c",
         "li/main.li",
         bytes_per_run=8.0 * 1e8,
-    ),
-    BenchSpec(
-        "num_dot_axpy",
-        1,
-        "num_dot_axpy",
-        "cpp/main.c",
-        "common/matmul_core.c",
-        "li/main.li",
-        flops_per_run=2.0 * 256**3,
-        li_pure=False,
     ),
     BenchSpec(
         "horner_pure_li",
@@ -528,15 +527,7 @@ def merge_rows(
     langs: set[str] | None = None,
 ) -> list[dict[str, object]]:
     if langs is None:
-        new_langs = {str(r.get("lang", "")) for r in new_rows if r.get("benchmark") == benchmark}
-        if new_langs:
-            kept = [
-                row
-                for row in existing
-                if not (row["benchmark"] == benchmark and row.get("lang") in new_langs)
-            ]
-        else:
-            kept = [row for row in existing if row["benchmark"] != benchmark]
+        kept = [row for row in existing if row["benchmark"] != benchmark]
     else:
         kept = [
             row
@@ -954,12 +945,11 @@ def run_benchmark(spec: BenchSpec, *, runs: int) -> list[dict[str, object]]:
         )
         return rows
 
+    rust_bin = build_dir / f"{spec.name}_rust"
+    julia_bin = build_dir / f"{spec.name}_julia"
     li_label = _li_lang_label()
     li_variant = "parallel" if li_label == "li_parallel" else "serial"
     li_threads = int(os.environ.get("LIPAR_CORES", "8")) if li_label == "li_parallel" else 1
-
-    rust_bin = build_dir / f"{spec.name}_rust"
-    julia_bin = build_dir / f"{spec.name}_julia"
     li_bin = build_dir / f"{spec.name}_{li_label}"
 
     build_native(spec, rust_bin)

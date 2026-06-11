@@ -16,9 +16,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data/latest/ecosystem-quality-report.json"
 LATEST = ROOT / "data/latest"
-AGENTS_ROOT = Path(
-    os.environ.get("LI_CURSOR_AGENTS_ROOT", ROOT.parent / "li-cursor-agents"),
-)
+def _resolve_agents_root() -> Path:
+    env = os.environ.get("LI_CURSOR_AGENTS_ROOT")
+    if env:
+        return Path(env)
+    for candidate in (ROOT.parent / "li-cursor-agents", Path("/app")):
+        if (candidate / "data/runs").is_dir():
+            return candidate
+    return ROOT.parent / "li-cursor-agents"
+
+
+AGENTS_ROOT = _resolve_agents_root()
 LIC_ROOT = Path(os.environ.get("LIC_ROOT", ROOT.parent / "lic"))
 SNAPSHOT = LIC_ROOT / "data/goal-directed-agents/snapshot.json"
 RUNS_DIR = AGENTS_ROOT / "data/runs"

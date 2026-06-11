@@ -1,4 +1,4 @@
-# num_integ_semi_implicit — shared C oracle via LI_EXTRA_C (smoke-scale).
+# num_integ_semi_implicit — shared C oracle via LI_EXTRA_C.
 
 extern proc li_num_integ_semi_implicit_kernel()
   requires true
