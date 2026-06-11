@@ -146,7 +146,7 @@ proxy_post_json,apache,release,1,verify_pass,1,bool,eb19059,x86_64,proxy_post_js
 proxy_post_json,lighttpd,release,1,verify_pass,1,bool,eb19059,x86_64,proxy_post_json
 proxy_post_json,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_caddy:post_json
 proxy_post_json,harness,ci,1,verify_only,1,bool,eb19059,x86_64,unknown_proxy_oracle_traefik
-proxy_post_json,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_li:post_json
+proxy_post_json,li,ci,1,verify_pass,1,bool,eb19059,x86_64,proxy_post_json
 lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_nginx:sticky
 lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_apache:sticky
 lb_sticky_cookie,harness,ci,1,verify_only,1,bool,eb19059,x86_64,verify_fail_lighttpd:sticky
