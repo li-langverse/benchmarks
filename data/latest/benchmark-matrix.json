@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T06:01:28.435625+00:00",
+  "generated_at": "2026-06-11T04:23:57.116579+00:00",
   "sources": {
     "summary_json": "/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/data/latest/summary.json",
     "catalog_toml": "/mnt/c/Users/Julian/Documents/Programming/li/benchmarks/catalog.toml",
@@ -17,7 +17,7 @@
       "green": 44,
       "yellow": 2,
       "red": 0,
-      "unknown": 3
+      "unknown": 9
     },
     "2": {
       "green": 90,
@@ -29,13 +29,19 @@
       "green": 10,
       "yellow": 0,
       "red": 0,
-      "unknown": 0
+      "unknown": 2
     },
     "5": {
       "green": 0,
       "yellow": 0,
       "red": 0,
-      "unknown": 9
+      "unknown": 10
+    },
+    "6": {
+      "green": 0,
+      "yellow": 0,
+      "red": 0,
+      "unknown": 19
     }
   },
   "sections": {
@@ -50,12 +56,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": 1.0,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "stability suite",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       }
     ],
     "micro": [
@@ -69,12 +79,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "cfd_pimple",
@@ -86,12 +100,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "cfd_piso",
@@ -103,12 +121,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "cfd_simple",
@@ -120,12 +142,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "cfd_turbulence_k_epsilon",
@@ -137,12 +163,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "cfd_turbulence_k_omega_sst",
@@ -154,12 +184,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fea_gauss_quadrature",
@@ -171,12 +205,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fea_linear_elasticity",
@@ -188,12 +226,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fea_mesh_tri_tet",
@@ -205,12 +247,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fea_solver_direct",
@@ -222,12 +268,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fea_solver_iterative",
@@ -239,12 +289,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fea_stiffness_assembly",
@@ -256,12 +310,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "nx=128,ny=128,steps=20000",
         "size_label": "N=nx=128,ny=128,steps=20000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "fft_1d_fixed",
@@ -273,13 +331,17 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": 0.0266,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
         ],
         "problem_size": "4096",
         "size_label": "N=4096 FFT",
-        "base_id": null
+        "base_id": null,
+        "variant": "fftw_reference",
+        "parallel_eligible": null
       },
       {
         "id": "horner_pure_li",
@@ -291,13 +353,17 @@
         "ratio_vs_reference": 0.6477,
         "reference_lang": "cpp",
         "li_value": 0.0057,
+        "li_serial": 0.0057,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
         ],
         "problem_size": "1000000",
         "size_label": "N=1M Horner",
-        "base_id": null
+        "base_id": null,
+        "variant": "pure_li",
+        "parallel_eligible": null
       },
       {
         "id": "matmul_blocked",
@@ -309,12 +375,16 @@
         "ratio_vs_reference": 0.3609,
         "reference_lang": "cpp",
         "li_value": 0.0083,
+        "li_serial": 0.0083,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "512",
         "size_label": "N=512 block=64",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "matmul_blocked_N1024",
@@ -326,12 +396,35 @@
         "ratio_vs_reference": 0.3609,
         "reference_lang": "cpp",
         "li_value": 0.0083,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "1024",
         "size_label": "N=1024 block=64",
-        "base_id": "matmul_blocked"
+        "base_id": "matmul_blocked",
+        "variant": null,
+        "parallel_eligible": null
+      },
+      {
+        "id": "matmul_blocked_parallel",
+        "tier": 1,
+        "repo": "lic",
+        "category": "micro",
+        "metric": "wall_time",
+        "status": "advisory",
+        "ratio_vs_reference": null,
+        "reference_lang": "cpp",
+        "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
+        "ph_ids": [],
+        "problem_size": "512",
+        "size_label": "N=512 block=64",
+        "base_id": "matmul_blocked",
+        "variant": "parallel",
+        "parallel_eligible": true
       },
       {
         "id": "matmul_naive",
@@ -343,13 +436,17 @@
         "ratio_vs_reference": 1.1667,
         "reference_lang": "cpp",
         "li_value": 0.014,
+        "li_serial": 0.014,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
         ],
         "problem_size": "256",
         "size_label": "N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "matmul_naive_N1024",
@@ -361,13 +458,17 @@
         "ratio_vs_reference": 1.1667,
         "reference_lang": "cpp",
         "li_value": 0.014,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
         ],
         "problem_size": "1024",
         "size_label": "N=1024",
-        "base_id": "matmul_naive"
+        "base_id": "matmul_naive",
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "ml_conv2d_forward",
@@ -379,12 +480,16 @@
         "ratio_vs_reference": 1.1667,
         "reference_lang": "cpp",
         "li_value": 0.014,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "ml_mlp_forward",
@@ -396,12 +501,16 @@
         "ratio_vs_reference": 1.1667,
         "reference_lang": "cpp",
         "li_value": 0.014,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "ml_mlp_train_step",
@@ -413,12 +522,16 @@
         "ratio_vs_reference": 1.1667,
         "reference_lang": "cpp",
         "li_value": 0.014,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "nbody_barnes_hut",
@@ -430,12 +543,16 @@
         "ratio_vs_reference": 0.91,
         "reference_lang": "cpp",
         "li_value": 2.0154,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_cg",
@@ -447,12 +564,16 @@
         "ratio_vs_reference": 1.1848,
         "reference_lang": "cpp",
         "li_value": 0.0109,
+        "li_serial": 0.0109,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=64",
         "size_label": "N=n=64",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_cholesky",
@@ -464,12 +585,16 @@
         "ratio_vs_reference": 0.9889,
         "reference_lang": "cpp",
         "li_value": 0.0089,
+        "li_serial": 0.0089,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=64",
         "size_label": "N=n=64",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_eig_symmetric",
@@ -481,12 +606,16 @@
         "ratio_vs_reference": 1.2283,
         "reference_lang": "cpp",
         "li_value": 0.0113,
+        "li_serial": 0.0113,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=32",
         "size_label": "N=n=32",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_fft_r2c",
@@ -498,12 +627,16 @@
         "ratio_vs_reference": 1.0737,
         "reference_lang": "cpp",
         "li_value": 0.0204,
+        "li_serial": 0.0204,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=512",
         "size_label": "N=n=512",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_gmres",
@@ -515,12 +648,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.0089,
+        "li_serial": 0.0089,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=48",
         "size_label": "N=n=48",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_integ_euler",
@@ -532,12 +669,16 @@
         "ratio_vs_reference": 1.1863,
         "reference_lang": "cpp",
         "li_value": 0.0121,
+        "li_serial": 0.0121,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_integ_rk4",
@@ -549,12 +690,16 @@
         "ratio_vs_reference": 1.1863,
         "reference_lang": "cpp",
         "li_value": 0.0121,
+        "li_serial": 0.0121,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=200000",
         "size_label": "N=steps=200000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_integ_semi_implicit",
@@ -566,12 +711,16 @@
         "ratio_vs_reference": 1.19,
         "reference_lang": "cpp",
         "li_value": 0.0119,
+        "li_serial": 0.0119,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_integ_symplectic",
@@ -583,12 +732,16 @@
         "ratio_vs_reference": 1.18,
         "reference_lang": "cpp",
         "li_value": 0.0118,
+        "li_serial": 0.0118,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_integ_verlet",
@@ -600,12 +753,16 @@
         "ratio_vs_reference": 1.1835,
         "reference_lang": "cpp",
         "li_value": 0.0129,
+        "li_serial": 0.0129,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_opt_bfgs",
@@ -617,12 +774,16 @@
         "ratio_vs_reference": 1.1978,
         "reference_lang": "cpp",
         "li_value": 0.0109,
+        "li_serial": 0.0109,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_opt_bfgs",
         "size_label": "N=num_opt_bfgs",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_opt_line_search",
@@ -634,12 +795,16 @@
         "ratio_vs_reference": 0.9915,
         "reference_lang": "cpp",
         "li_value": 0.0116,
+        "li_serial": 0.0116,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_opt_line_search",
         "size_label": "N=num_opt_line_search",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_quadrature_gauss",
@@ -651,12 +816,16 @@
         "ratio_vs_reference": 1.1075,
         "reference_lang": "cpp",
         "li_value": 0.0103,
+        "li_serial": 0.0103,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_quadrature_gauss",
         "size_label": "N=num_quadrature_gauss",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_rng_pcg",
@@ -668,12 +837,16 @@
         "ratio_vs_reference": 1.1022,
         "reference_lang": "cpp",
         "li_value": 0.0205,
+        "li_serial": 0.0205,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_rng_pcg",
         "size_label": "N=num_rng_pcg",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_root_newton",
@@ -685,12 +858,16 @@
         "ratio_vs_reference": 1.2198,
         "reference_lang": "cpp",
         "li_value": 0.0111,
+        "li_serial": 0.0111,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_root_newton",
         "size_label": "N=num_root_newton",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "num_sparse_mv",
@@ -702,12 +879,35 @@
         "ratio_vs_reference": 1.038,
         "reference_lang": "cpp",
         "li_value": 0.0164,
+        "li_serial": 0.0164,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=256",
         "size_label": "N=n=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
+      },
+      {
+        "id": "reduce_parallel",
+        "tier": 1,
+        "repo": "lic",
+        "category": "micro",
+        "metric": "cpu_sec",
+        "status": "advisory",
+        "ratio_vs_reference": 0.9025,
+        "reference_lang": "cpp",
+        "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
+        "ph_ids": [],
+        "problem_size": "100_000_000",
+        "size_label": "N=100_000_000",
+        "base_id": null,
+        "variant": "parallel",
+        "parallel_eligible": true
       },
       {
         "id": "reduce_sum",
@@ -719,12 +919,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": 0.4287,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "100_000_000",
         "size_label": "N=100_000_000",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "simd_dot",
@@ -736,13 +940,17 @@
         "ratio_vs_reference": 0.8233,
         "reference_lang": "cpp",
         "li_value": 0.096,
+        "li_serial": 0.096,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b",
           "PH-7e"
         ],
         "problem_size": "10_000_000",
         "size_label": "N=10_000_000",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_binary_search",
@@ -754,12 +962,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": "200_000_queries",
         "size_label": "1M sorted / 200k queries",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_deque_rotate",
@@ -771,12 +983,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": null,
         "size_label": "harness pending",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_dict_insert_lookup",
@@ -788,12 +1004,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": "500_000_ops",
         "size_label": "500k insert+lookup",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_hash_flood",
@@ -805,12 +1025,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": null,
         "size_label": "harness pending",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_heap_push_pop",
@@ -822,12 +1046,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": null,
         "size_label": "harness pending",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_list_push_pop",
@@ -839,12 +1067,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": null,
         "size_label": "harness pending",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_set_ops",
@@ -856,12 +1088,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": null,
         "size_label": "harness pending",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "stdlib_sort_int",
@@ -873,12 +1109,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "AL-15"
         ],
         "problem_size": "1_000_000",
         "size_label": "N=1_000_000 int sort",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "viz_colormap",
@@ -890,12 +1130,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "viz_decimate",
@@ -907,12 +1151,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "viz_inspector_panels",
@@ -924,12 +1172,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "viz_linked_views",
@@ -941,12 +1193,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "viz_marching_cubes",
@@ -958,12 +1214,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "viz_pipeline_graph",
@@ -975,12 +1235,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "viz_resample",
@@ -992,12 +1256,16 @@
         "ratio_vs_reference": 0.9025,
         "reference_lang": "cpp",
         "li_value": 0.4287,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": null,
         "size_label": "algo registry stub",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       }
     ],
     "physics": [
@@ -1011,12 +1279,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": 0.0822,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "auto_bicycle_model",
@@ -1028,12 +1300,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "auto_dyn_rk4",
@@ -1045,12 +1321,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "auto_sensor_raycast",
@@ -1062,12 +1342,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "bio_proteinmpnn",
@@ -1079,12 +1363,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=256",
         "size_label": "N=n=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "bio_rfdiffusion",
@@ -1096,12 +1384,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=64",
         "size_label": "N=n=64",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "bio_rosetta_energy",
@@ -1113,12 +1405,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=48",
         "size_label": "N=n=48",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "bio_rotamer_packing",
@@ -1130,12 +1426,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=64",
         "size_label": "N=n=64",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "cloth_swing",
@@ -1147,12 +1447,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.0037,
+        "li_serial": 0.0037,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "combustion_passive",
@@ -1164,12 +1468,16 @@
         "ratio_vs_reference": 1.0857,
         "reference_lang": "cpp",
         "li_value": 0.0038,
+        "li_serial": 0.0038,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "double_pendulum",
@@ -1181,12 +1489,16 @@
         "ratio_vs_reference": 0.9628,
         "reference_lang": "cpp",
         "li_value": 0.3076,
+        "li_serial": 0.3076,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "drug_docking_diffusion",
@@ -1198,12 +1510,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=32",
         "size_label": "N=n=32",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "drug_docking_score_vina",
@@ -1215,12 +1531,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n=512",
         "size_label": "N=n=512",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "drug_fep_alchemical",
@@ -1232,12 +1552,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_rng_pcg",
         "size_label": "N=num_rng_pcg",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "drug_litl_stages",
@@ -1249,12 +1573,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "drug_ml_retrain_loop",
@@ -1266,12 +1594,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=200000",
         "size_label": "N=steps=200000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "euler_fluid_2d",
@@ -1283,12 +1615,16 @@
         "ratio_vs_reference": 1.0857,
         "reference_lang": "cpp",
         "li_value": 0.0038,
+        "li_serial": 0.0038,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "fdtd_waveguide_2d",
@@ -1300,12 +1636,16 @@
         "ratio_vs_reference": 1.0571,
         "reference_lang": "cpp",
         "li_value": 0.0037,
+        "li_serial": 0.0037,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "harmonic_oscillator_chain",
@@ -1317,12 +1657,16 @@
         "ratio_vs_reference": 0.9544,
         "reference_lang": "cpp",
         "li_value": 0.0962,
+        "li_serial": 0.0962,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "heat_equation_2d",
@@ -1334,12 +1678,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": 0.1067,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "md_barostat_parrinello_rahman",
@@ -1351,12 +1699,16 @@
         "ratio_vs_reference": 0.9867,
         "reference_lang": "cpp",
         "li_value": 2.1537,
+        "li_serial": 2.1537,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_constraints_rattle",
@@ -1368,12 +1720,16 @@
         "ratio_vs_reference": 0.9865,
         "reference_lang": "cpp",
         "li_value": 2.1177,
+        "li_serial": 2.1177,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_constraints_shake",
@@ -1385,12 +1741,16 @@
         "ratio_vs_reference": 0.9642,
         "reference_lang": "cpp",
         "li_value": 2.0931,
+        "li_serial": 2.0931,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_energy_drift",
@@ -1402,12 +1762,16 @@
         "ratio_vs_reference": 0.9208,
         "reference_lang": "cpp",
         "li_value": 2.0285,
+        "li_serial": 2.0285,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_init_fcc_mb",
@@ -1419,12 +1783,16 @@
         "ratio_vs_reference": 0.9645,
         "reference_lang": "cpp",
         "li_value": 2.1506,
+        "li_serial": 2.1506,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_integrator_leapfrog",
@@ -1436,12 +1804,16 @@
         "ratio_vs_reference": 0.9222,
         "reference_lang": "cpp",
         "li_value": 2.1372,
+        "li_serial": 2.1372,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_integrator_verlet",
@@ -1453,12 +1825,16 @@
         "ratio_vs_reference": 0.938,
         "reference_lang": "cpp",
         "li_value": 2.0802,
+        "li_serial": 2.0802,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_lennard_jones",
@@ -1470,12 +1846,16 @@
         "ratio_vs_reference": 0.91,
         "reference_lang": "cpp",
         "li_value": 2.0154,
+        "li_serial": 2.0154,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "md_longrange_ewald",
@@ -1487,12 +1867,16 @@
         "ratio_vs_reference": 0.9599,
         "reference_lang": "cpp",
         "li_value": 2.0729,
+        "li_serial": 2.0729,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_longrange_pme",
@@ -1504,12 +1888,16 @@
         "ratio_vs_reference": 0.9687,
         "reference_lang": "cpp",
         "li_value": 2.1152,
+        "li_serial": 2.1152,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_neighbor_cell_list",
@@ -1521,12 +1909,16 @@
         "ratio_vs_reference": 0.9621,
         "reference_lang": "cpp",
         "li_value": 2.0638,
+        "li_serial": 2.0638,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_neighbor_verlet_skin",
@@ -1538,12 +1930,16 @@
         "ratio_vs_reference": 0.8944,
         "reference_lang": "cpp",
         "li_value": 1.9702,
+        "li_serial": 1.9702,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_oracle_external",
@@ -1555,12 +1951,16 @@
         "ratio_vs_reference": 0.8844,
         "reference_lang": "cpp",
         "li_value": 2.0059,
+        "li_serial": 2.0059,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_thermostat_berendsen",
@@ -1572,12 +1972,16 @@
         "ratio_vs_reference": 1.0131,
         "reference_lang": "cpp",
         "li_value": 2.1192,
+        "li_serial": 2.1192,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "md_thermostat_nose_hoover",
@@ -1589,12 +1993,16 @@
         "ratio_vs_reference": 1.0145,
         "reference_lang": "cpp",
         "li_value": 2.1539,
+        "li_serial": 2.1539,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "nbody_gravity",
@@ -1606,12 +2014,16 @@
         "ratio_vs_reference": 0.9646,
         "reference_lang": "cpp",
         "li_value": 1.4468,
+        "li_serial": 1.4468,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "orbit_two_body",
@@ -1623,12 +2035,16 @@
         "ratio_vs_reference": 1.0278,
         "reference_lang": "cpp",
         "li_value": 0.0037,
+        "li_serial": 0.0037,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "pde_cfl_timestep",
@@ -1640,12 +2056,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "pde_heat_implicit_jacobi",
@@ -1657,12 +2077,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_ase_calculator",
@@ -1674,12 +2098,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_ccsd",
@@ -1691,12 +2119,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_grid_becke",
@@ -1708,12 +2140,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_grid_lebedev",
@@ -1725,12 +2161,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_hybrid_exchange",
@@ -1742,12 +2182,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_scf_energy",
@@ -1759,12 +2203,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_xc_gga",
@@ -1776,12 +2224,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_xc_lda",
@@ -1793,12 +2245,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dft_xc_mgga",
@@ -1810,12 +2266,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_dispersion_d3",
@@ -1827,12 +2287,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_ecp",
@@ -1844,12 +2308,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_eri_density_fitting",
@@ -1861,12 +2329,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_eri_os",
@@ -1878,12 +2350,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_eri_screening",
@@ -1895,12 +2371,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_geom_opt_bfgs",
@@ -1912,12 +2392,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_geom_opt_internal",
@@ -1929,12 +2413,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_grad_analytical",
@@ -1946,12 +2434,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_gto_eval",
@@ -1963,12 +2455,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_hf_canonical_ortho",
@@ -1980,12 +2476,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_hf_diis",
@@ -1997,12 +2497,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_hf_fock_build",
@@ -2014,12 +2518,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_job_queue_io",
@@ -2031,12 +2539,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_kinetic_integrals",
@@ -2048,12 +2560,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_mp2",
@@ -2065,12 +2581,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_nuclear_attraction",
@@ -2082,12 +2602,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_overlap_integrals",
@@ -2099,12 +2623,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_property_dipole",
@@ -2116,12 +2644,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_property_freq",
@@ -2133,12 +2665,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_scf_solver",
@@ -2150,12 +2686,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_tddft_casida",
@@ -2167,12 +2707,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_tddft_rpa",
@@ -2184,12 +2728,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "qm_xtb_gfn",
@@ -2201,12 +2749,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256",
         "size_label": "N=N=256",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "ragdoll_chain",
@@ -2218,12 +2770,16 @@
         "ratio_vs_reference": 1.0938,
         "reference_lang": "cpp",
         "li_value": 0.0035,
+        "li_serial": 0.0035,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "rigid_body_stack",
@@ -2235,12 +2791,16 @@
         "ratio_vs_reference": 1.1333,
         "reference_lang": "cpp",
         "li_value": 0.0034,
+        "li_serial": 0.0034,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "rigid_broadphase_bvh",
@@ -2252,12 +2812,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n={'value': 20}",
         "size_label": "N=n={'value': 20}",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "rigid_broadphase_sap",
@@ -2269,12 +2833,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n={'value': 20}",
         "size_label": "N=n={'value': 20}",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "rigid_constraints",
@@ -2286,12 +2854,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n={'value': 20}",
         "size_label": "N=n={'value': 20}",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "rigid_contact_solver",
@@ -2303,12 +2875,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n={'value': 20}",
         "size_label": "N=n={'value': 20}",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "rigid_semi_implicit",
@@ -2320,12 +2896,16 @@
         "ratio_vs_reference": 0.9417,
         "reference_lang": "cpp",
         "li_value": 0.1067,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "n={'value': 20}",
         "size_label": "N=n={'value': 20}",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "robo_ik_jacobian",
@@ -2337,12 +2917,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.1817,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "steps=500000",
         "size_label": "N=steps=500000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "robo_multibody_step",
@@ -2354,12 +2938,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.1817,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_root_newton",
         "size_label": "N=num_root_newton",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "robo_plan_prm",
@@ -2371,12 +2959,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.1817,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_opt_bfgs",
         "size_label": "N=num_opt_bfgs",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "robo_plan_rrt",
@@ -2388,12 +2980,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.1817,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_opt_line_search",
         "size_label": "N=num_opt_line_search",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "robo_traj_opt",
@@ -2405,12 +3001,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.1817,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "num_quadrature_gauss",
         "size_label": "N=num_quadrature_gauss",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "schrodinger_1d_barrier",
@@ -2422,12 +3022,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.0039,
+        "li_serial": 0.0039,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "sph_dam_break_2d",
@@ -2439,12 +3043,16 @@
         "ratio_vs_reference": 0.9537,
         "reference_lang": "cpp",
         "li_value": 0.9576,
+        "li_serial": 0.9576,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "three_body",
@@ -2456,12 +3064,16 @@
         "ratio_vs_reference": 1.0,
         "reference_lang": "cpp",
         "li_value": 0.1817,
+        "li_serial": 0.1817,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "three_body_pure",
@@ -2473,12 +3085,16 @@
         "ratio_vs_reference": 0.9693,
         "reference_lang": "cpp",
         "li_value": 0.1705,
+        "li_serial": 0.1705,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "wave_equation_1d",
@@ -2490,12 +3106,16 @@
         "ratio_vs_reference": 0.9725,
         "reference_lang": "cpp",
         "li_value": 1.2046,
+        "li_serial": 1.2046,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "wave_equation_2d",
@@ -2507,12 +3127,16 @@
         "ratio_vs_reference": 0.9339,
         "reference_lang": "cpp",
         "li_value": 0.1977,
+        "li_serial": 0.1977,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       },
       {
         "id": "wind_field_bc",
@@ -2524,12 +3148,16 @@
         "ratio_vs_reference": 1.1143,
         "reference_lang": "cpp",
         "li_value": 0.0039,
+        "li_serial": 0.0039,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "tier2_default",
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "shared_c_kernel",
+        "parallel_eligible": null
       }
     ],
     "http": [
@@ -2539,16 +3167,20 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "li",
-        "li_value": null,
+        "li_value": 5868.31,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": "tls_static",
         "size_label": "TLS static M15",
         "base_id": null,
+        "variant": "tls_m15_pending",
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 5868.31,
           "nginx": 111.94,
@@ -2564,16 +3196,20 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.0273,
         "reference_lang": "nginx",
-        "li_value": null,
+        "li_value": 5457.48,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": "pipeline_16",
         "size_label": "16-pipeline keepalive",
         "base_id": null,
+        "variant": null,
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 5457.48,
           "nginx": 149.21,
@@ -2588,16 +3224,20 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.0664,
         "reference_lang": "nginx",
-        "li_value": null,
+        "li_value": 30279.96,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": null,
         "size_label": "tier2 default grid",
         "base_id": null,
+        "variant": null,
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 30279.96,
           "nginx": 2009.63,
@@ -2611,16 +3251,20 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.0601,
         "reference_lang": "nginx",
-        "li_value": null,
+        "li_value": 32265.33,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": null,
         "size_label": "tier2 default grid",
         "base_id": null,
+        "variant": null,
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 32265.33,
           "nginx": 1940.07,
@@ -2634,16 +3278,20 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.0623,
         "reference_lang": "nginx",
-        "li_value": null,
+        "li_value": 32749.81,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": null,
         "size_label": "tier2 default grid",
         "base_id": null,
+        "variant": null,
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 32749.81,
           "nginx": 2040.04,
@@ -2657,16 +3305,20 @@
         "repo": "lic",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.0037,
         "reference_lang": "nginx",
-        "li_value": null,
+        "li_value": 32326.96,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": "loopback_wrk",
         "size_label": "loopback wrk",
         "base_id": null,
+        "variant": "li_epoll",
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 32326.96,
           "nginx": 120.25,
@@ -2680,16 +3332,20 @@
         "repo": "benchmarks",
         "category": "http",
         "metric": "verify_pass",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 1.0,
         "reference_lang": "li",
-        "li_value": null,
+        "li_value": 1.0,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": null,
         "size_label": "tier2 default grid",
-        "base_id": null
+        "base_id": null,
+        "variant": "rate_limit",
+        "parallel_eligible": null
       },
       {
         "id": "static_large",
@@ -2697,21 +3353,26 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
+        "status": "unknown",
         "ratio_vs_reference": null,
         "reference_lang": "nginx",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": "payload_1mib",
         "size_label": "1 MiB file.bin",
         "base_id": null,
+        "variant": null,
+        "parallel_eligible": null,
         "rps_by_lang": {
-          "nginx": 70.72,
-          "apache": 447.78,
-          "lighttpd": 171.1,
-          "node": 264.85
+          "li": 132.23,
+          "nginx": 142.88,
+          "apache": 661.63,
+          "lighttpd": 204.55,
+          "node": 320.12
         }
       },
       {
@@ -2720,16 +3381,20 @@
         "repo": "lis",
         "category": "http",
         "metric": "rps",
-        "status": "advisory",
-        "ratio_vs_reference": null,
+        "status": "green",
+        "ratio_vs_reference": 0.027,
         "reference_lang": "nginx",
-        "li_value": null,
+        "li_value": 4029.78,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": "payload_1k",
         "size_label": "1 KiB static /",
         "base_id": null,
+        "variant": null,
+        "parallel_eligible": null,
         "rps_by_lang": {
           "li": 4029.78,
           "nginx": 108.92,
@@ -2750,12 +3415,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-H"
         ],
         "problem_size": null,
         "size_label": null,
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "injection_blocked",
@@ -2767,13 +3436,17 @@
         "ratio_vs_reference": null,
         "reference_lang": "postgres",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "WP-N4",
           "PH-DB-SEC"
         ],
         "problem_size": null,
         "size_label": null,
-        "base_id": null
+        "base_id": null,
+        "variant": "db_security",
+        "parallel_eligible": null
       },
       {
         "id": "rls_bypass_blocked",
@@ -2785,13 +3458,17 @@
         "ratio_vs_reference": null,
         "reference_lang": "postgres",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "WP-N4",
           "PH-DB-SEC"
         ],
         "problem_size": null,
         "size_label": null,
-        "base_id": null
+        "base_id": null,
+        "variant": "db_security",
+        "parallel_eligible": null
       }
     ],
     "tooling": [
@@ -2805,12 +3482,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_infill_grid_lines",
@@ -2822,12 +3503,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_infill_gyroid",
@@ -2839,12 +3524,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_offset_perimeters",
@@ -2856,12 +3545,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_plane_mesh_intersect",
@@ -2873,12 +3566,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_polygon_clip",
@@ -2890,12 +3587,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_slice_layers",
@@ -2907,12 +3608,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_support_tree",
@@ -2924,12 +3629,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_thermal_warp",
@@ -2941,12 +3650,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "am_toolpath_arcs",
@@ -2958,12 +3671,16 @@
         "ratio_vs_reference": 0.9762,
         "reference_lang": "cpp",
         "li_value": 0.0822,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-5b"
         ],
         "problem_size": "N=256,steps=10000",
         "size_label": "N=N=256,steps=10000",
-        "base_id": null
+        "base_id": null,
+        "variant": "algo_registry",
+        "parallel_eligible": null
       },
       {
         "id": "lip_smoke",
@@ -2975,12 +3692,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-8b"
         ],
         "problem_size": null,
         "size_label": null,
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       },
       {
         "id": "lit_smoke",
@@ -2992,12 +3713,16 @@
         "ratio_vs_reference": null,
         "reference_lang": "cpp",
         "li_value": null,
+        "li_serial": null,
+        "li_parallel": null,
         "ph_ids": [
           "PH-8e"
         ],
         "problem_size": null,
         "size_label": null,
-        "base_id": null
+        "base_id": null,
+        "variant": null,
+        "parallel_eligible": null
       }
     ]
   },
@@ -3015,12 +3740,6 @@
       "lighttpd": 6528.24,
       "node": 2844.99,
       "li": 5457.48
-    },
-    "static_large": {
-      "nginx": 70.72,
-      "apache": 447.78,
-      "lighttpd": 171.1,
-      "node": 264.85
     },
     "proxy_loopback": {
       "nginx": 120.25,
@@ -3061,6 +3780,13 @@
       "caddy": 2467.03,
       "traefik": 116.07,
       "li": 5687.63
+    },
+    "static_large": {
+      "nginx": 142.88,
+      "apache": 661.63,
+      "lighttpd": 204.55,
+      "node": 320.12,
+      "li": 132.23
     }
   },
   "http_performance_order": [
@@ -3068,13 +3794,21 @@
     "keepalive_pipelining",
     "static_large",
     "proxy_loopback",
+    "proxy_post_json",
     "lb_round_robin",
     "lb_least_conn",
-    "lb_peer_down"
+    "lb_sticky_cookie",
+    "lb_peer_down",
+    "tls_dhe_handshake"
   ],
   "http_verify": {
     "rate_limit_429": {
       "li": "pass"
+    },
+    "proxy_post_json": {
+      "nginx": "pass",
+      "apache": "pass",
+      "lighttpd": "pass"
     }
   },
   "http_verify_order": [
@@ -3083,12 +3817,14 @@
     "https_tls_matrix"
   ],
   "http_li_status": {
-    "static_large": "wrk_parse_fail_li",
     "proxy_loopback": "verify_fail_caddy:/",
     "lb_round_robin": "verify_fail_caddy:/",
     "lb_least_conn": "verify_fail_caddy:/",
     "lb_peer_down": "verify_fail_caddy:/",
-    "rate_limit_429": "verify_pass"
+    "rate_limit_429": "verify_pass",
+    "proxy_post_json": "verify_fail_li:post_json",
+    "lb_sticky_cookie": "verify_fail_li:sticky",
+    "tls_dhe_handshake": "verify_fail_li:tls_dhe"
   },
   "http_bench_langs": [
     "li",
