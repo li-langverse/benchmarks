@@ -89,9 +89,9 @@ HPC_LIBRARIES = [
         "name": "FFTW",
         "domain": "FFT",
         "capabilities": ["1D/2D/3D FFT", "plans"],
-        "li_status": "missing",
-        "li_analog": "none in catalog",
-        "gap_hint": "Add micro FFT bench + std/signal or vendor hook",
+        "li_status": "partial",
+        "li_analog": "tier-1 `fft_1d_fixed` FFTW oracle + pure_li DFT variant",
+        "gap_hint": "Vendor GPU oracles (cuFFT/VkFFT) and pure-Li FFT proof path",
     },
     {
         "id": "openmp",

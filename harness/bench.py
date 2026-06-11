@@ -560,6 +560,18 @@ def _native_compile_flags(spec: BenchSpec) -> tuple[list[str], list[str]]:
         return [], []
     if os.environ.get("LI_BENCH_FFTW", "").strip().lower() not in ("1", "true", "yes"):
         return [], []
+    try:
+        proc = subprocess.run(
+            ["pkg-config", "--exists", "fftw3"],
+            capture_output=True,
+            check=False,
+        )
+        if proc.returncode == 0:
+            cflags = subprocess.check_output(["pkg-config", "--cflags", "fftw3"], text=True).split()
+            libs = subprocess.check_output(["pkg-config", "--libs", "fftw3"], text=True).split()
+            return ["-DLI_BENCH_FFTW", *cflags], libs
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        pass
     return ["-DLI_BENCH_FFTW"], ["-lfftw3"]
 
 
