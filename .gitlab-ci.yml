@@ -29,6 +29,7 @@ variables:
   HTTP_BENCH_RUNS: "3"
   GIT_SSL_NO_VERIFY: "true"
   CI_SERVER_HOST: gitlab.gitlab.svc.cluster.local
+  GIT_REMOTE_HOST: gitlab.lilangverse.xyz
 
 .clone_siblings: &clone_siblings
   - git clone --depth 1 "http://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/li-langverse/lic.git" lic
@@ -259,7 +260,7 @@ publish-dashboard:
         git config user.name "benchmarks-nightly"
         git add data/latest/ data/history/ || true
         git diff --staged --quiet || git commit -m "chore(nightly): refresh benchmark summary from Linux run"
-        git push "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:${CI_COMMIT_BRANCH}"
+        git push "https://oauth2:${GITLAB_TOKEN}@${GIT_REMOTE_HOST}/${CI_PROJECT_PATH}.git" "HEAD:${CI_COMMIT_BRANCH}"
       fi
   artifacts:
     paths:
@@ -280,7 +281,7 @@ pages:
     - apt-get update -qq && apt-get install -y -qq git curl python3
     - |
       if [[ -n "${GITLAB_TOKEN:-}" && "${CI_COMMIT_BRANCH:-}" == "main" ]]; then
-        git fetch "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" main || true
+        git fetch "https://oauth2:${GITLAB_TOKEN}@${GIT_REMOTE_HOST}/${CI_PROJECT_PATH}.git" main || true
         git checkout -B main FETCH_HEAD || true
       fi
   script:
