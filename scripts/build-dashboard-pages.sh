@@ -24,4 +24,8 @@ cd ..
 chmod +x scripts/check-dashboard-static-routes.sh
 ./scripts/check-dashboard-static-routes.sh
 test -s dashboard-next/out/index.html
-echo "build-dashboard-pages: OK"
+PAGES_DIR="${PAGES_OUTPUT_DIR:-public}"
+rm -rf "$PAGES_DIR"
+cp -a dashboard-next/out "$PAGES_DIR"
+test -s "$PAGES_DIR/index.html"
+echo "build-dashboard-pages: OK ($PAGES_DIR)"

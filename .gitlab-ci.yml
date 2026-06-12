@@ -1,13 +1,12 @@
-# GitLab-primary CI for benchmarks (GitHub mirror read-only; GHCR unchanged).
+# GitLab-primary CI for benchmarks (GitHub mirror optional).
 # Schedule (GitLab UI → CI/CD → Schedules): cron 0 4 * * *  variable SCHEDULE_KIND=benchmark-nightly
 #
 # Required CI/CD variables:
 #   GITLAB_TOKEN          clone lic/lis siblings + push nightly data commits
-#   GITHUB_MIRROR_TOKEN   push main to GitHub mirror + dispatch pages.yml (live site)
-#   GHCR_TOKEN            optional; lic-ci image pull on runner via imagePullSecrets
+#   GITHUB_MIRROR_TOKEN   optional; mirror main to GitHub + dispatch pages.yml
 #
-# macOS/Windows nightly tiers: deferred (homelab-k8s is Linux). Linux tier matrix runs on schedule.
-# Live site: publish-dashboard commits data -> deploy-github-pages mirrors to GitHub -> Pages.
+# Live site: GitLab Pages (Settings → Pages → custom domain benchmarks.lilangverse.xyz).
+# macOS/Windows nightly tiers: deferred (homelab-k8s is Linux).
 
 stages:
   - test
@@ -83,6 +82,7 @@ dashboard-build:
   image: node:22-bookworm
   script:
     - apt-get update -qq && apt-get install -y -qq python3
+    - export MULTI_OS_LINUX_ONLY=1
     - python3 scripts/check-reporting-platforms.py
     - python3 scripts/check-summary-skip-budget.py
     - python3 scripts/check-summary-measurement-quality.py
@@ -261,10 +261,15 @@ publish-dashboard:
         git diff --staged --quiet || git commit -m "chore(nightly): refresh benchmark summary from Linux run"
         git push "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "HEAD:${CI_COMMIT_BRANCH}"
       fi
+  artifacts:
+    paths:
+      - data/latest/
+    expire_in: 7 days
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_KIND == "benchmark-nightly" && $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "main"
-deploy-github-pages:
+
+pages:
   stage: publish
   image: node:22-bookworm
   timeout: 30m
@@ -274,15 +279,21 @@ deploy-github-pages:
   before_script:
     - apt-get update -qq && apt-get install -y -qq git curl python3
     - |
-      if [[ -n "${GITLAB_TOKEN:-}" ]]; then
-        git fetch "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" main
-        git checkout -B main FETCH_HEAD
+      if [[ -n "${GITLAB_TOKEN:-}" && "${CI_COMMIT_BRANCH:-}" == "main" ]]; then
+        git fetch "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" main || true
+        git checkout -B main FETCH_HEAD || true
       fi
   script:
     - chmod +x scripts/build-dashboard-pages.sh scripts/mirror-push-github-pages.sh
     - export MULTI_OS_LINUX_ONLY=1
     - ./scripts/build-dashboard-pages.sh
-    - ./scripts/mirror-push-github-pages.sh
+    - |
+      if [[ -n "${GITHUB_MIRROR_TOKEN:-${GH_TOKEN:-}}" ]]; then
+        ./scripts/mirror-push-github-pages.sh || echo "WARN: GitHub mirror optional step failed"
+      fi
+  artifacts:
+    paths:
+      - public
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_KIND == "benchmark-nightly" && $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "main"
@@ -291,4 +302,4 @@ deploy-github-pages:
         - data/latest/**
         - dashboard-next/**
         - scripts/build-dashboard-pages.sh
-        - scripts/mirror-push-github-pages.sh
+        - .gitlab-ci.yml
