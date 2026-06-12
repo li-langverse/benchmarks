@@ -283,13 +283,9 @@ pages:
         git checkout -B main FETCH_HEAD || true
       fi
   script:
-    - chmod +x scripts/build-dashboard-pages.sh scripts/mirror-push-github-pages.sh
+    - chmod +x scripts/build-dashboard-pages.sh
     - export MULTI_OS_LINUX_ONLY=1
     - ./scripts/build-dashboard-pages.sh
-    - |
-      if [[ -n "${GITHUB_MIRROR_TOKEN:-${GH_TOKEN:-}}" ]]; then
-        ./scripts/mirror-push-github-pages.sh || echo "WARN: GitHub mirror optional step failed"
-      fi
   artifacts:
     paths:
       - public
