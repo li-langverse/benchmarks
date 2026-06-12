@@ -274,9 +274,7 @@ pages:
   stage: publish
   image: node:22-bookworm
   timeout: 30m
-  needs:
-    - job: publish-dashboard
-      optional: true
+  needs: []
   before_script:
     - apt-get update -qq && apt-get install -y -qq git curl python3
     - |
