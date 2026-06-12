@@ -43,7 +43,12 @@ def charts_with_series(summary: dict) -> list[dict]:
 
 
 def main() -> int:
-    strict = os.environ.get("MULTI_OS_STRICT", "").strip().lower() in (
+    linux_only = os.environ.get("MULTI_OS_LINUX_ONLY", "").strip().lower() in (
+        "1",
+        "true",
+        "yes",
+    )
+    strict = not linux_only and os.environ.get("MULTI_OS_STRICT", "").strip().lower() in (
         "1",
         "true",
         "yes",
@@ -79,8 +84,9 @@ def main() -> int:
     os_values = summary.get("reporting", {}).get("os_values") or []
     normalized = [str(v).lower() for v in os_values]
 
+    strict_platforms = ("linux",) if linux_only else REQUIRED_PLATFORMS
     if strict:
-        for plat in REQUIRED_PLATFORMS:
+        for plat in strict_platforms:
             n = measured_by_os.get(plat, 0)
             if n < MIN_MEASURED_CHARTS_PER_OS:
                 fail(
@@ -90,6 +96,12 @@ def main() -> int:
                 fail(f"summary.rows has no rows for os={plat!r}")
             if plat not in normalized and plat not in measured_by_os:
                 fail(f"reporting.os_values missing {plat!r}")
+    elif linux_only:
+        n = measured_by_os.get("linux", 0)
+        if n < MIN_MEASURED_CHARTS_PER_OS:
+            fail(f"linux-only nightly: measured linux charts={n} < {MIN_MEASURED_CHARTS_PER_OS}")
+        if row_os.get("linux", 0) < 1:
+            fail("linux-only nightly: summary.rows has no linux rows")
 
     print(
         "PASS check-reporting-platforms "

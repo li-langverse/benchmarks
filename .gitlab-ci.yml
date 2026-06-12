@@ -2,10 +2,12 @@
 # Schedule (GitLab UI → CI/CD → Schedules): cron 0 4 * * *  variable SCHEDULE_KIND=benchmark-nightly
 #
 # Required CI/CD variables:
-#   GITLAB_TOKEN   clone lic/lis siblings
-#   GHCR_TOKEN or GH_PACKAGES   optional; lic-ci image pull on runner via imagePullSecrets
+#   GITLAB_TOKEN          clone lic/lis siblings + push nightly data commits
+#   GITHUB_MIRROR_TOKEN   push main to GitHub mirror + dispatch pages.yml (live site)
+#   GHCR_TOKEN            optional; lic-ci image pull on runner via imagePullSecrets
 #
 # macOS/Windows nightly tiers: deferred (homelab-k8s is Linux). Linux tier matrix runs on schedule.
+# Live site: publish-dashboard commits data -> deploy-github-pages mirrors to GitHub -> Pages.
 
 stages:
   - test
@@ -204,13 +206,15 @@ bench-linux-merge:
     - mkdir -p artifacts/tiers results
     - |
       for tier in tier0 tier1 tier2-md tier5; do
-        if [[ -f "results/tier-${tier}.csv" ]]; then
-          cp "results/tier-${tier}.csv" "artifacts/tiers/"
+        src="results/tier-${tier}.csv"
+        if [[ -f "$src" ]]; then
+          cp "$src" "artifacts/tiers/"
         fi
       done
     - chmod +x scripts/collect-tier-csv-artifacts.sh scripts/merge-benchmark-tier-csvs.sh
     - ./scripts/collect-tier-csv-artifacts.sh artifacts/tiers results
     - ./scripts/merge-benchmark-tier-csvs.sh results
+    - python3 scripts/check-csv-os-tags.py results/latest.csv --expect-os linux
     - test -s results/latest.csv
   artifacts:
     paths:
@@ -236,15 +240,14 @@ publish-dashboard:
       chmod +x scripts/ingest/*.sh scripts/regression-check.sh
       python3 scripts/ingest/merge_bench_csv_artifacts.py "$CI_PROJECT_DIR/results/latest.csv" linux:artifacts/linux/latest.csv
       ./scripts/ingest/ingest-lic.sh
-      export MULTI_OS_SKIP_WINDOWS=1
+      export MULTI_OS_LINUX_ONLY=1
       python3 scripts/check-summary-multi-os-measured.py
       python3 scripts/benchmark-matrix-report.py
       python3 scripts/record-benchmark-history.py || true
       ./scripts/regression-check.sh || true
     - |
       export MEASUREMENT_STRICT_PARITY=1
-      export MULTI_OS_STRICT=1
-      export MULTI_OS_SKIP_WINDOWS=1
+      export MULTI_OS_LINUX_ONLY=1
       python3 scripts/check-reporting-platforms.py
       python3 scripts/check-summary-skip-budget.py
       python3 scripts/check-summary-measurement-quality.py
@@ -261,3 +264,31 @@ publish-dashboard:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_KIND == "benchmark-nightly" && $CI_COMMIT_BRANCH == "main"
     - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "main"
+deploy-github-pages:
+  stage: publish
+  image: node:22-bookworm
+  timeout: 30m
+  needs:
+    - job: publish-dashboard
+      optional: true
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq git curl python3
+    - |
+      if [[ -n "${GITLAB_TOKEN:-}" ]]; then
+        git fetch "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" main
+        git checkout -B main FETCH_HEAD
+      fi
+  script:
+    - chmod +x scripts/build-dashboard-pages.sh scripts/mirror-push-github-pages.sh
+    - export MULTI_OS_LINUX_ONLY=1
+    - ./scripts/build-dashboard-pages.sh
+    - ./scripts/mirror-push-github-pages.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $SCHEDULE_KIND == "benchmark-nightly" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == "main"
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+      changes:
+        - data/latest/**
+        - dashboard-next/**
+        - scripts/build-dashboard-pages.sh
+        - scripts/mirror-push-github-pages.sh
