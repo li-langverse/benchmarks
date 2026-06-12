@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-12T07:47:25Z",
+  "generated_at": "2026-06-12T08:18:27Z",
   "role": "ecosystem_quality_scorecard",
-  "overall_score": 76.1,
-  "grade": "C",
+  "overall_score": 82.6,
+  "grade": "B",
   "unattended_safe": true,
   "dimensions": {
     "briefing_health": {
@@ -17,16 +17,16 @@
       "finding_count": 2
     },
     "ecosystem_posture": {
-      "score": 71.0,
+      "score": 97.0,
       "weight": 0.25,
       "signals": {
         "audit_present": true,
-        "open_prs": 91,
-        "failed_prs": 2,
-        "repos_missing_ci_main": 44,
+        "open_prs": 0,
+        "failed_prs": 0,
+        "repos_missing_ci_main": 1,
         "benchmark_red_count": 0
       },
-      "finding_count": 2
+      "finding_count": 1
     },
     "goal_directed_health": {
       "score": 70.0,
@@ -81,7 +81,7 @@
     {
       "id": "repos-missing-ci",
       "severity": "high",
-      "message": "44 repos missing CI on main",
+      "message": "1 repos missing CI on main",
       "evidence": "ecosystem-audit.metrics.repos_missing_ci_main"
     },
     {
@@ -103,12 +103,6 @@
       "evidence": "agent-briefing.preflight_runs"
     },
     {
-      "id": "failed-pr-ci",
-      "severity": "medium",
-      "message": "2 open PR(s) with failing CI",
-      "evidence": "ecosystem-audit.metrics.failed_prs"
-    },
-    {
       "id": "plan-debt-gaps",
       "severity": "medium",
       "message": "31 plan_debt gap rows",
@@ -126,7 +120,7 @@
     },
     {
       "agent": "ci_maintainer",
-      "reason": "briefing P0: 44 repos missing CI (audit)"
+      "reason": "briefing P0: 1 repos missing CI (audit)"
     },
     {
       "agent": "security_auditor",
