@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-14T09:01:41Z",
+  "generated_at": "2026-06-14T09:21:43Z",
   "role": "ecosystem_quality_scorecard",
   "overall_score": 81.1,
   "grade": "B",
@@ -12,7 +12,7 @@
         "briefing_present": true,
         "preflight_failed": 2,
         "preflight_skipped": 8,
-        "recommended_agent_count": 2
+        "recommended_agent_count": 3
       },
       "finding_count": 2
     },
@@ -117,6 +117,10 @@
     {
       "agent": "plan_verifier",
       "reason": "briefing_health weak \u2014 refresh plan audit preflight"
+    },
+    {
+      "agent": "docs_maintainer",
+      "reason": "briefing P0: 1 repos without live docs"
     },
     {
       "agent": "ci_maintainer",
