@@ -1,0 +1,9 @@
+[profiles.ci]
+validity = true
+timing_runs = 3
+openssl_seconds = 1
+
+[profiles.baseline]
+validity = true
+timing_runs = 6
+openssl_seconds = 3

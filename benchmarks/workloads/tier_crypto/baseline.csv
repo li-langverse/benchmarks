@@ -1,5 +1,5 @@
-primitive,ops_per_sec,notes
-sha256,1000000,smoke baseline scaffold
-chacha20_poly1305,500000,smoke baseline scaffold
-x25519,250000,smoke baseline scaffold
-ml_dsa65_sign,10000,smoke baseline scaffold
+primitive,lang,min_ops_per_sec,notes
+sha256,li,50,pure-Li single-block digest loop (5000 rounds)
+chacha20_poly1305,li,50,chacha20 block0 byte path
+x25519,li,50,x25519 golden byte path
+ml_dsa65_kat,li,20,ML-DSA KAT selftest loop
