@@ -1,11 +1,10 @@
-# GitLab-primary CI for benchmarks (GitHub mirror optional).
+# GitLab-primary CI for benchmarks.lilangverse.xyz.
 # Schedule (GitLab UI → CI/CD → Schedules): cron 0 4 * * *  variable SCHEDULE_KIND=benchmark-nightly
 #
 # Required CI/CD variables:
 #   GITLAB_TOKEN          clone lic/lis siblings + push nightly data commits
-#   GITHUB_MIRROR_TOKEN   optional; mirror main to GitHub + dispatch pages.yml
 #
-# Live site: GitLab Pages (Settings → Pages → custom domain benchmarks.lilangverse.xyz).
+# Live site: GitLab Pages — homelab-k3s/docs/public-edge-benchmarks-pages.md
 # macOS/Windows nightly tiers: deferred (homelab-k8s is Linux).
 
 stages:

@@ -1,15 +1,7 @@
 ﻿name: Deploy dashboard
 
+# Retired — GitLab CI publishes to benchmarks.lilangverse.xyz (see homelab-k3s/docs/public-edge-benchmarks-pages.md).
 on:
-  push:
-    branches: [main]
-    paths:
-      - "dashboard/**"
-      - "dashboard-next/**"
-      - "scripts/dashboard/**"
-      - "data/latest/**"
-      - "static-dashboard/**"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 
 permissions:
