@@ -359,6 +359,20 @@ def run_load_for_lang(
     return rows
 
 
+def profile_needs_nginx(
+    profile: str | None,
+    names: list[str],
+    *,
+    overrides: list[str] | None,
+) -> bool:
+    """True when any scenario in the run list includes nginx in profile langs."""
+    for name in names:
+        cfg = merge_scenario(name, overrides=overrides, profile=profile)
+        if "nginx" in profile_langs(profile, cfg):
+            return True
+    return False
+
+
 def dry_run_scenario(name: str, *, profile: str | None, overrides: list[str] | None) -> tuple[bool, str]:
     cfg = merge_scenario(name, overrides=overrides, profile=profile)
     errs = validate_merged(cfg)
@@ -479,7 +493,7 @@ def main() -> int:
     ]
     if names_need_wrk and not shutil.which("wrk"):
         print("bench_http: wrk not in PATH — skipping wrk load timing", file=sys.stderr)
-    if not resolve_nginx_binary():
+    if not resolve_nginx_binary() and profile_needs_nginx(profile, names, overrides=args.overrides):
         print("bench_http: nginx missing — skipping load timing", file=sys.stderr)
         return 0
 
