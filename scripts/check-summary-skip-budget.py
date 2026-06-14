@@ -39,7 +39,12 @@ def main() -> int:
     linux = by_os.get("linux", [])
     linux_skip = sum(1 for r in linux if r.get("status") == "skip")
     linux_green = sum(1 for r in linux if r.get("status") == "green")
-    linux_unknown = sum(1 for r in linux if r.get("status") == "unknown")
+    # Tier 6+ catalog stubs (db/gpu/registry) may stay unknown until harness runs.
+    linux_unknown = sum(
+        1
+        for r in linux
+        if r.get("status") == "unknown" and int(r.get("tier") or 99) <= 5
+    )
 
     if skip_total > MAX_TOTAL_SKIP_ROWS:
         fail(

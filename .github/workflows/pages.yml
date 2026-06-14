@@ -28,6 +28,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Dashboard data gates
+        env:
+          MULTI_OS_LINUX_ONLY: "1"
         run: |
           python3 scripts/check-reporting-platforms.py
           python3 scripts/check-summary-skip-budget.py

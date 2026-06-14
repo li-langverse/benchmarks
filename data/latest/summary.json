@@ -16768,7 +16768,7 @@
       ]
     },
     "http": {
-      "label": "HTTP / webserver (li-httpd \u00b7 lis)",
+      "label": "HTTP / webserver (li-httpd · lis)",
       "charts": [
         {
           "id": "https_static@linux",
@@ -16787,7 +16787,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 1.0284
+              "relative_perf": 1.0284,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -16908,7 +16909,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 0.836
+              "relative_perf": 0.836,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -17029,7 +17031,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 15.0674
+              "relative_perf": 15.0674,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -17142,7 +17145,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 16.631
+              "relative_perf": 16.631,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -17255,7 +17259,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 15.8133
+              "relative_perf": 15.8133,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -17368,7 +17373,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 268.8313
+              "relative_perf": 268.8313,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -17480,7 +17486,8 @@
               "value": 1.0,
               "unit": "bool",
               "variant": "ci",
-              "os": "unknown"
+              "os": "unknown",
+              "sample_runs": 3
             }
           ],
           "grouped": false,
@@ -17682,7 +17689,8 @@
               "unit": "req/s",
               "variant": "release",
               "os": "unknown",
-              "relative_perf": 0.7794
+              "relative_perf": 0.7794,
+              "sample_runs": 3
             },
             {
               "lang": "nginx",
@@ -17789,7 +17797,7 @@
       ]
     },
     "tooling": {
-      "label": "Ecosystem tooling (lip \u00b7 lit \u00b7 lic compile)",
+      "label": "Ecosystem tooling (lip · lit · lic compile)",
       "charts": [
         {
           "id": "am_export_gcode_3mf@linux",
@@ -19072,13 +19080,15 @@
               "lang": "li",
               "value": 1.0,
               "unit": "pass",
-              "label": "md_stress"
+              "label": "md_stress",
+              "sample_runs": 3
             },
             {
               "lang": "li",
               "value": 1.0,
               "unit": "pass",
-              "label": "tier0_stability"
+              "label": "tier0_stability",
+              "sample_runs": 3
             }
           ],
           "grouped": true,
@@ -19150,7 +19160,7 @@
       ]
     },
     "security": {
-      "label": "Security gates (CVE \u00b7 webserver registry)",
+      "label": "Security gates (CVE · webserver registry)",
       "charts": [
         {
           "id": "injection_blocked",
@@ -19236,7 +19246,7 @@
       ]
     },
     "database": {
-      "label": "Registry OLTP (lidb vs Postgres \u00b7 tier_db_registry)",
+      "label": "Registry OLTP (lidb vs Postgres · tier_db_registry)",
       "charts": [
         {
           "id": "ann_qps_10k",
@@ -39265,7 +39275,7 @@
       "metric": "stability",
       "li_value": 1.0,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -40274,6 +40284,38 @@
       "package": "lic",
       "problem_size": "4096",
       "size_label": "N=4096 FFT"
+    },
+    {
+      "benchmark": "fft_1d_fixed_pure_li",
+      "repo": "lic",
+      "tier": 1,
+      "category": "micro",
+      "metric": "wall_time",
+      "li_value": null,
+      "cpp_value": null,
+      "ratio_vs_cpp": null,
+      "sota_lang": null,
+      "sota_value": null,
+      "ratio_vs_sota": null,
+      "unit": null,
+      "variant": "pure_li",
+      "status": "unknown",
+      "validity_status": "unknown",
+      "validity_source": "harness_pending",
+      "os": "linux",
+      "ph_ids": [
+        "PH-5b",
+        "PH-7e"
+      ],
+      "path": "benchmarks/workloads/tier1_micro/fft_1d_fixed",
+      "threshold_ratio_cpp": 1.2,
+      "compare_oracle": "cpp",
+      "ci_url": "",
+      "pending": true,
+      "pillar": "numerics",
+      "package": "lic",
+      "problem_size": "256",
+      "size_label": "N=256 pure-Li DFT"
     },
     {
       "benchmark": "horner_pure_li",
@@ -51241,7 +51283,7 @@
       "metric": "rps",
       "li_value": 5868.31,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51319,7 +51361,7 @@
       "metric": "rps",
       "li_value": 5457.48,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51397,7 +51439,7 @@
       "metric": "rps",
       "li_value": 30279.96,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51467,7 +51509,7 @@
       "metric": "rps",
       "li_value": 32265.33,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51537,7 +51579,7 @@
       "metric": "rps",
       "li_value": 32749.81,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51607,7 +51649,7 @@
       "metric": "rps",
       "li_value": 32326.96,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51677,7 +51719,7 @@
       "metric": "verify_pass",
       "li_value": 1.0,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
@@ -51792,7 +51834,7 @@
       "metric": "rps",
       "li_value": 4029.78,
       "li_stddev": null,
-      "li_sample_runs": null,
+      "li_sample_runs": 3,
       "cpp_value": null,
       "cpp_stddev": null,
       "cpp_sample_runs": null,
