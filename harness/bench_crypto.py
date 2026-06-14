@@ -22,6 +22,7 @@ from timing_stats import TimingStats, default_bench_runs, stats_from_samples
 TIER_CRYPTO = _HARNESS.parent / "benchmarks" / "workloads" / "tier_crypto"
 RESULTS = TIER_CRYPTO / "results"
 BASELINE = TIER_CRYPTO / "baseline.csv"
+BASELINE_RATIO = TIER_CRYPTO / "baseline-ratio.csv"
 
 CSV_HEADER = [
     "benchmark",
@@ -177,6 +178,43 @@ def run_validity(root: Path, profile: str) -> None:
     )
 
 
+def load_ratio_ceilings() -> dict[str, float]:
+    ceilings: dict[str, float] = {}
+    if not BASELINE_RATIO.is_file():
+        return ceilings
+    with BASELINE_RATIO.open(newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row.get("lang") != "li":
+                continue
+            ceilings[row["primitive"]] = float(row["max_openssl_ratio"])
+    return ceilings
+
+
+def check_ratios(rows: list[dict[str, str]], ceilings: dict[str, float]) -> list[str]:
+    errs: list[str] = []
+    li_ops: dict[str, float] = {}
+    ossl_ops: dict[str, float] = {}
+    for row in rows:
+        if row.get("metric") != "ops_per_sec":
+            continue
+        if row["lang"] == "li":
+            li_ops[row["benchmark"]] = float(row["value"])
+        elif row["lang"] == "openssl":
+            ossl_ops[row["benchmark"]] = float(row["value"])
+    for prim, max_ratio in ceilings.items():
+        li = li_ops.get(prim)
+        ossl = ossl_ops.get(prim)
+        if li is None or ossl is None or ossl <= 0:
+            continue
+        ratio = ossl / li if li > 0 else float("inf")
+        if ratio > max_ratio:
+            errs.append(
+                f"tier_crypto: {prim} openssl/li ratio {ratio:.1f} > max {max_ratio}"
+            )
+    return errs
+
+
 def load_baseline() -> dict[tuple[str, str], float]:
     floors: dict[tuple[str, str], float] = {}
     if not BASELINE.is_file():
@@ -292,6 +330,15 @@ def main() -> int:
             print(e, file=sys.stderr)
         if errs:
             return 1
+
+    if args.profile == "baseline":
+        ceilings = load_ratio_ceilings()
+        if ceilings:
+            ratio_errs = check_ratios(rows, ceilings)
+            for e in ratio_errs:
+                print(e, file=sys.stderr)
+            if ratio_errs:
+                return 1
 
     # Li must stay within 100x of OpenSSL on sha256 (sanity, not perf target)
     li_sha = next((float(r["value"]) for r in rows if r["benchmark"] == "sha256" and r["lang"] == "li"), None)

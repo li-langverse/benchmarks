@@ -1,0 +1,4 @@
+primitive,lang,max_openssl_ratio,notes
+sha256,li,50,Li sha256 ops/s must be >= openssl/50
+chacha20_poly1305,li,50,chacha path vs OpenSSL speed
+x25519,li,50,x25519 vs OpenSSL speed
