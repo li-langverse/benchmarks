@@ -8,8 +8,10 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[2]
-SCRIPTS = REPO / "scripts"
+from paths import lic_root  # noqa: E402
+
+LIC = lic_root()
+SCRIPTS = LIC / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
@@ -56,7 +58,7 @@ def write_overlay_config(
     errs, _warn = validate_rng_config(merged)
     if errs:
         raise ValueError("; ".join(errs))
-    dest_dir = out_dir or (REPO / "build" / "tier5_rng_overlay")
+    dest_dir = out_dir or (LIC / "build" / "tier5_rng_overlay")
     dest_dir.mkdir(parents=True, exist_ok=True)
     eid = str(exploit_cfg.get("id", "exploit"))
     out = dest_dir / f"{eid}_rng.toml"

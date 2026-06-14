@@ -8,12 +8,16 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-REPO = Path(__file__).resolve().parents[3]
-SCRIPTS = REPO / "scripts"
-HARNESS = REPO / "benchmarks" / "harness"
-for p in (str(SCRIPTS), str(HARNESS)):
-    if p not in sys.path:
-        sys.path.insert(0, p)
+_HARNESS = Path(__file__).resolve().parents[4] / "harness"
+if str(_HARNESS) not in sys.path:
+    sys.path.insert(0, str(_HARNESS))
+
+from paths import lic_root  # noqa: E402
+
+LIC = lic_root()
+SCRIPTS = LIC / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
 
 from rng_inject import write_overlay_config  # noqa: E402
 from http_exploit_toml import resolve_server_config  # noqa: E402
@@ -37,7 +41,7 @@ def run(cfg: dict[str, Any], *, lang: str, stub: bool, port: int) -> dict[str, A
             "reject_or_fail": True,
             "message": str(exc),
         }
-    script = REPO / "scripts" / "validate-httpd-config.py"
+    script = LIC / "scripts" / "validate-httpd-config.py"
     proc = subprocess.run(
         [sys.executable, str(script), str(overlay)],
         capture_output=True,
