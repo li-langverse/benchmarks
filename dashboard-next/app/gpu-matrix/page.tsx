@@ -5,7 +5,7 @@ export default function GpuMatrixPage() {
   const matrix = loadLigGpuMatrix();
 
   return (
-    <main>
+    <main data-testid="benchmarks-gpu-matrix-page">
       <section className="placeholder gpu-matrix-page">
         <h2>GPU chip matrix</h2>
         <p style={{ color: "var(--muted)", maxWidth: "52rem" }}>
