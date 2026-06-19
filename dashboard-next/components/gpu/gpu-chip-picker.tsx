@@ -1,7 +1,14 @@
 "use client";
 
+import { useCallback, useRef, type KeyboardEvent } from "react";
 import type { GpuChipContribution, GpuOpenSlot } from "@/lib/lig-gpu-matrix-types";
 import { backendLabel, formatTimingSec, vendorBadgeClass } from "@/lib/lig-gpu-matrix-types";
+
+export const GPU_CHIP_TAB_PANEL_ID = "gpu-chip-panel";
+
+export function gpuChipTabId(slug: string): string {
+  return `gpu-chip-tab-${slug}`;
+}
 
 type GpuChipPickerProps = {
   contributions: GpuChipContribution[];
@@ -18,6 +25,51 @@ export function GpuChipPicker({
   onSelect,
   policyUrl,
 }: GpuChipPickerProps) {
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  const focusTabAt = useCallback(
+    (index: number) => {
+      const tab = tabRefs.current[index];
+      if (!tab) return;
+      tab.focus();
+      onSelect(contributions[index]!.chip_slug);
+    },
+    [contributions, onSelect],
+  );
+
+  const handleTabListKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLDivElement>) => {
+      if (contributions.length === 0) return;
+
+      const currentIndex = contributions.findIndex((c) => c.chip_slug === selectedSlug);
+      const activeIndex = currentIndex >= 0 ? currentIndex : 0;
+      let nextIndex: number | null = null;
+
+      switch (event.key) {
+        case "ArrowRight":
+        case "ArrowDown":
+          nextIndex = (activeIndex + 1) % contributions.length;
+          break;
+        case "ArrowLeft":
+        case "ArrowUp":
+          nextIndex = (activeIndex - 1 + contributions.length) % contributions.length;
+          break;
+        case "Home":
+          nextIndex = 0;
+          break;
+        case "End":
+          nextIndex = contributions.length - 1;
+          break;
+        default:
+          return;
+      }
+
+      event.preventDefault();
+      focusTabAt(nextIndex);
+    },
+    [contributions, focusTabAt, selectedSlug],
+  );
+
   return (
     <section className="gpu-chip-picker" aria-label="Select GPU chip">
       <div className="gpu-chip-picker-header">
@@ -28,16 +80,28 @@ export function GpuChipPicker({
           </a>
         ) : null}
       </div>
-      <div className="gpu-chip-cards" role="tablist" aria-label="Contributed GPUs">
-        {contributions.map((c) => {
+      <div
+        className="gpu-chip-cards"
+        role="tablist"
+        aria-label="Contributed GPUs"
+        aria-orientation="horizontal"
+        onKeyDown={handleTabListKeyDown}
+      >
+        {contributions.map((c, index) => {
           const active = c.chip_slug === selectedSlug;
           const s = c.summary;
           return (
             <button
               key={c.chip_slug}
+              ref={(node) => {
+                tabRefs.current[index] = node;
+              }}
               type="button"
               role="tab"
+              id={gpuChipTabId(c.chip_slug)}
               aria-selected={active}
+              aria-controls={GPU_CHIP_TAB_PANEL_ID}
+              tabIndex={active ? 0 : -1}
               className={`gpu-chip-card ${vendorBadgeClass(c.vendor)} ${active ? "gpu-chip-card-active" : ""}`}
               onClick={() => onSelect(c.chip_slug)}
             >
@@ -62,8 +126,7 @@ export function GpuChipPicker({
           <div
             key={slot.chip_slug}
             className={`gpu-chip-card gpu-chip-card-open ${vendorBadgeClass(slot.vendor)}`}
-            role="tab"
-            aria-disabled="true"
+            aria-label={`${slot.label} — open slot`}
           >
             <span className="gpu-chip-card-vendor">{slot.vendor}</span>
             <strong className="gpu-chip-card-title">{slot.label}</strong>
