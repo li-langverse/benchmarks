@@ -430,6 +430,7 @@ TIER2_BENCHES: tuple[BenchSpec, ...] = (
  "cpp/main.c",
  "common/euler_fluid_core.c",
  "li/main.li",
+ li_pure=True,
  ),
  BenchSpec(
  "cloth_swing",
