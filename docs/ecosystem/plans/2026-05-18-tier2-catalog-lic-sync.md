@@ -1,5 +1,7 @@
 # Tier-2 gaming-physics catalog sync with lic dev tree (PH-5b)
 
+> **Superseded (2026-06-07):** Harness ownership moved to **benchmarks** per [ADR](../benchmarks-single-repo-layout.md). Active reconcile plan: [2026-06-07-tier2-gaming-physics-catalog-reconcile.md](./2026-06-07-tier2-gaming-physics-catalog-reconcile.md).
+
 > **Issue:** [benchmarks#19](https://github.com/li-langverse/benchmarks/issues/19)  
 > **Related:** [lic#24](https://github.com/li-langverse/lic/issues/24) (`tier0_stability` path)  
 > **Repo:** li-langverse/benchmarks + li-langverse/lic  
