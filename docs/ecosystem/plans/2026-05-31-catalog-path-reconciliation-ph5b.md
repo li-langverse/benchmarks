@@ -35,11 +35,11 @@ Maintain an **honest** `catalog.toml` index: when harness paths are missing unde
 | D | **lic** issues — one per missing tier-2 kernel cluster (CFD, MD, QM stubs) | Linked from catalog |
 | E | **Audit split** — `plan-completion-audit.py` reports `actionable` vs `planned` gaps | Dashboard badge for planned rows |
 
-## Current status (2026-05-31)
+## Current status
 
-- `plan-completion-audit.json`: **`catalog_gaps`: 0** with sibling `../lic` checkout.
-- Tier-1 posture: 0 red, 1 yellow (`matmul_blocked`), 3 near-threshold greens.
-- Remaining debt: aspirational tier-2 catalog rows ahead of lic dev tree ([#19](https://github.com/li-langverse/benchmarks/issues/19)).
+- **2026-05-31:** `catalog_gaps`: 0 with sibling `../lic` checkout (transient — resolver variance).
+- **2026-06-07:** `catalog_gaps`: **146** with `LIC_ROOT` set; root cause is **repo-field mismatch** after benchmarks-only ADR. See [refresh plan](./2026-06-07-catalog-path-reconciliation-ph5b-179-refresh.md) and implementation track [#266](./2026-06-01-catalog-audit-honesty-ph5b-266.md).
+- Remaining debt: aspirational tier-2 catalog rows ahead of harness ([#19](https://github.com/li-langverse/benchmarks/issues/19)).
 
 ## Tests / benches
 
